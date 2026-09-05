@@ -18,6 +18,10 @@ _Avoid_: Format, document type, theme
 The canonical, output-independent intellectual object, including its manuscript, scholarly apparatus, semantic structure, and publication metadata.
 _Avoid_: Document, file, project
 
+**folio**:
+The complete, durable archival exchange form of a Work, containing the content, history, and dependencies needed to reconstruct it independently of the originating environment. It is distinct from the Folio Suite and from a published Rendition.
+_Avoid_: Backup, rendition, working package
+
 **Manuscript**:
 The ordered authored content of a Work.
 _Avoid_: Document, source file
@@ -31,13 +35,13 @@ An intellectual structure that arranges independently identified Works without a
 _Avoid_: Master document, collection, multi-file Work
 
 **Work Session**:
-The active, authoritative state of an open Work through which multiple Suite applications may read and request changes.
+The active, authoritative state of an open Work through which multiple Suite applications may read and request changes. Its authority is independent of any application's presentation or lifetime.
 _Avoid_: Broker, working document
 
 ## Research and relations
 
 **Source Library**:
-An author's reusable personal collection of Sources, independent of any one Work.
+An author's reusable, versioned collection of Sources, independent of any one Work. An author may maintain multiple Source Libraries for different topics or purposes.
 _Avoid_: Bibliography, references folder
 
 **Source**:
