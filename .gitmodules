@@ -1,0 +1,9 @@
+[submodule "FolioKit"]
+	path = FolioKit
+	url = https://github.com/Folio-Suite/FolioKit.git
+[submodule "Research"]
+	path = Research
+	url = https://github.com/Folio-Suite/Research.git
+[submodule "Write"]
+	path = Write
+	url = https://github.com/Folio-Suite/Write.git
