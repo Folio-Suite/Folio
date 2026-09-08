@@ -79,4 +79,31 @@
          location = "group:check-build.sh">
       </FileRef>
    </Group>
+   <FileRef
+      location = "group:Folio.xctestplan">
+   </FileRef>
+   <FileRef
+      location = "group:AGENTS.md">
+   </FileRef>
+   <FileRef
+      location = "group:CODE_OF_CONDUCT.md">
+   </FileRef>
+   <FileRef
+      location = "group:CONTEXT.md">
+   </FileRef>
+   <FileRef
+      location = "group:CONTRIBUTING.md">
+   </FileRef>
+   <FileRef
+      location = "group:LICENSE">
+   </FileRef>
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <FileRef
+      location = "group:SECURITY.md">
+   </FileRef>
+   <FileRef
+      location = "group:skills-lock.json">
+   </FileRef>
 </Workspace>
