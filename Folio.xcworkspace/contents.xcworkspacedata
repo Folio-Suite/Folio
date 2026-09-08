@@ -10,4 +10,73 @@
    <FileRef
       location = "group:Write/Write/Write.xcodeproj">
    </FileRef>
+   <Group
+      location = "container:docs"
+      name = "docs">
+      <Group
+         location = "group:adr"
+         name = "adr">
+         <FileRef
+            location = "group:0001-output-independent-semantic-work.md">
+         </FileRef>
+         <FileRef
+            location = "group:0002-desktop-workstation-suite.md">
+         </FileRef>
+         <FileRef
+            location = "group:0003-distribute-an-integrated-suite.md">
+         </FileRef>
+         <FileRef
+            location = "group:0004-helper-owned-work-sessions.md">
+         </FileRef>
+         <FileRef
+            location = "group:0005-native-packages-and-archival-folios.md">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:agents"
+         name = "agents">
+         <FileRef
+            location = "group:domain.md">
+         </FileRef>
+         <FileRef
+            location = "group:issue-tracker.md">
+         </FileRef>
+         <FileRef
+            location = "group:triage-labels.md">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:architecture"
+         name = "architecture">
+         <FileRef
+            location = "group:archival-folio-contract.md">
+         </FileRef>
+         <FileRef
+            location = "group:work-session-contract.md">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:research"
+         name = "research">
+         <FileRef
+            location = "group:large-complex-document-systems.md">
+         </FileRef>
+         <FileRef
+            location = "group:macos-suite-language-and-integration-architecture.md">
+         </FileRef>
+         <FileRef
+            location = "group:macos-work-storage-and-serialization.md">
+         </FileRef>
+         <FileRef
+            location = "group:publication-and-accessibility-standards.md">
+         </FileRef>
+      </Group>
+   </Group>
+   <Group
+      location = "container:scripts"
+      name = "scripts">
+      <FileRef
+         location = "group:check-build.sh">
+      </FileRef>
+   </Group>
 </Workspace>
