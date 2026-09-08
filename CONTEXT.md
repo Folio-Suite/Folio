@@ -49,11 +49,15 @@ An author's reusable, versioned collection of Sources, independent of any one Wo
 _Avoid_: Bibliography, references folder
 
 **Source**:
-A research object used by or associated with a Work, such as a book, article, archival item, dataset, or interview.
+An independently citable research object, such as a particular book edition, article, archival item, dataset, or interview. Related editions and translations retain distinct identities.
 _Avoid_: Reference, attachment
 
+**Source Record**:
+A description of a Source owned by a Source Library or Work, including bibliographic information and associated research material. Distinct records may describe the same Source while retaining independent revisions and provenance.
+_Avoid_: Source identity, bibliography entry
+
 **Citation**:
-A relationship from authored content to a Source, including any locator needed to identify the cited evidence.
+A relationship from authored content to one or more Sources, with each individual Source reference retaining its locator and qualifying text. Multiple Source references may form one Citation occurrence.
 _Avoid_: Reference, formatted citation text
 
 **Cross-reference**:
