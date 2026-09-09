@@ -72,7 +72,11 @@ static NSManagedObjectModel *FWStoreModelV1(void) {
     placement.optional = NO;
     placement.deleteRule = NSNullifyDeleteRule;
     entities[@"Manuscript"].properties = [entities[@"Manuscript"].properties arrayByAddingObject:placement];
-    model.entities = [entities objectsForKeys:[[entities allKeys] sortedArrayUsingSelector:@selector(compare:)] notFoundMarker:NSNull.null];
+    NSMutableArray<NSEntityDescription *> *orderedEntities = [NSMutableArray arrayWithCapacity:entities.count];
+    for (NSString *name in [[entities allKeys] sortedArrayUsingSelector:@selector(compare:)]) {
+        [orderedEntities addObject:entities[name]];
+    }
+    model.entities = orderedEntities;
     model.versionIdentifiers = [NSSet setWithObject:@"FolioWriteWorkV1"];
     return model;
 }
