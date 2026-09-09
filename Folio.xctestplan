@@ -14,51 +14,51 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:Write\/Write\/Write.xcodeproj",
-        "identifier" : "A1F839E13050B46200DEB96A",
-        "name" : "WriteKitTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Research\/Research\/Research.xcodeproj",
-        "identifier" : "A1F83A093050B4D200DEB96A",
-        "name" : "ResearchKitTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:FolioKit\/FolioKit\/FolioKit.xcodeproj",
-        "identifier" : "A10648E0304DFE13001A21A6",
-        "name" : "FolioKitTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Write\/Write\/Write.xcodeproj",
-        "identifier" : "A106486B304DFCF7001A21A6",
-        "name" : "WriteTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Write\/Write\/Write.xcodeproj",
-        "identifier" : "A1064875304DFCF7001A21A6",
-        "name" : "WriteUITests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Research\/Research\/Research.xcodeproj",
+        "containerPath" : "container:Research\/Research.xcodeproj",
         "identifier" : "A10648AD304DFD5D001A21A6",
         "name" : "ResearchTests"
       }
     },
     {
       "target" : {
-        "containerPath" : "container:Research\/Research\/Research.xcodeproj",
+        "containerPath" : "container:Write\/Write.xcodeproj",
+        "identifier" : "A1064875304DFCF7001A21A6",
+        "name" : "WriteUITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Research\/Research.xcodeproj",
         "identifier" : "A10648B7304DFD5D001A21A6",
         "name" : "ResearchUITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Write\/Write.xcodeproj",
+        "identifier" : "A1F839E13050B46200DEB96A",
+        "name" : "WriteKitTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Write\/Write.xcodeproj",
+        "identifier" : "A106486B304DFCF7001A21A6",
+        "name" : "WriteTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Research\/Research.xcodeproj",
+        "identifier" : "A1F83A093050B4D200DEB96A",
+        "name" : "ResearchKitTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:FolioKit\/FolioKit.xcodeproj",
+        "identifier" : "A10648E0304DFE13001A21A6",
+        "name" : "FolioKitTests"
       }
     }
   ],

@@ -2,13 +2,16 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:FolioKit/FolioKit/FolioKit.xcodeproj">
+      location = "group:FolioKit/FolioKit.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Research/Research/Research.xcodeproj">
+      location = "group:Research/Research.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Write/Write/Write.xcodeproj">
+      location = "group:Write/Write.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Folio.xctestplan">
    </FileRef>
    <Group
       location = "container:docs"
@@ -79,9 +82,6 @@
          location = "group:check-build.sh">
       </FileRef>
    </Group>
-   <FileRef
-      location = "group:Folio.xctestplan">
-   </FileRef>
    <FileRef
       location = "group:AGENTS.md">
    </FileRef>
