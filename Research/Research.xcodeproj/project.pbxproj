@@ -1,0 +1,884 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 100;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A1F83A0B3050B4D200DEB96A /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
+		A1F83AC53050B83D00DEB96A /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
+		A1F83AC63050B83D00DEB96A /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A1F83B193050BBAB00DEB96A /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A10648AF304DFD5D001A21A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1064892304DFD5C001A21A6;
+			remoteInfo = Research;
+		};
+		A10648B9304DFD5D001A21A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1064892304DFD5C001A21A6;
+			remoteInfo = Research;
+		};
+		A1F83A0C3050B4D200DEB96A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1F839FF3050B4D100DEB96A;
+			remoteInfo = ResearchKit;
+		};
+		A1F83A0E3050B4D200DEB96A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1064892304DFD5C001A21A6;
+			remoteInfo = Research;
+		};
+		A1F83AC73050B83D00DEB96A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1F839FF3050B4D100DEB96A;
+			remoteInfo = ResearchKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A1F83ACB3050B83D00DEB96A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = Frameworks;
+			files = (
+				A1F83AC63050B83D00DEB96A /* ResearchKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A1064893304DFD5C001A21A6 /* Research.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Research.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10648AE304DFD5D001A21A6 /* ResearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10648B8304DFD5D001A21A6 /* ResearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F83A003050B4D100DEB96A /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F83A0A3050B4D200DEB96A /* ResearchKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F83B183050BBAB00DEB96A /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F01100000000000000000001 /* Config/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Project.xcconfig; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A10648C0304DFD5D001A21A6 /* Exceptions for "Research" folder in "Research" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A1064892304DFD5C001A21A6 /* Research */;
+		};
+		A1F83A1C3050B4D200DEB96A /* Exceptions for "ResearchKit" folder in "ResearchKit" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			publicHeaders = (
+				FRLibraryPackage.h,
+				ResearchKit.h,
+			);
+			target = A1F839FF3050B4D100DEB96A /* ResearchKit */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A1064895304DFD5C001A21A6 /* Research */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A10648C0304DFD5D001A21A6 /* Exceptions for "Research" folder in "Research" target */,
+			);
+			path = Research;
+			sourceTree = "<group>";
+		};
+		A10648B1304DFD5D001A21A6 /* ResearchTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ResearchTests;
+			sourceTree = "<group>";
+		};
+		A10648BB304DFD5D001A21A6 /* ResearchUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ResearchUITests;
+			sourceTree = "<group>";
+		};
+		A1F83A013050B4D100DEB96A /* ResearchKit */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A1F83A1C3050B4D200DEB96A /* Exceptions for "ResearchKit" folder in "ResearchKit" target */,
+			);
+			path = ResearchKit;
+			sourceTree = "<group>";
+		};
+		A1F83A103050B4D200DEB96A /* ResearchKitTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ResearchKitTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1064890304DFD5C001A21A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				A1F83AC53050B83D00DEB96A /* ResearchKit.framework in Frameworks */,
+			);
+		};
+		A10648AB304DFD5D001A21A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		A10648B5304DFD5D001A21A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		A1F839FD3050B4D100DEB96A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				A1F83B193050BBAB00DEB96A /* FolioKit.framework in Frameworks */,
+			);
+		};
+		A1F83A073050B4D200DEB96A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				A1F83A0B3050B4D200DEB96A /* ResearchKit.framework in Frameworks */,
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A106488A304DFD5C001A21A6 = {
+			isa = PBXGroup;
+			children = (
+				F01100000000000000000001 /* Config/Project.xcconfig */,
+				A1064895304DFD5C001A21A6 /* Research */,
+				A10648B1304DFD5D001A21A6 /* ResearchTests */,
+				A10648BB304DFD5D001A21A6 /* ResearchUITests */,
+				A1F83A013050B4D100DEB96A /* ResearchKit */,
+				A1F83A103050B4D200DEB96A /* ResearchKitTests */,
+				A1F83AC33050B83D00DEB96A /* Frameworks */,
+				A1064894304DFD5C001A21A6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A1064894304DFD5C001A21A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1064893304DFD5C001A21A6 /* Research.app */,
+				A10648AE304DFD5D001A21A6 /* ResearchTests.xctest */,
+				A10648B8304DFD5D001A21A6 /* ResearchUITests.xctest */,
+				A1F83A003050B4D100DEB96A /* ResearchKit.framework */,
+				A1F83A0A3050B4D200DEB96A /* ResearchKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1F83AC33050B83D00DEB96A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A1F83B183050BBAB00DEB96A /* FolioKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A1F839FB3050B4D100DEB96A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			files = (
+			);
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A1064892304DFD5C001A21A6 /* Research */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10648C1304DFD5D001A21A6 /* Build configuration list for PBXNativeTarget "Research" */;
+			buildPhases = (
+				A106488F304DFD5C001A21A6 /* Sources */,
+				A1064890304DFD5C001A21A6 /* Frameworks */,
+				A1064891304DFD5C001A21A6 /* Resources */,
+				A1F83ACB3050B83D00DEB96A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1F83AC83050B83D00DEB96A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1064895304DFD5C001A21A6 /* Research */,
+			);
+			name = Research;
+			productName = Research;
+			productReference = A1064893304DFD5C001A21A6 /* Research.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A10648AD304DFD5D001A21A6 /* ResearchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10648C6304DFD5D001A21A6 /* Build configuration list for PBXNativeTarget "ResearchTests" */;
+			buildPhases = (
+				A10648AA304DFD5D001A21A6 /* Sources */,
+				A10648AB304DFD5D001A21A6 /* Frameworks */,
+				A10648AC304DFD5D001A21A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A10648B0304DFD5D001A21A6 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A10648B1304DFD5D001A21A6 /* ResearchTests */,
+			);
+			name = ResearchTests;
+			productName = ResearchTests;
+			productReference = A10648AE304DFD5D001A21A6 /* ResearchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A10648B7304DFD5D001A21A6 /* ResearchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10648C9304DFD5D001A21A6 /* Build configuration list for PBXNativeTarget "ResearchUITests" */;
+			buildPhases = (
+				A10648B4304DFD5D001A21A6 /* Sources */,
+				A10648B5304DFD5D001A21A6 /* Frameworks */,
+				A10648B6304DFD5D001A21A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A10648BA304DFD5D001A21A6 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A10648BB304DFD5D001A21A6 /* ResearchUITests */,
+			);
+			name = ResearchUITests;
+			productName = ResearchUITests;
+			productReference = A10648B8304DFD5D001A21A6 /* ResearchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		A1F839FF3050B4D100DEB96A /* ResearchKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1F83A1B3050B4D200DEB96A /* Build configuration list for PBXNativeTarget "ResearchKit" */;
+			buildPhases = (
+				A1F839FB3050B4D100DEB96A /* Headers */,
+				A1F839FC3050B4D100DEB96A /* Sources */,
+				A1F839FD3050B4D100DEB96A /* Frameworks */,
+				A1F839FE3050B4D100DEB96A /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				A1F83A013050B4D100DEB96A /* ResearchKit */,
+			);
+			name = ResearchKit;
+			productName = ResearchKit;
+			productReference = A1F83A003050B4D100DEB96A /* ResearchKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A1F83A093050B4D200DEB96A /* ResearchKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1F83A1D3050B4D200DEB96A /* Build configuration list for PBXNativeTarget "ResearchKitTests" */;
+			buildPhases = (
+				A1F83A063050B4D200DEB96A /* Sources */,
+				A1F83A073050B4D200DEB96A /* Frameworks */,
+				A1F83A083050B4D200DEB96A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1F83A0D3050B4D200DEB96A /* PBXTargetDependency */,
+				A1F83A0F3050B4D200DEB96A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1F83A103050B4D200DEB96A /* ResearchKitTests */,
+			);
+			name = ResearchKitTests;
+			productName = ResearchKitTests;
+			productReference = A1F83A0A3050B4D200DEB96A /* ResearchKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A106488B304DFD5C001A21A6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				CLASSPREFIX = FR;
+				LastUpgradeCheck = 2660;
+				ORGANIZATIONNAME = dev.foliosuite;
+				TargetAttributes = {
+					A1064892304DFD5C001A21A6 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					A10648AD304DFD5D001A21A6 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = A1064892304DFD5C001A21A6;
+					};
+					A10648B7304DFD5D001A21A6 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = A1064892304DFD5C001A21A6;
+					};
+					A1F839FF3050B4D100DEB96A = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					A1F83A093050B4D200DEB96A = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = A1064892304DFD5C001A21A6;
+					};
+				};
+			};
+			buildConfigurationList = A106488E304DFD5C001A21A6 /* Build configuration list for PBXProject "Research" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A106488A304DFD5C001A21A6;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 100;
+			productRefGroup = A1064894304DFD5C001A21A6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1064892304DFD5C001A21A6 /* Research */,
+				A10648AD304DFD5D001A21A6 /* ResearchTests */,
+				A10648B7304DFD5D001A21A6 /* ResearchUITests */,
+				A1F839FF3050B4D100DEB96A /* ResearchKit */,
+				A1F83A093050B4D200DEB96A /* ResearchKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1064891304DFD5C001A21A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A10648AC304DFD5D001A21A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A10648B6304DFD5D001A21A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A1F839FE3050B4D100DEB96A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A1F83A083050B4D200DEB96A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A106488F304DFD5C001A21A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A10648AA304DFD5D001A21A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A10648B4304DFD5D001A21A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1F839FC3050B4D100DEB96A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1F83A063050B4D200DEB96A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A10648B0304DFD5D001A21A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1064892304DFD5C001A21A6 /* Research */;
+			targetProxy = A10648AF304DFD5D001A21A6 /* PBXContainerItemProxy */;
+		};
+		A10648BA304DFD5D001A21A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1064892304DFD5C001A21A6 /* Research */;
+			targetProxy = A10648B9304DFD5D001A21A6 /* PBXContainerItemProxy */;
+		};
+		A1F83A0D3050B4D200DEB96A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1F839FF3050B4D100DEB96A /* ResearchKit */;
+			targetProxy = A1F83A0C3050B4D200DEB96A /* PBXContainerItemProxy */;
+		};
+		A1F83A0F3050B4D200DEB96A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1064892304DFD5C001A21A6 /* Research */;
+			targetProxy = A1F83A0E3050B4D200DEB96A /* PBXContainerItemProxy */;
+		};
+		A1F83AC83050B83D00DEB96A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1F839FF3050B4D100DEB96A /* ResearchKit */;
+			targetProxy = A1F83AC73050B83D00DEB96A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A10648C2304DFD5D001A21A6 /* Debug configuration for PBXNativeTarget "Research" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				AUTOMATION_APPLE_EVENTS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
+				ENABLE_FILE_ACCESS_PICTURE_FOLDER = readwrite;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = YES;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readwrite;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Research/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.Research;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		A10648C3304DFD5D001A21A6 /* Release configuration for PBXNativeTarget "Research" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				AUTOMATION_APPLE_EVENTS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
+				ENABLE_FILE_ACCESS_PICTURE_FOLDER = readwrite;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = YES;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readwrite;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Research/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.Research;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		A10648C4304DFD5D001A21A6 /* Debug configuration for PBXProject "Research" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F01100000000000000000001 /* Config/Project.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A10648C5304DFD5D001A21A6 /* Release configuration for PBXProject "Research" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F01100000000000000000001 /* Config/Project.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A10648C7304DFD5D001A21A6 /* Debug configuration for PBXNativeTarget "ResearchTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Research.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Research";
+			};
+			name = Debug;
+		};
+		A10648C8304DFD5D001A21A6 /* Release configuration for PBXNativeTarget "ResearchTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Research.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Research";
+			};
+			name = Release;
+		};
+		A10648CA304DFD5D001A21A6 /* Debug configuration for PBXNativeTarget "ResearchUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = Research;
+			};
+			name = Debug;
+		};
+		A10648CB304DFD5D001A21A6 /* Release configuration for PBXNativeTarget "ResearchUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = Research;
+			};
+			name = Release;
+		};
+		A1F83A173050B4D200DEB96A /* Debug configuration for PBXNativeTarget "ResearchKit" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 dev.foliosuite.Research. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A1F83A183050B4D200DEB96A /* Release configuration for PBXNativeTarget "ResearchKit" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 dev.foliosuite.Research. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A1F83A193050B4D200DEB96A /* Debug configuration for PBXNativeTarget "ResearchKitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Research.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Research";
+			};
+			name = Debug;
+		};
+		A1F83A1A3050B4D200DEB96A /* Release configuration for PBXNativeTarget "ResearchKitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Research.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Research";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A106488E304DFD5C001A21A6 /* Build configuration list for PBXProject "Research" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10648C4304DFD5D001A21A6 /* Debug configuration for PBXProject "Research" */,
+				A10648C5304DFD5D001A21A6 /* Release configuration for PBXProject "Research" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A10648C1304DFD5D001A21A6 /* Build configuration list for PBXNativeTarget "Research" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10648C2304DFD5D001A21A6 /* Debug configuration for PBXNativeTarget "Research" */,
+				A10648C3304DFD5D001A21A6 /* Release configuration for PBXNativeTarget "Research" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A10648C6304DFD5D001A21A6 /* Build configuration list for PBXNativeTarget "ResearchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10648C7304DFD5D001A21A6 /* Debug configuration for PBXNativeTarget "ResearchTests" */,
+				A10648C8304DFD5D001A21A6 /* Release configuration for PBXNativeTarget "ResearchTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A10648C9304DFD5D001A21A6 /* Build configuration list for PBXNativeTarget "ResearchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10648CA304DFD5D001A21A6 /* Debug configuration for PBXNativeTarget "ResearchUITests" */,
+				A10648CB304DFD5D001A21A6 /* Release configuration for PBXNativeTarget "ResearchUITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1F83A1B3050B4D200DEB96A /* Build configuration list for PBXNativeTarget "ResearchKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1F83A173050B4D200DEB96A /* Debug configuration for PBXNativeTarget "ResearchKit" */,
+				A1F83A183050B4D200DEB96A /* Release configuration for PBXNativeTarget "ResearchKit" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1F83A1D3050B4D200DEB96A /* Build configuration list for PBXNativeTarget "ResearchKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1F83A193050B4D200DEB96A /* Debug configuration for PBXNativeTarget "ResearchKitTests" */,
+				A1F83A1A3050B4D200DEB96A /* Release configuration for PBXNativeTarget "ResearchKitTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A106488B304DFD5C001A21A6 /* Project object */;
+}

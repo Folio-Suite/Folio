@@ -1,0 +1,1145 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 100;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D22453A3EA545B2AE541C9D /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */; };
+		62786D71B4A5416AABCEA32F /* libFWManuscript.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */; };
+		A1F839E33050B46200DEB96A /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; };
+		A1F839ED3050B46200DEB96A /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; };
+		A1F839EE3050B46200DEB96A /* WriteKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A1F83B0F3050B9A500DEB96A /* libFWEditor.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B003050B99800DEB96A /* libFWEditor.dylib */; };
+		A1F83B103050B9A500DEB96A /* libFWEditor.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = A1F83B003050B99800DEB96A /* libFWEditor.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A1F83B133050B9A500DEB96A /* libFWManuscript.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */; };
+		A1F83B143050B9A500DEB96A /* libFWManuscript.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A1F83B1D3050BBBF00DEB96A /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */; };
+		FC19964AB0634F0892868906 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A106486D304DFCF7001A21A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1064850304DFCF6001A21A6;
+			remoteInfo = Write;
+		};
+		A1064877304DFCF7001A21A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1064850304DFCF6001A21A6;
+			remoteInfo = Write;
+		};
+		A1F839E43050B46200DEB96A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1F839D73050B46200DEB96A;
+			remoteInfo = WriteKit;
+		};
+		A1F839E63050B46200DEB96A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1064850304DFCF6001A21A6;
+			remoteInfo = Write;
+		};
+		A1F839EB3050B46200DEB96A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1F839D73050B46200DEB96A;
+			remoteInfo = WriteKit;
+		};
+		A1F83B113050B9A500DEB96A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1F83AFF3050B99800DEB96A;
+			remoteInfo = FWEditor;
+		};
+		A1F83B153050B9A500DEB96A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1F83AD93050B8E900DEB96A;
+			remoteInfo = FWManuscript;
+		};
+		A1F83F37305101BB00DEB96A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1F83AD93050B8E900DEB96A;
+			remoteInfo = FWManuscript;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A1F83B173050B9A500DEB96A /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = Frameworks;
+			files = (
+				A1F83B103050B9A500DEB96A /* libFWEditor.dylib in Embed Libraries */,
+				A1F83B143050B9A500DEB96A /* libFWManuscript.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+		};
+		F01100000000000000000005 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = Frameworks;
+			files = (
+				A1F839EE3050B46200DEB96A /* WriteKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A1064851304DFCF6001A21A6 /* Write.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Write.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A106486C304DFCF7001A21A6 /* WriteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WriteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1064876304DFCF7001A21A6 /* WriteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WriteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F839D83050B46200DEB96A /* WriteKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WriteKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F839E23050B46200DEB96A /* WriteKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WriteKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFWManuscript.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F83B003050B99800DEB96A /* libFWEditor.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFWEditor.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F01100000000000000000001 /* Config/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Project.xcconfig; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A106487E304DFCF7001A21A6 /* Exceptions for "Write" folder in "Write" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A1064850304DFCF6001A21A6 /* Write */;
+		};
+		A1F839F43050B46200DEB96A /* Exceptions for "WriteKit" folder in "WriteKit" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FWEditor/FWEditorViewController.m,
+				FWManuscript/FWWork.m,
+				FWManuscript/FWWorkStore.h,
+				FWManuscript/FWWorkStore.m,
+			);
+			publicHeaders = (
+				FWEditor/FWEditorViewController.h,
+				FWManuscript/FWWork.h,
+				WriteKit.h,
+			);
+			target = A1F839D73050B46200DEB96A /* WriteKit */;
+		};
+		A1F83AE83050B8EF00DEB96A /* Exceptions for "WriteKit" folder in "FWManuscript" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FWManuscript/FWWork.m,
+				FWManuscript/FWWorkStore.h,
+				FWManuscript/FWWorkStore.m,
+			);
+			target = A1F83AD93050B8E900DEB96A /* FWManuscript */;
+		};
+		A1F83B0E3050B99E00DEB96A /* Exceptions for "WriteKit" folder in "FWEditor" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FWEditor/FWEditorViewController.m,
+			);
+			target = A1F83AFF3050B99800DEB96A /* FWEditor */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A1064853304DFCF6001A21A6 /* Write */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A106487E304DFCF7001A21A6 /* Exceptions for "Write" folder in "Write" target */,
+			);
+			path = Write;
+			sourceTree = "<group>";
+		};
+		A106486F304DFCF7001A21A6 /* WriteTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WriteTests;
+			sourceTree = "<group>";
+		};
+		A1064879304DFCF7001A21A6 /* WriteUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WriteUITests;
+			sourceTree = "<group>";
+		};
+		A1F839D93050B46200DEB96A /* WriteKit */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A1F839F43050B46200DEB96A /* Exceptions for "WriteKit" folder in "WriteKit" target */,
+				A1F83AE83050B8EF00DEB96A /* Exceptions for "WriteKit" folder in "FWManuscript" target */,
+				A1F83B0E3050B99E00DEB96A /* Exceptions for "WriteKit" folder in "FWEditor" target */,
+			);
+			path = WriteKit;
+			sourceTree = "<group>";
+		};
+		A1F839E83050B46200DEB96A /* WriteKitTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WriteKitTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A106484E304DFCF6001A21A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				A1F839ED3050B46200DEB96A /* WriteKit.framework in Frameworks */,
+			);
+		};
+		A1064869304DFCF7001A21A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		A1064873304DFCF7001A21A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		A1F839D53050B46200DEB96A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				A1F83B1D3050BBBF00DEB96A /* FolioKit.framework in Frameworks */,
+				A1F83B0F3050B9A500DEB96A /* libFWEditor.dylib in Frameworks */,
+				A1F83B133050B9A500DEB96A /* libFWManuscript.dylib in Frameworks */,
+			);
+		};
+		A1F839DF3050B46200DEB96A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				A1F839E33050B46200DEB96A /* WriteKit.framework in Frameworks */,
+			);
+		};
+		A1F83AD83050B8E900DEB96A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				FC19964AB0634F0892868906 /* FolioKit.framework in Frameworks */,
+			);
+		};
+		A1F83AFE3050B99800DEB96A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				62786D71B4A5416AABCEA32F /* libFWManuscript.dylib in Frameworks */,
+				0D22453A3EA545B2AE541C9D /* FolioKit.framework in Frameworks */,
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A1064848304DFCF6001A21A6 = {
+			isa = PBXGroup;
+			children = (
+				F01100000000000000000001 /* Config/Project.xcconfig */,
+				A1064853304DFCF6001A21A6 /* Write */,
+				A106486F304DFCF7001A21A6 /* WriteTests */,
+				A1064879304DFCF7001A21A6 /* WriteUITests */,
+				A1F839D93050B46200DEB96A /* WriteKit */,
+				A1F839E83050B46200DEB96A /* WriteKitTests */,
+				A1F839F63050B47800DEB96A /* Frameworks */,
+				A1064852304DFCF6001A21A6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A1064852304DFCF6001A21A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1064851304DFCF6001A21A6 /* Write.app */,
+				A106486C304DFCF7001A21A6 /* WriteTests.xctest */,
+				A1064876304DFCF7001A21A6 /* WriteUITests.xctest */,
+				A1F839D83050B46200DEB96A /* WriteKit.framework */,
+				A1F839E23050B46200DEB96A /* WriteKitTests.xctest */,
+				A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */,
+				A1F83B003050B99800DEB96A /* libFWEditor.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1F839F63050B47800DEB96A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A1F839D33050B46200DEB96A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			files = (
+			);
+		};
+		A1F83AD63050B8E900DEB96A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			files = (
+			);
+		};
+		A1F83AFC3050B99800DEB96A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			files = (
+			);
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A1064850304DFCF6001A21A6 /* Write */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A106487F304DFCF7001A21A6 /* Build configuration list for PBXNativeTarget "Write" */;
+			buildPhases = (
+				F01100000000000000000005 /* Embed Frameworks */,
+				A106484D304DFCF6001A21A6 /* Sources */,
+				A106484E304DFCF6001A21A6 /* Frameworks */,
+				A106484F304DFCF6001A21A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1F839EC3050B46200DEB96A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1064853304DFCF6001A21A6 /* Write */,
+			);
+			name = Write;
+			productName = Write;
+			productReference = A1064851304DFCF6001A21A6 /* Write.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A106486B304DFCF7001A21A6 /* WriteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1064884304DFCF7001A21A6 /* Build configuration list for PBXNativeTarget "WriteTests" */;
+			buildPhases = (
+				A1064868304DFCF7001A21A6 /* Sources */,
+				A1064869304DFCF7001A21A6 /* Frameworks */,
+				A106486A304DFCF7001A21A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A106486E304DFCF7001A21A6 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A106486F304DFCF7001A21A6 /* WriteTests */,
+			);
+			name = WriteTests;
+			productName = WriteTests;
+			productReference = A106486C304DFCF7001A21A6 /* WriteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A1064875304DFCF7001A21A6 /* WriteUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1064887304DFCF7001A21A6 /* Build configuration list for PBXNativeTarget "WriteUITests" */;
+			buildPhases = (
+				A1064872304DFCF7001A21A6 /* Sources */,
+				A1064873304DFCF7001A21A6 /* Frameworks */,
+				A1064874304DFCF7001A21A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1064878304DFCF7001A21A6 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1064879304DFCF7001A21A6 /* WriteUITests */,
+			);
+			name = WriteUITests;
+			productName = WriteUITests;
+			productReference = A1064876304DFCF7001A21A6 /* WriteUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		A1F839D73050B46200DEB96A /* WriteKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1F839F33050B46200DEB96A /* Build configuration list for PBXNativeTarget "WriteKit" */;
+			buildPhases = (
+				A1F839D33050B46200DEB96A /* Headers */,
+				A1F839D43050B46200DEB96A /* Sources */,
+				A1F839D53050B46200DEB96A /* Frameworks */,
+				A1F839D63050B46200DEB96A /* Resources */,
+				A1F83B173050B9A500DEB96A /* Embed Libraries */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1F83B123050B9A500DEB96A /* PBXTargetDependency */,
+				A1F83B163050B9A500DEB96A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1F839D93050B46200DEB96A /* WriteKit */,
+			);
+			name = WriteKit;
+			productName = WriteKit;
+			productReference = A1F839D83050B46200DEB96A /* WriteKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A1F839E13050B46200DEB96A /* WriteKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1F839F53050B46200DEB96A /* Build configuration list for PBXNativeTarget "WriteKitTests" */;
+			buildPhases = (
+				A1F839DE3050B46200DEB96A /* Sources */,
+				A1F839DF3050B46200DEB96A /* Frameworks */,
+				A1F839E03050B46200DEB96A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1F839E53050B46200DEB96A /* PBXTargetDependency */,
+				A1F839E73050B46200DEB96A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1F839E83050B46200DEB96A /* WriteKitTests */,
+			);
+			name = WriteKitTests;
+			productName = WriteKitTests;
+			productReference = A1F839E23050B46200DEB96A /* WriteKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A1F83AD93050B8E900DEB96A /* FWManuscript */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1F83AE03050B8E900DEB96A /* Build configuration list for PBXNativeTarget "FWManuscript" */;
+			buildPhases = (
+				A1F83AD63050B8E900DEB96A /* Headers */,
+				A1F83AD73050B8E900DEB96A /* Sources */,
+				A1F83AD83050B8E900DEB96A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			name = FWManuscript;
+			productName = FWManuscript;
+			productReference = A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		A1F83AFF3050B99800DEB96A /* FWEditor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1F83B063050B99800DEB96A /* Build configuration list for PBXNativeTarget "FWEditor" */;
+			buildPhases = (
+				A1F83AFC3050B99800DEB96A /* Headers */,
+				A1F83AFD3050B99800DEB96A /* Sources */,
+				A1F83AFE3050B99800DEB96A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ABF68A5C1A004C0993403718 /* PBXTargetDependency */,
+			);
+			name = FWEditor;
+			productName = FWEditor;
+			productReference = A1F83B003050B99800DEB96A /* libFWEditor.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A1064849304DFCF6001A21A6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				CLASSPREFIX = FW;
+				LastUpgradeCheck = 2660;
+				ORGANIZATIONNAME = dev.foliosuite;
+				TargetAttributes = {
+					A1064850304DFCF6001A21A6 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					A106486B304DFCF7001A21A6 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = A1064850304DFCF6001A21A6;
+					};
+					A1064875304DFCF7001A21A6 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = A1064850304DFCF6001A21A6;
+					};
+					A1F839D73050B46200DEB96A = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					A1F839E13050B46200DEB96A = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = A1064850304DFCF6001A21A6;
+					};
+					A1F83AD93050B8E900DEB96A = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					A1F83AFF3050B99800DEB96A = {
+						CreatedOnToolsVersion = 26.6;
+					};
+				};
+			};
+			buildConfigurationList = A106484C304DFCF6001A21A6 /* Build configuration list for PBXProject "Write" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A1064848304DFCF6001A21A6;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 100;
+			productRefGroup = A1064852304DFCF6001A21A6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1064850304DFCF6001A21A6 /* Write */,
+				A106486B304DFCF7001A21A6 /* WriteTests */,
+				A1064875304DFCF7001A21A6 /* WriteUITests */,
+				A1F839D73050B46200DEB96A /* WriteKit */,
+				A1F839E13050B46200DEB96A /* WriteKitTests */,
+				A1F83AD93050B8E900DEB96A /* FWManuscript */,
+				A1F83AFF3050B99800DEB96A /* FWEditor */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A106484F304DFCF6001A21A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A106486A304DFCF7001A21A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A1064874304DFCF7001A21A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A1F839D63050B46200DEB96A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A1F839E03050B46200DEB96A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A106484D304DFCF6001A21A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1064868304DFCF7001A21A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1064872304DFCF7001A21A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1F839D43050B46200DEB96A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1F839DE3050B46200DEB96A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1F83AD73050B8E900DEB96A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1F83AFD3050B99800DEB96A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A106486E304DFCF7001A21A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1064850304DFCF6001A21A6 /* Write */;
+			targetProxy = A106486D304DFCF7001A21A6 /* PBXContainerItemProxy */;
+		};
+		A1064878304DFCF7001A21A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1064850304DFCF6001A21A6 /* Write */;
+			targetProxy = A1064877304DFCF7001A21A6 /* PBXContainerItemProxy */;
+		};
+		A1F839E53050B46200DEB96A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1F839D73050B46200DEB96A /* WriteKit */;
+			targetProxy = A1F839E43050B46200DEB96A /* PBXContainerItemProxy */;
+		};
+		A1F839E73050B46200DEB96A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1064850304DFCF6001A21A6 /* Write */;
+			targetProxy = A1F839E63050B46200DEB96A /* PBXContainerItemProxy */;
+		};
+		A1F839EC3050B46200DEB96A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1F839D73050B46200DEB96A /* WriteKit */;
+			targetProxy = A1F839EB3050B46200DEB96A /* PBXContainerItemProxy */;
+		};
+		A1F83B123050B9A500DEB96A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1F83AFF3050B99800DEB96A /* FWEditor */;
+			targetProxy = A1F83B113050B9A500DEB96A /* PBXContainerItemProxy */;
+		};
+		A1F83B163050B9A500DEB96A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1F83AD93050B8E900DEB96A /* FWManuscript */;
+			targetProxy = A1F83B153050B9A500DEB96A /* PBXContainerItemProxy */;
+		};
+		ABF68A5C1A004C0993403718 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1F83AD93050B8E900DEB96A /* FWManuscript */;
+			targetProxy = A1F83F37305101BB00DEB96A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A1064880304DFCF7001A21A6 /* Debug configuration for PBXNativeTarget "Write" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				AUTOMATION_APPLE_EVENTS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
+				ENABLE_FILE_ACCESS_PICTURE_FOLDER = readwrite;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = YES;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readwrite;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Write/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.Write;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		A1064881304DFCF7001A21A6 /* Release configuration for PBXNativeTarget "Write" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				AUTOMATION_APPLE_EVENTS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
+				ENABLE_FILE_ACCESS_PICTURE_FOLDER = readwrite;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = YES;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readwrite;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Write/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.Write;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		A1064882304DFCF7001A21A6 /* Debug configuration for PBXProject "Write" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F01100000000000000000001 /* Config/Project.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A1064883304DFCF7001A21A6 /* Release configuration for PBXProject "Write" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F01100000000000000000001 /* Config/Project.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A1064885304DFCF7001A21A6 /* Debug configuration for PBXNativeTarget "WriteTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Write.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Write";
+			};
+			name = Debug;
+		};
+		A1064886304DFCF7001A21A6 /* Release configuration for PBXNativeTarget "WriteTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Write.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Write";
+			};
+			name = Release;
+		};
+		A1064888304DFCF7001A21A6 /* Debug configuration for PBXNativeTarget "WriteUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = Write;
+			};
+			name = Debug;
+		};
+		A1064889304DFCF7001A21A6 /* Release configuration for PBXNativeTarget "WriteUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = Write;
+			};
+			name = Release;
+		};
+		A1F839EF3050B46200DEB96A /* Debug configuration for PBXNativeTarget "WriteKit" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 dev.foliosuite.Write. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl,-reexport-lFWManuscript",
+					"-Wl,-reexport-lFWEditor",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A1F839F03050B46200DEB96A /* Release configuration for PBXNativeTarget "WriteKit" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 dev.foliosuite.Write. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl,-reexport-lFWManuscript",
+					"-Wl,-reexport-lFWEditor",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A1F839F13050B46200DEB96A /* Debug configuration for PBXNativeTarget "WriteKitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Write.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Write";
+			};
+			name = Debug;
+		};
+		A1F839F23050B46200DEB96A /* Release configuration for PBXNativeTarget "WriteKitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Write.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Write";
+			};
+			name = Release;
+		};
+		A1F83AE13050B8E900DEB96A /* Debug configuration for PBXNativeTarget "FWManuscript" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_NAME)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@loader_path",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A1F83AE23050B8E900DEB96A /* Release configuration for PBXNativeTarget "FWManuscript" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_NAME)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@loader_path",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A1F83B073050B99800DEB96A /* Debug configuration for PBXNativeTarget "FWEditor" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_NAME)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@loader_path",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A1F83B083050B99800DEB96A /* Release configuration for PBXNativeTarget "FWEditor" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_NAME)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@loader_path",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A106484C304DFCF6001A21A6 /* Build configuration list for PBXProject "Write" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1064882304DFCF7001A21A6 /* Debug configuration for PBXProject "Write" */,
+				A1064883304DFCF7001A21A6 /* Release configuration for PBXProject "Write" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A106487F304DFCF7001A21A6 /* Build configuration list for PBXNativeTarget "Write" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1064880304DFCF7001A21A6 /* Debug configuration for PBXNativeTarget "Write" */,
+				A1064881304DFCF7001A21A6 /* Release configuration for PBXNativeTarget "Write" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1064884304DFCF7001A21A6 /* Build configuration list for PBXNativeTarget "WriteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1064885304DFCF7001A21A6 /* Debug configuration for PBXNativeTarget "WriteTests" */,
+				A1064886304DFCF7001A21A6 /* Release configuration for PBXNativeTarget "WriteTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1064887304DFCF7001A21A6 /* Build configuration list for PBXNativeTarget "WriteUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1064888304DFCF7001A21A6 /* Debug configuration for PBXNativeTarget "WriteUITests" */,
+				A1064889304DFCF7001A21A6 /* Release configuration for PBXNativeTarget "WriteUITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1F839F33050B46200DEB96A /* Build configuration list for PBXNativeTarget "WriteKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1F839EF3050B46200DEB96A /* Debug configuration for PBXNativeTarget "WriteKit" */,
+				A1F839F03050B46200DEB96A /* Release configuration for PBXNativeTarget "WriteKit" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1F839F53050B46200DEB96A /* Build configuration list for PBXNativeTarget "WriteKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1F839F13050B46200DEB96A /* Debug configuration for PBXNativeTarget "WriteKitTests" */,
+				A1F839F23050B46200DEB96A /* Release configuration for PBXNativeTarget "WriteKitTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1F83AE03050B8E900DEB96A /* Build configuration list for PBXNativeTarget "FWManuscript" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1F83AE13050B8E900DEB96A /* Debug configuration for PBXNativeTarget "FWManuscript" */,
+				A1F83AE23050B8E900DEB96A /* Release configuration for PBXNativeTarget "FWManuscript" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1F83B063050B99800DEB96A /* Build configuration list for PBXNativeTarget "FWEditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1F83B073050B99800DEB96A /* Debug configuration for PBXNativeTarget "FWEditor" */,
+				A1F83B083050B99800DEB96A /* Release configuration for PBXNativeTarget "FWEditor" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A1064849304DFCF6001A21A6 /* Project object */;
+}
