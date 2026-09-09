@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # First Write editor
 
 Open the Suite workspace and select **Write** in Xcode. The current scheme assumes an installed development environment. Application packaging is separate work.

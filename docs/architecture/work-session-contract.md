@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Work Session authority and application traffic
 
 Approved through the design interview for [issue #5](https://github.com/ctwelve/Folio/issues/5). This contract defines behavior; it does not specify production implementation. See [ADR 0004](../adr/0004-helper-owned-work-sessions.md).

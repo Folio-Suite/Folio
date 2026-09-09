@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # ``FolioKit``
 
 Shared foundations for Folio's domain frameworks.

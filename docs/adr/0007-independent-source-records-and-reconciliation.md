@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Keep Work-local Source records independent and reconcile deliberately
 
 A Work copies the immediately useful subset of Source data into an independently editable record, retaining Source identity and provenance linking it to its fuller library context. This supports focused, portable writing and multiple independently organized Source Libraries without allowing library edits to silently rewrite existing Works. Changes in either direction are offered for deliberate reconciliation against the last shared state.

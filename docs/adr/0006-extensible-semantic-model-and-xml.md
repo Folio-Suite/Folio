@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Specify a shared extensible semantic model in XML
 
 Folio will define a substantial common document vocabulary on shared document-aware primitives, using one semantic superclass and composable declarative contracts. Built-in types and future extensions use the same modeling facilities, and an independently readable vocabulary specification defines their meaning and exchange representation. Semantic XML with namespaces, a DTD for verifiable core structure, and supplementary validation where needed keeps the native object model expressible outside Folio's runtime.

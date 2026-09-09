@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Folio
 
 Folio is a document-centric environment for creating and publishing large, complex works. Its language distinguishes the intellectual work from its authored content, research materials, configured editions, and generated outputs.

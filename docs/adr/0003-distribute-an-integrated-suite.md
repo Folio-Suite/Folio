@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Distribute Folio as an integrated suite
 
 Folio is one comprehensive product, not a family of applications sold or installed piecemeal. Its primary distribution will be a signed and notarized installer package delivered in a disk image, allowing the suite and its integrations to be installed, versioned, updated, and supported coherently.

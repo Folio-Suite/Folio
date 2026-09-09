@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Semantic model and Profile contract
 
 Approved on 2026-09-08 through the design interview for [issue #6](https://github.com/Folio-Suite/Folio/issues/6), Q1–Q45, followed by confirmation of the consolidated contract. [ADR 0006](../adr/0006-extensible-semantic-model-and-xml.md) records the architectural decision. This specifies the data-model contract; exact schemas, native classes, storage internals, and editing algorithms remain subsequent work.

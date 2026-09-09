@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Large, complex document systems: landscape and Folio opportunity
 
 _Research date: 2026-09-03_

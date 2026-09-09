@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Give Work Session authority to a Suite helper
 
 Folio will use a small menu bar helper to own authoritative Work Sessions shared by independently launched Suite applications. This lets the author edit through multiple applications without tying the Work's safety or lifetime to the application that opened it first, while embracing native macOS/Cocoa document behavior.

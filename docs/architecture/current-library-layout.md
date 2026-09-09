@@ -1,6 +1,11 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Current library layout
 
-The existing parent workspace and FolioKit, Write, and Research Git submodules remain in place. This reorganization gives the Objective-C editor's existing implementation to the dynamic library targets already in the skeleton. It is the first part of [the native shell specification](https://github.com/Folio-Suite/Folio/issues/14), not completion of that larger milestone.
+The workspace contains FolioKit, Write, and Research as directories in one repository, each retaining its own Xcode project. This reorganization gives the Objective-C editor's existing implementation to the dynamic library targets already in the skeleton. It is the first part of [the native shell specification](https://github.com/Folio-Suite/Folio/issues/14), not completion of that larger milestone.
 
 | Public framework | Internal dynamic library | Current implementation |
 | --- | --- | --- |

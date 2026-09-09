@@ -1,4 +1,7 @@
-# Each repository keeps its own rules so component checkouts work independently.
+# SPDX-FileCopyrightText: 2026 the Folio Project
+# SPDX-License-Identifier: MIT
+
+# Shared ignore rules cover every component in this monorepo.
 # Keep source, project/workspace files, shared schemes, .xcconfig files, and
 # dependency lockfiles (Package.resolved, Gemfile.lock, etc.) in version control.
 

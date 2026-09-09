@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Modular frameworks, sandboxing, and App Store distribution
 
 **Research date:** 2026-09-08

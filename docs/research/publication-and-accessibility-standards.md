@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Publication and accessibility standards relevant to Folio
 
 Research for [Research publication and accessibility standards](https://github.com/ctwelve/Folio/issues/11). Checked 2026-09-03.

@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # ``WriteKit``
 
 Write's authoring model, native editor, and persistence boundary.

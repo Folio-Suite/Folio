@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2026 the Folio Project
+// SPDX-License-Identifier: MIT
+
 // Minimum macOS version for the current Suite prototype.
 MACOSX_DEPLOYMENT_TARGET = 26.5
 

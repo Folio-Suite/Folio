@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 ## Agent skills
 
 ### Issue tracker
@@ -11,3 +16,7 @@ The repository uses the default triage-label vocabulary. See `docs/agents/triage
 ### Domain docs
 
 This is a single-context repository. See `docs/agents/domain.md`.
+
+## Licensing
+
+When adding or changing project-owned files, follow the SPDX and copyright conventions in `CONTRIBUTING.md` under “Licensing”.

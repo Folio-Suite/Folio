@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Source Libraries and portable evidence
 
 Approved through the design interview for [issue #7](https://github.com/Folio-Suite/Folio/issues/7), Q1–Q17. [ADR 0007](../adr/0007-independent-source-records-and-reconciliation.md) records the ownership decision. This contract builds on the [semantic model](semantic-model-contract.md), [Work Session](work-session-contract.md), and [native package and archival folio](archival-folio-contract.md) contracts.

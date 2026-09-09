@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # macOS suite language and integration architecture for Folio
 
 **Research date:** 2026-09-03

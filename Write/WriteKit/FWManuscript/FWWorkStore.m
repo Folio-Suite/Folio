@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2026 the Folio Project
+// SPDX-License-Identifier: MIT
+
 #import "FWWorkStore.h"
 #import <CoreData/CoreData.h>
 #import <FolioKit/FolioKit.h>

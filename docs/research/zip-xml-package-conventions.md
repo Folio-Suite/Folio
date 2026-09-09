@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # ZIP and XML packaging conventions for Folio
 
 Research date: 2026-09-08. This report proposes conventions; it does not change the native format, adopt a conformance specification, or select a ZIP implementation.
@@ -14,9 +19,9 @@ Use an ODF/EPUB-inspired container with Folio's own vocabulary, taking OPC's sep
 
 The [domain glossary](../../CONTEXT.md) defines a folio as the complete archival exchange form of a Work, including history and dependencies. Native packages may depend on external versioned resources; archival export must capture the required versions and distinguish incomplete exports. XML with namespaces belongs to that exchange representation. [Archival contract](../architecture/archival-folio-contract.md), [semantic model contract](../architecture/semantic-model-contract.md).
 
-The current Write package contains only `Work.sqlite`. Its reader rejects unfamiliar package entries, and its save path constructs and checks an isolated snapshot before handing a package to NSDocument. Consequently, adding even `mimetype` or `META-INF/` is a **deliberate native package format and reader change**, with compatibility tests. This report does not authorize silently dropping new files into existing packages. [Native Work documentation](../../Write/docs/native-work-v1.md).
+The current Write package contains only `Work.sqlite`. Its reader rejects unfamiliar package entries, and its save path constructs and checks an isolated snapshot before handing a package to NSDocument. Consequently, adding even `mimetype` or `META-INF/` is a **deliberate native package format and reader change**, with compatibility tests. This report does not authorize silently dropping new files into existing packages. [Native Work documentation](../architecture/native-work-v1.md).
 
-Research also uses a native directory package (`.frlibrary`), with a closed `Library.sqlite` snapshot and preservation of additional collected files. Its catalog remains an empty shell. Both native document kinds therefore share package semantics, while their domain models and supported contents remain distinct. Neither currently implements the XML container proposed below. [Research shell documentation](../../Research/README.md).
+Research also uses a native directory package (`.frlibrary`), with a closed `Library.sqlite` snapshot and preservation of additional collected files. Its catalog remains an empty shell. Both native document kinds therefore share package semantics, while their domain models and supported contents remain distinct. Neither currently implements the XML container proposed below. [Research shell documentation](../../CONTRIBUTING.md#names-and-ownership).
 
 Core Data remains the native authority. Apple documents its store encoding as private, including the SQLite representation; Folio's public XML must describe Folio semantics rather than Apple's database tables. Apple's store guidance is archived documentation, not a newly introduced API contract. [Core Data persistent store guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreData/PersistentStoreFeatures.html).
 

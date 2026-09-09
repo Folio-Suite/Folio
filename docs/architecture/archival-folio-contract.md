@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Native packages and archival folios
 
 Approved in the follow-up design interview, Q26–Q35. See [ADR 0005](../adr/0005-native-packages-and-archival-folios.md). This decision refocuses existing storage tickets without declaring their implementation and lifecycle proofs complete.

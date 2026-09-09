@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Use native packages and export archival folios
 
 Folio uses on-disk packages as its native storage form, with distinct package types for Works, libraries, Profiles, and other concepts defined as needed. An exported folio is the complete, durable archival exchange form of a Work, allowing reconstruction independently of the originating machine, libraries, and installed extensions.

@@ -7,6 +7,11 @@ assignees: ''
 
 ---
 
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 

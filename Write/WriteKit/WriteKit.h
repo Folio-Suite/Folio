@@ -1,9 +1,11 @@
+// SPDX-FileCopyrightText: 2026 the Folio Project
+// SPDX-License-Identifier: MIT
+
 //
 //  WriteKit.h
 //  WriteKit
 //
 //  Created by Justin Croonenberghs on 9/8/26.
-//  Copyright © 2026 dev.foliosuite.Write. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

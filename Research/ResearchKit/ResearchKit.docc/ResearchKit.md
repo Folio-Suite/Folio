@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # ``ResearchKit``
 
 <!--@START_MENU_TOKEN@-->Summary<!--@END_MENU_TOKEN@-->

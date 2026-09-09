@@ -1,4 +1,11 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 ## Problem Statement
+
+> Repository update: the developer subsequently chose a monorepo. FolioKit, Write, and Research now share this repository while retaining their Xcode projects and module boundaries. This supersedes the submodule and separate-repository requirements below; the remaining shell requirements are unchanged.
 
 Folio needs a maintainable native application shell that can grow into a Suite for substantial authored Works. Two small editors have demonstrated basic AppKit editing and Core Data package persistence in Objective-C and Swift, but their implementation shortcuts and experimental repository layouts are not a settled foundation.
 

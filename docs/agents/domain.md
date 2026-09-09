@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
 # Domain Docs
 
 How the engineering skills should consume this repository's domain documentation when exploring the codebase.

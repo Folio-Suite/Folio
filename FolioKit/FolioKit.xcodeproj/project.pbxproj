@@ -1,4 +1,7 @@
 // !$*UTF8*$!
+// SPDX-FileCopyrightText: 2026 the Folio Project
+// SPDX-License-Identifier: MIT
+
 {
 	archiveVersion = 1;
 	classes = {
@@ -319,7 +322,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				CLASSPREFIX = FK;
 				LastUpgradeCheck = 2660;
-				ORGANIZATIONNAME = dev.foliosuite;
+				ORGANIZATIONNAME = "the Folio Project";
 				TargetAttributes = {
 					A10648D5304DFE13001A21A6 = {
 						CreatedOnToolsVersion = 26.6;
@@ -439,7 +442,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -475,7 +478,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
