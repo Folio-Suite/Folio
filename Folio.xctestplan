@@ -14,6 +14,20 @@
   "testTargets" : [
     {
       "target" : {
+        "containerPath" : "container:Write\/Write\/Write.xcodeproj",
+        "identifier" : "A1F839E13050B46200DEB96A",
+        "name" : "WriteKitTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Research\/Research\/Research.xcodeproj",
+        "identifier" : "A1F83A093050B4D200DEB96A",
+        "name" : "ResearchKitTests"
+      }
+    },
+    {
+      "target" : {
         "containerPath" : "container:FolioKit\/FolioKit\/FolioKit.xcodeproj",
         "identifier" : "A10648E0304DFE13001A21A6",
         "name" : "FolioKitTests"
