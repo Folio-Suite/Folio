@@ -15,6 +15,7 @@
 build/
 /Build/
 DerivedData/
+/.derived-data-log-*
 xcuserdata/
 *.xcuserstate
 *.xccheckout

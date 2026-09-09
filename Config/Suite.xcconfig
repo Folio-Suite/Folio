@@ -1,2 +1,5 @@
 // Minimum macOS version for the current Suite prototype.
 MACOSX_DEPLOYMENT_TARGET = 26.5
+
+// Keep Clang module dependencies explicit across the Suite's framework targets.
+CLANG_ENABLE_EXPLICIT_MODULES = YES
