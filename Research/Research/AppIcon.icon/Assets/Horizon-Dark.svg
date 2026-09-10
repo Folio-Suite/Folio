@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+<defs>
+<radialGradient id="warm"><stop stop-color="#c77e9c" stop-opacity="0.9"/><stop offset="0.55" stop-color="#c77e9c" stop-opacity="0.5"/><stop offset="1" stop-color="#c77e9c" stop-opacity="0"/></radialGradient>
+<radialGradient id="pink"><stop stop-color="#a481b0" stop-opacity="0.9"/><stop offset="0.55" stop-color="#a481b0" stop-opacity="0.5"/><stop offset="1" stop-color="#a481b0" stop-opacity="0"/></radialGradient>
+<radialGradient id="cool"><stop stop-color="#646f9f" stop-opacity="0.9"/><stop offset="0.55" stop-color="#646f9f" stop-opacity="0.5"/><stop offset="1" stop-color="#646f9f" stop-opacity="0"/></radialGradient>
+</defs>
+<ellipse cx="512" cy="742" rx="190.0" ry="142.5" fill="url(#warm)" opacity="0.456"/><ellipse cx="512" cy="864" rx="105.0" ry="69.0" fill="url(#pink)" opacity="0.320"/><ellipse cx="512" cy="609" rx="630.0" ry="6.5" fill="url(#cool)" opacity="0.476"/><ellipse cx="512" cy="632" rx="610.0" ry="5.0" fill="url(#cool)" opacity="0.354"/><ellipse cx="512" cy="660" rx="595.0" ry="8.5" fill="url(#cool)" opacity="0.340"/><ellipse cx="512" cy="692" rx="570.0" ry="6.0" fill="url(#cool)" opacity="0.292"/><ellipse cx="512" cy="731" rx="545.0" ry="10.0" fill="url(#cool)" opacity="0.272"/><ellipse cx="512" cy="774" rx="515.0" ry="8.0" fill="url(#cool)" opacity="0.238"/><ellipse cx="512" cy="820" rx="465.0" ry="11.0" fill="url(#cool)" opacity="0.204"/><ellipse cx="512" cy="871" rx="415.0" ry="9.0" fill="url(#cool)" opacity="0.177"/><ellipse cx="512" cy="922" rx="365.0" ry="10.0" fill="url(#cool)" opacity="0.122"/><ellipse cx="512" cy="615" rx="300.0" ry="4.5" fill="url(#warm)" opacity="0.558"/><ellipse cx="512" cy="643" rx="235.0" ry="6.5" fill="url(#warm)" opacity="0.544"/><ellipse cx="512" cy="675" rx="265.0" ry="5.5" fill="url(#warm)" opacity="0.496"/><ellipse cx="512" cy="710" rx="185.0" ry="7.5" fill="url(#warm)" opacity="0.578"/><ellipse cx="512" cy="748" rx="212.5" ry="6.0" fill="url(#warm)" opacity="0.517"/><ellipse cx="512" cy="788" rx="150.0" ry="8.5" fill="url(#warm)" opacity="0.530"/><ellipse cx="512" cy="834" rx="165.0" ry="7.0" fill="url(#pink)" opacity="0.469"/><ellipse cx="512" cy="876" rx="120.0" ry="7.5" fill="url(#pink)" opacity="0.490"/><ellipse cx="512" cy="914" rx="90.0" ry="6.5" fill="url(#pink)" opacity="0.340"/>
+</svg>

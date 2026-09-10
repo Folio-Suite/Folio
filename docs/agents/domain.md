@@ -9,24 +9,29 @@ How the engineering skills should consume this repository's domain documentation
 
 ## Before exploring, read these
 
-- **`CONTEXT.md`** at the repository root, or
-- **`CONTEXT-MAP.md`** at the repository root if it exists: it points at one `CONTEXT.md` per context. Read each one relevant to the topic.
-- **`docs/adr/`**: read ADRs that touch the area about to be changed. In multi-context repositories, also check `src/<context>/docs/adr/` for context-scoped decisions.
+- **`CONTEXT.md`** at the repository root: the shared Suite vocabulary.
+- **`docs/adr/`**: read ADRs that touch the area about to be changed.
+- **`CONTRIBUTING.md`**: read the workspace, validation, and coordinated-change guidance when changing code or project configuration.
 
-If any of these files do not exist, proceed silently. Do not flag their absence or suggest creating them upfront. The `/domain-modeling` skill creates them lazily when terms or decisions are actually resolved.
+If a domain document does not exist, proceed silently. The `/domain-modeling` skill creates domain documents lazily when terms or decisions are resolved.
 
 ## File structure
 
-Folio currently uses a single-context layout:
+Folio uses one shared domain context across its Xcode monorepo:
 
 ```text
 /
 ├── CONTEXT.md
 ├── docs/adr/
-└── src/
+├── Folio.xcworkspace/
+├── FolioKit/
+├── Write/
+└── Research/
 ```
 
-If a root `CONTEXT-MAP.md` is introduced later, it defines a multi-context layout and points to the relevant context-specific glossaries and decision records.
+The root glossary and ADRs apply across all three components. Separate Xcode projects and module ownership do not require separate domain glossaries. Keep cross-Suite decisions here and symbol documentation alongside its owning code.
+
+If a root `CONTEXT-MAP.md` is introduced later, follow its pointers to the relevant context-specific glossaries and decision records, together with system-wide ADRs in `docs/adr/`.
 
 ## Use the glossary's vocabulary
 

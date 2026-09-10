@@ -15,7 +15,7 @@ The repository uses the default triage-label vocabulary. See `docs/agents/triage
 
 ### Domain docs
 
-This is a single-context repository. See `docs/agents/domain.md`.
+Folio is a monorepo with one shared domain context. Before exploring or changing code, read `docs/agents/domain.md`.
 
 ## Licensing
 

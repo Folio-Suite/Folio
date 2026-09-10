@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+<defs><linearGradient id="sun" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0.000" stop-color="#be757d"/><stop offset="0.500" stop-color="#a85b79"/><stop offset="1.000" stop-color="#715578"/></linearGradient><clipPath id="horizon"><path d="M0 0H1024V604H0Z"/></clipPath></defs><circle fill="url(#sun)" cx="512" cy="460" r="352" clip-path="url(#horizon)"/>
+</svg>

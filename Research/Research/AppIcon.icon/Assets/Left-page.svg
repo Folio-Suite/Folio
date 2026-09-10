@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+<defs><linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="80%"><stop offset="0.000" stop-color="#b5d0ed"/><stop offset="0.500" stop-color="#b59acd"/><stop offset="1.000" stop-color="#8298cf"/></linearGradient></defs><path fill="url(#glass)" fill-rule="evenodd" d="M512 380 C426 306 326 281 199 285 Q185 285 183 304 L167 687 Q167 699 183 702 C319 704 422 738 512 804 Z"/>
+</svg>

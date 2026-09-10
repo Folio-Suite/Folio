@@ -1,0 +1,112 @@
+{
+  "fill-specializations" : [
+    {
+      "value" : {
+        "solid" : "srgb:0.71000,0.63000,0.90000,1.00000"
+      }
+    },
+    {
+      "appearance" : "dark",
+      "value" : {
+        "solid" : "srgb:0.13000,0.16000,0.26000,1.00000"
+      }
+    }
+  ],
+  "groups" : [
+    {
+      "blur-material" : 0.15,
+      "layers" : [
+        {
+          "image-name-specializations" : [
+            {
+              "value" : "Nib.svg"
+            },
+            {
+              "appearance" : "dark",
+              "value" : "Nib-Dark.svg"
+            }
+          ],
+          "name" : "Nib"
+        }
+      ],
+      "name" : "Glass nib",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.3
+      },
+      "specular" : true,
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.35
+      }
+    },
+    {
+      "layers" : [
+        {
+          "glass" : false,
+          "image-name-specializations" : [
+            {
+              "value" : "Horizon.svg"
+            },
+            {
+              "appearance" : "dark",
+              "value" : "Horizon-Dark.svg"
+            }
+          ],
+          "name" : "Horizon reflections"
+        },
+        {
+          "glass" : false,
+          "hidden-specializations" : [
+            {
+              "appearance" : "tinted",
+              "value" : true
+            }
+          ],
+          "image-name-specializations" : [
+            {
+              "value" : "Sun.svg"
+            },
+            {
+              "appearance" : "dark",
+              "value" : "Sun-Dark.svg"
+            }
+          ],
+          "name" : "Setting sun"
+        },
+        {
+          "glass" : false,
+          "hidden-specializations" : [
+            {
+              "appearance" : "tinted",
+              "value" : true
+            }
+          ],
+          "image-name-specializations" : [
+            {
+              "value" : "Sky.svg"
+            },
+            {
+              "appearance" : "dark",
+              "value" : "Sky-Dark.svg"
+            }
+          ],
+          "name" : "Sky"
+        }
+      ],
+      "name" : "Vaporwave sunset",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0
+      },
+      "specular" : false,
+      "translucency" : {
+        "enabled" : false,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : "shared"
+  }
+}
