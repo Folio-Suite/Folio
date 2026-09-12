@@ -12,6 +12,10 @@ products="$build_dir/Build/Products/Debug"
 for app in Write Research; do
     test -x "$products/$app.app/Contents/MacOS/$app"
     test -d "$products/$app.app/Contents/Frameworks/${app}Kit.framework"
+    test -f "$products/$app.app/Contents/Frameworks/FolioKit.framework/Versions/A/FolioKit"
+    for library in FKModelFoundations FKPackageSupport FKXMLSupport; do
+        test -f "$products/$app.app/Contents/Frameworks/FolioKit.framework/Frameworks/lib${library}.dylib"
+    done
 done
 for library in FKModelFoundations FKPackageSupport FKXMLSupport; do
     test -f "$products/FolioKit.framework/Frameworks/lib${library}.dylib"

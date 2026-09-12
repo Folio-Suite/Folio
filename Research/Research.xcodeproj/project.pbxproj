@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F01100000000000000000007 /* FolioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1F83A0B3050B4D200DEB96A /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
 		A1F83AC53050B83D00DEB96A /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
 		A1F83AC63050B83D00DEB96A /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -58,6 +59,7 @@
 			dstSubfolder = Frameworks;
 			files = (
 				A1F83AC63050B83D00DEB96A /* ResearchKit.framework in Embed Frameworks */,
+				F01100000000000000000007 /* FolioKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 		};

@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-FileCopyrightText: 2026 the Folio Project -->
+<!-- SPDX-License-Identifier: MIT -->
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24765"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Editor View Controller-->
+        <scene sceneID="editor-scene">
+            <objects>
+                <viewController storyboardIdentifier="Editor" id="editor" customClass="FWEditorViewController" sceneMemberID="viewController">
+                    <view key="view" id="editor-view">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scroll">
+                                <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                                <clipView key="contentView" id="clip">
+                                    <rect key="frame" x="1" y="1" width="798" height="598"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView importsGraphics="NO" verticallyResizable="YES" allowsUndo="YES" id="text" customClass="FWTextView">
+                                            <rect key="frame" x="0.0" y="0.0" width="798" height="598"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="798" height="598"/>
+                                            <size key="maxSize" width="10000000" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="size" keyPath="textContainerInset">
+                                                    <size key="value" width="32" height="28"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="scroller">
+                                    <rect key="frame" x="782" y="1" width="17" height="530.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="scroll-bottom"/>
+                            <constraint firstItem="scroll" firstAttribute="leading" secondItem="editor-view" secondAttribute="leading" id="scroll-leading"/>
+                            <constraint firstItem="scroll" firstAttribute="top" secondItem="editor-view" secondAttribute="top" id="scroll-top"/>
+                            <constraint firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="scroll-trailing"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="text" id="outlet-text"/>
+                    </connections>
+                </viewController>
+                <customObject id="first" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="help-scene">
+            <objects>
+                <viewController storyboardIdentifier="FormattingHelp" id="help-controller" sceneMemberID="viewController">
+                    <view key="view" id="help-view">
+                        <rect key="frame" x="0.0" y="0.0" width="340" height="220"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="help-text">
+                                <rect key="frame" x="14" y="16" width="312" height="188"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="help-text-cell">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">Emphasis and Strong Emphasis express meaning. Their appearance can change with a publication’s style. The buttons show semantic formatting at the cursor or across the selection; a mixed state means only some text uses it.
+
+The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option-click the Es for Italic or Bold. These visual choices are independent of meaning. Clear removes both kinds of character formatting and preserves paragraph alignment.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="help-text" secondAttribute="bottom" constant="16" id="help-bottom"/>
+                            <constraint firstItem="help-text" firstAttribute="leading" secondItem="help-view" secondAttribute="leading" constant="16" id="help-left"/>
+                            <constraint firstAttribute="trailing" secondItem="help-text" secondAttribute="trailing" constant="16" id="help-right"/>
+                            <constraint firstItem="help-text" firstAttribute="top" secondItem="help-view" secondAttribute="top" constant="16" id="help-top"/>
+                            <constraint firstAttribute="height" constant="220" id="help-view-height"/>
+                            <constraint firstAttribute="width" constant="340" id="help-view-width"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="help-first" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="0.0"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="FW-window-scene">
+            <objects>
+                <windowController storyboardIdentifier="EditorWindow" id="FW-window-controller" customClass="FWEditorWindowController" sceneMemberID="viewController">
+                    <window key="window" title="Untitled" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="WriteEditor" animationBehavior="default" id="FW-window">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="800" height="600"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <value key="minSize" type="size" width="620" height="388"/>
+                        <toolbar key="toolbar" implicitIdentifier="FolioWriteFormattingToolbar" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="formatting-toolbar">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.emphasis" label="Emphasis" paletteLabel="Emphasis" image="Emphasis" title="Emphasis" id="toolbar-emphasis">
+                                    <size key="minSize" width="40" height="28"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" toolTip="Emphasis. Option-click for explicit Italic." id="emphasis">
+                                        <rect key="frame" x="9" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <buttonCell key="cell" type="push" title="Emphasis" bezelStyle="rounded" image="Emphasis" imagePosition="only" alignment="center" borderStyle="border" allowsMixedState="YES" id="emphasis-cell">
+                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="emphasis-height"/>
+                                            <constraint firstAttribute="width" constant="40" id="emphasis-width"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="chooseEmphasis:" target="FW-window-controller" id="emphasis-action"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.strong" label="Strong Emphasis" paletteLabel="Strong Emphasis" image="StrongEmphasis" title="Strong Emphasis" id="toolbar-strong">
+                                    <size key="minSize" width="40" height="28"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" toolTip="Strong Emphasis. Option-click for explicit Bold." id="strong">
+                                        <rect key="frame" x="28" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <buttonCell key="cell" type="push" title="Strong Emphasis" bezelStyle="rounded" image="StrongEmphasis" imagePosition="only" alignment="center" borderStyle="border" allowsMixedState="YES" id="strong-cell">
+                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="strong-height"/>
+                                            <constraint firstAttribute="width" constant="40" id="strong-width"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="chooseStrongEmphasis:" target="FW-window-controller" id="strong-action"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="toolbar-semantic-space"/>
+                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.appearance" label="Appearance" paletteLabel="Appearance" image="bold.italic.underline" catalog="system" title="Appearance" id="toolbar-appearance">
+                                    <size key="minSize" width="40" height="28"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" toolTip="Appearance: Bold, Italic, Underline, and Strikethrough." id="appearance">
+                                        <rect key="frame" x="28" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <buttonCell key="cell" type="push" title="Appearance" bezelStyle="rounded" image="bold.italic.underline" catalog="system" imagePosition="only" alignment="center" borderStyle="border" id="appearance-cell">
+                                            <behavior key="behavior" pushIn="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="appearance-height"/>
+                                            <constraint firstAttribute="width" constant="40" id="appearance-width"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="showAppearance:" target="FW-window-controller" id="appearance-action"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.clear" label="Clear Formatting" paletteLabel="Clear Formatting" image="eraser" catalog="system" title="Clear" id="toolbar-clear">
+                                    <size key="minSize" width="40" height="28"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" toolTip="Clear character formatting, preserving paragraph alignment." id="clear">
+                                        <rect key="frame" x="28" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" image="eraser" catalog="system" imagePosition="only" alignment="center" borderStyle="border" id="clear-cell">
+                                            <behavior key="behavior" pushIn="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="clear-height"/>
+                                            <constraint firstAttribute="width" constant="40" id="clear-width"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="clearFormatting:" target="FW-window-controller" id="clear-action"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.alignment" label="Paragraph Alignment" paletteLabel="Paragraph Alignment" id="toolbar-alignment">
+                                    <size key="minSize" width="118" height="24"/>
+                                    <size key="maxSize" width="124" height="28"/>
+                                    <popUpButton key="view" id="alignment">
+                                        <rect key="frame" x="0.0" y="14" width="118" height="24"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" id="alignment-cell">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="message"/>
+                                            <menu key="menu" id="alignment-menu">
+                                                <items>
+                                                    <menuItem title="Natural" image="text.alignleft" catalog="system" id="alignment-0"/>
+                                                    <menuItem title="Left" image="text.alignleft" catalog="system" id="alignment-1"/>
+                                                    <menuItem title="Center" image="text.aligncenter" catalog="system" id="alignment-2"/>
+                                                    <menuItem title="Right" image="text.alignright" catalog="system" id="alignment-3"/>
+                                                    <menuItem title="Justified" image="text.justify" catalog="system" id="alignment-4"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                        <connections>
+                                            <action selector="changeParagraphAlignment:" target="FW-window-controller" id="alignment-action"/>
+                                        </connections>
+                                    </popUpButton>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.help" label="Formatting Help" paletteLabel="Formatting Help" image="questionmark.circle" catalog="system" title="Formatting help" id="toolbar-help">
+                                    <size key="minSize" width="40" height="28"/>
+                                    <size key="maxSize" width="40" height="28"/>
+                                    <button key="view" toolTip="About semantic and explicit formatting" id="help">
+                                        <rect key="frame" x="26" y="14" width="40" height="28"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <buttonCell key="cell" type="push" title="Formatting help" bezelStyle="rounded" image="questionmark.circle" catalog="system" imagePosition="only" alignment="center" borderStyle="border" id="help-cell">
+                                            <behavior key="behavior" pushIn="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="help-height"/>
+                                            <constraint firstAttribute="width" constant="40" id="help-width"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="showFormattingHelp:" target="FW-window-controller" id="help-action"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="toolbar-emphasis"/>
+                                <toolbarItem reference="toolbar-strong"/>
+                                <toolbarItem reference="toolbar-semantic-space"/>
+                                <toolbarItem reference="toolbar-appearance"/>
+                                <toolbarItem reference="toolbar-clear"/>
+                                <toolbarItem reference="toolbar-alignment"/>
+                                <toolbarItem reference="toolbar-help"/>
+                            </defaultToolbarItems>
+                        </toolbar>
+                        <connections>
+                            <outlet property="delegate" destination="FW-window-controller" id="FW-window-delegate"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <outlet property="alignmentButton" destination="alignment" id="window-outlet-alignment"/>
+                        <outlet property="clearButton" destination="clear" id="window-outlet-clear"/>
+                        <outlet property="emphasisButton" destination="emphasis" id="window-outlet-emphasis"/>
+                        <outlet property="helpButton" destination="help" id="window-outlet-help"/>
+                        <outlet property="strongButton" destination="strong" id="window-outlet-strong"/>
+                        <segue destination="FW-content-host" kind="relationship" relationship="window.shadowedContentViewController" id="FW-content-segue"/>
+                    </connections>
+                </windowController>
+                <customObject id="FW-window-first" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="279" y="400"/>
+        </scene>
+        <!--WriteKit Editor Host-->
+        <scene sceneID="FW-content-scene">
+            <objects>
+                <viewController id="FW-content-host" userLabel="WriteKit Editor Host" sceneMemberID="viewController">
+                    <view key="view" id="FW-content-view">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="FW-content-first" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1407" y="388"/>
+        </scene>
+        <!--Appearance View Controller-->
+        <scene sceneID="appearance-scene">
+            <objects>
+                <viewController storyboardIdentifier="Appearance" id="appearance-controller" customClass="FWAppearanceViewController" sceneMemberID="viewController">
+                    <view key="view" id="appearance-view">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="190"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField focusRingType="none" id="appearance-title">
+                                <rect key="frame" x="18" y="151" width="200" height="20"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" title="Appearance" id="appearance-title-cell">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button toolTip="Apply visual italic independently of semantic emphasis." id="appearance-italic">
+                                <rect key="frame" x="44" y="91" width="62" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="check" keyEquivalent="i" title="Italic" bezelStyle="regularSquare" imagePosition="left" alignment="left" allowsMixedState="YES" inset="2" id="appearance-italic-cell">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleItalic:" target="appearance-controller" id="appearance-italic-action"/>
+                                </connections>
+                            </button>
+                            <button toolTip="Apply visual underline independently of semantic emphasis." id="appearance-underline">
+                                <rect key="frame" x="44" y="63" width="92" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="check" keyEquivalent="u" title="Underline" bezelStyle="regularSquare" imagePosition="left" alignment="left" allowsMixedState="YES" inset="2" id="appearance-underline-cell">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleUnderline:" target="appearance-controller" id="appearance-underline-action"/>
+                                </connections>
+                            </button>
+                            <button toolTip="Apply visual strikethrough independently of semantic emphasis." id="appearance-strikethrough">
+                                <rect key="frame" x="44" y="35" width="120" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="check" title="Strikethrough" bezelStyle="regularSquare" imagePosition="left" alignment="left" allowsMixedState="YES" inset="2" id="appearance-strikethrough-cell">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleStrikethrough:" target="appearance-controller" id="appearance-strikethrough-action"/>
+                                </connections>
+                            </button>
+                            <button toolTip="Apply visual bold independently of semantic emphasis." id="appearance-bold">
+                                <rect key="frame" x="44" y="119" width="60" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="check" keyEquivalent="b" title="Bold" bezelStyle="regularSquare" imagePosition="left" alignment="left" allowsMixedState="YES" inset="2" id="appearance-bold-cell">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleBold:" target="appearance-controller" id="appearance-bold-action"/>
+                                </connections>
+                            </button>
+                            <imageView id="appearance-bold-symbol"><rect key="frame" x="18" y="122" width="18" height="16"/><autoresizingMask key="autoresizingMask"/><imageCell key="cell" image="bold" catalog="system" imageScaling="proportionallyDown" id="appearance-bold-symbol-cell"/></imageView>
+                            <textField focusRingType="none" id="appearance-bold-shortcut"><rect key="frame" x="200" y="120" width="60" height="20"/><autoresizingMask key="autoresizingMask"/><textFieldCell key="cell" title="⌥⌘B" alignment="right" id="appearance-bold-shortcut-cell"><font key="font" metaFont="system"/><color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/></textFieldCell></textField>
+                            <imageView id="appearance-italic-symbol"><rect key="frame" x="18" y="94" width="18" height="16"/><autoresizingMask key="autoresizingMask"/><imageCell key="cell" image="italic" catalog="system" imageScaling="proportionallyDown" id="appearance-italic-symbol-cell"/></imageView>
+                            <textField focusRingType="none" id="appearance-italic-shortcut"><rect key="frame" x="200" y="92" width="60" height="20"/><autoresizingMask key="autoresizingMask"/><textFieldCell key="cell" title="⌥⌘I" alignment="right" id="appearance-italic-shortcut-cell"><font key="font" metaFont="system"/><color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/></textFieldCell></textField>
+                            <imageView id="appearance-underline-symbol"><rect key="frame" x="18" y="66" width="18" height="16"/><autoresizingMask key="autoresizingMask"/><imageCell key="cell" image="underline" catalog="system" imageScaling="proportionallyDown" id="appearance-underline-symbol-cell"/></imageView>
+                            <textField focusRingType="none" id="appearance-underline-shortcut"><rect key="frame" x="200" y="64" width="60" height="20"/><autoresizingMask key="autoresizingMask"/><textFieldCell key="cell" title="⌘U" alignment="right" id="appearance-underline-shortcut-cell"><font key="font" metaFont="system"/><color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/></textFieldCell></textField>
+                            <imageView id="appearance-strikethrough-symbol"><rect key="frame" x="18" y="38" width="18" height="16"/><autoresizingMask key="autoresizingMask"/><imageCell key="cell" image="strikethrough" catalog="system" imageScaling="proportionallyDown" id="appearance-strikethrough-symbol-cell"/></imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="190" id="appearance-view-height"/>
+                            <constraint firstAttribute="width" constant="280" id="appearance-view-width"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="boldButton" destination="appearance-bold" id="appearance-bold-outlet"/>
+                        <outlet property="italicButton" destination="appearance-italic" id="appearance-italic-outlet"/>
+                        <outlet property="strikethroughButton" destination="appearance-strikethrough" id="appearance-strikethrough-outlet"/>
+                        <outlet property="underlineButton" destination="appearance-underline" id="appearance-underline-outlet"/>
+                    </connections>
+                </viewController>
+                <customObject id="appearance-first" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="300"/>
+        </scene>
+
+        <scene sceneID="conflict-marker-scene">
+            <objects>
+                <viewController storyboardIdentifier="FormattingConflictMarker" id="conflict-marker-controller" customClass="FWFormattingWarningViewController" sceneMemberID="viewController">
+                    <view key="view" id="conflict-marker-view">
+                        <rect key="frame" x="0" y="0" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button id="conflict-marker-button" toolTip="Formatting conflict: show conversion and dismissal options.">
+                                <rect key="frame" x="0" y="0" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <buttonCell key="cell" type="push" title="Formatting conflict" image="exclamationmark.square.fill" catalog="system" imagePosition="only" alignment="center" id="conflict-marker-cell">
+                                    <behavior key="behavior" pushIn="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections><action selector="showWarning:" target="conflict-marker-controller" id="conflict-marker-action"/></connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections><outlet property="markerButton" destination="conflict-marker-button" id="conflict-marker-outlet"/></connections>
+                </viewController>
+                <customObject id="conflict-marker-first" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1250" y="300"/>
+        </scene>
+        <scene sceneID="conflict-detail-scene">
+            <objects>
+                <viewController storyboardIdentifier="FormattingConflict" id="conflict-detail-controller" customClass="FWFormattingWarningViewController" sceneMemberID="viewController">
+                    <view key="view" id="conflict-detail-view">
+                        <rect key="frame" x="0" y="0" width="380" height="170"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField id="conflict-detail-title"><rect key="frame" x="16" y="132" width="348" height="22"/><autoresizingMask key="autoresizingMask"/><textFieldCell key="cell" title="Presentation and Emphasis" id="conflict-detail-title-cell"><font key="font" metaFont="systemBold"/><color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/></textFieldCell></textField>
+                            <textField id="conflict-detail-message"><rect key="frame" x="16" y="78" width="348" height="48"/><autoresizingMask key="autoresizingMask"/><textFieldCell key="cell" title="Bold or Italic overlaps semantic emphasis. Convert the highlighted text throughout this Content Unit, or keep its presentation." wraps="YES" scrollable="NO" id="conflict-detail-message-cell"><font key="font" metaFont="system"/><color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/></textFieldCell></textField>
+                            <button id="convert-presentation" toolTip="Convert conflicting text in this Content Unit; preserve underline and strikethrough."><rect key="frame" x="12" y="43" width="356" height="30"/><autoresizingMask key="autoresizingMask"/><buttonCell key="cell" type="push" title="Convert to Semantic Emphasis" bezelStyle="rounded" borderStyle="border" id="convert-presentation-cell"><behavior key="behavior" pushIn="YES" lightByBackground="YES"/><font key="font" metaFont="system"/></buttonCell><connections><action selector="convertPresentationToEmphasis:" target="conflict-detail-controller" id="convert-presentation-action"/></connections></button>
+                            <button id="dismiss-formatting-warning" toolTip="Remember dismissal for this Content Unit, including after reopening."><rect key="frame" x="12" y="10" width="356" height="30"/><autoresizingMask key="autoresizingMask"/><buttonCell key="cell" type="push" title="Keep Presentation / Dismiss" bezelStyle="rounded" borderStyle="border" id="dismiss-formatting-warning-cell"><behavior key="behavior" pushIn="YES" lightByBackground="YES"/><font key="font" metaFont="system"/></buttonCell><connections><action selector="dismissFormattingWarning:" target="conflict-detail-controller" id="dismiss-formatting-warning-action"/></connections></button>
+                        </subviews>
+                        <constraints><constraint firstAttribute="width" constant="380" id="conflict-detail-width"/><constraint firstAttribute="height" constant="170" id="conflict-detail-height"/></constraints>
+                    </view>
+                </viewController>
+                <customObject id="conflict-detail-first" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1500" y="300"/>
+        </scene>
+        <!--Manuscript Sidebar and Editor Host-->
+        <scene sceneID="manuscript-scene">
+            <objects>
+                <viewController storyboardIdentifier="Manuscript" id="manuscript-controller" customClass="FWManuscriptViewController" sceneMemberID="viewController">
+                    <view key="view" id="manuscript-view">
+                        <rect key="frame" x="0" y="0" width="1000" height="600"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <splitView dividerStyle="thin" vertical="YES" id="manuscript-split">
+                                <rect key="frame" x="0" y="0" width="1000" height="600"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <customView id="manuscript-sidebar">
+                                        <rect key="frame" x="0" y="0" width="220" height="600"/>
+                                        <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                                        <subviews>
+                                            <textField editable="NO" selectable="NO" bezeled="NO" drawsBackground="NO" id="manuscript-label">
+                                                <rect key="frame" x="12" y="568" width="196" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" title="Manuscript" id="manuscript-label-cell"><font key="font" metaFont="systemBold"/><color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/><color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/></textFieldCell>
+                                            </textField>
+                                            <scrollView borderType="none" autohidesScrollers="YES" hasHorizontalScroller="NO" id="unit-scroll">
+                                                <rect key="frame" x="8" y="90" width="204" height="466"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <clipView key="contentView" id="unit-clip">
+                                                    <rect key="frame" x="0" y="0" width="204" height="466"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <tableView allowsColumnReordering="NO" allowsColumnResizing="NO" allowsMultipleSelection="NO" allowsEmptySelection="NO" rowHeight="28" columnAutoresizingStyle="lastColumnOnly" id="unit-table">
+                                                            <rect key="frame" x="0" y="0" width="204" height="466"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <size key="intercellSpacing" width="3" height="2"/>
+                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                                            <tableColumns><tableColumn width="201" minWidth="50" maxWidth="1000" id="unit-column">
+                                                                <tableHeaderCell key="headerCell" title="Content Units"><font key="font" metaFont="smallSystem"/><color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/><color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/></tableHeaderCell>
+                                                                <textFieldCell key="dataCell" lineBreakMode="truncatingTail" title="Untitled" id="unit-cell"><font key="font" metaFont="system"/><color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/><color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/></textFieldCell>
+                                                                <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
+                                                            </tableColumn></tableColumns>
+                                                        </tableView>
+                                                    </subviews>
+                                                </clipView>
+                                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="unit-scroller"><rect key="frame" x="188" y="0" width="16" height="466"/><autoresizingMask key="autoresizingMask"/></scroller>
+                                            </scrollView>
+                                            <textField editable="YES" selectable="YES" verticalHuggingPriority="750" id="unit-title" toolTip="Content Unit title. Press Return to rename.">
+                                                <rect key="frame" x="12" y="52" width="196" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                <textFieldCell key="cell" scrollable="YES" selectable="YES" editable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" title="Untitled" id="unit-title-cell"><font key="font" metaFont="system"/><color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/><color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/></textFieldCell>
+                                                <connections><action selector="renameContentUnit:" target="manuscript-controller" id="unit-rename-action"/></connections>
+                                            </textField>
+                                            <button id="unit-add" toolTip="Add Content Unit"><rect key="frame" x="12" y="12" width="32" height="28"/><autoresizingMask key="autoresizingMask"/><buttonCell key="cell" type="push" title="Add Content Unit" bezelStyle="rounded" image="plus" catalog="system" imagePosition="only" borderStyle="border" id="unit-add-cell"><behavior key="behavior" pushIn="YES" lightByBackground="YES"/><font key="font" metaFont="system"/></buttonCell><connections><action selector="addContentUnit:" target="manuscript-controller" id="unit-add-action"/></connections></button>
+                                            <button id="unit-up" toolTip="Move Content Unit Up"><rect key="frame" x="92" y="12" width="32" height="28"/><autoresizingMask key="autoresizingMask"/><buttonCell key="cell" type="push" title="Move Content Unit Up" bezelStyle="rounded" image="arrow.up" catalog="system" imagePosition="only" borderStyle="border" id="unit-up-cell"><behavior key="behavior" pushIn="YES" lightByBackground="YES"/><font key="font" metaFont="system"/></buttonCell><connections><action selector="moveContentUnitUp:" target="manuscript-controller" id="unit-up-action"/></connections></button>
+                                            <button id="unit-down" toolTip="Move Content Unit Down"><rect key="frame" x="132" y="12" width="32" height="28"/><autoresizingMask key="autoresizingMask"/><buttonCell key="cell" type="push" title="Move Content Unit Down" bezelStyle="rounded" image="arrow.down" catalog="system" imagePosition="only" borderStyle="border" id="unit-down-cell"><behavior key="behavior" pushIn="YES" lightByBackground="YES"/><font key="font" metaFont="system"/></buttonCell><connections><action selector="moveContentUnitDown:" target="manuscript-controller" id="unit-down-action"/></connections></button>
+                                        </subviews>
+                                    </customView>
+                                    <customView id="manuscript-editor-host"><rect key="frame" x="221" y="0" width="779" height="600"/><autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/></customView>
+                                </subviews>
+                                <holdingPriorities><real value="260"/><real value="250"/></holdingPriorities>
+                            </splitView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="addButton" destination="unit-add" id="unit-add-outlet"/>
+                        <outlet property="unitTable" destination="unit-table" id="units-outlet"/>
+                        <outlet property="unitTitle" destination="unit-title" id="unit-title-outlet"/>
+                        <outlet property="editorHost" destination="manuscript-editor-host" id="editor-host-outlet"/>
+                        <outlet property="moveUpButton" destination="unit-up" id="unit-up-outlet"/>
+                        <outlet property="moveDownButton" destination="unit-down" id="unit-down-outlet"/>
+                    </connections>
+                </viewController>
+                <customObject id="manuscript-responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="plus" catalog="system" width="15" height="15"/>
+        <image name="arrow.up" catalog="system" width="15" height="15"/>
+        <image name="arrow.down" catalog="system" width="15" height="15"/>
+        <image name="exclamationmark.square.fill" catalog="system" width="15" height="15"/>
+        <image name="strikethrough" catalog="system" width="16" height="16"/>
+        <image name="underline" catalog="system" width="16" height="16"/>
+        <image name="italic" catalog="system" width="16" height="16"/>
+        <image name="bold" catalog="system" width="16" height="16"/>
+        <image name="Emphasis" width="8" height="10"/>
+        <image name="StrongEmphasis" width="6" height="10"/>
+        <image name="bold.italic.underline" catalog="system" width="26" height="14"/>
+        <image name="eraser" catalog="system" width="16" height="16"/>
+        <image name="questionmark.circle" catalog="system" width="15" height="15"/>
+        <image name="text.aligncenter" catalog="system" width="16" height="13"/>
+        <image name="text.alignleft" catalog="system" width="16" height="13"/>
+        <image name="text.alignright" catalog="system" width="16" height="13"/>
+        <image name="text.justify" catalog="system" width="16" height="13"/>
+    </resources>
+</document>

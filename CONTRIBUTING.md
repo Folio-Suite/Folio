@@ -7,7 +7,7 @@ SPDX-License-Identifier: MIT
 
 Folio is a monorepo. Clone it with `git clone <repository-url>` and open the workspace at the repository root. FolioKit, Write, and Research retain separate Xcode projects and module ownership within this checkout.
 
-Open `Folio.xcworkspace`. Use the shared **Write** or **Research** scheme to run an application, **FolioKit** for framework work, and **Folio** to build or test the entire Suite. The applications use their domain frameworks, which consume FolioKit. Internal dynamic libraries are embedded in their owning frameworks. The current development schemes assume an installed environment; open the enclosing workspace when developing the applications.
+Open `Folio.xcworkspace`. Use the shared **Write** or **Research** scheme to run an application, **FolioKit** for framework work, and **Folio** to build or test the entire Suite. The applications use their domain frameworks, which consume FolioKit. Internal dynamic libraries are embedded in their owning frameworks. Each application embeds its domain framework and FolioKit, including their internal libraries, so the built application can launch outside Xcode. Open the enclosing workspace when developing the applications.
 
 The current skeleton uses Xcode 26.6 and a macOS 26.5 deployment target. `Config/Suite.xcconfig` controls the Suite minimum; each component retains a standalone fallback in its own `Config/Project.xcconfig`. Signing uses the existing project team settings. Contributors may select their own team locally; keep personal signing changes out of shared commits.
 
@@ -26,6 +26,22 @@ Write's first editor uses `.fwdoc` packages containing a Core Data store, with N
 ## Coordinated changes
 
 Use one branch for coordinated changes across FolioKit, Write, and Research. Commit source, project references, shared schemes, and documentation together so each revision describes a coherent Suite. Keep issue tracking and cross-Suite architecture in this repository, and symbol documentation alongside its owning code.
+
+## Interface design
+
+Keep application and reusable Kit interfaces in storyboards so designers can inspect and edit their layout in Interface Builder. Controllers own behavior and model integration; runtime construction is reserved for genuinely dynamic content.
+
+Write's menus live in `Write/Write/Base.lproj/Main.storyboard`. Its document window, native toolbar, Manuscript sidebar, reusable text editor, inline warning marker and popover, and help content live in `Write/WriteKit/Resources/Editor.storyboard`, bundled with WriteKit. The native toolbar is attached to the Editor Window scene. Its semantic E icons live in `Write/WriteKit/Resources/Formatting.xcassets`. Edit those scenes to change layout, labels, symbols, and spacing. The editor loads that framework resource explicitly, independent of the host application's main storyboard.
+
+## Data modeling
+
+Use Xcode’s versioned Core Data model editor for persistent schemas. WriteKit’s authoritative model is `Write/WriteKit/Resources/FWWork.xcdatamodeld`; edit entities, attributes, inverses, ordered relationships, validation, and deletion rules there. The private store adapter loads the compiled model from WriteKit rather than reconstructing the schema in code. Managed objects stay inside that adapter; application callers use the Kit’s public model interface.
+
+The current pre-alpha model replaces the experimental code-defined format without a migration requirement. Model versions remain explicit so compatibility can be governed as the project matures.
+
+## Kit documentation
+
+FolioKit, WriteKit, ResearchKit, and future Kits use DocC at a standard suitable for a public API. Document caller-facing contracts alongside declarations and provide module introductions and useful examples in each Kit's catalog. New or changed interfaces include documentation and generated-documentation validation in the same change. See [ADR 0008](docs/adr/0008-public-api-quality-kit-documentation.md) for scope and expectations.
 
 ## Licensing
 

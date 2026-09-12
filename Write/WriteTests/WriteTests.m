@@ -13,11 +13,18 @@
 - (void)testDocumentWritesAndReopensNativePackage {
     FWDocument *document = [FWDocument new];
     [document makeWindowControllers];
-    FWEditorViewController *editor = (FWEditorViewController *)document.windowControllers.firstObject.contentViewController;
+    FWManuscriptViewController *manuscript = (FWManuscriptViewController *)document.windowControllers.firstObject.contentViewController;
+    FWEditorViewController *editor = manuscript.activeEditor;
     (void)editor.view;
     [editor.textView insertText:@"A beginning.\nAnother paragraph." replacementRange:NSMakeRange(0, 0)];
     editor.textView.selectedRange = NSMakeRange(2, 9);
     [editor toggleBold:nil];
+    [manuscript addContentUnit:nil];
+    NSTextField *title = [manuscript valueForKey:@"unitTitle"];
+    title.stringValue = @"Next Chapter";
+    [manuscript renameContentUnit:nil];
+    [manuscript.activeEditor.textView insertText:@"Independent second unit." replacementRange:NSMakeRange(0, 0)];
+    NSString *secondIdentifier = manuscript.selectedUnitIdentifier;
     NSError *error = nil;
     NSURL *URL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:[NSUUID.UUID.UUIDString stringByAppendingPathExtension:@"fwdoc"]]];
     @try {
@@ -33,11 +40,15 @@
         FWDocument *loaded = [[FWDocument alloc] initWithContentsOfURL:URL ofType:detectedType error:&error];
         XCTAssertNotNil(loaded, @"%@", error);
         [loaded makeWindowControllers];
-        FWEditorViewController *reopened = (FWEditorViewController *)loaded.windowControllers.firstObject.contentViewController;
+        FWEditorViewController *reopened = [(FWManuscriptViewController *)loaded.windowControllers.firstObject.contentViewController activeEditor];
         (void)reopened.view;
         XCTAssertEqualObjects(reopened.textView.string, editor.textView.string);
         NSFont *font = [reopened.textView.textStorage attribute:NSFontAttributeName atIndex:3 effectiveRange:NULL];
         XCTAssertTrue([NSFontManager.sharedFontManager traitsOfFont:font] & NSBoldFontMask);
+        FWManuscriptViewController *loadedManuscript = (FWManuscriptViewController *)loaded.windowControllers.firstObject.contentViewController;
+        [loadedManuscript selectUnitWithIdentifier:secondIdentifier];
+        XCTAssertEqualObjects(loadedManuscript.activeEditor.textView.string, @"Independent second unit.");
+        XCTAssertEqualObjects([(NSTextField *)[loadedManuscript valueForKey:@"unitTitle"] stringValue], @"Next Chapter");
         [loaded close];
     } @finally {
         [document close];

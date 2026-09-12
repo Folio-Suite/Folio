@@ -17,6 +17,7 @@
 		A1F83B133050B9A500DEB96A /* libFWManuscript.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */; };
 		A1F83B143050B9A500DEB96A /* libFWManuscript.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A1F83B1D3050BBBF00DEB96A /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */; };
+		F01100000000000000000006 /* FolioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FC19964AB0634F0892868906 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,7 @@
 			dstSubfolder = Frameworks;
 			files = (
 				A1F839EE3050B46200DEB96A /* WriteKit.framework in Embed Frameworks */,
+				F01100000000000000000006 /* FolioKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 		};
@@ -125,12 +127,14 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				FWEditor/FWEditorViewController.m,
+				FWEditor/FWManuscriptViewController.m,
 				FWManuscript/FWWork.m,
 				FWManuscript/FWWorkStore.h,
 				FWManuscript/FWWorkStore.m,
 			);
 			publicHeaders = (
 				FWEditor/FWEditorViewController.h,
+				FWEditor/FWManuscriptViewController.h,
 				FWManuscript/FWWork.h,
 				WriteKit.h,
 			);
@@ -149,8 +153,16 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				FWEditor/FWEditorViewController.m,
+				FWEditor/FWManuscriptViewController.m,
 			);
 			target = A1F83AFF3050B99800DEB96A /* FWEditor */;
+		};
+		F01100000000000000000007 /* Exceptions for "WriteKit" folder in "Write" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/Formatting.xcassets,
+			);
+			target = A1064850304DFCF6001A21A6 /* Write */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -176,6 +188,7 @@
 		A1F839D93050B46200DEB96A /* WriteKit */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				F01100000000000000000007 /* Exceptions for "WriteKit" folder in "Write" target */,
 				A1F839F43050B46200DEB96A /* Exceptions for "WriteKit" folder in "WriteKit" target */,
 				A1F83AE83050B8EF00DEB96A /* Exceptions for "WriteKit" folder in "FWManuscript" target */,
 				A1F83B0E3050B99E00DEB96A /* Exceptions for "WriteKit" folder in "FWEditor" target */,

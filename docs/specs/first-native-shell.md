@@ -5,11 +5,9 @@ SPDX-License-Identifier: MIT
 
 ## Problem Statement
 
-> Repository update: the developer subsequently chose a monorepo. FolioKit, Write, and Research now share this repository while retaining their Xcode projects and module boundaries. This supersedes the submodule and separate-repository requirements below; the remaining shell requirements are unchanged.
-
 Folio needs a maintainable native application shell that can grow into a Suite for substantial authored Works. Two small editors have demonstrated basic AppKit editing and Core Data package persistence in Objective-C and Swift, but their implementation shortcuts and experimental repository layouts are not a settled foundation.
 
-The developer wants to retain the existing parent repository and Git submodules, put the working code into the existing domain frameworks and internal libraries, and use Objective-C and Swift where each makes the work easier to express and maintain. The first usable result must preserve the familiar macOS document experience and authored meaning while establishing module ownership that will survive later growth.
+Folio is a monorepo for a large integrated Suite. The developer wants to retain the existing workspace, put the working code into the existing domain frameworks and internal libraries, and use Objective-C and Swift where each makes the work easier to express and maintain. The first usable result must preserve the familiar macOS document experience and authored meaning while establishing module ownership that will survive later growth.
 
 ## Solution
 
@@ -17,7 +15,7 @@ Build the first Cocoa-first Folio shell by evolving the existing workspace and l
 
 Objective-C establishes the initial application/document plumbing, AppKit integration, public Cocoa-facing interfaces, and Core Data adapter. Swift implements bounded text/model operations where its types and collection tools are useful. The language crossing is narrow and exercised by real application behavior. This is the first implementation milestone, not a commitment that every future UI or model object must use one language.
 
-FolioKit provides shared foundations. WriteKit and ResearchKit provide their respective public domain interfaces and may include reusable UI. Internal libraries carry their assigned implementation responsibilities; the applications do not bypass the domain frameworks. The parent repository continues to coordinate the FolioKit, Write, and Research submodules, preserving their source and version ownership.
+FolioKit provides shared foundations. WriteKit and ResearchKit provide their respective public domain interfaces and may include reusable UI. Internal libraries carry their assigned implementation responsibilities; the applications do not bypass the domain frameworks. FolioKit, Write, and Research share one repository and coordinated revision history while retaining separate Xcode projects and explicit module ownership.
 
 ## User Stories
 
@@ -49,7 +47,7 @@ FolioKit provides shared foundations. WriteKit and ResearchKit provide their res
 26. As an author, I want separate open Works to have independent editing and undo state, so that an action in one window cannot change another Work.
 27. As an author using assistive technology, I want meaningful control labels, normal keyboard focus, and an accessible text area, so that the first shell can be operated through native macOS interaction.
 28. As an author, I want unfamiliar or incompatible content to produce an understandable response without destructive rewriting, so that the shell protects documents beyond its editing capabilities.
-29. As a developer, I want the existing parent workspace and pinned submodules to build together, so that each domain retains its repository ownership without requiring another repository reorganization.
+29. As a developer, I want the monorepo workspace to build the integrated Suite together, so that coordinated changes preserve explicit domain ownership in one revision.
 30. As a developer, I want each application to use its domain framework, so that UI entry points do not become alternate implementations of shared behavior.
 31. As a developer, I want shared text and identity foundations to belong to FolioKit, so that Research can later reuse them without importing Write's editor.
 32. As a developer, I want internal libraries to own actual implementation, so that the framework skeleton does not become an empty organizational promise.
@@ -68,7 +66,7 @@ FolioKit provides shared foundations. WriteKit and ResearchKit provide their res
 ### Delivery scope and existing repository structure
 
 - This specification is for the first implementation milestone in the existing skeleton. Begin with a focused reorganization of the current editor into the library targets already present; the remaining shell behaviors can follow. No repository cleanup or skeleton rebuild is required before implementation.
-- Preserve the parent repository and the FolioKit, Write, and Research Git submodules. Xcode projects, framework targets, dynamic library targets, resources, and tests retain explicit ownership in those repositories. Coordinated changes must retain compatible submodule pins.
+- Preserve the monorepo and existing workspace. FolioKit, Write, and Research retain explicit ownership of their Xcode projects, framework targets, dynamic library targets, resources, and tests. Commit coordinated source, project, scheme, and documentation changes together.
 - Use `dev.foliosuite` as the primary namespace for application, framework, document-type, and other newly defined identifiers. Preserve the established FK, FW, and FR Objective-C naming conventions for their respective domains; Swift names need not duplicate Objective-C prefixes merely for symmetry.
 - Start from the existing tested Xcode/macOS baseline unless a later implementation decision deliberately changes it. Record the actual toolchain, deployment minimum, and Swift language modes used for acceptance. A compiler-language change is an intentional target decision.
 - Deliver Write's small editor and Research's runnable application/framework shell. Do not infer a complete Research editor or additional applications from the existence of future domain names.
@@ -96,7 +94,7 @@ FolioKit provides shared foundations. WriteKit and ResearchKit provide their res
 ### Language allocation and interoperability
 
 - Use AppKit and Core Data for the shell. SwiftUI and SwiftData are not implementation dependencies of this milestone.
-- Objective-C is the initial plumbing language for the application/document lifecycle, Cocoa-facing interfaces, AppKit integration, and the Core Data adapter. Use storyboards or nibs where they make those interfaces convenient to construct; programmatic AppKit remains available for locally appropriate controls and dynamic content.
+- Objective-C is the initial plumbing language for the application/document lifecycle, Cocoa-facing interfaces, AppKit integration, and the Core Data adapter. Keep the GUI in storyboards so the author and other interface designers can inspect and edit it visually. Controllers own behavior and model integration; programmatic AppKit is reserved for genuinely dynamic content.
 - Swift implements at least one substantive text/model operation used by the real editor, such as validation, identity reconciliation, or semantic run coalescing. Do not satisfy the mixed-language requirement with an unused demonstration method.
 - Keep language crossings at narrow module interfaces. Objective-C-compatible objects, protocols, collections, and error conventions define the shared interface; Swift-only values and generic implementation details may stay behind it.
 - Do not maintain two independently mutable, complete semantic models for the two languages. Immutable transfer snapshots are allowed, with a defined authoritative model and explicit conversion responsibility.
@@ -109,6 +107,7 @@ FolioKit provides shared foundations. WriteKit and ResearchKit provide their res
 - Represent a Work that owns authored Content Units separately from its Manuscript's ordered placement of them. The first editor needs exactly one editable Content Unit and its placement; multi-unit assembly UI is deferred.
 - Use common text primitives beneath domain meaning. Keep stable object identity, vocabulary-qualified type identity, and definition/version information conceptually separate from presentation and any future numbering/marking.
 - Support paragraphs, Unicode text runs, semantic emphasis and strong emphasis, independent explicit bold and italic, and paragraph alignment. Do not infer semantics back from a rendered font. Empty and trailing paragraphs are part of the supported structure.
+- The primary formatting controls live in a native window toolbar defined in the WriteKit storyboard. They use an italic E and a bold E in San Francisco, stored as vector template images in the asset catalog, to apply semantic emphasis and strong emphasis. Option-click accesses explicit italic and bold; those actions also remain in the menus. Tooltips and a help popover explain the distinction. Underline is an explicit presentation attribute when implemented; it does not imply a semantic role.
 - Preserve identity for retained content, assign distinct identities to new or copied content, and define paragraph split/join behavior. Ordinary copy/paste is independent copying; linked reuse is a separate future feature.
 - Preserve supported formatting in internal copy/paste. External paste initially normalizes to plain text. Unsupported rich-text import is not silently promised.
 - Use the native text system, menus, shortcuts, focus, selection, and UndoManager, with a semantic adapter that keeps the Work consistent with the displayed text after an entire native undo/redo group. Custom formatting needs explicit undo behavior where native text undo does not supply it.
@@ -122,7 +121,7 @@ FolioKit provides shared foundations. WriteKit and ResearchKit provide their res
 - NSDocument initially supplies the application lifecycle. Write's persistence implementation is isolated in FWPersistence behind WriteKit and hosted in the Write process for this milestone. A later domain-owned executable is a planned hosting change, not part of this shell.
 - Provide one controlled owner of each open Work's mutable state. Multiple Works may be open independently; do not introduce competing writers to one package or a Suite-wide editing mutex.
 - Expose a small WriteKit interface for creating/opening a Work, accessing supported authoring behavior, producing/consuming native persistence state, and reporting failure. Keep Core Data entities, contexts, store options, and temporary filesystem machinery private.
-- Store semantic structure, ordering, identity, meaning, appearance, and the supported extension information explicitly. Pin and retain the initial model version; future incompatible schema changes require deliberate migration/version decisions.
+- Store semantic structure, ordering, identity, meaning, appearance, and the supported extension information explicitly in a versioned Xcode Core Data model owned by WriteKit. Use the visual model as the authoritative schema, with native ordered relationships and inverses. The pre-alpha visual model supersedes the experimental code-defined schema without requiring a migration; future incompatible changes require deliberate version and compatibility decisions.
 - Saving must produce a coherent package with all required store data. Never copy a live SQLite main file while silently omitting required journal/WAL state. Keep the last successfully saved package intact when a replacement fails.
 - Read and validate a candidate before replacing the active Work. Unknown store versions, invalid ordering or identity, corrupt data, and unsupported package contents produce errors without destructive rewriting.
 - Exercise explicit Save, native Auto Save, close/quit cancellation, edited-state tracking, reopening, and basic single-application Document Versions restoration. Return useful errors while retaining in-memory edits after a storage failure; offer the native retry or alternate-destination path.
@@ -135,13 +134,13 @@ FolioKit provides shared foundations. WriteKit and ResearchKit provide their res
 - Swift Collections and Swift Algorithms may remain implementation dependencies where they earn their place. The validated comparison used Collections 1.6.0 and Algorithms 1.2.1, with Numerics 1.1.1 resolved transitively. Record selected versions and retain the package lockfile; public framework interfaces must not expose these packages merely for implementation convenience.
 - Use explicit, inspectable build dependencies and shared workspace schemes. A clean checkout must build the shell without first building an unrelated target by hand or relying on an older framework binary.
 - Continue validating native app and test launches through Xcode in the workspace context with actual signing. Keep build output in the configured workspace-local DerivedData location and generated output out of version control.
-- Preserve the current development scheme's installed-environment assumption as an explicit development arrangement. Distribution packaging remains separate: the interface design must not require one physical framework copy or access to another application's bundle. Do not implement an installer, App Store packaging, or runtime extension hosting in this slice.
-- Provide concise module-entry-point documentation, the actual supported native format/version, launch/test instructions, language-crossing responsibilities, and known limitations. Retain the two experiments as comparison evidence; deleting or relocating them is not required.
+- Built applications embed their required domain framework and FolioKit so they can launch independently of Xcode's library search environment. Distribution packaging remains separate: the interface design must not require one physical framework copy or access to another application's bundle. Do not implement an installer, App Store packaging, or runtime extension hosting in this slice.
+- Document FolioKit, WriteKit, and ResearchKit in DocC to a standard suitable for a public API, following ADR 0008. Cover module entry points and caller-facing contracts, with examples where needed. Also document the actual supported native format/version, launch/test instructions, language-crossing responsibilities, and known limitations. Retain the two experiments as comparison evidence; deleting or relocating them is not required.
 
 ### Relationship to earlier decisions
 
 - ADRs 0001, 0002, 0005, 0006, and 0007 continue to define the semantic Work, desktop posture, native-package/archival distinction, semantic extension rules, and Source ownership respectively.
-- The developer explicitly reversed the proposed repository consolidation: retain the existing Git submodules and skeleton. The `dev.foliosuite` namespace remains the intended namespace for the first shell; changing repository topology is not necessary to adopt it.
+- The Suite uses one monorepo with separate domain modules and Xcode projects. The `dev.foliosuite` namespace remains the intended namespace for the first shell.
 - ADR 0004 and the older Work Session contract specify a Suite helper. Later discussion moved toward Work authority in Write's domain and Source Library authority in Research's domain, with separately hosted domain persistence as a future step. This shell specifies only the bounded in-process NSDocument stage. Reconcile the architecture records to identify that stage and the superseded global-helper assumption during implementation; do not silently present the old and new process arrangements as simultaneous requirements.
 - The exact mature persistence-host supervision, communication, recovery, and cross-application lifecycle remain unresolved work. This specification does not close or claim completion of the broader lifecycle and durable-history tickets.
 - ADR 0003's distribution decision is not replaced by this implementation milestone. Keep direct versus sandboxed packaging and commercial distribution decisions separate from framework/source organization.
@@ -162,7 +161,7 @@ FolioKit provides shared foundations. WriteKit and ResearchKit provide their res
 
 ## Out of Scope
 
-- Consolidating or removing Git submodules, rebuilding the repository, deleting either experiment, or rewriting history.
+- Rebuilding the repository, deleting either experiment, or rewriting history.
 - A complete Research Source Library workflow, citations/bibliographies, source reconciliation, Zotero integration, or additional mature Suite applications.
 - Multi-Content-Unit assembly UI, Layout/composition, Editions and Renditions, publication/export, full semantic vocabularies, or complete Profile/Theme support.
 - XML archival import/export, DTD/schema implementation, isolated folio reconstruction, and compatibility migration from the experimental formats.
@@ -175,7 +174,11 @@ FolioKit provides shared foundations. WriteKit and ResearchKit provide their res
 
 ## Further Notes
 
-- This spec synthesizes the September 2026 framework discussions and two editor experiments. The latest direction retains the existing submodules, dynamic library targets, and paired headers/implementations. First tidy the current editor into those libraries, then continue the shell implementation in place.
+- This spec synthesizes the September 2026 framework discussions and two editor experiments. The Suite uses the existing monorepo, dynamic library targets, and paired headers/implementations. First tidy the current editor into those libraries, then continue the shell implementation in place.
 - Relevant open architecture work remains in [#2](https://github.com/Folio-Suite/Folio/issues/2), [#4](https://github.com/Folio-Suite/Folio/issues/4), [#8](https://github.com/Folio-Suite/Folio/issues/8), [#10](https://github.com/Folio-Suite/Folio/issues/10), and [#13](https://github.com/Folio-Suite/Folio/issues/13). This issue does not declare those broader questions resolved.
 - The developer confirmed the testing interface: most acceptance tests use WriteKit's public document/authoring interface, with a small Xcode UI suite for native application integration. Internal libraries and language bridges are exercised through that interface.
 - Acceptance requires the supported editor/document behaviors, a working mixed-language operation behind the intended interface, real use of the implemented internal libraries, and native Xcode validation. A successful empty launch or placeholder test suite is insufficient.
+
+## Accepted follow-on: flat Manuscript sidebar
+
+After the initial editor milestone, add, rename, selection, and reordering of text Content Units were approved as the next architectural exercise. This extends the initial single-unit scope without adding nested assembly, deletion, or unplaced content. The native model persists titles and ordered placement; the storyboard owns the sidebar; each unit retains its editor with document-wide chronological undo. See [the implementation contract](../architecture/native-work-v1.md#manuscript-navigation).

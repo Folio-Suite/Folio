@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 #import <Foundation/Foundation.h>
-@class FKText;
+@class FKManuscript;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -10,8 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FWWorkStore : NSObject
 + (nullable NSDictionary *)readPackage:(NSFileWrapper *)package error:(NSError **)error;
 + (nullable NSFileWrapper *)packageWithWorkIdentifier:(NSString *)identifier
-                               manuscriptIdentifier:(NSString *)manuscriptIdentifier
-                                               text:(FKText *)text error:(NSError **)error;
+                               manuscript:(FKManuscript *)manuscript error:(NSError **)error;
 @end
 
 NS_ASSUME_NONNULL_END

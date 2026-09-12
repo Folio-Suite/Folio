@@ -5,10 +5,13 @@
 #import "../FWManuscript/FWWork.h"
 #import <FolioKit/FolioKit.h>
 
-static NSAttributedStringKey const FWMeaning = @"FolioTextMeaning";
-static NSAttributedStringKey const FWAppearance = @"FolioTextAppearance";
+static NSAttributedStringKey const FWEmphasis = @"FolioTextEmphasis";
+static NSAttributedStringKey const FWBold = @"FolioTextBold";
+static NSAttributedStringKey const FWItalic = @"FolioTextItalic";
+static NSAttributedStringKey const FWUnderline = @"FolioTextUnderline";
+static NSAttributedStringKey const FWStrikethrough = @"FolioTextStrikethrough";
 static NSAttributedStringKey const FWParagraphIdentity = @"FolioParagraphIdentity";
-static NSPasteboardType const FWTextPasteboardType = @"dev.foliosuite.text-fragment-v1";
+static NSPasteboardType const FWTextPasteboardType = @"dev.foliosuite.text-fragment-v2";
 
 static NSTextAlignment FWNativeAlignment(FKParagraphAlignment alignment) {
     switch (alignment) {
@@ -30,32 +33,75 @@ static FKParagraphAlignment FWModelAlignment(NSTextAlignment alignment) {
     }
 }
 
-static NSFont *FWFont(NSUInteger meaning, NSUInteger appearance) {
+static BOOL FWEmphasisUsesBold(FKTextEmphasis emphasis) {
+    return emphasis == FKTextEmphasisStrongEmphasis || emphasis == FKTextEmphasisVeryStrongEmphasis;
+}
+static BOOL FWEmphasisUsesItalic(FKTextEmphasis emphasis) {
+    return emphasis == FKTextEmphasisEmphasis || emphasis == FKTextEmphasisVeryStrongEmphasis;
+}
+static FKTextPresentation *FWPresentation(NSDictionary *attributes) {
+    return [[FKTextPresentation alloc] initWithBold:[attributes[FWBold] boolValue] italic:[attributes[FWItalic] boolValue]
+        underline:[attributes[FWUnderline] boolValue] strikethrough:[attributes[FWStrikethrough] boolValue]];
+}
+static void FWRenderAttributes(NSMutableDictionary *attributes) {
+    FKTextEmphasis emphasis = [attributes[FWEmphasis] unsignedIntegerValue];
     NSFont *font = [NSFont fontWithName:@"Times New Roman" size:18] ?: [NSFont systemFontOfSize:18];
     NSFontTraitMask traits = 0;
-    if ((meaning & FKTextMeaningStrongEmphasis) || (appearance & FKTextAppearanceBold)) traits |= NSBoldFontMask;
-    if ((meaning & FKTextMeaningEmphasis) || (appearance & FKTextAppearanceItalic)) traits |= NSItalicFontMask;
-    return [NSFontManager.sharedFontManager convertFont:font toHaveTrait:traits];
+    // Explicit enabled presentation traits survive semantic changes. For example,
+    // Bold inside Emphasis renders bold-italic while retaining both authored values.
+    if ([attributes[FWBold] boolValue] || FWEmphasisUsesBold(emphasis)) traits |= NSBoldFontMask;
+    if ([attributes[FWItalic] boolValue] || FWEmphasisUsesItalic(emphasis)) traits |= NSItalicFontMask;
+    attributes[NSFontAttributeName] = [NSFontManager.sharedFontManager convertFont:font toHaveTrait:traits];
+    attributes[NSUnderlineStyleAttributeName] = @([attributes[FWUnderline] boolValue] ? NSUnderlineStyleSingle : 0);
+    attributes[NSStrikethroughStyleAttributeName] = @([attributes[FWStrikethrough] boolValue] ? NSUnderlineStyleSingle : 0);
 }
-
-static NSDictionary *FWAttributes(NSUInteger meaning, NSUInteger appearance, FKParagraphAlignment alignment) {
+static NSDictionary *FWAttributes(FKTextEmphasis emphasis, FKTextPresentation *presentation, FKParagraphAlignment alignment) {
     NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
     style.alignment = FWNativeAlignment(alignment);
     style.paragraphSpacing = 10;
-    return @{FWMeaning:@(meaning), FWAppearance:@(appearance),
-             NSFontAttributeName:FWFont(meaning, appearance),
-             NSForegroundColorAttributeName:NSColor.textColor, NSParagraphStyleAttributeName:style};
+    NSMutableDictionary *attributes = [@{FWEmphasis:@(emphasis), FWBold:@(presentation.bold), FWItalic:@(presentation.italic),
+        FWUnderline:@(presentation.underline), FWStrikethrough:@(presentation.strikethrough),
+        NSForegroundColorAttributeName:NSColor.textColor, NSParagraphStyleAttributeName:style} mutableCopy];
+    FWRenderAttributes(attributes);
+    return attributes;
 }
+static BOOL FWHasFormattingConflict(NSDictionary *attributes) {
+    return [attributes[FWEmphasis] unsignedIntegerValue] != FKTextEmphasisNone &&
+        ([attributes[FWBold] boolValue] || [attributes[FWItalic] boolValue]);
+}
+
+@interface FWEditorViewController (InlineWarnings)
+- (FKText *)unitText;
+- (void)layoutFormattingMarkers;
+- (void)showInlineFormattingWarning:(NSButton *)sender;
+@end
 
 @interface FWTextView : NSTextView
 @property (nonatomic, weak) FWEditorViewController *editor;
 @end
 
 @implementation FWTextView
+- (NSArray *)accessibilityChildren {
+    // NSTextView supplies its own accessibility tree; include our inline controls.
+    NSMutableArray *children = [[super accessibilityChildren] mutableCopy] ?: [NSMutableArray array];
+    for (NSView *view in self.subviews) {
+        for (id child in NSAccessibilityUnignoredChildren(@[view])) {
+            if (![children containsObject:child]) [children addObject:child];
+        }
+    }
+    return children;
+}
+- (void)setFrameSize:(NSSize)newSize {
+    [super setFrameSize:newSize];
+    [self.editor layoutFormattingMarkers];
+}
 - (void)toggleEmphasis:(id)sender { [self.editor toggleEmphasis:sender]; }
 - (void)toggleStrongEmphasis:(id)sender { [self.editor toggleStrongEmphasis:sender]; }
+- (void)toggleVeryStrongEmphasis:(id)sender { [self.editor toggleVeryStrongEmphasis:sender]; }
 - (void)toggleBold:(id)sender { [self.editor toggleBold:sender]; }
 - (void)toggleItalic:(id)sender { [self.editor toggleItalic:sender]; }
+- (void)toggleUnderline:(id)sender { [self.editor toggleUnderline:sender]; }
+- (void)toggleStrikethrough:(id)sender { [self.editor toggleStrikethrough:sender]; }
 - (void)clearFormatting:(id)sender { [self.editor clearFormatting:sender]; }
 
 // Internal copy-paste preserves supported meaning, but never copies object identity.
@@ -67,8 +113,9 @@ static NSDictionary *FWAttributes(NSUInteger meaning, NSUInteger appearance, FKP
     NSMutableArray *runs = [NSMutableArray array];
     [self.textStorage enumerateAttributesInRange:self.selectedRange options:0 usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
         NSParagraphStyle *style = attributes[NSParagraphStyleAttributeName];
-        [runs addObject:@{@"text":[self.string substringWithRange:range], @"meaning":attributes[FWMeaning] ?: @0,
-                         @"appearance":attributes[FWAppearance] ?: @0, @"alignment":@(FWModelAlignment(style.alignment))}];
+        [runs addObject:@{@"text":[self.string substringWithRange:range], @"emphasis":attributes[FWEmphasis] ?: @0,
+                         @"bold":attributes[FWBold] ?: @NO, @"italic":attributes[FWItalic] ?: @NO,
+                         @"underline":attributes[FWUnderline] ?: @NO, @"strikethrough":attributes[FWStrikethrough] ?: @NO, @"alignment":@(FWModelAlignment(style.alignment))}];
     }];
     NSData *data = [NSPropertyListSerialization dataWithPropertyList:runs format:NSPropertyListBinaryFormat_v1_0 options:0 error:NULL];
     return data && [pasteboard setData:data forType:type];
@@ -81,11 +128,16 @@ static NSDictionary *FWAttributes(NSUInteger meaning, NSUInteger appearance, FKP
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@""];
     for (id run in runs) {
         if (![run isKindOfClass:NSDictionary.class] || ![run[@"text"] isKindOfClass:NSString.class]) return NO;
-        for (NSString *key in @[@"meaning", @"appearance", @"alignment"]) if (![run[key] isKindOfClass:NSNumber.class]) return NO;
-        NSUInteger meaning = [run[@"meaning"] unsignedIntegerValue], appearance = [run[@"appearance"] unsignedIntegerValue];
-        NSUInteger alignment = [run[@"alignment"] unsignedIntegerValue];
-        if (meaning > 3 || appearance > 3 || alignment > FKParagraphAlignmentJustified) return NO;
-        [text appendAttributedString:[[NSAttributedString alloc] initWithString:run[@"text"] attributes:FWAttributes(meaning, appearance, alignment)]];
+        for (NSString *key in @[@"emphasis", @"bold", @"italic", @"underline", @"strikethrough", @"alignment"])
+            if (![run[key] isKindOfClass:NSNumber.class]) return NO;
+        NSUInteger emphasis = [run[@"emphasis"] unsignedIntegerValue], alignment = [run[@"alignment"] unsignedIntegerValue];
+        if (emphasis > FKTextEmphasisVeryStrongEmphasis || alignment > FKParagraphAlignmentJustified ||
+            [run[@"emphasis"] doubleValue] != emphasis || [run[@"alignment"] doubleValue] != alignment) return NO;
+        for (NSString *key in @[@"bold", @"italic", @"underline", @"strikethrough"])
+            if (![run[key] isEqual:@NO] && ![run[key] isEqual:@YES]) return NO;
+        FKTextPresentation *presentation = [[FKTextPresentation alloc] initWithBold:[run[@"bold"] boolValue]
+            italic:[run[@"italic"] boolValue] underline:[run[@"underline"] boolValue] strikethrough:[run[@"strikethrough"] boolValue]];
+        [text appendAttributedString:[[NSAttributedString alloc] initWithString:run[@"text"] attributes:FWAttributes(emphasis, presentation, alignment)]];
     }
     [self insertText:text replacementRange:self.selectedRange];
     return YES;
@@ -102,24 +154,104 @@ static NSDictionary *FWAttributes(NSUInteger meaning, NSUInteger appearance, FKP
     NSUInteger insertion = replacementRange.location == NSNotFound ? self.selectedRange.location : replacementRange.location;
     if (insertion <= self.string.length) {
         NSUInteger paragraph = [[self.string substringToIndex:insertion] componentsSeparatedByString:@"\n"].count - 1;
-        NSArray<FKParagraph *> *paragraphs = self.editor.work.text.paragraphs;
+        NSArray<FKParagraph *> *paragraphs = self.editor.unitText.paragraphs;
         if (paragraph < paragraphs.count) [text addAttribute:FWParagraphIdentity value:paragraphs[paragraph].identifier range:NSMakeRange(0, text.length)];
     }
     [super insertText:text replacementRange:replacementRange];
 }
 @end
 
+@interface FWAppearanceViewController : NSViewController
+@property (nonatomic, weak) FWEditorViewController *editor;
+@property (nonatomic, strong) IBOutlet NSButton *boldButton;
+@property (nonatomic, strong) IBOutlet NSButton *italicButton;
+@property (nonatomic, strong) IBOutlet NSButton *underlineButton;
+@property (nonatomic, strong) IBOutlet NSButton *strikethroughButton;
+@end
+
+@implementation FWAppearanceViewController
+- (IBAction)toggleBold:(id)sender { [self.editor toggleBold:sender]; }
+- (IBAction)toggleItalic:(id)sender { [self.editor toggleItalic:sender]; }
+- (IBAction)toggleUnderline:(id)sender { [self.editor toggleUnderline:sender]; }
+- (IBAction)toggleStrikethrough:(id)sender { [self.editor toggleStrikethrough:sender]; }
+@end
+
+// Repeated diagnostic markers and their popover are authored in Editor.storyboard.
+@interface FWFormattingWarningViewController : NSViewController
+@property (nonatomic, weak) FWEditorViewController *editor;
+@property (nonatomic, strong) IBOutlet NSButton *markerButton;
+@end
+@implementation FWFormattingWarningViewController
+- (IBAction)showWarning:(NSButton *)sender { [self.editor showInlineFormattingWarning:sender]; }
+- (IBAction)convertPresentationToEmphasis:(id)sender { [self.editor convertPresentationToEmphasis:sender]; }
+- (IBAction)dismissFormattingWarning:(id)sender { [self.editor dismissFormattingWarning:sender]; }
+@end
+
 @interface FWEditorViewController () <NSTextViewDelegate>
-@property (nonatomic, strong) NSTextView *textView;
+@property (nonatomic, strong) IBOutlet NSTextView *textView;
 @property (nonatomic, strong) NSUndoManager *editingUndoManager;
+@property (nonatomic, copy) NSString *contentUnitIdentifier;
+@property (nonatomic, strong) NSAttributedString *capturedText;
+@property (nonatomic, strong) FKText *unitText;
 @property (nonatomic, copy) NSString *trailingParagraphIdentifier;
 @property (nonatomic) BOOL loading;
-@property (nonatomic, strong) NSPopUpButton *alignmentButton;
+@property (nonatomic, strong) IBOutlet NSPopUpButton *alignmentButton;
+@property (nonatomic, strong) IBOutlet NSButton *emphasisButton;
+@property (nonatomic, strong) IBOutlet NSButton *strongButton;
+@property (nonatomic, strong) IBOutlet NSButton *clearButton;
+@property (nonatomic, strong) IBOutlet NSButton *helpButton;
+@property (nonatomic, copy) NSArray<NSButton *> *formattingButtons;
+@property (nonatomic, strong) NSPopover *formattingHelp;
+@property (nonatomic, copy) NSArray<NSValue *> *formattingConflictRanges;
+@property (nonatomic, strong) NSMutableArray<FWFormattingWarningViewController *> *formattingMarkers;
+@property (nonatomic, strong) NSPopover *formattingConflictPopover;
+@property (nonatomic) BOOL layingOutFormattingMarkers;
+- (void)updateFormattingWarning;
+@property (nonatomic, strong) NSPopover *appearancePopover;
+- (IBAction)showAppearance:(id)sender;
+- (IBAction)chooseEmphasis:(id)sender;
+- (IBAction)chooseStrongEmphasis:(id)sender;
+- (IBAction)changeParagraphAlignment:(id)sender;
+- (IBAction)showFormattingHelp:(id)sender;
+@end
+
+// The storyboard owns window chrome and toolbar views; this controller routes actions.
+@interface FWEditorWindowController : NSWindowController
+@property (nonatomic, strong) IBOutlet NSButton *emphasisButton;
+@property (nonatomic, strong) IBOutlet NSButton *strongButton;
+@property (nonatomic, strong) IBOutlet NSButton *clearButton;
+@property (nonatomic, strong) IBOutlet NSButton *helpButton;
+@property (nonatomic, strong) IBOutlet NSPopUpButton *alignmentButton;
+@end
+
+@implementation FWEditorWindowController
+- (FWEditorViewController *)formattingEditor {
+    NSViewController *content = self.contentViewController;
+    return [content respondsToSelector:NSSelectorFromString(@"activeEditor")] ? [content valueForKey:@"activeEditor"] : (FWEditorViewController *)content;
+}
+- (IBAction)showAppearance:(id)sender { [[self formattingEditor] showAppearance:sender]; }
+- (IBAction)chooseEmphasis:(id)sender { [[self formattingEditor] chooseEmphasis:sender]; }
+- (IBAction)chooseStrongEmphasis:(id)sender { [[self formattingEditor] chooseStrongEmphasis:sender]; }
+- (IBAction)clearFormatting:(id)sender { [[self formattingEditor] clearFormatting:sender]; }
+- (IBAction)changeParagraphAlignment:(id)sender { [[self formattingEditor] changeParagraphAlignment:sender]; }
+- (IBAction)showFormattingHelp:(id)sender { [[self formattingEditor] showFormattingHelp:sender]; }
 @end
 
 @implementation FWEditorViewController
 - (instancetype)initWithWork:(FWWork *)work undoManager:(NSUndoManager *)undoManager {
-    if ((self = [super initWithNibName:nil bundle:nil])) {
+    return [self initWithWork:work contentUnitIdentifier:work.text.identifier undoManager:undoManager];
+}
+- (instancetype)initWithWork:(FWWork *)work contentUnitIdentifier:(NSString *)identifier undoManager:(NSUndoManager *)undoManager {
+    NSParameterAssert([work textWithIdentifier:identifier]);
+    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Editor" bundle:[NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"]];
+    self = [storyboard instantiateControllerWithIdentifier:@"Editor" creator:^id(NSCoder *coder) {
+        return [[FWEditorViewController alloc] initWithCoder:coder work:work undoManager:undoManager];
+    }];
+    self.contentUnitIdentifier = identifier;
+    return self;
+}
+- (instancetype)initWithCoder:(NSCoder *)coder work:(FWWork *)work undoManager:(NSUndoManager *)undoManager {
+    if ((self = [super initWithCoder:coder])) {
         _work = work;
         _editingUndoManager = undoManager;
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(didFinishUndoOrRedo:)
@@ -135,100 +267,91 @@ static NSDictionary *FWAttributes(NSUInteger meaning, NSUInteger appearance, FKP
 - (void)didFinishUndoOrRedo:(NSNotification *)notification {
     // AppKit can restore text after its last textDidChange callback in an undo group.
     // Reconcile only after the whole operation; NSDocument owns undo's change count.
-    if (self.isViewLoaded && !self.loading) [self captureText];
-}
-- (void)loadView {
-    self.view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 800, 600)];
-    NSStackView *tools = [NSStackView new];
-    tools.spacing = 8;
-    tools.translatesAutoresizingMaskIntoConstraints = NO;
-    NSArray *titles = @[@"Emphasis", @"Strong", @"Bold", @"Italic"];
-    NSArray *actions = @[@"toggleEmphasis:", @"toggleStrongEmphasis:", @"toggleBold:", @"toggleItalic:"];
-    for (NSUInteger i = 0; i < titles.count; i++) {
-        NSButton *button = [NSButton buttonWithTitle:titles[i] target:self action:NSSelectorFromString(actions[i])];
-        button.toolTip = i < 2 ? @"Express meaning; its appearance can change with the publication style." : @"Apply an explicit typographic choice.";
-        [button setAccessibilityLabel:i == 1 ? @"Strong emphasis" : titles[i]];
-        [tools addArrangedSubview:button];
+    if (self.isViewLoaded && !self.loading && self.unitText) {
+        BOOL changed = ![self.capturedText isEqualToAttributedString:self.textView.textStorage];
+        [self captureText];
+        [self updateFormattingControls];
+        if (changed && self.undoDidChangeText) self.undoDidChangeText();
     }
-    self.alignmentButton = [[NSPopUpButton alloc] initWithFrame:NSZeroRect pullsDown:NO];
-    [self.alignmentButton addItemsWithTitles:@[@"Natural", @"Left", @"Center", @"Right", @"Justified"]];
+}
+- (NSWindowController *)makeWindowController {
+    NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Editor" bundle:[NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"]];
+    FWEditorWindowController *controller = [storyboard instantiateControllerWithIdentifier:@"EditorWindow"];
+    [self connectToolbar:controller];
+    controller.contentViewController = self;
+    (void)self.view;
+    [self updateFormattingControls];
+    return controller;
+}
+- (void)connectToolbar:(FWEditorWindowController *)controller {
+    self.emphasisButton = controller.emphasisButton;
+    self.strongButton = controller.strongButton;
+    self.clearButton = controller.clearButton;
+    self.helpButton = controller.helpButton;
+    self.alignmentButton = controller.alignmentButton;
+    self.formattingButtons = @[self.emphasisButton, self.strongButton];
+    [self.emphasisButton setAccessibilityLabel:@"Emphasis"];
+    [self.strongButton setAccessibilityLabel:@"Strong Emphasis"];
+    for (NSButton *button in self.formattingButtons) [button setAccessibilityHelp:button.toolTip];
+    [self.clearButton setAccessibilityLabel:@"Clear character formatting"];
+    [self.helpButton setAccessibilityLabel:@"Formatting help"];
     [self.alignmentButton setAccessibilityLabel:@"Paragraph alignment"];
-    self.alignmentButton.target = self;
-    self.alignmentButton.action = @selector(changeParagraphAlignment:);
-    [tools addArrangedSubview:self.alignmentButton];
-    [self.view addSubview:tools];
-    NSScrollView *scroll = [[NSScrollView alloc] initWithFrame:self.view.bounds];
-    scroll.translatesAutoresizingMaskIntoConstraints = NO;
-    scroll.hasVerticalScroller = YES;
-    scroll.borderType = NSBezelBorder;
-    FWTextView *text = [[FWTextView alloc] initWithFrame:scroll.contentView.bounds];
+    [self updateFormattingControls];
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    FWTextView *text = (FWTextView *)self.textView;
     text.editor = self;
     text.delegate = self;
-    text.richText = YES;
-    text.importsGraphics = NO;
-    text.usesFontPanel = NO;
-    text.usesRuler = NO;
-    text.allowsUndo = YES;
-    text.verticallyResizable = YES;
-    text.horizontallyResizable = NO;
-    text.minSize = NSMakeSize(0, 0);
-    text.maxSize = NSMakeSize(CGFLOAT_MAX, CGFLOAT_MAX);
-    text.autoresizingMask = NSViewWidthSizable;
-    text.textContainer.containerSize = NSMakeSize(scroll.contentSize.width, CGFLOAT_MAX);
     text.textContainer.widthTracksTextView = YES;
-    text.textContainerInset = NSMakeSize(32, 28);
+    text.textContainer.containerSize = NSMakeSize(text.bounds.size.width, CGFLOAT_MAX);
     text.automaticQuoteSubstitutionEnabled = NO;
     text.automaticDashSubstitutionEnabled = NO;
     [text setAccessibilityLabel:@"Manuscript text"];
     text.identifier = @"manuscriptText";
-    self.textView = text;
-    scroll.documentView = text;
-    [self.view addSubview:scroll];
-    [NSLayoutConstraint activateConstraints:@[
-        [tools.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:16],
-        [tools.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:12],
-        [tools.trailingAnchor constraintLessThanOrEqualToAnchor:self.view.trailingAnchor constant:-16],
-        [scroll.topAnchor constraintEqualToAnchor:tools.bottomAnchor constant:12],
-        [scroll.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
-        [scroll.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
-        [scroll.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
-    ]];
     [self displayWork];
 }
 - (void)viewDidAppear {
     [super viewDidAppear];
-    [self.view.window makeFirstResponder:self.textView];
+    if (!self.parentViewController && !self.appearancePopover.shown) [self.view.window makeFirstResponder:self.textView];
 }
 - (void)setWork:(FWWork *)work {
     _work = work;
+    self.contentUnitIdentifier = work.text.identifier;
     if (self.isViewLoaded) [self displayWork];
 }
+- (FKText *)unitText { return [self.work textWithIdentifier:self.contentUnitIdentifier]; }
+- (void)setUnitText:(FKText *)text { [self.work replaceText:text]; }
 - (void)displayWork {
     self.loading = YES;
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@""];
-    NSArray<FKParagraph *> *paragraphs = self.work.text.paragraphs;
+    NSArray<FKParagraph *> *paragraphs = self.unitText.paragraphs;
     for (NSUInteger index = 0; index < paragraphs.count; index++) {
         FKParagraph *p = paragraphs[index];
         NSUInteger start = text.length;
-        for (FKTextRun *run in p.runs) [text appendAttributedString:[[NSAttributedString alloc] initWithString:run.string attributes:FWAttributes(run.meaning, run.appearance, p.alignment)]];
-        if (index + 1 < paragraphs.count) [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:FWAttributes(0, 0, p.alignment)]];
+        for (FKTextRun *run in p.runs) [text appendAttributedString:[[NSAttributedString alloc] initWithString:run.string attributes:FWAttributes(run.emphasis, run.presentation, p.alignment)]];
+        if (index + 1 < paragraphs.count) [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:FWAttributes(FKTextEmphasisNone, [FKTextPresentation new], p.alignment)]];
         [text addAttribute:FWParagraphIdentity value:p.identifier range:NSMakeRange(start, text.length - start)];
     }
     [self.textView.textStorage setAttributedString:text];
     self.trailingParagraphIdentifier = paragraphs.lastObject.identifier;
-    NSMutableDictionary *typing = [FWAttributes(0, 0, paragraphs.firstObject.alignment) mutableCopy];
+    NSMutableDictionary *typing = [FWAttributes(FKTextEmphasisNone, [FKTextPresentation new], paragraphs.firstObject.alignment) mutableCopy];
     typing[FWParagraphIdentity] = paragraphs.firstObject.identifier;
     self.textView.typingAttributes = typing;
     [self.textView setSelectedRange:NSMakeRange(0, 0)];
+    self.capturedText = [self.textView.textStorage copy];
     self.loading = NO;
+    [self updateFormattingControls];
 }
 - (NSUndoManager *)undoManagerForTextView:(NSTextView *)view { return self.editingUndoManager; }
 - (void)textDidChange:(NSNotification *)notification {
     if (self.loading) return;
     [self captureText];
+    [self updateFormattingControls];
     if (self.textDidChange) self.textDidChange();
 }
 - (void)captureText {
+    if (!self.unitText) return;
     NSTextStorage *storage = self.textView.textStorage;
     NSArray<NSString *> *lines = [storage.string componentsSeparatedByString:@"\n"];
     NSMutableArray *paragraphs = [NSMutableArray array];
@@ -241,13 +364,18 @@ static NSDictionary *FWAttributes(NSUInteger meaning, NSUInteger appearance, FKP
         // An empty text view has no attributes from which to recover identity.
         // Removing all text retains the first paragraph, not the old trailing one.
         NSString *identifier = whole.length ? attributes[FWParagraphIdentity] :
-            (storage.length ? self.trailingParagraphIdentifier : self.work.text.paragraphs.firstObject.identifier);
+            (storage.length ? self.trailingParagraphIdentifier : self.unitText.paragraphs.firstObject.identifier);
         if (!identifier || [identifiers containsObject:identifier]) identifier = [FKIdentifiedObject new].identifier;
         [identifiers addObject:identifier];
-        NSMutableArray *runs = [NSMutableArray array];
+        NSMutableArray<FKTextRun *> *runs = [NSMutableArray array];
         [storage enumerateAttributesInRange:content options:0 usingBlock:^(NSDictionary *a, NSRange range, BOOL *stop) {
-            [runs addObject:[[FKTextRun alloc] initWithString:[storage.string substringWithRange:range]
-                meaning:[a[FWMeaning] unsignedIntegerValue] appearance:[a[FWAppearance] unsignedIntegerValue]]];
+            FKTextRun *run = [[FKTextRun alloc] initWithString:[storage.string substringWithRange:range]
+                emphasis:[a[FWEmphasis] unsignedIntegerValue] presentation:FWPresentation(a)];
+            FKTextRun *previous = runs.lastObject;
+            if (previous && previous.emphasis == run.emphasis && [previous.presentation isEqual:run.presentation]) {
+                runs[runs.count - 1] = [[FKTextRun alloc] initWithString:[previous.string stringByAppendingString:run.string]
+                    emphasis:run.emphasis presentation:run.presentation];
+            } else [runs addObject:run];
         }];
         NSParagraphStyle *style = attributes[NSParagraphStyleAttributeName];
         FKParagraphAlignment alignment = style ? FWModelAlignment(style.alignment) : FKParagraphAlignmentNatural;
@@ -256,57 +384,247 @@ static NSDictionary *FWAttributes(NSUInteger meaning, NSUInteger appearance, FKP
         offset += whole.length;
     }
     self.trailingParagraphIdentifier = [paragraphs.lastObject identifier];
-    self.work.text = [[FKText alloc] initWithIdentifier:self.work.text.identifier paragraphs:paragraphs];
+    self.unitText = [[FKText alloc] initWithIdentifier:self.unitText.identifier title:self.unitText.title paragraphs:paragraphs formattingWarningDismissed:self.unitText.formattingWarningDismissed];
     if (self.textView.selectedRange.location == storage.length) {
         NSMutableDictionary *attributes = [self.textView.typingAttributes mutableCopy];
         attributes[FWParagraphIdentity] = self.trailingParagraphIdentifier;
         self.textView.typingAttributes = attributes;
     }
+    self.capturedText = [storage copy];
 }
-- (void)textViewDidChangeSelection:(NSNotification *)notification {
-    if (self.loading) return;
+// Controls reflect semantic attributes independently of their rendered font.
+- (NSControlStateValue)stateForKey:(NSString *)key value:(NSUInteger)expected {
+    NSRange selection = self.textView.selectedRange;
+    if (!selection.length) return ([self.textView.typingAttributes[key] unsignedIntegerValue] == expected) ? NSControlStateValueOn : NSControlStateValueOff;
+    __block BOOL any = NO, all = YES;
+    [self.textView.textStorage enumerateAttribute:key inRange:selection options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
+        BOOL enabled = [value unsignedIntegerValue] == expected;
+        any |= enabled;
+        all &= enabled;
+    }];
+    return all ? NSControlStateValueOn : (any ? NSControlStateValueMixed : NSControlStateValueOff);
+}
+- (void)updateFormattingControls {
+    if (self.parentViewController && !self.view.superview) {
+        [self updateFormattingWarning];
+        return;
+    }
+    if (self.loading || !self.isViewLoaded) return;
+    NSArray *keys = @[FWEmphasis, FWEmphasis];
+    NSUInteger values[] = {FKTextEmphasisEmphasis, FKTextEmphasisStrongEmphasis};
+    for (NSUInteger i = 0; i < self.formattingButtons.count; i++) {
+        self.formattingButtons[i].state = [self stateForKey:keys[i] value:values[i]];
+    }
+    FWAppearanceViewController *appearance = (FWAppearanceViewController *)self.appearancePopover.contentViewController;
+    if (appearance.isViewLoaded) {
+        NSArray<NSButton *> *buttons = @[appearance.boldButton, appearance.italicButton, appearance.underlineButton, appearance.strikethroughButton];
+        NSArray *presentationKeys = @[FWBold, FWItalic, FWUnderline, FWStrikethrough];
+        for (NSUInteger i = 0; i < buttons.count; i++) buttons[i].state = [self stateForKey:presentationKeys[i] value:1];
+    }
     NSUInteger index = self.textView.selectedRange.location;
     NSParagraphStyle *style = index < self.textView.string.length ? [self.textView.textStorage attribute:NSParagraphStyleAttributeName atIndex:index effectiveRange:NULL] : self.textView.typingAttributes[NSParagraphStyleAttributeName];
     [self.alignmentButton selectItemAtIndex:style ? FWModelAlignment(style.alignment) : FKParagraphAlignmentNatural];
+    [self updateFormattingWarning];
 }
-- (void)toggleEmphasis:(id)sender { [self toggleKey:FWMeaning bit:FKTextMeaningEmphasis name:@"Emphasis"]; }
-- (void)toggleStrongEmphasis:(id)sender { [self toggleKey:FWMeaning bit:FKTextMeaningStrongEmphasis name:@"Strong Emphasis"]; }
-- (void)toggleBold:(id)sender { [self toggleKey:FWAppearance bit:FKTextAppearanceBold name:@"Bold"]; }
-- (void)toggleItalic:(id)sender { [self toggleKey:FWAppearance bit:FKTextAppearanceItalic name:@"Italic"]; }
-- (void)toggleKey:(NSString *)key bit:(NSUInteger)bit name:(NSString *)name {
-    NSRange range = self.textView.selectedRange;
-    if (!range.length) {
-        NSMutableDictionary *attributes = [self.textView.typingAttributes mutableCopy];
-        attributes[key] = @([attributes[key] unsignedIntegerValue] ^ bit);
-        attributes[NSFontAttributeName] = FWFont([attributes[FWMeaning] unsignedIntegerValue], [attributes[FWAppearance] unsignedIntegerValue]);
-        self.textView.typingAttributes = attributes;
-        [self.view.window makeFirstResponder:self.textView];
-        return;
+- (void)updateFormattingWarning {
+    NSLayoutManager *layout = self.textView.layoutManager;
+    NSRange whole = NSMakeRange(0, self.textView.string.length);
+    [layout removeTemporaryAttribute:NSBackgroundColorAttributeName forCharacterRange:whole];
+    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
+    if (!self.unitText.formattingWarningDismissed) {
+        [self.textView.textStorage enumerateAttributesInRange:whole options:0 usingBlock:^(NSDictionary *attributes, NSRange range, BOOL *stop) {
+            if (!FWHasFormattingConflict(attributes)) return;
+            [layout addTemporaryAttribute:NSBackgroundColorAttributeName
+                value:[NSColor.systemYellowColor colorWithAlphaComponent:0.3] forCharacterRange:range];
+            NSRange previous = ranges.lastObject.rangeValue;
+            if (ranges.count && NSMaxRange(previous) == range.location) {
+                ranges[ranges.count - 1] = [NSValue valueWithRange:NSUnionRange(previous, range)];
+            } else [ranges addObject:[NSValue valueWithRange:range]];
+        }];
     }
-    __block BOOL remove = YES;
-    [self.textView.textStorage enumerateAttribute:key inRange:range options:0 usingBlock:^(id value, NSRange r, BOOL *stop) {
-        if (!([value unsignedIntegerValue] & bit)) remove = NO;
-    }];
-    [self editAttributesInRange:range name:name transform:^(NSMutableDictionary *attributes) {
-        NSUInteger value = [attributes[key] unsignedIntegerValue];
-        attributes[key] = @(remove ? value & ~bit : value | bit);
-        attributes[NSFontAttributeName] = FWFont([attributes[FWMeaning] unsignedIntegerValue], [attributes[FWAppearance] unsignedIntegerValue]);
-    }];
+    if (![self.formattingConflictRanges isEqual:ranges]) [self.formattingConflictPopover close];
+    self.formattingConflictRanges = ranges;
+    [self layoutFormattingMarkers];
 }
-- (void)clearFormatting:(id)sender {
+- (void)layoutFormattingMarkers {
+    if (!self.isViewLoaded || self.loading || self.layingOutFormattingMarkers) return;
+    self.layingOutFormattingMarkers = YES;
+    @try {
+        NSLayoutManager *layout = self.textView.layoutManager;
+        [layout ensureLayoutForTextContainer:self.textView.textContainer];
+        NSMutableArray<NSValue *> *frames = [NSMutableArray array];
+        NSMutableIndexSet *markedLines = [NSMutableIndexSet indexSet];
+        NSPoint origin = self.textView.textContainerOrigin;
+        for (NSValue *value in self.formattingConflictRanges) {
+            NSRange range = value.rangeValue;
+            if (!range.length || NSMaxRange(range) > self.textView.string.length) continue;
+            NSUInteger glyph = [layout glyphIndexForCharacterAtIndex:NSMaxRange(range) - 1];
+            NSRange lineRange;
+            NSRect line = [layout lineFragmentUsedRectForGlyphAtIndex:glyph effectiveRange:&lineRange];
+            if ([markedLines containsIndex:lineRange.location]) continue;
+            [markedLines addIndex:lineRange.location];
+            // Place diagnostics in the trailing inset, after the affected visual line.
+            // They are real accessible controls, not characters or text attachments.
+            NSRect frame = NSMakeRect(origin.x + NSMaxX(line) + 3, origin.y + NSMidY(line) - 10, 20, 20);
+            frame.origin.x = MIN(frame.origin.x, NSMaxX(self.textView.bounds) - 22);
+            [frames addObject:[NSValue valueWithRect:frame]];
+        }
+        if (!self.formattingMarkers) self.formattingMarkers = [NSMutableArray array];
+        while (self.formattingMarkers.count > frames.count) {
+            [self.formattingConflictPopover close];
+            [self.formattingMarkers.lastObject.view removeFromSuperview];
+            [self.formattingMarkers removeLastObject];
+        }
+        while (self.formattingMarkers.count < frames.count) {
+            NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Editor" bundle:[NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"]];
+            FWFormattingWarningViewController *marker = [storyboard instantiateControllerWithIdentifier:@"FormattingConflictMarker"];
+            marker.editor = self;
+            (void)marker.view;
+            marker.markerButton.contentTintColor = NSColor.systemOrangeColor;
+            marker.markerButton.accessibilityLabel = @"Formatting conflict";
+            marker.markerButton.accessibilityHelp = @"Bold or Italic overlaps semantic emphasis. Show conversion and dismissal options.";
+            marker.markerButton.identifier = @"formattingConflictMarker";
+            [self.textView addSubview:marker.view];
+            [self.formattingMarkers addObject:marker];
+        }
+        for (NSUInteger i = 0; i < frames.count; i++) self.formattingMarkers[i].view.frame = frames[i].rectValue;
+    } @finally {
+        self.layingOutFormattingMarkers = NO;
+    }
+}
+- (void)showInlineFormattingWarning:(NSButton *)sender {
+    if (!self.formattingConflictPopover) {
+        NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Editor" bundle:[NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"]];
+        FWFormattingWarningViewController *content = [storyboard instantiateControllerWithIdentifier:@"FormattingConflict"];
+        content.editor = self;
+        self.formattingConflictPopover = [NSPopover new];
+        self.formattingConflictPopover.behavior = NSPopoverBehaviorTransient;
+        self.formattingConflictPopover.contentViewController = content;
+    }
+    [self.formattingConflictPopover showRelativeToRect:sender.bounds ofView:sender preferredEdge:NSRectEdgeMaxY];
+}
+- (void)setFormattingWarningDismissed:(BOOL)dismissed {
+    BOOL previous = self.unitText.formattingWarningDismissed;
+    if (previous == dismissed) return;
+    [self.editingUndoManager registerUndoWithTarget:self handler:^(FWEditorViewController *editor) {
+        [editor setFormattingWarningDismissed:previous];
+    }];
+    self.unitText = [[FKText alloc] initWithIdentifier:self.unitText.identifier title:self.unitText.title paragraphs:self.unitText.paragraphs
+        formattingWarningDismissed:dismissed];
+    [self updateFormattingWarning];
+    if (self.textDidChange) self.textDidChange();
+}
+- (IBAction)dismissFormattingWarning:(id)sender {
+    [self.formattingConflictPopover close];
+    [self setFormattingWarningDismissed:YES];
+    [self.editingUndoManager setActionName:@"Dismiss Formatting Warning"];
+}
+- (IBAction)convertPresentationToEmphasis:(id)sender {
+    [self.formattingConflictPopover close];
+    void (^convert)(NSMutableDictionary *) = ^(NSMutableDictionary *attributes) {
+        if (!FWHasFormattingConflict(attributes)) return;
+        FKTextEmphasis emphasis = [attributes[FWEmphasis] unsignedIntegerValue];
+        BOOL bold = [attributes[FWBold] boolValue] || FWEmphasisUsesBold(emphasis);
+        BOOL italic = [attributes[FWItalic] boolValue] || FWEmphasisUsesItalic(emphasis);
+        attributes[FWEmphasis] = @(bold && italic ? FKTextEmphasisVeryStrongEmphasis :
+            (bold ? FKTextEmphasisStrongEmphasis : FKTextEmphasisEmphasis));
+        attributes[FWBold] = @NO;
+        attributes[FWItalic] = @NO;
+        FWRenderAttributes(attributes);
+    };
+    [self.editingUndoManager beginUndoGrouping];
+    [self editAttributesInRange:NSMakeRange(0, self.textView.string.length) name:@"Convert Presentation to Emphasis" transform:convert];
+    if (!self.textView.selectedRange.length && FWHasFormattingConflict(self.textView.typingAttributes)) {
+        NSDictionary *before = self.textView.typingAttributes;
+        NSMutableDictionary *after = [before mutableCopy];
+        convert(after);
+        [self applyTypingFormatting:after];
+    }
+    [self setFormattingWarningDismissed:YES];
+    [self.editingUndoManager setActionName:@"Convert Presentation to Emphasis"];
+    [self.editingUndoManager endUndoGrouping];
+    [self updateFormattingControls];
+}
+- (void)applyTypingFormatting:(NSDictionary *)attributes {
+    NSDictionary *previous = self.textView.typingAttributes;
+    [self.editingUndoManager registerUndoWithTarget:self handler:^(FWEditorViewController *editor) {
+        [editor applyTypingFormatting:previous];
+    }];
+    self.textView.typingAttributes = attributes;
+    [self updateFormattingControls];
+}
+- (void)textViewDidChangeSelection:(NSNotification *)notification {
+    [self updateFormattingControls];
+}
+- (void)textViewDidChangeTypingAttributes:(NSNotification *)notification {
+    [self updateFormattingControls];
+}
+- (void)toggleEmphasis:(id)sender { [self toggleKey:FWEmphasis value:FKTextEmphasisEmphasis name:@"Emphasis"]; }
+- (void)toggleStrongEmphasis:(id)sender { [self toggleKey:FWEmphasis value:FKTextEmphasisStrongEmphasis name:@"Strong Emphasis"]; }
+- (void)toggleVeryStrongEmphasis:(id)sender { [self toggleKey:FWEmphasis value:FKTextEmphasisVeryStrongEmphasis name:@"Very Strong Emphasis"]; }
+- (void)toggleBold:(id)sender { [self toggleKey:FWBold value:1 name:@"Bold"]; }
+- (void)toggleItalic:(id)sender { [self toggleKey:FWItalic value:1 name:@"Italic"]; }
+- (void)toggleUnderline:(id)sender { [self toggleKey:FWUnderline value:1 name:@"Underline"]; }
+- (void)toggleStrikethrough:(id)sender { [self toggleKey:FWStrikethrough value:1 name:@"Strikethrough"]; }
+- (IBAction)showAppearance:(NSButton *)sender {
+    if (self.appearancePopover.shown) { [self.appearancePopover performClose:sender]; return; }
+    if (!self.appearancePopover) {
+        NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Editor" bundle:[NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"]];
+        FWAppearanceViewController *content = [storyboard instantiateControllerWithIdentifier:@"Appearance"];
+        content.editor = self;
+        (void)content.view;
+        self.appearancePopover = [NSPopover new];
+        self.appearancePopover.behavior = NSPopoverBehaviorTransient;
+        self.appearancePopover.contentViewController = content;
+    }
+    [self updateFormattingControls];
+    [self.appearancePopover showRelativeToRect:sender.bounds ofView:sender preferredEdge:NSRectEdgeMaxY];
+}
+- (IBAction)chooseEmphasis:(NSButton *)sender {
+    if (NSEvent.modifierFlags & NSEventModifierFlagOption) [self toggleItalic:sender];
+    else [self toggleEmphasis:sender];
+}
+- (IBAction)chooseStrongEmphasis:(NSButton *)sender {
+    if (NSEvent.modifierFlags & NSEventModifierFlagOption) [self toggleBold:sender];
+    else [self toggleStrongEmphasis:sender];
+}
+- (IBAction)showFormattingHelp:(NSButton *)sender {
+    if (!self.formattingHelp) {
+        NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Editor" bundle:[NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"]];
+        NSViewController *content = [storyboard instantiateControllerWithIdentifier:@"FormattingHelp"];
+        self.formattingHelp = [NSPopover new];
+        self.formattingHelp.behavior = NSPopoverBehaviorTransient;
+        self.formattingHelp.contentViewController = content;
+    }
+    [self.formattingHelp showRelativeToRect:sender.bounds ofView:sender preferredEdge:NSRectEdgeMaxY];
+}
+- (void)toggleKey:(NSString *)key value:(NSUInteger)value name:(NSString *)name {
+    BOOL remove = [self stateForKey:key value:value] == NSControlStateValueOn;
+    void (^change)(NSMutableDictionary *) = ^(NSMutableDictionary *attributes) {
+        attributes[key] = @(remove ? 0 : value);
+        FWRenderAttributes(attributes);
+    };
     if (!self.textView.selectedRange.length) {
         NSMutableDictionary *attributes = [self.textView.typingAttributes mutableCopy];
-        attributes[FWMeaning] = @0;
-        attributes[FWAppearance] = @0;
-        attributes[NSFontAttributeName] = FWFont(0, 0);
+        change(attributes);
         self.textView.typingAttributes = attributes;
-        return;
-    }
-    [self editAttributesInRange:self.textView.selectedRange name:@"Clear Formatting" transform:^(NSMutableDictionary *attributes) {
-        attributes[FWMeaning] = @0;
-        attributes[FWAppearance] = @0;
-        attributes[NSFontAttributeName] = FWFont(0, 0);
-    }];
+        [self updateFormattingControls];
+        if (!self.appearancePopover.shown) [self.view.window makeFirstResponder:self.textView];
+    } else [self editAttributesInRange:self.textView.selectedRange name:name transform:change];
+}
+- (void)clearFormatting:(id)sender {
+    void (^clear)(NSMutableDictionary *) = ^(NSMutableDictionary *attributes) {
+        attributes[FWEmphasis] = @(FKTextEmphasisNone);
+        for (NSString *key in @[FWBold, FWItalic, FWUnderline, FWStrikethrough]) attributes[key] = @NO;
+        FWRenderAttributes(attributes);
+    };
+    if (!self.textView.selectedRange.length) {
+        NSMutableDictionary *attributes = [self.textView.typingAttributes mutableCopy];
+        clear(attributes);
+        self.textView.typingAttributes = attributes;
+        [self updateFormattingControls];
+        if (!self.appearancePopover.shown) [self.view.window makeFirstResponder:self.textView];
+    } else [self editAttributesInRange:self.textView.selectedRange name:@"Clear Formatting" transform:clear];
 }
 - (void)editAttributesInRange:(NSRange)range name:(NSString *)name transform:(void (^)(NSMutableDictionary *))transform {
     if (!range.length) return;
@@ -321,7 +639,7 @@ static NSDictionary *FWAttributes(NSUInteger meaning, NSUInteger appearance, FKP
     [self.textView breakUndoCoalescing];
     [self applyFormatting:after range:range actionName:name];
     [self.textView setSelectedRange:selection];
-    [self.view.window makeFirstResponder:self.textView];
+    if (!self.appearancePopover.shown) [self.view.window makeFirstResponder:self.textView];
 }
 - (void)applyFormatting:(NSAttributedString *)text range:(NSRange)range actionName:(NSString *)name {
     NSAttributedString *previous = [self.textView.textStorage attributedSubstringFromRange:range];
@@ -347,7 +665,7 @@ static NSDictionary *FWAttributes(NSUInteger meaning, NSUInteger appearance, FKP
     [self.textView didChangeText];
     [self.editingUndoManager setActionName:@"Paragraph Alignment"];
 }
-- (void)changeParagraphAlignment:(NSPopUpButton *)sender {
+- (IBAction)changeParagraphAlignment:(NSPopUpButton *)sender {
     NSTextAlignment alignment = FWNativeAlignment(sender.indexOfSelectedItem);
     NSRange range = [self.textView.string paragraphRangeForRange:self.textView.selectedRange];
     if (!range.length) {
@@ -363,6 +681,6 @@ static NSDictionary *FWAttributes(NSUInteger meaning, NSUInteger appearance, FKP
             attributes[NSParagraphStyleAttributeName] = style;
         }];
     }
-    [self.view.window makeFirstResponder:self.textView];
+    if (!self.appearancePopover.shown) [self.view.window makeFirstResponder:self.textView];
 }
 @end

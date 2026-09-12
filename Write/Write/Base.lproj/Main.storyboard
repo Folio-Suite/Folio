@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-SPDX-FileCopyrightText: 2026 the Folio Project
-SPDX-License-Identifier: MIT
--->
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24765"/>
@@ -344,26 +340,39 @@ SPDX-License-Identifier: MIT
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Format" id="GEO-Iw-cKr">
                                     <items>
-                                        <menuItem title="Emphasis" keyEquivalent="i" id="FW-menu-toggleEmphasis">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                        <menuItem title="Emphasis" secondaryImage="Emphasis" keyEquivalent="i" id="FW-menu-toggleEmphasis">
                                             <connections>
                                                 <action selector="toggleEmphasis:" target="Ady-hI-5gd" id="FW-action-toggleEmphasis"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Strong Emphasis" keyEquivalent="b" id="FW-menu-toggleStrongEmphasis">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                        <menuItem title="Strong Emphasis" image="StrongEmphasis" keyEquivalent="b" id="FW-menu-toggleStrongEmphasis">
                                             <connections>
                                                 <action selector="toggleStrongEmphasis:" target="Ady-hI-5gd" id="FW-action-toggleStrongEmphasis"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Very Strong Emphasis" id="FW-menu-toggleVeryStrongEmphasis"><connections><action selector="toggleVeryStrongEmphasis:" target="Ady-hI-5gd" id="FW-action-toggleVeryStrongEmphasis"/></connections></menuItem>
+                                        <menuItem isSeparatorItem="YES" id="jrq-hh-esB"/>
                                         <menuItem title="Bold" keyEquivalent="b" id="FW-menu-toggleBold">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="toggleBold:" target="Ady-hI-5gd" id="FW-action-toggleBold"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Italic" keyEquivalent="i" id="FW-menu-toggleItalic">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="toggleItalic:" target="Ady-hI-5gd" id="FW-action-toggleItalic"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="SGZ-Aa-ahr"/>
+                                        <menuItem title="Underline" image="underline" catalog="system" keyEquivalent="u" id="FW-menu-toggleUnderline">
+                                            <connections>
+                                                <action selector="toggleUnderline:" target="Ady-hI-5gd" id="FW-action-toggleUnderline"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Strikethrough" image="strikethrough" catalog="system" id="FW-menu-toggleStrikethrough">
+                                            <connections>
+                                                <action selector="toggleStrikethrough:" target="Ady-hI-5gd" id="FW-action-toggleStrikethrough"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Clear Formatting" id="FW-menu-clearFormatting">
@@ -456,4 +465,10 @@ SPDX-License-Identifier: MIT
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Emphasis" width="8" height="10"/>
+        <image name="StrongEmphasis" width="6" height="10"/>
+        <image name="strikethrough" catalog="system" width="14" height="12"/>
+        <image name="underline" catalog="system" width="11" height="14"/>
+    </resources>
 </document>

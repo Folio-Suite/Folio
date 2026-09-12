@@ -11,73 +11,17 @@ static NSError *FWStoreError(NSString *reason) {
                                      NSLocalizedRecoverySuggestionErrorKey:reason}];
 }
 
-static NSAttributeDescription *FWAttribute(NSString *name, NSAttributeType type) {
-    NSAttributeDescription *attribute = [NSAttributeDescription new];
-    attribute.name = name;
-    attribute.attributeType = type;
-    attribute.optional = NO;
-    return attribute;
-}
-
-static void FWRelationship(NSEntityDescription *owner, NSString *name, NSEntityDescription *child, NSString *inverseName, BOOL many) {
-    NSRelationshipDescription *relationship = [NSRelationshipDescription new];
-    relationship.name = name;
-    relationship.destinationEntity = child;
-    relationship.maxCount = many ? 0 : 1;
-    relationship.deleteRule = NSCascadeDeleteRule;
-    relationship.optional = NO;
-    NSRelationshipDescription *inverse = [NSRelationshipDescription new];
-    inverse.name = inverseName;
-    inverse.destinationEntity = owner;
-    inverse.maxCount = 1;
-    inverse.optional = NO;
-    inverse.deleteRule = NSNullifyDeleteRule;
-    relationship.inverseRelationship = inverse;
-    inverse.inverseRelationship = relationship;
-    owner.properties = [owner.properties arrayByAddingObject:relationship];
-    child.properties = [child.properties arrayByAddingObject:inverse];
-}
-
-/// Frozen v1 model. Future migrations must retain this definition and add a new version.
-static NSManagedObjectModel *FWStoreModelV1(void) {
-    NSManagedObjectModel *model = [NSManagedObjectModel new];
-    NSMutableDictionary<NSString *, NSEntityDescription *> *entities = [NSMutableDictionary dictionary];
-    NSDictionary<NSString *, NSDictionary<NSString *, NSNumber *> *> *attributes = @{
-        @"Work":@{@"identifier":@(NSStringAttributeType), @"formatVersion":@(NSInteger16AttributeType)},
-        @"Manuscript":@{@"identifier":@(NSStringAttributeType)},
-        @"ContentUnit":@{@"identifier":@(NSStringAttributeType)},
-        @"Paragraph":@{@"identifier":@(NSStringAttributeType), @"position":@(NSInteger64AttributeType), @"alignment":@(NSInteger16AttributeType)},
-        @"Run":@{@"position":@(NSInteger64AttributeType), @"text":@(NSStringAttributeType), @"meaning":@(NSInteger16AttributeType), @"appearance":@(NSInteger16AttributeType)}
-    };
-    for (NSString *name in [[attributes allKeys] sortedArrayUsingSelector:@selector(compare:)]) {
-        NSEntityDescription *entity = [NSEntityDescription new];
-        entity.name = name;
-        entity.managedObjectClassName = @"NSManagedObject";
-        NSMutableArray *properties = [NSMutableArray array];
-        for (NSString *key in [[attributes[name] allKeys] sortedArrayUsingSelector:@selector(compare:)]) {
-            [properties addObject:FWAttribute(key, [attributes[name][key] unsignedIntegerValue])];
-        }
-        entity.properties = properties;
-        entities[name] = entity;
+// The versioned model in WriteKit is the sole schema definition. Keep Core Data
+// entities and contexts private; callers continue using immutable text snapshots.
+static NSManagedObjectModel *FWStoreModel(NSError **error) {
+    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"];
+    NSURL *url = [bundle URLForResource:@"FWWork" withExtension:@"momd"];
+    NSManagedObjectModel *model = url ? [[NSManagedObjectModel alloc] initWithContentsOfURL:url] : nil;
+    if (!model && error) {
+        *error = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadUnknownError
+            userInfo:@{NSLocalizedDescriptionKey:@"WriteKit’s data model could not be loaded.",
+                       NSLocalizedRecoverySuggestionErrorKey:@"Rebuild or reinstall the application with its FWWork model resource."}];
     }
-    FWRelationship(entities[@"Work"], @"units", entities[@"ContentUnit"], @"work", YES);
-    FWRelationship(entities[@"Work"], @"manuscript", entities[@"Manuscript"], @"work", NO);
-    FWRelationship(entities[@"ContentUnit"], @"paragraphs", entities[@"Paragraph"], @"unit", YES);
-    FWRelationship(entities[@"Paragraph"], @"runs", entities[@"Run"], @"paragraph", YES);
-    // Placement is a reference; ownership remains with Work, not Manuscript.
-    NSRelationshipDescription *placement = [NSRelationshipDescription new];
-    placement.name = @"contentUnit";
-    placement.destinationEntity = entities[@"ContentUnit"];
-    placement.maxCount = 1;
-    placement.optional = NO;
-    placement.deleteRule = NSNullifyDeleteRule;
-    entities[@"Manuscript"].properties = [entities[@"Manuscript"].properties arrayByAddingObject:placement];
-    NSMutableArray<NSEntityDescription *> *orderedEntities = [NSMutableArray arrayWithCapacity:entities.count];
-    for (NSString *name in [[entities allKeys] sortedArrayUsingSelector:@selector(compare:)]) {
-        [orderedEntities addObject:entities[name]];
-    }
-    model.entities = orderedEntities;
-    model.versionIdentifiers = [NSSet setWithObject:@"FolioWriteWorkV1"];
     return model;
 }
 
@@ -85,10 +29,6 @@ static NSManagedObject *FWInsert(NSManagedObjectContext *context, NSString *enti
     NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:entity inManagedObjectContext:context];
     [object setValuesForKeysWithDictionary:values];
     return object;
-}
-
-static NSArray<NSManagedObject *> *FWOrdered(NSSet<NSManagedObject *> *objects) {
-    return [objects.allObjects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"position" ascending:YES]]];
 }
 
 static BOOL FWUniqueIdentifier(NSString *identifier, NSMutableSet<NSString *> *seen) {
@@ -101,8 +41,10 @@ static BOOL FWUniqueIdentifier(NSString *identifier, NSMutableSet<NSString *> *s
 
 + (id)withTemporaryStore:(NSFileWrapper *)package writing:(BOOL)writing error:(NSError **)error
                   block:(id (^)(NSManagedObjectContext *, NSError **))block {
+    NSManagedObjectModel *model = FWStoreModel(error);
+    if (!model) return nil;
     return [FKPackageSupport withTemporaryDirectoryWithError:error operation:^id(NSURL *directory, NSError **error) {
-        NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:FWStoreModelV1()];
+        NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
         NSPersistentStore *store = nil;
         @try {
             NSURL *storeURL = [directory URLByAppendingPathComponent:@"Work.sqlite"];
@@ -154,76 +96,96 @@ static BOOL FWUniqueIdentifier(NSString *identifier, NSMutableSet<NSString *> *s
         NSManagedObject *work = works.count == 1 ? works.firstObject : nil;
         NSManagedObject *manuscript = [work valueForKey:@"manuscript"];
         NSSet *units = [work valueForKey:@"units"];
-        NSManagedObject *unit = units.count == 1 ? units.anyObject : nil;
+        NSArray *orderedUnits = [(NSOrderedSet *)[manuscript valueForKey:@"contentUnits"] array];
         NSMutableSet *identifiers = [NSMutableSet set];
-        BOOL valid = work && [[work valueForKey:@"formatVersion"] isEqual:@1] && manuscript && unit &&
-                     [[manuscript valueForKey:@"contentUnit"] isEqual:unit] &&
+        BOOL valid = work && [[work valueForKey:@"formatVersion"] isEqual:@1] && manuscript && units.count > 0 &&
+                     [[NSSet setWithArray:orderedUnits] isEqual:units] &&
                      FWUniqueIdentifier([work valueForKey:@"identifier"], identifiers) &&
-                     FWUniqueIdentifier([manuscript valueForKey:@"identifier"], identifiers) &&
-                     FWUniqueIdentifier([unit valueForKey:@"identifier"], identifiers);
-        NSMutableArray *paragraphs = [NSMutableArray array];
-        NSUInteger runCount = 0;
-        for (NSManagedObject *p in FWOrdered([unit valueForKey:@"paragraphs"])) {
-            NSInteger alignment = [[p valueForKey:@"alignment"] integerValue];
-            valid &= FWUniqueIdentifier([p valueForKey:@"identifier"], identifiers) &&
-                     [[p valueForKey:@"position"] unsignedIntegerValue] == paragraphs.count &&
-                     alignment >= FKParagraphAlignmentNatural && alignment <= FKParagraphAlignmentJustified;
-            NSMutableArray *runs = [NSMutableArray array];
-            for (NSManagedObject *r in FWOrdered([p valueForKey:@"runs"])) {
-                NSUInteger meaning = [[r valueForKey:@"meaning"] unsignedIntegerValue];
-                NSUInteger appearance = [[r valueForKey:@"appearance"] unsignedIntegerValue];
-                NSString *string = [r valueForKey:@"text"];
-                valid &= [[r valueForKey:@"position"] unsignedIntegerValue] == runs.count &&
-                         !(meaning & ~(FKTextMeaningEmphasis | FKTextMeaningStrongEmphasis)) &&
-                         !(appearance & ~(FKTextAppearanceBold | FKTextAppearanceItalic)) && string &&
-                         [string rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"\r\n\u2029"]].location == NSNotFound;
+                     FWUniqueIdentifier([manuscript valueForKey:@"identifier"], identifiers);
+        NSMutableArray *texts = [NSMutableArray array];
+        NSUInteger runCount = 0, paragraphCount = 0;
+        for (NSManagedObject *unit in orderedUnits) {
+            valid &= FWUniqueIdentifier([unit valueForKey:@"identifier"], identifiers) && [unit valueForKey:@"title"] != nil;
+            NSMutableArray *paragraphs = [NSMutableArray array];
+            for (NSManagedObject *p in [(NSOrderedSet *)[unit valueForKey:@"paragraphs"] array]) {
+                NSInteger alignment = [[p valueForKey:@"alignment"] integerValue];
+                valid &= FWUniqueIdentifier([p valueForKey:@"identifier"], identifiers) &&
+                         alignment >= FKParagraphAlignmentNatural && alignment <= FKParagraphAlignmentJustified;
+                NSMutableArray *runs = [NSMutableArray array];
+                for (NSManagedObject *r in [(NSOrderedSet *)[p valueForKey:@"runs"] array]) {
+                    NSUInteger emphasis = [[r valueForKey:@"emphasis"] unsignedIntegerValue];
+                    FKTextPresentation *presentation = [[FKTextPresentation alloc]
+                        initWithBold:[[r valueForKey:@"bold"] boolValue] italic:[[r valueForKey:@"italic"] boolValue]
+                        underline:[[r valueForKey:@"underline"] boolValue] strikethrough:[[r valueForKey:@"strikethrough"] boolValue]];
+                    NSString *string = [r valueForKey:@"text"];
+                    valid &= emphasis <= FKTextEmphasisVeryStrongEmphasis && string &&
+                             [string rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"\r\n\u2029"]].location == NSNotFound;
+                    if (!valid) break;
+                    [runs addObject:[[FKTextRun alloc] initWithString:string emphasis:emphasis presentation:presentation]];
+                }
                 if (!valid) break;
-                [runs addObject:[[FKTextRun alloc] initWithString:string meaning:meaning appearance:appearance]];
+                runCount += runs.count;
+                [paragraphs addObject:[[FKParagraph alloc] initWithIdentifier:[p valueForKey:@"identifier"] runs:runs alignment:alignment]];
             }
+            valid &= paragraphs.count > 0;
             if (!valid) break;
-            runCount += runs.count;
-            [paragraphs addObject:[[FKParagraph alloc] initWithIdentifier:[p valueForKey:@"identifier"] runs:runs alignment:alignment]];
+            paragraphCount += paragraphs.count;
+            [texts addObject:[[FKText alloc] initWithIdentifier:[unit valueForKey:@"identifier"] title:[unit valueForKey:@"title"]
+                paragraphs:paragraphs formattingWarningDismissed:[[unit valueForKey:@"formattingWarningDismissed"] boolValue]]];
         }
-        NSDictionary *expectedCounts = @{@"Work":@1, @"Manuscript":@1, @"ContentUnit":@1, @"Paragraph":@(paragraphs.count), @"Run":@(runCount)};
+        NSDictionary *expectedCounts = @{@"Work":@1, @"Manuscript":@1, @"ContentUnit":@(texts.count), @"Paragraph":@(paragraphCount), @"Run":@(runCount)};
         for (NSString *entity in expectedCounts) {
             NSUInteger count = [context countForFetchRequest:[NSFetchRequest fetchRequestWithEntityName:entity] error:readError];
             valid &= count == [expectedCounts[entity] unsignedIntegerValue];
         }
-        if (!valid || !paragraphs.count) {
-            if (readError && !*readError) *readError = FWStoreError(@"This editor supports one Content Unit and its Manuscript placement. The store contains invalid or unsupported structure; no content has been changed.");
+        if (!valid || !texts.count) {
+            if (readError && !*readError) *readError = FWStoreError(@"The store contains invalid or unsupported Manuscript structure; no content has been changed.");
             return nil;
         }
         return @{@"workIdentifier":[work valueForKey:@"identifier"],
-                 @"manuscriptIdentifier":[manuscript valueForKey:@"identifier"],
-                 @"text":[[FKText alloc] initWithIdentifier:[unit valueForKey:@"identifier"] paragraphs:paragraphs]};
+                 @"manuscript":[[FKManuscript alloc] initWithIdentifier:[manuscript valueForKey:@"identifier"] units:texts]};
     }];
 }
 
-+ (NSFileWrapper *)packageWithWorkIdentifier:(NSString *)identifier manuscriptIdentifier:(NSString *)manuscriptIdentifier text:(FKText *)text error:(NSError **)error {
++ (NSFileWrapper *)packageWithWorkIdentifier:(NSString *)identifier manuscript:(FKManuscript *)manuscript error:(NSError **)error {
     NSFileWrapper *package = [self withTemporaryStore:nil writing:YES error:error block:^id(NSManagedObjectContext *context, NSError **writeError) {
         NSManagedObject *work = FWInsert(context, @"Work", @{@"identifier":identifier, @"formatVersion":@1});
-        NSManagedObject *unit = FWInsert(context, @"ContentUnit", @{@"identifier":text.identifier, @"work":work});
-        FWInsert(context, @"Manuscript", @{@"identifier":manuscriptIdentifier, @"work":work, @"contentUnit":unit});
-        NSUInteger paragraphIndex = 0;
-        for (FKParagraph *paragraph in text.paragraphs) {
-            NSManagedObject *p = FWInsert(context, @"Paragraph", @{@"identifier":paragraph.identifier,
-                @"position":@(paragraphIndex++), @"alignment":@(paragraph.alignment), @"unit":unit});
-            NSUInteger runIndex = 0;
-            for (FKTextRun *run in paragraph.runs) FWInsert(context, @"Run", @{@"text":run.string,
-                @"meaning":@(run.meaning), @"appearance":@(run.appearance), @"position":@(runIndex++), @"paragraph":p});
+        NSManagedObject *storedManuscript = FWInsert(context, @"Manuscript", @{@"identifier":manuscript.identifier, @"work":work});
+        NSMutableArray *storedUnits = [NSMutableArray array];
+        for (FKText *text in manuscript.units) {
+            NSManagedObject *unit = FWInsert(context, @"ContentUnit", @{@"identifier":text.identifier, @"title":text.title, @"work":work, @"formattingWarningDismissed":@(text.formattingWarningDismissed)});
+            [storedUnits addObject:unit];
+            NSMutableArray<NSManagedObject *> *storedParagraphs = [NSMutableArray array];
+            for (FKParagraph *paragraph in text.paragraphs) {
+                NSManagedObject *p = FWInsert(context, @"Paragraph", @{@"identifier":paragraph.identifier,
+                    @"alignment":@(paragraph.alignment), @"unit":unit});
+                NSMutableArray<NSManagedObject *> *storedRuns = [NSMutableArray array];
+                for (FKTextRun *run in paragraph.runs) [storedRuns addObject:FWInsert(context, @"Run", @{@"text":run.string,
+                    @"emphasis":@(run.emphasis), @"bold":@(run.presentation.bold), @"italic":@(run.presentation.italic),
+                    @"underline":@(run.presentation.underline), @"strikethrough":@(run.presentation.strikethrough), @"paragraph":p})];
+                [p setValue:[NSOrderedSet orderedSetWithArray:storedRuns] forKey:@"runs"];
+                [storedParagraphs addObject:p];
+            }
+            [unit setValue:[NSOrderedSet orderedSetWithArray:storedParagraphs] forKey:@"paragraphs"];
         }
+        [storedManuscript setValue:[NSOrderedSet orderedSetWithArray:storedUnits] forKey:@"contentUnits"];
         return [context save:writeError] ? @YES : nil;
     }];
     // Refuse a save that this reader cannot reconstruct; the old package stays intact.
     if (!package) return nil;
-    FKText *loaded = [self readPackage:package error:error][@"text"];
-    BOOL equal = [loaded.identifier isEqual:text.identifier] && loaded.paragraphs.count == text.paragraphs.count;
-    for (NSUInteger i = 0; equal && i < text.paragraphs.count; i++) {
-        FKParagraph *before = text.paragraphs[i], *after = loaded.paragraphs[i];
-        equal = [before.identifier isEqual:after.identifier] && before.alignment == after.alignment && before.runs.count == after.runs.count;
-        for (NSUInteger j = 0; equal && j < before.runs.count; j++) {
-            FKTextRun *a = before.runs[j], *b = after.runs[j];
-            equal = [a.string isEqual:b.string] && a.meaning == b.meaning && a.appearance == b.appearance;
+    NSDictionary *snapshot = [self readPackage:package error:error];
+    FKManuscript *loadedManuscript = snapshot[@"manuscript"];
+    BOOL equal = [snapshot[@"workIdentifier"] isEqual:identifier] && [loadedManuscript.identifier isEqual:manuscript.identifier] && loadedManuscript.units.count == manuscript.units.count;
+    for (NSUInteger unitIndex = 0; equal && unitIndex < manuscript.units.count; unitIndex++) {
+        FKText *text = manuscript.units[unitIndex], *loaded = loadedManuscript.units[unitIndex];
+        equal = [loaded.title isEqual:text.title] && [loaded.identifier isEqual:text.identifier] && loaded.paragraphs.count == text.paragraphs.count && loaded.formattingWarningDismissed == text.formattingWarningDismissed;
+        for (NSUInteger i = 0; equal && i < text.paragraphs.count; i++) {
+            FKParagraph *before = text.paragraphs[i], *after = loaded.paragraphs[i];
+            equal = [before.identifier isEqual:after.identifier] && before.alignment == after.alignment && before.runs.count == after.runs.count;
+            for (NSUInteger j = 0; equal && j < before.runs.count; j++) {
+                FKTextRun *a = before.runs[j], *b = after.runs[j];
+                equal = [a.string isEqual:b.string] && a.emphasis == b.emphasis && [a.presentation isEqual:b.presentation];
+            }
         }
     }
     if (!equal) {
