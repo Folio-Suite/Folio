@@ -7,5 +7,20 @@
 @end
 
 @implementation ComposerUITests
-// Add behavioral coverage as Composer capabilities are implemented.
+- (void)testAboutPanelReportsSuiteIdentity {
+    NSBundle *testBundle = [NSBundle bundleForClass:self.class];
+    NSString *version = [testBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *build = [testBundle objectForInfoDictionaryKey:@"CFBundleVersion"];
+    XCTAssertNotNil(version);
+    XCTAssertNotNil(build);
+    NSString *expected = [NSString stringWithFormat:@"Version %@ (%@)", version, build];
+    XCUIApplication *app = [XCUIApplication new];
+    app.launchArguments = @[@"-AppleLanguages", @"(en)", @"-AppleLocale", @"en_US"];
+    [app launch];
+    [app.menuBars.menuBarItems[@"Composer"] click];
+    [app.menuItems[@"About Composer"] click];
+    XCTAssertTrue([app.staticTexts[expected].firstMatch waitForExistenceWithTimeout:5]);
+    [app terminate];
+}
+
 @end

@@ -16,6 +16,22 @@
 
 @implementation WriteUITests
 
+- (void)testAboutPanelReportsSuiteIdentity {
+    NSBundle *testBundle = [NSBundle bundleForClass:self.class];
+    NSString *version = [testBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *build = [testBundle objectForInfoDictionaryKey:@"CFBundleVersion"];
+    XCTAssertNotNil(version);
+    XCTAssertNotNil(build);
+    NSString *expected = [NSString stringWithFormat:@"Version %@ (%@)", version, build];
+    XCUIApplication *app = [XCUIApplication new];
+    app.launchArguments = @[@"-AppleLanguages", @"(en)", @"-AppleLocale", @"en_US"];
+    [app launch];
+    [app.menuBars.menuBarItems[@"Write"] click];
+    [app.menuItems[@"About Write"] click];
+    XCTAssertTrue([app.staticTexts[expected].firstMatch waitForExistenceWithTimeout:5]);
+    [app terminate];
+}
+
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
 

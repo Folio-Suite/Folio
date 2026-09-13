@@ -29,4 +29,5 @@ for app in Write Research Composer; do
     test -x "$products/$app.app/Contents/XPCServices/${app}XPCService.xpc/Contents/MacOS/${app}XPCService"
 done
 python3 scripts/check-kit-interfaces.py "$products"
+ruby scripts/release.rb verify --products "$products"
 echo 'Suite build and framework product checks passed; installed runtime layout is not validated.'

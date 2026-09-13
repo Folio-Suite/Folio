@@ -1,0 +1,6 @@
+// SPDX-FileCopyrightText: 2026 the Folio Project
+// SPDX-License-Identifier: MIT
+
+// Shared development identity. Prepared candidates override both values together.
+MARKETING_VERSION = 0.1.0
+CURRENT_PROJECT_VERSION = 1

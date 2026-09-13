@@ -8,3 +8,6 @@ MACOSX_DEPLOYMENT_TARGET = 26.5
 // Each Kit supplies its supported headers through its own <Kit>.modulemap.
 CLANG_ENABLE_MODULES = YES
 CLANG_ENABLE_EXPLICIT_MODULES = YES
+
+// One release identity for all apps, Kits, tests, and bundled services.
+#include "Version.xcconfig"

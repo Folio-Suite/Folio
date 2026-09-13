@@ -17,6 +17,13 @@ Build the shared **Folio** scheme in Xcode, or run `xcodebuild -workspace Folio.
 
 For the editor and package tests, select **Write** in Xcode and use Product → Test. That scheme includes FolioKitTests, WriteKitTests, WriteTests, and WriteUITests. Start native UI runners through Xcode, or prepare the signed test products with build-for-testing before using the CLI test runner. The shared **Folio** scheme also covers the Research shell, including native file-type discovery, package reopening, and preservation of collected files across saves. Its remaining framework and UI tests are templates. Passing the current tests does not prove cross-application Work Session or archival behavior.
 
+## Release identity
+
+All apps, Kits, and bundled services inherit the version and build from the shared
+Suite configuration. Ordinary Xcode builds leave numbering unchanged. Use the
+Ruby workflow in [Suite version and build numbering](docs/release-numbering.md) to
+reserve a candidate identity, rebuild it, and verify its shipping bundles.
+
 ## Names and ownership
 
 Application, framework, test, document-type, and pasteboard identifiers use `dev.foliosuite`. Write declares `dev.foliosuite.Write.Work` (`.fwdoc`); Research declares `dev.foliosuite.Research.Library` (`.frlibrary`). Composer declares `dev.foliosuite.Composer.Edition` (`.fcedition`), handled by `FCDocument`. Composer currently retains the template SQLite-backed `NSPersistentDocument` representation, not a native package; Edition package persistence remains to be implemented. Objective-C prefixes are **FK** for FolioKit, **FW** for Write, **FR** for Research, and **FC** for Composer. The current document subclasses follow those prefixes; other generated application classes may acquire prefixes when developed.
