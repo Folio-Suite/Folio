@@ -8,6 +8,7 @@ require 'open3'
 require 'optparse'
 require 'securerandom'
 require 'time'
+require_relative 'suite-products'
 
 # Public entry point for coordinated Suite release preparation and validation.
 class SuiteRelease
@@ -117,8 +118,7 @@ class SuiteRelease
   def verify
     products = File.expand_path(option('products'))
     identity = @options['candidate'] ? candidate_identity(option('candidate')) : development_identity
-    expected = %w[Write.app Research.app Composer.app FolioKit.framework WriteKit.framework ResearchKit.framework ComposerKit.framework]
-    expected += %w[Write Research Composer].map { |app| "#{app}.app/Contents/XPCServices/#{app}XPCService.xpc" }
+    expected = SuiteProducts::BUNDLES + SuiteProducts::SERVICES
     expected.each do |bundle|
       raise "Missing shipping bundle: #{bundle}" unless File.directory?(File.join(products, bundle))
     end

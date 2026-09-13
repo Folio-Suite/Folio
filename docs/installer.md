@@ -41,7 +41,7 @@ ruby scripts/package.rb --candidate /tmp/folio-candidate \
 Use new candidate and output directories. Packaging neither builds nor increments
 the Suite counter, and never installs on the development machine. It verifies the
 candidate identity against all shipping bundles, rejects missing executables,
-embedded framework copies and obsolete dylibs, and stages only the seven shipping
+embedded framework copies, missing required storyboards/models/assets, and obsolete dylibs, and stages only the seven shipping
 bundles (including their three nested XPC services). Build-directory test products
 are not selected. Failed packaging can leave diagnostic staging output; retain or
 remove that output before retrying in a new directory.
@@ -88,3 +88,31 @@ identity. Do not substitute a successful developer build for this proof.
    document round trips, and XPC loading have been demonstrated.
 
 The clean-environment run is pending; the user will provide the environment.
+
+## Preparation evidence — 2026-09-13
+
+Prepared `Folio-0.1.0.9.pkg` from source `49e045b` plus the recorded build-counter
+patch (8 → 9). Artifact and manifest are in ignored `dist/issue-17-build-9/`.
+The package SHA-256 is:
+
+```text
+7c92beda72e6dc40e3c7937b6d20416611ac72766837ce7e651d2eca569099b6
+```
+
+On macOS 26.6.2 (25G83), Apple Silicon, Xcode 26.6:
+
+- Release build and coordinated bundle-identity verification passed.
+- `pkgutil --expand-full` reproduced all 198 manifest entries with matching file
+  hashes and symlink targets, and no extra paths.
+- Extracted app bundles passed `codesign --verify --deep --strict`; all four
+  extracted Kits passed strict signature verification. These are existing build
+  signatures; the installer itself is unsigned and unnotarized.
+- All 41 native tests passed (46 executions), using signed Debug test products.
+- Packaging tests passed, including extracted layout, receipt/version, excluded
+  test products, and rejection of missing candidates, executables, and models.
+  Existing release-numbering and localization tests also passed.
+- Standards and Spec review findings were addressed: share the shipping inventory
+  between commands, and reject missing required runtime resources.
+
+No installation occurred on this development Mac. Installed resource loading,
+Finder document round trips, and actual XPC process loading remain unverified.

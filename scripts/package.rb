@@ -6,6 +6,7 @@ require 'optparse'
 require 'open3'
 require 'fileutils'
 require 'digest'
+require_relative 'suite-products'
 
 # Packages an explicitly recorded build; never invokes Installer.
 class SuitePackage
@@ -37,14 +38,14 @@ class SuitePackage
       resolved_input = File.realpath(input)
       raise 'Output must be outside candidate and products' if resolved_output.start_with?(resolved_input + '/')
     end
-    bundles = %w[Write.app Research.app Composer.app FolioKit.framework WriteKit.framework ResearchKit.framework ComposerKit.framework]
+    bundles = SuiteProducts::BUNDLES
     bundles.each do |bundle|
       embedded = Dir.glob(File.join(products, bundle, '**', '*.framework'))
       raise "Embedded framework in #{bundle}; build the installed Suite configuration" unless embedded.empty?
       unwanted = Dir.glob(File.join(products, bundle, '**', '*')).find { |path| path.end_with?('.dylib', '.xctest', '.dSYM') }
       raise "Unexpected development product: #{unwanted}" if unwanted
     end
-    shipping = bundles + %w[Write Research Composer].map { |app| "#{app}.app/Contents/XPCServices/#{app}XPCService.xpc" }
+    shipping = bundles + SuiteProducts::SERVICES
     shipping.each do |bundle|
       framework = bundle.end_with?('.framework')
       plist = File.join(products, bundle, framework ? 'Resources/Info.plist' : 'Contents/Info.plist')
@@ -54,6 +55,9 @@ class SuitePackage
       executable = File.join(products, bundle, framework ? name : "Contents/MacOS/#{name}")
       raise "Missing executable: #{bundle}" unless File.file?(executable) && File.executable?(executable)
       run_command('/usr/bin/otool', '-L', executable)
+    end
+    SuiteProducts::REQUIRED_RESOURCES.each do |resource|
+      raise "Missing required resource: #{resource}" unless File.file?(File.join(products, resource))
     end
     FileUtils.mkdir_p(output)
     root = File.join(output, 'payload')

@@ -42,6 +42,21 @@ class PackagePayloadTest < Minitest::Test
         FileUtils.mkdir_p(File.dirname(executable))
         FileUtils.cp('/usr/bin/true', executable)
       end
+      resources = %w[Write.app/Contents/Resources/Base.lproj/Main.storyboardc/MainMenu.nib
+        Research.app/Contents/Resources/Base.lproj/Main.storyboardc/MainMenu.nib
+        Research.app/Contents/Resources/Base.lproj/Main.storyboardc/Document\ Window\ Controller.nib
+        Composer.app/Contents/Resources/Base.lproj/Main.storyboardc/MainMenu.nib
+        Composer.app/Contents/Resources/Base.lproj/Main.storyboardc/Document\ Window\ Controller.nib
+        Research.app/Contents/Resources/FRDocument.momd/FRDocument.mom
+        Composer.app/Contents/Resources/Document.momd/Document.mom
+        WriteKit.framework/Resources/FWWork.momd/FWWorkV1.mom
+        WriteKit.framework/Resources/Base.lproj/Editor.storyboardc/EditorWindow.nib
+        WriteKit.framework/Resources/Base.lproj/Editor.storyboardc/Editor.nib
+        WriteKit.framework/Resources/Assets.car]
+      resources.each do |resource|
+        path = File.join(products, resource)
+        FileUtils.mkdir_p(File.dirname(path)); File.write(path, 'fixture resource')
+      end
       FileUtils.mkdir_p(File.join(products, 'WriteTests.xctest'))
       output = File.join(directory, 'package')
       message, status = Open3.capture2e('ruby', File.expand_path('../package.rb', __dir__),
@@ -58,6 +73,14 @@ class PackagePayloadTest < Minitest::Test
       manifest = JSON.parse(File.read(File.join(output, 'package.json')))
       assert_equal '7', manifest['identity']['build']
       assert_equal 64, manifest['package_sha256'].size
+      missing_resource = File.join(products, 'WriteKit.framework/Resources/FWWork.momd/FWWorkV1.mom')
+      File.unlink(missing_resource)
+      message, status = Open3.capture2e('ruby', File.expand_path('../package.rb', __dir__),
+        '--candidate', candidate, '--products', products, '--output', output + '-no-model')
+      refute status.success?, message
+      assert_includes message, 'Missing required resource'
+      refute File.exist?(output + '-no-model')
+      File.write(missing_resource, 'fixture resource')
       File.unlink(File.join(products, 'Write.app/Contents/MacOS/Write'))
       message, status = Open3.capture2e('ruby', File.expand_path('../package.rb', __dir__),
         '--candidate', candidate, '--products', products, '--output', output + '-invalid')
