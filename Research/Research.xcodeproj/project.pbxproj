@@ -10,7 +10,6 @@
 		A15AE2CD305729DA001B9E7B /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
 		A15AE2D2305729F6001B9E7B /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; };
 		A15AE2D4305729FD001B9E7B /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
-		A15AE2D5305729FD001B9E7B /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1CCD310305744DF004B4721 /* ResearchXPCService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = A1CCD305305744DF004B4721 /* ResearchXPCService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A1CCD31F3057458D004B4721 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
 		A1CCD32430574594004B4721 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; };
@@ -83,7 +82,6 @@
 			dstPath = "";
 			dstSubfolder = Frameworks;
 			files = (
-				A15AE2D5305729FD001B9E7B /* ResearchKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 		};

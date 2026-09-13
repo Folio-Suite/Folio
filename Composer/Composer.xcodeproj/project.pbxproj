@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A15AE2973057247A001B9E7B /* ComposerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE28C30572479001B9E7B /* ComposerKit.framework */; };
 		A15AE2A13057247A001B9E7B /* ComposerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE28C30572479001B9E7B /* ComposerKit.framework */; };
-		A15AE2A23057247A001B9E7B /* ComposerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE28C30572479001B9E7B /* ComposerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A15AE2AD3057248F001B9E7B /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE2AC3057248F001B9E7B /* FolioKit.framework */; };
 		A15AE2C63057296B001B9E7B /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE2AC3057248F001B9E7B /* FolioKit.framework */; };
 		A15AE2C8305729A6001B9E7B /* ComposerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE28C30572479001B9E7B /* ComposerKit.framework */; };
@@ -85,7 +84,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A15AE2A23057247A001B9E7B /* ComposerKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;

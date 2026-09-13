@@ -11,3 +11,6 @@ CLANG_ENABLE_EXPLICIT_MODULES = YES
 
 // One release identity for all apps, Kits, tests, and bundled services.
 #include "Version.xcconfig"
+
+// Shared Kits in the traditional Suite installation.
+LD_RUNPATH_SEARCH_PATHS = $(inherited) /Library/Frameworks

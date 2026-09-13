@@ -23,7 +23,8 @@ All apps, Kits, and bundled services inherit the version and build from the shar
 Suite configuration. The Folio scheme advances the build number once per Build or
 Archive action; component schemes leave it unchanged. Use the Ruby workflow in
 [Suite version and build numbering](docs/release-numbering.md) to record and verify
-the resulting shipping bundles.
+the resulting shipping bundles. See [Suite installer](docs/installer.md) for the
+PKG staging command and clean-install proof procedure.
 
 ## Names and ownership
 

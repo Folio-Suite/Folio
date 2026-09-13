@@ -12,7 +12,6 @@
 		A1CCD14330573F86004B4721 /* WriteXPCService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = A1CCD13830573F86004B4721 /* WriteXPCService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A1F839E33050B46200DEB96A /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; };
 		A1F839ED3050B46200DEB96A /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; };
-		A1F839EE3050B46200DEB96A /* WriteKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1F83B1D3050BBBF00DEB96A /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */; };
 		F01200000000000000000001 /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; };
 /* End PBXBuildFile section */
@@ -84,7 +83,6 @@
 			dstPath = "";
 			dstSubfolder = Frameworks;
 			files = (
-				A1F839EE3050B46200DEB96A /* WriteKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 		};
