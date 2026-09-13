@@ -1,0 +1,390 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "content-unit.empty-title": {
+      "comment": "Title saved when the user submits an empty Content Unit title. Match the default title in FolioKit.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Untitled"
+          }
+        }
+      }
+    },
+    "content-unit.title.accessibility-label": {
+      "comment": "Accessibility name of the editable title field.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Content Unit title"
+          }
+        }
+      }
+    },
+    "formatting.bold": {
+      "comment": "Undo action name for visual bold formatting, distinct from semantic Strong Emphasis.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bold"
+          }
+        }
+      }
+    },
+    "formatting.clear.accessibility-label": {
+      "comment": "Accessibility label for removing semantic and visual character formatting, preserving paragraph alignment.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear character formatting"
+          }
+        }
+      }
+    },
+    "formatting.clear.undo": {
+      "comment": "Undo action name for removing character formatting.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear Formatting"
+          }
+        }
+      }
+    },
+    "formatting.conflict.accessibility-help": {
+      "comment": "Accessibility help for the formatting conflict marker; Bold and Italic are appearance choices.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bold or Italic overlaps semantic emphasis. Show conversion and dismissal options."
+          }
+        }
+      }
+    },
+    "formatting.conflict.accessibility-label": {
+      "comment": "Accessibility name of the inline warning marker.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formatting conflict"
+          }
+        }
+      }
+    },
+    "formatting.conflict.dismiss.undo": {
+      "comment": "Undo action name for dismissing a warning; AppKit adds Undo or Redo.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dismiss Formatting Warning"
+          }
+        }
+      }
+    },
+    "formatting.convert-to-emphasis.undo": {
+      "comment": "Undo action name for converting visual Bold or Italic into semantic emphasis.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Convert Presentation to Emphasis"
+          }
+        }
+      }
+    },
+    "formatting.emphasis": {
+      "comment": "Accessibility label and undo action name for semantic emphasis, distinct from visual Italic.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emphasis"
+          }
+        }
+      }
+    },
+    "formatting.help.accessibility-label": {
+      "comment": "Accessibility label for opening help about semantic and visual formatting.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formatting help"
+          }
+        }
+      }
+    },
+    "formatting.italic": {
+      "comment": "Undo action name for visual italic formatting, distinct from semantic Emphasis.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Italic"
+          }
+        }
+      }
+    },
+    "formatting.strikethrough": {
+      "comment": "Undo action name for visual strikethrough formatting.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strikethrough"
+          }
+        }
+      }
+    },
+    "formatting.strong-emphasis": {
+      "comment": "Accessibility label and undo action name for strong semantic emphasis, distinct from visual Bold.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strong Emphasis"
+          }
+        }
+      }
+    },
+    "formatting.underline": {
+      "comment": "Undo action name for visual underline formatting.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Underline"
+          }
+        }
+      }
+    },
+    "formatting.very-strong-emphasis": {
+      "comment": "Undo action name for the strongest semantic emphasis level.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Very Strong Emphasis"
+          }
+        }
+      }
+    },
+    "manuscript.add-content-unit": {
+      "comment": "Add a unit to the Manuscript. Accessibility label and undo action name; Content Unit is a Folio domain term.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Content Unit"
+          }
+        }
+      }
+    },
+    "manuscript.move-content-unit-down": {
+      "comment": "Accessibility label: move the selected Content Unit later in the Manuscript.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move Content Unit Down"
+          }
+        }
+      }
+    },
+    "manuscript.move-content-unit-up": {
+      "comment": "Accessibility label: move the selected Content Unit earlier in the Manuscript.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move Content Unit Up"
+          }
+        }
+      }
+    },
+    "manuscript.rename-content-unit.undo": {
+      "comment": "Undo action name for editing a Content Unit title; AppKit adds Undo or Redo.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rename Content Unit"
+          }
+        }
+      }
+    },
+    "manuscript.reorder-content-unit.undo": {
+      "comment": "Undo action name for moving a Content Unit; AppKit adds Undo or Redo.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reorder Content Unit"
+          }
+        }
+      }
+    },
+    "manuscript.text.accessibility-label": {
+      "comment": "Accessibility name of the editable Manuscript text area.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manuscript text"
+          }
+        }
+      }
+    },
+    "manuscript.units.accessibility-label": {
+      "comment": "Accessibility name of the table listing Content Units in reading order.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manuscript units"
+          }
+        }
+      }
+    },
+    "paragraph.alignment.accessibility-label": {
+      "comment": "Accessibility label of the paragraph alignment control.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paragraph alignment"
+          }
+        }
+      }
+    },
+    "paragraph.alignment.undo": {
+      "comment": "Undo action name for changing paragraph alignment.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paragraph Alignment"
+          }
+        }
+      }
+    },
+    "work-model.load.error": {
+      "comment": "Error summary for a missing model resource; WriteKit is a framework name.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WriteKit’s data model could not be loaded."
+          }
+        }
+      }
+    },
+    "work-model.load.recovery": {
+      "comment": "Recovery advice for developers or users. Preserve FWWork as a resource name.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rebuild or reinstall the application with its FWWork model resource."
+          }
+        }
+      }
+    },
+    "work-package.manuscript.recovery": {
+      "comment": "Recovery explanation for invalid data. Manuscript is a Folio domain term.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The store contains invalid or unsupported Manuscript structure; no content has been changed."
+          }
+        }
+      }
+    },
+    "work-package.read.error": {
+      "comment": "Error summary when opening a native Work fails. Write is the app name; Work is a Folio domain term.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Write cannot read this Work package."
+          }
+        }
+      }
+    },
+    "work-package.save-verification.error": {
+      "comment": "Error when save verification fails. Reassure the user that the previous package remains intact.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The Work could not be saved without losing information. The previous saved package has not been replaced."
+          }
+        }
+      }
+    },
+    "work-package.structure.recovery": {
+      "comment": "Recovery advice for an invalid package. Preserve the filename Work.sqlite.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected a native Work package containing Work.sqlite. Extra files and unfamiliar formats are left untouched."
+          }
+        }
+      }
+    },
+    "work-package.version.recovery": {
+      "comment": "Recovery advice for an unsupported Work model version. Write is the app name.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This Work uses a different model version. Open it with a compatible version of Write."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.2"
+}

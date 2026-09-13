@@ -35,14 +35,14 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.addButton.accessibilityLabel = @"Add Content Unit";
-    self.moveUpButton.accessibilityLabel = @"Move Content Unit Up";
-    self.moveDownButton.accessibilityLabel = @"Move Content Unit Down";
+    self.addButton.accessibilityLabel = NSLocalizedStringWithDefaultValue(@"manuscript.add-content-unit", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Add Content Unit", @"Add a unit to the Manuscript. Accessibility label and undo action name; Content Unit is a Folio domain term.");
+    self.moveUpButton.accessibilityLabel = NSLocalizedStringWithDefaultValue(@"manuscript.move-content-unit-up", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Move Content Unit Up", @"Accessibility label: move the selected Content Unit earlier in the Manuscript.");
+    self.moveDownButton.accessibilityLabel = NSLocalizedStringWithDefaultValue(@"manuscript.move-content-unit-down", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Move Content Unit Down", @"Accessibility label: move the selected Content Unit later in the Manuscript.");
     self.unitTable.dataSource = self;
     self.unitTable.delegate = self;
-    self.unitTable.accessibilityLabel = @"Manuscript units";
+    self.unitTable.accessibilityLabel = NSLocalizedStringWithDefaultValue(@"manuscript.units.accessibility-label", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Manuscript units", @"Accessibility name of the table listing Content Units in reading order.");
     self.unitTable.identifier = @"manuscriptUnits";
-    self.unitTitle.accessibilityLabel = @"Content Unit title";
+    self.unitTitle.accessibilityLabel = NSLocalizedStringWithDefaultValue(@"content-unit.title.accessibility-label", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Content Unit title", @"Accessibility name of the editable title field.");
     self.unitTitle.identifier = @"contentUnitTitle";
     [self selectUnitWithIdentifier:self.work.text.identifier];
 }
@@ -125,20 +125,20 @@
     FKText *unit = [FKText new];
     [units addObject:unit];
     [self applyManuscript:[[FKManuscript alloc] initWithIdentifier:self.work.manuscriptIdentifier units:units]
-        selection:unit.identifier name:@"Add Content Unit"];
+        selection:unit.identifier name:NSLocalizedStringWithDefaultValue(@"manuscript.add-content-unit", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Add Content Unit", @"Add a unit to the Manuscript. Accessibility label and undo action name; Content Unit is a Folio domain term.")];
     [self.view.window makeFirstResponder:self.unitTitle];
     [self.unitTitle selectText:nil];
 }
 - (IBAction)renameContentUnit:(id)sender {
     FKText *unit = [self.work textWithIdentifier:self.selectedUnitIdentifier];
     NSString *title = [self.unitTitle.stringValue stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
-    if (!title.length) title = @"Untitled";
+    if (!title.length) title = NSLocalizedStringWithDefaultValue(@"content-unit.empty-title", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Untitled", @"Title saved when the user submits an empty Content Unit title. Match the default title in FolioKit.");
     if ([unit.title isEqual:title]) return;
     NSMutableArray *units = [self.work.manuscript.units mutableCopy];
     units[[units indexOfObject:unit]] = [[FKText alloc] initWithIdentifier:unit.identifier title:title
         paragraphs:unit.paragraphs formattingWarningDismissed:unit.formattingWarningDismissed];
     [self applyManuscript:[[FKManuscript alloc] initWithIdentifier:self.work.manuscriptIdentifier units:units]
-        selection:unit.identifier name:@"Rename Content Unit"];
+        selection:unit.identifier name:NSLocalizedStringWithDefaultValue(@"manuscript.rename-content-unit.undo", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Rename Content Unit", @"Undo action name for editing a Content Unit title; AppKit adds Undo or Redo.")];
 }
 - (void)moveBy:(NSInteger)delta {
     NSMutableArray *units = [self.work.manuscript.units mutableCopy];
@@ -147,7 +147,7 @@
     if (destination < 0 || destination >= (NSInteger)units.count) return;
     [units exchangeObjectAtIndex:index withObjectAtIndex:destination];
     [self applyManuscript:[[FKManuscript alloc] initWithIdentifier:self.work.manuscriptIdentifier units:units]
-        selection:self.selectedUnitIdentifier name:@"Reorder Content Unit"];
+        selection:self.selectedUnitIdentifier name:NSLocalizedStringWithDefaultValue(@"manuscript.reorder-content-unit.undo", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Reorder Content Unit", @"Undo action name for moving a Content Unit; AppKit adds Undo or Redo.")];
 }
 - (IBAction)moveContentUnitUp:(id)sender { [self moveBy:-1]; }
 - (IBAction)moveContentUnitDown:(id)sender { [self moveBy:1]; }

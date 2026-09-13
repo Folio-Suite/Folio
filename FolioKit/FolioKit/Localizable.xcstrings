@@ -1,0 +1,18 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "content-unit.default-title": {
+      "comment": "Initial title of a newly created Content Unit. Stored as authored content at creation; never retranslate existing titles.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Untitled"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.2"
+}

@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F01100000000000000000007 /* FolioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1F83A0B3050B4D200DEB96A /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
 		A1F83AC53050B83D00DEB96A /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
 		A1F83AC63050B83D00DEB96A /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1F83B193050BBAB00DEB96A /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; };
+		F01100000000000000000007 /* FolioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -346,6 +346,16 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
+				fr,
+				de,
+				ja,
+				"zh-Hans",
+				"pt-BR",
+				"zh-Hant",
+				ko,
+				it,
+				ar,
 			);
 			mainGroup = A106488A304DFD5C001A21A6;
 			minimizedProjectReferenceProxies = 1;
@@ -611,6 +621,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Debug;
 		};
@@ -666,6 +677,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};

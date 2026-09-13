@@ -1,0 +1,726 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "alignment-0.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Natural\"; ObjectID = \"alignment-0\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Natural"
+          }
+        }
+      }
+    },
+    "alignment-1.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Left\"; ObjectID = \"alignment-1\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Left"
+          }
+        }
+      }
+    },
+    "alignment-2.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Center\"; ObjectID = \"alignment-2\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Center"
+          }
+        }
+      }
+    },
+    "alignment-3.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Right\"; ObjectID = \"alignment-3\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Right"
+          }
+        }
+      }
+    },
+    "alignment-4.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Justified\"; ObjectID = \"alignment-4\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Justified"
+          }
+        }
+      }
+    },
+    "appearance-bold-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Bold\"; ObjectID = \"appearance-bold-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Bold"
+          }
+        }
+      }
+    },
+    "appearance-bold-shortcut-cell.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"⌥⌘B\"; ObjectID = \"appearance-bold-shortcut-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "⌥⌘B"
+          }
+        }
+      }
+    },
+    "appearance-bold.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Apply visual bold independently of semantic emphasis.\"; ObjectID = \"appearance-bold\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Apply visual bold independently of semantic emphasis."
+          }
+        }
+      }
+    },
+    "appearance-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Appearance\"; ObjectID = \"appearance-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Appearance"
+          }
+        }
+      }
+    },
+    "appearance-italic-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Italic\"; ObjectID = \"appearance-italic-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Italic"
+          }
+        }
+      }
+    },
+    "appearance-italic-shortcut-cell.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"⌥⌘I\"; ObjectID = \"appearance-italic-shortcut-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "⌥⌘I"
+          }
+        }
+      }
+    },
+    "appearance-italic.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Apply visual italic independently of semantic emphasis.\"; ObjectID = \"appearance-italic\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Apply visual italic independently of semantic emphasis."
+          }
+        }
+      }
+    },
+    "appearance-strikethrough-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Strikethrough\"; ObjectID = \"appearance-strikethrough-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Strikethrough"
+          }
+        }
+      }
+    },
+    "appearance-strikethrough.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Apply visual strikethrough independently of semantic emphasis.\"; ObjectID = \"appearance-strikethrough\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Apply visual strikethrough independently of semantic emphasis."
+          }
+        }
+      }
+    },
+    "appearance-title-cell.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Appearance\"; ObjectID = \"appearance-title-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Appearance"
+          }
+        }
+      }
+    },
+    "appearance-underline-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Underline\"; ObjectID = \"appearance-underline-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Underline"
+          }
+        }
+      }
+    },
+    "appearance-underline-shortcut-cell.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"⌘U\"; ObjectID = \"appearance-underline-shortcut-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "⌘U"
+          }
+        }
+      }
+    },
+    "appearance-underline.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Apply visual underline independently of semantic emphasis.\"; ObjectID = \"appearance-underline\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Apply visual underline independently of semantic emphasis."
+          }
+        }
+      }
+    },
+    "appearance.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Appearance: Bold, Italic, Underline, and Strikethrough.\"; ObjectID = \"appearance\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Appearance: Bold, Italic, Underline, and Strikethrough."
+          }
+        }
+      }
+    },
+    "clear-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Clear\"; ObjectID = \"clear-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Clear"
+          }
+        }
+      }
+    },
+    "clear.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Clear character formatting, preserving paragraph alignment.\"; ObjectID = \"clear\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Clear character formatting, preserving paragraph alignment."
+          }
+        }
+      }
+    },
+    "conflict-detail-message-cell.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Bold or Italic overlaps semantic emphasis. Convert the highlighted text throughout this Content Unit, or keep its presentation.\"; ObjectID = \"conflict-detail-message-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Bold or Italic overlaps semantic emphasis. Convert the highlighted text throughout this Content Unit, or keep its presentation."
+          }
+        }
+      }
+    },
+    "conflict-detail-title-cell.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Presentation and Emphasis\"; ObjectID = \"conflict-detail-title-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Presentation and Emphasis"
+          }
+        }
+      }
+    },
+    "conflict-marker-button.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Formatting conflict: show conversion and dismissal options.\"; ObjectID = \"conflict-marker-button\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Formatting conflict: show conversion and dismissal options."
+          }
+        }
+      }
+    },
+    "conflict-marker-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Formatting conflict\"; ObjectID = \"conflict-marker-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Formatting conflict"
+          }
+        }
+      }
+    },
+    "convert-presentation-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Convert to Semantic Emphasis\"; ObjectID = \"convert-presentation-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Convert to Semantic Emphasis"
+          }
+        }
+      }
+    },
+    "convert-presentation.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Convert conflicting text in this Content Unit; preserve underline and strikethrough.\"; ObjectID = \"convert-presentation\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Convert conflicting text in this Content Unit; preserve underline and strikethrough."
+          }
+        }
+      }
+    },
+    "dismiss-formatting-warning-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Keep Presentation / Dismiss\"; ObjectID = \"dismiss-formatting-warning-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Keep Presentation / Dismiss"
+          }
+        }
+      }
+    },
+    "dismiss-formatting-warning.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Remember dismissal for this Content Unit, including after reopening.\"; ObjectID = \"dismiss-formatting-warning\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Remember dismissal for this Content Unit, including after reopening."
+          }
+        }
+      }
+    },
+    "emphasis-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Emphasis\"; ObjectID = \"emphasis-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Emphasis"
+          }
+        }
+      }
+    },
+    "emphasis.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Emphasis. Option-click for explicit Italic.\"; ObjectID = \"emphasis\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Emphasis. Option-click for explicit Italic."
+          }
+        }
+      }
+    },
+    "FW-window.title" : {
+      "comment" : "Class = \"NSWindow\"; title = \"Untitled\"; ObjectID = \"FW-window\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Untitled"
+          }
+        }
+      }
+    },
+    "help-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Formatting help\"; ObjectID = \"help-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Formatting help"
+          }
+        }
+      }
+    },
+    "help-text-cell.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Emphasis and Strong Emphasis express meaning. Their appearance can change with a publication’s style. The buttons show semantic formatting at the cursor or across the selection; a mixed state means only some text uses it.\\n\\nThe Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option-click the Es for Italic or Bold. These visual choices are independent of meaning. Clear removes both kinds of character formatting and preserves paragraph alignment.\"; ObjectID = \"help-text-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Emphasis and Strong Emphasis express meaning. Their appearance can change with a publication’s style. The buttons show semantic formatting at the cursor or across the selection; a mixed state means only some text uses it.\n\nThe Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option-click the Es for Italic or Bold. These visual choices are independent of meaning. Clear removes both kinds of character formatting and preserves paragraph alignment."
+          }
+        }
+      }
+    },
+    "help.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"About semantic and explicit formatting\"; ObjectID = \"help\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "About semantic and explicit formatting"
+          }
+        }
+      }
+    },
+    "manuscript-label-cell.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Manuscript\"; ObjectID = \"manuscript-label-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Manuscript"
+          }
+        }
+      }
+    },
+    "strong-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Strong Emphasis\"; ObjectID = \"strong-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Strong Emphasis"
+          }
+        }
+      }
+    },
+    "strong.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Strong Emphasis. Option-click for explicit Bold.\"; ObjectID = \"strong\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Strong Emphasis. Option-click for explicit Bold."
+          }
+        }
+      }
+    },
+    "toolbar-alignment.label" : {
+      "comment" : "Class = \"NSToolbarItem\"; label = \"Paragraph Alignment\"; ObjectID = \"toolbar-alignment\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Paragraph Alignment"
+          }
+        }
+      }
+    },
+    "toolbar-alignment.paletteLabel" : {
+      "comment" : "Class = \"NSToolbarItem\"; paletteLabel = \"Paragraph Alignment\"; ObjectID = \"toolbar-alignment\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Paragraph Alignment"
+          }
+        }
+      }
+    },
+    "toolbar-appearance.label" : {
+      "comment" : "Class = \"NSToolbarItem\"; label = \"Appearance\"; ObjectID = \"toolbar-appearance\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Appearance"
+          }
+        }
+      }
+    },
+    "toolbar-appearance.paletteLabel" : {
+      "comment" : "Class = \"NSToolbarItem\"; paletteLabel = \"Appearance\"; ObjectID = \"toolbar-appearance\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Appearance"
+          }
+        }
+      }
+    },
+    "toolbar-clear.label" : {
+      "comment" : "Class = \"NSToolbarItem\"; label = \"Clear Formatting\"; ObjectID = \"toolbar-clear\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Clear Formatting"
+          }
+        }
+      }
+    },
+    "toolbar-clear.paletteLabel" : {
+      "comment" : "Class = \"NSToolbarItem\"; paletteLabel = \"Clear Formatting\"; ObjectID = \"toolbar-clear\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Clear Formatting"
+          }
+        }
+      }
+    },
+    "toolbar-emphasis.label" : {
+      "comment" : "Class = \"NSToolbarItem\"; label = \"Emphasis\"; ObjectID = \"toolbar-emphasis\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Emphasis"
+          }
+        }
+      }
+    },
+    "toolbar-emphasis.paletteLabel" : {
+      "comment" : "Class = \"NSToolbarItem\"; paletteLabel = \"Emphasis\"; ObjectID = \"toolbar-emphasis\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Emphasis"
+          }
+        }
+      }
+    },
+    "toolbar-help.label" : {
+      "comment" : "Class = \"NSToolbarItem\"; label = \"Formatting Help\"; ObjectID = \"toolbar-help\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Formatting Help"
+          }
+        }
+      }
+    },
+    "toolbar-help.paletteLabel" : {
+      "comment" : "Class = \"NSToolbarItem\"; paletteLabel = \"Formatting Help\"; ObjectID = \"toolbar-help\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Formatting Help"
+          }
+        }
+      }
+    },
+    "toolbar-strong.label" : {
+      "comment" : "Class = \"NSToolbarItem\"; label = \"Strong Emphasis\"; ObjectID = \"toolbar-strong\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Strong Emphasis"
+          }
+        }
+      }
+    },
+    "toolbar-strong.paletteLabel" : {
+      "comment" : "Class = \"NSToolbarItem\"; paletteLabel = \"Strong Emphasis\"; ObjectID = \"toolbar-strong\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Strong Emphasis"
+          }
+        }
+      }
+    },
+    "unit-add-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Add Content Unit\"; ObjectID = \"unit-add-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Add Content Unit"
+          }
+        }
+      }
+    },
+    "unit-add.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Add Content Unit\"; ObjectID = \"unit-add\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Add Content Unit"
+          }
+        }
+      }
+    },
+    "unit-cell.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Untitled\"; ObjectID = \"unit-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Untitled"
+          }
+        }
+      }
+    },
+    "unit-column.headerCell.title" : {
+      "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Content Units\"; ObjectID = \"unit-column\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Content Units"
+          }
+        }
+      }
+    },
+    "unit-down-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Move Content Unit Down\"; ObjectID = \"unit-down-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Content Unit Down"
+          }
+        }
+      }
+    },
+    "unit-down.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Move Content Unit Down\"; ObjectID = \"unit-down\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Content Unit Down"
+          }
+        }
+      }
+    },
+    "unit-title-cell.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Untitled\"; ObjectID = \"unit-title-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Untitled"
+          }
+        }
+      }
+    },
+    "unit-title.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSTextField\"; ibShadowedToolTip = \"Content Unit title. Press Return to rename.\"; ObjectID = \"unit-title\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Content Unit title. Press Return to rename."
+          }
+        }
+      }
+    },
+    "unit-up-cell.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Move Content Unit Up\"; ObjectID = \"unit-up-cell\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Content Unit Up"
+          }
+        }
+      }
+    },
+    "unit-up.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Move Content Unit Up\"; ObjectID = \"unit-up\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Content Unit Up"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.2"
+}

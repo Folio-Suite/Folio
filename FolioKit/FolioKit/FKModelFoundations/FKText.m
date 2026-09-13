@@ -74,7 +74,7 @@
     return [self initWithIdentifier:identifier paragraphs:paragraphs formattingWarningDismissed:NO];
 }
 - (instancetype)initWithIdentifier:(NSString *)identifier paragraphs:(NSArray<FKParagraph *> *)paragraphs formattingWarningDismissed:(BOOL)dismissed {
-    return [self initWithIdentifier:identifier title:@"Untitled" paragraphs:paragraphs formattingWarningDismissed:dismissed];
+    return [self initWithIdentifier:identifier title:NSLocalizedStringWithDefaultValue(@"content-unit.default-title", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.FolioKit"], @"Untitled", @"Initial title of a newly created Content Unit. Stored as authored content at creation; never retranslate existing titles.") paragraphs:paragraphs formattingWarningDismissed:dismissed];
 }
 - (instancetype)initWithIdentifier:(NSString *)identifier title:(NSString *)title paragraphs:(NSArray<FKParagraph *> *)paragraphs formattingWarningDismissed:(BOOL)dismissed {
     NSParameterAssert(title);

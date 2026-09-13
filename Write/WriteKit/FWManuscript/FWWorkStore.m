@@ -7,7 +7,7 @@
 
 static NSError *FWStoreError(NSString *reason) {
     return [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError
-                          userInfo:@{NSLocalizedDescriptionKey:@"Write cannot read this Work package.",
+                          userInfo:@{NSLocalizedDescriptionKey:NSLocalizedStringWithDefaultValue(@"work-package.read.error", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Write cannot read this Work package.", @"Error summary when opening a native Work fails. Write is the app name; Work is a Folio domain term."),
                                      NSLocalizedRecoverySuggestionErrorKey:reason}];
 }
 
@@ -19,8 +19,8 @@ static NSManagedObjectModel *FWStoreModel(NSError **error) {
     NSManagedObjectModel *model = url ? [[NSManagedObjectModel alloc] initWithContentsOfURL:url] : nil;
     if (!model && error) {
         *error = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadUnknownError
-            userInfo:@{NSLocalizedDescriptionKey:@"WriteKit’s data model could not be loaded.",
-                       NSLocalizedRecoverySuggestionErrorKey:@"Rebuild or reinstall the application with its FWWork model resource."}];
+            userInfo:@{NSLocalizedDescriptionKey:NSLocalizedStringWithDefaultValue(@"work-model.load.error", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"WriteKit’s data model could not be loaded.", @"Error summary for a missing model resource; WriteKit is a framework name."),
+                       NSLocalizedRecoverySuggestionErrorKey:NSLocalizedStringWithDefaultValue(@"work-model.load.recovery", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Rebuild or reinstall the application with its FWWork model resource.", @"Recovery advice for developers or users. Preserve FWWork as a resource name.")}];
     }
     return model;
 }
@@ -52,14 +52,14 @@ static BOOL FWUniqueIdentifier(NSString *identifier, NSMutableSet<NSString *> *s
                 NSDictionary *files = package.isDirectory ? package.fileWrappers : nil;
                 NSFileWrapper *file = files[@"Work.sqlite"];
                 if (files.count != 1 || !file.isRegularFile) {
-                    if (error) *error = FWStoreError(@"Expected a native Work package containing Work.sqlite. Extra files and unfamiliar formats are left untouched.");
+                    if (error) *error = FWStoreError(NSLocalizedStringWithDefaultValue(@"work-package.structure.recovery", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Expected a native Work package containing Work.sqlite. Extra files and unfamiliar formats are left untouched.", @"Recovery advice for an invalid package. Preserve the filename Work.sqlite."));
                     return nil;
                 }
                 if (![file writeToURL:storeURL options:NSFileWrapperWritingAtomic originalContentsURL:nil error:error]) return nil;
                 NSDictionary *metadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:NSSQLiteStoreType URL:storeURL options:nil error:error];
                 if (!metadata) return nil;
                 if (![coordinator.managedObjectModel isConfiguration:nil compatibleWithStoreMetadata:metadata]) {
-                    if (error) *error = FWStoreError(@"This Work uses a different model version. Open it with a compatible version of Write.");
+                    if (error) *error = FWStoreError(NSLocalizedStringWithDefaultValue(@"work-package.version.recovery", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"This Work uses a different model version. Open it with a compatible version of Write.", @"Recovery advice for an unsupported Work model version. Write is the app name."));
                     return nil;
                 }
             }
@@ -139,7 +139,7 @@ static BOOL FWUniqueIdentifier(NSString *identifier, NSMutableSet<NSString *> *s
             valid &= count == [expectedCounts[entity] unsignedIntegerValue];
         }
         if (!valid || !texts.count) {
-            if (readError && !*readError) *readError = FWStoreError(@"The store contains invalid or unsupported Manuscript structure; no content has been changed.");
+            if (readError && !*readError) *readError = FWStoreError(NSLocalizedStringWithDefaultValue(@"work-package.manuscript.recovery", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"The store contains invalid or unsupported Manuscript structure; no content has been changed.", @"Recovery explanation for invalid data. Manuscript is a Folio domain term."));
             return nil;
         }
         return @{@"workIdentifier":[work valueForKey:@"identifier"],
@@ -190,7 +190,7 @@ static BOOL FWUniqueIdentifier(NSString *identifier, NSMutableSet<NSString *> *s
     }
     if (!equal) {
         if (error && !*error) *error = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileWriteUnknownError
-            userInfo:@{NSLocalizedDescriptionKey:@"The Work could not be saved without losing information. The previous saved package has not been replaced."}];
+            userInfo:@{NSLocalizedDescriptionKey:NSLocalizedStringWithDefaultValue(@"work-package.save-verification.error", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"The Work could not be saved without losing information. The previous saved package has not been replaced.", @"Error when save verification fails. Reassure the user that the previous package remains intact.")}];
         return nil;
     }
     return package;

@@ -1,0 +1,42 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "CFBundleDisplayName": {
+      "comment": "Product name shown by macOS. Keep Folio and the application brand name unchanged unless a naming policy is adopted.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folio Research"
+          }
+        }
+      }
+    },
+    "NSHumanReadableCopyright": {
+      "comment": "Copyright notice. Preserve the year and the Folio Project attribution.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copyright © 2026 the Folio Project"
+          }
+        }
+      }
+    },
+    "Folio Research Library": {
+      "comment": "Document type name shown by macOS. Folio is the brand; translate the descriptive type words.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folio Research Library"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.2"
+}

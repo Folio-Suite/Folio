@@ -7,7 +7,7 @@
 
 static NSError *FRPackageError(NSString *reason) {
     return [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError
-                          userInfo:@{NSLocalizedDescriptionKey:@"Research cannot read this Source Library.",
+                          userInfo:@{NSLocalizedDescriptionKey:NSLocalizedStringWithDefaultValue(@"source-library.read.error", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.ResearchKit"], @"Research cannot read this Source Library.", @"Error summary. Research is the app name; Source Library is a Folio domain term."),
                                      NSLocalizedRecoverySuggestionErrorKey:reason}];
 }
 
@@ -38,7 +38,7 @@ static NSManagedObjectModel *FRLibraryModel(void) {
     NSDictionary<NSString *, NSFileWrapper *> *members = package.isDirectory ? package.fileWrappers : nil;
     NSFileWrapper *database = members[@"Library.sqlite"];
     if (!database.isRegularFile || members[@"Library.sqlite-wal"] || members[@"Library.sqlite-shm"] || members[@"Library.sqlite-journal"]) {
-        if (error) *error = FRPackageError(@"Expected a package containing a closed Library.sqlite snapshot. Live database sidecars are not supported by this shell.");
+        if (error) *error = FRPackageError(NSLocalizedStringWithDefaultValue(@"source-library.structure.recovery", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.ResearchKit"], @"Expected a package containing a closed Library.sqlite snapshot. Live database sidecars are not supported by this shell.", @"Recovery advice for unsupported library structure. Preserve Library.sqlite as a filename."));
         return NO;
     }
     return [FKPackageSupport withTemporaryDirectoryWithError:error operation:^id(NSURL *directory, NSError **error) {
@@ -49,7 +49,7 @@ static NSManagedObjectModel *FRLibraryModel(void) {
         NSManagedObjectModel *model = FRLibraryModel();
         NSSet *versions = [NSSet setWithArray:metadata[NSStoreModelVersionIdentifiersKey] ?: @[]];
         if (![versions isEqual:model.versionIdentifiers] || ![model isConfiguration:nil compatibleWithStoreMetadata:metadata]) {
-            if (error) *error = FRPackageError(@"This Source Library uses a different catalog model. Open it with a compatible version of Research.");
+            if (error) *error = FRPackageError(NSLocalizedStringWithDefaultValue(@"source-library.version.recovery", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.ResearchKit"], @"This Source Library uses a different catalog model. Open it with a compatible version of Research.", @"Recovery advice for an unsupported library model. Research is the app name."));
             return nil;
         }
         return @YES;

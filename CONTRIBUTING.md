@@ -31,7 +31,11 @@ Use one branch for coordinated changes across FolioKit, Write, and Research. Com
 
 Keep application and reusable Kit interfaces in storyboards so designers can inspect and edit their layout in Interface Builder. Controllers own behavior and model integration; runtime construction is reserved for genuinely dynamic content.
 
-Write's menus live in `Write/Write/Base.lproj/Main.storyboard`. Its document window, native toolbar, Manuscript sidebar, reusable text editor, inline warning marker and popover, and help content live in `Write/WriteKit/Resources/Editor.storyboard`, bundled with WriteKit. The native toolbar is attached to the Editor Window scene. Its semantic E icons live in `Write/WriteKit/Resources/Formatting.xcassets`. Edit those scenes to change layout, labels, symbols, and spacing. The editor loads that framework resource explicitly, independent of the host application's main storyboard.
+Write's menus live in `Write/Write/Base.lproj/Main.storyboard`. Its document window, native toolbar, Manuscript sidebar, reusable text editor, inline warning marker and popover, and help content live in `Write/WriteKit/Resources/Base.lproj/Editor.storyboard`, bundled with WriteKit. The native toolbar is attached to the Editor Window scene. Its semantic E icons live in `Write/WriteKit/Resources/Formatting.xcassets`. Edit those scenes to change layout, labels, symbols, and spacing. The editor loads that framework resource explicitly, independent of the host application's main storyboard.
+
+## Localization
+
+Keep user-facing strings in the owning bundle’s catalogs, with stable semantic keys and English defaults. See [Localization](docs/localization.md) for Interface Builder keys, translator context, and the catalog extraction check.
 
 ## Data modeling
 

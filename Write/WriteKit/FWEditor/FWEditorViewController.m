@@ -290,12 +290,12 @@ static BOOL FWHasFormattingConflict(NSDictionary *attributes) {
     self.helpButton = controller.helpButton;
     self.alignmentButton = controller.alignmentButton;
     self.formattingButtons = @[self.emphasisButton, self.strongButton];
-    [self.emphasisButton setAccessibilityLabel:@"Emphasis"];
-    [self.strongButton setAccessibilityLabel:@"Strong Emphasis"];
+    [self.emphasisButton setAccessibilityLabel:NSLocalizedStringWithDefaultValue(@"formatting.emphasis", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Emphasis", @"Accessibility label and undo action name for semantic emphasis, distinct from visual Italic.")];
+    [self.strongButton setAccessibilityLabel:NSLocalizedStringWithDefaultValue(@"formatting.strong-emphasis", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Strong Emphasis", @"Accessibility label and undo action name for strong semantic emphasis, distinct from visual Bold.")];
     for (NSButton *button in self.formattingButtons) [button setAccessibilityHelp:button.toolTip];
-    [self.clearButton setAccessibilityLabel:@"Clear character formatting"];
-    [self.helpButton setAccessibilityLabel:@"Formatting help"];
-    [self.alignmentButton setAccessibilityLabel:@"Paragraph alignment"];
+    [self.clearButton setAccessibilityLabel:NSLocalizedStringWithDefaultValue(@"formatting.clear.accessibility-label", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Clear character formatting", @"Accessibility label for removing semantic and visual character formatting, preserving paragraph alignment.")];
+    [self.helpButton setAccessibilityLabel:NSLocalizedStringWithDefaultValue(@"formatting.help.accessibility-label", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Formatting help", @"Accessibility label for opening help about semantic and visual formatting.")];
+    [self.alignmentButton setAccessibilityLabel:NSLocalizedStringWithDefaultValue(@"paragraph.alignment.accessibility-label", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Paragraph alignment", @"Accessibility label of the paragraph alignment control.")];
     [self updateFormattingControls];
 }
 - (void)viewDidLoad {
@@ -307,7 +307,7 @@ static BOOL FWHasFormattingConflict(NSDictionary *attributes) {
     text.textContainer.containerSize = NSMakeSize(text.bounds.size.width, CGFLOAT_MAX);
     text.automaticQuoteSubstitutionEnabled = NO;
     text.automaticDashSubstitutionEnabled = NO;
-    [text setAccessibilityLabel:@"Manuscript text"];
+    [text setAccessibilityLabel:NSLocalizedStringWithDefaultValue(@"manuscript.text.accessibility-label", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Manuscript text", @"Accessibility name of the editable Manuscript text area.")];
     text.identifier = @"manuscriptText";
     [self displayWork];
 }
@@ -481,8 +481,8 @@ static BOOL FWHasFormattingConflict(NSDictionary *attributes) {
             marker.editor = self;
             (void)marker.view;
             marker.markerButton.contentTintColor = NSColor.systemOrangeColor;
-            marker.markerButton.accessibilityLabel = @"Formatting conflict";
-            marker.markerButton.accessibilityHelp = @"Bold or Italic overlaps semantic emphasis. Show conversion and dismissal options.";
+            marker.markerButton.accessibilityLabel = NSLocalizedStringWithDefaultValue(@"formatting.conflict.accessibility-label", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Formatting conflict", @"Accessibility name of the inline warning marker.");
+            marker.markerButton.accessibilityHelp = NSLocalizedStringWithDefaultValue(@"formatting.conflict.accessibility-help", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Bold or Italic overlaps semantic emphasis. Show conversion and dismissal options.", @"Accessibility help for the formatting conflict marker; Bold and Italic are appearance choices.");
             marker.markerButton.identifier = @"formattingConflictMarker";
             [self.textView addSubview:marker.view];
             [self.formattingMarkers addObject:marker];
@@ -517,7 +517,7 @@ static BOOL FWHasFormattingConflict(NSDictionary *attributes) {
 - (IBAction)dismissFormattingWarning:(id)sender {
     [self.formattingConflictPopover close];
     [self setFormattingWarningDismissed:YES];
-    [self.editingUndoManager setActionName:@"Dismiss Formatting Warning"];
+    [self.editingUndoManager setActionName:NSLocalizedStringWithDefaultValue(@"formatting.conflict.dismiss.undo", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Dismiss Formatting Warning", @"Undo action name for dismissing a warning; AppKit adds Undo or Redo.")];
 }
 - (IBAction)convertPresentationToEmphasis:(id)sender {
     [self.formattingConflictPopover close];
@@ -533,7 +533,7 @@ static BOOL FWHasFormattingConflict(NSDictionary *attributes) {
         FWRenderAttributes(attributes);
     };
     [self.editingUndoManager beginUndoGrouping];
-    [self editAttributesInRange:NSMakeRange(0, self.textView.string.length) name:@"Convert Presentation to Emphasis" transform:convert];
+    [self editAttributesInRange:NSMakeRange(0, self.textView.string.length) name:NSLocalizedStringWithDefaultValue(@"formatting.convert-to-emphasis.undo", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Convert Presentation to Emphasis", @"Undo action name for converting visual Bold or Italic into semantic emphasis.") transform:convert];
     if (!self.textView.selectedRange.length && FWHasFormattingConflict(self.textView.typingAttributes)) {
         NSDictionary *before = self.textView.typingAttributes;
         NSMutableDictionary *after = [before mutableCopy];
@@ -541,7 +541,7 @@ static BOOL FWHasFormattingConflict(NSDictionary *attributes) {
         [self applyTypingFormatting:after];
     }
     [self setFormattingWarningDismissed:YES];
-    [self.editingUndoManager setActionName:@"Convert Presentation to Emphasis"];
+    [self.editingUndoManager setActionName:NSLocalizedStringWithDefaultValue(@"formatting.convert-to-emphasis.undo", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Convert Presentation to Emphasis", @"Undo action name for converting visual Bold or Italic into semantic emphasis.")];
     [self.editingUndoManager endUndoGrouping];
     [self updateFormattingControls];
 }
@@ -559,13 +559,13 @@ static BOOL FWHasFormattingConflict(NSDictionary *attributes) {
 - (void)textViewDidChangeTypingAttributes:(NSNotification *)notification {
     [self updateFormattingControls];
 }
-- (void)toggleEmphasis:(id)sender { [self toggleKey:FWEmphasis value:FKTextEmphasisEmphasis name:@"Emphasis"]; }
-- (void)toggleStrongEmphasis:(id)sender { [self toggleKey:FWEmphasis value:FKTextEmphasisStrongEmphasis name:@"Strong Emphasis"]; }
-- (void)toggleVeryStrongEmphasis:(id)sender { [self toggleKey:FWEmphasis value:FKTextEmphasisVeryStrongEmphasis name:@"Very Strong Emphasis"]; }
-- (void)toggleBold:(id)sender { [self toggleKey:FWBold value:1 name:@"Bold"]; }
-- (void)toggleItalic:(id)sender { [self toggleKey:FWItalic value:1 name:@"Italic"]; }
-- (void)toggleUnderline:(id)sender { [self toggleKey:FWUnderline value:1 name:@"Underline"]; }
-- (void)toggleStrikethrough:(id)sender { [self toggleKey:FWStrikethrough value:1 name:@"Strikethrough"]; }
+- (void)toggleEmphasis:(id)sender { [self toggleKey:FWEmphasis value:FKTextEmphasisEmphasis name:NSLocalizedStringWithDefaultValue(@"formatting.emphasis", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Emphasis", @"Accessibility label and undo action name for semantic emphasis, distinct from visual Italic.")]; }
+- (void)toggleStrongEmphasis:(id)sender { [self toggleKey:FWEmphasis value:FKTextEmphasisStrongEmphasis name:NSLocalizedStringWithDefaultValue(@"formatting.strong-emphasis", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Strong Emphasis", @"Accessibility label and undo action name for strong semantic emphasis, distinct from visual Bold.")]; }
+- (void)toggleVeryStrongEmphasis:(id)sender { [self toggleKey:FWEmphasis value:FKTextEmphasisVeryStrongEmphasis name:NSLocalizedStringWithDefaultValue(@"formatting.very-strong-emphasis", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Very Strong Emphasis", @"Undo action name for the strongest semantic emphasis level.")]; }
+- (void)toggleBold:(id)sender { [self toggleKey:FWBold value:1 name:NSLocalizedStringWithDefaultValue(@"formatting.bold", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Bold", @"Undo action name for visual bold formatting, distinct from semantic Strong Emphasis.")]; }
+- (void)toggleItalic:(id)sender { [self toggleKey:FWItalic value:1 name:NSLocalizedStringWithDefaultValue(@"formatting.italic", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Italic", @"Undo action name for visual italic formatting, distinct from semantic Emphasis.")]; }
+- (void)toggleUnderline:(id)sender { [self toggleKey:FWUnderline value:1 name:NSLocalizedStringWithDefaultValue(@"formatting.underline", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Underline", @"Undo action name for visual underline formatting.")]; }
+- (void)toggleStrikethrough:(id)sender { [self toggleKey:FWStrikethrough value:1 name:NSLocalizedStringWithDefaultValue(@"formatting.strikethrough", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Strikethrough", @"Undo action name for visual strikethrough formatting.")]; }
 - (IBAction)showAppearance:(NSButton *)sender {
     if (self.appearancePopover.shown) { [self.appearancePopover performClose:sender]; return; }
     if (!self.appearancePopover) {
@@ -624,7 +624,7 @@ static BOOL FWHasFormattingConflict(NSDictionary *attributes) {
         self.textView.typingAttributes = attributes;
         [self updateFormattingControls];
         if (!self.appearancePopover.shown) [self.view.window makeFirstResponder:self.textView];
-    } else [self editAttributesInRange:self.textView.selectedRange name:@"Clear Formatting" transform:clear];
+    } else [self editAttributesInRange:self.textView.selectedRange name:NSLocalizedStringWithDefaultValue(@"formatting.clear.undo", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Clear Formatting", @"Undo action name for removing character formatting.") transform:clear];
 }
 - (void)editAttributesInRange:(NSRange)range name:(NSString *)name transform:(void (^)(NSMutableDictionary *))transform {
     if (!range.length) return;
@@ -663,7 +663,7 @@ static BOOL FWHasFormattingConflict(NSDictionary *attributes) {
     }];
     self.textView.typingAttributes = attributes;
     [self.textView didChangeText];
-    [self.editingUndoManager setActionName:@"Paragraph Alignment"];
+    [self.editingUndoManager setActionName:NSLocalizedStringWithDefaultValue(@"paragraph.alignment.undo", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Paragraph Alignment", @"Undo action name for changing paragraph alignment.")];
 }
 - (IBAction)changeParagraphAlignment:(NSPopUpButton *)sender {
     NSTextAlignment alignment = FWNativeAlignment(sender.indexOfSelectedItem);
@@ -675,7 +675,7 @@ static BOOL FWHasFormattingConflict(NSDictionary *attributes) {
         attributes[NSParagraphStyleAttributeName] = style;
         [self applyEmptyParagraphAttributes:attributes];
     } else {
-        [self editAttributesInRange:range name:@"Paragraph Alignment" transform:^(NSMutableDictionary *attributes) {
+        [self editAttributesInRange:range name:NSLocalizedStringWithDefaultValue(@"paragraph.alignment.undo", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Paragraph Alignment", @"Undo action name for changing paragraph alignment.") transform:^(NSMutableDictionary *attributes) {
             NSMutableParagraphStyle *style = [attributes[NSParagraphStyleAttributeName] mutableCopy] ?: [NSMutableParagraphStyle new];
             style.alignment = alignment;
             attributes[NSParagraphStyleAttributeName] = style;

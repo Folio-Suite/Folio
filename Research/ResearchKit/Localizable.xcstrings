@@ -1,0 +1,42 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "source-library.read.error": {
+      "comment": "Error summary. Research is the app name; Source Library is a Folio domain term.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Research cannot read this Source Library."
+          }
+        }
+      }
+    },
+    "source-library.structure.recovery": {
+      "comment": "Recovery advice for unsupported library structure. Preserve Library.sqlite as a filename.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected a package containing a closed Library.sqlite snapshot. Live database sidecars are not supported by this shell."
+          }
+        }
+      }
+    },
+    "source-library.version.recovery": {
+      "comment": "Recovery advice for an unsupported library model. Research is the app name.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This Source Library uses a different catalog model. Open it with a compatible version of Research."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.2"
+}
