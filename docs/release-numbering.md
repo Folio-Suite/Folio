@@ -44,8 +44,11 @@ ruby scripts/release.rb init-ledger --ledger /absolute/release-state/folio-build
 ```
 
 The command refuses to overwrite an existing ledger. Preparation locks a stable
-companion lock file, then atomically replaces the ledger after flushing its new
-reservation. Concurrent preparations sharing this authority get different numbers.
+companion lock file, flushes the new reservation, atomically replaces the ledger,
+and syncs its containing directory before creating the candidate. Use local storage
+that honors file locking and file/directory sync; failed sync operations abort
+preparation. Storage loss or restoration from an older backup still requires the
+manual recovery procedure below. Concurrent preparations sharing this authority get different numbers.
 A failure after reservation may leave a gap; reserved numbers are never recycled.
 
 Back up and transfer the ledger together with release records. Do not initialize

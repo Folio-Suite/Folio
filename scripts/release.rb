@@ -78,6 +78,7 @@ class SuiteRelease
       file.fsync
     end
     File.rename(temporary, path)
+    File.open(File.dirname(path), File::RDONLY) { |directory| directory.fsync }
   ensure
     File.unlink(temporary) if temporary && File.exist?(temporary)
   end
@@ -97,6 +98,7 @@ class SuiteRelease
   def initialize_ledger
     path = File.expand_path(option('ledger'))
     protect_source(path)
+    protect_source(path + '.lock')
     last = build_number(option('last-build'))
     FileUtils.mkdir_p(File.dirname(path))
     File.open(path + '.lock', File::RDWR | File::CREAT, 0600) do |lock|
@@ -176,6 +178,7 @@ class SuiteRelease
     ledger_path = File.expand_path(option('ledger'))
     protect_source(output)
     protect_source(ledger_path)
+    protect_source(ledger_path + '.lock')
     raise 'Initialize the shared ledger first with init-ledger' unless File.file?(ledger_path)
     File.open(ledger_path + '.lock', File::RDWR | File::CREAT, 0600) do |lock|
       lock.flock(File::LOCK_EX)
