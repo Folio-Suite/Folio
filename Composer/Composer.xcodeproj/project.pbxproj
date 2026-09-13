@@ -95,6 +95,9 @@
 		};
 		A15AE2A63057247A001B9E7B /* Exceptions for "ComposerKit" folder in "ComposerKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ComposerKit.modulemap,
+			);
 			publicHeaders = (
 				ComposerKit.h,
 			);
@@ -806,6 +809,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				MODULEMAP_FILE = "$(SRCROOT)/ComposerKit/ComposerKit.modulemap";
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -839,6 +843,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				MODULEMAP_FILE = "$(SRCROOT)/ComposerKit/ComposerKit.modulemap";
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

@@ -28,10 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A1064850304DFCF6001A21A6"
-               BuildableName = "Write.app"
-               BlueprintName = "Write"
-               ReferencedContainer = "container:Write/Write.xcodeproj">
+               BlueprintIdentifier = "A1064892304DFD5C001A21A6"
+               BuildableName = "Research.app"
+               BlueprintName = "Research"
+               ReferencedContainer = "container:Research/Research.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -42,10 +42,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A1064892304DFD5C001A21A6"
-               BuildableName = "Research.app"
-               BlueprintName = "Research"
-               ReferencedContainer = "container:Research/Research.xcodeproj">
+               BlueprintIdentifier = "A1064850304DFCF6001A21A6"
+               BuildableName = "Write.app"
+               BlueprintName = "Write"
+               ReferencedContainer = "container:Write/Write.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A10648E0304DFE13001A21A6"
+               BuildableName = "FolioKitTests.xctest"
+               BlueprintName = "FolioKitTests"
+               ReferencedContainer = "container:FolioKit/FolioKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -118,6 +132,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
-      revealArchiveInOrganizer = "YES">
+      revealArchiveInOrganizer = "YES"
+      allowsArchivingForSimulator = "YES">
    </ArchiveAction>
 </Scheme>

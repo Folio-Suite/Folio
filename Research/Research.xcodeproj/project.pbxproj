@@ -92,6 +92,9 @@
 		};
 		A1F83A1C3050B4D200DEB96A /* Exceptions for "ResearchKit" folder in "ResearchKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ResearchKit.modulemap,
+			);
 			publicHeaders = (
 				FRLibraryPackage.h,
 				ResearchKit.h,
@@ -769,6 +772,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				MODULEMAP_FILE = "$(SRCROOT)/ResearchKit/ResearchKit.modulemap";
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -802,6 +806,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				MODULEMAP_FILE = "$(SRCROOT)/ResearchKit/ResearchKit.modulemap";
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

@@ -3,12 +3,8 @@
 
 #import "FWManuscriptViewController.h"
 #import "../FWManuscript/FWWork.h"
-#import "FWEditorViewController.h"
+#import "FWEditorViewController+Internal.h"
 #import <FolioKit/FolioKit.h>
-
-@interface FWEditorViewController (ManuscriptToolbar)
-- (void)connectToolbar:(NSWindowController *)controller;
-@end
 
 @interface FWManuscriptViewController () <NSTableViewDataSource, NSTableViewDelegate>
 @property (nonatomic, strong) IBOutlet NSTableView *unitTable;

@@ -6,7 +6,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 build_dir=$(mktemp -d "${TMPDIR:-/tmp}/folio-build.XXXXXX")
 trap 'rm -rf "$build_dir"' EXIT
-xcodebuild -workspace Folio.xcworkspace -scheme Folio -configuration Debug \
+xcodebuild -workspace "$PWD/Folio.xcworkspace" -scheme Folio -configuration Debug \
     -destination 'platform=macOS' -derivedDataPath "$build_dir" CODE_SIGNING_ALLOWED=NO build
 products="$build_dir/Build/Products/Debug"
 for app in Write Research Composer; do
@@ -15,9 +15,10 @@ for app in Write Research Composer; do
 done
 test -f "$products/FolioKit.framework/Versions/A/FolioKit"
 for library in FKModelFoundations FKPackageSupport FKXMLSupport; do
-    test -f "$products/FolioKit.framework/Frameworks/lib${library}.dylib"
+    test -f "$products/FolioKit.framework/Versions/Current/Frameworks/lib${library}.dylib"
 done
-for library in FWManuscript FWEditor; do
-    test -f "$products/WriteKit.framework/Frameworks/lib${library}.dylib"
+for library in FWManuscript; do
+    test -f "$products/WriteKit.framework/Versions/Current/Frameworks/lib${library}.dylib"
 done
+python3 scripts/check-kit-interfaces.py "$products"
 echo 'Suite build and framework product checks passed; installed runtime layout is not validated.'

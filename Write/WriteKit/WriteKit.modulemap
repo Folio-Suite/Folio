@@ -1,0 +1,11 @@
+// SPDX-FileCopyrightText: 2026 the Folio Project
+// SPDX-License-Identifier: MIT
+
+// Supported headers only; embedded libraries are private implementation.
+framework module WriteKit {
+    header "WriteKit.h"
+    header "FWWork.h"
+    header "FWEditorViewController.h"
+    header "FWManuscriptViewController.h"
+    export *
+}

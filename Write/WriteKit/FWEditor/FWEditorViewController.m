@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2026 the Folio Project
 // SPDX-License-Identifier: MIT
 
-#import "FWEditorViewController.h"
+#import "FWEditorViewController+Internal.h"
 #import "../FWManuscript/FWWork.h"
 #import <FolioKit/FolioKit.h>
 

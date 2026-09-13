@@ -43,6 +43,24 @@ Use Xcode’s versioned Core Data model editor for persistent schemas. WriteKit�
 
 The current pre-alpha model replaces the experimental code-defined format without a migration requirement. Model versions remain explicit so compatibility can be governed as the project matures.
 
+## Public Kit interfaces
+
+Every host, including the owning application, uses the Kit's public headers. The
+explicit list lives in `<Kit>.modulemap` alongside each Kit’s umbrella header. When deliberately adding
+an interface, update that map, the Kit umbrella, Xcode's Public header membership,
+and DocC together. Keep implementation headers at Project visibility; do not
+publish them as Private headers or add repository header search paths to callers.
+Embedded libraries are private implementation and are linked only by their owning
+Kit. Reusable Kit types implemented in those libraries remain accessible through
+the Kit's public headers and linker re-exports.
+
+`Config/Suite.xcconfig` enables modules and explicit module builds. The normal
+`scripts/check-build.sh` also checks actual exported headers, rejects private
+imports, and compiles/links an outside consumer without repository header maps.
+Apps and Kits must be from the same coordinated Suite version; mixed versions are
+unsupported. See [ADR 0009](docs/adr/0009-continue-cocoa-suite-with-domain-kits.md)
+for the distinction between owner preferences and per-host presentation settings.
+
 ## Kit documentation
 
 FolioKit, WriteKit, ResearchKit, ComposerKit, and future Kits use DocC at a standard suitable for a public API. Document caller-facing contracts alongside declarations and provide module introductions and useful examples in each Kit's catalog. New or changed interfaces include documentation and generated-documentation validation in the same change. See [ADR 0008](docs/adr/0008-public-api-quality-kit-documentation.md) for scope and expectations.

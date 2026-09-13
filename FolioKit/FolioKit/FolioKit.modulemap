@@ -1,0 +1,10 @@
+// SPDX-FileCopyrightText: 2026 the Folio Project
+// SPDX-License-Identifier: MIT
+
+// Supported headers only; embedded libraries are private implementation.
+framework module FolioKit {
+    header "FolioKit.h"
+    header "FKText.h"
+    header "FKPackageSupport.h"
+    export *
+}

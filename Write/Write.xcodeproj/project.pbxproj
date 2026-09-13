@@ -7,15 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D22453A3EA545B2AE541C9D /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */; };
-		62786D71B4A5416AABCEA32F /* libFWManuscript.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */; };
 		A15AE2D630572A33001B9E7B /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */; };
 		A15AE2D830572A3E001B9E7B /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; };
+		A1CCD14330573F86004B4721 /* WriteXPCService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = A1CCD13830573F86004B4721 /* WriteXPCService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A1F839E33050B46200DEB96A /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; };
 		A1F839ED3050B46200DEB96A /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; };
 		A1F839EE3050B46200DEB96A /* WriteKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A1F83B0F3050B9A500DEB96A /* libFWEditor.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B003050B99800DEB96A /* libFWEditor.dylib */; };
-		A1F83B103050B9A500DEB96A /* libFWEditor.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = A1F83B003050B99800DEB96A /* libFWEditor.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A1F83B133050B9A500DEB96A /* libFWManuscript.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */; };
 		A1F83B143050B9A500DEB96A /* libFWManuscript.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A1F83B1D3050BBBF00DEB96A /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */; };
@@ -44,6 +41,13 @@
 			remoteGlobalIDString = A1F839D73050B46200DEB96A;
 			remoteInfo = WriteKit;
 		};
+		A1CCD14130573F86004B4721 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1CCD13730573F86004B4721;
+			remoteInfo = WriteXPCService;
+		};
 		A1F839E43050B46200DEB96A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
@@ -65,21 +69,7 @@
 			remoteGlobalIDString = A1F839D73050B46200DEB96A;
 			remoteInfo = WriteKit;
 		};
-		A1F83B113050B9A500DEB96A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F83AFF3050B99800DEB96A;
-			remoteInfo = FWEditor;
-		};
 		A1F83B153050B9A500DEB96A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F83AD93050B8E900DEB96A;
-			remoteInfo = FWManuscript;
-		};
-		A1F83F37305101BB00DEB96A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
 			proxyType = 1;
@@ -89,12 +79,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		A1CCD14830573F86004B4721 /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolder = Product;
+			files = (
+				A1CCD14330573F86004B4721 /* WriteXPCService.xpc in Embed XPC Services */,
+			);
+			name = "Embed XPC Services";
+		};
 		A1F83B173050B9A500DEB96A /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			dstPath = "";
 			dstSubfolder = Frameworks;
 			files = (
-				A1F83B103050B9A500DEB96A /* libFWEditor.dylib in Embed Libraries */,
 				A1F83B143050B9A500DEB96A /* libFWManuscript.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
@@ -115,10 +113,10 @@
 		A106486C304DFCF7001A21A6 /* WriteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WriteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1064876304DFCF7001A21A6 /* WriteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WriteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15AE2BF305727A2001B9E7B /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		A1CCD13830573F86004B4721 /* WriteXPCService.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = WriteXPCService.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F839D83050B46200DEB96A /* WriteKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WriteKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F839E23050B46200DEB96A /* WriteKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WriteKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFWManuscript.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1F83B003050B99800DEB96A /* libFWEditor.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFWEditor.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -130,11 +128,16 @@
 			);
 			target = A1064850304DFCF6001A21A6 /* Write */;
 		};
+		A1CCD14730573F86004B4721 /* Exceptions for "WriteXPCService" folder in "WriteXPCService" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A1CCD13730573F86004B4721 /* WriteXPCService */;
+		};
 		A1F839F43050B46200DEB96A /* Exceptions for "WriteKit" folder in "WriteKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				FWEditor/FWEditorViewController.m,
-				FWEditor/FWManuscriptViewController.m,
 				FWManuscript/FWWork.m,
 				FWManuscript/FWWorkStore.h,
 				FWManuscript/FWWorkStore.m,
@@ -155,14 +158,6 @@
 				FWManuscript/FWWorkStore.m,
 			);
 			target = A1F83AD93050B8E900DEB96A /* FWManuscript */;
-		};
-		A1F83B0E3050B99E00DEB96A /* Exceptions for "WriteKit" folder in "FWEditor" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				FWEditor/FWEditorViewController.m,
-				FWEditor/FWManuscriptViewController.m,
-			);
-			target = A1F83AFF3050B99800DEB96A /* FWEditor */;
 		};
 		F01100000000000000000007 /* Exceptions for "WriteKit" folder in "Write" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -192,13 +187,20 @@
 			path = WriteUITests;
 			sourceTree = "<group>";
 		};
+		A1CCD13930573F86004B4721 /* WriteXPCService */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A1CCD14730573F86004B4721 /* Exceptions for "WriteXPCService" folder in "WriteXPCService" target */,
+			);
+			path = WriteXPCService;
+			sourceTree = "<group>";
+		};
 		A1F839D93050B46200DEB96A /* WriteKit */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				F01100000000000000000007 /* Exceptions for "WriteKit" folder in "Write" target */,
 				A1F839F43050B46200DEB96A /* Exceptions for "WriteKit" folder in "WriteKit" target */,
 				A1F83AE83050B8EF00DEB96A /* Exceptions for "WriteKit" folder in "FWManuscript" target */,
-				A1F83B0E3050B99E00DEB96A /* Exceptions for "WriteKit" folder in "FWEditor" target */,
 			);
 			path = WriteKit;
 			sourceTree = "<group>";
@@ -229,11 +231,15 @@
 			files = (
 			);
 		};
+		A1CCD13530573F86004B4721 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
 		A1F839D53050B46200DEB96A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
 				A1F83B1D3050BBBF00DEB96A /* FolioKit.framework in Frameworks */,
-				A1F83B0F3050B9A500DEB96A /* libFWEditor.dylib in Frameworks */,
 				A1F83B133050B9A500DEB96A /* libFWManuscript.dylib in Frameworks */,
 			);
 		};
@@ -249,13 +255,6 @@
 				FC19964AB0634F0892868906 /* FolioKit.framework in Frameworks */,
 			);
 		};
-		A1F83AFE3050B99800DEB96A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-				62786D71B4A5416AABCEA32F /* libFWManuscript.dylib in Frameworks */,
-				0D22453A3EA545B2AE541C9D /* FolioKit.framework in Frameworks */,
-			);
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -267,6 +266,7 @@
 				A1064879304DFCF7001A21A6 /* WriteUITests */,
 				A1F839D93050B46200DEB96A /* WriteKit */,
 				A1F839E83050B46200DEB96A /* WriteKitTests */,
+				A1CCD13930573F86004B4721 /* WriteXPCService */,
 				A1F839F63050B47800DEB96A /* Frameworks */,
 				A1064852304DFCF6001A21A6 /* Products */,
 				A15AE2BF305727A2001B9E7B /* Project.xcconfig */,
@@ -282,7 +282,7 @@
 				A1F839D83050B46200DEB96A /* WriteKit.framework */,
 				A1F839E23050B46200DEB96A /* WriteKitTests.xctest */,
 				A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */,
-				A1F83B003050B99800DEB96A /* libFWEditor.dylib */,
+				A1CCD13830573F86004B4721 /* WriteXPCService.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -308,11 +308,6 @@
 			files = (
 			);
 		};
-		A1F83AFC3050B99800DEB96A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			files = (
-			);
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -324,11 +319,13 @@
 				A106484D304DFCF6001A21A6 /* Sources */,
 				A106484E304DFCF6001A21A6 /* Frameworks */,
 				A106484F304DFCF6001A21A6 /* Resources */,
+				A1CCD14830573F86004B4721 /* Embed XPC Services */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				A1F839EC3050B46200DEB96A /* PBXTargetDependency */,
+				A1CCD14230573F86004B4721 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A1064853304DFCF6001A21A6 /* Write */,
@@ -381,6 +378,24 @@
 			productReference = A1064876304DFCF7001A21A6 /* WriteUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		A1CCD13730573F86004B4721 /* WriteXPCService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1CCD14430573F86004B4721 /* Build configuration list for PBXNativeTarget "WriteXPCService" */;
+			buildPhases = (
+				A1CCD13430573F86004B4721 /* Sources */,
+				A1CCD13530573F86004B4721 /* Frameworks */,
+				A1CCD13630573F86004B4721 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				A1CCD13930573F86004B4721 /* WriteXPCService */,
+			);
+			name = WriteXPCService;
+			productName = WriteXPCService;
+			productReference = A1CCD13830573F86004B4721 /* WriteXPCService.xpc */;
+			productType = "com.apple.product-type.xpc-service";
+		};
 		A1F839D73050B46200DEB96A /* WriteKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1F839F33050B46200DEB96A /* Build configuration list for PBXNativeTarget "WriteKit" */;
@@ -394,7 +409,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A1F83B123050B9A500DEB96A /* PBXTargetDependency */,
 				A1F83B163050B9A500DEB96A /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -442,24 +456,6 @@
 			productReference = A1F83ADA3050B8E900DEB96A /* libFWManuscript.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		A1F83AFF3050B99800DEB96A /* FWEditor */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1F83B063050B99800DEB96A /* Build configuration list for PBXNativeTarget "FWEditor" */;
-			buildPhases = (
-				A1F83AFC3050B99800DEB96A /* Headers */,
-				A1F83AFD3050B99800DEB96A /* Sources */,
-				A1F83AFE3050B99800DEB96A /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				ABF68A5C1A004C0993403718 /* PBXTargetDependency */,
-			);
-			name = FWEditor;
-			productName = FWEditor;
-			productReference = A1F83B003050B99800DEB96A /* libFWEditor.dylib */;
-			productType = "com.apple.product-type.library.dynamic";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -482,6 +478,9 @@
 						CreatedOnToolsVersion = 26.6;
 						TestTargetID = A1064850304DFCF6001A21A6;
 					};
+					A1CCD13730573F86004B4721 = {
+						CreatedOnToolsVersion = 26.6;
+					};
 					A1F839D73050B46200DEB96A = {
 						CreatedOnToolsVersion = 26.6;
 					};
@@ -490,9 +489,6 @@
 						TestTargetID = A1064850304DFCF6001A21A6;
 					};
 					A1F83AD93050B8E900DEB96A = {
-						CreatedOnToolsVersion = 26.6;
-					};
-					A1F83AFF3050B99800DEB96A = {
 						CreatedOnToolsVersion = 26.6;
 					};
 				};
@@ -527,7 +523,7 @@
 				A1F839D73050B46200DEB96A /* WriteKit */,
 				A1F839E13050B46200DEB96A /* WriteKitTests */,
 				A1F83AD93050B8E900DEB96A /* FWManuscript */,
-				A1F83AFF3050B99800DEB96A /* FWEditor */,
+				A1CCD13730573F86004B4721 /* WriteXPCService */,
 			);
 		};
 /* End PBXProject section */
@@ -544,6 +540,11 @@
 			);
 		};
 		A1064874304DFCF7001A21A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A1CCD13630573F86004B4721 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -576,6 +577,11 @@
 			files = (
 			);
 		};
+		A1CCD13430573F86004B4721 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 		A1F839D43050B46200DEB96A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
@@ -587,11 +593,6 @@
 			);
 		};
 		A1F83AD73050B8E900DEB96A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			files = (
-			);
-		};
-		A1F83AFD3050B99800DEB96A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
 			);
@@ -614,6 +615,11 @@
 			target = A1F839D73050B46200DEB96A /* WriteKit */;
 			targetProxy = A15AE2DA30572A3E001B9E7B /* PBXContainerItemProxy */;
 		};
+		A1CCD14230573F86004B4721 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1CCD13730573F86004B4721 /* WriteXPCService */;
+			targetProxy = A1CCD14130573F86004B4721 /* PBXContainerItemProxy */;
+		};
 		A1F839E53050B46200DEB96A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A1F839D73050B46200DEB96A /* WriteKit */;
@@ -629,20 +635,10 @@
 			target = A1F839D73050B46200DEB96A /* WriteKit */;
 			targetProxy = A1F839EB3050B46200DEB96A /* PBXContainerItemProxy */;
 		};
-		A1F83B123050B9A500DEB96A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F83AFF3050B99800DEB96A /* FWEditor */;
-			targetProxy = A1F83B113050B9A500DEB96A /* PBXContainerItemProxy */;
-		};
 		A1F83B163050B9A500DEB96A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A1F83AD93050B8E900DEB96A /* FWManuscript */;
 			targetProxy = A1F83B153050B9A500DEB96A /* PBXContainerItemProxy */;
-		};
-		ABF68A5C1A004C0993403718 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F83AD93050B8E900DEB96A /* FWManuscript */;
-			targetProxy = A1F83F37305101BB00DEB96A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -938,6 +934,52 @@
 			};
 			name = Release;
 		};
+		A1CCD14530573F86004B4721 /* Debug configuration for PBXNativeTarget "WriteXPCService" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WriteXPCService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WriteXPCService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project. All rights reserved.";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteXPCService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		A1CCD14630573F86004B4721 /* Release configuration for PBXNativeTarget "WriteXPCService" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WriteXPCService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WriteXPCService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project. All rights reserved.";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteXPCService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
 		A1F839EF3050B46200DEB96A /* Debug configuration for PBXNativeTarget "WriteKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -959,12 +1001,12 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULEMAP_FILE = "$(SRCROOT)/WriteKit/WriteKit.modulemap";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-Wl,-reexport-lFWManuscript",
-					"-Wl,-reexport-lFWEditor",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -997,12 +1039,12 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULEMAP_FILE = "$(SRCROOT)/WriteKit/WriteKit.modulemap";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-Wl,-reexport-lFWManuscript",
-					"-Wl,-reexport-lFWEditor",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1082,42 +1124,6 @@
 			};
 			name = Release;
 		};
-		A1F83B073050B99800DEB96A /* Debug configuration for PBXNativeTarget "FWEditor" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_NAME)";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@loader_path",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		A1F83B083050B99800DEB96A /* Release configuration for PBXNativeTarget "FWEditor" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_NAME)";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@loader_path",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1153,6 +1159,14 @@
 			);
 			defaultConfigurationName = Release;
 		};
+		A1CCD14430573F86004B4721 /* Build configuration list for PBXNativeTarget "WriteXPCService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1CCD14530573F86004B4721 /* Debug configuration for PBXNativeTarget "WriteXPCService" */,
+				A1CCD14630573F86004B4721 /* Release configuration for PBXNativeTarget "WriteXPCService" */,
+			);
+			defaultConfigurationName = Release;
+		};
 		A1F839F33050B46200DEB96A /* Build configuration list for PBXNativeTarget "WriteKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1174,14 +1188,6 @@
 			buildConfigurations = (
 				A1F83AE13050B8E900DEB96A /* Debug configuration for PBXNativeTarget "FWManuscript" */,
 				A1F83AE23050B8E900DEB96A /* Release configuration for PBXNativeTarget "FWManuscript" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		A1F83B063050B99800DEB96A /* Build configuration list for PBXNativeTarget "FWEditor" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1F83B073050B99800DEB96A /* Debug configuration for PBXNativeTarget "FWEditor" */,
-				A1F83B083050B99800DEB96A /* Release configuration for PBXNativeTarget "FWEditor" */,
 			);
 			defaultConfigurationName = Release;
 		};

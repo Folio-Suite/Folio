@@ -81,7 +81,7 @@ FolioKit provides shared foundations. WriteKit and ResearchKit provide their res
 | FKXMLSupport | Future XML exchange support | Retain the planned module place/target if included in the existing skeleton; no XML native persistence or speculative exporter is required |
 | WriteKit | Public Work authoring/document interface, reusable editor entry points, and orchestration of Write's internals | Be the application's normal entry point for authoring and persistence behavior |
 | FWManuscript | Work ownership of Content Units, Manuscript placement, and domain editing/model operations | Own the implemented Write model behavior |
-| FWEditor | AppKit text adaptation, semantic formatting commands, selection, and undo integration | Own the implemented editor behavior behind WriteKit |
+| WriteKit editor implementation | AppKit text adaptation, semantic formatting commands, selection, and undo integration | Compiled directly into WriteKit; no separate FWEditor library under ADR 0009 |
 | FWPersistence | Write-specific Core Data schema, context/store ownership, snapshot conversion, and native persistence adapter | Proposed internal module name for the separate persistence responsibility already discussed; implement behind WriteKit |
 | ResearchKit | Public Source Library domain framework and future reusable Research UI | Build and be used by the Research shell; shared text foundations come from FolioKit |
 
