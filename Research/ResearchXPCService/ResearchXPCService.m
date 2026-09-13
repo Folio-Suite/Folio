@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2026 the Folio Project
 // SPDX-License-Identifier: MIT
 
-#import "WriteXPCService.h"
+#import "ResearchXPCService.h"
 
-@implementation WriteXPCService
+@implementation ResearchXPCService
 @end

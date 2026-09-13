@@ -11,7 +11,7 @@ English is the development language. The Suite is configured for English, Spanis
 
 Use `NSLocalizedStringWithDefaultValue` with a stable, descriptive key, literal English fallback, and a translator comment. Name the intent, such as `work-package.read.error` or `manuscript.rename-content-unit.undo`, rather than using the English sentence as the key. Separate meanings even when their English spelling matches. Give AppKit the action name for undo; do not construct an English “Undo …” sentence.
 
-Resolve strings from the owning framework's bundle (`dev.foliosuite.FolioKit`, `dev.foliosuite.WriteKit`, or `dev.foliosuite.ResearchKit`). Classes in private dylibs do not own the resource catalogs; do not infer a resource bundle from their class or assume the application's main bundle. Application-owned strings use their app bundle.
+Resolve strings from the owning framework's bundle (`dev.foliosuite.FolioKit`, `dev.foliosuite.WriteKit`, or `dev.foliosuite.ResearchKit`). Implementation subfolders share that framework’s catalog; do not assume the application’s main bundle. Application-owned strings use their app bundle.
 
 Keep filenames, model attributes, format identifiers, action selectors, and accessibility identifiers stable and untranslated. Localize accessible labels and help. A new Content Unit gets its default title in the current language at creation; subsequently that title is authored data and must survive language changes unchanged.
 
@@ -25,7 +25,7 @@ Menus remain in each application's `Base.lproj/Main.storyboard`. The editor's sc
 
 ## Refresh and verify
 
-Run `python3 scripts/update-localizations.py --write` after changing source text or storyboard labels. This extracts Objective-C with `genstrings` and Interface Builder text with `ibtool`, preserves translations, marks changed translations for review, and retains removed entries as stale for explicit review. Private dylib sources are included in their enclosing framework's catalog. Run without `--write` to check that extracted keys and English values match; remove reviewed stale entries explicitly.
+Run `python3 scripts/update-localizations.py --write` after changing source text or storyboard labels. This extracts Objective-C with `genstrings` and Interface Builder text with `ibtool`, preserves translations, marks changed translations for review, and retains removed entries as stale for explicit review. Framework implementation subfolders are included in their owning framework’s catalog. Run without `--write` to check that extracted keys and English values match; remove reviewed stale entries explicitly.
 
 Composer’s Base storyboard and `mul.lproj/Main.xcstrings` catalog participate in the same extraction check.
 

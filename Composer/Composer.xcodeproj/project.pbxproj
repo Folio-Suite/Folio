@@ -14,6 +14,9 @@
 		A15AE2C63057296B001B9E7B /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE2AC3057248F001B9E7B /* FolioKit.framework */; };
 		A15AE2C8305729A6001B9E7B /* ComposerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE28C30572479001B9E7B /* ComposerKit.framework */; };
 		A15AE2E030572AF4001B9E7B /* Project.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A15AE2DF30572AF4001B9E7B /* Project.xcconfig */; };
+		A1CCD2F73057449E004B4721 /* ComposerXPCService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = A1CCD2EC3057449E004B4721 /* ComposerXPCService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A1CCD3173057454E004B4721 /* ComposerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE28C30572479001B9E7B /* ComposerKit.framework */; };
+		A1CCD31C3057456F004B4721 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE2AC3057248F001B9E7B /* FolioKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,20 @@
 			remoteGlobalIDString = A15AE28B30572479001B9E7B;
 			remoteInfo = ComposerKit;
 		};
+		A1CCD2F53057449E004B4721 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A15AE2463057244C001B9E7B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1CCD2EB3057449E004B4721;
+			remoteInfo = ComposerXPCService;
+		};
+		A1CCD3193057454E004B4721 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A15AE2463057244C001B9E7B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A15AE28B30572479001B9E7B;
+			remoteInfo = ComposerKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -73,6 +90,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A1CCD2F83057449E004B4721 /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+				A1CCD2F73057449E004B4721 /* ComposerXPCService.xpc in Embed XPC Services */,
+			);
+			name = "Embed XPC Services";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +111,7 @@
 		A15AE2963057247A001B9E7B /* ComposerKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComposerKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15AE2AC3057248F001B9E7B /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15AE2DF30572AF4001B9E7B /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		A1CCD2EC3057449E004B4721 /* ComposerXPCService.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = ComposerXPCService.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -95,13 +124,17 @@
 		};
 		A15AE2A63057247A001B9E7B /* Exceptions for "ComposerKit" folder in "ComposerKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				ComposerKit.modulemap,
-			);
 			publicHeaders = (
 				ComposerKit.h,
 			);
 			target = A15AE28B30572479001B9E7B /* ComposerKit */;
+		};
+		A1CCD2FC3057449E004B4721 /* Exceptions for "ComposerXPCService" folder in "ComposerXPCService" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A1CCD2EB3057449E004B4721 /* ComposerXPCService */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -135,6 +168,14 @@
 		A15AE29C3057247A001B9E7B /* ComposerKitTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ComposerKitTests;
+			sourceTree = "<group>";
+		};
+		A1CCD2ED3057449E004B4721 /* ComposerXPCService */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A1CCD2FC3057449E004B4721 /* Exceptions for "ComposerXPCService" folder in "ComposerXPCService" target */,
+			);
+			path = ComposerXPCService;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -180,6 +221,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A1CCD2E93057449E004B4721 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1CCD3173057454E004B4721 /* ComposerKit.framework in Frameworks */,
+				A1CCD31C3057456F004B4721 /* FolioKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -191,6 +241,7 @@
 				A15AE2763057244D001B9E7B /* ComposerUITests */,
 				A15AE28D30572479001B9E7B /* ComposerKit */,
 				A15AE29C3057247A001B9E7B /* ComposerKitTests */,
+				A1CCD2ED3057449E004B4721 /* ComposerXPCService */,
 				A15AE2AB3057248F001B9E7B /* Frameworks */,
 				A15AE24F3057244C001B9E7B /* Products */,
 				A15AE2DF30572AF4001B9E7B /* Project.xcconfig */,
@@ -205,6 +256,7 @@
 				A15AE2733057244D001B9E7B /* ComposerUITests.xctest */,
 				A15AE28C30572479001B9E7B /* ComposerKit.framework */,
 				A15AE2963057247A001B9E7B /* ComposerKitTests.xctest */,
+				A1CCD2EC3057449E004B4721 /* ComposerXPCService.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,11 +290,13 @@
 				A15AE24B3057244C001B9E7B /* Frameworks */,
 				A15AE24C3057244C001B9E7B /* Resources */,
 				A15AE2A73057247A001B9E7B /* Embed Frameworks */,
+				A1CCD2F83057449E004B4721 /* Embed XPC Services */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				A15AE2A03057247A001B9E7B /* PBXTargetDependency */,
+				A1CCD2F63057449E004B4721 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A15AE2503057244C001B9E7B /* Composer */,
@@ -348,6 +402,29 @@
 			productReference = A15AE2963057247A001B9E7B /* ComposerKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		A1CCD2EB3057449E004B4721 /* ComposerXPCService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1CCD2FB3057449E004B4721 /* Build configuration list for PBXNativeTarget "ComposerXPCService" */;
+			buildPhases = (
+				A1CCD2E83057449E004B4721 /* Sources */,
+				A1CCD2E93057449E004B4721 /* Frameworks */,
+				A1CCD2EA3057449E004B4721 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1CCD31A3057454E004B4721 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1CCD2ED3057449E004B4721 /* ComposerXPCService */,
+			);
+			name = ComposerXPCService;
+			packageProductDependencies = (
+			);
+			productName = ComposerXPCService;
+			productReference = A1CCD2EC3057449E004B4721 /* ComposerXPCService.xpc */;
+			productType = "com.apple.product-type.xpc-service";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -376,6 +453,9 @@
 					A15AE2953057247A001B9E7B = {
 						CreatedOnToolsVersion = 26.6;
 						TestTargetID = A15AE24D3057244C001B9E7B;
+					};
+					A1CCD2EB3057449E004B4721 = {
+						CreatedOnToolsVersion = 26.6;
 					};
 				};
 			};
@@ -408,6 +488,7 @@
 				A15AE2723057244D001B9E7B /* ComposerUITests */,
 				A15AE28B30572479001B9E7B /* ComposerKit */,
 				A15AE2953057247A001B9E7B /* ComposerKitTests */,
+				A1CCD2EB3057449E004B4721 /* ComposerXPCService */,
 			);
 		};
 /* End PBXProject section */
@@ -443,6 +524,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A15AE2943057247A001B9E7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1CCD2EA3057449E004B4721 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -487,6 +575,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A1CCD2E83057449E004B4721 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -519,6 +614,16 @@
 			isa = PBXTargetDependency;
 			target = A15AE28B30572479001B9E7B /* ComposerKit */;
 			targetProxy = A15AE2CA305729A6001B9E7B /* PBXContainerItemProxy */;
+		};
+		A1CCD2F63057449E004B4721 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1CCD2EB3057449E004B4721 /* ComposerXPCService */;
+			targetProxy = A1CCD2F53057449E004B4721 /* PBXContainerItemProxy */;
+		};
+		A1CCD31A3057454E004B4721 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A15AE28B30572479001B9E7B /* ComposerKit */;
+			targetProxy = A1CCD3193057454E004B4721 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -809,7 +914,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				MODULEMAP_FILE = "$(SRCROOT)/ComposerKit/ComposerKit.modulemap";
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -824,6 +928,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULEMAP_FILE = "$(SRCROOT)/ComposerKit/ComposerKit.modulemap";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ComposerKit;
@@ -843,7 +948,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				MODULEMAP_FILE = "$(SRCROOT)/ComposerKit/ComposerKit.modulemap";
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -858,6 +962,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULEMAP_FILE = "$(SRCROOT)/ComposerKit/ComposerKit.modulemap";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ComposerKit;
@@ -899,6 +1004,62 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Composer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Composer";
+			};
+			name = Release;
+		};
+		A1CCD2F93057449E004B4721 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ComposerXPCService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ComposerXPCService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project. All rights reserved.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../../../Frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ComposerXPCService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		A1CCD2FA3057449E004B4721 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ComposerXPCService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ComposerXPCService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project. All rights reserved.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../../../Frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ComposerXPCService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
@@ -955,6 +1116,15 @@
 			buildConfigurations = (
 				A15AE2A93057247A001B9E7B /* Debug */,
 				A15AE2AA3057247A001B9E7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1CCD2FB3057449E004B4721 /* Build configuration list for PBXNativeTarget "ComposerXPCService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1CCD2F93057449E004B4721 /* Debug */,
+				A1CCD2FA3057449E004B4721 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

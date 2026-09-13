@@ -60,8 +60,7 @@ current interfaces are evolving and do not carry a compatibility guarantee.
 
 Import `<WriteKit/WriteKit.h>` or use `@import WriteKit;`. The owning application
 uses this same interface as other hosts. Only the headers enumerated in the Kit's
-module map are supported; embedded libraries and other headers are private
-implementation. Apps and Kits ship as a coordinated Suite version. Mixed versions
+module map are supported; other headers are private implementation. Apps and Kits ship as a coordinated Suite version. Mixed versions
 are unsupported; this documentation does not promise independent binary compatibility.
 
 ## Topics

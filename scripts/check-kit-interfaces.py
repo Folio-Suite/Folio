@@ -77,8 +77,12 @@ def main():
                 require(token == f"{owner}/{header.name}" and header.name in public[owner],
                         f"{source.relative_to(ROOT)}: use {owner}'s public interface, not {token}")
 
-    require(not (products / "WriteKit.framework/Versions/Current/Frameworks/libFWEditor.dylib").exists(),
-            "FWEditor must be compiled into WriteKit, not embedded")
+    # These implementation folders now compile directly into their owning Kit.
+    for kit, names in {"FolioKit": ("FKModelFoundations", "FKPackageSupport", "FKXMLSupport"),
+                       "WriteKit": ("FWManuscript", "FWEditor")}.items():
+        for name in names:
+            require(not any((products / f"{kit}.framework").rglob(f"lib{name}.dylib")),
+                    f"{name} must compile into {kit}, not remain embedded")
     with tempfile.TemporaryDirectory(prefix="folio-kit-interface-") as temporary:
         stage = Path(temporary)
         # Only published bundles are visible; no Xcode header maps, source trees,
@@ -117,7 +121,7 @@ def main():
             result = subprocess.run(common + ["-fsyntax-only", str(source)], cwd=stage,
                                     text=True, capture_output=True)
             require(result.returncode != 0 and f"module '{name}' not found" in result.stderr,
-                    f"Private library module must not be importable: {name}\n{result.stderr}")
+                    f"Implementation folder must not be a public module: {name}\n{result.stderr}")
     print("Kit interfaces passed: exact published headers, caller imports, isolated compile/link, and private import rejection.")
 
 

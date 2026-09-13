@@ -73,6 +73,8 @@ FolioKit provides shared foundations. WriteKit and ResearchKit provide their res
 
 ### Frameworks and internal libraries
 
+**Updated by [ADR 0009](../adr/0009-continue-cocoa-suite-with-domain-kits.md):** the internal library target allocation below records the original milestone plan. The current implementation compiles those responsibilities directly into FolioKit and WriteKit. The ownership boundaries still apply; separate dynamic libraries and re-export wiring are no longer required. See the [current layout](../architecture/current-library-layout.md).
+
 | Module | Ownership in this milestone | Delivery expectation |
 | --- | --- | --- |
 | FolioKit | Public shared identity, semantic text foundations, and genuinely common document facilities | Implement only the shared interfaces needed by this shell; remain independent of application domains |

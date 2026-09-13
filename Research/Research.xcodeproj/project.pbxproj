@@ -11,6 +11,9 @@
 		A15AE2D2305729F6001B9E7B /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; };
 		A15AE2D4305729FD001B9E7B /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
 		A15AE2D5305729FD001B9E7B /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A1CCD310305744DF004B4721 /* ResearchXPCService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = A1CCD305305744DF004B4721 /* ResearchXPCService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A1CCD31F3057458D004B4721 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
+		A1CCD32430574594004B4721 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; };
 		A1F83A0B3050B4D200DEB96A /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
 		A1F83B193050BBAB00DEB96A /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; };
 /* End PBXBuildFile section */
@@ -31,6 +34,20 @@
 			remoteInfo = Research;
 		};
 		A15AE2CF305729DA001B9E7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1F839FF3050B4D100DEB96A;
+			remoteInfo = ResearchKit;
+		};
+		A1CCD30E305744DF004B4721 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1CCD304305744DF004B4721;
+			remoteInfo = ResearchXPCService;
+		};
+		A1CCD3213057458D004B4721 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
 			proxyType = 1;
@@ -70,6 +87,15 @@
 			);
 			name = "Embed Frameworks";
 		};
+		F01200000000000000000015 /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolder = Product;
+			files = (
+				A1CCD310305744DF004B4721 /* ResearchXPCService.xpc in Embed XPC Services */,
+			);
+			name = "Embed XPC Services";
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +103,7 @@
 		A10648AE304DFD5D001A21A6 /* ResearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10648B8304DFD5D001A21A6 /* ResearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15AE2BD30572766001B9E7B /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		A1CCD305305744DF004B4721 /* ResearchXPCService.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = ResearchXPCService.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F83A003050B4D100DEB96A /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F83A0A3050B4D200DEB96A /* ResearchKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F83B183050BBAB00DEB96A /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,11 +117,15 @@
 			);
 			target = A1064892304DFD5C001A21A6 /* Research */;
 		};
-		A1F83A1C3050B4D200DEB96A /* Exceptions for "ResearchKit" folder in "ResearchKit" target */ = {
+		A1CCD314305744DF004B4721 /* Exceptions for "ResearchXPCService" folder in "ResearchXPCService" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				ResearchKit.modulemap,
+				Info.plist,
 			);
+			target = A1CCD304305744DF004B4721 /* ResearchXPCService */;
+		};
+		A1F83A1C3050B4D200DEB96A /* Exceptions for "ResearchKit" folder in "ResearchKit" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			publicHeaders = (
 				FRLibraryPackage.h,
 				ResearchKit.h,
@@ -120,6 +151,14 @@
 		A10648BB304DFD5D001A21A6 /* ResearchUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ResearchUITests;
+			sourceTree = "<group>";
+		};
+		A1CCD306305744DF004B4721 /* ResearchXPCService */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A1CCD314305744DF004B4721 /* Exceptions for "ResearchXPCService" folder in "ResearchXPCService" target */,
+			);
+			path = ResearchXPCService;
 			sourceTree = "<group>";
 		};
 		A1F83A013050B4D100DEB96A /* ResearchKit */ = {
@@ -156,6 +195,13 @@
 			files = (
 			);
 		};
+		A1CCD302305744DF004B4721 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				A1CCD31F3057458D004B4721 /* ResearchKit.framework in Frameworks */,
+				A1CCD32430574594004B4721 /* FolioKit.framework in Frameworks */,
+			);
+		};
 		A1F839FD3050B4D100DEB96A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
@@ -179,6 +225,7 @@
 				A10648BB304DFD5D001A21A6 /* ResearchUITests */,
 				A1F83A013050B4D100DEB96A /* ResearchKit */,
 				A1F83A103050B4D200DEB96A /* ResearchKitTests */,
+				A1CCD306305744DF004B4721 /* ResearchXPCService */,
 				A1F83AC33050B83D00DEB96A /* Frameworks */,
 				A1064894304DFD5C001A21A6 /* Products */,
 				A15AE2BD30572766001B9E7B /* Project.xcconfig */,
@@ -193,6 +240,7 @@
 				A10648B8304DFD5D001A21A6 /* ResearchUITests.xctest */,
 				A1F83A003050B4D100DEB96A /* ResearchKit.framework */,
 				A1F83A0A3050B4D200DEB96A /* ResearchKitTests.xctest */,
+				A1CCD305305744DF004B4721 /* ResearchXPCService.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,6 +268,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A10648C1304DFD5D001A21A6 /* Build configuration list for PBXNativeTarget "Research" */;
 			buildPhases = (
+				F01200000000000000000015 /* Embed XPC Services */,
 				A106488F304DFD5C001A21A6 /* Sources */,
 				A1064890304DFD5C001A21A6 /* Frameworks */,
 				A1064891304DFD5C001A21A6 /* Resources */,
@@ -229,6 +278,7 @@
 			);
 			dependencies = (
 				A1F83AC83050B83D00DEB96A /* PBXTargetDependency */,
+				A1CCD30F305744DF004B4721 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A1064895304DFD5C001A21A6 /* Research */,
@@ -280,6 +330,27 @@
 			productName = ResearchUITests;
 			productReference = A10648B8304DFD5D001A21A6 /* ResearchUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		A1CCD304305744DF004B4721 /* ResearchXPCService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1CCD311305744DF004B4721 /* Build configuration list for PBXNativeTarget "ResearchXPCService" */;
+			buildPhases = (
+				A1CCD301305744DF004B4721 /* Sources */,
+				A1CCD302305744DF004B4721 /* Frameworks */,
+				A1CCD303305744DF004B4721 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1CCD3223057458D004B4721 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1CCD306305744DF004B4721 /* ResearchXPCService */,
+			);
+			name = ResearchXPCService;
+			productName = ResearchXPCService;
+			productReference = A1CCD305305744DF004B4721 /* ResearchXPCService.xpc */;
+			productType = "com.apple.product-type.xpc-service";
 		};
 		A1F839FF3050B4D100DEB96A /* ResearchKit */ = {
 			isa = PBXNativeTarget;
@@ -344,6 +415,9 @@
 						CreatedOnToolsVersion = 26.6;
 						TestTargetID = A1064892304DFD5C001A21A6;
 					};
+					A1CCD304305744DF004B4721 = {
+						CreatedOnToolsVersion = 26.6;
+					};
 					A1F839FF3050B4D100DEB96A = {
 						CreatedOnToolsVersion = 26.6;
 					};
@@ -382,6 +456,7 @@
 				A10648B7304DFD5D001A21A6 /* ResearchUITests */,
 				A1F839FF3050B4D100DEB96A /* ResearchKit */,
 				A1F83A093050B4D200DEB96A /* ResearchKitTests */,
+				A1CCD304305744DF004B4721 /* ResearchXPCService */,
 			);
 		};
 /* End PBXProject section */
@@ -398,6 +473,11 @@
 			);
 		};
 		A10648B6304DFD5D001A21A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A1CCD303305744DF004B4721 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -430,6 +510,11 @@
 			files = (
 			);
 		};
+		A1CCD301305744DF004B4721 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 		A1F839FC3050B4D100DEB96A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
@@ -457,6 +542,16 @@
 			isa = PBXTargetDependency;
 			target = A1F839FF3050B4D100DEB96A /* ResearchKit */;
 			targetProxy = A15AE2CF305729DA001B9E7B /* PBXContainerItemProxy */;
+		};
+		A1CCD30F305744DF004B4721 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1CCD304305744DF004B4721 /* ResearchXPCService */;
+			targetProxy = A1CCD30E305744DF004B4721 /* PBXContainerItemProxy */;
+		};
+		A1CCD3223057458D004B4721 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1F839FF3050B4D100DEB96A /* ResearchKit */;
+			targetProxy = A1CCD3213057458D004B4721 /* PBXContainerItemProxy */;
 		};
 		A1F83A0D3050B4D200DEB96A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -765,6 +860,64 @@
 			};
 			name = Release;
 		};
+		A1CCD312305744DF004B4721 /* Debug configuration for PBXNativeTarget "ResearchXPCService" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ResearchXPCService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ResearchXPCService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project. All rights reserved.";
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../../../Frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchXPCService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		A1CCD313305744DF004B4721 /* Release configuration for PBXNativeTarget "ResearchXPCService" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ResearchXPCService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ResearchXPCService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project. All rights reserved.";
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../../../Frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchXPCService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
 		A1F83A173050B4D200DEB96A /* Debug configuration for PBXNativeTarget "ResearchKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -772,7 +925,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				MODULEMAP_FILE = "$(SRCROOT)/ResearchKit/ResearchKit.modulemap";
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -787,6 +939,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULEMAP_FILE = "$(SRCROOT)/ResearchKit/ResearchKit.modulemap";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKit;
@@ -806,7 +959,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				MODULEMAP_FILE = "$(SRCROOT)/ResearchKit/ResearchKit.modulemap";
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -821,6 +973,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				MODULEMAP_FILE = "$(SRCROOT)/ResearchKit/ResearchKit.modulemap";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKit;
@@ -897,6 +1050,14 @@
 			buildConfigurations = (
 				A10648CA304DFD5D001A21A6 /* Debug configuration for PBXNativeTarget "ResearchUITests" */,
 				A10648CB304DFD5D001A21A6 /* Release configuration for PBXNativeTarget "ResearchUITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1CCD311305744DF004B4721 /* Build configuration list for PBXNativeTarget "ResearchXPCService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1CCD312305744DF004B4721 /* Debug configuration for PBXNativeTarget "ResearchXPCService" */,
+				A1CCD313305744DF004B4721 /* Release configuration for PBXNativeTarget "ResearchXPCService" */,
 			);
 			defaultConfigurationName = Release;
 		};

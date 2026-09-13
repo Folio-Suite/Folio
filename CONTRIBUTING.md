@@ -7,13 +7,13 @@ SPDX-License-Identifier: MIT
 
 Folio is a monorepo. Clone it with `git clone <repository-url>` and open the workspace at the repository root. FolioKit, Write, Research, and Composer retain separate Xcode projects and module ownership within this checkout.
 
-Open `Folio.xcworkspace`. Use the shared **Write**, **Research**, or **Composer** scheme to run an application, **FolioKit** for framework work, and **Folio** to build or test the entire Suite. The applications use their domain frameworks, which consume FolioKit. Internal dynamic libraries are embedded in their owning frameworks. Application linking and embedding are being configured for an installed shared-framework deployment. A successful build does not establish that an app is self-contained or that its installed dependencies resolve outside Xcode. Open the enclosing workspace when developing the applications.
+Open `Folio.xcworkspace`. Use the shared **Write**, **Research**, or **Composer** scheme to run an application, **FolioKit** for framework work, and **Folio** to build or test the entire Suite. The applications use their domain frameworks, which consume FolioKit. Implementation sources compile directly into their owning frameworks. Application linking and embedding are being configured for an installed shared-framework deployment. A successful build does not establish that an app is self-contained or that its installed dependencies resolve outside Xcode. Open the enclosing workspace when developing the applications.
 
 The current skeleton uses Xcode 26.6 and a macOS 26.5 deployment target. `Config/Suite.xcconfig` controls the Suite minimum; each component retains a standalone fallback in its own `Project.xcconfig`. Signing uses the existing project team settings. Contributors may select their own team locally; keep personal signing changes out of shared commits.
 
 ## Validation
 
-Build the shared **Folio** scheme in Xcode, or run `xcodebuild -workspace Folio.xcworkspace -scheme Folio -configuration Debug -destination 'platform=macOS' build` from the parent checkout. `scripts/check-build.sh` performs a clean unsigned Suite build and checks application and framework products. It does not validate signing, installed framework resolution, runtime loading, or distribution packaging. Composer and its tests remain skeletons.
+Build the shared **Folio** scheme in Xcode, or run `xcodebuild -workspace Folio.xcworkspace -scheme Folio -configuration Debug -destination 'platform=macOS' build` from the parent checkout. `scripts/check-build.sh` performs a clean unsigned Suite build and checks application and framework products. It does not validate signing, installed framework resolution, runtime loading, or distribution packaging. Composer and its tests remain skeletons. Each app embeds its own XPC service skeleton; the build check verifies all three products exist.
 
 For the editor and package tests, select **Write** in Xcode and use Product → Test. That scheme includes FolioKitTests, WriteKitTests, WriteTests, and WriteUITests. Start native UI runners through Xcode, or prepare the signed test products with build-for-testing before using the CLI test runner. The shared **Folio** scheme also covers the Research shell, including native file-type discovery, package reopening, and preservation of collected files across saves. Its remaining framework and UI tests are templates. Passing the current tests does not prove cross-application Work Session or archival behavior.
 
@@ -50,9 +50,9 @@ explicit list lives in `<Kit>.modulemap` alongside each Kit’s umbrella header.
 an interface, update that map, the Kit umbrella, Xcode's Public header membership,
 and DocC together. Keep implementation headers at Project visibility; do not
 publish them as Private headers or add repository header search paths to callers.
-Embedded libraries are private implementation and are linked only by their owning
-Kit. Reusable Kit types implemented in those libraries remain accessible through
-the Kit's public headers and linker re-exports.
+Implementation sources compile into the owning Kit. Separate libraries require
+demonstrated reuse; if introduced, their interfaces remain private to their owning
+Kit unless deliberately adopted as a separate public boundary.
 
 `Config/Suite.xcconfig` enables modules and explicit module builds. The normal
 `scripts/check-build.sh` also checks actual exported headers, rejects private

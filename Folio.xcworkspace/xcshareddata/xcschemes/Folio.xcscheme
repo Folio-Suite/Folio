@@ -62,6 +62,20 @@
                ReferencedContainer = "container:FolioKit/FolioKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A15AE24D3057244C001B9E7B"
+               BuildableName = "Composer.app"
+               BlueprintName = "Composer"
+               ReferencedContainer = "container:Composer/Composer.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

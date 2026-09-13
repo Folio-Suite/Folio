@@ -29,16 +29,6 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)testExample {
-    // UI tests must launch the application that they test.
-    XCUIApplication *app = [[XCUIApplication alloc] init];
-    [app launch];
-
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-    // XCUIAutomation Documentation
-    // https://developer.apple.com/documentation/xcuiautomation
-}
-
 - (void)testLaunchPerformance {
     // This measures how long it takes to launch your application.
     [self measureWithMetrics:@[[[XCTApplicationLaunchMetric alloc] init]] block:^{

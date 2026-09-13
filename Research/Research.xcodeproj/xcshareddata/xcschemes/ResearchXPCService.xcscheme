@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A1F83A843050B76800DEB96A"
-               BuildableName = "libFKModelFoundations.dylib"
-               BlueprintName = "FKModelFoundations"
-               ReferencedContainer = "container:FolioKit.xcodeproj">
+               BlueprintIdentifier = "A1CCD304305744DF004B4721"
+               BuildableName = "ResearchXPCService.xpc"
+               BlueprintName = "ResearchXPCService"
+               ReferencedContainer = "container:Research.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -51,10 +51,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A1F83A843050B76800DEB96A"
-            BuildableName = "libFKModelFoundations.dylib"
-            BlueprintName = "FKModelFoundations"
-            ReferencedContainer = "container:FolioKit.xcodeproj">
+            BlueprintIdentifier = "A1CCD304305744DF004B4721"
+            BuildableName = "ResearchXPCService.xpc"
+            BlueprintName = "ResearchXPCService"
+            ReferencedContainer = "container:Research.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

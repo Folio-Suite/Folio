@@ -4,8 +4,8 @@
 
 """Check English catalogs against Objective-C and Interface Builder; --write refreshes them.
 
-Private dylibs share their enclosing framework's resource catalog. Extract their
-sources explicitly because they do not own a resource bundle or catalog target.
+Extract each application's and framework's source tree into its owning catalog,
+including implementation sources in organizational subfolders.
 Requires the active Xcode developer tools. Existing translations are preserved.
 """
 import argparse

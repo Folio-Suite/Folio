@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A1F83A973050B7AF00DEB96A"
-               BuildableName = "libFKXMLSupport.dylib"
-               BlueprintName = "FKXMLSupport"
-               ReferencedContainer = "container:FolioKit.xcodeproj">
+               BlueprintIdentifier = "A1CCD13730573F86004B4721"
+               BuildableName = "WriteXPCService.xpc"
+               BlueprintName = "WriteXPCService"
+               ReferencedContainer = "container:Write.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -51,10 +51,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A1F83A973050B7AF00DEB96A"
-            BuildableName = "libFKXMLSupport.dylib"
-            BlueprintName = "FKXMLSupport"
-            ReferencedContainer = "container:FolioKit.xcodeproj">
+            BlueprintIdentifier = "A1CCD13730573F86004B4721"
+            BuildableName = "WriteXPCService.xpc"
+            BlueprintName = "WriteXPCService"
+            ReferencedContainer = "container:Write.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

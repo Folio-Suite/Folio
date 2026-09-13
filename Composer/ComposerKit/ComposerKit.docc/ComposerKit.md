@@ -22,6 +22,5 @@ from the complete archival folio and from generated Renditions.
 
 Import `<ComposerKit/ComposerKit.h>` or use `@import ComposerKit;`. The owning application
 uses this same interface as other hosts. Only the headers enumerated in the Kit's
-module map are supported; embedded libraries and other headers are private
-implementation. Apps and Kits ship as a coordinated Suite version. Mixed versions
+module map are supported; other headers are private implementation. Apps and Kits ship as a coordinated Suite version. Mixed versions
 are unsupported; this documentation does not promise independent binary compatibility.

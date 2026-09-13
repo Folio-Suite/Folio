@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2026 the Folio Project
 // SPDX-License-Identifier: MIT
 
-#import "WriteXPCService.h"
+#import "ComposerXPCService.h"
 
 @interface ServiceDelegate : NSObject <NSXPCListenerDelegate>
 @end
@@ -9,8 +9,8 @@
 @implementation ServiceDelegate
 
 - (BOOL)listener:(NSXPCListener *)listener shouldAcceptNewConnection:(NSXPCConnection *)connection {
-    connection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(WriteXPCServiceProtocol)];
-    connection.exportedObject = [WriteXPCService new];
+    connection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ComposerXPCServiceProtocol)];
+    connection.exportedObject = [ComposerXPCService new];
     [connection resume];
     return YES;
 }

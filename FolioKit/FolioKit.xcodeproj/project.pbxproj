@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A10648E2304DFE13001A21A6 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10648D6304DFE13001A21A6 /* FolioKit.framework */; };
-		A1F83AB43050B7CE00DEB96A /* libFKModelFoundations.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A853050B76800DEB96A /* libFKModelFoundations.dylib */; };
-		A1F83AB53050B7CE00DEB96A /* libFKModelFoundations.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = A1F83A853050B76800DEB96A /* libFKModelFoundations.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		A1F83AB83050B7CE00DEB96A /* libFKPackageSupport.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83AAB3050B7C700DEB96A /* libFKPackageSupport.dylib */; };
-		A1F83AB93050B7CE00DEB96A /* libFKPackageSupport.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = A1F83AAB3050B7C700DEB96A /* libFKPackageSupport.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		A1F83ABC3050B7CE00DEB96A /* libFKXMLSupport.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A983050B7AF00DEB96A /* libFKXMLSupport.dylib */; };
-		A1F83ABD3050B7CE00DEB96A /* libFKXMLSupport.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = A1F83A983050B7AF00DEB96A /* libFKXMLSupport.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,61 +18,22 @@
 			remoteGlobalIDString = A10648D5304DFE13001A21A6;
 			remoteInfo = FolioKit;
 		};
-		A1F83AB63050B7CE00DEB96A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A10648CD304DFE13001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F83A843050B76800DEB96A;
-			remoteInfo = FKModelFoundations;
-		};
-		A1F83ABA3050B7CE00DEB96A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A10648CD304DFE13001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F83AAA3050B7C700DEB96A;
-			remoteInfo = FKPackageSupport;
-		};
-		A1F83ABE3050B7CE00DEB96A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A10648CD304DFE13001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F83A973050B7AF00DEB96A;
-			remoteInfo = FKXMLSupport;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A1F83A423050B56A00DEB96A /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			dstPath = "";
-			dstSubfolder = Frameworks;
-			files = (
-				A1F83ABD3050B7CE00DEB96A /* libFKXMLSupport.dylib in Embed Libraries */,
-				A1F83AB93050B7CE00DEB96A /* libFKPackageSupport.dylib in Embed Libraries */,
-				A1F83AB53050B7CE00DEB96A /* libFKModelFoundations.dylib in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A10648D6304DFE13001A21A6 /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10648E1304DFE13001A21A6 /* FolioKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FolioKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15AE2BB30572732001B9E7B /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
-		A1F83A853050B76800DEB96A /* libFKModelFoundations.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFKModelFoundations.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1F83A983050B7AF00DEB96A /* libFKXMLSupport.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFKXMLSupport.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1F83AAB3050B7C700DEB96A /* libFKPackageSupport.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFKPackageSupport.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
 		A10648E8304DFE13001A21A6 /* Exceptions for "FolioKit" folder in "FolioKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				FolioKit.modulemap,
-				FKModelFoundations/FKText.m,
-				FKPackageSupport/FKPackageSupport.m,
 				FKXMLSupport/FKXMLSupport.h,
-				FKXMLSupport/FKXMLSupport.m,
 			);
 			publicHeaders = (
 				FKModelFoundations/FKText.h,
@@ -87,29 +42,6 @@
 			);
 			target = A10648D5304DFE13001A21A6 /* FolioKit */;
 		};
-		A1F83A933050B77100DEB96A /* Exceptions for "FolioKit" folder in "FKModelFoundations" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				FKModelFoundations/FKText.m,
-			);
-			target = A1F83A843050B76800DEB96A /* FKModelFoundations */;
-		};
-		A1F83AA63050B7B400DEB96A /* Exceptions for "FolioKit" folder in "FKXMLSupport" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				FKXMLSupport/FKXMLSupport.h,
-				FKXMLSupport/FKXMLSupport.m,
-			);
-			target = A1F83A973050B7AF00DEB96A /* FKXMLSupport */;
-		};
-		A1F83AFB3050B98700DEB96A /* Exceptions for "FolioKit" folder in "FKPackageSupport" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				FKPackageSupport/FKPackageSupport.h,
-				FKPackageSupport/FKPackageSupport.m,
-			);
-			target = A1F83AAA3050B7C700DEB96A /* FKPackageSupport */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -117,9 +49,6 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				A10648E8304DFE13001A21A6 /* Exceptions for "FolioKit" folder in "FolioKit" target */,
-				A1F83A933050B77100DEB96A /* Exceptions for "FolioKit" folder in "FKModelFoundations" target */,
-				A1F83AA63050B7B400DEB96A /* Exceptions for "FolioKit" folder in "FKXMLSupport" target */,
-				A1F83AFB3050B98700DEB96A /* Exceptions for "FolioKit" folder in "FKPackageSupport" target */,
 			);
 			path = FolioKit;
 			sourceTree = "<group>";
@@ -135,30 +64,12 @@
 		A10648D3304DFE13001A21A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				A1F83ABC3050B7CE00DEB96A /* libFKXMLSupport.dylib in Frameworks */,
-				A1F83AB83050B7CE00DEB96A /* libFKPackageSupport.dylib in Frameworks */,
-				A1F83AB43050B7CE00DEB96A /* libFKModelFoundations.dylib in Frameworks */,
 			);
 		};
 		A10648DE304DFE13001A21A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
 				A10648E2304DFE13001A21A6 /* FolioKit.framework in Frameworks */,
-			);
-		};
-		A1F83A833050B76800DEB96A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-			);
-		};
-		A1F83A963050B7AF00DEB96A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-			);
-		};
-		A1F83AA93050B7C700DEB96A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -180,9 +91,6 @@
 			children = (
 				A10648D6304DFE13001A21A6 /* FolioKit.framework */,
 				A10648E1304DFE13001A21A6 /* FolioKitTests.xctest */,
-				A1F83A853050B76800DEB96A /* libFKModelFoundations.dylib */,
-				A1F83A983050B7AF00DEB96A /* libFKXMLSupport.dylib */,
-				A1F83AAB3050B7C700DEB96A /* libFKPackageSupport.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,21 +110,6 @@
 			files = (
 			);
 		};
-		A1F83A813050B76800DEB96A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			files = (
-			);
-		};
-		A1F83A943050B7AF00DEB96A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			files = (
-			);
-		};
-		A1F83AA73050B7C700DEB96A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			files = (
-			);
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -228,14 +121,8 @@
 				A10648D2304DFE13001A21A6 /* Sources */,
 				A10648D3304DFE13001A21A6 /* Frameworks */,
 				A10648D4304DFE13001A21A6 /* Resources */,
-				A1F83A423050B56A00DEB96A /* Embed Libraries */,
 			);
 			buildRules = (
-			);
-			dependencies = (
-				A1F83AB73050B7CE00DEB96A /* PBXTargetDependency */,
-				A1F83ABB3050B7CE00DEB96A /* PBXTargetDependency */,
-				A1F83ABF3050B7CE00DEB96A /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A10648D8304DFE13001A21A6 /* FolioKit */,
@@ -266,51 +153,6 @@
 			productReference = A10648E1304DFE13001A21A6 /* FolioKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		A1F83A843050B76800DEB96A /* FKModelFoundations */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1F83A8B3050B76800DEB96A /* Build configuration list for PBXNativeTarget "FKModelFoundations" */;
-			buildPhases = (
-				A1F83A813050B76800DEB96A /* Headers */,
-				A1F83A823050B76800DEB96A /* Sources */,
-				A1F83A833050B76800DEB96A /* Frameworks */,
-			);
-			buildRules = (
-			);
-			name = FKModelFoundations;
-			productName = FKModelFoundations;
-			productReference = A1F83A853050B76800DEB96A /* libFKModelFoundations.dylib */;
-			productType = "com.apple.product-type.library.dynamic";
-		};
-		A1F83A973050B7AF00DEB96A /* FKXMLSupport */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1F83A9E3050B7AF00DEB96A /* Build configuration list for PBXNativeTarget "FKXMLSupport" */;
-			buildPhases = (
-				A1F83A943050B7AF00DEB96A /* Headers */,
-				A1F83A953050B7AF00DEB96A /* Sources */,
-				A1F83A963050B7AF00DEB96A /* Frameworks */,
-			);
-			buildRules = (
-			);
-			name = FKXMLSupport;
-			productName = FKXMLSupport;
-			productReference = A1F83A983050B7AF00DEB96A /* libFKXMLSupport.dylib */;
-			productType = "com.apple.product-type.library.dynamic";
-		};
-		A1F83AAA3050B7C700DEB96A /* FKPackageSupport */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1F83AB13050B7C700DEB96A /* Build configuration list for PBXNativeTarget "FKPackageSupport" */;
-			buildPhases = (
-				A1F83AA73050B7C700DEB96A /* Headers */,
-				A1F83AA83050B7C700DEB96A /* Sources */,
-				A1F83AA93050B7C700DEB96A /* Frameworks */,
-			);
-			buildRules = (
-			);
-			name = FKPackageSupport;
-			productName = FKPackageSupport;
-			productReference = A1F83AAB3050B7C700DEB96A /* libFKPackageSupport.dylib */;
-			productType = "com.apple.product-type.library.dynamic";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -326,15 +168,6 @@
 						CreatedOnToolsVersion = 26.6;
 					};
 					A10648E0304DFE13001A21A6 = {
-						CreatedOnToolsVersion = 26.6;
-					};
-					A1F83A843050B76800DEB96A = {
-						CreatedOnToolsVersion = 26.6;
-					};
-					A1F83A973050B7AF00DEB96A = {
-						CreatedOnToolsVersion = 26.6;
-					};
-					A1F83AAA3050B7C700DEB96A = {
 						CreatedOnToolsVersion = 26.6;
 					};
 				};
@@ -365,9 +198,6 @@
 			targets = (
 				A10648D5304DFE13001A21A6 /* FolioKit */,
 				A10648E0304DFE13001A21A6 /* FolioKitTests */,
-				A1F83A843050B76800DEB96A /* FKModelFoundations */,
-				A1F83A973050B7AF00DEB96A /* FKXMLSupport */,
-				A1F83AAA3050B7C700DEB96A /* FKPackageSupport */,
 			);
 		};
 /* End PBXProject section */
@@ -396,21 +226,6 @@
 			files = (
 			);
 		};
-		A1F83A823050B76800DEB96A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			files = (
-			);
-		};
-		A1F83A953050B7AF00DEB96A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			files = (
-			);
-		};
-		A1F83AA83050B7C700DEB96A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			files = (
-			);
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -418,21 +233,6 @@
 			isa = PBXTargetDependency;
 			target = A10648D5304DFE13001A21A6 /* FolioKit */;
 			targetProxy = A10648E3304DFE13001A21A6 /* PBXContainerItemProxy */;
-		};
-		A1F83AB73050B7CE00DEB96A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F83A843050B76800DEB96A /* FKModelFoundations */;
-			targetProxy = A1F83AB63050B7CE00DEB96A /* PBXContainerItemProxy */;
-		};
-		A1F83ABB3050B7CE00DEB96A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F83AAA3050B7C700DEB96A /* FKPackageSupport */;
-			targetProxy = A1F83ABA3050B7CE00DEB96A /* PBXContainerItemProxy */;
-		};
-		A1F83ABF3050B7CE00DEB96A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F83A973050B7AF00DEB96A /* FKXMLSupport */;
-			targetProxy = A1F83ABE3050B7CE00DEB96A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -461,11 +261,6 @@
 				MODULEMAP_FILE = "$(SRCROOT)/FolioKit/FolioKit.modulemap";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-reexport-lFKModelFoundations",
-					"-Wl,-reexport-lFKPackageSupport",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.FolioKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -498,11 +293,6 @@
 				MODULEMAP_FILE = "$(SRCROOT)/FolioKit/FolioKit.modulemap";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl,-reexport-lFKModelFoundations",
-					"-Wl,-reexport-lFKPackageSupport",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.FolioKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -666,90 +456,6 @@
 			};
 			name = Release;
 		};
-		A1F83A8C3050B76800DEB96A /* Debug configuration for PBXNativeTarget "FKModelFoundations" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_NAME)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		A1F83A8D3050B76800DEB96A /* Release configuration for PBXNativeTarget "FKModelFoundations" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_NAME)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		A1F83A9F3050B7AF00DEB96A /* Debug configuration for PBXNativeTarget "FKXMLSupport" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_NAME)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		A1F83AA03050B7AF00DEB96A /* Release configuration for PBXNativeTarget "FKXMLSupport" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_NAME)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		A1F83AB23050B7C700DEB96A /* Debug configuration for PBXNativeTarget "FKPackageSupport" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_NAME)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		A1F83AB33050B7C700DEB96A /* Release configuration for PBXNativeTarget "FKPackageSupport" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_NAME)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -774,30 +480,6 @@
 			buildConfigurations = (
 				A10648EF304DFE13001A21A6 /* Debug configuration for PBXNativeTarget "FolioKitTests" */,
 				A10648F0304DFE13001A21A6 /* Release configuration for PBXNativeTarget "FolioKitTests" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		A1F83A8B3050B76800DEB96A /* Build configuration list for PBXNativeTarget "FKModelFoundations" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1F83A8C3050B76800DEB96A /* Debug configuration for PBXNativeTarget "FKModelFoundations" */,
-				A1F83A8D3050B76800DEB96A /* Release configuration for PBXNativeTarget "FKModelFoundations" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		A1F83A9E3050B7AF00DEB96A /* Build configuration list for PBXNativeTarget "FKXMLSupport" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1F83A9F3050B7AF00DEB96A /* Debug configuration for PBXNativeTarget "FKXMLSupport" */,
-				A1F83AA03050B7AF00DEB96A /* Release configuration for PBXNativeTarget "FKXMLSupport" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		A1F83AB13050B7C700DEB96A /* Build configuration list for PBXNativeTarget "FKPackageSupport" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1F83AB23050B7C700DEB96A /* Debug configuration for PBXNativeTarget "FKPackageSupport" */,
-				A1F83AB33050B7C700DEB96A /* Release configuration for PBXNativeTarget "FKPackageSupport" */,
 			);
 			defaultConfigurationName = Release;
 		};

@@ -1,16 +1,16 @@
-# ``WriteXPCService``
+# ``ResearchXPCService``
 
 <!--
 SPDX-FileCopyrightText: 2026 the Folio Project
 SPDX-License-Identifier: MIT
 -->
 
-The bundled Write service skeleton.
+The bundled Research service skeleton.
 
 ## Overview
 
-Write embeds this per-app NSXPC service. The listener and empty transport protocol
-reserve a place for future operations implemented through WriteKit's public
+Research embeds this per-app NSXPC service. The listener and empty transport protocol
+reserve a place for future operations implemented through ResearchKit's public
 interface. No domain operations or application clients are implemented yet.
 
 This service does not establish shared cross-app authority. Work Session hosting

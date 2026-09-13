@@ -10,7 +10,7 @@
 
 // Supported entry point for every host, including the owning application.
 // Only headers listed in the Kit module map form the public interface.
-// Embedded libraries and other headers are private implementation.
+// Internal modules and their unpublished headers are private implementation.
 #import <Foundation/Foundation.h>
 #import <WriteKit/FWWork.h>
 #import <WriteKit/FWEditorViewController.h>

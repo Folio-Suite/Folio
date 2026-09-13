@@ -4,5 +4,5 @@
 #import <Foundation/Foundation.h>
 
 // Reserved for domain operations implemented through the owning Kit.
-@protocol WriteXPCServiceProtocol
+@protocol ResearchXPCServiceProtocol
 @end
