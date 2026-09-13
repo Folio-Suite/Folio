@@ -1,0 +1,2400 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "1UK-8n-QPP.title": {
+      "comment": "1UK-8n-QPP — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Customize Toolbar…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Customize Toolbar…"
+          }
+        }
+      }
+    },
+    "1Xt-HY-uBw.title": {
+      "comment": "1Xt-HY-uBw — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Composer"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Composer"
+          }
+        }
+      }
+    },
+    "1b7-l0-nxx.title": {
+      "comment": "1b7-l0-nxx — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find"
+          }
+        }
+      }
+    },
+    "1tx-W0-xDw.title": {
+      "comment": "1tx-W0-xDw — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lower"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lower"
+          }
+        }
+      }
+    },
+    "2h7-ER-AoG.title": {
+      "comment": "2h7-ER-AoG — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raise"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raise"
+          }
+        }
+      }
+    },
+    "2oI-Rn-ZJC.title": {
+      "comment": "2oI-Rn-ZJC — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transformations"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transformations"
+          }
+        }
+      }
+    },
+    "3IN-sU-3Bg.title": {
+      "comment": "3IN-sU-3Bg — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spelling"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spelling"
+          }
+        }
+      }
+    },
+    "3Om-Ey-2VK.title": {
+      "comment": "3Om-Ey-2VK — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Default"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Default"
+          }
+        }
+      }
+    },
+    "3rS-ZA-NoH.title": {
+      "comment": "3rS-ZA-NoH — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speech"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speech"
+          }
+        }
+      }
+    },
+    "46P-cB-AYj.title": {
+      "comment": "46P-cB-AYj — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tighten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tighten"
+          }
+        }
+      }
+    },
+    "4EN-yA-p0u.title": {
+      "comment": "4EN-yA-p0u — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find"
+          }
+        }
+      }
+    },
+    "4J7-dP-txa.title": {
+      "comment": "4J7-dP-txa — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter Full Screen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter Full Screen"
+          }
+        }
+      }
+    },
+    "4sb-4s-VLi.title": {
+      "comment": "4sb-4s-VLi — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit Composer"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit Composer"
+          }
+        }
+      }
+    },
+    "5QF-Oa-p0T.title": {
+      "comment": "5QF-Oa-p0T — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        }
+      }
+    },
+    "5Vv-lz-BsD.title": {
+      "comment": "5Vv-lz-BsD — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Style"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Style"
+          }
+        }
+      }
+    },
+    "5kV-Vb-QxS.title": {
+      "comment": "5kV-Vb-QxS — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About Composer"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About Composer"
+          }
+        }
+      }
+    },
+    "6dh-zS-Vam.title": {
+      "comment": "6dh-zS-Vam — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redo"
+          }
+        }
+      }
+    },
+    "78Y-hA-62v.title": {
+      "comment": "78Y-hA-62v — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correct Spelling Automatically"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correct Spelling Automatically"
+          }
+        }
+      }
+    },
+    "8mr-sm-Yjd.title": {
+      "comment": "8mr-sm-Yjd — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Writing Direction"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Writing Direction"
+          }
+        }
+      }
+    },
+    "9ic-FL-obx.title": {
+      "comment": "9ic-FL-obx — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Substitutions"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Substitutions"
+          }
+        }
+      }
+    },
+    "9yt-4B-nSM.title": {
+      "comment": "9yt-4B-nSM — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart Copy/Paste"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart Copy/Paste"
+          }
+        }
+      }
+    },
+    "AYu-sK-qS6.title": {
+      "comment": "AYu-sK-qS6 — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Main Menu"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Main Menu"
+          }
+        }
+      }
+    },
+    "BOF-NM-1cW.title": {
+      "comment": "BOF-NM-1cW — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferences…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferences…"
+          }
+        }
+      }
+    },
+    "BgM-ve-c93.title": {
+      "comment": "BgM-ve-c93 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\tLeft to Right"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\tLeft to Right"
+          }
+        }
+      }
+    },
+    "Bw7-FT-i3A.title": {
+      "comment": "Bw7-FT-i3A — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save As…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save As…"
+          }
+        }
+      }
+    },
+    "Cc7-nU-5Mv.title": {
+      "comment": "Cc7-nU-5Mv — textFieldCell title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your document contents here"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your document contents here"
+          }
+        }
+      }
+    },
+    "Ckk-yw-fiv.title": {
+      "comment": "Ckk-yw-fiv — window title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Window"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Window"
+          }
+        }
+      }
+    },
+    "DVo-aG-piG.title": {
+      "comment": "DVo-aG-piG — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        }
+      }
+    },
+    "Dv1-io-Yv7.title": {
+      "comment": "Dv1-io-Yv7 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spelling and Grammar"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spelling and Grammar"
+          }
+        }
+      }
+    },
+    "F2S-fz-NVQ.title": {
+      "comment": "F2S-fz-NVQ — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Help"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Help"
+          }
+        }
+      }
+    },
+    "FKE-Sm-Kum.title": {
+      "comment": "FKE-Sm-Kum — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Composer Help"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Composer Help"
+          }
+        }
+      }
+    },
+    "Fal-I4-PZk.title": {
+      "comment": "Fal-I4-PZk — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text"
+          }
+        }
+      }
+    },
+    "FeM-D8-WVr.title": {
+      "comment": "FeM-D8-WVr — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Substitutions"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Substitutions"
+          }
+        }
+      }
+    },
+    "GB9-OM-e27.title": {
+      "comment": "GB9-OM-e27 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bold"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bold"
+          }
+        }
+      }
+    },
+    "GEO-Iw-cKr.title": {
+      "comment": "GEO-Iw-cKr — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format"
+          }
+        }
+      }
+    },
+    "GUa-eO-cwY.title": {
+      "comment": "GUa-eO-cwY — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Default"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Default"
+          }
+        }
+      }
+    },
+    "Gi5-1S-RQB.title": {
+      "comment": "Gi5-1S-RQB — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font"
+          }
+        }
+      }
+    },
+    "H1b-Si-o9J.title": {
+      "comment": "H1b-Si-o9J — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Writing Direction"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Writing Direction"
+          }
+        }
+      }
+    },
+    "H8h-7b-M4v.title": {
+      "comment": "H8h-7b-M4v — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View"
+          }
+        }
+      }
+    },
+    "HFQ-gK-NFA.title": {
+      "comment": "HFQ-gK-NFA — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text Replacement"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text Replacement"
+          }
+        }
+      }
+    },
+    "HFo-cy-zxI.title": {
+      "comment": "HFo-cy-zxI — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Spelling and Grammar"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Spelling and Grammar"
+          }
+        }
+      }
+    },
+    "HyV-fh-RgO.title": {
+      "comment": "HyV-fh-RgO — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View"
+          }
+        }
+      }
+    },
+    "I0S-gh-46l.title": {
+      "comment": "I0S-gh-46l — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subscript"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subscript"
+          }
+        }
+      }
+    },
+    "IAo-SY-fd9.title": {
+      "comment": "IAo-SY-fd9 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open…"
+          }
+        }
+      }
+    },
+    "J5U-5w-g23.title": {
+      "comment": "J5U-5w-g23 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Justify"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Justify"
+          }
+        }
+      }
+    },
+    "J7y-lM-qPV.title": {
+      "comment": "J7y-lM-qPV — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use None"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use None"
+          }
+        }
+      }
+    },
+    "KaW-ft-85H.title": {
+      "comment": "KaW-ft-85H — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revert to Saved"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revert to Saved"
+          }
+        }
+      }
+    },
+    "Kd2-mp-pUS.title": {
+      "comment": "Kd2-mp-pUS — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show All"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show All"
+          }
+        }
+      }
+    },
+    "LE2-aR-0XJ.title": {
+      "comment": "LE2-aR-0XJ — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bring All to Front"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bring All to Front"
+          }
+        }
+      }
+    },
+    "LVM-kO-fVI.title": {
+      "comment": "LVM-kO-fVI — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste Ruler"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste Ruler"
+          }
+        }
+      }
+    },
+    "Lbh-J2-qVU.title": {
+      "comment": "Lbh-J2-qVU — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\tLeft to Right"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\tLeft to Right"
+          }
+        }
+      }
+    },
+    "MkV-Pr-PK5.title": {
+      "comment": "MkV-Pr-PK5 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Ruler"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Ruler"
+          }
+        }
+      }
+    },
+    "NMo-om-nkz.title": {
+      "comment": "NMo-om-nkz — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Services"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Services"
+          }
+        }
+      }
+    },
+    "Nop-cj-93Q.title": {
+      "comment": "Nop-cj-93Q — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\tDefault"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\tDefault"
+          }
+        }
+      }
+    },
+    "OY7-WF-poV.title": {
+      "comment": "OY7-WF-poV — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minimize"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minimize"
+          }
+        }
+      }
+    },
+    "OaQ-X3-Vso.title": {
+      "comment": "OaQ-X3-Vso — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baseline"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baseline"
+          }
+        }
+      }
+    },
+    "Olw-nP-bQN.title": {
+      "comment": "Olw-nP-bQN — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide Composer"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide Composer"
+          }
+        }
+      }
+    },
+    "OwM-mh-QMV.title": {
+      "comment": "OwM-mh-QMV — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find Previous"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find Previous"
+          }
+        }
+      }
+    },
+    "Oyz-dy-DGm.title": {
+      "comment": "Oyz-dy-DGm — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Speaking"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Speaking"
+          }
+        }
+      }
+    },
+    "Ptp-SP-VEL.title": {
+      "comment": "Ptp-SP-VEL — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bigger"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bigger"
+          }
+        }
+      }
+    },
+    "Q5e-8K-NDq.title": {
+      "comment": "Q5e-8K-NDq — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Fonts"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Fonts"
+          }
+        }
+      }
+    },
+    "R4o-n2-Eq4.title": {
+      "comment": "R4o-n2-Eq4 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoom"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoom"
+          }
+        }
+      }
+    },
+    "RB4-Sm-HuC.title": {
+      "comment": "RB4-Sm-HuC — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\tRight to Left"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\tRight to Left"
+          }
+        }
+      }
+    },
+    "Rqc-34-cIF.title": {
+      "comment": "Rqc-34-cIF — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Superscript"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Superscript"
+          }
+        }
+      }
+    },
+    "Ruw-6m-B2m.title": {
+      "comment": "Ruw-6m-B2m — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select All"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select All"
+          }
+        }
+      }
+    },
+    "S0p-oC-mLd.title": {
+      "comment": "S0p-oC-mLd — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jump to Selection"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jump to Selection"
+          }
+        }
+      }
+    },
+    "Td7-aD-5lo.title": {
+      "comment": "Td7-aD-5lo — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Window"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Window"
+          }
+        }
+      }
+    },
+    "UEZ-Bs-lqG.title": {
+      "comment": "UEZ-Bs-lqG — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capitalize"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capitalize"
+          }
+        }
+      }
+    },
+    "VIY-Ag-zcb.title": {
+      "comment": "VIY-Ag-zcb — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Center"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Center"
+          }
+        }
+      }
+    },
+    "Vdr-fp-XzO.title": {
+      "comment": "Vdr-fp-XzO — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide Others"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide Others"
+          }
+        }
+      }
+    },
+    "Vjx-xi-njq.title": {
+      "comment": "Vjx-xi-njq — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Italic"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Italic"
+          }
+        }
+      }
+    },
+    "W48-6f-4Dl.title": {
+      "comment": "W48-6f-4Dl — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        }
+      }
+    },
+    "WRG-CD-K1S.title": {
+      "comment": "WRG-CD-K1S — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Underline"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Underline"
+          }
+        }
+      }
+    },
+    "Was-JA-tGl.title": {
+      "comment": "Was-JA-tGl — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New"
+          }
+        }
+      }
+    },
+    "WeT-3V-zwk.title": {
+      "comment": "WeT-3V-zwk — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste and Match Style"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste and Match Style"
+          }
+        }
+      }
+    },
+    "Xz5-n4-O0W.title": {
+      "comment": "Xz5-n4-O0W — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find…"
+          }
+        }
+      }
+    },
+    "YEy-JH-Tfz.title": {
+      "comment": "YEy-JH-Tfz — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find and Replace…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find and Replace…"
+          }
+        }
+      }
+    },
+    "YGs-j5-SAR.title": {
+      "comment": "YGs-j5-SAR — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\tDefault"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\tDefault"
+          }
+        }
+      }
+    },
+    "Ynk-f8-cLZ.title": {
+      "comment": "Ynk-f8-cLZ — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Speaking"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Speaking"
+          }
+        }
+      }
+    },
+    "ZM1-6Q-yy1.title": {
+      "comment": "ZM1-6Q-yy1 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Align Left"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Align Left"
+          }
+        }
+      }
+    },
+    "ZvO-Gk-QUH.title": {
+      "comment": "ZvO-Gk-QUH — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paragraph"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paragraph"
+          }
+        }
+      }
+    },
+    "aTl-1u-JFS.title": {
+      "comment": "aTl-1u-JFS — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Print…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Print…"
+          }
+        }
+      }
+    },
+    "aUF-d1-5bR.title": {
+      "comment": "aUF-d1-5bR — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Window"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Window"
+          }
+        }
+      }
+    },
+    "aXa-aM-Jaq.title": {
+      "comment": "aXa-aM-Jaq — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font"
+          }
+        }
+      }
+    },
+    "agt-UL-0e3.title": {
+      "comment": "agt-UL-0e3 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Default"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Default"
+          }
+        }
+      }
+    },
+    "bgn-CT-cEk.title": {
+      "comment": "bgn-CT-cEk — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Colors"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Colors"
+          }
+        }
+      }
+    },
+    "bib-Uj-vzu.title": {
+      "comment": "bib-Uj-vzu — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File"
+          }
+        }
+      }
+    },
+    "buJ-ug-pKt.title": {
+      "comment": "buJ-ug-pKt — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Selection for Find"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Selection for Find"
+          }
+        }
+      }
+    },
+    "c8a-y6-VQd.title": {
+      "comment": "c8a-y6-VQd — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transformations"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transformations"
+          }
+        }
+      }
+    },
+    "cDB-IK-hbR.title": {
+      "comment": "cDB-IK-hbR — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use None"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use None"
+          }
+        }
+      }
+    },
+    "cqv-fj-IhA.title": {
+      "comment": "cqv-fj-IhA — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selection"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selection"
+          }
+        }
+      }
+    },
+    "cwL-P1-jid.title": {
+      "comment": "cwL-P1-jid — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart Links"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart Links"
+          }
+        }
+      }
+    },
+    "d9M-CD-aMd.title": {
+      "comment": "d9M-CD-aMd — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make Lower Case"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make Lower Case"
+          }
+        }
+      }
+    },
+    "d9c-me-L2H.title": {
+      "comment": "d9c-me-L2H — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text"
+          }
+        }
+      }
+    },
+    "dMs-cI-mzQ.title": {
+      "comment": "dMs-cI-mzQ — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File"
+          }
+        }
+      }
+    },
+    "dRJ-4n-Yzg.title": {
+      "comment": "dRJ-4n-Yzg — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undo"
+          }
+        }
+      }
+    },
+    "gVA-U4-sdL.title": {
+      "comment": "gVA-U4-sdL — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste"
+          }
+        }
+      }
+    },
+    "hQb-2v-fYv.title": {
+      "comment": "hQb-2v-fYv — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart Quotes"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart Quotes"
+          }
+        }
+      }
+    },
+    "hz2-CU-CR7.title": {
+      "comment": "hz2-CU-CR7 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check Document Now"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check Document Now"
+          }
+        }
+      }
+    },
+    "hz9-B4-Xy5.title": {
+      "comment": "hz9-B4-Xy5 — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Services"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Services"
+          }
+        }
+      }
+    },
+    "i1d-Er-qST.title": {
+      "comment": "i1d-Er-qST — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smaller"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smaller"
+          }
+        }
+      }
+    },
+    "ijk-EB-dga.title": {
+      "comment": "ijk-EB-dga — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baseline"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baseline"
+          }
+        }
+      }
+    },
+    "jBQ-r6-VK2.title": {
+      "comment": "jBQ-r6-VK2 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kern"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kern"
+          }
+        }
+      }
+    },
+    "jFq-tB-4Kx.title": {
+      "comment": "jFq-tB-4Kx — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\tRight to Left"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\tRight to Left"
+          }
+        }
+      }
+    },
+    "jxT-CU-nIS.title": {
+      "comment": "jxT-CU-nIS — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format"
+          }
+        }
+      }
+    },
+    "kIP-vf-haE.title": {
+      "comment": "kIP-vf-haE — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Sidebar"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Sidebar"
+          }
+        }
+      }
+    },
+    "mK6-2p-4JG.title": {
+      "comment": "mK6-2p-4JG — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check Grammar With Spelling"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check Grammar With Spelling"
+          }
+        }
+      }
+    },
+    "o6e-r0-MWq.title": {
+      "comment": "o6e-r0-MWq — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ligatures"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ligatures"
+          }
+        }
+      }
+    },
+    "oas-Oc-fiZ.title": {
+      "comment": "oas-Oc-fiZ — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Recent"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Recent"
+          }
+        }
+      }
+    },
+    "ogc-rX-tC1.title": {
+      "comment": "ogc-rX-tC1 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loosen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loosen"
+          }
+        }
+      }
+    },
+    "pa3-QI-u2k.title": {
+      "comment": "pa3-QI-u2k — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        }
+      }
+    },
+    "pxx-59-PXV.title": {
+      "comment": "pxx-59-PXV — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save…"
+          }
+        }
+      }
+    },
+    "q09-fT-Sye.title": {
+      "comment": "q09-fT-Sye — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find Next"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find Next"
+          }
+        }
+      }
+    },
+    "qIS-W8-SiK.title": {
+      "comment": "qIS-W8-SiK — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Page Setup…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Page Setup…"
+          }
+        }
+      }
+    },
+    "rbD-Rh-wIN.title": {
+      "comment": "rbD-Rh-wIN — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check Spelling While Typing"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check Spelling While Typing"
+          }
+        }
+      }
+    },
+    "rgM-f4-ycn.title": {
+      "comment": "rgM-f4-ycn — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart Dashes"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart Dashes"
+          }
+        }
+      }
+    },
+    "snW-S8-Cw5.title": {
+      "comment": "snW-S8-Cw5 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Toolbar"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Toolbar"
+          }
+        }
+      }
+    },
+    "tRr-pd-1PS.title": {
+      "comment": "tRr-pd-1PS — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data Detectors"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data Detectors"
+          }
+        }
+      }
+    },
+    "tXI-mr-wws.title": {
+      "comment": "tXI-mr-wws — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Recent"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Recent"
+          }
+        }
+      }
+    },
+    "tlD-Oa-oAM.title": {
+      "comment": "tlD-Oa-oAM — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kern"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kern"
+          }
+        }
+      }
+    },
+    "uQy-DD-JDr.title": {
+      "comment": "uQy-DD-JDr — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Composer"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Composer"
+          }
+        }
+      }
+    },
+    "uRl-iY-unG.title": {
+      "comment": "uRl-iY-unG — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cut"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cut"
+          }
+        }
+      }
+    },
+    "vKC-jM-MkH.title": {
+      "comment": "vKC-jM-MkH — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste Style"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste Style"
+          }
+        }
+      }
+    },
+    "vLm-3I-IUL.title": {
+      "comment": "vLm-3I-IUL — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Ruler"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Ruler"
+          }
+        }
+      }
+    },
+    "vNY-rz-j42.title": {
+      "comment": "vNY-rz-j42 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear Menu"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear Menu"
+          }
+        }
+      }
+    },
+    "vmV-6d-7jI.title": {
+      "comment": "vmV-6d-7jI — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make Upper Case"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make Upper Case"
+          }
+        }
+      }
+    },
+    "w0m-vy-SC9.title": {
+      "comment": "w0m-vy-SC9 — menu title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ligatures"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ligatures"
+          }
+        }
+      }
+    },
+    "wb2-vD-lq4.title": {
+      "comment": "wb2-vD-lq4 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Align Right"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Align Right"
+          }
+        }
+      }
+    },
+    "wpr-3q-Mcd.title": {
+      "comment": "wpr-3q-Mcd — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Help"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Help"
+          }
+        }
+      }
+    },
+    "x3v-GG-iWU.title": {
+      "comment": "x3v-GG-iWU — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy"
+          }
+        }
+      }
+    },
+    "xQD-1f-W4t.title": {
+      "comment": "xQD-1f-W4t — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use All"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use All"
+          }
+        }
+      }
+    },
+    "xrE-MZ-jX0.title": {
+      "comment": "xrE-MZ-jX0 — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speech"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speech"
+          }
+        }
+      }
+    },
+    "z6F-FW-3nz.title": {
+      "comment": "z6F-FW-3nz — menuItem title in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Substitutions"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Substitutions"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.2"
+}

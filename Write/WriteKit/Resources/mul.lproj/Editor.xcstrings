@@ -1,726 +1,729 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "alignment-0.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Natural\"; ObjectID = \"alignment-0\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Natural"
+  "sourceLanguage": "en",
+  "strings": {
+    "FW-window.title": {
+      "comment": "Untitled — window title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Untitled"
           }
         }
       }
     },
-    "alignment-1.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Left\"; ObjectID = \"alignment-1\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Left"
+    "alignment-0.title": {
+      "comment": "Natural — menuItem title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Natural"
           }
         }
       }
     },
-    "alignment-2.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Center\"; ObjectID = \"alignment-2\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Center"
+    "alignment-1.title": {
+      "comment": "Left — menuItem title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Left"
           }
         }
       }
     },
-    "alignment-3.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Right\"; ObjectID = \"alignment-3\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Right"
+    "alignment-2.title": {
+      "comment": "Center — menuItem title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Center"
           }
         }
       }
     },
-    "alignment-4.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Justified\"; ObjectID = \"alignment-4\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Justified"
+    "alignment-3.title": {
+      "comment": "Right — menuItem title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Right"
           }
         }
       }
     },
-    "appearance-bold-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Bold\"; ObjectID = \"appearance-bold-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Bold"
+    "alignment-4.title": {
+      "comment": "Justified — menuItem title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Justified"
           }
         }
       }
     },
-    "appearance-bold-shortcut-cell.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"⌥⌘B\"; ObjectID = \"appearance-bold-shortcut-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "⌥⌘B"
+    "appearance-bold-cell.title": {
+      "comment": "Bold — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bold"
           }
         }
       }
     },
-    "appearance-bold.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Apply visual bold independently of semantic emphasis.\"; ObjectID = \"appearance-bold\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Apply visual bold independently of semantic emphasis."
+    "appearance-bold-shortcut-cell.title": {
+      "comment": "⌥⌘B — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⌥⌘B"
+          }
+        }
+      },
+      "shouldTranslate": false
+    },
+    "appearance-bold.ibShadowedToolTip": {
+      "comment": "Apply visual bold independently of semantic emphasis. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply visual bold independently of semantic emphasis."
           }
         }
       }
     },
-    "appearance-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Appearance\"; ObjectID = \"appearance-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Appearance"
+    "appearance-cell.title": {
+      "comment": "Appearance — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appearance"
           }
         }
       }
     },
-    "appearance-italic-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Italic\"; ObjectID = \"appearance-italic-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Italic"
+    "appearance-italic-cell.title": {
+      "comment": "Italic — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Italic"
           }
         }
       }
     },
-    "appearance-italic-shortcut-cell.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"⌥⌘I\"; ObjectID = \"appearance-italic-shortcut-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "⌥⌘I"
+    "appearance-italic-shortcut-cell.title": {
+      "comment": "⌥⌘I — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⌥⌘I"
+          }
+        }
+      },
+      "shouldTranslate": false
+    },
+    "appearance-italic.ibShadowedToolTip": {
+      "comment": "Apply visual italic independently of semantic emphasis. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply visual italic independently of semantic emphasis."
           }
         }
       }
     },
-    "appearance-italic.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Apply visual italic independently of semantic emphasis.\"; ObjectID = \"appearance-italic\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Apply visual italic independently of semantic emphasis."
+    "appearance-strikethrough-cell.title": {
+      "comment": "Strikethrough — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strikethrough"
           }
         }
       }
     },
-    "appearance-strikethrough-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Strikethrough\"; ObjectID = \"appearance-strikethrough-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Strikethrough"
+    "appearance-strikethrough.ibShadowedToolTip": {
+      "comment": "Apply visual strikethrough independently of semantic emphasis. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply visual strikethrough independently of semantic emphasis."
           }
         }
       }
     },
-    "appearance-strikethrough.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Apply visual strikethrough independently of semantic emphasis.\"; ObjectID = \"appearance-strikethrough\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Apply visual strikethrough independently of semantic emphasis."
+    "appearance-title-cell.title": {
+      "comment": "Appearance — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appearance"
           }
         }
       }
     },
-    "appearance-title-cell.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Appearance\"; ObjectID = \"appearance-title-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Appearance"
+    "appearance-underline-cell.title": {
+      "comment": "Underline — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Underline"
           }
         }
       }
     },
-    "appearance-underline-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Underline\"; ObjectID = \"appearance-underline-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Underline"
+    "appearance-underline-shortcut-cell.title": {
+      "comment": "⌘U — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⌘U"
+          }
+        }
+      },
+      "shouldTranslate": false
+    },
+    "appearance-underline.ibShadowedToolTip": {
+      "comment": "Apply visual underline independently of semantic emphasis. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply visual underline independently of semantic emphasis."
           }
         }
       }
     },
-    "appearance-underline-shortcut-cell.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"⌘U\"; ObjectID = \"appearance-underline-shortcut-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "⌘U"
+    "appearance.ibShadowedToolTip": {
+      "comment": "Appearance: Bold, Italic, Underline, and Strikethrough. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appearance: Bold, Italic, Underline, and Strikethrough."
           }
         }
       }
     },
-    "appearance-underline.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Apply visual underline independently of semantic emphasis.\"; ObjectID = \"appearance-underline\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Apply visual underline independently of semantic emphasis."
+    "clear-cell.title": {
+      "comment": "Clear — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear"
           }
         }
       }
     },
-    "appearance.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Appearance: Bold, Italic, Underline, and Strikethrough.\"; ObjectID = \"appearance\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Appearance: Bold, Italic, Underline, and Strikethrough."
+    "clear.ibShadowedToolTip": {
+      "comment": "Clear character formatting, preserving paragraph alignment. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear character formatting, preserving paragraph alignment."
           }
         }
       }
     },
-    "clear-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Clear\"; ObjectID = \"clear-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Clear"
+    "conflict-detail-message-cell.title": {
+      "comment": "Bold or Italic overlaps semantic emphasis. Convert the highlighted text throughout this Co — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bold or Italic overlaps semantic emphasis. Convert the highlighted text throughout this Content Unit, or keep its presentation."
           }
         }
       }
     },
-    "clear.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Clear character formatting, preserving paragraph alignment.\"; ObjectID = \"clear\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Clear character formatting, preserving paragraph alignment."
+    "conflict-detail-title-cell.title": {
+      "comment": "Presentation and Emphasis — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Presentation and Emphasis"
           }
         }
       }
     },
-    "conflict-detail-message-cell.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Bold or Italic overlaps semantic emphasis. Convert the highlighted text throughout this Content Unit, or keep its presentation.\"; ObjectID = \"conflict-detail-message-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Bold or Italic overlaps semantic emphasis. Convert the highlighted text throughout this Content Unit, or keep its presentation."
+    "conflict-marker-button.ibShadowedToolTip": {
+      "comment": "Formatting conflict: show conversion and dismissal options. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formatting conflict: show conversion and dismissal options."
           }
         }
       }
     },
-    "conflict-detail-title-cell.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Presentation and Emphasis\"; ObjectID = \"conflict-detail-title-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Presentation and Emphasis"
+    "conflict-marker-cell.title": {
+      "comment": "Formatting conflict — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formatting conflict"
           }
         }
       }
     },
-    "conflict-marker-button.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Formatting conflict: show conversion and dismissal options.\"; ObjectID = \"conflict-marker-button\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Formatting conflict: show conversion and dismissal options."
+    "convert-presentation-cell.title": {
+      "comment": "Convert to Semantic Emphasis — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Convert to Semantic Emphasis"
           }
         }
       }
     },
-    "conflict-marker-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Formatting conflict\"; ObjectID = \"conflict-marker-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Formatting conflict"
+    "convert-presentation.ibShadowedToolTip": {
+      "comment": "Convert conflicting text in this Content Unit; preserve underline and strikethrough. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Convert conflicting text in this Content Unit; preserve underline and strikethrough."
           }
         }
       }
     },
-    "convert-presentation-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Convert to Semantic Emphasis\"; ObjectID = \"convert-presentation-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Convert to Semantic Emphasis"
+    "dismiss-formatting-warning-cell.title": {
+      "comment": "Keep Presentation / Dismiss — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep Presentation / Dismiss"
           }
         }
       }
     },
-    "convert-presentation.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Convert conflicting text in this Content Unit; preserve underline and strikethrough.\"; ObjectID = \"convert-presentation\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Convert conflicting text in this Content Unit; preserve underline and strikethrough."
+    "dismiss-formatting-warning.ibShadowedToolTip": {
+      "comment": "Remember dismissal for this Content Unit, including after reopening. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remember dismissal for this Content Unit, including after reopening."
           }
         }
       }
     },
-    "dismiss-formatting-warning-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Keep Presentation / Dismiss\"; ObjectID = \"dismiss-formatting-warning-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Keep Presentation / Dismiss"
+    "emphasis-cell.title": {
+      "comment": "Emphasis — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emphasis"
           }
         }
       }
     },
-    "dismiss-formatting-warning.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Remember dismissal for this Content Unit, including after reopening.\"; ObjectID = \"dismiss-formatting-warning\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Remember dismissal for this Content Unit, including after reopening."
+    "emphasis.ibShadowedToolTip": {
+      "comment": "Emphasis. Option-click for explicit Italic. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emphasis. Option-click for explicit Italic."
           }
         }
       }
     },
-    "emphasis-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Emphasis\"; ObjectID = \"emphasis-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Emphasis"
+    "help-cell.title": {
+      "comment": "Formatting help — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formatting help"
           }
         }
       }
     },
-    "emphasis.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Emphasis. Option-click for explicit Italic.\"; ObjectID = \"emphasis\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Emphasis. Option-click for explicit Italic."
+    "help-text-cell.title": {
+      "comment": "Emphasis and Strong Emphasis express meaning. Their appearance can change with a publicati — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emphasis and Strong Emphasis express meaning. Their appearance can change with a publication’s style. The buttons show semantic formatting at the cursor or across the selection; a mixed state means only some text uses it.\n\nThe Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option-click the Es for Italic or Bold. These visual choices are independent of meaning. Clear removes both kinds of character formatting and preserves paragraph alignment."
           }
         }
       }
     },
-    "FW-window.title" : {
-      "comment" : "Class = \"NSWindow\"; title = \"Untitled\"; ObjectID = \"FW-window\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Untitled"
+    "help.ibShadowedToolTip": {
+      "comment": "About semantic and explicit formatting — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About semantic and explicit formatting"
           }
         }
       }
     },
-    "help-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Formatting help\"; ObjectID = \"help-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Formatting help"
+    "manuscript-label-cell.title": {
+      "comment": "Manuscript — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manuscript"
           }
         }
       }
     },
-    "help-text-cell.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Emphasis and Strong Emphasis express meaning. Their appearance can change with a publication’s style. The buttons show semantic formatting at the cursor or across the selection; a mixed state means only some text uses it.\\n\\nThe Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option-click the Es for Italic or Bold. These visual choices are independent of meaning. Clear removes both kinds of character formatting and preserves paragraph alignment.\"; ObjectID = \"help-text-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Emphasis and Strong Emphasis express meaning. Their appearance can change with a publication’s style. The buttons show semantic formatting at the cursor or across the selection; a mixed state means only some text uses it.\n\nThe Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option-click the Es for Italic or Bold. These visual choices are independent of meaning. Clear removes both kinds of character formatting and preserves paragraph alignment."
+    "strong-cell.title": {
+      "comment": "Strong Emphasis — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strong Emphasis"
           }
         }
       }
     },
-    "help.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"About semantic and explicit formatting\"; ObjectID = \"help\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "About semantic and explicit formatting"
+    "strong.ibShadowedToolTip": {
+      "comment": "Strong Emphasis. Option-click for explicit Bold. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strong Emphasis. Option-click for explicit Bold."
           }
         }
       }
     },
-    "manuscript-label-cell.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Manuscript\"; ObjectID = \"manuscript-label-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Manuscript"
+    "toolbar-alignment.label": {
+      "comment": "Paragraph Alignment — toolbarItem label in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paragraph Alignment"
           }
         }
       }
     },
-    "strong-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Strong Emphasis\"; ObjectID = \"strong-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Strong Emphasis"
+    "toolbar-alignment.paletteLabel": {
+      "comment": "Paragraph Alignment — toolbarItem paletteLabel in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paragraph Alignment"
           }
         }
       }
     },
-    "strong.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Strong Emphasis. Option-click for explicit Bold.\"; ObjectID = \"strong\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Strong Emphasis. Option-click for explicit Bold."
+    "toolbar-appearance.label": {
+      "comment": "Appearance — toolbarItem label in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appearance"
           }
         }
       }
     },
-    "toolbar-alignment.label" : {
-      "comment" : "Class = \"NSToolbarItem\"; label = \"Paragraph Alignment\"; ObjectID = \"toolbar-alignment\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Paragraph Alignment"
+    "toolbar-appearance.paletteLabel": {
+      "comment": "Appearance — toolbarItem paletteLabel in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appearance"
           }
         }
       }
     },
-    "toolbar-alignment.paletteLabel" : {
-      "comment" : "Class = \"NSToolbarItem\"; paletteLabel = \"Paragraph Alignment\"; ObjectID = \"toolbar-alignment\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Paragraph Alignment"
+    "toolbar-clear.label": {
+      "comment": "Clear — toolbarItem label in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear Formatting"
           }
         }
       }
     },
-    "toolbar-appearance.label" : {
-      "comment" : "Class = \"NSToolbarItem\"; label = \"Appearance\"; ObjectID = \"toolbar-appearance\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Appearance"
+    "toolbar-clear.paletteLabel": {
+      "comment": "Clear — toolbarItem paletteLabel in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear Formatting"
           }
         }
       }
     },
-    "toolbar-appearance.paletteLabel" : {
-      "comment" : "Class = \"NSToolbarItem\"; paletteLabel = \"Appearance\"; ObjectID = \"toolbar-appearance\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Appearance"
+    "toolbar-emphasis.label": {
+      "comment": "Emphasis — toolbarItem label in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emphasis"
           }
         }
       }
     },
-    "toolbar-clear.label" : {
-      "comment" : "Class = \"NSToolbarItem\"; label = \"Clear Formatting\"; ObjectID = \"toolbar-clear\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Clear Formatting"
+    "toolbar-emphasis.paletteLabel": {
+      "comment": "Emphasis — toolbarItem paletteLabel in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emphasis"
           }
         }
       }
     },
-    "toolbar-clear.paletteLabel" : {
-      "comment" : "Class = \"NSToolbarItem\"; paletteLabel = \"Clear Formatting\"; ObjectID = \"toolbar-clear\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Clear Formatting"
+    "toolbar-help.label": {
+      "comment": "Formatting help — toolbarItem label in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formatting Help"
           }
         }
       }
     },
-    "toolbar-emphasis.label" : {
-      "comment" : "Class = \"NSToolbarItem\"; label = \"Emphasis\"; ObjectID = \"toolbar-emphasis\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Emphasis"
+    "toolbar-help.paletteLabel": {
+      "comment": "Formatting help — toolbarItem paletteLabel in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formatting Help"
           }
         }
       }
     },
-    "toolbar-emphasis.paletteLabel" : {
-      "comment" : "Class = \"NSToolbarItem\"; paletteLabel = \"Emphasis\"; ObjectID = \"toolbar-emphasis\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Emphasis"
+    "toolbar-strong.label": {
+      "comment": "Strong Emphasis — toolbarItem label in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strong Emphasis"
           }
         }
       }
     },
-    "toolbar-help.label" : {
-      "comment" : "Class = \"NSToolbarItem\"; label = \"Formatting Help\"; ObjectID = \"toolbar-help\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Formatting Help"
+    "toolbar-strong.paletteLabel": {
+      "comment": "Strong Emphasis — toolbarItem paletteLabel in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strong Emphasis"
           }
         }
       }
     },
-    "toolbar-help.paletteLabel" : {
-      "comment" : "Class = \"NSToolbarItem\"; paletteLabel = \"Formatting Help\"; ObjectID = \"toolbar-help\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Formatting Help"
+    "unit-add-cell.title": {
+      "comment": "Add Content Unit — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Content Unit"
           }
         }
       }
     },
-    "toolbar-strong.label" : {
-      "comment" : "Class = \"NSToolbarItem\"; label = \"Strong Emphasis\"; ObjectID = \"toolbar-strong\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Strong Emphasis"
+    "unit-add.ibShadowedToolTip": {
+      "comment": "Add Content Unit — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Content Unit"
           }
         }
       }
     },
-    "toolbar-strong.paletteLabel" : {
-      "comment" : "Class = \"NSToolbarItem\"; paletteLabel = \"Strong Emphasis\"; ObjectID = \"toolbar-strong\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Strong Emphasis"
+    "unit-cell.title": {
+      "comment": "Untitled — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Untitled"
           }
         }
       }
     },
-    "unit-add-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Add Content Unit\"; ObjectID = \"unit-add-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Add Content Unit"
+    "unit-column.headerCell.title": {
+      "comment": "unit-column — tableColumn headerCell.title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Content Units"
           }
         }
       }
     },
-    "unit-add.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Add Content Unit\"; ObjectID = \"unit-add\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Add Content Unit"
+    "unit-down-cell.title": {
+      "comment": "Move Content Unit Down — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move Content Unit Down"
           }
         }
       }
     },
-    "unit-cell.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Untitled\"; ObjectID = \"unit-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Untitled"
+    "unit-down.ibShadowedToolTip": {
+      "comment": "Move Content Unit Down — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move Content Unit Down"
           }
         }
       }
     },
-    "unit-column.headerCell.title" : {
-      "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Content Units\"; ObjectID = \"unit-column\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Content Units"
+    "unit-title-cell.title": {
+      "comment": "Untitled — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Untitled"
           }
         }
       }
     },
-    "unit-down-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Move Content Unit Down\"; ObjectID = \"unit-down-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Move Content Unit Down"
+    "unit-title.ibShadowedToolTip": {
+      "comment": "Content Unit title. Press Return to rename. — textField ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Content Unit title. Press Return to rename."
           }
         }
       }
     },
-    "unit-down.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Move Content Unit Down\"; ObjectID = \"unit-down\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Move Content Unit Down"
+    "unit-up-cell.title": {
+      "comment": "Move Content Unit Up — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move Content Unit Up"
           }
         }
       }
     },
-    "unit-title-cell.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Untitled\"; ObjectID = \"unit-title-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Untitled"
-          }
-        }
-      }
-    },
-    "unit-title.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSTextField\"; ibShadowedToolTip = \"Content Unit title. Press Return to rename.\"; ObjectID = \"unit-title\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Content Unit title. Press Return to rename."
-          }
-        }
-      }
-    },
-    "unit-up-cell.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Move Content Unit Up\"; ObjectID = \"unit-up-cell\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Move Content Unit Up"
-          }
-        }
-      }
-    },
-    "unit-up.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Move Content Unit Up\"; ObjectID = \"unit-up\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Move Content Unit Up"
+    "unit-up.ibShadowedToolTip": {
+      "comment": "Move Content Unit Up — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move Content Unit Up"
           }
         }
       }
     }
   },
-  "version" : "1.2"
+  "version": "1.2"
 }

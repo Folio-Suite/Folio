@@ -1,0 +1,54 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "CFBundleDisplayName": {
+      "comment": "Product name shown by macOS. Keep Folio and the application brand name unchanged unless a naming policy is adopted.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folio Composer"
+          }
+        }
+      }
+    },
+    "CFBundleName": {
+      "comment": "Bundle name",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Composer"
+          }
+        }
+      }
+    },
+    "Folio Composer Edition": {
+      "comment": "Document type name shown by macOS. Folio is the brand; translate the descriptive type words.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folio Composer Edition"
+          }
+        }
+      }
+    },
+    "NSHumanReadableCopyright": {
+      "comment": "Copyright notice. Preserve the year and the Folio Project attribution.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copyright © 2026 the Folio Project"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.2"
+}

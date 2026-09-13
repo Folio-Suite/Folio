@@ -1,11 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
-SPDX-FileCopyrightText: 2026 the Folio Project
-SPDX-License-Identifier: MIT
--->
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24765"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -528,21 +525,21 @@ SPDX-License-Identifier: MIT
                                                                 <menuItem title="Paragraph" enabled="NO" id="menuitem-format-text-writing-direction-paragraph" userLabel="Format &gt; Text &gt; Writing Direction &gt; Paragraph">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                 </menuItem>
-                                                                <menuItem id="menuitem-format-text-writing-direction-default" userLabel="Format &gt; Text &gt; Writing Direction &gt; 	Default">
+                                                                <menuItem id="menuitem-format-text-writing-direction-default" userLabel="Format &gt; Text &gt; Writing Direction &gt;  Default">
                                                                     <string key="title">	Default</string>
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="makeBaseWritingDirectionNatural:" target="Ady-hI-5gd" id="qtV-5e-UBP"/>
                                                                     </connections>
                                                                 </menuItem>
-                                                                <menuItem id="menuitem-format-text-writing-direction-left-to-right" userLabel="Format &gt; Text &gt; Writing Direction &gt; 	Left to Right">
+                                                                <menuItem id="menuitem-format-text-writing-direction-left-to-right" userLabel="Format &gt; Text &gt; Writing Direction &gt;  Left to Right">
                                                                     <string key="title">	Left to Right</string>
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="makeBaseWritingDirectionLeftToRight:" target="Ady-hI-5gd" id="S0X-9S-QSf"/>
                                                                     </connections>
                                                                 </menuItem>
-                                                                <menuItem id="menuitem-format-text-writing-direction-right-to-left" userLabel="Format &gt; Text &gt; Writing Direction &gt; 	Right to Left">
+                                                                <menuItem id="menuitem-format-text-writing-direction-right-to-left" userLabel="Format &gt; Text &gt; Writing Direction &gt;  Right to Left">
                                                                     <string key="title">	Right to Left</string>
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
@@ -553,21 +550,21 @@ SPDX-License-Identifier: MIT
                                                                 <menuItem title="Selection" enabled="NO" id="menuitem-format-text-writing-direction-selection" userLabel="Format &gt; Text &gt; Writing Direction &gt; Selection">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                 </menuItem>
-                                                                <menuItem id="menuitem-format-text-writing-direction-default-2" userLabel="Format &gt; Text &gt; Writing Direction &gt; 	Default">
+                                                                <menuItem id="menuitem-format-text-writing-direction-default-2" userLabel="Format &gt; Text &gt; Writing Direction &gt;  Default">
                                                                     <string key="title">	Default</string>
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="makeTextWritingDirectionNatural:" target="Ady-hI-5gd" id="lPI-Se-ZHp"/>
                                                                     </connections>
                                                                 </menuItem>
-                                                                <menuItem id="menuitem-format-text-writing-direction-left-to-right-2" userLabel="Format &gt; Text &gt; Writing Direction &gt; 	Left to Right">
+                                                                <menuItem id="menuitem-format-text-writing-direction-left-to-right-2" userLabel="Format &gt; Text &gt; Writing Direction &gt;  Left to Right">
                                                                     <string key="title">	Left to Right</string>
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
                                                                         <action selector="makeTextWritingDirectionLeftToRight:" target="Ady-hI-5gd" id="caW-Bv-w94"/>
                                                                     </connections>
                                                                 </menuItem>
-                                                                <menuItem id="menuitem-format-text-writing-direction-right-to-left-2" userLabel="Format &gt; Text &gt; Writing Direction &gt; 	Right to Left">
+                                                                <menuItem id="menuitem-format-text-writing-direction-right-to-left-2" userLabel="Format &gt; Text &gt; Writing Direction &gt;  Right to Left">
                                                                     <string key="title">	Right to Left</string>
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                     <connections>
@@ -677,7 +674,7 @@ SPDX-License-Identifier: MIT
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider=""/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -707,13 +704,13 @@ SPDX-License-Identifier: MIT
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="5gI-5U-AMq" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="5gI-5U-AMq" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" id="ERx-hH-rdd">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="246" translatesAutoresizingMaskIntoConstraints="NO" id="TyV-c9-G0C">
-                                <rect key="frame" x="115" y="124" width="250" height="22"/>
+                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="246" translatesAutoresizingMaskIntoConstraints="NO" id="TyV-c9-G0C">
+                                <rect key="frame" x="117" y="125" width="246" height="21"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Your document contents here" id="textfieldcell-your-document-contents-here" userLabel="Your document contents here">
                                     <font key="font" metaFont="system" size="18"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

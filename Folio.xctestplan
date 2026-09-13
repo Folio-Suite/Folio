@@ -1,66 +1,83 @@
 {
-  "configurations" : [
+  "configurations": [
     {
-      "id" : "4607BD13-CE95-4CCE-A53C-35CA5D1322C0",
-      "name" : "Suite",
-      "options" : {
-
+      "id": "4607BD13-CE95-4CCE-A53C-35CA5D1322C0",
+      "name": "Suite",
+      "options": {}
+    }
+  ],
+  "defaultOptions": {},
+  "testTargets": [
+    {
+      "target": {
+        "containerPath": "container:Research/Research.xcodeproj",
+        "identifier": "A10648AD304DFD5D001A21A6",
+        "name": "ResearchTests"
+      }
+    },
+    {
+      "target": {
+        "containerPath": "container:Write/Write.xcodeproj",
+        "identifier": "A1064875304DFCF7001A21A6",
+        "name": "WriteUITests"
+      }
+    },
+    {
+      "target": {
+        "containerPath": "container:Research/Research.xcodeproj",
+        "identifier": "A10648B7304DFD5D001A21A6",
+        "name": "ResearchUITests"
+      }
+    },
+    {
+      "target": {
+        "containerPath": "container:Write/Write.xcodeproj",
+        "identifier": "A1F839E13050B46200DEB96A",
+        "name": "WriteKitTests"
+      }
+    },
+    {
+      "target": {
+        "containerPath": "container:Write/Write.xcodeproj",
+        "identifier": "A106486B304DFCF7001A21A6",
+        "name": "WriteTests"
+      }
+    },
+    {
+      "target": {
+        "containerPath": "container:Research/Research.xcodeproj",
+        "identifier": "A1F83A093050B4D200DEB96A",
+        "name": "ResearchKitTests"
+      }
+    },
+    {
+      "target": {
+        "containerPath": "container:FolioKit/FolioKit.xcodeproj",
+        "identifier": "A10648E0304DFE13001A21A6",
+        "name": "FolioKitTests"
+      }
+    },
+    {
+      "target": {
+        "containerPath": "container:Composer/Composer.xcodeproj",
+        "identifier": "A15AE2683057244C001B9E7B",
+        "name": "ComposerTests"
+      }
+    },
+    {
+      "target": {
+        "containerPath": "container:Composer/Composer.xcodeproj",
+        "identifier": "A15AE2723057244D001B9E7B",
+        "name": "ComposerUITests"
+      }
+    },
+    {
+      "target": {
+        "containerPath": "container:Composer/Composer.xcodeproj",
+        "identifier": "A15AE2953057247A001B9E7B",
+        "name": "ComposerKitTests"
       }
     }
   ],
-  "defaultOptions" : {
-
-  },
-  "testTargets" : [
-    {
-      "target" : {
-        "containerPath" : "container:Research\/Research.xcodeproj",
-        "identifier" : "A10648AD304DFD5D001A21A6",
-        "name" : "ResearchTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Write\/Write.xcodeproj",
-        "identifier" : "A1064875304DFCF7001A21A6",
-        "name" : "WriteUITests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Research\/Research.xcodeproj",
-        "identifier" : "A10648B7304DFD5D001A21A6",
-        "name" : "ResearchUITests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Write\/Write.xcodeproj",
-        "identifier" : "A1F839E13050B46200DEB96A",
-        "name" : "WriteKitTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Write\/Write.xcodeproj",
-        "identifier" : "A106486B304DFCF7001A21A6",
-        "name" : "WriteTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Research\/Research.xcodeproj",
-        "identifier" : "A1F83A093050B4D200DEB96A",
-        "name" : "ResearchKitTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:FolioKit\/FolioKit.xcodeproj",
-        "identifier" : "A10648E0304DFE13001A21A6",
-        "name" : "FolioKitTests"
-      }
-    }
-  ],
-  "version" : 1
+  "version": 1
 }

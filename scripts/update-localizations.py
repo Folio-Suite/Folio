@@ -17,11 +17,12 @@ import tempfile
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent.parent
-CODE = ['FolioKit/FolioKit', 'Write/Write', 'Write/WriteKit', 'Research/Research', 'Research/ResearchKit']
+CODE = ['FolioKit/FolioKit', 'Write/Write', 'Write/WriteKit', 'Research/Research', 'Research/ResearchKit', 'Composer/Composer', 'Composer/ComposerKit']
 STORYBOARDS = [
-    ('Write/Write/Base.lproj/Main.storyboard', 'Write/Write/Main.xcstrings'),
-    ('Research/Research/Base.lproj/Main.storyboard', 'Research/Research/Main.xcstrings'),
-    ('Write/WriteKit/Resources/Base.lproj/Editor.storyboard', 'Write/WriteKit/Resources/Editor.xcstrings'),
+    ('Write/Write/Base.lproj/Main.storyboard', 'Write/Write/mul.lproj/Main.xcstrings'),
+    ('Research/Research/Base.lproj/Main.storyboard', 'Research/Research/mul.lproj/Main.xcstrings'),
+    ('Write/WriteKit/Resources/Base.lproj/Editor.storyboard', 'Write/WriteKit/Resources/mul.lproj/Editor.xcstrings'),
+    ('Composer/Composer/Base.lproj/Main.storyboard', 'Composer/Composer/mul.lproj/Main.xcstrings'),
 ]
 
 

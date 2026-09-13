@@ -3,4 +3,4 @@
 
 // Standalone defaults; the enclosing Suite may override them.
 MACOSX_DEPLOYMENT_TARGET = 26.5
-#include? "../../Config/Suite.xcconfig"
+#include? "../Config/Suite.xcconfig"

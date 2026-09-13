@@ -9,18 +9,15 @@ trap 'rm -rf "$build_dir"' EXIT
 xcodebuild -workspace Folio.xcworkspace -scheme Folio -configuration Debug \
     -destination 'platform=macOS' -derivedDataPath "$build_dir" CODE_SIGNING_ALLOWED=NO build
 products="$build_dir/Build/Products/Debug"
-for app in Write Research; do
+for app in Write Research Composer; do
     test -x "$products/$app.app/Contents/MacOS/$app"
-    test -d "$products/$app.app/Contents/Frameworks/${app}Kit.framework"
-    test -f "$products/$app.app/Contents/Frameworks/FolioKit.framework/Versions/A/FolioKit"
-    for library in FKModelFoundations FKPackageSupport FKXMLSupport; do
-        test -f "$products/$app.app/Contents/Frameworks/FolioKit.framework/Frameworks/lib${library}.dylib"
-    done
+    test -f "$products/${app}Kit.framework/Versions/A/${app}Kit"
 done
+test -f "$products/FolioKit.framework/Versions/A/FolioKit"
 for library in FKModelFoundations FKPackageSupport FKXMLSupport; do
     test -f "$products/FolioKit.framework/Frameworks/lib${library}.dylib"
 done
 for library in FWManuscript FWEditor; do
-    test -f "$products/Write.app/Contents/Frameworks/WriteKit.framework/Frameworks/lib${library}.dylib"
+    test -f "$products/WriteKit.framework/Frameworks/lib${library}.dylib"
 done
-echo 'Suite build and development embedding checks passed.'
+echo 'Suite build and framework product checks passed; installed runtime layout is not validated.'

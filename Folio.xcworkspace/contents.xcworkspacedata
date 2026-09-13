@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-SPDX-FileCopyrightText: 2026 the Folio Project
-SPDX-License-Identifier: MIT
--->
 <Workspace
    version = "1.0">
+   <FileRef
+      location = "group:Composer/Composer.xcodeproj">
+   </FileRef>
    <FileRef
       location = "group:FolioKit/FolioKit.xcodeproj">
    </FileRef>

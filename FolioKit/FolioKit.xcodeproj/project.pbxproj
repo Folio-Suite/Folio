@@ -64,10 +64,10 @@
 /* Begin PBXFileReference section */
 		A10648D6304DFE13001A21A6 /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10648E1304DFE13001A21A6 /* FolioKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FolioKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A15AE2BB30572732001B9E7B /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		A1F83A853050B76800DEB96A /* libFKModelFoundations.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFKModelFoundations.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F83A983050B7AF00DEB96A /* libFKXMLSupport.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFKXMLSupport.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F83AAB3050B7C700DEB96A /* libFKPackageSupport.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFKPackageSupport.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		F01100000000000000000001 /* Config/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Project.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -166,11 +166,11 @@
 		A10648CC304DFE13001A21A6 = {
 			isa = PBXGroup;
 			children = (
-				F01100000000000000000001 /* Config/Project.xcconfig */,
 				A10648D8304DFE13001A21A6 /* FolioKit */,
 				A10648E5304DFE13001A21A6 /* FolioKitTests */,
 				A1F83A3D3050B56A00DEB96A /* Frameworks */,
 				A10648D7304DFE13001A21A6 /* Products */,
+				A15AE2BB30572732001B9E7B /* Project.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -510,7 +510,7 @@
 		};
 		A10648EC304DFE13001A21A6 /* Debug configuration for PBXProject "FolioKit" */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F01100000000000000000001 /* Config/Project.xcconfig */;
+			baseConfigurationReference = A15AE2BB30572732001B9E7B /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -576,7 +576,7 @@
 		};
 		A10648ED304DFE13001A21A6 /* Release configuration for PBXProject "FolioKit" */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F01100000000000000000001 /* Config/Project.xcconfig */;
+			baseConfigurationReference = A15AE2BB30572732001B9E7B /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

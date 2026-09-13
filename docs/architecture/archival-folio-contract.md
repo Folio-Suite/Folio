@@ -13,7 +13,7 @@ Native storage uses on-disk packages. Define separate package types for Works, l
 
 A native Work may reference assets, Profiles, Themes, settings, and research resources outside its package. Record the exact versions in use, detect newer versions, and adopt updates deliberately. Libraries support versioned objects, and authors may maintain multiple libraries for different topics or purposes. Investigate and prove native Document Versions and Time Machine integration rather than assuming they provide semantic object history automatically.
 
-Save and Auto Save persist native state. Export produces a folio separately. Helper Quit preserves state for resumption and does not implicitly request archive export. Native document behavior and the approved Work Session safety guarantees remain in force.
+Save and Auto Save persist native state. Export produces a folio separately. Quitting a document-domain host preserves state for resumption and does not implicitly request archive export; coordination with active clients remains a lifecycle proof. Native document behavior and the approved Work Session safety guarantees remain in force.
 
 ## Archival completeness
 

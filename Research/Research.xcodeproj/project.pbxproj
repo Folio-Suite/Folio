@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A15AE2CD305729DA001B9E7B /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
+		A15AE2D2305729F6001B9E7B /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; };
+		A15AE2D4305729FD001B9E7B /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
+		A15AE2D5305729FD001B9E7B /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1F83A0B3050B4D200DEB96A /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
-		A1F83AC53050B83D00DEB96A /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
-		A1F83AC63050B83D00DEB96A /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A1F83B193050BBAB00DEB96A /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; };
-		F01100000000000000000007 /* FolioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +29,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = A1064892304DFD5C001A21A6;
 			remoteInfo = Research;
+		};
+		A15AE2CF305729DA001B9E7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1F839FF3050B4D100DEB96A;
+			remoteInfo = ResearchKit;
 		};
 		A1F83A0C3050B4D200DEB96A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -58,8 +66,7 @@
 			dstPath = "";
 			dstSubfolder = Frameworks;
 			files = (
-				A1F83AC63050B83D00DEB96A /* ResearchKit.framework in Embed Frameworks */,
-				F01100000000000000000007 /* FolioKit.framework in Embed Frameworks */,
+				A15AE2D5305729FD001B9E7B /* ResearchKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 		};
@@ -69,10 +76,10 @@
 		A1064893304DFD5C001A21A6 /* Research.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Research.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10648AE304DFD5D001A21A6 /* ResearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10648B8304DFD5D001A21A6 /* ResearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A15AE2BD30572766001B9E7B /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		A1F83A003050B4D100DEB96A /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F83A0A3050B4D200DEB96A /* ResearchKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F83B183050BBAB00DEB96A /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F01100000000000000000001 /* Config/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Project.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -131,12 +138,14 @@
 		A1064890304DFD5C001A21A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				A1F83AC53050B83D00DEB96A /* ResearchKit.framework in Frameworks */,
+				A15AE2D4305729FD001B9E7B /* ResearchKit.framework in Frameworks */,
+				A15AE2D2305729F6001B9E7B /* FolioKit.framework in Frameworks */,
 			);
 		};
 		A10648AB304DFD5D001A21A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				A15AE2CD305729DA001B9E7B /* ResearchKit.framework in Frameworks */,
 			);
 		};
 		A10648B5304DFD5D001A21A6 /* Frameworks */ = {
@@ -162,7 +171,6 @@
 		A106488A304DFD5C001A21A6 = {
 			isa = PBXGroup;
 			children = (
-				F01100000000000000000001 /* Config/Project.xcconfig */,
 				A1064895304DFD5C001A21A6 /* Research */,
 				A10648B1304DFD5D001A21A6 /* ResearchTests */,
 				A10648BB304DFD5D001A21A6 /* ResearchUITests */,
@@ -170,6 +178,7 @@
 				A1F83A103050B4D200DEB96A /* ResearchKitTests */,
 				A1F83AC33050B83D00DEB96A /* Frameworks */,
 				A1064894304DFD5C001A21A6 /* Products */,
+				A15AE2BD30572766001B9E7B /* Project.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -238,6 +247,7 @@
 			);
 			dependencies = (
 				A10648B0304DFD5D001A21A6 /* PBXTargetDependency */,
+				A15AE2D0305729DA001B9E7B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A10648B1304DFD5D001A21A6 /* ResearchTests */,
@@ -440,6 +450,11 @@
 			target = A1064892304DFD5C001A21A6 /* Research */;
 			targetProxy = A10648B9304DFD5D001A21A6 /* PBXContainerItemProxy */;
 		};
+		A15AE2D0305729DA001B9E7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1F839FF3050B4D100DEB96A /* ResearchKit */;
+			targetProxy = A15AE2CF305729DA001B9E7B /* PBXContainerItemProxy */;
+		};
 		A1F83A0D3050B4D200DEB96A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A1F839FF3050B4D100DEB96A /* ResearchKit */;
@@ -564,7 +579,7 @@
 		};
 		A10648C4304DFD5D001A21A6 /* Debug configuration for PBXProject "Research" */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F01100000000000000000001 /* Config/Project.xcconfig */;
+			baseConfigurationReference = A15AE2BD30572766001B9E7B /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -627,7 +642,7 @@
 		};
 		A10648C5304DFD5D001A21A6 /* Release configuration for PBXProject "Research" */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F01100000000000000000001 /* Config/Project.xcconfig */;
+			baseConfigurationReference = A15AE2BD30572766001B9E7B /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

@@ -26,10 +26,11 @@ Folio uses one shared domain context across its Xcode monorepo:
 ├── Folio.xcworkspace/
 ├── FolioKit/
 ├── Write/
-└── Research/
+├── Research/
+└── Composer/
 ```
 
-The root glossary and ADRs apply across all three components. Separate Xcode projects and module ownership do not require separate domain glossaries. Keep cross-Suite decisions here and symbol documentation alongside its owning code.
+The root glossary and ADRs apply across all four components. Separate Xcode projects and module ownership do not require separate domain glossaries. Keep cross-Suite decisions here and symbol documentation alongside its owning code.
 
 If a root `CONTEXT-MAP.md` is introduced later, follow its pointers to the relevant context-specific glossaries and decision records, together with system-wide ADRs in `docs/adr/`.
 

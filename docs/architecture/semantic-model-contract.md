@@ -73,7 +73,7 @@ One governing Profile applies to a Work and composes reusable semantic vocabular
 
 Changing Profile can leave authoring incompatibilities visible while preserving content and the definitions needed to interpret it. Selecting a Profile does not silently rewrite or discard content. A transformation of structure or meaning is an explicit conversion. Structural integrity remains mandatory; Profile conformance and publication completeness can remain unfinished during drafting.
 
-Namespaces identify semantic vocabularies, not applications. Each vocabulary should ideally have a primary responsible application, allowing application specialties to follow natural semantic divisions. This is responsibility for vocabulary and editing surfaces; the helper-owned Work Session authority in ADR 0004 remains in force. Exact application names and framework divisions remain open.
+Namespaces identify semantic vocabularies, not applications. Each vocabulary should ideally have a primary responsible application, allowing application specialties to follow natural semantic divisions. This is responsibility for vocabulary and editing surfaces; the domain-hosted Work Session authority in ADR 0004 remains in force. Write/WriteKit owns Work capabilities, Research/ResearchKit owns Source Library capabilities, and Composer/ComposerKit owns Edition capabilities. Additional application divisions remain open.
 
 Initially the Suite implements its vocabulary comprehensively. Plug-in contracts are planned extension facilities rather than an initial dependency for built-in semantics. An integration such as Zotero should be possible through the model's extension facilities; this does not commit a particular integration API or require a new semantic type for each integration.
 

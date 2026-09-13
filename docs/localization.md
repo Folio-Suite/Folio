@@ -19,7 +19,7 @@ For new count-bearing messages, use catalog plural variations and localized form
 
 ## Interface Builder and metadata
 
-Menus remain in each application's `Base.lproj/Main.storyboard`. The editor's scenes remain in WriteKit's `Resources/Base.lproj/Editor.storyboard`. Their adjacent `Main.xcstrings` and `Editor.xcstrings` catalogs use Interface Builder's required `objectID.property` keys. Objects containing localizable text have readable IDs and user labels. Preserve those IDs after translation begins and keep connections intact when adding scenes.
+Menus remain in each application's `Base.lproj/Main.storyboard`. The editor's scenes remain in WriteKit's `Resources/Base.lproj/Editor.storyboard`. Their `mul.lproj/Main.xcstrings` and `mul.lproj/Editor.xcstrings` catalogs use Interface Builder's required `objectID.property` keys. Objects containing localizable text have readable IDs and user labels. Preserve those IDs after translation begins and keep connections intact when adding scenes.
 
 `InfoPlist.xcstrings` uses Apple's metadata keys and document-type names as lookup keys. These keys are exceptions to the semantic code-key convention. Brand names and shortcut glyphs are not ordinary translatable prose.
 
@@ -27,7 +27,9 @@ Menus remain in each application's `Base.lproj/Main.storyboard`. The editor's sc
 
 Run `python3 scripts/update-localizations.py --write` after changing source text or storyboard labels. This extracts Objective-C with `genstrings` and Interface Builder text with `ibtool`, preserves translations, marks changed translations for review, and retains removed entries as stale for explicit review. Private dylib sources are included in their enclosing framework's catalog. Run without `--write` to check that extracted keys and English values match; remove reviewed stale entries explicitly.
 
-Run `scripts/check-build.sh` to validate compilation and resource embedding. Before shipping translations, verify the built apps: menus, editor scenes, toolbar tooltips, accessibility labels, undo/redo names, errors, and Help. Test long text, right-to-left layout, mixed Arabic/Latin content, and missing-translation fallback separately. Do not translate authored Work content when the UI language changes.
+Composer’s Base storyboard and `mul.lproj/Main.xcstrings` catalog participate in the same extraction check.
+
+Run `scripts/check-build.sh` to validate compilation and framework products; installed resource and dependency resolution still require a runtime check. Before shipping translations, verify the built apps: menus, editor scenes, toolbar tooltips, accessibility labels, undo/redo names, errors, and Help. Test long text, right-to-left layout, mixed Arabic/Latin content, and missing-translation fallback separately. Do not translate authored Work content when the UI language changes.
 
 ## Validation of this foundation
 
