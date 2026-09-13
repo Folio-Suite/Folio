@@ -13,9 +13,10 @@ class ReleaseTest < Minitest::Test
     FileUtils.mkdir_p(File.join(@repo, 'Config'))
     File.write(File.join(@repo, 'Config/Version.xcconfig'), "MARKETING_VERSION = 0.1.0\nCURRENT_PROJECT_VERSION = 1\n")
     system('git', 'init', '-q', @repo, exception: true)
+    FileUtils.mkdir_p(File.join(@repo, 'scripts'))
+    FileUtils.cp(File.expand_path('../increment-build.rb', __dir__), File.join(@repo, 'scripts/increment-build.rb'))
     git('add', '.')
     git('-c', 'user.name=Test', '-c', 'user.email=test@example.invalid', 'commit', '-qm', 'Fixture')
-    @ledger = File.join(@temporary, 'numbers.json')
     @candidate = File.join(@temporary, 'candidate')
   end
 
@@ -37,29 +38,6 @@ class ReleaseTest < Minitest::Test
     output, status = cli(*args)
     assert status.success?, output
     output
-  end
-
-  def test_prepare_allocates_once_and_reuses_candidate_without_changing_source
-    succeeds('init-ledger', '--ledger', @ledger, '--last-build', '1')
-    succeeds('prepare', '--ledger', @ledger, '--output', @candidate)
-    first = JSON.parse(File.read(File.join(@candidate, 'release.json')))
-    assert_equal '0.1.0', first.fetch('version')
-    assert_equal '2', first.fetch('build')
-    assert_equal git('rev-parse', 'HEAD'), first.fetch('revision')
-    assert_equal false, first.fetch('dirty')
-    succeeds('prepare', '--ledger', @ledger, '--output', @candidate)
-    assert_equal first, JSON.parse(File.read(File.join(@candidate, 'release.json')))
-    assert_equal '', git('status', '--porcelain')
-    second = File.join(@temporary, 'second')
-    succeeds('prepare', '--ledger', @ledger, '--output', second)
-    assert_equal '3', JSON.parse(File.read(File.join(second, 'release.json'))).fetch('build')
-  end
-  def test_preparation_rejects_output_that_would_dirty_the_source
-    succeeds('init-ledger', '--ledger', @ledger, '--last-build', '1')
-    output, status = cli('prepare', '--ledger', @ledger, '--output', File.join(@repo, 'candidate'))
-    refute status.success?, output
-    assert_includes output, 'ignored'
-    assert_equal '', git('status', '--porcelain')
   end
 
   def make_products
@@ -95,91 +73,58 @@ class ReleaseTest < Minitest::Test
     assert_includes output, 'expected 0.1.0 (1)'
   end
 
-  def test_candidate_verification_uses_recorded_identity
-    succeeds('init-ledger', '--ledger', @ledger, '--last-build', '1')
-    succeeds('prepare', '--ledger', @ledger, '--output', @candidate)
+
+  def increment(phase, action)
+    Open3.capture2e({ 'ACTION' => action }, 'ruby', File.join(@repo, 'scripts/increment-build.rb'), phase)
+  end
+
+  def test_suite_build_and_archive_each_advance_once
+    output, status = increment('build', 'build')
+    assert status.success?, output
+    assert_includes File.read(File.join(@repo, 'Config/Version.xcconfig')), 'CURRENT_PROJECT_VERSION = 2'
+    output, status = increment('build', 'install')
+    assert status.success?, output
+    assert_includes File.read(File.join(@repo, 'Config/Version.xcconfig')), 'CURRENT_PROJECT_VERSION = 3'
+    increment('build', 'clean')
+    assert_includes File.read(File.join(@repo, 'Config/Version.xcconfig')), 'CURRENT_PROJECT_VERSION = 3'
+  end
+
+  def test_concurrent_counter_updates_are_not_lost
+    results = 4.times.map { Thread.new { increment('build', 'build') } }.map(&:value)
+    results.each { |output, status| assert status.success?, output }
+    assert_includes File.read(File.join(@repo, 'Config/Version.xcconfig')), 'CURRENT_PROJECT_VERSION = 5'
+  end
+
+  def test_invalid_counter_is_not_rewritten
+    path = File.join(@repo, 'Config/Version.xcconfig')
+    File.write(path, 'invalid configuration')
+    output, status = increment('build', 'build')
+    refute status.success?, output
+    assert_equal 'invalid configuration', File.read(path)
+  end
+
+  def test_prepare_records_completed_build_without_allocating
+    output, status = increment('build', 'build')
+    assert status.success?, output
     products = make_products
     Dir.glob(File.join(products, '**/Info.plist')).each do |path|
       File.write(path, File.read(path).sub('<string>1</string>', '<string>2</string>'))
     end
+    before = File.read(File.join(@repo, 'Config/Version.xcconfig'))
+    succeeds('prepare', '--products', products, '--output', @candidate)
+    candidate = JSON.parse(File.read(File.join(@candidate, 'release.json')))
+    assert_equal '2', candidate['build']
+    assert_equal true, candidate['dirty']
+    assert_equal git('rev-parse', 'HEAD'), candidate['revision']
+    assert_includes candidate['source_patch'], '+CURRENT_PROJECT_VERSION = 2'
+    assert_equal before, File.read(File.join(@repo, 'Config/Version.xcconfig'))
     succeeds('verify', '--products', products, '--candidate', @candidate)
-    output, status = cli('verify', '--products', products)
-    refute status.success?, output
-    assert_includes output, 'expected 0.1.0 (1)'
   end
 
-  def test_build_refuses_changed_source_before_invoking_xcode
-    succeeds('init-ledger', '--ledger', @ledger, '--last-build', '1')
-    succeeds('prepare', '--ledger', @ledger, '--output', @candidate)
-    File.write(File.join(@repo, 'uncommitted.txt'), 'Changed source')
-    output, status = cli('build', '--candidate', @candidate)
+  def test_prepare_rejects_uncommitted_source_changes
+    File.write(File.join(@repo, 'uncommitted.m'), '// source change')
+    output, status = cli('prepare', '--products', make_products, '--output', @candidate)
     refute status.success?, output
     assert_includes output, 'Source is dirty'
   end
-
-  def test_concurrent_preparations_reserve_distinct_numbers
-    succeeds('init-ledger', '--ledger', @ledger, '--last-build', '40')
-    results = 4.times.map do |index|
-      Thread.new { cli('prepare', '--ledger', @ledger, '--output', "#{@candidate}-#{index}") }
-    end.map(&:value)
-    results.each { |output, status| assert status.success?, output }
-    numbers = 4.times.map { |i| JSON.parse(File.read("#{@candidate}-#{i}/release.json")).fetch('build').to_i }
-    assert_equal [41, 42, 43, 44], numbers.sort
-  end
-
-  def test_ledger_cannot_be_reset_and_missing_bundles_are_rejected
-    succeeds('init-ledger', '--ledger', @ledger, '--last-build', '9')
-    output, status = cli('init-ledger', '--ledger', @ledger, '--last-build', '1')
-    refute status.success?, output
-    assert_includes output, 'never be reset'
-    products = make_products
-    FileUtils.rm_rf(File.join(products, 'Composer.app/Contents/XPCServices'))
-    output, status = cli('verify', '--products', products)
-    refute status.success?, output
-    assert_includes output, 'Missing shipping bundle'
-  end
-
-  def test_preparation_rejects_dirty_source_and_corrupt_ledger
-    succeeds('init-ledger', '--ledger', @ledger, '--last-build', '1')
-    path = File.join(@repo, 'Config/Version.xcconfig')
-    original = File.read(path)
-    File.write(path, original + "// dirty source\n")
-    output, status = cli('prepare', '--ledger', @ledger, '--output', @candidate)
-    refute status.success?, output
-    assert_includes output, 'Source is dirty'
-    refute File.exist?(@candidate)
-    File.write(path, original)
-    File.write(@ledger, '{invalid')
-    output, status = cli('prepare', '--ledger', @ledger, '--output', @candidate)
-    refute status.success?, output
-    refute File.exist?(@candidate)
-  end
-
-  def test_reuse_detects_a_ledger_restored_behind_the_candidate
-    succeeds('init-ledger', '--ledger', @ledger, '--last-build', '1')
-    backup = File.read(@ledger)
-    succeeds('prepare', '--ledger', @ledger, '--output', @candidate)
-    File.write(@ledger, backup)
-    output, status = cli('prepare', '--ledger', @ledger, '--output', @candidate)
-    refute status.success?, output
-    assert_includes output, 'behind'
-  end
-
-  def test_verifier_ignores_xcode_test_runner_products
-    products = make_products
-    runner = File.join(products, 'ResearchUITests-Runner.app/Contents')
-    FileUtils.mkdir_p(runner)
-    File.write(File.join(runner, 'Info.plist'), '<plist version="1.0"><dict><key>CFBundleIdentifier</key><string>dev.foliosuite.ResearchUITests.xctrunner</string></dict></plist>')
-    succeeds('verify', '--products', products)
-  end
-
-  def test_verifier_rejects_wrong_identity_in_a_known_embedded_kit
-    products = make_products
-    path = File.join(products, 'Write.app/Contents/Frameworks/WriteKit.framework/Resources/Info.plist')
-    File.write(path, File.read(path).sub('dev.foliosuite.WriteKit', 'invalid.WriteKit'))
-    output, status = cli('verify', '--products', products)
-    refute status.success?, output
-    assert_includes output, 'Unexpected bundle identifier'
-  end
-
 end

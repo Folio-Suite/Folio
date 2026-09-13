@@ -25,7 +25,7 @@ Menus remain in each application's `Base.lproj/Main.storyboard`. The editor's sc
 
 ## Refresh and verify
 
-Run `python3 scripts/update-localizations.py --write` after changing source text or storyboard labels. This extracts Objective-C with `genstrings` and Interface Builder text with `ibtool`, preserves translations, marks changed translations for review, and retains removed entries as stale for explicit review. Framework implementation subfolders are included in their owning framework’s catalog. Run without `--write` to check that extracted keys and English values match; remove reviewed stale entries explicitly.
+Run `ruby scripts/update-localizations.rb --write` after changing source text or storyboard labels. This extracts Objective-C with `genstrings` and Interface Builder text with `ibtool`, preserves translations, marks changed translations for review, and retains removed entries as stale for explicit review. Framework implementation subfolders are included in their owning framework’s catalog. Run without `--write` to check that extracted keys and English values match; remove reviewed stale entries explicitly.
 
 Composer’s Base storyboard and `mul.lproj/Main.xcstrings` catalog participate in the same extraction check.
 

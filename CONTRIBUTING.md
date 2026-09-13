@@ -20,9 +20,10 @@ For the editor and package tests, select **Write** in Xcode and use Product → 
 ## Release identity
 
 All apps, Kits, and bundled services inherit the version and build from the shared
-Suite configuration. Ordinary Xcode builds leave numbering unchanged. Use the
-Ruby workflow in [Suite version and build numbering](docs/release-numbering.md) to
-reserve a candidate identity, rebuild it, and verify its shipping bundles.
+Suite configuration. The Folio scheme advances the build number once per Build or
+Archive action; component schemes leave it unchanged. Use the Ruby workflow in
+[Suite version and build numbering](docs/release-numbering.md) to record and verify
+the resulting shipping bundles.
 
 ## Names and ownership
 

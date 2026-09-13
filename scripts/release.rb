@@ -15,8 +15,8 @@ class SuiteRelease
     @command = arguments.shift
     @options = {}
     OptionParser.new do |parser|
-      parser.banner = 'Usage: ruby scripts/release.rb init-ledger|prepare|build|verify [options]'
-      %w[ledger last-build output products candidate configuration action].each do |name|
+      parser.banner = 'Usage: ruby scripts/release.rb prepare|build|verify [options]'
+      %w[output products candidate configuration action].each do |name|
         parser.on("--#{name} VALUE") { |value| @options[name] = value }
       end
     end.parse!(arguments)
@@ -25,11 +25,10 @@ class SuiteRelease
 
   def run
     case @command
-    when 'init-ledger' then initialize_ledger
     when 'prepare' then prepare
     when 'verify' then verify
     when 'build' then build
-    else raise 'Expected init-ledger, prepare, build, or verify'
+    else raise 'Expected prepare, build, or verify'
     end
   end
 
@@ -47,9 +46,16 @@ class SuiteRelease
 
   def source_identity
     @root = capture('git', 'rev-parse', '--show-toplevel')
-    raise 'Source is dirty; commit or remove source changes before preparing a candidate' unless capture('git', '-C', @root, 'status', '--porcelain', '--untracked-files=all').empty?
-    settings = development_identity
-    settings.merge('revision' => capture('git', '-C', @root, 'rev-parse', 'HEAD'), 'dirty' => false)
+    changed = capture('git', '-C', @root, 'diff', '--name-only', 'HEAD').lines.map(&:strip)
+    untracked = capture('git', '-C', @root, 'ls-files', '--others', '--exclude-standard')
+    raise 'Source is dirty; commit source changes before recording a candidate' unless (changed - ['Config/Version.xcconfig']).empty? && untracked.empty?
+    baseline = capture('git', '-C', @root, 'show', 'HEAD:Config/Version.xcconfig')
+    current = File.read(File.join(@root, 'Config/Version.xcconfig')).strip
+    normalize = ->(text) { text.gsub(/^CURRENT_PROJECT_VERSION = \d+$/, 'CURRENT_PROJECT_VERSION = BUILD') }
+    raise 'Commit version configuration changes first' unless normalize.call(baseline) == normalize.call(current)
+    development_identity.merge('revision' => capture('git', '-C', @root, 'rev-parse', 'HEAD'),
+                               'dirty' => !changed.empty?,
+                               'source_patch' => capture('git', '-C', @root, 'diff', '--binary', 'HEAD', '--', 'Config/Version.xcconfig'))
   end
 
   def development_identity
@@ -95,26 +101,13 @@ class SuiteRelease
     raise 'Output inside the source checkout must be ignored by Git' unless status.success?
   end
 
-  def initialize_ledger
-    path = File.expand_path(option('ledger'))
-    protect_source(path)
-    protect_source(path + '.lock')
-    last = build_number(option('last-build'))
-    FileUtils.mkdir_p(File.dirname(path))
-    File.open(path + '.lock', File::RDWR | File::CREAT, 0600) do |lock|
-      lock.flock(File::LOCK_EX)
-      raise 'Ledger already exists; it must never be reset' if File.exist?(path)
-      write_json(path, { 'schema' => 1, 'id' => SecureRandom.uuid, 'last_build' => last })
-    end
-    puts "Initialized build ledger at #{path}, last reserved build #{last}"
-  end
-
   def candidate_identity(directory)
     candidate = read_json(File.join(directory, 'release.json'))
-    unless candidate['schema'] == 1 && candidate['dirty'] == false &&
+    unless candidate['schema'] == 1 && [true, false].include?(candidate['dirty']) &&
+           (!candidate['dirty'] || candidate['source_patch'].is_a?(String)) &&
            /\A[0-9a-f]{40,64}\z/.match?(candidate['revision'].to_s) &&
            /\A\d+\.\d+\.\d+\z/.match?(candidate['version'].to_s) &&
-           candidate['ledger_id'].is_a?(String)
+           (candidate['numbering'] == 'Folio scheme' || candidate['ledger_id'].is_a?(String))
       raise 'Invalid candidate identity'
     end
     build_number(candidate.fetch('build'))
@@ -146,11 +139,10 @@ class SuiteRelease
   end
 
   def build
-    identity = source_identity
+    before = source_identity
     directory = File.expand_path(option('candidate'))
-    candidate = candidate_identity(directory)
-    raise 'Checkout differs from the prepared candidate revision' unless candidate['revision'] == identity['revision'] && candidate['version'] == identity['version']
     protect_source(directory)
+    raise 'Use a new candidate directory for each Folio build' if File.exist?(directory)
     configuration = @options.fetch('configuration', 'Release')
     action = @options.fetch('action', 'build')
     raise 'Configuration must be Debug or Release' unless %w[Debug Release].include?(configuration)
@@ -158,16 +150,20 @@ class SuiteRelease
     derived = File.join(directory, 'DerivedData')
     command = ['xcodebuild', '-workspace', File.join(@root, 'Folio.xcworkspace'),
                '-scheme', 'Folio', '-configuration', configuration, '-destination', 'platform=macOS',
-               '-derivedDataPath', derived, "MARKETING_VERSION=#{candidate['version']}",
-               "CURRENT_PROJECT_VERSION=#{candidate['build']}", action]
-    report = File.join(directory, "build-#{configuration}.json")
-    File.unlink(report) if File.exist?(report)
+               '-derivedDataPath', derived, action]
     raise 'Xcode build failed' unless system(*command)
-    raise 'Source changed during the build' unless source_identity == identity
+    after = source_identity
+    unless after['revision'] == before['revision'] && after['version'] == before['version'] && after['build'].to_i == before['build'].to_i + 1
+      raise 'Expected one Suite build-number increment and no other source changes'
+    end
     @options['products'] = File.join(derived, 'Build/Products', configuration)
+    # Verify the newly allocated identity, not a previous candidate override.
+    @options.delete('candidate')
     verify
-    write_json(report,
-               { 'identity' => candidate, 'configuration' => configuration,
+    write_json(File.join(directory, 'release.json'), after.merge(
+      'schema' => 1, 'numbering' => 'Folio scheme', 'prepared_at' => Time.now.utc.iso8601))
+    write_json(File.join(directory, "build-#{configuration}.json"),
+               { 'identity' => after, 'configuration' => configuration,
                  'xcode' => capture('xcodebuild', '-version'), 'command' => command,
                  'products' => @options['products'], 'verified_at' => Time.now.utc.iso8601 })
   end
@@ -175,37 +171,14 @@ class SuiteRelease
   def prepare
     identity = source_identity
     output = File.expand_path(option('output'))
-    ledger_path = File.expand_path(option('ledger'))
     protect_source(output)
-    protect_source(ledger_path)
-    protect_source(ledger_path + '.lock')
-    raise 'Initialize the shared ledger first with init-ledger' unless File.file?(ledger_path)
-    File.open(ledger_path + '.lock', File::RDWR | File::CREAT, 0600) do |lock|
-      lock.flock(File::LOCK_EX)
-      ledger = read_json(ledger_path)
-      raise 'Invalid build ledger' unless ledger['schema'] == 1 && ledger['id'].is_a?(String)
-      last = build_number(ledger.fetch('last_build'))
-      manifest = File.join(output, 'release.json')
-      if File.exist?(output)
-        candidate = candidate_identity(output)
-        raise 'Ledger is behind this candidate; restore the complete reservation history' if build_number(candidate['build']) > last
-        raise 'Candidate belongs to different source or ledger' unless candidate['revision'] == identity['revision'] && candidate['version'] == identity['version'] && candidate['ledger_id'] == ledger['id']
-        puts "Reusing #{candidate['version']} (#{candidate['build']}) at #{output}"
-        return
-      end
-      number = build_number([last, identity['build'].to_i].max + 1)
-      ledger['last_build'] = number
-      # Reserve before writing a candidate. A failed preparation leaves a gap,
-      # never a reusable number. All checkouts must share this ledger authority.
-      write_json(ledger_path, ledger)
-      FileUtils.mkdir_p(output)
-      candidate = identity.merge(
-        'schema' => 1, 'build' => number.to_s, 'ledger_id' => ledger['id'],
-        'prepared_at' => Time.now.utc.iso8601)
-      raise 'Source changed during preparation' unless source_identity == identity
-      write_json(manifest, candidate)
-      puts "Prepared #{candidate['version']} (#{candidate['build']}) at #{output}"
-    end
+    raise 'Candidate directory already exists; retain it and choose a new directory' if File.exist?(output)
+    verify
+    raise 'Source changed during candidate preparation' unless source_identity == identity
+    FileUtils.mkdir_p(output)
+    write_json(File.join(output, 'release.json'), identity.merge(
+      'schema' => 1, 'numbering' => 'Folio scheme', 'prepared_at' => Time.now.utc.iso8601))
+    puts "Recorded #{identity['version']} (#{identity['build']}) at #{output}; build number unchanged"
   end
 end
 
