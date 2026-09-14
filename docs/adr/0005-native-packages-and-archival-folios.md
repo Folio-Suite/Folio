@@ -7,6 +7,8 @@ SPDX-License-Identifier: MIT
 
 Folio uses on-disk packages as its native storage form, with distinct package types for Works, libraries, Profiles, and other concepts defined as needed. An exported folio is the complete, durable archival exchange form of a Work, allowing reconstruction independently of the originating machine, libraries, and installed extensions.
 
+[ADR 0010](0010-document-undo-and-durable-history.md) qualifies history preservation: explicit author-directed omission is supported on save (including overwrite) and export. A valid history-omitted folio declares the omission and cannot claim complete historical reconstruction; current Work and dependency preservation still apply.
+
 ## Consequences
 
 - Save and Auto Save preserve native package state; exporting a folio is a separate operation. This supersedes the portable-checkpoint-on-Save assumption in the original #5 interview and the native package-versus-ZIP competition in #4 and #13.

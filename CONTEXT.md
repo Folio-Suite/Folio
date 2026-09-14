@@ -28,7 +28,7 @@ The canonical, output-independent intellectual object, including its Manuscript,
 _Avoid_: Document, file, project
 
 **folio**:
-The complete, durable archival exchange form of a Work, containing the content, history, and dependencies needed to reconstruct it independently of the originating environment. It is distinct from the Folio Suite and from a published Rendition.
+The durable archival exchange form of a Work, containing the content and dependencies needed to reconstruct it independently of the originating environment, with history included by default or explicitly declared omitted. It is distinct from the Folio Suite and from a published Rendition.
 _Avoid_: Backup, rendition, working package
 
 **Manuscript**:

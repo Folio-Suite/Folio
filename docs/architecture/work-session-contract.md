@@ -29,9 +29,9 @@ If the authority host fails, clients preserve provisional input, show unavailabi
 
 ## Undo and restoration
 
-Undo follows the application editing context and modality that produced an action. The Session validates and performs the reversal; Work-wide history supports inspection and deliberate restoration. If reversal would affect later contributions, explain the consequences and require a choice rather than silently destroying intervening work. Offer a reversal preserving later contributions where possible. [Issue #8](https://github.com/ctwelve/Folio/issues/8) defines the command and durable-history machinery.
+Undo follows the independently saved document, with one ordering of accepted actions across applications and automation channels. The Session validates and performs reversals using familiar native Undo behavior. There is no global Undo or linked cross-document reversal. This supersedes the earlier originating-context rule; [ADR 0010](../adr/0010-document-undo-and-durable-history.md) and the [semantic history contract](semantic-history-contract.md) define reopening, branching history, settings, omission, and operation identity.
 
-Explicit discard or restoration of a Document Version affects the whole Work. Coordinate the operation across applications, make its scope clear before confirmation, and update every connected application to the restored state. Application-specific reversal belongs to Undo.
+Explicit discard or restoration of a Document Version affects the whole Work. Coordinate the operation across applications, make its scope clear before confirmation, and update every connected application to the restored state. Ordinary reversal belongs to document-wide Undo. Restoration preserves displaced history as a branch, except when the author explicitly requests history removal.
 
 ## Drag and drop
 

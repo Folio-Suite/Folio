@@ -11,6 +11,8 @@ Write owns Work capabilities, Research owns Source Library capabilities, and Com
 
 This preserves specialized desktop applications while removing the central menu bar application requirement. A framework loaded by multiple processes shares implementation, not in-memory authority. XPC is a candidate service transport; exact host packaging and supervision remain open.
 
+The Undo rule is subsequently amended by [ADR 0010](0010-document-undo-and-durable-history.md): accepted edits follow document-wide ordering across applications and automation.
+
 ## Consequences
 
 - Applications own presentation and transient interaction state; the Session safeguards accepted semantic changes and recoverable drafts. The single editorial baton belongs to the author, not one application.

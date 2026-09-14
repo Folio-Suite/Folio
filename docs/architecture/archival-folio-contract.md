@@ -25,6 +25,10 @@ A complete export verifies its dependency inventory, exact versions, integrity h
 
 If a dependency is missing, inaccessible, or cannot be redistributed, explain the unresolved requirement and allow resolution or replacement. Any explicitly reduced, redacted, or incomplete export is a separately identified operation and must not be represented as a complete folio.
 
+## Author-directed history omission
+
+The [semantic history contract](semantic-history-contract.md), approved in #8 and ADR 0010, qualifies default history preservation. Authors may explicitly omit history during saving, including overwrite, and any folio export. A history-omitted folio is valid and retains the current Work and required dependencies; its manifest declares the omission and it cannot claim complete historical reconstruction. Current Comments, unresolved Proposed Revisions, and current-content attribution remain. Export preserves history by default. Existing external versions and backups are unaffected.
+
 ## Independent readers and extension preservation
 
 Define reader capabilities explicitly: inspection/extraction, reconstruction/editing, and Rendition reproduction. A reader detects unsupported requirements, discloses limitations, and preserves unfamiliar content when rewriting. It cannot claim complete reconstruction after dropping meaning.
@@ -43,4 +47,4 @@ Issue #13 proves native package saving, recovery, Document Versions, consistent 
 
 Issue #6 is resolved by the [semantic model contract](semantic-model-contract.md) and [ADR 0006](../adr/0006-extensible-semantic-model-and-xml.md): independently specified semantics, XML representation, preservation of unknown structures, and capability and dependency declarations now have an approved contract. Exact schemas and conformance mechanisms remain further work.
 
-Issue #7 is resolved by the [Source Library contract](source-library-contract.md) and [ADR 0007](../adr/0007-independent-source-records-and-reconciliation.md): Work-local Source records are independently editable subsets with retained identity and provenance, deliberate reconciliation, and dependencies scoped to the research material actually required. Source Library operating-system versioning still requires investigation. Issue #8 retains durable history design.
+Issue #7 is resolved by the [Source Library contract](source-library-contract.md) and [ADR 0007](../adr/0007-independent-source-records-and-reconciliation.md): Work-local Source records are independently editable subsets with retained identity and provenance, deliberate reconciliation, and dependencies scoped to the research material actually required. Source Library operating-system versioning still requires investigation. Issue #8 is resolved by the [semantic history contract](semantic-history-contract.md) and [ADR 0010](../adr/0010-document-undo-and-durable-history.md). Storage mechanisms, scale, retention, automation integrations, and native lifecycle proofs remain further work.
