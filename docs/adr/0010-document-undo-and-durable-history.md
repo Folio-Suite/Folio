@@ -10,3 +10,5 @@ Approved in [issue #8](https://github.com/Folio-Suite/Folio/issues/8): each inde
 Durable history is enabled by default, supports named checkpoints and reopening, and preserves reversals and displaced states. Explicit author intent may disable recording or omit existing history during saving (including overwrite) or export; this qualifies ADR 0005's mandatory-history requirement. Current content and editorial material remain preserved, and a history-omitted folio declares its reduced historical coverage.
 
 See [the semantic history contract](../architecture/semantic-history-contract.md) for settings, recovery, atomic semantic operations, native automation conventions, attribution, and remaining proofs. These are approved behavioral requirements, not claims that the current editor implements them.
+
+[ADR 0011](0011-composer-arrangements-and-editions.md) subsequently establishes Composer-owned Arrangements and the self-contained Edition Profile, scoped Profiles, and explicit archival associations. It supersedes earlier Work-owned Arrangement/Edition assumptions while preserving independent document histories.

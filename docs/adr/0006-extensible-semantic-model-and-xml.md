@@ -17,3 +17,5 @@ Folio will define a substantial common document vocabulary on shared document-aw
 - The Suite initially implements its vocabulary comprehensively. Extension contracts support later integrations without requiring plug-ins to interpret the built-in model.
 
 The approved [semantic model and Profile contract](../architecture/semantic-model-contract.md) resolves [issue #6](https://github.com/Folio-Suite/Folio/issues/6). It refines the output-independent Work in ADR 0001 and the independently reconstructible archival folio in ADR 0005; it does not select native storage internals or implement the model.
+
+[ADR 0011](0011-composer-arrangements-and-editions.md) subsequently establishes Composer-owned Arrangements and the self-contained Edition Profile, scoped Profiles, and explicit archival associations. It supersedes earlier Work-owned Arrangement/Edition assumptions while preserving independent document histories.

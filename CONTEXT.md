@@ -14,7 +14,7 @@ The complete Folio product: a coordinated collection of desktop applications and
 _Avoid_: Product family, app bundle
 
 **Profile**:
-The exchangeable governing definition that specializes the semantic structures, validation rules, and available behavior of a Work for a class of documents. One Profile governs a Work and may compose semantic vocabularies without creating a separate Work model.
+A governing definition with explicit domain scope: a Write Profile specializes a Work’s semantic environment, while a Composer Profile defines Arrangement and production rules within that environment. Whether Profiles are user-authorable or supplied exclusively remains open.
 _Avoid_: Format, document type, theme
 
 **Semantic Vocabulary**:
@@ -39,9 +39,9 @@ _Avoid_: Document, source file
 An independently identifiable unit of authored content within a Work, such as a chapter, section, appendix, sidebar, or Note, whether placed in the Manuscript or currently unplaced. A Content Unit is a semantic boundary, not necessarily a file.
 _Avoid_: File, page, chunk
 
-**Assembly**:
-An intellectual structure that arranges independently identified Works without absorbing their identities, such as a collected volume or linked corpus.
-_Avoid_: Master document, collection, multi-file Work
+**Arrangement**:
+A Composer-owned ordered collection of Content Unit placements derived from Manuscript or Arrangement snapshots, with selected revisions and local elaborations that preserve source identity and provenance. It has independent document ownership and does not implicitly change its sources.
+_Avoid_: Assembly, Manuscript, master document
 
 **Work Session**:
 The active, authoritative state of an open Work through which multiple Suite applications may read and request changes. Its authority is independent of any application's presentation or lifetime.
@@ -98,7 +98,7 @@ An exchangeable presentation definition that maps semantic structures to medium-
 _Avoid_: Profile, document type
 
 **Edition**:
-A configured expression of a Work for a particular audience, purpose, or publication context.
+A self-contained production Arrangement governed by the included Edition Profile, with pinned content and locally retained required dependencies for a particular audience, purpose, or publication context. It remains deliberately editable after its initial snapshot.
 _Avoid_: Format, export
 
 **Rendition**:

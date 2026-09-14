@@ -9,7 +9,7 @@ Approved through the design interview for [issue #8](https://github.com/Folio-Su
 
 ## Ownership and ordinary Undo
 
-Each independently saved document owns one durable history and one ordering of accepted undoable actions. This follows the native document boundary, not individual files inside a package or the application displaying it. A Work and a Source Library have independent histories. Edition configuration owned by a Work participates in that Work's history; opening a view in Composer alone does not create another history owner.
+Each independently saved document owns one durable history and one ordering of accepted undoable actions. This follows the native document boundary, not individual files inside a package or the application displaying it. A Work and a Source Library have independent histories. The subsequent [Arrangement contract](arrangement-contract.md) establishes independently saved Composer Arrangements, including Editions, with their own histories; their source Works retain separate histories. This supersedes the earlier Work-owned Edition configuration assumption.
 
 Undo and Redo use familiar native behavior and follow the document, including the author's edits made through automation or another application. This supersedes the originating-application/context rule in the earlier Work Session contract. Native controls may handle unfinished local interactions; accepted document edits share document-wide ordering. The Session validates reversals and preserves structural integrity. No global Undo, linked reversal machinery, or selective cross-application Undo is required.
 
@@ -21,7 +21,7 @@ With durable history enabled, ordinary Undo survives closing and reopening. Undo
 
 Automatically retain meaningful accepted changes, including deleted material, and support author-named checkpoints. Design for very large histories. Exact typing/action consolidation, retention recommendations, pruning policy, and Time Machine-like behavior remain deferred.
 
-A checkpoint captures a coherent state at the independently saved document boundary, including its owned content and exact dependency versions. A Work checkpoint includes unplaced content, research records, and owned Edition configurations. It does not imply an archival export or independent backup.
+A checkpoint captures a coherent state at the independently saved document boundary, including its owned content and exact dependency versions. A Work checkpoint includes unplaced content and research records; a Composer Arrangement checkpoint includes its owned snapshots, elaborations, and production configuration. Cross-document checkpoint coordination is not implied. It does not imply an archival export or independent backup.
 
 Restoring a checkpoint or native Document Version establishes a new current state while retaining the displaced history as a branch. Record the restored state and its origin; ordinary restoration must not silently delete later accepted work. The native lifecycle prototype must prove this behavior across connected applications.
 
@@ -37,7 +37,7 @@ Offer an explicit Remove Existing History action. Omit History is also available
 
 A successful overwrite with omission removes historical states and action records, establishes the current state as a new baseline, and clears live Undo/Redo in every connected editing context for that document. Failed saving preserves existing history. Ordinary saving preserves history unless omission is selected. Omission is a one-time operation; subsequent recording follows the effective global/document setting.
 
-Omission preserves current Comments, unresolved Proposed Revisions, and attribution belonging to current content. Removing current editorial material is a separate choice. Removal applies to the saved document or exported artifact and, for an overwrite, its active Folio history. Existing native Document Versions, backups, and prior exports are unaffected; this is not a secure-erasure guarantee.
+Omission preserves current Comments, unresolved Proposed Revisions, and attribution belonging to current content. Snapshots and elaborations required by current Arrangements remain current dependencies and must also survive omission, as specified by the [Arrangement contract](arrangement-contract.md). Removing current editorial material is a separate choice. Removal applies to the saved document or exported artifact and, for an overwrite, its active Folio history. Existing native Document Versions, backups, and prior exports are unaffected; this is not a secure-erasure guarantee.
 
 A history-omitted folio is valid and reconstructs the current Work with its required dependencies. Its manifest explicitly declares history omitted, and it cannot claim complete historical reconstruction. Export preserves history by default. This qualifies the mandatory-history rule in ADR 0005 without weakening dependency or current-content preservation requirements.
 

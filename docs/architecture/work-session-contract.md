@@ -37,7 +37,7 @@ Explicit discard or restoration of a Document Version affects the whole Work. Co
 
 The destination determines the requested semantic operation. Dropping a Figure onto an inspector reveals that Figure; an appropriate Manuscript destination may request insertion or movement. Explicit copying creates a distinct object. The Session validates mutations and preserves identity and relationships.
 
-Cross-Work transfers copy by default, including the assets and semantic information needed for self-containment, new identity, and appropriate provenance. Linking is explicit and remains governed by the Assembly decisions in [issue #9](https://github.com/ctwelve/Folio/issues/9). A cross-Work move secures the destination before removing the source. Relevant native facilities should be investigated without making self-containment dependent on the original Work remaining available.
+Cross-Work transfers copy by default, including the assets and semantic information needed for self-containment, new identity, and appropriate provenance. Linking is explicit and remains governed by the Arrangement decisions in [issue #9](https://github.com/ctwelve/Folio/issues/9). A cross-Work move secures the destination before removing the source. Relevant native facilities should be investigated without making self-containment dependent on the original Work remaining available.
 
 ## Connections, Close, and Quit
 

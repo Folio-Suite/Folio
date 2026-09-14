@@ -18,3 +18,5 @@ Folio uses on-disk packages as its native storage form, with distinct package ty
 - A complete folio includes a dependency manifest and validation report, and must pass isolated reconstruction checks. Missing, inaccessible, or non-redistributable dependencies prevent a claim of completeness.
 
 The approved details are in [the archival folio contract](../architecture/archival-folio-contract.md). Existing issues [#4](https://github.com/ctwelve/Folio/issues/4) and [#13](https://github.com/ctwelve/Folio/issues/13) retain the remaining lifecycle design and prototype work.
+
+[ADR 0011](0011-composer-arrangements-and-editions.md) subsequently establishes Composer-owned Arrangements and the self-contained Edition Profile, scoped Profiles, and explicit archival associations. It supersedes earlier Work-owned Arrangement/Edition assumptions while preserving independent document histories.

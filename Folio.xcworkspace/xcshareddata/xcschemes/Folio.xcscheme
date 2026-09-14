@@ -6,10 +6,19 @@
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
       <PreActions>
-         <ExecutionAction ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent title = "Advance Suite build number" scriptText = "cd &quot;${PROJECT_DIR}/..&quot;&#10;/usr/bin/ruby scripts/increment-build.rb build&#10;">
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Advance Suite build number"
+               scriptText = "cd &quot;${PROJECT_DIR}/..&quot;&#10;/usr/bin/ruby scripts/increment-build.rb build&#10;">
                <EnvironmentBuildable>
-                  <BuildableReference BuildableIdentifier = "primary" BlueprintIdentifier = "A10648D5304DFE13001A21A6" BuildableName = "FolioKit.framework" BlueprintName = "FolioKit" ReferencedContainer = "container:FolioKit/FolioKit.xcodeproj"/>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "A10648D5304DFE13001A21A6"
+                     BuildableName = "FolioKit.framework"
+                     BlueprintName = "FolioKit"
+                     ReferencedContainer = "container:FolioKit/FolioKit.xcodeproj">
+                  </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
@@ -27,6 +36,20 @@
                BuildableName = "FolioKit.framework"
                BlueprintName = "FolioKit"
                ReferencedContainer = "container:FolioKit/FolioKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A15AE24D3057244C001B9E7B"
+               BuildableName = "Composer.app"
+               BlueprintName = "Composer"
+               ReferencedContainer = "container:Composer/Composer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -69,20 +92,6 @@
                BuildableName = "FolioKitTests.xctest"
                BlueprintName = "FolioKitTests"
                ReferencedContainer = "container:FolioKit/FolioKit.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A15AE24D3057244C001B9E7B"
-               BuildableName = "Composer.app"
-               BlueprintName = "Composer"
-               ReferencedContainer = "container:Composer/Composer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -157,6 +166,5 @@
       buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES"
       allowsArchivingForSimulator = "YES">
-      <!-- Archive uses the Build pre-action before compiling its products. -->
    </ArchiveAction>
 </Scheme>
