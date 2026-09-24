@@ -105,14 +105,20 @@ build, signature/runtime checks, Kit interfaces, bundle identities, localization
 extraction, and the existing 10 Ruby tooling tests passed. All 30 non-UI tests passed
 with normal team signing and no runtime exceptions.
 
-An earlier experimental ad-hoc run reported 41 passed test cases and one failure
-(104 passed invocations and one failed invocation including launch variants).
-The sidebar reorder assertion failed after XCTest reported an obstructing ChatGPT
-window; a clean focused rerun remains pending. That run used a library-validation
-exception which the owner rejected; it is not acceptance evidence for the final
-signing setup. The exception is removed. The dedicated CI certificate was provisioned in the GitHub `ci-signing`
-environment on September 24, 2026; both required secret names were verified.
-Hosted execution and parallel-job timing remain unverified until CI is published.
+The first hosted run at implementation revision `b8c3fe1` passed all four macOS
+jobs and the aggregate Suite check:
+[run 36031933078](https://github.com/Folio-Suite/Folio/actions/runs/36031933078).
+Each app job imported the dedicated certificate and passed the explicit team
+signature, Hardened Runtime, and library-validation checks before running tests.
+All three test jobs reported `TEST EXECUTE SUCCEEDED`; the Write sidebar reorder
+test also passed on the isolated runner. This resolves the earlier local failure
+where XCTest reported an obstructing ChatGPT window.
+
+The jobs ran concurrently: Suite checks took 1m22s, Research 2m08s, Composer 2m27s,
+and Write 3m36s. The aggregate gate completed 3m42s after the macOS jobs began.
+All four diagnostic artifacts were retained, and temporary-keychain cleanup
+succeeded in each signed job. The earlier ad-hoc signing experiment is superseded;
+the published pipeline preserves both Hardened Runtime and library validation.
 
 Actionlint 1.7.12 validation passed with only its unknown-label diagnostic excluded
 for the documented `xcode-27` preview runner.
