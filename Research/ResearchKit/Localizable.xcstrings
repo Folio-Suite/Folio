@@ -10,6 +10,66 @@
             "state": "translated",
             "value": "Research cannot read this Source Library."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Researchはこの資料ライブラリを読み込めません。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Research ne peut pas lire cette bibliothèque de sources."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يتعذر على البحث قراءة مكتبة المصادر هذه."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "O Research não consegue ler esta biblioteca de fontes."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "자료 조사에서 이 출처 보관함을 읽을 수 없습니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Research no puede leer esta biblioteca de fuentes."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "研究 无法读取此来源资料库。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "研究 無法讀取此來源資料庫。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Research non può leggere questa biblioteca di fonti."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Research kann diese Quellenbibliothek nicht lesen."
+          }
         }
       }
     },
@@ -22,6 +82,66 @@
             "state": "translated",
             "value": "Expected a package containing a closed Library.sqlite snapshot. Live database sidecars are not supported by this shell."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "閉じた状態のLibrary.sqliteのスナップショットを含むパッケージが必要です。この初期実装は、使用中のデータベースの補助ファイルに対応していません。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Un paquet contenant un instantané fermé de Library.sqlite était attendu. Cette version initiale ne prend pas en charge les fichiers annexes d’une base de données active."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يلزم وجود حزمة تحتوي على لقطة مغلقة من Library.sqlite. لا يدعم هذا التنفيذ الأولي الملفات المساعدة لقاعدة بيانات نشطة."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Era esperado um pacote contendo um instantâneo fechado de Library.sqlite. Esta versão inicial não oferece suporte a arquivos auxiliares de um banco de dados ativo."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "닫힌 Library.sqlite 스냅샷이 포함된 패키지가 필요합니다. 이 초기 구현은 사용 중인 데이터베이스의 보조 파일을 지원하지 않습니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Se esperaba un paquete con una instantánea cerrada de Library.sqlite. Esta versión inicial no admite archivos auxiliares de una base de datos activa."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "需要包含已关闭的 Library.sqlite 快照的包。此初始实现不支持活动数据库的辅助文件。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "需要包含已關閉之 Library.sqlite 快照的套件。此初始實作不支援使用中資料庫的附屬檔案。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Era previsto un pacchetto contenente un’istantanea chiusa di Library.sqlite. Questa versione iniziale non supporta i file ausiliari di un database attivo."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Erwartet wurde ein Paket mit einem geschlossenen Schnappschuss von Library.sqlite. Diese Grundversion unterstützt keine Begleitdateien einer aktiven Datenbank."
+          }
         }
       }
     },
@@ -33,6 +153,66 @@
           "stringUnit": {
             "state": "translated",
             "value": "This Source Library uses a different catalog model. Open it with a compatible version of Research."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "この資料ライブラリは異なるカタログモデルを使用しています。互換性のあるバージョンのResearchで開いてください。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cette bibliothèque de sources utilise un autre modèle de catalogue. Ouvrez-la avec une version compatible de Research."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تستخدم مكتبة المصادر هذه نموذج فهرس مختلفًا. افتحها باستخدام إصدار متوافق من البحث."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Esta biblioteca de fontes usa um modelo de catálogo diferente. Abra-a com uma versão compatível do Research."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "이 출처 보관함은 다른 카탈로그 모델을 사용합니다. 호환되는 버전의 자료 조사에서 여세요."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Esta biblioteca de fuentes usa un modelo de catálogo diferente. Ábrala con una versión compatible de Research."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "此来源资料库使用了不同的目录模型。请用兼容版本的 研究 打开。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "此來源資料庫使用不同的目錄模型。請使用相容版本的 研究 打開。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Questa biblioteca di fonti usa un modello di catalogo diverso. Aprila con una versione compatibile di Research."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Diese Quellenbibliothek verwendet ein anderes Katalogmodell. Öffnen Sie sie mit einer kompatiblen Version von Research."
           }
         }
       }

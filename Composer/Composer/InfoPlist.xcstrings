@@ -2,7 +2,7 @@
   "sourceLanguage": "en",
   "strings": {
     "CFBundleDisplayName": {
-      "comment": "Product name shown by macOS. Keep Folio and the application brand name unchanged unless a naming policy is adopted.",
+      "comment": "Application name. Keep Folio unchanged. Localize the app name in Chinese, Korean, and Arabic; preserve English branding in Japanese and European languages. See docs/localization.md for approved names.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -10,16 +10,136 @@
             "state": "translated",
             "value": "Folio Composer"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio Composer"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio Composer"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio الإخراج"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio Composer"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio 조판"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio Composer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio 排版"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio 排版"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio Composer"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio Composer"
+          }
         }
       }
     },
     "CFBundleName": {
-      "comment": "Bundle name",
+      "comment": "Application name. Keep Folio unchanged. Localize the app name in Chinese, Korean, and Arabic; preserve English branding in Japanese and European languages. See docs/localization.md for approved names.",
       "extractionState": "extracted_with_value",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "new",
+            "value": "Composer"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Composer"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Composer"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الإخراج"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Composer"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "조판"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Composer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "排版"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "排版"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Composer"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
             "value": "Composer"
           }
         }
@@ -34,6 +154,66 @@
             "state": "translated",
             "value": "Folio Composer Edition"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio Composerのエディション"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Édition Folio Composer"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إصدار Folio الإخراج"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Edição do Folio Composer"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio 조판 판본"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Edición de Folio Composer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio 排版 版本"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio 排版 版本"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Edizione di Folio Composer"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Folio Composer-Ausgabe"
+          }
         }
       }
     },
@@ -44,6 +224,66 @@
         "en": {
           "stringUnit": {
             "state": "translated",
+            "value": "Copyright © 2026 the Folio Project"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Copyright © 2026 the Folio Project"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Copyright © 2026 the Folio Project"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "حقوق النشر © 2026 the Folio Project"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Copyright © 2026 the Folio Project"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Copyright © 2026 the Folio Project"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Copyright © 2026 the Folio Project"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "版权所有 © 2026 the Folio Project"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "版權所有 © 2026 the Folio Project"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Copyright © 2026 the Folio Project"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
             "value": "Copyright © 2026 the Folio Project"
           }
         }

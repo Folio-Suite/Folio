@@ -12,13 +12,23 @@ require 'tmpdir'
 # Requires active Xcode developer tools. Existing translations are preserved.
 class LocalizationUpdate
   ROOT = File.expand_path('..', __dir__)
-  CODE = %w[FolioKit/FolioKit Write/Write Write/WriteKit Research/Research Research/ResearchKit Composer/Composer Composer/ComposerKit].freeze
+  CODE = %w[FolioKit/FolioKit Write/Write Write/WriteKit Write/WriteXPCService Research/Research Research/ResearchKit Research/ResearchXPCService Composer/Composer Composer/ComposerKit Composer/ComposerXPCService].freeze
   STORYBOARDS = [
     ['Write/Write/Base.lproj/Main.storyboard', 'Write/Write/mul.lproj/Main.xcstrings'],
     ['Research/Research/Base.lproj/Main.storyboard', 'Research/Research/mul.lproj/Main.xcstrings'],
     ['Write/WriteKit/Resources/Base.lproj/Editor.storyboard', 'Write/WriteKit/Resources/mul.lproj/Editor.xcstrings'],
     ['Composer/Composer/Base.lproj/Main.storyboard', 'Composer/Composer/mul.lproj/Main.xcstrings']
   ].freeze
+
+  def source_files(folder)
+    Dir.glob("#{folder}/**/*.{h,m,mm}").sort
+  end
+
+  def mark_for_review(node)
+    return unless node.is_a?(Hash)
+    node['stringUnit']['state'] = 'needs_review' if node['stringUnit']
+    node.each_value { |value| mark_for_review(value) }
+  end
 
   def read_strings(path)
     output, error, status = Open3.capture3('plutil', '-convert', 'json', '-o', '-', path)
@@ -27,21 +37,30 @@ class LocalizationUpdate
   end
 
   def refresh(path, values, comments, write)
-    data = File.exist?(path) ? JSON.parse(File.read(path)) : { 'sourceLanguage' => 'en', 'strings' => {}, 'version' => '1.2' }
+    original = File.exist?(path) ? File.read(path) : nil
+    data = original ? JSON.parse(original) : { 'sourceLanguage' => 'en', 'strings' => {}, 'version' => '1.2' }
     raise "#{path}: expected English source language" unless data['sourceLanguage'] == 'en'
+    # genstrings exports plain fallbacks, not the authored plural/device structure.
+    # Never silently replace that structure with a single English string.
+    structured = values.keys.select do |key|
+      source = data['strings'].dig(key, 'localizations', 'en') || {}
+      (source.keys - ['stringUnit']).any?
+    end
+    raise "#{path}: manually review structured source entries: #{structured.join(', ')}" unless structured.empty?
     problems = []
     values.each do |key, value|
       entry = data['strings'][key] || {}
       old = entry.dig('localizations', 'en', 'stringUnit', 'value')
-      problems << key if old != value || entry['comment'].to_s.empty?
+      comment = [comments[key], entry['comment'], "#{key}: user-facing text."].find { |text| text && !text.empty? }
+      problems << key if old != value || entry['comment'].to_s.empty? || entry['comment'] != comment || entry['extractionState'] == 'stale'
       next unless write
       if !old.nil? && old != value
         (entry['localizations'] || {}).each do |language, localization|
-          localization['stringUnit']['state'] = 'needs_review' if language != 'en' && localization.key?('stringUnit')
+          mark_for_review(localization) if language != 'en'
         end
       end
       entry['extractionState'] = 'manual'
-      entry['comment'] = [comments[key], entry['comment'], "#{key}: user-facing text."].find { |comment| comment && !comment.empty? }
+      entry['comment'] = comment
       entry['localizations'] ||= {}
       entry['localizations']['en'] = { 'stringUnit' => { 'state' => 'translated', 'value' => value } }
       # Keyboard shortcut glyphs must continue to describe the implemented shortcut.
@@ -53,7 +72,7 @@ class LocalizationUpdate
     stale.each { |key| data['strings'][key]['extractionState'] = 'stale' } if write
     if write
       data['strings'] = data['strings'].sort.to_h
-      File.write(path, JSON.pretty_generate(data) + "\n")
+      File.write(path, JSON.pretty_generate(data) + "\n") unless original && JSON.parse(original) == data
     elsif !problems.empty?
       raise "#{path.delete_prefix(ROOT + '/')}: refresh/review #{problems.join(', ')}"
     end
@@ -73,10 +92,12 @@ class LocalizationUpdate
       CODE.each_with_index do |folder, index|
         output = "#{temp}/#{index}"
         Dir.mkdir(output)
-        sources = Dir.glob("#{ROOT}/#{folder}/**/*.m")
+        sources = source_files("#{ROOT}/#{folder}")
         raise 'genstrings failed' unless system('xcrun', 'genstrings', '-q', '-o', output, *sources)
         strings = "#{output}/Localizable.strings"
         values = File.exist?(strings) ? read_strings(strings) : {}
+        # Empty service skeletons need no new resource until they contain text.
+        next if values.empty? && !File.exist?("#{ROOT}/#{folder}/Localizable.xcstrings")
         comments = {}
         if File.exist?(strings)
           text = File.read(strings, encoding: 'bom|utf-16:utf-8')
@@ -97,7 +118,15 @@ class LocalizationUpdate
           identifier, _, property_name = key.partition('.')
           element = objects.fetch(identifier)
           label = element.attributes['userLabel'] || identifier
-          comments[key] = "#{label} — #{element.name} #{property_name} in #{File.basename(storyboard, '.storyboard')}. Keep Folio domain terms consistent with the glossary."
+          titles = []
+          ancestor = element.parent
+          while ancestor.is_a?(REXML::Element)
+            title = ancestor.attributes['title'] || ancestor.attributes['userLabel']
+            titles.unshift(title) if title && titles.first != title
+            ancestor = ancestor.parent
+          end
+          location = (titles + [label]).join(' > ')
+          comments[key] = "#{location} — #{element.name} #{property_name}: #{values[key].inspect} in #{File.basename(storyboard, '.storyboard')}. Keep Folio domain terms consistent with the glossary."
         end
         refresh("#{ROOT}/#{catalog}", values, comments, write)
       end

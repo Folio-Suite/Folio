@@ -9,6 +9,23 @@
 @end
 
 @implementation WriteKitTests
+- (void)testMixedScriptAuthoredTitleAndTextSurvivePackageRoundTrip {
+    FWWork *work = [FWWork new];
+    NSString *title = @"العربية — 日本語 — Untitled";
+    NSString *text = @"العربية English עברית 日本語 한글 e\u0301 👩🏽‍💻";
+    FKTextRun *run = [[FKTextRun alloc] initWithString:text emphasis:FKTextEmphasisNone presentation:[FKTextPresentation new]];
+    FKParagraph *paragraph = [[FKParagraph alloc] initWithIdentifier:@"mixed-script-paragraph" runs:@[run] alignment:FKParagraphAlignmentNatural];
+    work.text = [[FKText alloc] initWithIdentifier:work.text.identifier title:title paragraphs:@[paragraph] formattingWarningDismissed:NO];
+    NSError *error = nil;
+    NSFileWrapper *package = [work fileWrapperWithError:&error];
+    XCTAssertNotNil(package, @"%@", error);
+    FWWork *loaded = [[FWWork alloc] initWithFileWrapper:package error:&error];
+    XCTAssertNotNil(loaded, @"%@", error);
+    XCTAssertEqualObjects(loaded.text.title, title);
+    XCTAssertEqualObjects(loaded.text.string, text);
+    XCTAssertEqual(loaded.text.paragraphs.firstObject.alignment, FKParagraphAlignmentNatural);
+}
+
 - (FWWork *)sampleWork {
     FWWork *work = [FWWork new];
     NSArray *runs = @[

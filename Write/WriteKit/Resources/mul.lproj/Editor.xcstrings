@@ -2,7 +2,7 @@
   "sourceLanguage": "en",
   "strings": {
     "FW-window.title": {
-      "comment": "Untitled — window title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled — window title: \"Untitled\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -10,11 +10,71 @@
             "state": "translated",
             "value": "Untitled"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "名称未設定"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sans titre"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "بلا عنوان"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sem título"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "무제"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sin título"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "未命名"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "未命名"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Senza titolo"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ohne Titel"
+          }
         }
       }
     },
     "alignment-0.title": {
-      "comment": "Natural — menuItem title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Paragraph Alignment > Natural — menuItem title: \"Natural\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -22,11 +82,71 @@
             "state": "translated",
             "value": "Natural"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "自然"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Naturel"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "طبيعي"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Natural"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "자연 정렬"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Natural"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "自然"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "自然"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Naturale"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Natürlich"
+          }
         }
       }
     },
     "alignment-1.title": {
-      "comment": "Left — menuItem title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Paragraph Alignment > Left — menuItem title: \"Left\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -34,11 +154,71 @@
             "state": "translated",
             "value": "Left"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "左"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gauche"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يسار"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Esquerda"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "왼쪽"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Izquierda"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "左"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "左"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sinistra"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Links"
+          }
         }
       }
     },
     "alignment-2.title": {
-      "comment": "Center — menuItem title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Paragraph Alignment > Center — menuItem title: \"Center\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -46,11 +226,71 @@
             "state": "translated",
             "value": "Center"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "中央揃え"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Centrer"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "توسيط"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Centralizar"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "가운데 정렬"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Centrar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "居中"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "置中"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Centra"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zentrieren"
+          }
         }
       }
     },
     "alignment-3.title": {
-      "comment": "Right — menuItem title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Paragraph Alignment > Right — menuItem title: \"Right\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -58,11 +298,71 @@
             "state": "translated",
             "value": "Right"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "右"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Droite"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يمين"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Direita"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "오른쪽"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Derecha"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "右"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "右"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Destra"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rechts"
+          }
         }
       }
     },
     "alignment-4.title": {
-      "comment": "Justified — menuItem title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Paragraph Alignment > Justified — menuItem title: \"Justified\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -70,11 +370,71 @@
             "state": "translated",
             "value": "Justified"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "両端揃え"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Justifié"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ضبط"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Justificado"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "양쪽 정렬"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Justificado"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "两端对齐"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "左右對齊"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Giustificato"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Blocksatz"
+          }
         }
       }
     },
     "appearance-bold-cell.title": {
-      "comment": "Bold — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Apply visual bold independently of semantic emphasis. > Bold — buttonCell title: \"Bold\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -82,11 +442,71 @@
             "state": "translated",
             "value": "Bold"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "太字"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gras"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "عريض"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Negrito"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "볼드체"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Negrita"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "粗体"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "粗體"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Grassetto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fett"
+          }
         }
       }
     },
     "appearance-bold-shortcut-cell.title": {
-      "comment": "⌥⌘B — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "⌥⌘B — textFieldCell title: \"⌥⌘B\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -99,7 +519,7 @@
       "shouldTranslate": false
     },
     "appearance-bold.ibShadowedToolTip": {
-      "comment": "Apply visual bold independently of semantic emphasis. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Apply visual bold independently of semantic emphasis. — button ibShadowedToolTip: \"Apply visual bold independently of semantic emphasis.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -107,11 +527,71 @@
             "state": "translated",
             "value": "Apply visual bold independently of semantic emphasis."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "意味上の強調とは独立して、見た目の太字を適用します。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Appliquer du gras visuel indépendamment de l’emphase sémantique."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تطبيق الخط العريض بصريًا بصورة مستقلة عن التوكيد الدلالي."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aplicar negrito visual independentemente da ênfase semântica."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "의미적 강조와 독립적으로 시각적 볼드체를 적용합니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aplicar negrita visual independientemente del énfasis semántico."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "单独应用视觉粗体，不影响语义强调。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "獨立套用視覺上的粗體，不影響語意強調。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Applica il grassetto visivo indipendentemente dall’enfasi semantica."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Visuelle Fettschrift unabhängig von semantischer Betonung anwenden."
+          }
         }
       }
     },
     "appearance-cell.title": {
-      "comment": "Appearance — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Appearance > Appearance: Bold, Italic, Underline, and Strikethrough. > Appearance — buttonCell title: \"Appearance\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -119,11 +599,71 @@
             "state": "translated",
             "value": "Appearance"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外観"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apparence"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المظهر"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aparência"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "모양"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apariencia"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外观"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外觀"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aspetto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Darstellung"
+          }
         }
       }
     },
     "appearance-italic-cell.title": {
-      "comment": "Italic — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Apply visual italic independently of semantic emphasis. > Italic — buttonCell title: \"Italic\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -131,11 +671,71 @@
             "state": "translated",
             "value": "Italic"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "斜体"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Italique"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مائل"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Itálico"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "이탤릭체"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cursiva"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "斜体"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "斜體"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Corsivo"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kursiv"
+          }
         }
       }
     },
     "appearance-italic-shortcut-cell.title": {
-      "comment": "⌥⌘I — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "⌥⌘I — textFieldCell title: \"⌥⌘I\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -148,7 +748,7 @@
       "shouldTranslate": false
     },
     "appearance-italic.ibShadowedToolTip": {
-      "comment": "Apply visual italic independently of semantic emphasis. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Apply visual italic independently of semantic emphasis. — button ibShadowedToolTip: \"Apply visual italic independently of semantic emphasis.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -156,11 +756,71 @@
             "state": "translated",
             "value": "Apply visual italic independently of semantic emphasis."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "意味上の強調とは独立して、見た目の斜体を適用します。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Appliquer de l’italique visuel indépendamment de l’emphase sémantique."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تطبيق الخط المائل بصريًا بصورة مستقلة عن التوكيد الدلالي."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aplicar itálico visual independentemente da ênfase semântica."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "의미적 강조와 독립적으로 시각적 이탤릭체를 적용합니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aplicar cursiva visual independientemente del énfasis semántico."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "单独应用视觉斜体，不影响语义强调。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "獨立套用視覺上的斜體，不影響語意強調。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Applica il corsivo visivo indipendentemente dall’enfasi semantica."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Visuelle Kursivschrift unabhängig von semantischer Betonung anwenden."
+          }
         }
       }
     },
     "appearance-strikethrough-cell.title": {
-      "comment": "Strikethrough — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Apply visual strikethrough independently of semantic emphasis. > Strikethrough — buttonCell title: \"Strikethrough\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -168,11 +828,71 @@
             "state": "translated",
             "value": "Strikethrough"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "取り消し線"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Barré"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "شطب"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tachado"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "취소선"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tachado"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "删除线"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "刪除線"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Barrato"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Durchgestrichen"
+          }
         }
       }
     },
     "appearance-strikethrough.ibShadowedToolTip": {
-      "comment": "Apply visual strikethrough independently of semantic emphasis. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Apply visual strikethrough independently of semantic emphasis. — button ibShadowedToolTip: \"Apply visual strikethrough independently of semantic emphasis.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -180,11 +900,71 @@
             "state": "translated",
             "value": "Apply visual strikethrough independently of semantic emphasis."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "意味上の強調とは独立して、取り消し線を適用します。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Barrer le texte indépendamment de l’emphase sémantique."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تطبيق الشطب بصورة مستقلة عن التوكيد الدلالي."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aplicar tachado visual independentemente da ênfase semântica."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "의미적 강조와 독립적으로 취소선을 적용합니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aplicar tachado visual independientemente del énfasis semántico."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "单独应用删除线，不影响语义强调。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "獨立套用刪除線，不影響語意強調。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Applica il barrato indipendentemente dall’enfasi semantica."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Text unabhängig von semantischer Betonung durchstreichen."
+          }
         }
       }
     },
     "appearance-title-cell.title": {
-      "comment": "Appearance — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Appearance — textFieldCell title: \"Appearance\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -192,11 +972,71 @@
             "state": "translated",
             "value": "Appearance"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外観"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apparence"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المظهر"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aparência"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "모양"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apariencia"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外观"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外觀"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aspetto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Darstellung"
+          }
         }
       }
     },
     "appearance-underline-cell.title": {
-      "comment": "Underline — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Apply visual underline independently of semantic emphasis. > Underline — buttonCell title: \"Underline\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -204,11 +1044,71 @@
             "state": "translated",
             "value": "Underline"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "下線"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Souligné"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تسطير"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sublinhado"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "밑줄"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Subrayado"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "下划线"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "底線"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sottolineato"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Unterstrichen"
+          }
         }
       }
     },
     "appearance-underline-shortcut-cell.title": {
-      "comment": "⌘U — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "⌘U — textFieldCell title: \"⌘U\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -221,7 +1121,7 @@
       "shouldTranslate": false
     },
     "appearance-underline.ibShadowedToolTip": {
-      "comment": "Apply visual underline independently of semantic emphasis. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Apply visual underline independently of semantic emphasis. — button ibShadowedToolTip: \"Apply visual underline independently of semantic emphasis.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -229,11 +1129,71 @@
             "state": "translated",
             "value": "Apply visual underline independently of semantic emphasis."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "意味上の強調とは独立して、下線を適用します。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Souligner le texte indépendamment de l’emphase sémantique."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تطبيق التسطير بصورة مستقلة عن التوكيد الدلالي."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aplicar sublinhado visual independentemente da ênfase semântica."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "의미적 강조와 독립적으로 밑줄을 적용합니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aplicar subrayado visual independientemente del énfasis semántico."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "单独应用下划线，不影响语义强调。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "獨立套用底線，不影響語意強調。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Applica la sottolineatura indipendentemente dall’enfasi semantica."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Text unabhängig von semantischer Betonung unterstreichen."
+          }
         }
       }
     },
     "appearance.ibShadowedToolTip": {
-      "comment": "Appearance: Bold, Italic, Underline, and Strikethrough. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Appearance > Appearance: Bold, Italic, Underline, and Strikethrough. — button ibShadowedToolTip: \"Appearance: Bold, Italic, Underline, and Strikethrough.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -241,11 +1201,71 @@
             "state": "translated",
             "value": "Appearance: Bold, Italic, Underline, and Strikethrough."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外観：太字、斜体、下線、取り消し線。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apparence : gras, italique, souligné et barré."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المظهر: عريض ومائل وتسطير وشطب."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aparência: negrito, itálico, sublinhado e tachado."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "모양: 볼드체, 이탤릭체, 밑줄, 취소선."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apariencia: negrita, cursiva, subrayado y tachado."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外观：粗体、斜体、下划线和删除线。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外觀：粗體、斜體、底線和刪除線。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aspetto: grassetto, corsivo, sottolineato e barrato."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Darstellung: Fett, Kursiv, Unterstrichen und Durchgestrichen."
+          }
         }
       }
     },
     "clear-cell.title": {
-      "comment": "Clear — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Clear > Clear character formatting, preserving paragraph alignment. > Clear — buttonCell title: \"Clear\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -253,11 +1273,71 @@
             "state": "translated",
             "value": "Clear"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "解除"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Effacer"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مسح"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Limpar"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "지우기"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Borrar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "清除"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "清除"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rimuovi"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Entfernen"
+          }
         }
       }
     },
     "clear.ibShadowedToolTip": {
-      "comment": "Clear character formatting, preserving paragraph alignment. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Clear > Clear character formatting, preserving paragraph alignment. — button ibShadowedToolTip: \"Clear character formatting, preserving paragraph alignment.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -265,11 +1345,71 @@
             "state": "translated",
             "value": "Clear character formatting, preserving paragraph alignment."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "段落の配置を保持して、文字書式を解除します。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Effacer la mise en forme des caractères en conservant l’alignement des paragraphes."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مسح تنسيق الأحرف مع الاحتفاظ بمحاذاة الفقرات."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Limpar a formatação de caracteres, mantendo o alinhamento dos parágrafos."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "단락 정렬을 유지하면서 문자 서식을 지웁니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Borrar el formato de caracteres y conservar la alineación de párrafo."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "清除字符格式，保留段落对齐方式。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "清除字元格式，保留段落對齊方式。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rimuovi la formattazione dei caratteri mantenendo l’allineamento dei paragrafi."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zeichenformatierung entfernen und Absatzausrichtung beibehalten."
+          }
         }
       }
     },
     "conflict-detail-message-cell.title": {
-      "comment": "Bold or Italic overlaps semantic emphasis. Convert the highlighted text throughout this Co — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Bold or Italic overlaps semantic emphasis. Convert the highlighted text throughout this Co — textFieldCell title: \"Bold or Italic overlaps semantic emphasis. Convert the highlighted text throughout this Content Unit, or keep its presentation.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -277,11 +1417,71 @@
             "state": "translated",
             "value": "Bold or Italic overlaps semantic emphasis. Convert the highlighted text throughout this Content Unit, or keep its presentation."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "太字または斜体が意味上の強調と重複しています。このコンテンツ単位全体のハイライトされたテキストを変換するか、表示書式を保持してください。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Le gras ou l’italique se superpose à l’emphase sémantique. Convertissez le texte surligné dans toute cette unité de contenu ou conservez sa présentation."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يتداخل الخط العريض أو المائل مع التوكيد الدلالي. حوّل النص المميز في وحدة المحتوى بأكملها أو احتفظ بطريقة عرضه."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Negrito ou itálico se sobrepõe à ênfase semântica. Converta o texto destacado em toda esta unidade de conteúdo ou mantenha sua apresentação."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "볼드체 또는 이탤릭체가 의미적 강조와 겹칩니다. 이 콘텐츠 단위 전체에서 표시된 텍스트를 변환하거나 표시 서식을 유지하세요."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "La negrita o la cursiva se superpone al énfasis semántico. Convierta el texto resaltado en toda esta unidad de contenido o conserve su presentación."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "粗体或斜体与语义强调重叠。请转换此内容单元中所有高亮显示的文本，或保留其呈现样式。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "粗體或斜體與語意強調重疊。請轉換此內容單元中所有標示的文字，或保留其呈現樣式。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Il grassetto o il corsivo si sovrappone all’enfasi semantica. Converti il testo evidenziato in tutta questa unità di contenuto oppure mantieni la presentazione."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Fett- oder Kursivschrift überlagert semantische Betonung. Den markierten Text in dieser gesamten Inhaltseinheit umwandeln oder seine Darstellung beibehalten."
+          }
         }
       }
     },
     "conflict-detail-title-cell.title": {
-      "comment": "Presentation and Emphasis — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Presentation and Emphasis — textFieldCell title: \"Presentation and Emphasis\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -289,11 +1489,71 @@
             "state": "translated",
             "value": "Presentation and Emphasis"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "表示書式と強調"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Présentation et emphase"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "طريقة العرض والتوكيد"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apresentação e ênfase"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "표시 서식과 강조"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Presentación y énfasis"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "呈现样式与强调"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "呈現樣式與強調"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Presentazione ed enfasi"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Darstellung und Betonung"
+          }
         }
       }
     },
     "conflict-marker-button.ibShadowedToolTip": {
-      "comment": "Formatting conflict: show conversion and dismissal options. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Formatting conflict: show conversion and dismissal options. — button ibShadowedToolTip: \"Formatting conflict: show conversion and dismissal options.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -301,11 +1561,71 @@
             "state": "translated",
             "value": "Formatting conflict: show conversion and dismissal options."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "書式の競合：変換と警告を非表示にするオプションを表示します。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conflit de mise en forme : afficher les options de conversion et de masquage de l’avertissement."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تعارض في التنسيق: عرض خيارات التحويل وتجاهل التحذير."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conflito de formatação: mostrar opções de conversão e de dispensa do aviso."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "서식 충돌: 변환 및 경고 닫기 옵션을 표시합니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conflicto de formato: mostrar opciones de conversión y descarte."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "格式冲突：显示转换和忽略警告选项。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "格式衝突：顯示轉換與忽略警告的選項。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conflitto di formattazione: mostra le opzioni di conversione e chiusura dell’avviso."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Formatierungskonflikt: Optionen zum Umwandeln und Ausblenden der Warnung anzeigen."
+          }
         }
       }
     },
     "conflict-marker-cell.title": {
-      "comment": "Formatting conflict — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Formatting conflict: show conversion and dismissal options. > Formatting conflict — buttonCell title: \"Formatting conflict\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -313,11 +1633,71 @@
             "state": "translated",
             "value": "Formatting conflict"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "書式の競合"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conflit de mise en forme"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تعارض في التنسيق"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conflito de formatação"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "서식 충돌"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conflicto de formato"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "格式冲突"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "格式衝突"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conflitto di formattazione"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Formatierungskonflikt"
+          }
         }
       }
     },
     "convert-presentation-cell.title": {
-      "comment": "Convert to Semantic Emphasis — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Convert conflicting text in this Content Unit; preserve underline and strikethrough. > Convert to Semantic Emphasis — buttonCell title: \"Convert to Semantic Emphasis\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -325,11 +1705,71 @@
             "state": "translated",
             "value": "Convert to Semantic Emphasis"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "意味上の強調に変換"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Convertir en emphase sémantique"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تحويل إلى توكيد دلالي"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Converter em ênfase semântica"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "의미적 강조로 변환"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Convertir en énfasis semántico"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "转换为语义强调"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "轉換為語意強調"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Converti in enfasi semantica"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "In semantische Betonung umwandeln"
+          }
         }
       }
     },
     "convert-presentation.ibShadowedToolTip": {
-      "comment": "Convert conflicting text in this Content Unit; preserve underline and strikethrough. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Convert conflicting text in this Content Unit; preserve underline and strikethrough. — button ibShadowedToolTip: \"Convert conflicting text in this Content Unit; preserve underline and strikethrough.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -337,11 +1777,71 @@
             "state": "translated",
             "value": "Convert conflicting text in this Content Unit; preserve underline and strikethrough."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "このコンテンツ単位で競合するテキストを変換します。下線と取り消し線は保持します。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Convertir le texte en conflit dans cette unité de contenu ; conserver le soulignement et le texte barré."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تحويل النص ذي التنسيق المتعارض في وحدة المحتوى هذه، مع الاحتفاظ بالتسطير والشطب."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Converter o texto com conflitos nesta unidade de conteúdo; manter sublinhado e tachado."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "이 콘텐츠 단위에서 서식이 충돌하는 텍스트를 변환합니다. 밑줄과 취소선은 유지합니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Convertir el texto con conflictos de esta unidad de contenido; conservar el subrayado y el tachado."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "转换此内容单元中格式冲突的文本；保留下划线和删除线。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "轉換此內容單元中格式衝突的文字；保留底線和刪除線。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Converti il testo con conflitti in questa unità di contenuto; mantieni sottolineatura e barrato."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Text mit Formatierungskonflikten in dieser Inhaltseinheit umwandeln; Unterstreichungen und Durchstreichungen beibehalten."
+          }
         }
       }
     },
     "dismiss-formatting-warning-cell.title": {
-      "comment": "Keep Presentation / Dismiss — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Remember dismissal for this Content Unit, including after reopening. > Keep Presentation / Dismiss — buttonCell title: \"Keep Presentation / Dismiss\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -349,11 +1849,71 @@
             "state": "translated",
             "value": "Keep Presentation / Dismiss"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "表示書式を保持／警告を非表示"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conserver la présentation / Masquer"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الاحتفاظ بطريقة العرض / تجاهل"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Manter apresentação / Dispensar"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "표시 서식 유지 / 경고 닫기"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conservar presentación / Descartar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "保留呈现样式／忽略警告"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "保留呈現樣式／忽略警告"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mantieni presentazione / Chiudi"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Darstellung beibehalten / Ausblenden"
+          }
         }
       }
     },
     "dismiss-formatting-warning.ibShadowedToolTip": {
-      "comment": "Remember dismissal for this Content Unit, including after reopening. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Remember dismissal for this Content Unit, including after reopening. — button ibShadowedToolTip: \"Remember dismissal for this Content Unit, including after reopening.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -361,11 +1921,71 @@
             "state": "translated",
             "value": "Remember dismissal for this Content Unit, including after reopening."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "このコンテンツ単位の警告を非表示にする設定を、再度開いた後も保持します。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mémoriser le masquage de l’avertissement pour cette unité de contenu, même après sa réouverture."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تذكّر تجاهل التحذير لوحدة المحتوى هذه حتى بعد إعادة فتحها."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lembrar a dispensa do aviso para esta unidade de conteúdo, mesmo após reabri-la."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "다시 열어도 이 콘텐츠 단위의 경고 닫기 설정을 유지합니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Recordar el descarte para esta unidad de contenido, incluso después de volver a abrirla."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "记住此内容单元的忽略警告设置，重新打开后仍然有效。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "記住此內容單元的忽略警告設定，重新打開後仍然有效。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ricorda la chiusura dell’avviso per questa unità di contenuto, anche dopo la riapertura."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Das Ausblenden der Warnung für diese Inhaltseinheit auch nach erneutem Öffnen beibehalten."
+          }
         }
       }
     },
     "emphasis-cell.title": {
-      "comment": "Emphasis — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Emphasis > Emphasis. Option-click for explicit Italic. > Emphasis — buttonCell title: \"Emphasis\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -373,11 +1993,71 @@
             "state": "translated",
             "value": "Emphasis"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強調"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Emphase"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "توكيد"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ênfase"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "강조"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Énfasis"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "强调"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強調"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Enfasi"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Betonung"
+          }
         }
       }
     },
     "emphasis.ibShadowedToolTip": {
-      "comment": "Emphasis. Option-click for explicit Italic. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Emphasis > Emphasis. Option-click for explicit Italic. — button ibShadowedToolTip: \"Emphasis. Option-click for explicit Italic.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -385,11 +2065,71 @@
             "state": "translated",
             "value": "Emphasis. Option-click for explicit Italic."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強調。Optionキーを押しながらクリックすると、明示的な斜体を適用します。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Emphase. Option-clic pour l’italique explicite."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "توكيد. انقر مع الضغط على مفتاح الاختيار لتطبيق المائل صراحةً."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ênfase. Option-clique para itálico explícito."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "강조. Option 키를 누른 채 클릭하면 명시적 이탤릭체를 적용합니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Énfasis. Opción-clic para cursiva explícita."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "强调。按住 Option 键点按以应用显式斜体。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強調。按住 Option 鍵並按一下，可明確指定斜體。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Enfasi. Opzione-clic per il corsivo esplicito."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Betonung. Wahl-Klick für explizite Kursivschrift."
+          }
         }
       }
     },
     "help-cell.title": {
-      "comment": "Formatting help — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Formatting help > About semantic and explicit formatting > Formatting help — buttonCell title: \"Formatting help\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -397,11 +2137,71 @@
             "state": "translated",
             "value": "Formatting help"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "書式ヘルプ"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aide à la mise en forme"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مساعدة التنسيق"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajuda de formatação"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "서식 도움말"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ayuda de formato"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "格式帮助"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "格式輔助說明"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aiuto sulla formattazione"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Formatierungshilfe"
+          }
         }
       }
     },
     "help-text-cell.title": {
-      "comment": "Emphasis and Strong Emphasis express meaning. Their appearance can change with a publicati — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Emphasis and Strong Emphasis express meaning. Their appearance can change with a publicati — textFieldCell title: \"Emphasis and Strong Emphasis express meaning. Their appearance can change with a publication’s style. The buttons show semantic formatting at the cursor or across the selection; a mixed state means only some text uses it.\\n\\nThe Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option-click the Es for Italic or Bold. These visual choices are independent of meaning. Clear removes both kinds of character formatting and preserves paragraph alignment.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -409,11 +2209,71 @@
             "state": "translated",
             "value": "Emphasis and Strong Emphasis express meaning. Their appearance can change with a publication’s style. The buttons show semantic formatting at the cursor or across the selection; a mixed state means only some text uses it.\n\nThe Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option-click the Es for Italic or Bold. These visual choices are independent of meaning. Clear removes both kinds of character formatting and preserves paragraph alignment."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強調と強い強調は意味を表します。見た目は出版物のスタイルに応じて変わることがあります。ボタンはカーソル位置または選択範囲の意味上の書式を示します。混在状態は、テキストの一部にだけ適用されていることを意味します。\n\n「外観」ポップオーバーには、太字、斜体、下線、取り消し線があります。EのボタンをOptionキーを押しながらクリックすると、斜体または太字を適用できます。これらの見た目の設定は意味とは独立しています。「解除」は両方の種類の文字書式を解除し、段落の配置を保持します。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "L’emphase et l’emphase forte expriment un sens. Leur apparence peut varier selon le style d’une publication. Les boutons indiquent la mise en forme sémantique au niveau du curseur ou dans la sélection ; un état mixte signifie qu’une partie du texte seulement l’utilise.\n\nLe panneau Apparence propose le gras, l’italique, le soulignement et le texte barré. Cliquez sur les E avec la touche Option pour l’italique ou le gras. Ces choix visuels sont indépendants du sens. Effacer supprime les deux types de mise en forme des caractères et conserve l’alignement des paragraphes."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يعبّر التوكيد والتوكيد القوي عن المعنى. وقد يتغير مظهرهما بحسب نمط المنشور. تعرض الأزرار التنسيق الدلالي عند المؤشر أو في التحديد؛ وتعني الحالة المختلطة أن جزءًا من النص فقط يستخدمه.\n\nتوفر نافذة «المظهر» المنبثقة خيارات الخط العريض والمائل والتسطير والشطب. انقر على أزرار E مع الضغط على مفتاح الاختيار لتطبيق المائل أو العريض. هذه الخيارات البصرية مستقلة عن المعنى. يزيل «مسح» نوعَي تنسيق الأحرف مع الاحتفاظ بمحاذاة الفقرات."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ênfase e ênfase forte expressam significado. Sua aparência pode mudar conforme o estilo de uma publicação. Os botões mostram a formatação semântica no cursor ou na seleção; um estado misto indica que apenas parte do texto a utiliza.\n\nO painel Aparência oferece negrito, itálico, sublinhado e tachado. Clique nos Es com a tecla Option pressionada para aplicar itálico ou negrito. Essas escolhas visuais são independentes do significado. Limpar remove os dois tipos de formatação de caracteres e mantém o alinhamento dos parágrafos."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "강조와 강한 강조는 의미를 나타냅니다. 모양은 출판물의 스타일에 따라 달라질 수 있습니다. 버튼은 커서 위치 또는 선택 영역의 의미 서식을 보여 줍니다. 혼합 상태는 일부 텍스트에만 해당 서식이 적용되어 있음을 뜻합니다.\n\n모양 팝오버에서는 볼드체, 이탤릭체, 밑줄, 취소선을 선택할 수 있습니다. Option 키를 누른 채 E 버튼을 클릭하면 이탤릭체 또는 볼드체를 적용합니다. 이러한 시각적 선택은 의미와 독립적입니다. 지우기는 두 종류의 문자 서식을 모두 제거하고 단락 정렬은 유지합니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "El énfasis y el énfasis fuerte expresan significado. Su apariencia puede cambiar según el estilo de una publicación. Los botones muestran el formato semántico en el cursor o en la selección; un estado mixto indica que solo parte del texto lo usa.\n\nEl panel Apariencia ofrece negrita, cursiva, subrayado y tachado. Haga clic en las E con la tecla Opción para aplicar cursiva o negrita. Estas opciones visuales son independientes del significado. Borrar elimina ambos tipos de formato de caracteres y conserva la alineación de párrafo."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "强调和强强调表达语义。它们的外观可随出版物的样式而变化。按钮显示光标位置或所选内容的语义格式；混合状态表示只有部分文本使用该格式。\n\n“外观”弹出面板提供粗体、斜体、下划线和删除线。按住 Option 键点按 E 按钮可应用斜体或粗体。这些视觉选项与语义相互独立。“清除”会移除两类字符格式，并保留段落对齐方式。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強調與強烈強調表達語意。其外觀可隨出版品的樣式而改變。按鈕會顯示游標位置或所選範圍的語意格式；混合狀態表示只有部分文字使用該格式。\n\n「外觀」彈出面板提供粗體、斜體、底線和刪除線。按住 Option 鍵並按一下 E 按鈕，即可套用斜體或粗體。這些視覺選項與語意彼此獨立。「清除」會移除兩類字元格式，並保留段落對齊方式。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Enfasi ed enfasi forte esprimono un significato. Il loro aspetto può cambiare in base allo stile di una pubblicazione. I pulsanti mostrano la formattazione semantica in corrispondenza del cursore o della selezione; uno stato misto indica che solo parte del testo la usa.\n\nIl pannello Aspetto offre grassetto, corsivo, sottolineato e barrato. Fai clic sulle E tenendo premuto Opzione per il corsivo o il grassetto. Queste scelte visive sono indipendenti dal significato. Rimuovi elimina entrambi i tipi di formattazione dei caratteri e mantiene l’allineamento dei paragrafi."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Betonung und starke Betonung tragen Bedeutung. Ihr Aussehen kann sich je nach Publikationsstil ändern. Die Tasten zeigen die semantische Formatierung an der Einfügemarke oder in der Auswahl an. Ein gemischter Zustand bedeutet, dass nur ein Teil des Textes sie verwendet.\n\nDas Einblendfenster „Darstellung“ bietet Fett, Kursiv, Unterstrichen und Durchgestrichen. Klicken Sie mit gedrückter Wahltaste auf die Es, um Kursiv- oder Fettschrift anzuwenden. Diese visuellen Einstellungen sind unabhängig von der Bedeutung. „Entfernen“ löscht beide Arten der Zeichenformatierung und behält die Absatzausrichtung bei."
+          }
         }
       }
     },
     "help.ibShadowedToolTip": {
-      "comment": "About semantic and explicit formatting — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Formatting help > About semantic and explicit formatting — button ibShadowedToolTip: \"About semantic and explicit formatting\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -421,11 +2281,71 @@
             "state": "translated",
             "value": "About semantic and explicit formatting"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "意味上の書式と明示的な書式について"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "À propos de la mise en forme sémantique et explicite"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "حول التنسيق الدلالي والتنسيق الصريح"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sobre a formatação semântica e explícita"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "의미 서식과 명시적 서식에 관하여"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Acerca del formato semántico y explícito"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "关于语义格式和显式格式"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "關於語意格式與明確指定的格式"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Informazioni sulla formattazione semantica ed esplicita"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Über semantische und explizite Formatierung"
+          }
         }
       }
     },
     "manuscript-label-cell.title": {
-      "comment": "Manuscript — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Manuscript — textFieldCell title: \"Manuscript\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -433,11 +2353,71 @@
             "state": "translated",
             "value": "Manuscript"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "原稿"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Manuscrit"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المخطوط"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Manuscrito"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "원고"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Manuscrito"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "原稿"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "原稿"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Manoscritto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Manuskript"
+          }
         }
       }
     },
     "strong-cell.title": {
-      "comment": "Strong Emphasis — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Strong Emphasis > Strong Emphasis. Option-click for explicit Bold. > Strong Emphasis — buttonCell title: \"Strong Emphasis\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -445,11 +2425,71 @@
             "state": "translated",
             "value": "Strong Emphasis"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強い強調"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Emphase forte"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "توكيد قوي"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ênfase forte"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "강한 강조"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Énfasis fuerte"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "强强调"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強烈強調"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Enfasi forte"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Starke Betonung"
+          }
         }
       }
     },
     "strong.ibShadowedToolTip": {
-      "comment": "Strong Emphasis. Option-click for explicit Bold. — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Strong Emphasis > Strong Emphasis. Option-click for explicit Bold. — button ibShadowedToolTip: \"Strong Emphasis. Option-click for explicit Bold.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -457,23 +2497,143 @@
             "state": "translated",
             "value": "Strong Emphasis. Option-click for explicit Bold."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強い強調。Optionキーを押しながらクリックすると、明示的な太字を適用します。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Emphase forte. Option-clic pour le gras explicite."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "توكيد قوي. انقر مع الضغط على مفتاح الاختيار لتطبيق العريض صراحةً."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ênfase forte. Option-clique para negrito explícito."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "강한 강조. Option 키를 누른 채 클릭하면 명시적 볼드체를 적용합니다."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Énfasis fuerte. Opción-clic para negrita explícita."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "强强调。按住 Option 键点按以应用显式粗体。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強烈強調。按住 Option 鍵並按一下，可明確指定粗體。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Enfasi forte. Opzione-clic per il grassetto esplicito."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Starke Betonung. Wahl-Klick für explizite Fettschrift."
+          }
         }
       }
     },
     "toolbar-alignment.label": {
-      "comment": "Paragraph Alignment — toolbarItem label in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Paragraph Alignment — toolbarItem label: \"Paragraph Alignment\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Paragraph Alignment"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "段落の配置"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alignement des paragraphes"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "محاذاة الفقرات"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alinhamento dos parágrafos"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "단락 정렬"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alineación de párrafo"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "段落对齐"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "段落對齊"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Allineamento dei paragrafi"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Absatzausrichtung"
           }
         }
       }
     },
     "toolbar-alignment.paletteLabel": {
-      "comment": "Paragraph Alignment — toolbarItem paletteLabel in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Paragraph Alignment — toolbarItem paletteLabel: \"Paragraph Alignment\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -481,23 +2641,143 @@
             "state": "translated",
             "value": "Paragraph Alignment"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "段落の配置"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alignement des paragraphes"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "محاذاة الفقرات"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alinhamento dos parágrafos"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "단락 정렬"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alineación de párrafo"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "段落对齐"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "段落對齊"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Allineamento dei paragrafi"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Absatzausrichtung"
+          }
         }
       }
     },
     "toolbar-appearance.label": {
-      "comment": "Appearance — toolbarItem label in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Appearance — toolbarItem label: \"Appearance\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Appearance"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外観"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apparence"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المظهر"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aparência"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "모양"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apariencia"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外观"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外觀"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aspetto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Darstellung"
           }
         }
       }
     },
     "toolbar-appearance.paletteLabel": {
-      "comment": "Appearance — toolbarItem paletteLabel in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Appearance — toolbarItem paletteLabel: \"Appearance\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -505,23 +2785,143 @@
             "state": "translated",
             "value": "Appearance"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外観"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apparence"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "المظهر"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aparência"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "모양"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apariencia"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外观"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "外觀"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aspetto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Darstellung"
+          }
         }
       }
     },
     "toolbar-clear.label": {
-      "comment": "Clear — toolbarItem label in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Clear — toolbarItem label: \"Clear Formatting\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Clear Formatting"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "書式を解除"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Effacer la mise en forme"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مسح التنسيق"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Limpar formatação"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "서식 지우기"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Borrar formato"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "清除格式"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "清除格式"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rimuovi formattazione"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Formatierung entfernen"
           }
         }
       }
     },
     "toolbar-clear.paletteLabel": {
-      "comment": "Clear — toolbarItem paletteLabel in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Clear — toolbarItem paletteLabel: \"Clear Formatting\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -529,23 +2929,143 @@
             "state": "translated",
             "value": "Clear Formatting"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "書式を解除"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Effacer la mise en forme"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مسح التنسيق"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Limpar formatação"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "서식 지우기"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Borrar formato"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "清除格式"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "清除格式"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rimuovi formattazione"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Formatierung entfernen"
+          }
         }
       }
     },
     "toolbar-emphasis.label": {
-      "comment": "Emphasis — toolbarItem label in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Emphasis — toolbarItem label: \"Emphasis\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Emphasis"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強調"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Emphase"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "توكيد"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ênfase"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "강조"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Énfasis"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "强调"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強調"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Enfasi"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Betonung"
           }
         }
       }
     },
     "toolbar-emphasis.paletteLabel": {
-      "comment": "Emphasis — toolbarItem paletteLabel in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Emphasis — toolbarItem paletteLabel: \"Emphasis\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -553,23 +3073,143 @@
             "state": "translated",
             "value": "Emphasis"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強調"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Emphase"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "توكيد"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ênfase"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "강조"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Énfasis"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "强调"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強調"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Enfasi"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Betonung"
+          }
         }
       }
     },
     "toolbar-help.label": {
-      "comment": "Formatting help — toolbarItem label in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Formatting help — toolbarItem label: \"Formatting Help\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Formatting Help"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "書式ヘルプ"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aide à la mise en forme"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مساعدة التنسيق"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajuda de formatação"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "서식 도움말"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ayuda de formato"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "格式帮助"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "格式輔助說明"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aiuto sulla formattazione"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Formatierungshilfe"
           }
         }
       }
     },
     "toolbar-help.paletteLabel": {
-      "comment": "Formatting help — toolbarItem paletteLabel in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Formatting help — toolbarItem paletteLabel: \"Formatting Help\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -577,23 +3217,143 @@
             "state": "translated",
             "value": "Formatting Help"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "書式ヘルプ"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aide à la mise en forme"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مساعدة التنسيق"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajuda de formatação"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "서식 도움말"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ayuda de formato"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "格式帮助"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "格式輔助說明"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aiuto sulla formattazione"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Formatierungshilfe"
+          }
         }
       }
     },
     "toolbar-strong.label": {
-      "comment": "Strong Emphasis — toolbarItem label in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Strong Emphasis — toolbarItem label: \"Strong Emphasis\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Strong Emphasis"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強い強調"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Emphase forte"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "توكيد قوي"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ênfase forte"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "강한 강조"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Énfasis fuerte"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "强强调"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強烈強調"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Enfasi forte"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Starke Betonung"
           }
         }
       }
     },
     "toolbar-strong.paletteLabel": {
-      "comment": "Strong Emphasis — toolbarItem paletteLabel in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled > Strong Emphasis — toolbarItem paletteLabel: \"Strong Emphasis\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -601,23 +3361,143 @@
             "state": "translated",
             "value": "Strong Emphasis"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強い強調"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Emphase forte"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "توكيد قوي"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ênfase forte"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "강한 강조"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Énfasis fuerte"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "强强调"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "強烈強調"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Enfasi forte"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Starke Betonung"
+          }
         }
       }
     },
     "unit-add-cell.title": {
-      "comment": "Add Content Unit — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Add Content Unit > Add Content Unit — buttonCell title: \"Add Content Unit\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Add Content Unit"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "コンテンツ単位を追加"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajouter une unité de contenu"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إضافة وحدة محتوى"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Adicionar unidade de conteúdo"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "콘텐츠 단위 추가"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Añadir unidad de contenido"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "添加内容单元"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "加入內容單元"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aggiungi unità di contenuto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Inhaltseinheit hinzufügen"
           }
         }
       }
     },
     "unit-add.ibShadowedToolTip": {
-      "comment": "Add Content Unit — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Add Content Unit — button ibShadowedToolTip: \"Add Content Unit\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -625,11 +3505,71 @@
             "state": "translated",
             "value": "Add Content Unit"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "コンテンツ単位を追加"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajouter une unité de contenu"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "إضافة وحدة محتوى"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Adicionar unidade de conteúdo"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "콘텐츠 단위 추가"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Añadir unidad de contenido"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "添加内容单元"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "加入內容單元"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aggiungi unità di contenuto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Inhaltseinheit hinzufügen"
+          }
         }
       }
     },
     "unit-cell.title": {
-      "comment": "Untitled — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Untitled — textFieldCell title: \"Untitled\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -637,11 +3577,71 @@
             "state": "translated",
             "value": "Untitled"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "名称未設定"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sans titre"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "بلا عنوان"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sem título"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "무제"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sin título"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "未命名"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "未命名"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Senza titolo"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ohne Titel"
+          }
         }
       }
     },
     "unit-column.headerCell.title": {
-      "comment": "unit-column — tableColumn headerCell.title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "unit-column — tableColumn headerCell.title: \"Content Units\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -649,23 +3649,143 @@
             "state": "translated",
             "value": "Content Units"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "コンテンツ単位"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Unités de contenu"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "وحدات المحتوى"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Unidades de conteúdo"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "콘텐츠 단위"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Unidades de contenido"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "内容单元"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "內容單元"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Unità di contenuto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Inhaltseinheiten"
+          }
         }
       }
     },
     "unit-down-cell.title": {
-      "comment": "Move Content Unit Down — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Move Content Unit Down > Move Content Unit Down — buttonCell title: \"Move Content Unit Down\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Move Content Unit Down"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "コンテンツ単位を下に移動"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Déplacer l’unité de contenu vers le bas"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نقل وحدة المحتوى إلى أسفل"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mover unidade de conteúdo para baixo"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "콘텐츠 단위를 아래로 이동"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mover unidad de contenido hacia abajo"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "下移内容单元"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "向下移動內容單元"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sposta unità di contenuto in basso"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Inhaltseinheit nach unten bewegen"
           }
         }
       }
     },
     "unit-down.ibShadowedToolTip": {
-      "comment": "Move Content Unit Down — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Move Content Unit Down — button ibShadowedToolTip: \"Move Content Unit Down\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -673,11 +3793,71 @@
             "state": "translated",
             "value": "Move Content Unit Down"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "コンテンツ単位を下に移動"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Déplacer l’unité de contenu vers le bas"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نقل وحدة المحتوى إلى أسفل"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mover unidade de conteúdo para baixo"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "콘텐츠 단위를 아래로 이동"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mover unidad de contenido hacia abajo"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "下移内容单元"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "向下移動內容單元"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sposta unità di contenuto in basso"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Inhaltseinheit nach unten bewegen"
+          }
         }
       }
     },
     "unit-title-cell.title": {
-      "comment": "Untitled — textFieldCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Content Unit title. Press Return to rename. > Untitled — textFieldCell title: \"Untitled\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -685,11 +3865,71 @@
             "state": "translated",
             "value": "Untitled"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "名称未設定"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sans titre"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "بلا عنوان"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sem título"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "무제"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sin título"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "未命名"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "未命名"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Senza titolo"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ohne Titel"
+          }
         }
       }
     },
     "unit-title.ibShadowedToolTip": {
-      "comment": "Content Unit title. Press Return to rename. — textField ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Content Unit title. Press Return to rename. — textField ibShadowedToolTip: \"Content Unit title. Press Return to rename.\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -697,11 +3937,71 @@
             "state": "translated",
             "value": "Content Unit title. Press Return to rename."
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "コンテンツ単位のタイトル。Returnキーを押して名前を変更します。"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Titre de l’unité de contenu. Appuyez sur Retour pour le modifier."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "عنوان وحدة المحتوى. اضغط على مفتاح الرجوع لتغيير الاسم."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Título da unidade de conteúdo. Pressione Return para renomear."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "콘텐츠 단위 제목입니다. Return 키를 눌러 이름을 변경하세요."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Título de la unidad de contenido. Pulse Retorno para cambiarlo."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "内容单元标题。按 Return 键重命名。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "內容單元標題。按下 Return 鍵來重新命名。"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Titolo dell’unità di contenuto. Premi Invio per rinominarla."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Titel der Inhaltseinheit. Zum Umbenennen die Eingabetaste drücken."
+          }
         }
       }
     },
     "unit-up-cell.title": {
-      "comment": "Move Content Unit Up — buttonCell title in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Move Content Unit Up > Move Content Unit Up — buttonCell title: \"Move Content Unit Up\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -709,17 +4009,137 @@
             "state": "translated",
             "value": "Move Content Unit Up"
           }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "コンテンツ単位を上に移動"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Déplacer l’unité de contenu vers le haut"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نقل وحدة المحتوى إلى أعلى"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mover unidade de conteúdo para cima"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "콘텐츠 단위를 위로 이동"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mover unidad de contenido hacia arriba"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "上移内容单元"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "向上移動內容單元"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sposta unità di contenuto in alto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Inhaltseinheit nach oben bewegen"
+          }
         }
       }
     },
     "unit-up.ibShadowedToolTip": {
-      "comment": "Move Content Unit Up — button ibShadowedToolTip in Editor. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Move Content Unit Up — button ibShadowedToolTip: \"Move Content Unit Up\" in Editor. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Move Content Unit Up"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "コンテンツ単位を上に移動"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Déplacer l’unité de contenu vers le haut"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نقل وحدة المحتوى إلى أعلى"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mover unidade de conteúdo para cima"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "콘텐츠 단위를 위로 이동"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mover unidad de contenido hacia arriba"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "上移内容单元"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "向上移動內容單元"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sposta unità di contenuto in alto"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Inhaltseinheit nach oben bewegen"
           }
         }
       }

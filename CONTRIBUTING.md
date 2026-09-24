@@ -9,7 +9,7 @@ Folio is a monorepo. Clone it with `git clone <repository-url>` and open the wor
 
 Open `Folio.xcworkspace`. Use the shared **Write**, **Research**, or **Composer** scheme to run an application, **FolioKit** for framework work, and **Folio** to build or test the entire Suite. The applications use their domain frameworks, which consume FolioKit. Implementation sources compile directly into their owning frameworks. Application linking and embedding are being configured for an installed shared-framework deployment. A successful build does not establish that an app is self-contained or that its installed dependencies resolve outside Xcode. Open the enclosing workspace when developing the applications.
 
-The current skeleton uses Xcode 26.6 and a macOS 26.5 deployment target. `Config/Suite.xcconfig` controls the Suite minimum; each component retains a standalone fallback in its own `Project.xcconfig`. Signing uses the existing project team settings. Contributors may select their own team locally; keep personal signing changes out of shared commits.
+The current skeleton builds with Xcode 27 and a macOS 26.5 deployment target. `SDKROOT = macosx` selects the installed macOS SDK; using SDK 27 does not raise the deployment minimum. `Config/Suite.xcconfig` controls the Suite minimum; each component retains a standalone fallback in its own `Project.xcconfig`. Signing uses the existing project team settings. Contributors may select their own team locally; keep personal signing changes out of shared commits.
 
 ## Validation
 

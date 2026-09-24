@@ -31,7 +31,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.addButton.accessibilityLabel = NSLocalizedStringWithDefaultValue(@"manuscript.add-content-unit", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Add Content Unit", @"Add a unit to the Manuscript. Accessibility label and undo action name; Content Unit is a Folio domain term.");
+    self.addButton.accessibilityLabel = NSLocalizedStringWithDefaultValue(@"manuscript.add-content-unit", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Add Content Unit", @"Accessibility label for adding a Content Unit to the Manuscript. Content Unit and Manuscript are Folio domain terms.");
     self.moveUpButton.accessibilityLabel = NSLocalizedStringWithDefaultValue(@"manuscript.move-content-unit-up", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Move Content Unit Up", @"Accessibility label: move the selected Content Unit earlier in the Manuscript.");
     self.moveDownButton.accessibilityLabel = NSLocalizedStringWithDefaultValue(@"manuscript.move-content-unit-down", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Move Content Unit Down", @"Accessibility label: move the selected Content Unit later in the Manuscript.");
     self.unitTable.dataSource = self;
@@ -121,7 +121,7 @@
     FKText *unit = [FKText new];
     [units addObject:unit];
     [self applyManuscript:[[FKManuscript alloc] initWithIdentifier:self.work.manuscriptIdentifier units:units]
-        selection:unit.identifier name:NSLocalizedStringWithDefaultValue(@"manuscript.add-content-unit", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Add Content Unit", @"Add a unit to the Manuscript. Accessibility label and undo action name; Content Unit is a Folio domain term.")];
+        selection:unit.identifier name:NSLocalizedStringWithDefaultValue(@"manuscript.add-content-unit.undo", @"Localizable", [NSBundle bundleWithIdentifier:@"dev.foliosuite.WriteKit"], @"Add Content Unit", @"Undo action name for adding a Content Unit to the Manuscript. AppKit adds Undo or Redo.")];
     [self.view.window makeFirstResponder:self.unitTitle];
     [self.unitTitle selectText:nil];
 }
