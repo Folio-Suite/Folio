@@ -410,11 +410,8 @@ static BOOL FWHasFormattingConflict(NSDictionary *attributes) {
         return;
     }
     if (self.loading || !self.isViewLoaded) return;
-    NSArray *keys = @[FWEmphasis, FWEmphasis];
-    NSUInteger values[] = {FKTextEmphasisEmphasis, FKTextEmphasisStrongEmphasis};
-    for (NSUInteger i = 0; i < self.formattingButtons.count; i++) {
-        self.formattingButtons[i].state = [self stateForKey:keys[i] value:values[i]];
-    }
+    self.emphasisButton.state = [self stateForKey:FWEmphasis value:FKTextEmphasisEmphasis];
+    self.strongButton.state = [self stateForKey:FWEmphasis value:FKTextEmphasisStrongEmphasis];
     FWAppearanceViewController *appearance = (FWAppearanceViewController *)self.appearancePopover.contentViewController;
     if (appearance.isViewLoaded) {
         NSArray<NSButton *> *buttons = @[appearance.boldButton, appearance.italicButton, appearance.underlineButton, appearance.strikethroughButton];

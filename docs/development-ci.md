@@ -34,6 +34,8 @@ Four macOS jobs run independently:
   extraction, and a clean coordinated **Folio** scheme analysis and build, including Kit
   interfaces and bundle identity. This unsigned compile check does not execute
   application or UI tests and is not runtime/signing evidence.
+  Analyzer findings are errors: `scripts/check-build.sh --analyze` enables
+  Clang's analyzer-specific error flag, so a finding fails the full Suite gate.
 - **Test Write**, **Test Research**, and **Test Composer** each build and test their
   existing shared scheme on a separate Mac. Those schemes also cover their Kits;
   Write includes FolioKitTests. A failure in one does not cancel the others.

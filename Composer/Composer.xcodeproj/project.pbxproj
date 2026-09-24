@@ -12,7 +12,6 @@
 		A15AE2AD3057248F001B9E7B /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE2AC3057248F001B9E7B /* FolioKit.framework */; };
 		A15AE2C63057296B001B9E7B /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE2AC3057248F001B9E7B /* FolioKit.framework */; };
 		A15AE2C8305729A6001B9E7B /* ComposerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE28C30572479001B9E7B /* ComposerKit.framework */; };
-		A15AE2E030572AF4001B9E7B /* Project.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A15AE2DF30572AF4001B9E7B /* Project.xcconfig */; };
 		A1CCD2F73057449E004B4721 /* ComposerXPCService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = A1CCD2EC3057449E004B4721 /* ComposerXPCService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A1CCD3173057454E004B4721 /* ComposerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE28C30572479001B9E7B /* ComposerKit.framework */; };
 		A1CCD31C3057456F004B4721 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15AE2AC3057248F001B9E7B /* FolioKit.framework */; };
@@ -80,24 +79,20 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		A15AE2A73057247A001B9E7B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolder = Frameworks;
 			files = (
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A1CCD2F83057449E004B4721 /* Embed XPC Services */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
-			dstSubfolderSpec = 16;
+			dstSubfolder = Product;
 			files = (
 				A1CCD2F73057449E004B4721 /* ComposerXPCService.xpc in Embed XPC Services */,
 			);
 			name = "Embed XPC Services";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -181,52 +176,40 @@
 /* Begin PBXFrameworksBuildPhase section */
 		A15AE24B3057244C001B9E7B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				A15AE2A13057247A001B9E7B /* ComposerKit.framework in Frameworks */,
 				A15AE2C63057296B001B9E7B /* FolioKit.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A15AE2663057244C001B9E7B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				A15AE2C8305729A6001B9E7B /* ComposerKit.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A15AE2703057244D001B9E7B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A15AE28930572479001B9E7B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				A15AE2AD3057248F001B9E7B /* FolioKit.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A15AE2933057247A001B9E7B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				A15AE2973057247A001B9E7B /* ComposerKit.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A1CCD2E93057449E004B4721 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				A1CCD3173057454E004B4721 /* ComposerKit.framework in Frameworks */,
 				A1CCD31C3057456F004B4721 /* FolioKit.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -272,10 +255,8 @@
 /* Begin PBXHeadersBuildPhase section */
 		A15AE28730572479001B9E7B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
@@ -300,8 +281,6 @@
 				A15AE2503057244C001B9E7B /* Composer */,
 			);
 			name = Composer;
-			packageProductDependencies = (
-			);
 			productName = Composer;
 			productReference = A15AE24E3057244C001B9E7B /* Composer.app */;
 			productType = "com.apple.product-type.application";
@@ -324,8 +303,6 @@
 				A15AE26C3057244C001B9E7B /* ComposerTests */,
 			);
 			name = ComposerTests;
-			packageProductDependencies = (
-			);
 			productName = ComposerTests;
 			productReference = A15AE2693057244C001B9E7B /* ComposerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -347,8 +324,6 @@
 				A15AE2763057244D001B9E7B /* ComposerUITests */,
 			);
 			name = ComposerUITests;
-			packageProductDependencies = (
-			);
 			productName = ComposerUITests;
 			productReference = A15AE2733057244D001B9E7B /* ComposerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -364,14 +339,10 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				A15AE28D30572479001B9E7B /* ComposerKit */,
 			);
 			name = ComposerKit;
-			packageProductDependencies = (
-			);
 			productName = ComposerKit;
 			productReference = A15AE28C30572479001B9E7B /* ComposerKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -394,8 +365,6 @@
 				A15AE29C3057247A001B9E7B /* ComposerKitTests */,
 			);
 			name = ComposerKitTests;
-			packageProductDependencies = (
-			);
 			productName = ComposerKitTests;
 			productReference = A15AE2963057247A001B9E7B /* ComposerKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -417,8 +386,6 @@
 				A1CCD2ED3057449E004B4721 /* ComposerXPCService */,
 			);
 			name = ComposerXPCService;
-			packageProductDependencies = (
-			);
 			productName = ComposerXPCService;
 			productReference = A1CCD2EC3057449E004B4721 /* ComposerXPCService.xpc */;
 			productType = "com.apple.product-type.xpc-service";
@@ -431,7 +398,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				CLASSPREFIX = FC;
-				LastUpgradeCheck = 2660;
+				LastUpgradeCheck = 2700;
 				ORGANIZATIONNAME = "the Folio Project";
 				TargetAttributes = {
 					A15AE24D3057244C001B9E7B = {
@@ -494,91 +461,66 @@
 /* Begin PBXResourcesBuildPhase section */
 		A15AE24C3057244C001B9E7B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
-				A15AE2E030572AF4001B9E7B /* Project.xcconfig in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A15AE2673057244C001B9E7B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A15AE2713057244D001B9E7B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A15AE28A30572479001B9E7B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A15AE2943057247A001B9E7B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A1CCD2EA3057449E004B4721 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A15AE24A3057244C001B9E7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A15AE2653057244C001B9E7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A15AE26F3057244D001B9E7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A15AE28830572479001B9E7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A15AE2923057247A001B9E7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A1CCD2E83057449E004B4721 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -626,13 +568,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		A15AE27D3057244D001B9E7B /* Debug */ = {
+		A15AE27D3057244D001B9E7B /* Debug configuration for PBXNativeTarget "Composer" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
@@ -668,13 +611,14 @@
 			};
 			name = Debug;
 		};
-		A15AE27E3057244D001B9E7B /* Release */ = {
+		A15AE27E3057244D001B9E7B /* Release configuration for PBXNativeTarget "Composer" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
@@ -710,7 +654,7 @@
 			};
 			name = Release;
 		};
-		A15AE27F3057244D001B9E7B /* Debug */ = {
+		A15AE27F3057244D001B9E7B /* Debug configuration for PBXProject "Composer" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A15AE2DF30572AF4001B9E7B /* Project.xcconfig */;
 			buildSettings = {
@@ -746,6 +690,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -770,11 +715,12 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Debug;
 		};
-		A15AE2803057244D001B9E7B /* Release */ = {
+		A15AE2803057244D001B9E7B /* Release configuration for PBXProject "Composer" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A15AE2DF30572AF4001B9E7B /* Project.xcconfig */;
 			buildSettings = {
@@ -810,6 +756,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -827,15 +774,17 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
-		A15AE2823057244D001B9E7B /* Debug */ = {
+		A15AE2823057244D001B9E7B /* Debug configuration for PBXNativeTarget "ComposerTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.Composer.ComposerTests;
@@ -846,11 +795,12 @@
 			};
 			name = Debug;
 		};
-		A15AE2833057244D001B9E7B /* Release */ = {
+		A15AE2833057244D001B9E7B /* Release configuration for PBXNativeTarget "ComposerTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.Composer.ComposerTests;
@@ -861,10 +811,11 @@
 			};
 			name = Release;
 		};
-		A15AE2853057244D001B9E7B /* Debug */ = {
+		A15AE2853057244D001B9E7B /* Debug configuration for PBXNativeTarget "ComposerUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.Composer.ComposerUITests;
@@ -875,10 +826,11 @@
 			};
 			name = Debug;
 		};
-		A15AE2863057244D001B9E7B /* Release */ = {
+		A15AE2863057244D001B9E7B /* Release configuration for PBXNativeTarget "ComposerUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.Composer.ComposerUITests;
@@ -889,11 +841,12 @@
 			};
 			name = Release;
 		};
-		A15AE2A43057247A001B9E7B /* Debug */ = {
+		A15AE2A43057247A001B9E7B /* Debug configuration for PBXNativeTarget "ComposerKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -921,11 +874,12 @@
 			};
 			name = Debug;
 		};
-		A15AE2A53057247A001B9E7B /* Release */ = {
+		A15AE2A53057247A001B9E7B /* Release configuration for PBXNativeTarget "ComposerKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -953,10 +907,11 @@
 			};
 			name = Release;
 		};
-		A15AE2A93057247A001B9E7B /* Debug */ = {
+		A15AE2A93057247A001B9E7B /* Debug configuration for PBXNativeTarget "ComposerKitTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ComposerKitTests;
@@ -967,10 +922,11 @@
 			};
 			name = Debug;
 		};
-		A15AE2AA3057247A001B9E7B /* Release */ = {
+		A15AE2AA3057247A001B9E7B /* Release configuration for PBXNativeTarget "ComposerKitTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ComposerKitTests;
@@ -981,11 +937,12 @@
 			};
 			name = Release;
 		};
-		A1CCD2F93057449E004B4721 /* Debug */ = {
+		A1CCD2F93057449E004B4721 /* Debug configuration for PBXNativeTarget "ComposerXPCService" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1007,11 +964,12 @@
 			};
 			name = Debug;
 		};
-		A1CCD2FA3057449E004B4721 /* Release */ = {
+		A1CCD2FA3057449E004B4721 /* Release configuration for PBXNativeTarget "ComposerXPCService" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1039,64 +997,57 @@
 		A15AE2493057244C001B9E7B /* Build configuration list for PBXProject "Composer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A15AE27F3057244D001B9E7B /* Debug */,
-				A15AE2803057244D001B9E7B /* Release */,
+				A15AE27F3057244D001B9E7B /* Debug configuration for PBXProject "Composer" */,
+				A15AE2803057244D001B9E7B /* Release configuration for PBXProject "Composer" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		A15AE27C3057244D001B9E7B /* Build configuration list for PBXNativeTarget "Composer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A15AE27D3057244D001B9E7B /* Debug */,
-				A15AE27E3057244D001B9E7B /* Release */,
+				A15AE27D3057244D001B9E7B /* Debug configuration for PBXNativeTarget "Composer" */,
+				A15AE27E3057244D001B9E7B /* Release configuration for PBXNativeTarget "Composer" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		A15AE2813057244D001B9E7B /* Build configuration list for PBXNativeTarget "ComposerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A15AE2823057244D001B9E7B /* Debug */,
-				A15AE2833057244D001B9E7B /* Release */,
+				A15AE2823057244D001B9E7B /* Debug configuration for PBXNativeTarget "ComposerTests" */,
+				A15AE2833057244D001B9E7B /* Release configuration for PBXNativeTarget "ComposerTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		A15AE2843057244D001B9E7B /* Build configuration list for PBXNativeTarget "ComposerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A15AE2853057244D001B9E7B /* Debug */,
-				A15AE2863057244D001B9E7B /* Release */,
+				A15AE2853057244D001B9E7B /* Debug configuration for PBXNativeTarget "ComposerUITests" */,
+				A15AE2863057244D001B9E7B /* Release configuration for PBXNativeTarget "ComposerUITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		A15AE2A33057247A001B9E7B /* Build configuration list for PBXNativeTarget "ComposerKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A15AE2A43057247A001B9E7B /* Debug */,
-				A15AE2A53057247A001B9E7B /* Release */,
+				A15AE2A43057247A001B9E7B /* Debug configuration for PBXNativeTarget "ComposerKit" */,
+				A15AE2A53057247A001B9E7B /* Release configuration for PBXNativeTarget "ComposerKit" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		A15AE2A83057247A001B9E7B /* Build configuration list for PBXNativeTarget "ComposerKitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A15AE2A93057247A001B9E7B /* Debug */,
-				A15AE2AA3057247A001B9E7B /* Release */,
+				A15AE2A93057247A001B9E7B /* Debug configuration for PBXNativeTarget "ComposerKitTests" */,
+				A15AE2AA3057247A001B9E7B /* Release configuration for PBXNativeTarget "ComposerKitTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		A1CCD2FB3057449E004B4721 /* Build configuration list for PBXNativeTarget "ComposerXPCService" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A1CCD2F93057449E004B4721 /* Debug */,
-				A1CCD2FA3057449E004B4721 /* Release */,
+				A1CCD2F93057449E004B4721 /* Debug configuration for PBXNativeTarget "ComposerXPCService" */,
+				A1CCD2FA3057449E004B4721 /* Release configuration for PBXNativeTarget "ComposerXPCService" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
