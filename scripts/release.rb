@@ -49,14 +49,9 @@ class SuiteRelease
     @root = capture('git', 'rev-parse', '--show-toplevel')
     changed = capture('git', '-C', @root, 'diff', '--name-only', 'HEAD').lines.map(&:strip)
     untracked = capture('git', '-C', @root, 'ls-files', '--others', '--exclude-standard')
-    raise 'Source is dirty; commit source changes before recording a candidate' unless (changed - ['Config/Version.xcconfig']).empty? && untracked.empty?
-    baseline = capture('git', '-C', @root, 'show', 'HEAD:Config/Version.xcconfig')
-    current = File.read(File.join(@root, 'Config/Version.xcconfig')).strip
-    normalize = ->(text) { text.gsub(/^CURRENT_PROJECT_VERSION = \d+$/, 'CURRENT_PROJECT_VERSION = BUILD') }
-    raise 'Commit version configuration changes first' unless normalize.call(baseline) == normalize.call(current)
+    raise 'Source is dirty; commit source changes before recording a candidate' unless changed.empty? && untracked.empty?
     development_identity.merge('revision' => capture('git', '-C', @root, 'rev-parse', 'HEAD'),
-                               'dirty' => !changed.empty?,
-                               'source_patch' => capture('git', '-C', @root, 'diff', '--binary', 'HEAD', '--', 'Config/Version.xcconfig'))
+                               'dirty' => false)
   end
 
   def development_identity
@@ -108,7 +103,7 @@ class SuiteRelease
            (!candidate['dirty'] || candidate['source_patch'].is_a?(String)) &&
            /\A[0-9a-f]{40,64}\z/.match?(candidate['revision'].to_s) &&
            /\A\d+\.\d+\.\d+\z/.match?(candidate['version'].to_s) &&
-           (candidate['numbering'] == 'Folio scheme' || candidate['ledger_id'].is_a?(String))
+           (['Shared configuration', 'Folio scheme'].include?(candidate['numbering']) || candidate['ledger_id'].is_a?(String))
       raise 'Invalid candidate identity'
     end
     build_number(candidate.fetch('build'))
@@ -153,15 +148,13 @@ class SuiteRelease
                '-derivedDataPath', derived, action]
     raise 'Xcode build failed' unless system(*command)
     after = source_identity
-    unless after['revision'] == before['revision'] && after['version'] == before['version'] && after['build'].to_i == before['build'].to_i + 1
-      raise 'Expected one Suite build-number increment and no other source changes'
-    end
+    raise 'Source changed during the build' unless after == before
     @options['products'] = File.join(derived, 'Build/Products', configuration)
-    # Verify the newly allocated identity, not a previous candidate override.
+    # Verify the shared identity, not a previous candidate override.
     @options.delete('candidate')
     verify
     write_json(File.join(directory, 'release.json'), after.merge(
-      'schema' => 1, 'numbering' => 'Folio scheme', 'prepared_at' => Time.now.utc.iso8601))
+      'schema' => 1, 'numbering' => 'Shared configuration', 'prepared_at' => Time.now.utc.iso8601))
     write_json(File.join(directory, "build-#{configuration}.json"),
                { 'identity' => after, 'configuration' => configuration,
                  'xcode' => capture('xcodebuild', '-version'), 'command' => command,
@@ -177,7 +170,7 @@ class SuiteRelease
     raise 'Source changed during candidate preparation' unless source_identity == identity
     FileUtils.mkdir_p(output)
     write_json(File.join(output, 'release.json'), identity.merge(
-      'schema' => 1, 'numbering' => 'Folio scheme', 'prepared_at' => Time.now.utc.iso8601))
+      'schema' => 1, 'numbering' => 'Shared configuration', 'prepared_at' => Time.now.utc.iso8601))
     puts "Recorded #{identity['version']} (#{identity['build']}) at #{output}; build number unchanged"
   end
 end

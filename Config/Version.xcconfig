@@ -1,6 +1,6 @@
 // SPDX-FileCopyrightText: 2026 the Folio Project
 // SPDX-License-Identifier: MIT
 
-// Shared Suite identity. Folio Build/Archive operations advance the build number.
+// Shared Suite identity. Changed deliberately; builds never rewrite this file.
 MARKETING_VERSION = 0.1.0
-CURRENT_PROJECT_VERSION = 10
+CURRENT_PROJECT_VERSION = 1

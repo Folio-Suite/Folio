@@ -38,8 +38,8 @@ ruby scripts/package.rb --candidate /tmp/folio-candidate \
   --output /tmp/folio-package
 ```
 
-Use new candidate and output directories. Packaging neither builds nor increments
-the Suite counter, and never installs on the development machine. It verifies the
+Use new candidate and output directories. Packaging neither builds nor changes
+the Suite identity, and never installs on the development machine. It verifies the
 candidate identity against all shipping bundles, rejects missing executables,
 embedded framework copies, missing required storyboards/models/assets, and obsolete dylibs, and stages only the seven shipping
 bundles (including their three nested XPC services). Build-directory test products

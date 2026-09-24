@@ -1,0 +1,122 @@
+# SPDX-FileCopyrightText: 2026 the Folio Project
+# SPDX-License-Identifier: MIT
+name: Development CI
+
+on:
+  pull_request:
+  merge_group:
+    types: [checks_requested]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_27.0.app/Contents/Developer
+
+concurrency:
+  group: development-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Suite build and repository checks
+    runs-on: xcode-27
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Check tooling, localization, and coordinated Suite products
+        run: |
+          export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+          mkdir -p build
+          {
+            xcodebuild -version
+            git rev-parse HEAD
+            for test in scripts/tests/*_test.rb; do
+              /usr/bin/ruby "$test"
+            done
+            /usr/bin/ruby scripts/update-localizations.rb
+            bash scripts/check-build.sh
+          } 2>&1 | tee build/checks.log
+      - name: Retain diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: checks-${{ github.run_id }}-${{ github.run_attempt }}
+          path: build/checks.log
+          retention-days: 7
+
+  tests:
+    name: Test ${{ matrix.scheme }}
+    # Never expose the development signing key to fork pull requests.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: xcode-27
+    timeout-minutes: 30
+    environment: ci-signing
+    strategy:
+      fail-fast: false
+      matrix:
+        scheme: [Write, Research, Composer]
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Record toolchain and source
+        run: |
+          mkdir -p build
+          {
+            sw_vers
+            xcodebuild -version
+            xcodebuild -showsdks
+            git rev-parse HEAD
+            echo "Image: ${ImageOS:-unknown} ${ImageVersion:-unknown}"
+            echo "Run: ${GITHUB_RUN_ID} attempt ${GITHUB_RUN_ATTEMPT}"
+          } | tee build/environment.log
+      - name: Import dedicated development identity
+        env:
+          CI_CERTIFICATE_P12_BASE64: ${{ secrets.CI_CERTIFICATE_P12_BASE64 }}
+          CI_CERTIFICATE_PASSWORD: ${{ secrets.CI_CERTIFICATE_PASSWORD }}
+        run: /usr/bin/ruby scripts/ci-signing.rb import
+      - name: Build and test shared scheme
+        env:
+          CI_SCHEME: ${{ matrix.scheme }}
+        run: /usr/bin/ruby scripts/ci.rb build/ci "$CI_SCHEME"
+      - name: Remove temporary signing keychain
+        if: always()
+        run: /usr/bin/ruby scripts/ci-signing.rb cleanup
+      - name: Retain diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: tests-${{ matrix.scheme }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            build/environment.log
+            build/ci/*.log
+            build/ci/*.xcresult
+          retention-days: 7
+          if-no-files-found: warn
+
+  suite:
+    name: Suite
+    if: always()
+    needs: [checks, tests]
+    runs-on: ubuntu-latest
+    env:
+      CHECKS_RESULT: ${{ needs.checks.result }}
+      TESTS_RESULT: ${{ needs.tests.result }}
+    steps:
+      - name: Require every check and test job
+        run: |
+          if [[ "$CHECKS_RESULT" != success || "$TESTS_RESULT" != success ]]; then
+            echo 'Suite requires successful build checks and all three signed test jobs.'
+            echo 'Fork PRs require review and a trusted in-repository branch before signed tests can run.'
+            exit 1
+          fi

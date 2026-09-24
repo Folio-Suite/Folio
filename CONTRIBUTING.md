@@ -17,11 +17,16 @@ Build the shared **Folio** scheme in Xcode, or run `xcodebuild -workspace Folio.
 
 For the editor and package tests, select **Write** in Xcode and use Product → Test. That scheme includes FolioKitTests, WriteKitTests, WriteTests, and WriteUITests. Start native UI runners through Xcode, or prepare the signed test products with build-for-testing before using the CLI test runner. The shared **Folio** scheme also covers the Research shell, including native file-type discovery, package reopening, and preservation of collected files across saves. Its remaining framework and UI tests are templates. Passing the current tests does not prove cross-application Work Session or archival behavior.
 
+GitHub development CI builds the Folio scheme and runs the three shared app
+schemes in parallel on separate Macs.
+See [Development CI](docs/development-ci.md) for triggers, local reproduction,
+and the boundary between CI evidence and release validation.
+
 ## Release identity
 
 All apps, Kits, and bundled services inherit the version and build from the shared
-Suite configuration. The Folio scheme advances the build number once per Build or
-Archive action; component schemes leave it unchanged. Use the Ruby workflow in
+Suite configuration, currently **0.1.0 (1)**. Builds and archives leave that
+configuration unchanged. Use the Ruby workflow in
 [Suite version and build numbering](docs/release-numbering.md) to record and verify
 the resulting shipping bundles. See [Suite installer](docs/installer.md) for the
 PKG staging command and clean-install proof procedure.
