@@ -102,9 +102,7 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
                         <value key="minSize" type="size" width="620" height="388"/>
                         <toolbar key="toolbar" implicitIdentifier="FolioWriteFormattingToolbar" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="formatting-toolbar">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.emphasis" label="Emphasis" paletteLabel="Emphasis" image="Emphasis" title="Emphasis" id="toolbar-emphasis" userLabel="Emphasis">
-                                    <size key="minSize" width="40" height="28"/>
-                                    <size key="maxSize" width="40" height="28"/>
+                                <toolbarItem sizingBehavior="auto" implicitItemIdentifier="dev.foliosuite.Write.emphasis" label="Emphasis" paletteLabel="Emphasis" image="Emphasis" title="Emphasis" id="toolbar-emphasis" userLabel="Emphasis">
                                     <button key="view" toolTip="Emphasis. Option-click for explicit Italic." id="emphasis" userLabel="Emphasis. Option-click for explicit Italic.">
                                         <rect key="frame" x="9" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -121,9 +119,7 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.strong" label="Strong Emphasis" paletteLabel="Strong Emphasis" image="StrongEmphasis" title="Strong Emphasis" id="toolbar-strong" userLabel="Strong Emphasis">
-                                    <size key="minSize" width="40" height="28"/>
-                                    <size key="maxSize" width="40" height="28"/>
+                                <toolbarItem sizingBehavior="auto" implicitItemIdentifier="dev.foliosuite.Write.strong" label="Strong Emphasis" paletteLabel="Strong Emphasis" image="StrongEmphasis" title="Strong Emphasis" id="toolbar-strong" userLabel="Strong Emphasis">
                                     <button key="view" toolTip="Strong Emphasis. Option-click for explicit Bold." id="strong" userLabel="Strong Emphasis. Option-click for explicit Bold.">
                                         <rect key="frame" x="28" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -141,9 +137,7 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
                                     </button>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="toolbar-semantic-space"/>
-                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.appearance" label="Appearance" paletteLabel="Appearance" image="bold.italic.underline" catalog="system" title="Appearance" id="toolbar-appearance" userLabel="Appearance">
-                                    <size key="minSize" width="40" height="28"/>
-                                    <size key="maxSize" width="40" height="28"/>
+                                <toolbarItem sizingBehavior="auto" implicitItemIdentifier="dev.foliosuite.Write.appearance" label="Appearance" paletteLabel="Appearance" image="bold.italic.underline" catalog="system" title="Appearance" id="toolbar-appearance" userLabel="Appearance">
                                     <button key="view" toolTip="Appearance: Bold, Italic, Underline, and Strikethrough." id="appearance" userLabel="Appearance: Bold, Italic, Underline, and Strikethrough.">
                                         <rect key="frame" x="28" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -160,9 +154,7 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.clear" label="Clear Formatting" paletteLabel="Clear Formatting" image="eraser" catalog="system" title="Clear" id="toolbar-clear" userLabel="Clear">
-                                    <size key="minSize" width="40" height="28"/>
-                                    <size key="maxSize" width="40" height="28"/>
+                                <toolbarItem sizingBehavior="auto" implicitItemIdentifier="dev.foliosuite.Write.clear" label="Clear Formatting" paletteLabel="Clear Formatting" image="eraser" catalog="system" title="Clear" id="toolbar-clear" userLabel="Clear">
                                     <button key="view" toolTip="Clear character formatting, preserving paragraph alignment." id="clear" userLabel="Clear character formatting, preserving paragraph alignment.">
                                         <rect key="frame" x="28" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -179,9 +171,7 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.alignment" label="Paragraph Alignment" paletteLabel="Paragraph Alignment" id="toolbar-alignment" userLabel="Paragraph Alignment">
-                                    <size key="minSize" width="118" height="24"/>
-                                    <size key="maxSize" width="124" height="28"/>
+                                <toolbarItem sizingBehavior="auto" implicitItemIdentifier="dev.foliosuite.Write.alignment" label="Paragraph Alignment" paletteLabel="Paragraph Alignment" id="toolbar-alignment" userLabel="Paragraph Alignment">
                                     <popUpButton key="view" id="alignment">
                                         <rect key="frame" x="0.0" y="14" width="118" height="24"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -203,9 +193,7 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
                                         </connections>
                                     </popUpButton>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.help" label="Formatting Help" paletteLabel="Formatting Help" image="questionmark.circle" catalog="system" title="Formatting help" id="toolbar-help" userLabel="Formatting help">
-                                    <size key="minSize" width="40" height="28"/>
-                                    <size key="maxSize" width="40" height="28"/>
+                                <toolbarItem sizingBehavior="auto" implicitItemIdentifier="dev.foliosuite.Write.help" label="Formatting Help" paletteLabel="Formatting Help" image="questionmark.circle" catalog="system" title="Formatting help" id="toolbar-help" userLabel="Formatting help">
                                     <button key="view" toolTip="About semantic and explicit formatting" id="help" userLabel="About semantic and explicit formatting">
                                         <rect key="frame" x="26" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask"/>
