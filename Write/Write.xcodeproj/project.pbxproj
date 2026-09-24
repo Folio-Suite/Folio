@@ -907,7 +907,6 @@
 		A1F839EF3050B46200DEB96A /* Debug configuration for PBXNativeTarget "WriteKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -941,7 +940,6 @@
 		A1F839F03050B46200DEB96A /* Release configuration for PBXNativeTarget "WriteKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;

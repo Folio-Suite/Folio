@@ -18,6 +18,13 @@ localization keys stable. Resource schema numbers (for example, storyboard `3.0`
 are file-format identifiers, not OS requirements. Keep the versions emitted by
 Apple's tools; Core Data's `minimumToolsVersion=Automatic` uses the current tools.
 
+The shared Kits must be team-signed even during development: the hardened apps
+load them directly from the build products directory. Do not accept a recommended
+settings change that sets a Kit's `CODE_SIGN_IDENTITY` to an empty value (Do Not
+Sign). That leaves a linker-signed framework without a Team ID, which library
+validation rejects even when its path is correct. Retain automatic team signing;
+`scripts/check-ci-signing.rb` checks this before CI executes tests.
+
 ## Validation
 
 Build the shared **Folio** scheme in Xcode, or run `xcodebuild -workspace Folio.xcworkspace -scheme Folio -configuration Debug -destination 'platform=macOS' build` from the parent checkout. `scripts/check-build.sh` performs a clean unsigned Suite build and checks application and framework products. It does not validate signing, installed framework resolution, runtime loading, or distribution packaging. Composer and its tests remain skeletons. Each app embeds its own XPC service skeleton; the build check verifies all three products exist.
