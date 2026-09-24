@@ -9,7 +9,14 @@ Folio is a monorepo. Clone it with `git clone <repository-url>` and open the wor
 
 Open `Folio.xcworkspace`. Use the shared **Write**, **Research**, or **Composer** scheme to run an application, **FolioKit** for framework work, and **Folio** to build or test the entire Suite. The applications use their domain frameworks, which consume FolioKit. Implementation sources compile directly into their owning frameworks. Application linking and embedding are being configured for an installed shared-framework deployment. A successful build does not establish that an app is self-contained or that its installed dependencies resolve outside Xcode. Open the enclosing workspace when developing the applications.
 
-The current skeleton builds with Xcode 27 and a macOS 26.5 deployment target. `SDKROOT = macosx` selects the installed macOS SDK; using SDK 27 does not raise the deployment minimum. `Config/Suite.xcconfig` controls the Suite minimum; each component retains a standalone fallback in its own `Project.xcconfig`. Signing uses the existing project team settings. Contributors may select their own team locally; keep personal signing changes out of shared commits.
+Folio requires **macOS 26.5 or newer** and builds with Xcode 27. `SDKROOT = macosx` selects the installed macOS SDK; using SDK 27 does not raise the deployment minimum. `Config/Suite.xcconfig` controls the Suite minimum; each component retains a standalone fallback in its own `Project.xcconfig`. Signing uses the existing project team settings. Contributors may select their own team locally; keep personal signing changes out of shared commits.
+
+Storyboards inherit the project deployment target. Upgrade their serialization
+with the current Xcode/Interface Builder tools; keep their object identifiers and
+localization keys stable. Resource schema numbers (for example, storyboard `3.0`,
+“Xcode 8 format,” Core Data `documentVersion=1.0`, and asset catalog `version=1`)
+are file-format identifiers, not OS requirements. Keep the versions emitted by
+Apple's tools; Core Data's `minimumToolsVersion=Automatic` uses the current tools.
 
 ## Validation
 

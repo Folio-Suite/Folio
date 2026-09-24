@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24765"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="25098"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -472,7 +473,7 @@
     <resources>
         <image name="Emphasis" width="8" height="10"/>
         <image name="StrongEmphasis" width="6" height="10"/>
-        <image name="strikethrough" catalog="system" width="14" height="12"/>
-        <image name="underline" catalog="system" width="11" height="14"/>
+        <image name="strikethrough" catalog="system" width="32" height="32"/>
+        <image name="underline" catalog="system" width="32" height="32"/>
     </resources>
 </document>

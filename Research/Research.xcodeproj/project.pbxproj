@@ -858,7 +858,6 @@
 				INFOPLIST_FILE = ResearchXPCService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ResearchXPCService;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project. All rights reserved.";
-				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../../../../Frameworks",
@@ -885,7 +884,6 @@
 				INFOPLIST_FILE = ResearchXPCService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ResearchXPCService;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project. All rights reserved.";
-				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../../../../Frameworks",

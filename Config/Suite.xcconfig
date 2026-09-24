@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2026 the Folio Project
 // SPDX-License-Identifier: MIT
 
-// Minimum macOS version for the current Suite prototype.
+// Minimum supported macOS version for every Suite target and compiled resource.
 MACOSX_DEPLOYMENT_TARGET = 26.5
 
 // Use Clang modules and scan/build their dependencies explicitly across the Suite.
