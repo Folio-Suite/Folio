@@ -11,12 +11,27 @@ runs for the same event and PR/ref are canceled. There are no path filters or
 stack-tip skips. PR checks use GitHub's merge checkout; queue checks use the queue
 candidate commit.
 
+## Lightweight development builds
+
+`.github/workflows/development-build.yml` runs on pushes to `dev/**` and
+`integration/**`, and can also be dispatched manually. It uses one Mac to run the
+existing Ruby tests, localization check, and `scripts/check-build.sh`. The build
+uses the shared Folio scheme and verifies Kit interfaces and bundle versions.
+New pushes cancel superseded runs for that branch; build logs are kept for seven
+days.
+
+This is an unsigned compile and repository check. It uses no signing secrets and
+does not run native application or UI tests, so it cannot establish that runtime
+loading or signing works. It does not replace the full **Suite** gate. Opening a
+PR from one of these branches also triggers the full workflow described below;
+merge-queue and `main` checks remain unchanged.
+
 ## Schemes and parallel work
 
 Four macOS jobs run independently:
 
-- **Suite build and repository checks** runs the Ruby tests, read-only localization
-  extraction, and a clean coordinated **Folio** scheme build, including Kit
+- **Suite analysis, build, and repository checks** runs the Ruby tests, read-only localization
+  extraction, and a clean coordinated **Folio** scheme analysis and build, including Kit
   interfaces and bundle identity. This unsigned compile check does not execute
   application or UI tests and is not runtime/signing evidence.
 - **Test Write**, **Test Research**, and **Test Composer** each build and test their

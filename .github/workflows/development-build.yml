@@ -1,0 +1,53 @@
+# SPDX-FileCopyrightText: 2026 the Folio Project
+# SPDX-License-Identifier: MIT
+name: Development build
+
+on:
+  push:
+    branches: ["dev/**", "integration/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_27.0.app/Contents/Developer
+
+concurrency:
+  group: development-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Development build and repository checks
+    runs-on: xcode-27
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Check tooling, localization, and coordinated Suite products
+        run: |
+          export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+          mkdir -p build
+          {
+            xcodebuild -version
+            git rev-parse HEAD
+            for test in scripts/tests/*_test.rb; do
+              /usr/bin/ruby "$test"
+            done
+            /usr/bin/ruby scripts/update-localizations.rb
+            bash scripts/check-build.sh
+          } 2>&1 | tee build/checks.log
+      - name: Retain diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: development-build-${{ github.run_id }}-${{ github.run_attempt }}
+          path: build/checks.log
+          retention-days: 7
+

@@ -26,7 +26,7 @@ concurrency:
 
 jobs:
   checks:
-    name: Suite build and repository checks
+    name: Suite analysis, build, and repository checks
     runs-on: xcode-27
     timeout-minutes: 20
     steps:
@@ -44,7 +44,7 @@ jobs:
               /usr/bin/ruby "$test"
             done
             /usr/bin/ruby scripts/update-localizations.rb
-            bash scripts/check-build.sh
+            bash scripts/check-build.sh --analyze
           } 2>&1 | tee build/checks.log
       - name: Retain diagnostics
         if: always()
