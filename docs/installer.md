@@ -84,15 +84,20 @@ identity. Do not substitute a successful developer build for this proof.
    executable, run `otool -L` and `otool -l` if command-line tools are available.
    Static dependency inspection alone does not prove XPC process loading: record
    an actual service launch and its loaded framework images before marking that
-   acceptance criterion passed. The service protocols expose a diagnostic ping but no domain
+   final-artifact acceptance criterion passed. The service protocols expose a diagnostic ping but no domain
    operation, and this ticket does not add one or a shared host.
 6. Record results and failures, screenshots where useful, receipt information,
-   artifact hash and exact environment. Keep #17 open until installed runtime,
-   document round trips, and XPC loading have been demonstrated.
+   artifact hash and exact environment. Repeat these checks for the exact final
+   distribution artifact under #19; development evidence is scoped below.
 
-The first Sonoma VM smoke test is recorded below; full acceptance remains pending.
+The pre-alpha development installer milestone (#17) is accepted with the Sonoma
+installation and separately identified XPC diagnostic evidence below. On
+2026-09-26, its scope was reconciled to development infrastructure, not release
+qualification: the shared checkout was visible, and the service probe used a
+separate diagnostic build. Those limitations remain explicit. Exact final-artifact
+verification without a checkout belongs to #19; upgrade behavior belongs to #18.
 The preparation evidence below belongs to its recorded older revision and toolchain.
-Use a newly prepared candidate for acceptance of the current Suite; do not treat
+Use a newly prepared candidate for final distribution acceptance; do not treat
 the historical payload, test count, or signatures as current runtime evidence.
 
 ## Sonoma 14.0 smoke test — 2026-09-26
@@ -137,8 +142,8 @@ Local artifacts and evidence are in ignored `dist/sonoma-8ce938d/`.
 
 Actual XPC service launches were subsequently checked with the diagnostic build
 below, not the original installer’s empty-protocol service binaries.
-This smoke test does not close
-issue #17 or establish Intel, upgrade, notarization, or full localization coverage.
+The combined evidence supports the scoped pre-alpha milestone; it does not
+establish Intel, upgrade, notarization, or full localization coverage.
 
 ## Development-only XPC probe
 
@@ -213,5 +218,6 @@ On macOS 26.6.2 (25G83), Apple Silicon, Xcode 26.6:
 - Standards and Spec review findings were addressed: share the shipping inventory
   between commands, and reject missing required runtime resources.
 
-No installation occurred on this development Mac. Installed resource loading,
-Finder document round trips, and actual XPC process loading remain unverified.
+No installation occurred on the development Mac in that historical run. Installed
+resource loading, Finder document round trips, and XPC process loading were not
+verified by that run; see the separately scoped September 26 evidence above.
