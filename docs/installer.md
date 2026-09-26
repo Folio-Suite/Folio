@@ -7,7 +7,9 @@ SPDX-License-Identifier: MIT
 
 Issue #17 packages one coordinated build for a clean macOS 14 Sonoma or later installation.
 This is an unsigned test installer. Public distribution signing and notarization
-belong to #19; upgrade, downgrade, and running-app policy belong to #18.
+are future distribution work. Tickets #18 (upgrades) and #19 (signed distribution)
+were closed as not planned at this pre-alpha stage on 2026-09-26. Retain their
+historical checklists as reference when distribution is deliberately resumed.
 
 ## Layout
 
@@ -88,14 +90,15 @@ identity. Do not substitute a successful developer build for this proof.
    operation, and this ticket does not add one or a shared host.
 6. Record results and failures, screenshots where useful, receipt information,
    artifact hash and exact environment. Repeat these checks for the exact final
-   distribution artifact under #19; development evidence is scoped below.
+   distribution artifact when distribution work resumes; development evidence is scoped below.
 
 The pre-alpha development installer milestone (#17) is accepted with the Sonoma
 installation and separately identified XPC diagnostic evidence below. On
 2026-09-26, its scope was reconciled to development infrastructure, not release
 qualification: the shared checkout was visible, and the service probe used a
 separate diagnostic build. Those limitations remain explicit. Exact final-artifact
-verification without a checkout belongs to #19; upgrade behavior belongs to #18.
+verification without a checkout and upgrade behavior remain future distribution
+requirements. Their former tickets #18/#19 are closed as premature, not verified.
 The preparation evidence below belongs to its recorded older revision and toolchain.
 Use a newly prepared candidate for final distribution acceptance; do not treat
 the historical payload, test count, or signatures as current runtime evidence.

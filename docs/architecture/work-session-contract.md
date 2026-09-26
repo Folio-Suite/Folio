@@ -59,7 +59,7 @@ Apple's `NSDocument.preservesVersions` defaults to `autosavesInPlace`; enabling 
 - [Browse and restore Document Versions](https://support.apple.com/guide/mac-help/view-and-restore-past-versions-of-documents-mh40710/mac)
 - [Desktop & Dock document-close preferences](https://support.apple.com/en-kw/guide/mac-help/-mchlp1119/mac)
 
-[Issue #13](https://github.com/Folio-Suite/Folio/issues/13) must demonstrate Auto Save, explicit Save, Document Versions browsing/restoration, coherent restoration across connected applications, large-asset behavior, and native package saving with separate archival export and isolated reconstruction. [Issue #4](https://github.com/Folio-Suite/Folio/issues/4) settles detailed authority and lifecycle behavior from that evidence; the native-package choice is settled.
+[Issue #13](https://github.com/Folio-Suite/Folio/issues/13) was retired as superseded on 2026-09-26. [Issue #4](https://github.com/Folio-Suite/Folio/issues/4) settles detailed authority and lifecycle behavior from platform contracts and product decisions. Use focused experiments for specific integration uncertainties, and test Folio-owned coordination when implemented. A broad storage stress prototype is not a design gate; the native-package choice is settled.
 
 Further domain-host design must prove recovery versus intentional quit, connection health and lock invalidation, durable request reconciliation, bounded resource residency with preserved associations, and coordinated quit failures. Transport, process supervision, executable packaging, and owner shutdown with active clients remain open. These proofs preserve the safety contract while replacing the former central-helper arrangement.
 

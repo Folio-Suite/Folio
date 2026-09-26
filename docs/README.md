@@ -19,7 +19,7 @@ The [ADRs](adr/) record decisions and their rationale. Later amendments identify
 - [Composer Arrangements and Editions](architecture/arrangement-contract.md)
 - [Composition and publication](architecture/composition-publication-contract.md), including the staged typography and coordinated-Stream experiments
 
-For the implementation that exists today, read the [current library layout](architecture/current-library-layout.md) and [first Write editor notes](architecture/native-work-v1.md). The [first native shell specification](specs/first-native-shell.md) defines the bounded milestone and its remaining acceptance obligations. Composer's framework and document shells do not yet implement the composition contract.
+For the implementation that exists today, read the [current library layout](architecture/current-library-layout.md) and [first Write editor notes](architecture/native-work-v1.md). The [first native shell specification](specs/first-native-shell.md) retains the historical specification and records acceptance at pre-alpha scope; its retired requirements are not current gates. Composer's framework and document shells do not yet implement the composition contract.
 
 Public interface documentation lives with each Kit: [FolioKit](../FolioKit/FolioKit/FolioKit.docc/FolioKit.md), [WriteKit](../Write/WriteKit/WriteKit.docc/WriteKit.md), [ResearchKit](../Research/ResearchKit/ResearchKit.docc/ResearchKit.md), and [ComposerKit](../Composer/ComposerKit/ComposerKit.docc/ComposerKit.md). Build these DocC catalogs in Xcode for symbol navigation.
 

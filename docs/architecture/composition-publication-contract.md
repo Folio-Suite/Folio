@@ -102,6 +102,6 @@ The [research report's bounded probe](../research/2026-09-26-native-paragraph-co
 
 ## Deferred specification and future fog
 
-Exact XML schemas, definition composition syntax, native classes, engine interfaces, quality thresholds, algorithms, scale limits, and concrete validation tooling remain subsequent work constrained by this contract. Existing native lifecycle and archival proofs in #13 and #4 remain outstanding; this decision does not automatically start the separately deferred #13 prototype.
+Exact XML schemas, definition composition syntax, native classes, engine interfaces, quality thresholds, algorithms, scale limits, and concrete validation tooling remain subsequent work constrained by this contract. Issue #4 retains native lifecycle design. Issue #13 was retired as superseded; focused Folio integration checks belong with the relevant implementation, rather than a broad prerequisite prototype.
 
 Advanced non-linear Correspondence and detailed compact parallel-reading interactions remain deferred. Possible licensing of commercial fonts such as Adobe Minion Pro, their distribution terms, and potential paid Theme packs are pinned for future investigation. No licensing or business-model conclusion is implied.
