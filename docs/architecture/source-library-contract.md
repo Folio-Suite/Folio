@@ -67,4 +67,4 @@ Removing a Source from a collection is distinct from destroying records or mater
 
 Concrete Source schemas, bibliographic field vocabularies, identity encoding, subset selection, comparison and reconciliation algorithms, material storage, and notification mechanisms remain implementation work. Exact framework divisions and Zotero or BibTeX import/export integrations are not selected. Source Library Document Versions and Time Machine behavior still require investigation.
 
-Issue #8 retains semantic commands and durable history; #13 and #4 retain native package and lifecycle proofs. This contract resolves Source Library and Work-local research ownership without claiming those implementations or proofs complete.
+Issue #8 retains semantic commands and durable history; #4 retains lifecycle design; #13 was retired as superseded. Focused integration checks belong with the relevant implementation. This contract resolves Source Library and Work-local research ownership without claiming those implementations or proofs complete.

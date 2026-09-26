@@ -61,4 +61,4 @@ Passing the editorial baton does not accept, reject, rewrite, or reattribute Com
 
 ## Remaining proofs
 
-Exact storage schemas, branching algorithms, native Undo persistence, history scale, consolidation and retention, automation adapters, cross-process reconciliation, and UI placement remain implementation or further design work. Native save/restore, recovery, and archival reconstruction proofs remain with #13 and #4. This contract does not select event sourcing or require replaying historical commands to reconstruct current state.
+Exact storage schemas, branching algorithms, native Undo persistence, history scale, consolidation and retention, automation adapters, cross-process reconciliation, and UI placement remain implementation or further design work. Issue #4 retains lifecycle design. Issue #13 was retired as superseded; native save/restore, recovery, and archival reconstruction checks should target Folio-owned behavior as it is implemented. This contract does not select event sourcing or require replaying historical commands to reconstruct current state.

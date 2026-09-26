@@ -5,9 +5,20 @@ SPDX-License-Identifier: MIT
 
 # First Cocoa-first Folio shell with domain Kits
 
-## Reconciled scope
+## Milestone disposition — 2026-09-26
 
-This is the local counterpart of [issue #14](https://github.com/Folio-Suite/Folio/issues/14). The September 2026 reconciliation applies adopted decisions from [issue #15](https://github.com/Folio-Suite/Folio/issues/15), [ADR 0009](../adr/0009-continue-cocoa-suite-with-domain-kits.md), and the accepted editor follow-ons. It supersedes the original requirements for separate internal library targets, a mandatory Swift implementation, embedded framework copies, and a single-unit-only editor. The behavioral acceptance requirements below remain in force.
+Issue #14 is closed as accepted at current pre-alpha scope: a working native shell,
+installed resource loading, and basic save/close/Finder-reopen behavior provide
+sufficient evidence for this stage. PR #21 records the Sonoma evidence and passing
+native regression checks. The broader failure-preservation, semantic-specialization,
+and lifecycle requirements below are retained as historical specification, retired
+from this milestone rather than marked passed. Scope future implementation tickets
+when those capabilities become active work. This document is not an open acceptance
+gate or a claim that every historical requirement has been verified.
+
+## Historical reconciled scope
+
+This is the local counterpart of [issue #14](https://github.com/Folio-Suite/Folio/issues/14). The September 2026 reconciliation applies adopted decisions from [issue #15](https://github.com/Folio-Suite/Folio/issues/15), [ADR 0009](../adr/0009-continue-cocoa-suite-with-domain-kits.md), and the accepted editor follow-ons. It supersedes the original requirements for separate internal library targets, a mandatory Swift implementation, embedded framework copies, and a single-unit-only editor. The historical behavioral requirements below are subject to the milestone disposition above.
 
 The current editor and module layout implement part of this milestone. Existing tests cover editing, formatting, Manuscript navigation, package round trips, and selected native integration. This is not full acceptance: document failure handling, native lifecycle behavior, and semantic specialization still need their required evidence. See [the current layout](../architecture/current-library-layout.md) and [the implemented editor](../architecture/native-work-v1.md).
 
@@ -145,7 +156,7 @@ Implementation sources compile directly into their owning frameworks under [ADR 
 - Swift Collections and Swift Algorithms may remain implementation dependencies where they earn their place. The validated comparison used Collections 1.6.0 and Algorithms 1.2.1, with Numerics 1.1.1 resolved transitively. Record selected versions and retain the package lockfile; public framework interfaces must not expose these packages merely for implementation convenience.
 - Use explicit, inspectable build dependencies and shared workspace schemes. A clean checkout must build the shell without first building an unrelated target by hand or relying on an older framework binary.
 - Continue validating native app and test launches through Xcode in the workspace context with actual signing. Keep build output in the configured workspace-local DerivedData location and generated output out of version control.
-- Applications use installed shared Kits under ADR 0003 and ADR 0009; do not require embedded framework copies to satisfy this shell. Development launch uses the workspace build environment. Installed runtime resolution, native resource loading, and Finder document round trips are acceptance work under #17, followed by upgrades in #18 and signed distribution in #19. Do not treat a developer build as installation evidence or add an installer to this slice.
+- Applications use installed shared Kits under ADR 0003 and ADR 0009; do not require embedded framework copies to satisfy this shell. Development launch uses the workspace build environment. Installed runtime resolution, native resource loading, and Finder document round trips have scoped development evidence under closed #17. Upgrade and signed-distribution work from #18/#19 is deferred; both tickets are closed as premature. Do not treat a developer build as installation evidence or add an installer to this slice.
 - Document FolioKit, WriteKit, ResearchKit, and ComposerKit interfaces in DocC to a standard suitable for a public API, following ADR 0008. Cover module entry points and caller-facing contracts, with examples where needed. Also document the actual supported native format/version, launch/test instructions, any language-crossing responsibilities, and known limitations. Retain the two experiments as comparison evidence; deleting or relocating them is not required.
 
 ### Relationship to earlier decisions
@@ -187,9 +198,9 @@ Implementation sources compile directly into their owning frameworks under [ADR 
 ## Further Notes
 
 - This spec preserves the behavioral requirements from the September 2026 editor experiments while applying the adopted Cocoa/domain-Kit direction. Continue implementation in place; historical target and language choices are not unfinished acceptance work.
-- Relevant open architecture work remains in [#2](https://github.com/Folio-Suite/Folio/issues/2), [#4](https://github.com/Folio-Suite/Folio/issues/4), [#10](https://github.com/Folio-Suite/Folio/issues/10), [#12](https://github.com/Folio-Suite/Folio/issues/12), and [#13](https://github.com/Folio-Suite/Folio/issues/13). Decisions #8 and #9 are closed and recorded in ADRs 0010 and 0011; their implementation proofs remain outstanding.
+- Historical architecture references include [#2](https://github.com/Folio-Suite/Folio/issues/2), [#4](https://github.com/Folio-Suite/Folio/issues/4), [#10](https://github.com/Folio-Suite/Folio/issues/10), [#12](https://github.com/Folio-Suite/Folio/issues/12), and [#13](https://github.com/Folio-Suite/Folio/issues/13). Decisions #8 and #9 are closed and recorded in ADRs 0010 and 0011; their implementation proofs remain outstanding.
 - The developer confirmed the testing interface: most acceptance tests use WriteKit's public document/authoring interface, with a small Xcode UI suite for native application integration. Internal modules and any language bridges are exercised through that interface.
-- Acceptance requires the supported editor/document behaviors, semantic specialization proof, working implementation behind the public Kit interfaces, and native Xcode validation. A successful empty launch or placeholder test suite is insufficient. Reconciliation of this specification does not certify the remaining acceptance work or close the issue.
+- Acceptance requires the supported editor/document behaviors, semantic specialization proof, working implementation behind the public Kit interfaces, and native Xcode validation. A successful empty launch or placeholder test suite is insufficient. The subsequent milestone disposition above accepts current pre-alpha scope without certifying the remaining historical requirements.
 
 ## Accepted follow-on: flat Manuscript sidebar
 

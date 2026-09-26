@@ -20,10 +20,11 @@ Commit `b8c3fe1` supersedes its original automatic allocation/ledger requirement
 and the intervening Folio scheme counter. Candidate recording verifies an existing
 identity; it is not a uniqueness service or permission to distribute reused build
 numbers. Unique identities for distributed releases remain unresolved release
-engineering work and must be settled before public distribution. Upgrade proofs
-under #18 must retain distinct, deliberately prepared old/new identities; neither
-#17's test package nor #19's local signed artifact establishes a release-numbering
-policy. Retain historical candidate identities unchanged.
+engineering work and must be settled before public distribution. Future upgrade proofs must retain distinct, deliberately prepared old/new
+identities. Neither a development test package nor a local signed artifact
+establishes a release-numbering policy. Tickets #18 and #19 were closed as not
+planned at this pre-alpha stage; revisit their historical requirements when
+distribution work resumes. Retain historical candidate identities unchanged.
 
 Close Xcode before editing project or scheme files, validate complete replacements,
 and reopen for native validation. Never save partial project or scheme state.

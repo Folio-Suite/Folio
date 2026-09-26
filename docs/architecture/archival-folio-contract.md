@@ -45,7 +45,7 @@ Opening a folio reconstructs a native package using its enclosed dependency vers
 
 ## Remaining work
 
-Issue #13 proves native package saving, recovery, Document Versions, consistent snapshots, external versioned dependencies, complete export, and isolated reconstruction with representative large assets and a File Provider location. Preserve cloud, indexing, sandbox, migration, and scale probes. Issue #4 settles the detailed authority and lifecycle contract from that evidence. The native-package choice is settled.
+Issue #13 was retired as superseded on 2026-09-26. Issue #4 settles the detailed lifecycle design using platform contracts and product decisions, with targeted experiments only where a concrete integration uncertainty could change that design. Test Folio-owned save/restore coordination and archival reconstruction as their implementations arrive; broad scale and File Provider qualification are future work, not a prerequisite for lifecycle design. The native-package choice is settled; Core Data itself does not require a general durability qualification campaign.
 
 Issue #6 is resolved by the [semantic model contract](semantic-model-contract.md) and [ADR 0006](../adr/0006-extensible-semantic-model-and-xml.md): independently specified semantics, XML representation, preservation of unknown structures, and capability and dependency declarations now have an approved contract. Exact schemas and conformance mechanisms remain further work.
 
