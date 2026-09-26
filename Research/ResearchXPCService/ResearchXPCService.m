@@ -4,4 +4,9 @@
 #import "ResearchXPCService.h"
 
 @implementation ResearchXPCService
+
+- (void)ping:(NSString *)nonce reply:(void (^)(NSString *, int))reply {
+    reply(nonce, NSProcessInfo.processInfo.processIdentifier);
+}
+
 @end

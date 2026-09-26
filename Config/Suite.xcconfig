@@ -1,13 +1,18 @@
 // SPDX-FileCopyrightText: 2026 the Folio Project
 // SPDX-License-Identifier: MIT
 
-// Minimum supported macOS version for every Suite target and compiled resource.
-MACOSX_DEPLOYMENT_TARGET = 26.5
+// Follow Apple's recommended minimum: macOS 14.0 with Xcode 27.
+// Recheck the resolved minimum when upgrading Xcode.
+MACOSX_DEPLOYMENT_TARGET = $(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)
 
 // Use Clang modules and scan/build their dependencies explicitly across the Suite.
 // Each Kit supplies its supported headers through its own <Kit>.modulemap.
 CLANG_ENABLE_MODULES = YES
 CLANG_ENABLE_EXPLICIT_MODULES = YES
+
+// Shipping builds do not need test-coverage counters or coverage mapping.
+// Debug retains Xcode's coverage setting for the test schemes.
+ENABLE_CODE_COVERAGE[config=Release] = NO
 
 // One release identity for all apps, Kits, tests, and bundled services.
 #include "Version.xcconfig"

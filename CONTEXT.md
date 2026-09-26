@@ -14,7 +14,7 @@ The complete Folio product: a coordinated collection of desktop applications and
 _Avoid_: Product family, app bundle
 
 **Profile**:
-A governing definition with explicit domain scope: a Write Profile specializes a Work’s semantic environment, while a Composer Profile defines Arrangement and production rules within that environment. Whether Profiles are user-authorable or supplied exclusively remains open.
+A user-authorable governing definition with explicit domain scope: a Write Profile specializes a Work’s semantic environment, while a Composer Profile defines Arrangement construction, layout, and production rules within that environment.
 _Avoid_: Format, document type, theme
 
 **Semantic Vocabulary**:
@@ -94,12 +94,32 @@ _Avoid_: Document Version, accepted wording, history entry
 ## Publication
 
 **Theme**:
-An exchangeable presentation definition that maps semantic structures to medium-specific composition. A Profile may recommend or include Themes, but does not require them.
+An exchangeable, user-authorable definition of shared appearance and typography, with adaptations for supported media. A Profile may recommend or include Themes, but does not require them.
 _Avoid_: Profile, document type
 
 **Edition**:
-A self-contained production Arrangement governed by the included Edition Profile, with pinned content and locally retained required dependencies for a particular audience, purpose, or publication context. It remains deliberately editable after its initial snapshot.
+A self-contained production Arrangement governed by the included Edition Profile, with pinned text, supporting material, and locally retained required dependencies for a particular audience, purpose, or publication context. Its editorial identity is independent of medium, and it remains deliberately editable after its initial snapshot.
 _Avoid_: Format, export
+
+**Production Configuration**:
+A named set of an Edition’s output-specific presentation and production choices, including its applicable Profile rules, Theme, and composition behavior.
+_Avoid_: Edition, Theme, Rendition
+
+**Publication Plan**:
+A shared, medium-independent account of an Edition’s selected content, Streams, Correspondences, references, and publication metadata from which medium-specific compositions are derived.
+_Avoid_: Page layout, Rendition, Manuscript
+
+**Stream**:
+A named, ordered flow of publication content with a primary or alternate role, such as body text, a translation, or authored Notes. Its content retains its semantic kinds and document ownership.
+_Avoid_: Column, region, document
+
+**Correspondence**:
+A meaningful relationship between identified passages in different Streams, independent of how those passages are displayed together or successively.
+_Avoid_: Matching heading text, line position, synchronization point
+
+**Page Template**:
+A reusable definition of page or facing-page regions and their composition rules within a Composer Profile, such as a recto, verso, or chapter-opening design.
+_Avoid_: Signature, finished page, Theme
 
 **Rendition**:
 A concrete output generated from an Edition, such as a PDF, EPUB, or static website.

@@ -91,7 +91,12 @@ Composer’s Base storyboard and `mul.lproj/Main.xcstrings` catalog participate 
 
 Run `scripts/check-build.sh` to validate compilation and framework products; installed resource and dependency resolution still require a runtime check. Before shipping translations, verify the built apps: menus, editor scenes, toolbar tooltips, accessibility labels, undo/redo names, errors, and Help. Test long text, right-to-left layout, mixed Arabic/Latin content, and missing-translation fallback separately. Do not translate authored Work content when the UI language changes.
 
-## Validation of this foundation
+## Historical foundation validation — 2026-09-12
+
+This evidence predates Composer integration, the shared-framework installation
+layout, and the subsequent translation pass. It records the earlier resource
+routing proof, not current Suite acceptance. See the [current library layout](architecture/current-library-layout.md)
+for today's framework organization.
 
 On 2026-09-12, a clean full build of the Folio scheme succeeded with no compiler warnings or errors. The post-build extraction check matched 36 Objective-C strings and 284 storyboard strings; the two app metadata catalogs contain another six entries. All original storyboard text, scene structure, and connections were checked against the previous versions after accounting for renamed object IDs. Both apps retained their framework and private-library embedding.
 
@@ -99,5 +104,5 @@ A temporary AppKit host exercised the built frameworks in English and with delib
 
 This validates resource routing and the English baseline. Full native UI regression, translated layout quality, and right-to-left editing remain separate checks before shipping translated interfaces.
 
-See the [September 2026 localization audit](localization-audit-2026-09.md) for the
-current inventory, repaired safeguards, and remaining preparation checks.
+See the [September 2026 localization audit](localization-audit-2026-09.md) for its
+dated inventory, repaired safeguards, and remaining preparation checks.

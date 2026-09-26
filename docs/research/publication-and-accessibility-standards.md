@@ -5,7 +5,7 @@ SPDX-License-Identifier: MIT
 
 # Publication and accessibility standards relevant to Folio
 
-Research for [Research publication and accessibility standards](https://github.com/ctwelve/Folio/issues/11). Checked 2026-09-03.
+Research for [Research publication and accessibility standards](https://github.com/Folio-Suite/Folio/issues/11). Checked 2026-09-03.
 
 ## Scope and method
 
