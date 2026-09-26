@@ -7,7 +7,7 @@ SPDX-License-Identifier: MIT
 
 Amended on 2026-09-13 by [issue #15](https://github.com/Folio-Suite/Folio/issues/15). The original mandatory central menu bar helper topology is superseded; the filename is retained for existing links.
 
-Write owns Work capabilities, Research owns Source Library capabilities, and Composer owns Edition capabilities. Their Kits define models, operations, persistence adapters, and reusable presentation; the owning domain's application or service host manages authoritative open instances. Applications primarily configure and host these capabilities. Other applications request operations through the owning domain's interfaces.
+Write owns Work capabilities, Research owns Source Library capabilities, and Composer owns Arrangement capabilities, including Editions as subsequently established by [ADR 0011](0011-composer-arrangements-and-editions.md). Their Kits define models, operations, persistence adapters, and reusable presentation; the owning domain's application or service host manages authoritative open instances. Applications primarily configure and host these capabilities. Other applications request operations through the owning domain's interfaces.
 
 This preserves specialized desktop applications while removing the central menu bar application requirement. A framework loaded by multiple processes shares implementation, not in-memory authority. XPC is a candidate service transport; exact host packaging and supervision remain open.
 

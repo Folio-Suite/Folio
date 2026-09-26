@@ -15,6 +15,16 @@ shared configuration deliberately when needed. A release-service numbering
 policy remains future work; development CI does not distribute release products.
 Its diagnostics are identified by Git revision, GitHub run ID, and attempt.
 
+This is the current scope of [issue #16](https://github.com/Folio-Suite/Folio/issues/16).
+Commit `b8c3fe1` supersedes its original automatic allocation/ledger requirement
+and the intervening Folio scheme counter. Candidate recording verifies an existing
+identity; it is not a uniqueness service or permission to distribute reused build
+numbers. Unique identities for distributed releases remain unresolved release
+engineering work and must be settled before public distribution. Upgrade proofs
+under #18 must retain distinct, deliberately prepared old/new identities; neither
+#17's test package nor #19's local signed artifact establishes a release-numbering
+policy. Retain historical candidate identities unchanged.
+
 Close Xcode before editing project or scheme files, validate complete replacements,
 and reopen for native validation. Never save partial project or scheme state.
 
@@ -23,7 +33,8 @@ and reopen for native validation. Never save partial project or scheme state.
 The Ruby release tooling retains bundle validation and candidate recording without
 allocating a number. Candidate recording requires committed, clean source,
 including the version configuration. Existing historical candidate records remain
-readable for verification.
+readable for verification. The tooling uses Ruby 2.6 or newer and its standard
+library, Git, and the active Xcode tools; no gems are required.
 
 ```sh
 xcodebuild -workspace Folio.xcworkspace -scheme Folio -configuration Release build
@@ -31,8 +42,10 @@ ruby scripts/release.rb prepare --products /absolute/Build/Products/Release --ou
 ruby scripts/release.rb verify --products /absolute/Build/Products/Release --candidate /absolute/candidates/folio-build
 ```
 
-`prepare` records the version, build, Git revision, and preparation time in
-`release.json`. Keep candidate directories intact and use a new output location
+`prepare` records the version, build, Git revision, `dirty: false`, the shared
+configuration numbering mode, and preparation time in `release.json`. It rejects
+uncommitted source instead of recording a new build-number patch. Keep candidate
+directories intact and use a new output location
 for each attempt. To build and record together:
 
 ```sh
