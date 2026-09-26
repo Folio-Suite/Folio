@@ -1,9 +1,12 @@
 <!--
+SPDX-FileCopyrightText: 2026 Matt Pocock
 SPDX-FileCopyrightText: 2026 the Folio Project
 SPDX-License-Identifier: MIT
 -->
 
 # Domain Docs
+
+Adapted from [Matt Pocock's skill setup templates](https://github.com/mattpocock/skills), with Folio-specific conventions. See the retained [MIT notice](MATT-POCOCK-LICENSE) and [skill usage and attribution](../ai-skills.md).
 
 How the engineering skills should consume this repository's domain documentation when exploring the codebase.
 

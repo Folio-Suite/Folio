@@ -5,6 +5,8 @@ SPDX-License-Identifier: MIT
 
 ## Agent skills
 
+For skill setup, selection, maintenance, or attribution, read [AI skill usage and attribution](docs/ai-skills.md). It distinguishes globally installed workflows from Folio's local adaptations.
+
 ### Issue tracker
 
 Issues and specs live in this repository's GitHub Issues. See `docs/agents/issue-tracker.md`.

@@ -25,6 +25,10 @@ Sign). That leaves a linker-signed framework without a Team ID, which library
 validation rejects even when its path is correct. Retain automatic team signing;
 `scripts/check-ci-signing.rb` checks this before CI executes tests.
 
+## AI-assisted development
+
+Our [AI skill usage and attribution](docs/ai-skills.md) describes the globally installed engineering, discovery, and accessibility skills, the project-local Cocoa adaptations, and their upstream authors. Global skills are contributor-managed tooling; cloning Folio supplies only its local skills and project conventions. The same architecture, review, and validation requirements apply to AI-assisted changes.
+
 ## Validation
 
 Build the shared **Folio** scheme in Xcode, or run `xcodebuild -workspace Folio.xcworkspace -scheme Folio -configuration Debug -destination 'platform=macOS' build` from the parent checkout. `scripts/check-build.sh` performs a clean unsigned Suite build and checks application and framework products. It does not validate signing, installed framework resolution, runtime loading, or distribution packaging. Composer and its tests remain skeletons. Each app embeds its own XPC service skeleton; the build check verifies all three products exist.

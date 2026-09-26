@@ -15,6 +15,10 @@ The [current library layout](docs/architecture/current-library-layout.md) descri
 
 The adopted [Cocoa Suite direction](docs/adr/0009-continue-cocoa-suite-with-domain-kits.md) maps Work to Write, Source Library to Research, and Edition to Composer. Kits supply domain capabilities; owning hosts will provide shared editing services. Composer is currently a skeleton, and the domain-host service topology remains to be implemented.
 
+## AI-assisted development
+
+Folio uses [Matt Pocock's engineering skills](https://github.com/mattpocock/skills) for architecture, domain modeling, research, implementation, and review. His work is a substantial part of our development workflow. These skills are installed globally for consistency across projects; Folio-specific Cocoa adaptations live in this repository. See [AI skill usage and attribution](docs/ai-skills.md) for the setup, other contributors, and retained source notices.
+
 ## License
 
 Copyright © 2026 the Folio Project. Licensed under the [MIT License](LICENSE).

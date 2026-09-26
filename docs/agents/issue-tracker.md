@@ -1,9 +1,12 @@
 <!--
+SPDX-FileCopyrightText: 2026 Matt Pocock
 SPDX-FileCopyrightText: 2026 the Folio Project
 SPDX-License-Identifier: MIT
 -->
 
 # Issue tracker: GitHub
+
+Adapted from [Matt Pocock's skill setup templates](https://github.com/mattpocock/skills), with Folio-specific conventions. See the retained [MIT notice](MATT-POCOCK-LICENSE) and [skill usage and attribution](../ai-skills.md).
 
 Issues and specs for this repo live as GitHub issues. Use the `gh` CLI for all operations.
 

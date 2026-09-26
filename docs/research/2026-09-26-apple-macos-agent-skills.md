@@ -7,6 +7,8 @@ SPDX-License-Identifier: MIT
 
 Research snapshot: **26 September 2026**. This is a source audit and adoption recommendation, not an installation or a benchmark of agent performance. No candidate skill was installed or executed, and no application configuration changed.
 
+**Subsequent adoption:** Matt Pocock's engineering skills and rgmez's accessibility skills are now installed globally in the maintainer's environment. Folio retains local Core Data and AppKit/TextKit adaptations with upstream attribution. See [AI skill usage and attribution](../ai-skills.md) for the adopted setup; the findings below preserve the original research snapshot.
+
 ## Recommendation
 
 For Folio, start with **Apple's applicable Xcode skills and a narrowly scoped AppKit accessibility pilot**. Add **AvdLee's Core Data skill** for persistence work after correcting its conflict-policy guidance. Keep **selected Axiom references** available for AppKit modernization, TextKit, and distribution questions. Add Swift Concurrency only when a concrete Swift boundary needs it. A general SwiftUI bundle does not address Folio's central needs.
