@@ -3,6 +3,8 @@
 
 #import <Foundation/Foundation.h>
 
-// Reserved for domain operations implemented through the owning Kit.
+// Transport diagnostics only; domain operations belong to the owning Kit.
 @protocol ComposerXPCServiceProtocol
+/// Echoes a caller nonce and returns the service PID to verify a live XPC exchange.
+- (void)ping:(NSString *)nonce reply:(void (^)(NSString *echo, int processIdentifier))reply;
 @end

@@ -9,9 +9,10 @@ The bundled Write service skeleton.
 
 ## Overview
 
-Write embeds this per-app NSXPC service. The listener and empty transport protocol
-reserve a place for future operations implemented through WriteKit's public
-interface. No domain operations or application clients are implemented yet.
+Write embeds this per-app NSXPC service. The listener exposes a nonce-echo diagnostic with its process ID for startup
+and dependency-loading verification. Future domain operations will use WriteKit's public
+interface. No domain operations or shipping application clients are implemented yet.
+The development-only harness is documented in the repository’s installer guide.
 
 This service does not establish shared cross-app authority. Work Session hosting
 and service discovery remain separate design work.

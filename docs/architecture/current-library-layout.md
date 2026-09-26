@@ -30,7 +30,7 @@ Run `scripts/check-build.sh` to build the Suite and validate the published Kit i
 ## Bundled service scaffolding
 
 Write, Research, and Composer each embed their own NSXPC service target. Each
-contains a listener, an empty transport protocol, and an adapter reserved for
+contains a listener, a transport diagnostic ping, and an adapter reserved for
 operations through the owning Kit's public interface. No service currently exposes
 a domain operation or has an application client.
 
