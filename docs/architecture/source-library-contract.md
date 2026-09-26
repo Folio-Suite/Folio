@@ -9,7 +9,7 @@ Approved through the design interview for [issue #7](https://github.com/Folio-Su
 
 ## Shared foundations and responsible applications
 
-Sources and authored text have shared model foundations. Research supplies the fuller Source capabilities, just as Write supplies the fuller capabilities for authored text assembled into a Manuscript. FolioKit is the base; additional Kits may implement these major areas as they develop. Exact framework names, interfaces, and allocation remain open.
+Sources and authored text have shared model foundations. Research supplies the fuller Source capabilities, just as Write supplies the fuller capabilities for authored text assembled into a Manuscript. The subsequent [ADR 0009](../adr/0009-continue-cocoa-suite-with-domain-kits.md) establishes FolioKit as the shared foundation, ResearchKit for Source Library capabilities, and WriteKit for Work capabilities. Concrete Source schemas, operation interfaces, and shared primitive allocation remain further work within that ownership.
 
 Sharing a primitive does not make its uses semantically interchangeable. A captured excerpt, a transcription, and the researcher's commentary may share text capabilities while preserving their distinct meaning and relationships. An excerpt identifies what it was taken from; a transcription identifies what it transcribes; commentary expresses the researcher's thinking. Research highlights on source material remain distinct from editorial Comments on authored text.
 

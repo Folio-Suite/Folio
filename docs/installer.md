@@ -27,7 +27,7 @@ No installation scripts or background services are added.
 
 ## Build and package
 
-Use Xcode 26.6, its command-line tools, and Ruby 2.6 or later with standard libraries
+Use Xcode 27, its command-line tools, and Ruby 2.6 or later with standard libraries
 only. The packaging command uses macOS `ditto`, `plutil`, `otool`, and `pkgbuild`.
 Commit source changes first, then run from the repository root:
 
@@ -51,9 +51,12 @@ The stable receipt identifier is `dev.foliosuite.Suite`. Its package version is
 therefore have distinct package versions. This does not implement an upgrade policy.
 
 The output contains the PKG, staged `payload`, `components.plist`, and `package.json`.
-The manifest records the source revision and build-number patch from the candidate,
-Suite identity, packaging command, host/tool information, package SHA-256, and
+The manifest records the candidate's source revision and Suite identity, packaging
+command, host/tool information, package SHA-256, and
 sorted payload paths, permissions, symlink targets, and regular-file SHA-256 values.
+Current candidates require clean committed source and do not contain a build-number
+patch; historical candidates retain their original identity metadata, including a
+patch when one was recorded. See [Suite identity](release-numbering.md).
 Keep this manifest alongside the PKG. Reproducibility means repeatable inputs and
 payload composition, not identical compressed or signed package bytes.
 
@@ -88,6 +91,9 @@ identity. Do not substitute a successful developer build for this proof.
    document round trips, and XPC loading have been demonstrated.
 
 The clean-environment run is pending; the user will provide the environment.
+The preparation evidence below belongs to its recorded older revision and toolchain.
+Use a newly prepared candidate for acceptance of the current Suite; do not treat
+the historical payload, test count, or signatures as current runtime evidence.
 
 ## Preparation evidence — 2026-09-13
 

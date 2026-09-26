@@ -5,7 +5,7 @@ SPDX-License-Identifier: MIT
 
 # First Write editor
 
-Open the Suite workspace and select **Write** in Xcode. The built application embeds its required frameworks and can launch independently of Xcode. Distribution packaging remains separate work.
+Open the Suite workspace and select **Write** in Xcode. Development launch uses the workspace's shared framework products. The application targets installed shared Kits rather than embedded framework copies; independent installed launch remains part of issue #17's clean-install proof. A successful Xcode launch does not establish that installation behavior.
 
 The editor supports paragraphs, semantic emphasis and strong emphasis, explicit bold and italic, paragraph alignment, native undo/redo, Save, Open, and Auto Save in place. The Format menu exposes the supported text operations. Ordinary copy-paste within Write retains these text properties while creating independent paragraph identities; external paste currently imports plain text.
 
