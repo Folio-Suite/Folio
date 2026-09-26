@@ -11,6 +11,8 @@ SPDX-License-Identifier: MIT
 
 **Source policy:** Primary Apple documentation, public Apple source code, installed SDK declarations, and identified Apple Developer Technical Support answers. Archived guidance and architectural inferences are labeled. This is research, not a change to the approved distribution or Work Session decisions.
 
+**Subsequent decisions:** [ADR 0009](../adr/0009-continue-cocoa-suite-with-domain-kits.md) and the amended [Work Session contract](../architecture/work-session-contract.md) establish domain-host ownership and the adopted Cocoa direction. [ADR 0003](../adr/0003-distribute-an-integrated-suite.md) and the [installer guide](../installer.md) describe direct Suite distribution with shared installed frameworks. The alternatives and recommendations below remain dated research, including the App Store and embedded-framework options; they are not the current deployment instructions.
+
 ## Executive finding
 
 **Sandboxing does not rule out Folio's modular vision, shared UI, or applications enhancing one another.** Apple now documents a particularly relevant mechanism: an application can publish custom extension points, and a separately distributed application can contain an extension that supplies another application's functionality. Apple explicitly describes developing an extension for a host on the App Store. The extension executes in a separate process through ExtensionFoundation. [Building an app extension to support a host app](https://developer.apple.com/documentation/extensionfoundation/building-an-app-extension-to-support-a-host-app)

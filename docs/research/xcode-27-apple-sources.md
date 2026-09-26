@@ -90,7 +90,10 @@ nor infer language-feature policy from framework changes.
 
 ## Folio configuration and build audit
 
-Local evidence gathered on 2026-09-24:
+Local evidence gathered on 2026-09-24, before the subsequent toolchain, CI, and
+build-identity updates. Preserve this snapshot as historical evidence; use
+[CONTRIBUTING.md](../../CONTRIBUTING.md), [Development CI](../development-ci.md), and
+[Suite identity](../release-numbering.md) for current operating instructions.
 
 - Selected tools: Xcode 27.0 (`27A266a`), macOS SDK 27.0, host macOS 27.0
   (`26A428`). `SDKROOT = macosx` already selects the new SDK.

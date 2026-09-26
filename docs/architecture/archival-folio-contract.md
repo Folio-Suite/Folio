@@ -37,6 +37,8 @@ Basic reconstruction does not require an original plug-in, execution of an embed
 
 Identify extensions using publisher-qualified package identifiers, versions, and relevant schema identifiers. Specialized editing or reproduction may require declared capabilities; the absence of those capabilities must not make the underlying intellectual content inaccessible.
 
+The [composition and publication contract](composition-publication-contract.md) specifies recorded production inputs, versioned engine behavior, and deliberate feature selection. Reproduction depends on support for those inputs and capabilities; XML validity alone does not establish identical pagination in a changed engine. Preserve the original published Rendition where its exact historical appearance matters.
+
 ## Reconstruction
 
 Opening a folio reconstructs a native package using its enclosed dependency versions as authoritative. No prior library setup is required. Reconnection to existing libraries is optional and deliberate; matching names or newer available versions never silently substitute content. Preserve provenance where appropriate. The original folio remains unchanged as the archival artifact.

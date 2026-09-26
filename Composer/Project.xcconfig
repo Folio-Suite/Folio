@@ -2,5 +2,5 @@
 // SPDX-License-Identifier: MIT
 
 // Standalone defaults; the enclosing Suite may override them.
-MACOSX_DEPLOYMENT_TARGET = 26.5
+MACOSX_DEPLOYMENT_TARGET = $(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)
 #include? "../Config/Suite.xcconfig"

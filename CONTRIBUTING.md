@@ -9,7 +9,7 @@ Folio is a monorepo. Clone it with `git clone <repository-url>` and open the wor
 
 Open `Folio.xcworkspace`. Use the shared **Write**, **Research**, or **Composer** scheme to run an application, **FolioKit** for framework work, and **Folio** to build or test the entire Suite. The applications use their domain frameworks, which consume FolioKit. Implementation sources compile directly into their owning frameworks. Application linking and embedding are being configured for an installed shared-framework deployment. A successful build does not establish that an app is self-contained or that its installed dependencies resolve outside Xcode. Open the enclosing workspace when developing the applications.
 
-Folio requires **macOS 26.5 or newer** and builds with Xcode 27. `SDKROOT = macosx` selects the installed macOS SDK; using SDK 27 does not raise the deployment minimum. `Config/Suite.xcconfig` controls the Suite minimum; each component retains a standalone fallback in its own `Project.xcconfig`. Signing uses the existing project team settings. Contributors may select their own team locally; keep personal signing changes out of shared commits.
+Folio requires **macOS 14 Sonoma or newer** and builds with Xcode 27. `SDKROOT = macosx` selects the installed macOS SDK; using SDK 27 does not raise the deployment minimum. The Suite configuration, component `Project.xcconfig` fallbacks, and targets use `$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)`, which resolves to 14.0 with Xcode 27. Recheck this value and compatibility when upgrading Xcode; it follows Apple’s recommendation rather than pinning an OS version. Signing uses the existing project team settings. Contributors may select their own team locally; keep personal signing changes out of shared commits.
 
 Storyboards inherit the project deployment target. Upgrade their serialization
 with the current Xcode/Interface Builder tools; keep their object identifiers and
@@ -30,6 +30,15 @@ validation rejects even when its path is correct. Retain automatic team signing;
 Our [AI skill usage and attribution](docs/ai-skills.md) describes the globally installed engineering, discovery, and accessibility skills, the project-local Cocoa adaptations, and their upstream authors. Global skills are contributor-managed tooling; cloning Folio supplies only its local skills and project conventions. The same architecture, review, and validation requirements apply to AI-assisted changes.
 
 ## Validation
+
+Debug uses unoptimized Objective-C compilation for predictable debugging. Release
+uses Xcode’s size-conscious `-Os` optimization and dead-code stripping, and
+`Config/Suite.xcconfig` disables coverage instrumentation for Release. Keep fast
+math disabled for predictable numeric behavior. Consider incremental link-time
+optimization only after comparing representative workloads and build times;
+there is no measured Folio performance benefit yet. See Apple’s
+[build settings reference](https://developer.apple.com/documentation/xcode/build-settings-reference)
+for these controls.
 
 Build the shared **Folio** scheme in Xcode, or run `xcodebuild -workspace Folio.xcworkspace -scheme Folio -configuration Debug -destination 'platform=macOS' build` from the parent checkout. `scripts/check-build.sh` performs a clean unsigned Suite build and checks application and framework products. It does not validate signing, installed framework resolution, runtime loading, or distribution packaging. Composer and its tests remain skeletons. Each app embeds its own XPC service skeleton; the build check verifies all three products exist.
 

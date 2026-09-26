@@ -15,7 +15,7 @@ The workspace contains FolioKit, Write, Research, and Composer as directories in
 | WriteKit | FWManuscript | Work model and private Core Data package adapter |
 | WriteKit | FWEditor | AppKit editing, formatting, selection, paste, and undo adaptation |
 | ResearchKit | Framework implementation | Source Library package support for the Research shell |
-| ComposerKit | Framework implementation | Edition framework skeleton; document hosting remains in Composer |
+| ComposerKit | Framework implementation | Framework skeleton; provisional Edition document hosting remains in Composer |
 
 Each header lives next to its implementation. Xcode publishes the selected public headers through the owning framework; the source declaration is not duplicated or replaced with a forwarding header. FolioKit, WriteKit, ResearchKit, and ComposerKit are the public Clang modules. Each Kit’s own `<Kit>.modulemap`, visible alongside its umbrella header in Xcode, enumerates its supported headers; `Config/Suite.xcconfig` enables Clang modules and explicit module builds. The owning application uses the same public interface as any other host.
 

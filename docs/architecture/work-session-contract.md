@@ -5,7 +5,7 @@ SPDX-License-Identifier: MIT
 
 # Work Session authority and application traffic
 
-Approved through the design interview for [issue #5](https://github.com/ctwelve/Folio/issues/5). Amended by [issue #15](https://github.com/Folio-Suite/Folio/issues/15) to replace central helper ownership with domain hosts. This contract defines behavior; it does not specify production implementation. See [ADR 0004](../adr/0004-helper-owned-work-sessions.md).
+Approved through the design interview for [issue #5](https://github.com/Folio-Suite/Folio/issues/5). Amended by [issue #15](https://github.com/Folio-Suite/Folio/issues/15) to replace central helper ownership with domain hosts. This contract defines behavior; it does not specify production implementation. See [ADR 0004](../adr/0004-helper-owned-work-sessions.md).
 
 ## Authority and editing
 
@@ -37,7 +37,7 @@ Explicit discard or restoration of a Document Version affects the whole Work. Co
 
 The destination determines the requested semantic operation. Dropping a Figure onto an inspector reveals that Figure; an appropriate Manuscript destination may request insertion or movement. Explicit copying creates a distinct object. The Session validates mutations and preserves identity and relationships.
 
-Cross-Work transfers copy by default, including the assets and semantic information needed for self-containment, new identity, and appropriate provenance. Linking is explicit and remains governed by the Arrangement decisions in [issue #9](https://github.com/ctwelve/Folio/issues/9). A cross-Work move secures the destination before removing the source. Relevant native facilities should be investigated without making self-containment dependent on the original Work remaining available.
+Cross-Work transfers copy by default, including the assets and semantic information needed for self-containment, new identity, and appropriate provenance. Linking is explicit and remains governed by the Arrangement decisions in [issue #9](https://github.com/Folio-Suite/Folio/issues/9). A cross-Work move secures the destination before removing the source. Relevant native facilities should be investigated without making self-containment dependent on the original Work remaining available.
 
 ## Connections, Close, and Quit
 
@@ -59,7 +59,7 @@ Apple's `NSDocument.preservesVersions` defaults to `autosavesInPlace`; enabling 
 - [Browse and restore Document Versions](https://support.apple.com/guide/mac-help/view-and-restore-past-versions-of-documents-mh40710/mac)
 - [Desktop & Dock document-close preferences](https://support.apple.com/en-kw/guide/mac-help/-mchlp1119/mac)
 
-[Issue #13](https://github.com/ctwelve/Folio/issues/13) must demonstrate Auto Save, explicit Save, Document Versions browsing/restoration, coherent restoration across connected applications, large-asset behavior, and native package saving with separate archival export and isolated reconstruction. [Issue #4](https://github.com/ctwelve/Folio/issues/4) settles detailed authority and lifecycle behavior from that evidence; the native-package choice is settled.
+[Issue #13](https://github.com/Folio-Suite/Folio/issues/13) must demonstrate Auto Save, explicit Save, Document Versions browsing/restoration, coherent restoration across connected applications, large-asset behavior, and native package saving with separate archival export and isolated reconstruction. [Issue #4](https://github.com/Folio-Suite/Folio/issues/4) settles detailed authority and lifecycle behavior from that evidence; the native-package choice is settled.
 
 Further domain-host design must prove recovery versus intentional quit, connection health and lock invalidation, durable request reconciliation, bounded resource residency with preserved associations, and coordinated quit failures. Transport, process supervision, executable packaging, and owner shutdown with active clients remain open. These proofs preserve the safety contract while replacing the former central-helper arrangement.
 

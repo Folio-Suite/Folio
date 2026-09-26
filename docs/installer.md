@@ -5,7 +5,7 @@ SPDX-License-Identifier: MIT
 
 # Suite installer
 
-Issue #17 packages one coordinated build for a clean macOS 26.5 or later installation.
+Issue #17 packages one coordinated build for a clean macOS 14 Sonoma or later installation.
 This is an unsigned test installer. Public distribution signing and notarization
 belong to #19; upgrade, downgrade, and running-app policy belong to #18.
 
