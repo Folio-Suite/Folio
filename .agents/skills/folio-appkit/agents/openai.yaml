@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2026 the Folio Project
+# SPDX-License-Identifier: MIT
+
+interface:
+  display_name: "Folio AppKit and TextKit"
+  short_description: "Native AppKit interaction and text editing in Folio"

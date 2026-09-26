@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2026 the Folio Project
+# SPDX-License-Identifier: MIT
+
+interface:
+  display_name: "Folio Core Data"
+  short_description: "Core Data persistence in Folio domain Kits"
