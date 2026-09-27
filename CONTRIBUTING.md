@@ -44,8 +44,9 @@ Build the shared **Folio** scheme in Xcode, or run `xcodebuild -workspace Folio.
 
 For the editor and package tests, select **Write** in Xcode and use Product → Test. That scheme includes FolioKitTests, WriteKitTests, WriteTests, and WriteUITests. Start native UI runners through Xcode, or prepare the signed test products with build-for-testing before using the CLI test runner. The shared **Folio** scheme also covers the Research shell, including native file-type discovery, package reopening, and preservation of collected files across saves. Its remaining framework and UI tests are templates. Passing the current tests does not prove cross-application Work Session or archival behavior.
 
-GitHub development CI builds the Folio scheme and runs the three shared app
-schemes in parallel on separate Macs.
+Full GitHub development CI builds the Folio scheme and runs the three shared app
+schemes in parallel on separate Macs. Drafts get repository checks; identical
+recently validated source trees can reuse full evidence.
 See [Development CI](docs/development-ci.md) for triggers, local reproduction,
 and the boundary between CI evidence and release validation.
 
