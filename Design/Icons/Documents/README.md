@@ -8,7 +8,9 @@ SPDX-License-Identifier: MIT
 The app catalogs contain `WorkIcon.iconset`, `LibraryIcon.iconset`, and
 `EditionIcon.iconset`. Each has ten transparent PNG representations: 16, 32,
 128, 256, and 512 points at 1x and 2x. They depict only the nib, book, and layout
-symbols. `UTTypeIcons/UTTypeIconBadgeName` references the matching set; macOS
+symbols. The renderer measures nontransparent artwork and fits its longer axis
+to the output bounds, preserving aspect ratio and size-specific cutouts. There is
+no additional badge padding. `UTTypeIcons/UTTypeIconBadgeName` references the matching set; macOS
 provides the document page and fold. `UTTypeIconText` supplies the short Document
 or Archive label; corresponding entries in each `InfoPlist.xcstrings`
 provide initial translations for the supported languages. macOS uppercases and
@@ -69,9 +71,19 @@ on the development OS; minimum-OS rendering remains part of runtime checks.
 
 ## ZIP variants
 
-`WorkZipIcon`, `LibraryZipIcon`, and `EditionZipIcon` are separate catalog sets
-registered for the ZIP types. At 16 and 32 points their PNGs are identical to
-the native badges, including Retina. At 128 points and larger, the generator
-adds the shared `Zip-detail.svg` zipper. This indicates ZIP packaging, not
-archival-folio completeness. Size is the selection criterion; Finder can use
-these representations in more than one view mode.
+Documents and archives share the same symbol badge. Their separate
+`<Type>Background` and `<Type>ZipBackground` icon sets are referenced by
+`UTTypeIconBackgroundName`. The background canvas remains full-size and transparent:
+16-point slots contain no artwork; 32-point slots contain the app-colored left
+bar only; 128-point and larger slots add a constant-hue fade to alpha. Logical
+size governs Retina slots too. No opaque page color is baked in.
+
+For archive backgrounds at 128 points and larger, `Zip-detail.svg` adds a larger
+zipper in the upper-left area, inset from the colored bar and clear of the
+central badge, fold, and label. A broad pull and a few chunky teeth keep the cue readable. It is part of the
+background, not the badge. This indicates ZIP packaging, not archival-folio
+completeness. A native NSWorkspace rendering probe on the development OS verified the Write
+background/badge combination at 16, 32, 128, and 256 pixels using a disposable
+type identity. It exposed horizontal clipping of the square background by the
+narrower page mask; the bar and zipper now sit within that visible area. Actual
+Folio Finder associations and minimum-OS appearance remain separate checks.
