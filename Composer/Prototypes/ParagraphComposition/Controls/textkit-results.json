@@ -1,0 +1,4844 @@
+{
+  "cases" : [
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+          14,
+          28
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 41,
+        "delegateCalls" : [
+          {
+            "allow" : true,
+            "hyphenating" : false,
+            "offsetUTF16" : 14
+          },
+          {
+            "allow" : true,
+            "hyphenating" : false,
+            "offsetUTF16" : 28
+          }
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 42,
+              "width" : 67.634765625,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 14.66015625,
+                "xLocal" : 14.66015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 5,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 6,
+                "xInContainer" : 29.982421875,
+                "xLocal" : 29.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 7,
+                "xInContainer" : 33.978515625,
+                "xLocal" : 33.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 8,
+                "xInContainer" : 39.978515625,
+                "xLocal" : 39.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 49.3125,
+                "xLocal" : 49.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 54.638671875,
+                "xLocal" : 54.638671875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 58.634765625,
+                "xLocal" : 58.634765625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 13,
+                "xInContainer" : 64.634765625,
+                "xLocal" : 64.634765625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 67.634765625,
+                "xLocal" : 67.634765625,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              14
+            ],
+            "text" : "extraordinary ",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 67.634765625,
+              "x" : 0,
+              "y" : 0
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 42,
+              "width" : 67.634765625,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 15,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 16,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 17,
+                "xInContainer" : 14.66015625,
+                "xLocal" : 14.66015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 18,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 19,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 20,
+                "xInContainer" : 29.982421875,
+                "xLocal" : 29.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 21,
+                "xInContainer" : 33.978515625,
+                "xLocal" : 33.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 22,
+                "xInContainer" : 39.978515625,
+                "xLocal" : 39.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 23,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 24,
+                "xInContainer" : 49.3125,
+                "xLocal" : 49.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 25,
+                "xInContainer" : 54.638671875,
+                "xLocal" : 54.638671875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 26,
+                "xInContainer" : 58.634765625,
+                "xLocal" : 58.634765625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 27,
+                "xInContainer" : 64.634765625,
+                "xLocal" : 64.634765625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 28,
+                "xInContainer" : 67.634765625,
+                "xLocal" : 67.634765625,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              14,
+              14
+            ],
+            "text" : "extraordinary ",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 67.634765625,
+              "x" : 0,
+              "y" : 14
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 42,
+              "width" : 67.634765625,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 28,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 29,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 30,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 31,
+                "xInContainer" : 14.66015625,
+                "xLocal" : 14.66015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 32,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 33,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 34,
+                "xInContainer" : 29.982421875,
+                "xLocal" : 29.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 35,
+                "xInContainer" : 33.978515625,
+                "xLocal" : 33.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 36,
+                "xInContainer" : 39.978515625,
+                "xLocal" : 39.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 37,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 38,
+                "xInContainer" : 49.3125,
+                "xLocal" : 49.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 39,
+                "xInContainer" : 54.638671875,
+                "xLocal" : 54.638671875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 40,
+                "xInContainer" : 58.634765625,
+                "xLocal" : 58.634765625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 41,
+                "xInContainer" : 64.634765625,
+                "xLocal" : 64.634765625,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              28,
+              13
+            ],
+            "text" : "extraordinary",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 64.634765625,
+              "x" : 0,
+              "y" : 28
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 42,
+          "width" : 67.634765625,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "Disabled automatic hyphenation has no auto-hyphenation candidates or intraword breaks when each word fits the measure.",
+        "observations" : {
+          "candidateCount" : 2
+        },
+        "pass" : true
+      },
+      "name" : "automatic-disabled-wide",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : true,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "extraordinary extraordinary extraordinary",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 100
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+          11,
+          14,
+          25,
+          28,
+          39
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 41,
+        "delegateCalls" : [
+          {
+            "allow" : true,
+            "hyphenating" : false,
+            "offsetUTF16" : 0
+          },
+          {
+            "allow" : true,
+            "hyphenating" : false,
+            "offsetUTF16" : 14
+          },
+          {
+            "allow" : true,
+            "hyphenating" : false,
+            "offsetUTF16" : 14
+          },
+          {
+            "allow" : true,
+            "hyphenating" : false,
+            "offsetUTF16" : 28
+          },
+          {
+            "allow" : true,
+            "hyphenating" : false,
+            "offsetUTF16" : 28
+          }
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+          11,
+          25,
+          39
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 84,
+              "width" : 54.638671875,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 14.66015625,
+                "xLocal" : 14.66015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 5,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 6,
+                "xInContainer" : 29.982421875,
+                "xLocal" : 29.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 7,
+                "xInContainer" : 33.978515625,
+                "xLocal" : 33.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 8,
+                "xInContainer" : 39.978515625,
+                "xLocal" : 39.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 49.3125,
+                "xLocal" : 49.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 54.638671875,
+                "xLocal" : 54.638671875,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              11
+            ],
+            "text" : "extraordina",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 54.638671875,
+              "x" : 0,
+              "y" : 0
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 84,
+              "width" : 54.638671875,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 3.99609375,
+                "xLocal" : 3.99609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 13,
+                "xInContainer" : 9.99609375,
+                "xLocal" : 9.99609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 12.99609375,
+                "xLocal" : 12.99609375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              11,
+              3
+            ],
+            "text" : "ry ",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 12.99609375,
+              "x" : 0,
+              "y" : 14
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 84,
+              "width" : 54.638671875,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 15,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 16,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 17,
+                "xInContainer" : 14.66015625,
+                "xLocal" : 14.66015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 18,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 19,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 20,
+                "xInContainer" : 29.982421875,
+                "xLocal" : 29.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 21,
+                "xInContainer" : 33.978515625,
+                "xLocal" : 33.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 22,
+                "xInContainer" : 39.978515625,
+                "xLocal" : 39.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 23,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 24,
+                "xInContainer" : 49.3125,
+                "xLocal" : 49.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 25,
+                "xInContainer" : 54.638671875,
+                "xLocal" : 54.638671875,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              14,
+              11
+            ],
+            "text" : "extraordina",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 54.638671875,
+              "x" : 0,
+              "y" : 28
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 84,
+              "width" : 54.638671875,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 25,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 26,
+                "xInContainer" : 3.99609375,
+                "xLocal" : 3.99609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 27,
+                "xInContainer" : 9.99609375,
+                "xLocal" : 9.99609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 28,
+                "xInContainer" : 12.99609375,
+                "xLocal" : 12.99609375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              25,
+              3
+            ],
+            "text" : "ry ",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 12.99609375,
+              "x" : 0,
+              "y" : 42
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 84,
+              "width" : 54.638671875,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 28,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 29,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 30,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 31,
+                "xInContainer" : 14.66015625,
+                "xLocal" : 14.66015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 32,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 33,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 34,
+                "xInContainer" : 29.982421875,
+                "xLocal" : 29.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 35,
+                "xInContainer" : 33.978515625,
+                "xLocal" : 33.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 36,
+                "xInContainer" : 39.978515625,
+                "xLocal" : 39.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 37,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 38,
+                "xInContainer" : 49.3125,
+                "xLocal" : 49.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 39,
+                "xInContainer" : 54.638671875,
+                "xLocal" : 54.638671875,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              28,
+              11
+            ],
+            "text" : "extraordina",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 54.638671875,
+              "x" : 0,
+              "y" : 56
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 84,
+              "width" : 54.638671875,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 39,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 40,
+                "xInContainer" : 3.99609375,
+                "xLocal" : 3.99609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 41,
+                "xInContainer" : 9.99609375,
+                "xLocal" : 9.99609375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              39,
+              2
+            ],
+            "text" : "ry",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 9.99609375,
+              "x" : 0,
+              "y" : 70
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 84,
+          "width" : 54.638671875,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "A too-narrow measure still yields complete layout, exposing emergency intraword breaks without auto-hyphenation candidates.",
+        "observations" : {
+          "emergencyBreakOffsetsUTF16" : [
+            11,
+            25,
+            39
+          ]
+        },
+        "pass" : true
+      },
+      "name" : "automatic-disabled-narrow",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : true,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "extraordinary extraordinary extraordinary",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 58
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+          2,
+          14,
+          16,
+          28,
+          30
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 41,
+        "delegateCalls" : [
+          {
+            "allow" : true,
+            "hyphenating" : true,
+            "offsetUTF16" : 2
+          },
+          {
+            "allow" : true,
+            "hyphenating" : false,
+            "offsetUTF16" : 14
+          },
+          {
+            "allow" : true,
+            "hyphenating" : true,
+            "offsetUTF16" : 16
+          },
+          {
+            "allow" : true,
+            "hyphenating" : false,
+            "offsetUTF16" : 28
+          },
+          {
+            "allow" : true,
+            "hyphenating" : true,
+            "offsetUTF16" : 30
+          }
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+          2,
+          16,
+          30
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 84,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              2
+            ],
+            "text" : "ex",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 15.322265625,
+              "x" : 0,
+              "y" : 0
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 84,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 3.333984375,
+                "xLocal" : 3.333984375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 7.330078125,
+                "xLocal" : 7.330078125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 5,
+                "xInContainer" : 12.65625,
+                "xLocal" : 12.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 6,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 7,
+                "xInContainer" : 22.65234375,
+                "xLocal" : 22.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 8,
+                "xInContainer" : 28.65234375,
+                "xLocal" : 28.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 31.986328125,
+                "xLocal" : 31.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 37.986328125,
+                "xLocal" : 37.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 47.30859375,
+                "xLocal" : 47.30859375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 13,
+                "xInContainer" : 53.30859375,
+                "xLocal" : 53.30859375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 56.30859375,
+                "xLocal" : 56.30859375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              2,
+              12
+            ],
+            "text" : "traordinary ",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 14
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 84,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 15,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 16,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              14,
+              2
+            ],
+            "text" : "ex",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 15.322265625,
+              "x" : 0,
+              "y" : 28
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 84,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 16,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 17,
+                "xInContainer" : 3.333984375,
+                "xLocal" : 3.333984375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 18,
+                "xInContainer" : 7.330078125,
+                "xLocal" : 7.330078125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 19,
+                "xInContainer" : 12.65625,
+                "xLocal" : 12.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 20,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 21,
+                "xInContainer" : 22.65234375,
+                "xLocal" : 22.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 22,
+                "xInContainer" : 28.65234375,
+                "xLocal" : 28.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 23,
+                "xInContainer" : 31.986328125,
+                "xLocal" : 31.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 24,
+                "xInContainer" : 37.986328125,
+                "xLocal" : 37.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 25,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 26,
+                "xInContainer" : 47.30859375,
+                "xLocal" : 47.30859375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 27,
+                "xInContainer" : 53.30859375,
+                "xLocal" : 53.30859375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 28,
+                "xInContainer" : 56.30859375,
+                "xLocal" : 56.30859375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              16,
+              12
+            ],
+            "text" : "traordinary ",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 42
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 84,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 28,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 29,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 30,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              28,
+              2
+            ],
+            "text" : "ex",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 15.322265625,
+              "x" : 0,
+              "y" : 56
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 84,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 30,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 31,
+                "xInContainer" : 3.333984375,
+                "xLocal" : 3.333984375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 32,
+                "xInContainer" : 7.330078125,
+                "xLocal" : 7.330078125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 33,
+                "xInContainer" : 12.65625,
+                "xLocal" : 12.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 34,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 35,
+                "xInContainer" : 22.65234375,
+                "xLocal" : 22.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 36,
+                "xInContainer" : 28.65234375,
+                "xLocal" : 28.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 37,
+                "xInContainer" : 31.986328125,
+                "xLocal" : 31.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 38,
+                "xInContainer" : 37.986328125,
+                "xLocal" : 37.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 39,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 40,
+                "xInContainer" : 47.30859375,
+                "xLocal" : 47.30859375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 41,
+                "xInContainer" : 53.30859375,
+                "xLocal" : 53.30859375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              30,
+              11
+            ],
+            "text" : "traordinary",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 53.30859375,
+              "x" : 0,
+              "y" : 70
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 84,
+          "width" : 56.30859375,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "Automatic hyphenation proposes at least one intraword break through the delegate.",
+        "observations" : {
+          "intrawordBreakOffsetsUTF16" : [
+            2,
+            16,
+            30
+          ]
+        },
+        "pass" : true
+      },
+      "name" : "automatic-enabled-narrow",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : true,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 1,
+        "text" : "extraordinary extraordinary extraordinary",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : true,
+        "vetoAll" : false,
+        "widthPoints" : 58
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+          12,
+          24
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 33,
+        "delegateCalls" : [
+
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+          12
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 42,
+              "width" : 52.30078125,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 14.66015625,
+                "xLocal" : 14.66015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 5,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 6,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 7,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 8,
+                "xInContainer" : 29.982421875,
+                "xLocal" : 29.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 33.978515625,
+                "xLocal" : 33.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 33.978515625,
+                "xLocal" : 33.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 39.978515625,
+                "xLocal" : 39.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              12
+            ],
+            "text" : "ex­tra­or­di",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 47.30859375,
+              "x" : 0,
+              "y" : 0
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 42,
+              "width" : 52.30078125,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 13,
+                "xInContainer" : 6,
+                "xLocal" : 6,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 15,
+                "xInContainer" : 15.322265625,
+                "xLocal" : 15.322265625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 16,
+                "xInContainer" : 21.322265625,
+                "xLocal" : 21.322265625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 17,
+                "xInContainer" : 24.322265625,
+                "xLocal" : 24.322265625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 18,
+                "xInContainer" : 29.6484375,
+                "xLocal" : 29.6484375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 19,
+                "xInContainer" : 35.6484375,
+                "xLocal" : 35.6484375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 20,
+                "xInContainer" : 35.6484375,
+                "xLocal" : 35.6484375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 21,
+                "xInContainer" : 38.982421875,
+                "xLocal" : 38.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 22,
+                "xInContainer" : 42.978515625,
+                "xLocal" : 42.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 23,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 24,
+                "xInContainer" : 48.3046875,
+                "xLocal" : 48.3046875,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              12,
+              12
+            ],
+            "text" : "nary ex­tra­",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 52.30078125,
+              "x" : 0,
+              "y" : 14
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 42,
+              "width" : 52.30078125,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 24,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 25,
+                "xInContainer" : 6,
+                "xLocal" : 6,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 26,
+                "xInContainer" : 9.99609375,
+                "xLocal" : 9.99609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 27,
+                "xInContainer" : 9.99609375,
+                "xLocal" : 9.99609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 28,
+                "xInContainer" : 15.99609375,
+                "xLocal" : 15.99609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 29,
+                "xInContainer" : 19.330078125,
+                "xLocal" : 19.330078125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 30,
+                "xInContainer" : 25.330078125,
+                "xLocal" : 25.330078125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 31,
+                "xInContainer" : 30.65625,
+                "xLocal" : 30.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 32,
+                "xInContainer" : 34.65234375,
+                "xLocal" : 34.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 33,
+                "xInContainer" : 40.65234375,
+                "xLocal" : 40.65234375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              24,
+              9
+            ],
+            "text" : "or­dinary",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 40.65234375,
+              "x" : 0,
+              "y" : 28
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 42,
+          "width" : 52.30078125,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "Native layout consumes the source, including explicit soft hyphens, with complete range coverage.",
+        "observations" : {
+          "breakOffsetsUTF16" : [
+            12,
+            24
+          ]
+        },
+        "pass" : true
+      },
+      "name" : "soft-hyphen-baseline",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : false,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "ex­tra­or­dinary ex­tra­or­dinary",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 58
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+          10,
+          20
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 33,
+        "delegateCalls" : [
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 12
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 11
+          },
+          {
+            "allow" : true,
+            "hyphenating" : true,
+            "offsetUTF16" : 10
+          },
+          {
+            "allow" : true,
+            "hyphenating" : true,
+            "offsetUTF16" : 20
+          }
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 42,
+              "width" : 53.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 14.66015625,
+                "xLocal" : 14.66015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 5,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 6,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 7,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 8,
+                "xInContainer" : 29.982421875,
+                "xLocal" : 29.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 33.978515625,
+                "xLocal" : 33.978515625,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              10
+            ],
+            "text" : "ex­tra­or­",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 37.740234375,
+              "x" : 0,
+              "y" : 0
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 42,
+              "width" : 53.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 6,
+                "xLocal" : 6,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 9.333984375,
+                "xLocal" : 9.333984375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 13,
+                "xInContainer" : 15.333984375,
+                "xLocal" : 15.333984375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 20.66015625,
+                "xLocal" : 20.66015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 15,
+                "xInContainer" : 24.65625,
+                "xLocal" : 24.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 16,
+                "xInContainer" : 30.65625,
+                "xLocal" : 30.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 17,
+                "xInContainer" : 33.65625,
+                "xLocal" : 33.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 18,
+                "xInContainer" : 38.982421875,
+                "xLocal" : 38.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 19,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 20,
+                "xInContainer" : 44.982421875,
+                "xLocal" : 44.982421875,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              10,
+              10
+            ],
+            "text" : "dinary ex­",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 48.978515625,
+              "x" : 0,
+              "y" : 14
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 42,
+              "width" : 53.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 20,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 21,
+                "xInContainer" : 3.333984375,
+                "xLocal" : 3.333984375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 22,
+                "xInContainer" : 7.330078125,
+                "xLocal" : 7.330078125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 23,
+                "xInContainer" : 12.65625,
+                "xLocal" : 12.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 24,
+                "xInContainer" : 12.65625,
+                "xLocal" : 12.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 25,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 26,
+                "xInContainer" : 22.65234375,
+                "xLocal" : 22.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 27,
+                "xInContainer" : 22.65234375,
+                "xLocal" : 22.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 28,
+                "xInContainer" : 28.65234375,
+                "xLocal" : 28.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 29,
+                "xInContainer" : 31.986328125,
+                "xLocal" : 31.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 30,
+                "xInContainer" : 37.986328125,
+                "xLocal" : 37.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 31,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 32,
+                "xInContainer" : 47.30859375,
+                "xLocal" : 47.30859375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 33,
+                "xInContainer" : 53.30859375,
+                "xLocal" : 53.30859375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              20,
+              13
+            ],
+            "text" : "tra­or­dinary",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 53.30859375,
+              "x" : 0,
+              "y" : 28
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 42,
+          "width" : 53.30859375,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "With the offered soft-hyphen candidates allowed, every resulting break is at an allowed offset.",
+        "observations" : {
+          "breakOffsetsUTF16" : [
+            10,
+            20
+          ]
+        },
+        "pass" : true
+      },
+      "name" : "soft-hyphen-all-allowed",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : [
+          3,
+          7,
+          10,
+          20,
+          24,
+          27
+        ],
+        "delegate" : true,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "ex­tra­or­dinary ex­tra­or­dinary",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 58
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+          3,
+          17,
+          31
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 33,
+        "delegateCalls" : [
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 12
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 11
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 10
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 7
+          },
+          {
+            "allow" : true,
+            "hyphenating" : true,
+            "offsetUTF16" : 3
+          },
+          {
+            "allow" : false,
+            "hyphenating" : false,
+            "offsetUTF16" : 17
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 10
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 7
+          },
+          {
+            "allow" : true,
+            "hyphenating" : false,
+            "offsetUTF16" : 3
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 29
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 28
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 27
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 24
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 20
+          },
+          {
+            "allow" : false,
+            "hyphenating" : false,
+            "offsetUTF16" : 17
+          }
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+          31
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 56,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              3
+            ],
+            "text" : "ex­",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 15.322265625,
+              "x" : 0,
+              "y" : 0
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 56,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 3.333984375,
+                "xLocal" : 3.333984375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 5,
+                "xInContainer" : 7.330078125,
+                "xLocal" : 7.330078125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 6,
+                "xInContainer" : 12.65625,
+                "xLocal" : 12.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 7,
+                "xInContainer" : 12.65625,
+                "xLocal" : 12.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 8,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 22.65234375,
+                "xLocal" : 22.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 22.65234375,
+                "xLocal" : 22.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 28.65234375,
+                "xLocal" : 28.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 31.986328125,
+                "xLocal" : 31.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 13,
+                "xInContainer" : 37.986328125,
+                "xLocal" : 37.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 15,
+                "xInContainer" : 47.30859375,
+                "xLocal" : 47.30859375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 16,
+                "xInContainer" : 53.30859375,
+                "xLocal" : 53.30859375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 17,
+                "xInContainer" : 56.30859375,
+                "xLocal" : 56.30859375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              3,
+              14
+            ],
+            "text" : "tra­or­dinary ",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 14
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 56,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 17,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 18,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 19,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 20,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 21,
+                "xInContainer" : 14.66015625,
+                "xLocal" : 14.66015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 22,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 23,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 24,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 25,
+                "xInContainer" : 29.982421875,
+                "xLocal" : 29.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 26,
+                "xInContainer" : 33.978515625,
+                "xLocal" : 33.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 27,
+                "xInContainer" : 33.978515625,
+                "xLocal" : 33.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 28,
+                "xInContainer" : 39.978515625,
+                "xLocal" : 39.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 29,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 30,
+                "xInContainer" : 49.3125,
+                "xLocal" : 49.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 31,
+                "xInContainer" : 54.638671875,
+                "xLocal" : 54.638671875,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              17,
+              14
+            ],
+            "text" : "ex­tra­or­dina",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 54.638671875,
+              "x" : 0,
+              "y" : 28
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 56,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 31,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 32,
+                "xInContainer" : 3.99609375,
+                "xLocal" : 3.99609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 33,
+                "xInContainer" : 9.99609375,
+                "xLocal" : 9.99609375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              31,
+              2
+            ],
+            "text" : "ry",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 9.99609375,
+              "x" : 0,
+              "y" : 42
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 56,
+          "width" : 56.30859375,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "At a narrow measure, every break remains at the only allowed candidate (UTF-16 offset 3).",
+        "observations" : {
+          "unapprovedBreakOffsetsUTF16" : [
+            17,
+            31
+          ],
+          "unapprovedIntrawordBreakOffsetsUTF16" : [
+            31
+          ]
+        },
+        "pass" : false
+      },
+      "name" : "soft-hyphen-selected-only-adversarial",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : [
+          3
+        ],
+        "delegate" : true,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "ex­tra­or­dinary ex­tra­or­dinary",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 58
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+          14,
+          29
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 33,
+        "delegateCalls" : [
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 12
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 11
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 10
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 7
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 3
+          },
+          {
+            "allow" : false,
+            "hyphenating" : false,
+            "offsetUTF16" : 0
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 28
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 27
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 24
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 20
+          },
+          {
+            "allow" : false,
+            "hyphenating" : false,
+            "offsetUTF16" : 17
+          },
+          {
+            "allow" : false,
+            "hyphenating" : false,
+            "offsetUTF16" : 14
+          }
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+          14,
+          29
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 42,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 14.66015625,
+                "xLocal" : 14.66015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 5,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 6,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 7,
+                "xInContainer" : 23.982421875,
+                "xLocal" : 23.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 8,
+                "xInContainer" : 29.982421875,
+                "xLocal" : 29.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 33.978515625,
+                "xLocal" : 33.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 33.978515625,
+                "xLocal" : 33.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 39.978515625,
+                "xLocal" : 39.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 13,
+                "xInContainer" : 49.3125,
+                "xLocal" : 49.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 54.638671875,
+                "xLocal" : 54.638671875,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              14
+            ],
+            "text" : "ex­tra­or­dina",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 54.638671875,
+              "x" : 0,
+              "y" : 0
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 42,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 15,
+                "xInContainer" : 3.99609375,
+                "xLocal" : 3.99609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 16,
+                "xInContainer" : 9.99609375,
+                "xLocal" : 9.99609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 17,
+                "xInContainer" : 12.99609375,
+                "xLocal" : 12.99609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 18,
+                "xInContainer" : 18.322265625,
+                "xLocal" : 18.322265625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 19,
+                "xInContainer" : 24.322265625,
+                "xLocal" : 24.322265625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 20,
+                "xInContainer" : 24.322265625,
+                "xLocal" : 24.322265625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 21,
+                "xInContainer" : 27.65625,
+                "xLocal" : 27.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 22,
+                "xInContainer" : 31.65234375,
+                "xLocal" : 31.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 23,
+                "xInContainer" : 36.978515625,
+                "xLocal" : 36.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 24,
+                "xInContainer" : 36.978515625,
+                "xLocal" : 36.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 25,
+                "xInContainer" : 42.978515625,
+                "xLocal" : 42.978515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 26,
+                "xInContainer" : 46.974609375,
+                "xLocal" : 46.974609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 27,
+                "xInContainer" : 46.974609375,
+                "xLocal" : 46.974609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 28,
+                "xInContainer" : 52.974609375,
+                "xLocal" : 52.974609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 29,
+                "xInContainer" : 56.30859375,
+                "xLocal" : 56.30859375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              14,
+              15
+            ],
+            "text" : "ry ex­tra­or­di",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 14
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 42,
+              "width" : 56.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 29,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 30,
+                "xInContainer" : 6,
+                "xLocal" : 6,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 31,
+                "xInContainer" : 11.326171875,
+                "xLocal" : 11.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 32,
+                "xInContainer" : 15.322265625,
+                "xLocal" : 15.322265625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 33,
+                "xInContainer" : 21.322265625,
+                "xLocal" : 21.322265625,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              29,
+              4
+            ],
+            "text" : "nary",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 21.322265625,
+              "x" : 0,
+              "y" : 28
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 42,
+          "width" : 56.30859375,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "All vetoes suppress every line break, including emergency breaks.",
+        "observations" : {
+          "breakOffsetsUTF16" : [
+            14,
+            29
+          ]
+        },
+        "pass" : false
+      },
+      "name" : "soft-hyphen-all-vetoed-adversarial",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : true,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "ex­tra­or­dinary ex­tra­or­dinary",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : true,
+        "widthPoints" : 58
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+          17
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 22,
+        "delegateCalls" : [
+
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+          17
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 28,
+              "width" : 76.79296875,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 6.9111328125,
+                "xLocal" : 6.9111328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 12.4921875,
+                "xLocal" : 12.4921875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 18.4921875,
+                "xLocal" : 18.4921875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 23.818359375,
+                "xLocal" : 23.818359375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 5,
+                "xInContainer" : 29.818359375,
+                "xLocal" : 29.818359375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 6,
+                "xInContainer" : 32.818359375,
+                "xLocal" : 32.818359375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 7,
+                "xInContainer" : 38.14453125,
+                "xLocal" : 38.14453125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 8,
+                "xInContainer" : 44.14453125,
+                "xLocal" : 44.14453125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 44.14453125,
+                "xLocal" : 44.14453125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 47.478515625,
+                "xLocal" : 47.478515625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 51.474609375,
+                "xLocal" : 51.474609375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 56.80078125,
+                "xLocal" : 56.80078125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 13,
+                "xInContainer" : 56.80078125,
+                "xLocal" : 56.80078125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 62.80078125,
+                "xLocal" : 62.80078125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 15,
+                "xInContainer" : 66.796875,
+                "xLocal" : 66.796875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 16,
+                "xInContainer" : 66.796875,
+                "xLocal" : 66.796875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 17,
+                "xInContainer" : 72.796875,
+                "xLocal" : 72.796875,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              17
+            ],
+            "text" : "Today ex­tra­or­d",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 76.79296875,
+              "x" : 0,
+              "y" : 0
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 28,
+              "width" : 76.79296875,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 17,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 18,
+                "xInContainer" : 3.333984375,
+                "xLocal" : 3.333984375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 19,
+                "xInContainer" : 9.333984375,
+                "xLocal" : 9.333984375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 20,
+                "xInContainer" : 14.66015625,
+                "xLocal" : 14.66015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 21,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 22,
+                "xInContainer" : 24.65625,
+                "xLocal" : 24.65625,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              17,
+              5
+            ],
+            "text" : "inary",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 24.65625,
+              "x" : 0,
+              "y" : 14
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 28,
+          "width" : 76.79296875,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "Unconstrained native choice is recorded for comparison with a feasible selected soft-hyphen break.",
+        "observations" : {
+          "breakOffsetsUTF16" : [
+            17
+          ],
+          "lineWidthsPoints" : [
+            76.79296875,
+            24.65625
+          ]
+        },
+        "pass" : true
+      },
+      "name" : "soft-hyphen-feasible-baseline",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : false,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "Today ex­tra­or­dinary",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 80
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+          9
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 22,
+        "delegateCalls" : [
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 17
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 16
+          },
+          {
+            "allow" : false,
+            "hyphenating" : true,
+            "offsetUTF16" : 13
+          },
+          {
+            "allow" : true,
+            "hyphenating" : true,
+            "offsetUTF16" : 9
+          }
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 28,
+              "width" : 53.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 6.9111328125,
+                "xLocal" : 6.9111328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 12.4921875,
+                "xLocal" : 12.4921875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 18.4921875,
+                "xLocal" : 18.4921875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 23.818359375,
+                "xLocal" : 23.818359375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 5,
+                "xInContainer" : 29.818359375,
+                "xLocal" : 29.818359375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 6,
+                "xInContainer" : 32.818359375,
+                "xLocal" : 32.818359375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 7,
+                "xInContainer" : 38.14453125,
+                "xLocal" : 38.14453125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 8,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 44.14453125,
+                "xLocal" : 44.14453125,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              9
+            ],
+            "text" : "Today ex­",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 48.140625,
+              "x" : 0,
+              "y" : 0
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 28,
+              "width" : 53.30859375,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 3.333984375,
+                "xLocal" : 3.333984375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 7.330078125,
+                "xLocal" : 7.330078125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 12.65625,
+                "xLocal" : 12.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 13,
+                "xInContainer" : 12.65625,
+                "xLocal" : 12.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 18.65625,
+                "xLocal" : 18.65625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 15,
+                "xInContainer" : 22.65234375,
+                "xLocal" : 22.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 16,
+                "xInContainer" : 22.65234375,
+                "xLocal" : 22.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 17,
+                "xInContainer" : 28.65234375,
+                "xLocal" : 28.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 18,
+                "xInContainer" : 31.986328125,
+                "xLocal" : 31.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 19,
+                "xInContainer" : 37.986328125,
+                "xLocal" : 37.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 20,
+                "xInContainer" : 43.3125,
+                "xLocal" : 43.3125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 21,
+                "xInContainer" : 47.30859375,
+                "xLocal" : 47.30859375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 22,
+                "xInContainer" : 53.30859375,
+                "xLocal" : 53.30859375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              9,
+              13
+            ],
+            "text" : "tra­or­dinary",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 53.30859375,
+              "x" : 0,
+              "y" : 14
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 28,
+          "width" : 53.30859375,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "A feasible requested break at explicit soft-hyphen offset 9 is selected; all lines fit 80 points and other offered candidates are vetoed.",
+        "observations" : {
+          "baselineBreakOffsetsUTF16" : [
+            17
+          ],
+          "lineWidthsPoints" : [
+            48.140625,
+            53.30859375
+          ]
+        },
+        "pass" : true
+      },
+      "name" : "soft-hyphen-feasible-selected",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : [
+          9
+        ],
+        "delegate" : true,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "Today ex­tra­or­dinary",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 80
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 4,
+        "delegateCalls" : [
+
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 14,
+              "width" : 34.6640625,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 8.666015625,
+                "xLocal" : 8.666015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 17.33203125,
+                "xLocal" : 17.33203125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 25.998046875,
+                "xLocal" : 25.998046875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 34.6640625,
+                "xLocal" : 34.6640625,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              4
+            ],
+            "text" : "HHHH",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 34.6640625,
+              "x" : 0,
+              "y" : 0
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 14,
+          "width" : 34.6640625,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "Untracked HHHH supplies a reference width and caret offsets.",
+        "observations" : {
+          "widthPoints" : 34.6640625
+        },
+        "pass" : true
+      },
+      "name" : "tracking-zero",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : false,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "HHHH",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 300
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 4,
+        "delegateCalls" : [
+
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 14,
+              "width" : 36.6640625,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 8.916015625,
+                "xLocal" : 8.916015625,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 18.08203125,
+                "xLocal" : 18.08203125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 27.248046875,
+                "xLocal" : 27.248046875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 36.1640625,
+                "xLocal" : 36.1640625,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              4
+            ],
+            "text" : "HHHH",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 36.6640625,
+              "x" : 0,
+              "y" : 0
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 14,
+          "width" : 36.6640625,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "0.5-point tracking changes HHHH width by 2 points and final caret offset by 1.5 points.",
+        "observations" : {
+          "caretOffset3DeltaPoints" : 1.25,
+          "caretOffset4DeltaPoints" : 1.5,
+          "widthDeltaPoints" : 2
+        },
+        "pass" : true
+      },
+      "name" : "tracking-half",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : false,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "HHHH",
+        "trackingAttributePresent" : 1,
+        "trackingPoints" : 0.5,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 300
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 4,
+        "delegateCalls" : [
+
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 14,
+              "width" : 33.970781250000002,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 8.4926953125000004,
+                "xLocal" : 8.4926953125000004,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 16.985390625000001,
+                "xLocal" : 16.985390625000001,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 25.478085937500001,
+                "xLocal" : 25.478085937500001,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 33.970781250000002,
+                "xLocal" : 33.970781250000002,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              4
+            ],
+            "text" : "HHHH",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 33.970781250000002,
+              "x" : 0,
+              "y" : 0
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 14,
+          "width" : 33.970781250000002,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "A fixed NSFont horizontal text transform changes HHHH width by the requested ratio.",
+        "observations" : {
+          "baselineWidthPoints" : 34.6640625,
+          "measuredWidthRatio" : 0.98000000000000009
+        },
+        "pass" : true
+      },
+      "name" : "font-scale-098",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : false,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 0.97999999999999998,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "HHHH",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 300
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 4,
+        "delegateCalls" : [
+
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 14,
+              "width" : 35.357343749999998,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 8.8393359374999996,
+                "xLocal" : 8.8393359374999996,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 17.678671874999999,
+                "xLocal" : 17.678671874999999,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 26.518007812499999,
+                "xLocal" : 26.518007812499999,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 35.357343749999998,
+                "xLocal" : 35.357343749999998,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              4
+            ],
+            "text" : "HHHH",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 35.357343749999998,
+              "x" : 0,
+              "y" : 0
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 14,
+          "width" : 35.357343749999998,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "A fixed NSFont horizontal text transform changes HHHH width by the requested ratio.",
+        "observations" : {
+          "baselineWidthPoints" : 34.6640625,
+          "measuredWidthRatio" : 1.02
+        },
+        "pass" : true
+      },
+      "name" : "font-scale-102",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : false,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 1.02,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "HHHH",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 300
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 15,
+        "delegateCalls" : [
+
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 14,
+              "width" : 74.30859375,
+              "x" : 10,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 10,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 15.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 23.9921875,
+                "xLocal" : 13.9921875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 29.318359375,
+                "xLocal" : 19.318359375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 32.65234375,
+                "xLocal" : 22.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 5,
+                "xInContainer" : 35.986328125,
+                "xLocal" : 25.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 6,
+                "xInContainer" : 41.986328125,
+                "xLocal" : 31.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 7,
+                "xInContainer" : 44.986328125,
+                "xLocal" : 34.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 8,
+                "xInContainer" : 47.986328125,
+                "xLocal" : 37.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 56.65234375,
+                "xLocal" : 46.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 62.65234375,
+                "xLocal" : 52.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 66.6484375,
+                "xLocal" : 56.6484375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 69.982421875,
+                "xLocal" : 59.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 13,
+                "xInContainer" : 75.982421875,
+                "xLocal" : 65.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 78.982421875,
+                "xLocal" : 68.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 15,
+                "xInContainer" : 84.30859375,
+                "xLocal" : 74.30859375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              15
+            ],
+            "text" : "“Hello, world.”",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 74.30859375,
+              "x" : 0,
+              "y" : 0
+            }
+          }
+        ],
+        "raster" : {
+          "image" : "punctuation-left.png",
+          "imageWritten" : true,
+          "inkColumnRuns" : [
+            {
+              "firstXPoints" : 10.25,
+              "lastXPoints" : 11.875
+            },
+            {
+              "firstXPoints" : 13,
+              "lastXPoints" : 14.625
+            },
+            {
+              "firstXPoints" : 15.375,
+              "lastXPoints" : 23.5
+            },
+            {
+              "firstXPoints" : 24.125,
+              "lastXPoints" : 28.875
+            },
+            {
+              "firstXPoints" : 29.375,
+              "lastXPoints" : 32.25
+            },
+            {
+              "firstXPoints" : 32.75,
+              "lastXPoints" : 35.625
+            },
+            {
+              "firstXPoints" : 36.125,
+              "lastXPoints" : 41.375
+            },
+            {
+              "firstXPoints" : 43.125,
+              "lastXPoints" : 44.75
+            },
+            {
+              "firstXPoints" : 48.125,
+              "lastXPoints" : 56.125
+            },
+            {
+              "firstXPoints" : 56.875,
+              "lastXPoints" : 62.125
+            },
+            {
+              "firstXPoints" : 62.625,
+              "lastXPoints" : 69.625
+            },
+            {
+              "firstXPoints" : 70.125,
+              "lastXPoints" : 75.625
+            },
+            {
+              "firstXPoints" : 77.125,
+              "lastXPoints" : 78.375
+            },
+            {
+              "firstXPoints" : 79.25,
+              "lastXPoints" : 80.875
+            },
+            {
+              "firstXPoints" : 82,
+              "lastXPoints" : 83.625
+            }
+          ],
+          "scalePixelsPerPoint" : 8
+        },
+        "usageBounds" : {
+          "height" : 14,
+          "width" : 74.30859375,
+          "x" : 10,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "A 10-point first-line indent sets a measurable reference edge for the initial quotation mark.",
+        "observations" : {
+          "followingCaretXPoints" : 15.326171875,
+          "quoteCaretXPoints" : 10
+        },
+        "pass" : true
+      },
+      "name" : "punctuation-left",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : false,
+        "firstLineHeadIndentPoints" : 10,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "“Hello, world.”",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 300
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 15,
+        "delegateCalls" : [
+
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 14,
+              "width" : 74.80859375,
+              "x" : 9.5,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 9.5,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 15.076171875,
+                "xLocal" : 5.576171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 23.9921875,
+                "xLocal" : 14.4921875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 29.318359375,
+                "xLocal" : 19.818359375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 32.65234375,
+                "xLocal" : 23.15234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 5,
+                "xInContainer" : 35.986328125,
+                "xLocal" : 26.486328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 6,
+                "xInContainer" : 41.986328125,
+                "xLocal" : 32.486328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 7,
+                "xInContainer" : 44.986328125,
+                "xLocal" : 35.486328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 8,
+                "xInContainer" : 47.986328125,
+                "xLocal" : 38.486328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 56.65234375,
+                "xLocal" : 47.15234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 62.65234375,
+                "xLocal" : 53.15234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 66.6484375,
+                "xLocal" : 57.1484375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 69.982421875,
+                "xLocal" : 60.482421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 13,
+                "xInContainer" : 75.982421875,
+                "xLocal" : 66.482421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 78.982421875,
+                "xLocal" : 69.482421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 15,
+                "xInContainer" : 84.30859375,
+                "xLocal" : 74.80859375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              15
+            ],
+            "text" : "“Hello, world.”",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 74.80859375,
+              "x" : 0,
+              "y" : 0
+            }
+          }
+        ],
+        "raster" : {
+          "image" : "punctuation-indent-half.png",
+          "imageWritten" : true,
+          "inkColumnRuns" : [
+            {
+              "firstXPoints" : 9.75,
+              "lastXPoints" : 11.375
+            },
+            {
+              "firstXPoints" : 12.5,
+              "lastXPoints" : 14.125
+            },
+            {
+              "firstXPoints" : 15.375,
+              "lastXPoints" : 23.5
+            },
+            {
+              "firstXPoints" : 24.125,
+              "lastXPoints" : 28.875
+            },
+            {
+              "firstXPoints" : 29.375,
+              "lastXPoints" : 32.25
+            },
+            {
+              "firstXPoints" : 32.75,
+              "lastXPoints" : 35.625
+            },
+            {
+              "firstXPoints" : 36.125,
+              "lastXPoints" : 41.375
+            },
+            {
+              "firstXPoints" : 43.125,
+              "lastXPoints" : 44.75
+            },
+            {
+              "firstXPoints" : 48.125,
+              "lastXPoints" : 56.125
+            },
+            {
+              "firstXPoints" : 56.875,
+              "lastXPoints" : 62.125
+            },
+            {
+              "firstXPoints" : 62.625,
+              "lastXPoints" : 69.625
+            },
+            {
+              "firstXPoints" : 70.125,
+              "lastXPoints" : 75.625
+            },
+            {
+              "firstXPoints" : 77.125,
+              "lastXPoints" : 78.375
+            },
+            {
+              "firstXPoints" : 79.25,
+              "lastXPoints" : 80.875
+            },
+            {
+              "firstXPoints" : 82,
+              "lastXPoints" : 83.625
+            }
+          ],
+          "scalePixelsPerPoint" : 8
+        },
+        "usageBounds" : {
+          "height" : 14,
+          "width" : 74.80859375,
+          "x" : 9.5,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "Moving the first-line indent left and applying equal positive kern to the quote moves only the quote ink by the requested amount while keeping following text ink fixed.",
+        "observations" : {
+          "allFollowingInkColumnRunsIdentical" : true,
+          "followingCaretDeltaPoints" : -0.25,
+          "followingInkFirstXDeltaPoints" : 0,
+          "quoteCaretDeltaPoints" : -0.5,
+          "quoteInkFirstXDeltaPoints" : -0.5
+        },
+        "pass" : true
+      },
+      "name" : "punctuation-indent-half",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : false,
+        "firstLineHeadIndentPoints" : 9.5,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 1,
+        "initialQuoteKernPoints" : 0.5,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "“Hello, world.”",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 300
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 15,
+        "delegateCalls" : [
+
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 14,
+              "width" : 75.30859375,
+              "x" : 9,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 9,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 14.826171875,
+                "xLocal" : 5.826171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 23.9921875,
+                "xLocal" : 14.9921875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 29.318359375,
+                "xLocal" : 20.318359375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 32.65234375,
+                "xLocal" : 23.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 5,
+                "xInContainer" : 35.986328125,
+                "xLocal" : 26.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 6,
+                "xInContainer" : 41.986328125,
+                "xLocal" : 32.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 7,
+                "xInContainer" : 44.986328125,
+                "xLocal" : 35.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 8,
+                "xInContainer" : 47.986328125,
+                "xLocal" : 38.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 56.65234375,
+                "xLocal" : 47.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 62.65234375,
+                "xLocal" : 53.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 66.6484375,
+                "xLocal" : 57.6484375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 69.982421875,
+                "xLocal" : 60.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 13,
+                "xInContainer" : 75.982421875,
+                "xLocal" : 66.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 78.982421875,
+                "xLocal" : 69.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 15,
+                "xInContainer" : 84.30859375,
+                "xLocal" : 75.30859375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              15
+            ],
+            "text" : "“Hello, world.”",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 75.30859375,
+              "x" : 0,
+              "y" : 0
+            }
+          }
+        ],
+        "raster" : {
+          "image" : "punctuation-indent-one.png",
+          "imageWritten" : true,
+          "inkColumnRuns" : [
+            {
+              "firstXPoints" : 9.25,
+              "lastXPoints" : 10.875
+            },
+            {
+              "firstXPoints" : 12,
+              "lastXPoints" : 13.625
+            },
+            {
+              "firstXPoints" : 15.375,
+              "lastXPoints" : 23.5
+            },
+            {
+              "firstXPoints" : 24.125,
+              "lastXPoints" : 28.875
+            },
+            {
+              "firstXPoints" : 29.375,
+              "lastXPoints" : 32.25
+            },
+            {
+              "firstXPoints" : 32.75,
+              "lastXPoints" : 35.625
+            },
+            {
+              "firstXPoints" : 36.125,
+              "lastXPoints" : 41.375
+            },
+            {
+              "firstXPoints" : 43.125,
+              "lastXPoints" : 44.75
+            },
+            {
+              "firstXPoints" : 48.125,
+              "lastXPoints" : 56.125
+            },
+            {
+              "firstXPoints" : 56.875,
+              "lastXPoints" : 62.125
+            },
+            {
+              "firstXPoints" : 62.625,
+              "lastXPoints" : 69.625
+            },
+            {
+              "firstXPoints" : 70.125,
+              "lastXPoints" : 75.625
+            },
+            {
+              "firstXPoints" : 77.125,
+              "lastXPoints" : 78.375
+            },
+            {
+              "firstXPoints" : 79.25,
+              "lastXPoints" : 80.875
+            },
+            {
+              "firstXPoints" : 82,
+              "lastXPoints" : 83.625
+            }
+          ],
+          "scalePixelsPerPoint" : 8
+        },
+        "usageBounds" : {
+          "height" : 14,
+          "width" : 75.30859375,
+          "x" : 9,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "Moving the first-line indent left and applying equal positive kern to the quote moves only the quote ink by the requested amount while keeping following text ink fixed.",
+        "observations" : {
+          "allFollowingInkColumnRunsIdentical" : true,
+          "followingCaretDeltaPoints" : -0.5,
+          "followingInkFirstXDeltaPoints" : 0,
+          "quoteCaretDeltaPoints" : -1,
+          "quoteInkFirstXDeltaPoints" : -1
+        },
+        "pass" : true
+      },
+      "name" : "punctuation-indent-one",
+      "request" : {
+        "alignment" : 0,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : false,
+        "firstLineHeadIndentPoints" : 9,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 1,
+        "initialQuoteKernPoints" : 1,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "“Hello, world.”",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 300
+      }
+    },
+    {
+      "actual" : {
+        "breakOffsetsUTF16" : [
+          16
+        ],
+        "completeRangeCoverage" : true,
+        "coveredUTF16Length" : 31,
+        "delegateCalls" : [
+
+        ],
+        "intrawordBreakOffsetsUTF16" : [
+
+        ],
+        "lines" : [
+          {
+            "fragmentFrame" : {
+              "height" : 28,
+              "width" : 75,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 0,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 1,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 2,
+                "xInContainer" : 13.9921875,
+                "xLocal" : 13.9921875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 3,
+                "xInContainer" : 19.318359375,
+                "xLocal" : 19.318359375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 4,
+                "xInContainer" : 22.65234375,
+                "xLocal" : 22.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 5,
+                "xInContainer" : 25.986328125,
+                "xLocal" : 25.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 6,
+                "xInContainer" : 31.986328125,
+                "xLocal" : 31.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 7,
+                "xInContainer" : 34.986328125,
+                "xLocal" : 34.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 8,
+                "xInContainer" : 38.33203125,
+                "xLocal" : 38.33203125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 9,
+                "xInContainer" : 47.34375,
+                "xLocal" : 47.34375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 10,
+                "xInContainer" : 53.34375,
+                "xLocal" : 53.34375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 11,
+                "xInContainer" : 57.33984375,
+                "xLocal" : 57.33984375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 12,
+                "xInContainer" : 60.673828125,
+                "xLocal" : 60.673828125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 13,
+                "xInContainer" : 66.673828125,
+                "xLocal" : 66.673828125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 14,
+                "xInContainer" : 69.673828125,
+                "xLocal" : 69.673828125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 15,
+                "xInContainer" : 75,
+                "xLocal" : 75,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 16,
+                "xInContainer" : 78,
+                "xLocal" : 78,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              0,
+              16
+            ],
+            "text" : "“Hello, world.” ",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 75,
+              "x" : 0,
+              "y" : 0
+            }
+          },
+          {
+            "fragmentFrame" : {
+              "height" : 28,
+              "width" : 75,
+              "x" : 0,
+              "y" : 0
+            },
+            "positions" : [
+              {
+                "indexUTF16" : 16,
+                "xInContainer" : 0,
+                "xLocal" : 0,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 17,
+                "xInContainer" : 5.326171875,
+                "xLocal" : 5.326171875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 18,
+                "xInContainer" : 13.9921875,
+                "xLocal" : 13.9921875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 19,
+                "xInContainer" : 19.318359375,
+                "xLocal" : 19.318359375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 20,
+                "xInContainer" : 22.65234375,
+                "xLocal" : 22.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 21,
+                "xInContainer" : 25.986328125,
+                "xLocal" : 25.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 22,
+                "xInContainer" : 31.986328125,
+                "xLocal" : 31.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 23,
+                "xInContainer" : 34.986328125,
+                "xLocal" : 34.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 24,
+                "xInContainer" : 37.986328125,
+                "xLocal" : 37.986328125,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 25,
+                "xInContainer" : 46.65234375,
+                "xLocal" : 46.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 26,
+                "xInContainer" : 52.65234375,
+                "xLocal" : 52.65234375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 27,
+                "xInContainer" : 56.6484375,
+                "xLocal" : 56.6484375,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 28,
+                "xInContainer" : 59.982421875,
+                "xLocal" : 59.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 29,
+                "xInContainer" : 65.982421875,
+                "xLocal" : 65.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 30,
+                "xInContainer" : 68.982421875,
+                "xLocal" : 68.982421875,
+                "y" : 11
+              },
+              {
+                "indexUTF16" : 31,
+                "xInContainer" : 74.30859375,
+                "xLocal" : 74.30859375,
+                "y" : 11
+              }
+            ],
+            "rangeUTF16" : [
+              16,
+              15
+            ],
+            "text" : "“Hello, world.”",
+            "typographicBounds" : {
+              "height" : 14,
+              "width" : 74.30859375,
+              "x" : 0,
+              "y" : 14
+            }
+          }
+        ],
+        "raster" : {
+
+        },
+        "usageBounds" : {
+          "height" : 28,
+          "width" : 75,
+          "x" : 0,
+          "y" : 0
+        }
+      },
+      "contract" : {
+        "expectation" : "Justified native text has complete UTF-16 range coverage and a first line at the specified 75-point measure.",
+        "observations" : {
+          "firstLineWidthPoints" : 75
+        },
+        "pass" : true
+      },
+      "name" : "punctuation-justified",
+      "request" : {
+        "alignment" : 3,
+        "allowedBreakOffsetsUTF16" : null,
+        "delegate" : false,
+        "firstLineHeadIndentPoints" : 0,
+        "fontHorizontalScale" : 1,
+        "initialQuoteKernAttributePresent" : 0,
+        "initialQuoteKernPoints" : 0,
+        "languageAttribute" : "en",
+        "paragraphHyphenationFactor" : 0,
+        "text" : "“Hello, world.” “Hello, world.”",
+        "trackingAttributePresent" : 0,
+        "trackingPoints" : 0,
+        "usesHyphenation" : false,
+        "vetoAll" : false,
+        "widthPoints" : 75
+      }
+    }
+  ],
+  "environment" : {
+    "kernel" : "27.0.0",
+    "machine" : "arm64",
+    "os" : "Version 27.0 (Build 26A428)",
+    "preferredLanguages" : [
+      "en-US"
+    ],
+    "sdkVersion" : 270000
+  },
+  "font" : {
+    "pointSize" : 12,
+    "postScriptName" : "Times-Roman",
+    "version" : "22.0d2e1"
+  },
+  "notes" : [
+    "Soft hyphens in the synthetic specimen expose explicit discretionary candidates; they do not validate linguistic hyphenation.",
+    "A delegate veto is not a hard prohibition when the requested constraints make wrapping infeasible; emergency breaks remain possible.",
+    "NSExpansionAttributeName is documented as unsupported with TextKit 2 in the selected SDK. A fixed NSFont horizontal transform works; automatic per-line glyph expansion was not exercised.",
+    "The first-line indent plus initial quote kern controls this opening-quote protrusion, but no documented TextKit 2 paragraph API exposes an arbitrary line-edge punctuation protrusion table.",
+    "Line-fragment character positions are caret offsets, not measured glyph ink origins."
+  ],
+  "schemaVersion" : 1
+}

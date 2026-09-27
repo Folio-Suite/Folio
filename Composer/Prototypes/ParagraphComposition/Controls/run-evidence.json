@@ -1,0 +1,13 @@
+{
+  "source_sha256": {
+    "textkit.m": "b8cb2b27adba84e5f16a350fbe521a8815ef892f4c87d65ca7cdbbaba2cc7fc3",
+    "coretext.m": "edce719e99f6a92fbc814d5eab4ee1bf370a8b4893e0b1134bfd744914870ac7"
+  },
+  "result_sha256": {
+    "textkit-results.json": "9de690d3b70854b269243cba210e2ae665f536c99ba0cb73ea14d7b4a7957c38",
+    "coretext-results.json": "a48c3b301d86811a06cd886e344359201e56013230c7e4bec20ecfaf69db67d1"
+  },
+  "xcode": "Xcode 27.0\nBuild version 27A266a",
+  "sdk": "27.0",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0\nBuildVersion:\t\t26A428"
+}
