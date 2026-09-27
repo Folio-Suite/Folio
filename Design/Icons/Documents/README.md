@@ -36,8 +36,11 @@ but omitted SVG from an iconset in a controlled compilation probe; PNG compiled
 in the same set. Apple's documented iconset format specifies PNG filenames.
 
 A disposable Composer type confirmed system composition of its compiled badge.
-The final types in Finder and Save/Open panels still require visual verification
-with a registered build; Quick Look thumbnails and cached registrations can affect what is shown.
+After PR #25 merged, the user confirmed that new documents worked and their
+Finder icons appeared correctly on the development machine (26 September 2026).
+This smoke check does not establish all sizes, localized icon text, Save/Open
+panel rendering, or Sonoma behavior; Quick Look thumbnails and cached
+registrations can affect what is shown.
 
 ## Appearance and accent colors
 

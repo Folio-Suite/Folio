@@ -1,510 +1,509 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "CFBundleDisplayName": {
-      "comment": "Application name. Keep Folio unchanged. Localize the app name in Chinese, Korean, and Arabic; preserve English branding in Japanese and European languages. See docs/localization.md for approved names.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Folio Write"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Archive" : {
+      "comment" : "Short document-icon label. macOS capitalizes and scales it. Archive means ZIP packaging, not a guarantee of archival completeness. Keep ZIP explicit where the local word for archive could mean an ordinary file. Do not translate UTI, extension, MIME, or OSType identifiers.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "أرشيف"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio Write"
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Archiv"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio Write"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archive"
           }
         },
-        "ar": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio الكتابة"
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Archivo ZIP"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio Write"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Archive"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio 글쓰기"
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Archivio"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio Write"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "アーカイブ"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio 写作"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "압축 파일"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio 寫作"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Arquivo ZIP"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio Write"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "压缩包"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio Write"
-          }
-        }
-      }
-    },
-    "CFBundleName": {
-      "comment": "Application name. Keep Folio unchanged. Localize the app name in Chinese, Korean, and Arabic; preserve English branding in Japanese and European languages. See docs/localization.md for approved names.",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Write"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Write"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Write"
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "الكتابة"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Write"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "글쓰기"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Write"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "写作"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "寫作"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Write"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Write"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "壓縮檔"
           }
         }
       }
     },
-    "NSHumanReadableCopyright": {
-      "comment": "Copyright notice. Preserve the year and the Folio Project attribution.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Copyright © 2026 the Folio Project"
+    "CFBundleDisplayName" : {
+      "comment" : "Application name. Keep Folio unchanged. Localize the app name in Chinese, Korean, and Arabic; preserve English branding in Japanese and European languages. See docs/localization.md for approved names.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio الكتابة"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Copyright © 2026 the Folio Project"
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio Write"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Copyright © 2026 the Folio Project"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folio Write"
           }
         },
-        "ar": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "حقوق النشر © 2026 the Folio Project"
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio Write"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Copyright © 2026 the Folio Project"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio Write"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Copyright © 2026 the Folio Project"
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio Write"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Copyright © 2026 the Folio Project"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio Write"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "版权所有 © 2026 the Folio Project"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio 글쓰기"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "版權所有 © 2026 the Folio Project"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio Write"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Copyright © 2026 the Folio Project"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio 写作"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Copyright © 2026 the Folio Project"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio 寫作"
           }
         }
       }
     },
-    "Document": {
-      "comment": "Short document-icon label. macOS capitalizes and scales it. Document means the native working document, regardless of its internal domain model.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Document"
+    "CFBundleName" : {
+      "comment" : "Application name. Keep Folio unchanged. Localize the app name in Chinese, Korean, and Arabic; preserve English branding in Japanese and European languages. See docs/localization.md for approved names.",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "الكتابة"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Documento"
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Write"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Document"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Dokument"
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Write"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "書類"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Write"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "文档"
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Write"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "文件"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Write"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Documento"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "글쓰기"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "문서"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Write"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Documento"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "写作"
           }
         },
-        "ar": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "مستند"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "寫作"
           }
         }
       }
     },
-    "Folio Write Document": {
-      "comment": "File type name shown by macOS. Preserve the approved localized application name. Document means the native working document, regardless of its internal domain model.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Folio Write Document"
+    "Document" : {
+      "comment" : "Short document-icon label. macOS capitalizes and scales it. Document means the native working document, regardless of its internal domain model.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "مستند"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Documento de Folio Write"
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Dokument"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Document Folio Write"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Document"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio Write-Dokument"
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Documento"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio Writeの書類"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Document"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio 写作文档"
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Documento"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio 寫作文件"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "書類"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Documento de Folio Write"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "문서"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio 글쓰기 문서"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Documento"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Documento Folio Write"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "文档"
           }
         },
-        "ar": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "مستند Folio الكتابة"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "文件"
           }
         }
       }
     },
-    "Archive": {
-      "comment": "Short document-icon label. macOS capitalizes and scales it. Archive means ZIP packaging, not a guarantee of archival completeness. Keep ZIP explicit where the local word for archive could mean an ordinary file. Do not translate UTI, extension, MIME, or OSType identifiers.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Archive"
+    "Folio Write Archive" : {
+      "comment" : "File type name shown by macOS. Preserve the approved localized application name. Archive means ZIP packaging, not a guarantee of archival completeness. Keep ZIP explicit where the local word for archive could mean an ordinary file. Do not translate UTI, extension, MIME, or OSType identifiers.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "أرشيف Folio الكتابة"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Archivo ZIP"
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio Write-Archiv"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Archive"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folio Write Archive"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Archiv"
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Archivo ZIP de Folio Write"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "アーカイブ"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Archive Folio Write"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "压缩包"
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Archivio Folio Write"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "壓縮檔"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio Writeのアーカイブ"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Arquivo ZIP"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio 글쓰기 압축 파일"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "압축 파일"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Arquivo ZIP de Folio Write"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Archivio"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio 写作压缩包"
           }
         },
-        "ar": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "أرشيف"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio 寫作壓縮檔"
           }
         }
       }
     },
-    "Folio Write Archive": {
-      "comment": "File type name shown by macOS. Preserve the approved localized application name. Archive means ZIP packaging, not a guarantee of archival completeness. Keep ZIP explicit where the local word for archive could mean an ordinary file. Do not translate UTI, extension, MIME, or OSType identifiers.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Folio Write Archive"
+    "Folio Write Document" : {
+      "comment" : "File type name shown by macOS. Preserve the approved localized application name. Document means the native working document, regardless of its internal domain model.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "مستند Folio الكتابة"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Archivo ZIP de Folio Write"
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio Write-Dokument"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Archive Folio Write"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folio Write Document"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio Write-Archiv"
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Documento de Folio Write"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio Writeのアーカイブ"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Document Folio Write"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio 写作压缩包"
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Documento Folio Write"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio 寫作壓縮檔"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio Writeの書類"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Arquivo ZIP de Folio Write"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio 글쓰기 문서"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Folio 글쓰기 압축 파일"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Documento de Folio Write"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Archivio Folio Write"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio 写作文档"
           }
         },
-        "ar": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "أرشيف Folio الكتابة"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Folio 寫作文件"
+          }
+        }
+      }
+    },
+    "NSHumanReadableCopyright" : {
+      "comment" : "Copyright notice. Preserve the year and the Folio Project attribution.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "حقوق النشر © 2026 the Folio Project"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Copyright © 2026 the Folio Project"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copyright © 2026 the Folio Project"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Copyright © 2026 the Folio Project"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Copyright © 2026 the Folio Project"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Copyright © 2026 the Folio Project"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Copyright © 2026 the Folio Project"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Copyright © 2026 the Folio Project"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Copyright © 2026 the Folio Project"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "版权所有 © 2026 the Folio Project"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "版權所有 © 2026 the Folio Project"
           }
         }
       }
     }
   },
-  "version": "1.2"
+  "version" : "1.2"
 }

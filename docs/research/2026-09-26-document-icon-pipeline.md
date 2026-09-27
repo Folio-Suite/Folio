@@ -20,7 +20,11 @@ label through `NSWorkspace`. Existing Composer registrations still returned a
 blank page; one selected an older packaged build under `dist`. That experiment
 confirmed the composition path works and exposed development registration/cache
 interference. It did not verify all final types, languages, sizes, or Sonoma.
-Current Finder rendering and localized icon-text resolution remain runtime checks.
+At that point, Finder rendering and localized icon-text resolution remained
+runtime checks. After PR #25, the user confirmed on 26 September 2026 that newly
+created documents showed the icons correctly on the current machine. This is
+current-machine Finder smoke evidence, not coverage of every size, language, or
+Sonoma. See the [recorded verification](../../Design/Icons/Documents/README.md).
 
 ## Original recommendation
 
@@ -76,3 +80,29 @@ If template composition still constrains the accepted design too much, retain th
 [dts]: https://developer.apple.com/forums/thread/761775
 
 Apple's public DocC JSON representations were also read to retrieve the JavaScript-rendered HIG text and platform availability metadata: [HIG JSON](https://developer.apple.com/tutorials/data/design/human-interface-guidelines/icons.json), [UTTypeIcons JSON](https://developer.apple.com/tutorials/data/documentation/bundleresources/information-property-list/utexportedtypedeclarations/uttypeicons.json), and [badge JSON](https://developer.apple.com/tutorials/data/documentation/bundleresources/information-property-list/utexportedtypedeclarations/uttypeicons/uttypeiconbadgename.json).
+
+## Background-property follow-up — 26 September 2026
+
+**Yes: `UTTypeIconBackgroundName` preserves the system's folded-page composition.**
+It names an icon set in the app's asset catalog, used as the document's background
+fill. The system scales that artwork to the document canvas, clips it to the
+folded-page silhouette, and draws the fold over its upper-right area. The HIG
+specifically describes a white fold over the fill. Background artwork therefore
+does not require drawing a replacement page or fold; keep important content away
+from that corner. [Background property][background]; [HIG][hig]
+
+The background can coexist with the badge and text. Omitting the background gives
+no custom fill; omitting the badge instead selects the app icon, and omitting text
+selects the extension. The HIG shows background-only designs, but these references
+do not document an empty-string contract for suppressing the default badge.
+[UTTypeIcons][icons]; [HIG][hig]
+
+The property's current DocC metadata marks macOS availability from 11.0. These
+are documented composition semantics, verified against Apple's public JSON on
+this date, not a Folio background-variant runtime test. No background assets or
+registrations were changed during this follow-up; the user's Finder smoke result
+above covers the existing badge configuration.
+[Background JSON][background-json]
+
+[background]: https://developer.apple.com/documentation/bundleresources/information-property-list/utexportedtypedeclarations/uttypeicons/uttypeiconbackgroundname
+[background-json]: https://developer.apple.com/tutorials/data/documentation/bundleresources/information-property-list/utexportedtypedeclarations/uttypeicons/uttypeiconbackgroundname.json
