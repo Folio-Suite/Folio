@@ -9,11 +9,12 @@ SPDX-License-Identifier: MIT
 
 ## Recommendation
 
-**Build a Folio-owned publication compositor above Core Text.** The expanded
-requirements call for Folio to choose complete break sequences, enforce spacing
-and expansion budgets, apply punctuation rules, and report infeasible layouts.
-Core Text supplies construction and measurement APIs that fit that ownership.
-Folio must supply the composition algorithm and prove the resulting quality.
+**Prototype a Folio-owned paragraph compositor above Core Text next.** The
+expanded requirements call for Folio to choose complete break sequences, enforce
+spacing and expansion budgets, apply punctuation rules, and report infeasible
+layouts. Core Text supplies construction and measurement APIs that fit that
+ownership. The next experiment must compare the resulting paragraph quality
+against TextKit 2 before selecting a production publication compositor.
 
 This is a recommendation from the experiments and inspected public interfaces,
 not an adopted architecture decision. The experiments are outside production

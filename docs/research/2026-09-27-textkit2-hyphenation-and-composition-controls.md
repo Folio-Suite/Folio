@@ -14,6 +14,13 @@ Folio-owned compositor above Core Text. The original investigation is retained
 to distinguish the earlier candidate-injection question from the later policy
 requirements. Neither recommendation is an adopted architecture decision.
 
+The Latin Modern soft-hyphen and AppKit-attribute comparisons below are
+**historical scratch observations**. Their `/tmp` sources and results were not
+retained with this report and are outside its checked-in evidence; those exact
+measurements require a new experiment to reproduce from a fresh checkout.
+The later control comparison uses its own retained sources, results, and images
+and does not rely on those scratch measurements.
+
 ## Answer and evidence boundary
 
 **TextKit 2 can plausibly remain Folio's native composition baseline while Folio supplies language-specific hyphenation opportunities.** Unicode soft hyphen (U+00AD) is an invisible discretionary intraword break marker. It need not appear in the canonical Work text: a derived attributed composition string could contain opportunities calculated from a selected pattern set. TextKit 2's public delegate can *allow or prevent* a candidate soft break or automatic hyphenation point; its documented return value cannot create a new candidate or direct a paragraph-wide scoring function. [Unicode UAX #14][unicode-shy]; [Apple TextKit 2 delegate][tk-delegate]; [installed macOS 27 SDK header][sdk-manager]
