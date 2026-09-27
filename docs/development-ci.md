@@ -7,7 +7,8 @@ SPDX-License-Identifier: MIT
 
 GitHub Actions runs `.github/workflows/ci.yml` for pull requests (including stack
 layers), merge-queue candidates, pushes to `main`, and manual dispatch. Superseded
-runs for the same event and PR/ref are canceled. There are no path filters or
+runs for the same event and PR/ref are canceled. Metadata-only PR edits use a
+separate concurrency group so they cannot cancel candidate validation. There are no path filters or
 stack-tip skips. PR checks use GitHub's merge checkout; queue checks use the queue
 candidate commit.
 
@@ -23,12 +24,33 @@ days.
 This is an unsigned compile and repository check. It uses no signing secrets and
 does not run native application or UI tests, so it cannot establish that runtime
 loading or signing works. It does not replace the full **Suite** gate. Opening a
-PR from one of these branches also triggers the full workflow described below;
-merge-queue and `main` checks remain unchanged.
+PR from one of these branches also triggers the validation selection described below.
+
+## Validation selection
+
+`scripts/ci-evidence.rb`, adapted from KitchenMemory, selects one of three modes:
+
+- **Fast:** draft PRs run Ruby tooling tests and read-only localization checks.
+  GitHub prevents merging drafts; marking a PR ready triggers candidate validation.
+- **Full:** ready PRs, merge-queue candidates, and `main` pushes require full
+  validation unless eligible evidence already exists. Manual dispatch always
+  forces a full run.
+- **Reuse:** an identical Git tree can reuse a successful full run from the last
+  seven days. Repository checks still run. Evidence must match the policy version,
+  tree, run ID, and current run attempt, and come from this workflow in this
+  repository with a same-repository source branch. Failed, unfinished, expired,
+  fork, and other-workflow evidence cannot authorize reuse. Downloaded evidence
+  is parsed as bounded JSON data and never executed.
+
+An evidence lookup or parsing failure falls back to full validation. Full runs
+publish a small `validated-tree-*` artifact only after all required jobs succeed;
+fast and reused runs never renew evidence. Increment `POLICY` in the selector
+when changing the validation contract or toolchain. Whole-tree matching also
+invalidates reuse when source, workflow, tests, or repository configuration changes.
 
 ## Schemes and parallel work
 
-Four macOS jobs run independently:
+After selection, a full run launches four independent macOS jobs:
 
 - **Suite analysis, build, and repository checks** runs the Ruby tests, read-only localization
   extraction, and a clean coordinated **Folio** scheme analysis and build, including Kit
@@ -46,10 +68,11 @@ No test lists or per-target build settings are reproduced in YAML. Full Suite
 local testing remains available through the Folio scheme and `Folio.xctestplan`.
 The generated launch-test variants are retained.
 
-The final **Suite** job succeeds only when the build/check job and every signed
-test job succeed. A skipped signing job cannot produce a green Suite check.
-Configure branch protection to require **Suite** after the first hosted pass.
-This change does not alter repository rules.
+Branch protection requires the final **Suite** job. It checks that selection and
+repository checks succeeded, then requires every signed test job for full mode,
+a source evidence run for reuse mode, or draft-only checks for fast mode. Unknown
+modes and unexpected skipped or failed jobs fail the gate. A skipped signing job
+cannot satisfy full validation.
 
 The runner is GitHub's ARM64 `xcode-27` public preview, explicitly selecting Xcode
 27.0. Its image can change; jobs log the OS/image, Xcode, SDKs, revision, run ID,
@@ -87,12 +110,15 @@ services, and the absence of the disable-library-validation entitlement.
 
 The signing environment trusts code in this repository. Only trusted maintainers
 should have branch-writing access; optionally require an environment reviewer
-for signed jobs. Fork PRs receive compile/tooling checks but never this key.
+for signed jobs. Ready fork PRs receive compile/tooling checks (drafts receive
+repository checks only) but never this key.
 After reviewing a fork's code, a maintainer must bring it to a trusted repository
-branch for signed testing. The aggregate Suite check fails until those tests run.
+branch for signed testing. A full-mode aggregate Suite check fails until those tests run.
 Never switch to `pull_request_target` to execute untrusted fork code with secrets.
 Actions use pinned commits, read-only repository permission, and no persisted
-checkout credentials. Missing signing secrets fail explicitly.
+checkout credentials. Evidence lookup adds read-only Actions permission. Missing
+signing secrets fail explicitly. The signing environment does not create GitHub
+deployment records; these jobs validate development builds.
 
 ## Run locally
 
