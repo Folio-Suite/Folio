@@ -1,0 +1,32 @@
+{
+  "specimens": [
+    {
+      "id": "latin-a1",
+      "language": "la",
+      "text": "Respondeo dicendum quod necessarium fuit ad humanam salutem, esse doctrinam quandam secundum revelationem divinam, praeter philosophicas disciplinas, quae ratione humana investigantur. Primo quidem, quia homo ordinatur ad Deum sicut ad quendam finem qui comprehensionem rationis excedit, secundum illud Isaiae LXIV, oculus non vidit Deus absque te, quae praeparasti diligentibus te. Finem autem oportet esse praecognitum hominibus, qui suas intentiones et actiones debent ordinare in finem. Unde necessarium fuit homini ad salutem, quod ei nota fierent quaedam per revelationem divinam, quae rationem humanam excedunt. Ad ea etiam quae de Deo ratione humana investigari possunt, necessarium fuit hominem instrui revelatione divina. Quia veritas de Deo, per rationem investigata, a paucis, et per longum tempus, et cum admixtione multorum errorum, homini proveniret, a cuius tamen veritatis cognitione dependet tota hominis salus, quae in Deo est. Ut igitur salus hominibus et convenientius et certius proveniat, necessarium fuit quod de divinis per divinam revelationem instruantur. Necessarium igitur fuit, praeter philosophicas disciplinas, quae per rationem investigantur, sacram doctrinam per revelationem haberi.",
+      "source": "https://bkv.unifr.ch/works/sth/versions/summa-theologiae/divisions/6",
+      "locator": "I q1 a1 corpus"
+    },
+    {
+      "id": "english-a1",
+      "language": "en",
+      "text": "I answer that, It was necessary for man's salvation that there should be a knowledge revealed by God besides philosophical science built up by human reason. Firstly, indeed, because man is directed to God, as to an end that surpasses the grasp of his reason: \"The eye hath not seen, O God, besides Thee, what things Thou hast prepared for them that wait for Thee\" (Isa. 66:4). But the end must first be known by men who are to direct their thoughts and actions to the end. Hence it was necessary for the salvation of man that certain truths which exceed human reason should be made known to him by divine revelation. Even as regards those truths about God which human reason could have discovered, it was necessary that man should be taught by a divine revelation; because the truth about God such as reason could discover, would only be known by a few, and that after a long time, and with the admixture of many errors. Whereas man's whole salvation, which is in God, depends upon the knowledge of this truth. Therefore, in order that the salvation of men might be brought about more fitly and more surely, it was necessary that they should be taught divine truths by divine revelation. It was therefore necessary that besides philosophical science built up by reason, there should be a sacred science learned through revelation.",
+      "source": "https://www.gutenberg.org/cache/epub/17611/pg17611.html",
+      "locator": "I q1 a1 corpus"
+    },
+    {
+      "id": "latin-a2",
+      "language": "la",
+      "text": "Respondeo dicendum sacram doctrinam esse scientiam. Sed sciendum est quod duplex est scientiarum genus. Quaedam enim sunt, quae procedunt ex principiis notis lumine naturali intellectus, sicut arithmetica, geometria, et huiusmodi. Quaedam vero sunt, quae procedunt ex principiis notis lumine superioris scientiae, sicut perspectiva procedit ex principiis notificatis per geometriam, et musica ex principiis per arithmeticam notis. Et hoc modo sacra doctrina est scientia, quia procedit ex principiis notis lumine superioris scientiae, quae scilicet est scientia Dei et beatorum. Unde sicut musica credit principia tradita sibi ab arithmetico, ita doctrina sacra credit principia revelata sibi a Deo.",
+      "source": "https://bkv.unifr.ch/works/sth/versions/summa-theologiae/divisions/7",
+      "locator": "I q1 a2 corpus"
+    },
+    {
+      "id": "english-a2",
+      "language": "en",
+      "text": "I answer that, Sacred doctrine is a science. We must bear in mind that there are two kinds of sciences. There are some which proceed from a principle known by the natural light of intelligence, such as arithmetic and geometry and the like. There are some which proceed from principles known by the light of a higher science: thus the science of perspective proceeds from principles established by geometry, and music from principles established by arithmetic. So it is that sacred doctrine is a science because it proceeds from principles established by the light of a higher science, namely, the science of God and the blessed. Hence, just as the musician accepts on authority the principles taught him by the mathematician, so sacred science is established on principles revealed by God.",
+      "source": "https://www.gutenberg.org/cache/epub/17611/pg17611.html",
+      "locator": "I q1 a2 corpus"
+    }
+  ]
+}
