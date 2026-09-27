@@ -8,7 +8,6 @@ require 'fileutils'
 
 root = File.expand_path('..', __dir__)
 art = File.join(root, 'Design/Icons/Documents')
-notice = "SPDX-FileCopyrightText: 2026 the Folio Project\nSPDX-License-Identifier: MIT\n"
 Dir.mktmpdir('folio-document-icons') do |temp|
   renderer = File.join(temp, 'render')
   abort 'Renderer compilation failed' unless system('xcrun', 'swiftc', File.join(art, 'render.swift'), '-o', renderer)
@@ -16,8 +15,6 @@ Dir.mktmpdir('folio-document-icons') do |temp|
     catalog = File.join(root, app, app, 'Assets.xcassets')
     icons = File.join(catalog, "#{name}Icon.iconset")
     FileUtils.mkdir_p(icons)
-    # Keep license metadata beside the set, outside the PNG-only iconset.
-    File.write("#{icons}.license", notice)
     [16, 32, 128, 256, 512].each do |size|
       detail = size <= 32 ? 'Tiny' : size <= 128 ? 'Medium' : 'Large'
       source = File.join(art, "#{name}-Badge-#{detail}.svg")
@@ -27,7 +24,6 @@ Dir.mktmpdir('folio-document-icons') do |temp|
       [false, true].each do |archive|
         set = File.join(catalog, "#{name}#{archive ? 'Zip' : ''}Background.iconset")
         FileUtils.mkdir_p(set)
-        File.write("#{set}.license", notice)
         body = +''
         if size >= 128
           body << %(<defs><linearGradient id="wash" x2="0" y2="1"><stop stop-color="#{color}" stop-opacity="0"/><stop offset=".45" stop-color="#{color}" stop-opacity=".02"/><stop offset="1" stop-color="#{color}" stop-opacity=".22"/></linearGradient></defs><rect width="1024" height="1024" fill="url(#wash)"/>)
