@@ -26,7 +26,7 @@
     [manuscript.activeEditor.textView insertText:@"Independent second unit." replacementRange:NSMakeRange(0, 0)];
     NSString *secondIdentifier = manuscript.selectedUnitIdentifier;
     NSError *error = nil;
-    NSURL *URL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:[NSUUID.UUID.UUIDString stringByAppendingPathExtension:@"fwdoc"]]];
+    NSURL *URL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:[NSUUID.UUID.UUIDString stringByAppendingPathExtension:@"flwrbundle"]]];
     @try {
         XCTAssertTrue([document writeToURL:URL ofType:FWWorkDocumentType error:&error], @"%@", error);
         XCTAssertTrue([NSFileManager.defaultManager fileExistsAtPath:[URL.path stringByAppendingPathComponent:@"Work.sqlite"]]);

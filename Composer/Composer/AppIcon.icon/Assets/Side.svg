@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+<defs><linearGradient id="body" x1="0" y1="1" x2="0.85" y2="0"><stop offset="0" stop-color="#ff9b4c"/><stop offset="0.28" stop-color="#ffe08b"/><stop offset="0.62" stop-color="#39bfc0"/><stop offset="1" stop-color="#db64b5"/></linearGradient>
+<radialGradient id="violet" cx="0.22" cy="0.68" r="0.48"><stop stop-color="#bba0ff" stop-opacity="0.50"/><stop offset="1" stop-color="#9b73df" stop-opacity="0"/></radialGradient>
+<radialGradient id="peach" cx="0.86" cy="0.38" r="0.36"><stop stop-color="#ffca9c" stop-opacity="0.50"/><stop offset="1" stop-color="#ffbba0" stop-opacity="0"/></radialGradient><linearGradient id="shine" x1="0" y1="0" x2="1" y2="0.25"><stop offset="0" stop-color="#a9ffff" stop-opacity="0"/><stop offset="0.12" stop-color="#caffff" stop-opacity="0.05"/><stop offset="0.22" stop-color="#dfffff" stop-opacity="0.6"/><stop offset="0.29" stop-color="#9ff3ff" stop-opacity="0.08"/><stop offset="0.7" stop-color="#002f49" stop-opacity="0.16"/><stop offset="0.86" stop-color="#c7ffff" stop-opacity="0.3"/><stop offset="1" stop-color="#baffff" stop-opacity="0"/></linearGradient><linearGradient id="rim" x1="0" y1="1" x2="0.85" y2="0"><stop offset="0" stop-color="#fff1ca"/><stop offset="0.28" stop-color="#ffd99d"/><stop offset="0.62" stop-color="#b4ffff"/><stop offset="1" stop-color="#f3b9ee"/></linearGradient><clipPath id="shape"><path fill-rule="evenodd" clip-rule="evenodd" d="M641 514 H705 Q717 514 717 526 V753 Q717 765 705 765 H641 Q629 765 629 753 V526 Q629 514 641 514 Z"/></clipPath></defs>
+<path fill="url(#body)" fill-rule="evenodd" d="M641 514 H705 Q717 514 717 526 V753 Q717 765 705 765 H641 Q629 765 629 753 V526 Q629 514 641 514 Z"/>
+<path fill="url(#violet)" fill-rule="evenodd" d="M641 514 H705 Q717 514 717 526 V753 Q717 765 705 765 H641 Q629 765 629 753 V526 Q629 514 641 514 Z"/>
+<path fill="url(#peach)" fill-rule="evenodd" d="M641 514 H705 Q717 514 717 526 V753 Q717 765 705 765 H641 Q629 765 629 753 V526 Q629 514 641 514 Z"/>
+<path fill="url(#shine)" opacity="0.85" fill-rule="evenodd" d="M641 514 H705 Q717 514 717 526 V753 Q717 765 705 765 H641 Q629 765 629 753 V526 Q629 514 641 514 Z"/>
+<g clip-path="url(#shape)">
+<path fill="none" stroke="#087a98" stroke-width="24" d="M641 514 H705 Q717 514 717 526 V753 Q717 765 705 765 H641 Q629 765 629 753 V526 Q629 514 641 514 Z"/>
+<path fill="none" stroke="url(#rim)" stroke-width="17" d="M641 514 H705 Q717 514 717 526 V753 Q717 765 705 765 H641 Q629 765 629 753 V526 Q629 514 641 514 Z"/>
+<path fill="none" stroke="#dcffff" stroke-opacity="0.8" stroke-width="4" d="M641 514 H705 Q717 514 717 526 V753 Q717 765 705 765 H641 Q629 765 629 753 V526 Q629 514 641 514 Z"/>
+</g>
+</svg>

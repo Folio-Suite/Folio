@@ -6,25 +6,37 @@ SPDX-License-Identifier: MIT
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleSignature</key>
+	<string>FOL </string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeName</key>
-			<string>Folio Composer Edition</string>
+			<string>Folio Composer Document</string>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<string>None</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>dev.foliosuite.Composer.Edition</string>
+				<string>app.foliosuite.Composer.Doc</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Folio Composer Archive</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>app.foliosuite.Composer.Archive</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
-			<key>NSDocumentClass</key>
-			<string>FCDocument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>SQLite</string>
 		</dict>
 	</array>
 	<key>UTExportedTypeDeclarations</key>
@@ -32,19 +44,66 @@ SPDX-License-Identifier: MIT
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.data</string>
+				<string>com.apple.package</string>
 				<string>public.content</string>
-				<string>public.database</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Folio Composer Edition</string>
+			<string>Folio Composer Document</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeSymbolName</key>
+				<string>rectangle.split.2x2</string>
+				<key>UTTypeIconText</key>
+				<string>Document</string>
+				<key>UTTypeIconBadgeName</key>
+				<string>EditionIcon</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
-			<string>dev.foliosuite.Composer.Edition</string>
+			<string>app.foliosuite.Composer.Doc</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>fcedition</string>
+					<string>flcpbundle</string>
+				</array>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>FCBK</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.pkware.zip-archive</string>
+				<string>public.content</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Folio Composer Archive</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeSymbolName</key>
+				<string>rectangle.split.2x2</string>
+				<key>UTTypeIconText</key>
+				<string>Archive</string>
+				<key>UTTypeIconBadgeName</key>
+				<string>EditionZipIcon</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>app.foliosuite.Composer.Archive</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>flcp</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/vnd.app.foliosuite.edition+zip</string>
+				</array>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>FCZP</string>
 				</array>
 			</dict>
 		</dict>

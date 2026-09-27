@@ -49,6 +49,17 @@ Menus remain in each application's `Base.lproj/Main.storyboard`. The editor's sc
 
 `InfoPlist.xcstrings` uses Apple's metadata keys and document-type names as lookup keys. These keys are exceptions to the semantic code-key convention. Brand names and shortcut glyphs are not ordinary translatable prose.
 
+Metadata file-type names use **Folio [App] Document** and **Folio [App] Archive**;
+short document-icon labels use **Document** and **Archive**. Here Archive means
+ZIP packaging, not archival-folio completeness. Translate the distinction clearly:
+Spanish and Brazilian Portuguese use “Archivo ZIP” and “Arquivo ZIP” for the
+short archive label; Chinese uses 压缩包 / 壓縮檔. Keep the approved app names
+and use natural local word order rather than concatenating English labels.
+UTIs, MIME types, extensions, OSType tags, badge names, SF Symbol names, and the
+four-byte `FOL ` signature are identifiers and must not enter translation catalogs.
+Catalog compilation verifies resource presence; Finder localization of nested
+icon text remains a separate runtime check.
+
 ## Application names
 
 Localize names case by case when doing so makes their purpose clearer. For this

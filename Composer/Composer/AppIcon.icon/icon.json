@@ -1,0 +1,251 @@
+{
+  "fill-specializations" : [
+    {
+      "value" : {
+        "automatic-gradient" : "extended-gray:1.00000,1.00000",
+        "orientation" : {
+          "start" : {
+            "x" : 0.5,
+            "y" : 1
+          },
+          "stop" : {
+            "x" : 0.5,
+            "y" : 0
+          }
+        }
+      }
+    },
+    {
+      "appearance" : "dark",
+      "value" : {
+        "automatic-gradient" : "extended-gray:0.00000,1.00000"
+      }
+    }
+  ],
+  "groups" : [
+    {
+      "blur-material" : 0.08,
+      "layers" : [
+        {
+          "blend-mode" : "normal",
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "extended-srgb:0.00000,0.78431,0.70196,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "display-p3:0.26053,0.58282,0.53199,1.00000"
+              }
+            }
+          ],
+          "image-name-specializations" : [
+            {
+              "value" : "Header.svg"
+            },
+            {
+              "appearance" : "dark",
+              "value" : "Header-Dark.svg"
+            }
+          ],
+          "name" : "Header",
+          "opacity" : 0.88,
+          "position" : {
+            "scale" : 1.12,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "blend-mode" : "normal",
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "extended-srgb:0.00000,0.75294,0.90980,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "srgb:0.00000,0.57949,0.70022,1.00000"
+              }
+            }
+          ],
+          "image-name-specializations" : [
+            {
+              "value" : "Body.svg"
+            },
+            {
+              "appearance" : "dark",
+              "value" : "Body-Dark.svg"
+            }
+          ],
+          "name" : "Body",
+          "opacity" : 0.88,
+          "position" : {
+            "scale" : 1.12,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "extended-srgb:0.00000,0.75294,0.90980,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "srgb:0.00000,0.57956,0.70030,1.00000"
+              }
+            }
+          ],
+          "image-name-specializations" : [
+            {
+              "value" : "Side.svg"
+            },
+            {
+              "appearance" : "dark",
+              "value" : "Side-Dark.svg"
+            }
+          ],
+          "name" : "Side",
+          "opacity" : 0.88,
+          "position" : {
+            "scale" : 1.12,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "name" : "Composition regions",
+      "position" : {
+        "scale" : 1.12,
+        "translation-in-points" : [
+          0,
+          0
+        ]
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.16
+      },
+      "specular" : true,
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.12
+      }
+    },
+    {
+      "blur-material" : 0.08,
+      "layers" : [
+        {
+          "blend-mode" : "normal",
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "extended-srgb:0.00000,0.53333,1.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "srgb:0.00000,0.39973,0.74950,1.00000"
+              }
+            }
+          ],
+          "hidden" : false,
+          "image-name-specializations" : [
+            {
+              "value" : "Front-page.svg"
+            },
+            {
+              "appearance" : "dark",
+              "value" : "Front-page-Dark.svg"
+            }
+          ],
+          "name" : "Front page",
+          "opacity" : 0.92,
+          "position" : {
+            "scale" : 1.12,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "blend-mode" : "normal",
+          "fill-specializations" : [
+            {
+              "value" : {
+                "solid" : "srgb:0.22000,0.47000,0.74000,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "solid" : "srgb:0.13000,0.28000,0.47000,1.00000"
+              }
+            }
+          ],
+          "glass-specializations" : [
+            {
+              "appearance" : "light",
+              "value" : true
+            }
+          ],
+          "hidden" : false,
+          "image-name-specializations" : [
+            {
+              "value" : "Rear-page.svg"
+            },
+            {
+              "appearance" : "dark",
+              "value" : "Rear-page-Dark.svg"
+            }
+          ],
+          "name" : "Rear page",
+          "opacity" : 0.75,
+          "position" : {
+            "scale" : 1.12,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "name" : "Page pair",
+      "position" : {
+        "scale" : 1.12,
+        "translation-in-points" : [
+          0,
+          0
+        ]
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.3
+      },
+      "specular" : true,
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.12
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : "shared"
+  }
+}

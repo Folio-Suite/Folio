@@ -2,21 +2,92 @@
   "fill-specializations" : [
     {
       "value" : {
-        "solid" : "srgb:0.71000,0.63000,0.90000,1.00000"
+        "automatic-gradient" : "extended-gray:1.00000,1.00000",
+        "orientation" : {
+          "start" : {
+            "x" : 0.5,
+            "y" : 1
+          },
+          "stop" : {
+            "x" : 0.5,
+            "y" : 0
+          }
+        }
       }
     },
     {
       "appearance" : "dark",
       "value" : {
-        "solid" : "srgb:0.13000,0.16000,0.26000,1.00000"
+        "automatic-gradient" : "extended-gray:0.00000,1.00000"
       }
     }
   ],
   "groups" : [
     {
-      "blur-material" : 0.15,
       "layers" : [
         {
+          "blend-mode" : "normal",
+          "fill-specializations" : [
+            {
+              "value" : {
+                "solid" : "srgb:0.48000,0.25000,0.06000,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "solid" : "srgb:0.98000,0.75000,0.35000,1.00000"
+              }
+            }
+          ],
+          "image-name" : "Nib-engraving.svg",
+          "name" : "Nib engraving",
+          "opacity" : 0.65,
+          "position" : {
+            "scale" : 1.05,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "name" : "Nib engraving",
+      "position" : {
+        "scale" : 1.05,
+        "translation-in-points" : [
+          0,
+          0
+        ]
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0
+      },
+      "specular" : false,
+      "translucency" : {
+        "enabled" : false,
+        "value" : 0
+      }
+    },
+    {
+      "blur-material" : 0.08,
+      "layers" : [
+        {
+          "blend-mode" : "normal",
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "srgb:0.95000,0.62000,0.14000,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "srgb:0.73000,0.44000,0.11000,1.00000"
+              }
+            }
+          ],
           "image-name-specializations" : [
             {
               "value" : "Nib.svg"
@@ -26,10 +97,25 @@
               "value" : "Nib-Dark.svg"
             }
           ],
-          "name" : "Nib"
+          "name" : "Nib",
+          "opacity" : 0.92,
+          "position" : {
+            "scale" : 1.05,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
         }
       ],
-      "name" : "Glass nib",
+      "name" : "Glass Write",
+      "position" : {
+        "scale" : 1.05,
+        "translation-in-points" : [
+          0,
+          0
+        ]
+      },
       "shadow" : {
         "kind" : "neutral",
         "opacity" : 0.3
@@ -37,72 +123,7 @@
       "specular" : true,
       "translucency" : {
         "enabled" : true,
-        "value" : 0.35
-      }
-    },
-    {
-      "layers" : [
-        {
-          "glass" : false,
-          "image-name-specializations" : [
-            {
-              "value" : "Horizon.svg"
-            },
-            {
-              "appearance" : "dark",
-              "value" : "Horizon-Dark.svg"
-            }
-          ],
-          "name" : "Horizon reflections"
-        },
-        {
-          "glass" : false,
-          "hidden-specializations" : [
-            {
-              "appearance" : "tinted",
-              "value" : true
-            }
-          ],
-          "image-name-specializations" : [
-            {
-              "value" : "Sun.svg"
-            },
-            {
-              "appearance" : "dark",
-              "value" : "Sun-Dark.svg"
-            }
-          ],
-          "name" : "Setting sun"
-        },
-        {
-          "glass" : false,
-          "hidden-specializations" : [
-            {
-              "appearance" : "tinted",
-              "value" : true
-            }
-          ],
-          "image-name-specializations" : [
-            {
-              "value" : "Sky.svg"
-            },
-            {
-              "appearance" : "dark",
-              "value" : "Sky-Dark.svg"
-            }
-          ],
-          "name" : "Sky"
-        }
-      ],
-      "name" : "Vaporwave sunset",
-      "shadow" : {
-        "kind" : "neutral",
-        "opacity" : 0
-      },
-      "specular" : false,
-      "translucency" : {
-        "enabled" : false,
-        "value" : 0.5
+        "value" : 0.12
       }
     }
   ],

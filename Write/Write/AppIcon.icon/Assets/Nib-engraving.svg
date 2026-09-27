@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<!-- SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT -->
+<path d="M450 251 Q512 271 574 251 M437 305 Q512 331 587 305 M458 373 C400 411 366 466 370 491 C375 524 418 523 430 499 C441 477 427 454 407 463 M566 373 C624 411 658 466 654 491 C649 524 606 523 594 499 C583 477 597 454 617 463 M411 551 Q445 576 471 624 M613 551 Q579 576 553 624" fill="none" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

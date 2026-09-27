@@ -17,6 +17,11 @@ The adopted [Cocoa Suite direction](docs/adr/0009-continue-cocoa-suite-with-doma
 
 The [composition and publication contract](docs/architecture/composition-publication-contract.md) defines Composer's WYSIWYM direction: reusable page templates, coordinated text Streams, user-authored Profiles and Themes, and a native engine built on Apple's typography facilities. Its [paragraph-composition research](docs/research/2026-09-26-native-paragraph-composition.md) and staged experiments distinguish available APIs from capabilities still to be proven.
 
+The current [document file types](docs/document-file-types.md) distinguish each app’s
+native Document from its ZIP Archive. Write and Research support native document
+editing; ZIP handling and Composer’s new document format remain reserved. See
+[icon sources](Design/Icons/README.md) for the shared visual identity.
+
 ## AI-assisted development
 
 Folio uses [Matt Pocock's engineering skills](https://github.com/mattpocock/skills) for architecture, domain modeling, research, implementation, and review. His work is a substantial part of our development workflow. These skills are installed globally for consistency across projects; Folio-specific Cocoa adaptations live in this repository. See [AI skill usage and attribution](docs/ai-skills.md) for the setup, other contributors, and retained source notices.

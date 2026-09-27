@@ -6,23 +6,39 @@ SPDX-License-Identifier: MIT
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleSignature</key>
+	<string>FOL </string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeName</key>
-			<string>Folio Work Document</string>
+			<string>Folio Write Document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>dev.foliosuite.Write.Work</string>
+				<string>app.foliosuite.Write.Doc</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<true/>
 			<key>NSDocumentClass</key>
 			<string>FWDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Folio Write Archive</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>app.foliosuite.Write.Archive</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<false/>
 		</dict>
 	</array>
 	<key>UTExportedTypeDeclarations</key>
@@ -34,14 +50,62 @@ SPDX-License-Identifier: MIT
 				<string>public.content</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Folio Work Document</string>
+			<string>Folio Write Document</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeSymbolName</key>
+				<string>doc.text</string>
+				<key>UTTypeIconText</key>
+				<string>Document</string>
+				<key>UTTypeIconBadgeName</key>
+				<string>WorkIcon</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
-			<string>dev.foliosuite.Write.Work</string>
+			<string>app.foliosuite.Write.Doc</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>fwdoc</string>
+					<string>flwrbundle</string>
+				</array>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>FWBK</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.pkware.zip-archive</string>
+				<string>public.content</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Folio Write Archive</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeSymbolName</key>
+				<string>doc.text</string>
+				<key>UTTypeIconText</key>
+				<string>Archive</string>
+				<key>UTTypeIconBadgeName</key>
+				<string>WorkZipIcon</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>app.foliosuite.Write.Archive</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>flwr</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/vnd.app.foliosuite.work+zip</string>
+				</array>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>FWZP</string>
 				</array>
 			</dict>
 		</dict>

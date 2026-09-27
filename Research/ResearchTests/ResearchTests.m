@@ -11,10 +11,10 @@
 
 @implementation ResearchTests
 - (void)testLibraryPackageIsRecognizedAndPreservesCollectedFilesAcrossSaves {
-    NSString *libraryType = @"dev.foliosuite.Research.Library";
+    NSString *libraryType = @"app.foliosuite.Research.Doc";
     NSURL *directory = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:NSUUID.UUID.UUIDString] isDirectory:YES];
-    NSURL *URL = [directory URLByAppendingPathComponent:@"Library.frlibrary"];
-    NSURL *copyURL = [directory URLByAppendingPathComponent:@"Copy.frlibrary"];
+    NSURL *URL = [directory URLByAppendingPathComponent:@"Library.flrsbundle"];
+    NSURL *copyURL = [directory URLByAppendingPathComponent:@"Copy.flrsbundle"];
     FRDocument *document = [FRDocument new];
     FRDocument *loaded = nil;
     FRDocument *copy = nil;
@@ -61,7 +61,7 @@
     NSError *error = nil;
     NSURL *foreignURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:NSUUID.UUID.UUIDString]];
     @try {
-        NSFileWrapper *original = [document fileWrapperOfType:@"dev.foliosuite.Research.Library" error:&error];
+        NSFileWrapper *original = [document fileWrapperOfType:@"app.foliosuite.Research.Doc" error:&error];
         XCTAssertNotNil(original, @"%@", error);
         if (!original) return;
         NSManagedObjectModel *foreignModel = [NSManagedObjectModel new];
@@ -89,9 +89,9 @@
         for (NSDictionary *members in invalidMembers) {
             error = nil;
             NSFileWrapper *invalid = [[NSFileWrapper alloc] initDirectoryWithFileWrappers:members];
-            XCTAssertFalse([document readFromFileWrapper:invalid ofType:@"dev.foliosuite.Research.Library" error:&error]);
+            XCTAssertFalse([document readFromFileWrapper:invalid ofType:@"app.foliosuite.Research.Doc" error:&error]);
             XCTAssertNotNil(error);
-            XCTAssertEqual([document fileWrapperOfType:@"dev.foliosuite.Research.Library" error:NULL], original);
+            XCTAssertEqual([document fileWrapperOfType:@"app.foliosuite.Research.Doc" error:NULL], original);
         }
     } @finally {
         [document close];

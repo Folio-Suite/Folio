@@ -77,10 +77,12 @@ identity. Do not substitute a successful developer build for this proof.
 3. Launch each app from `/Applications/Folio`. Confirm its native About version,
    menus and localized UI. Write's editor must load its framework storyboard and
    formatting resources. Composer is only expected to display its current shell.
-4. In Write, create a Work, enter distinctive text, save a `.fwdoc`, close it and
+4. In Write, create a Work, enter distinctive text, save a `.flwrbundle`, close it and
    reopen it from Finder. Verify the text. In Research, create and save a
-   `.frlibrary`, close it, and reopen it from Finder. Record native type discovery
-   and any errors. Preserve these files with the proof results.
+   `.flrsbundle`, close it, and reopen it from Finder. Record native type discovery
+   and any errors. Check the native and ZIP type badges separately; ZIP opening
+   and Composer document saving are not implemented for the newly declared types.
+   Preserve these files with the proof results.
 5. Inspect the loaded images of all three app processes with `vmmap PID`; record
    that Folio Kits resolve from `/Library/Frameworks`. For each installed XPC
    executable, run `otool -L` and `otool -l` if command-line tools are available.
@@ -91,6 +93,11 @@ identity. Do not substitute a successful developer build for this proof.
 6. Record results and failures, screenshots where useful, receipt information,
    artifact hash and exact environment. Repeat these checks for the exact final
    distribution artifact when distribution work resumes; development evidence is scoped below.
+
+The historical evidence below uses the then-current `.fwdoc`, `.frlibrary`, and
+`.fcedition` registrations. It does not validate the replacement extensions,
+new document badges, or reserved ZIP/Composer formats. Repeat the relevant
+Finder checks against the final candidate; see [file types](document-file-types.md).
 
 The pre-alpha development installer milestone (#17) is accepted with the Sonoma
 installation and separately identified XPC diagnostic evidence below. On
