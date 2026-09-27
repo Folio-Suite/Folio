@@ -57,6 +57,8 @@ SPDX-License-Identifier: MIT
 				<string>Document</string>
 				<key>UTTypeIconBadgeName</key>
 				<string>EditionIcon</string>
+				<key>UTTypeIconBackgroundName</key>
+				<string>EditionBackground</string>
 			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>app.foliosuite.Composer.Doc</string>
@@ -87,7 +89,9 @@ SPDX-License-Identifier: MIT
 				<key>UTTypeIconText</key>
 				<string>Archive</string>
 				<key>UTTypeIconBadgeName</key>
-				<string>EditionZipIcon</string>
+				<string>EditionIcon</string>
+				<key>UTTypeIconBackgroundName</key>
+				<string>EditionZipBackground</string>
 			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>app.foliosuite.Composer.Archive</string>

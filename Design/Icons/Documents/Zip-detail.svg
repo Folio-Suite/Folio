@@ -1,10 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
 <!-- SPDX-FileCopyrightText: 2026 the Folio Project
 SPDX-License-Identifier: MIT -->
-<g>
-  <rect x="752" y="572" width="112" height="280" rx="24" fill="#f1f3f6" stroke="#6c7889" stroke-width="8"/>
-  <path d="M808 596 V762" fill="none" stroke="#596779" stroke-width="14"/>
-  <path d="M783 607 H808 M808 629 H833 M783 651 H808 M808 673 H833 M783 695 H808 M808 717 H833 M783 739 H808" fill="none" stroke="#596779" stroke-width="16"/>
-  <path d="M787 761 Q808 747 829 761 L834 811 Q808 834 782 811 Z M798 780 V804 H818 V780 Z" fill="#596779" fill-rule="evenodd"/>
+<!-- Background-space zipper: upper-left cue inside the page mask, inset from the color bar and clear of the badge. -->
+<g transform="translate(-337 -207) scale(.7 .55)">
+  <rect x="824" y="594" width="136" height="384" rx="32" fill="#596779" fill-opacity=".16"/>
+  <path d="M868 624 Q892 604 916 624 L925 752 Q925 780 892 780 Q859 780 859 752 Z M877 741 A15 15 0 1 0 907 741 A15 15 0 1 0 877 741 Z" fill="#596779" fill-rule="evenodd"/>
+  <path d="M892 797 V951" fill="none" stroke="#596779" stroke-width="6"/>
+  <path d="M892 807 H925 M859 835 H892 M892 863 H925 M859 891 H892 M892 919 H925 M859 947 H892" fill="none" stroke="#596779" stroke-width="20" stroke-linecap="round"/>
 </g>
 </svg>

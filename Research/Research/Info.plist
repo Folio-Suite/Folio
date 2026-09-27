@@ -60,6 +60,8 @@ SPDX-License-Identifier: MIT
 				<string>Document</string>
 				<key>UTTypeIconBadgeName</key>
 				<string>LibraryIcon</string>
+				<key>UTTypeIconBackgroundName</key>
+				<string>LibraryBackground</string>
 			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>app.foliosuite.Research.Doc</string>
@@ -90,7 +92,9 @@ SPDX-License-Identifier: MIT
 				<key>UTTypeIconText</key>
 				<string>Archive</string>
 				<key>UTTypeIconBadgeName</key>
-				<string>LibraryZipIcon</string>
+				<string>LibraryIcon</string>
+				<key>UTTypeIconBackgroundName</key>
+				<string>LibraryZipBackground</string>
 			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>app.foliosuite.Research.Archive</string>
