@@ -5,8 +5,9 @@
 require 'json'
 require 'base64'
 
-output = File.expand_path(ARGV.fetch(0))
-runs = Dir.glob(File.join(output, '*', 'results.json')).sort.map do |path|
+output = File.expand_path(ARGV.shift || abort('Usage: report.rb output-directory results.json ...'))
+abort 'Pass the result files produced by this run' if ARGV.empty?
+runs = ARGV.map do |path|
   result = JSON.parse(File.read(path))
   result.fetch('cases').each do |item|
     abort "Incomplete evidence: #{path}: #{item['image']}" unless item.fetch('coverage').fetch('complete') && item.fetch('imageWritten')

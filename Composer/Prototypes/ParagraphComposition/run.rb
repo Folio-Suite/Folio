@@ -21,10 +21,12 @@ run!('xcrun', 'clang', '-fobjc-arc', '-Wall', '-Wextra', '-framework', 'AppKit',
      '-framework', 'CoreText', File.join(root, 'main.m'), '-o', binary)
 fixtures = File.join(root, 'fixtures', 'specimens.json')
 run!(binary, '--fixtures', fixtures, '--output', File.join(output, 'times'), '--font', 'Times-Roman')
+result_paths = [File.join(output, 'times', 'results.json')]
 font_runs = []
 Dir.glob(File.join(root, 'fonts', '.build', 'inputs', '*.otf')).sort.each do |font|
   label = File.basename(font, '.otf')
   run!(binary, '--fixtures', fixtures, '--output', File.join(output, label), '--font-file', font)
+  result_paths << File.join(output, label, 'results.json')
   font_runs << { path: font.delete_prefix(root + '/'), sha256: Digest::SHA256.file(font).hexdigest }
 end
 metadata = {
@@ -36,5 +38,5 @@ metadata = {
   os: Open3.capture2('sw_vers').first.strip
 }
 File.write(File.join(output, 'run.json'), JSON.pretty_generate(metadata) + "\n")
-run!(RbConfig.ruby, File.join(root, 'report.rb'), output)
+run!(RbConfig.ruby, File.join(root, 'report.rb'), output, *result_paths)
 puts "Native results: #{output}"
