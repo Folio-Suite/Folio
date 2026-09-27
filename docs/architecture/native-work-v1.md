@@ -17,7 +17,7 @@ For this first slice, NSDocument operates in the Write process. A separately sup
 
 ## Native storage
 
-A `.fwdoc` package has UTI `dev.foliosuite.Write.Work` and contains `Work.sqlite`, a Core Data SQLite store. XML belongs to the later complete-folio import/export path and is not this native representation.
+A `.flwrbundle` package has UTI `app.foliosuite.Write.Doc` and contains `Work.sqlite`, a Core Data SQLite store. XML belongs to the later complete-folio import/export path and is not this native representation.
 
 The versioned Xcode model `Write/WriteKit/Resources/FWWork.xcdatamodeld` is the authoritative schema. Its current `FWWorkV1` version defines Work, Manuscript, ContentUnit, Paragraph, and Run entities. Open it in Xcode’s data model editor to inspect attributes, inverses, validation, and deletion rules. The Work owns its Content Units and Manuscript; the Manuscript arranges them through its ordered `contentUnits` relationship. Paragraphs and runs also use native ordered to-many relationships. Each relationship has an inverse, including the optional Manuscript placement on a Content Unit. Supported numeric ranges are expressed in the model; the persistence adapter validates identifier uniqueness across the Work. Work, Manuscript, Content Unit, and paragraphs retain independent identifiers. Paragraph alignment is authored presentation. Run emphasis is one exclusive enum value: None, Emphasis, Strong Emphasis, or Very Strong Emphasis. Bold, Italic, Underline, and Strikethrough are four independent Boolean attributes. ContentUnit also stores its display `title` and `formattingWarningDismissed`. The public Foundation model groups those booleans in immutable `FKTextPresentation`, separately from `FKTextRun.emphasis`.
 

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<!-- SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT -->
+
+<path d="M272 224 L565 194 Q589 192 592 219 L595.89 284 H443 Q378 284 378 349 V733.33 L295 741 Q271 743 269 719 L246 251 Q245 227 272 224 Z" fill="#3587e7"/>
+<path d="M443 324 H734 L765 355 V793 Q765 816 742 816 H443 Q418 816 418 791 V349 Q418 324 443 324 Z" fill="#3587e7"/>
+</svg>

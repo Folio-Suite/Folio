@@ -5,7 +5,7 @@
 #import "FWWorkStore.h"
 #import <FolioKit/FolioKit.h>
 
-NSString * const FWWorkDocumentType = @"dev.foliosuite.Write.Work";
+NSString * const FWWorkDocumentType = @"app.foliosuite.Write.Doc";
 
 @implementation FWWork
 - (instancetype)init {

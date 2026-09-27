@@ -28,6 +28,8 @@ Public interface documentation lives with each Kit: [FolioKit](../FolioKit/Folio
 - [Development CI](development-ci.md): workflow triggers, native test signing, local checks, and dated validation evidence.
 - [Suite version and build identity](release-numbering.md): configured identity and recording completed build candidates.
 - [Suite installer](installer.md): package construction and the separate clean-install proof.
+- [Document file types](document-file-types.md): public names, bundle/ZIP extensions, UTIs, MIME types, legacy codes, and currently supported operations.
+- [App and document icons](../Design/Icons/README.md): authoritative artwork, asset catalogs, accent colors, and regeneration.
 - [Localization](localization.md): source strings, catalogs, translation policy, and resource ownership.
 - [AI skill usage and attribution](ai-skills.md): global workflows, local adaptations, and upstream credits.
 

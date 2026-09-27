@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<!-- SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+<g xmlns="http://www.w3.org/2000/svg"><path d="M272 224 L565 194 Q589 192 592 219 L597.74 315 H443 Q409 315 409 349 V730.47 L295 741 Q271 743 269 719 L246 251 Q245 227 272 224 Z" fill="#7196bf" stroke="#3879b2" stroke-width="5" /><path d="M443 324 H734 L765 355 V793 Q765 816 742 816 H443 Q418 816 418 791 V349 Q418 324 443 324 Z" fill="#3587e7" stroke="#3879b2" stroke-width="5" /><path d="M473 383 H705 Q717 383 717 395 V449 Q717 461 705 461 H473 Q461 461 461 449 V395 Q461 383 473 383 Z" fill="#52bfc2" stroke="#3879b2" stroke-width="5" /><path d="M473 514 H585 Q597 514 597 526 V753 Q597 765 585 765 H473 Q461 765 461 753 V526 Q461 514 473 514 Z" fill="#64c9ee" stroke="#3879b2" stroke-width="5" /><path d="M641 514 H705 Q717 514 717 526 V753 Q717 765 705 765 H641 Q629 765 629 753 V526 Q629 514 641 514 Z" fill="#64c9ee" stroke="#3879b2" stroke-width="5" /></g></svg>

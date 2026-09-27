@@ -7,6 +7,14 @@ SPDX-License-Identifier: MIT
 
 Research date: 2026-09-08. This report proposes conventions; it does not change the native format, adopt a conformance specification, or select a ZIP implementation.
 
+## Later naming update — 26 September 2026
+
+The extension examples below retain the research-era names. Current native
+extensions are `.flwrbundle`, `.flrsbundle`, and reserved `.flcpbundle`; ZIP
+extensions are `.flwr`, `.flrs`, and `.flcp`. See [current file types](../document-file-types.md)
+for identifiers and implementation status. Those registrations do not adopt this
+report’s proposed internal XML layout or establish archival completeness.
+
 ## Recommendation
 
 Arrange the native directory package so its reusable assets can retain their paths in an exported folio. Give package metadata a predictable location, separate the private working store from portable content, and make the eventual archive writer consume a prepared directory tree.
