@@ -84,7 +84,11 @@ class PackagePayloadTest < Minitest::Test
         File.write(File.join(framework_root, 'libswiftCompatibilitySpan.dylib'), 'Swift compatibility runtime')
       end
 
-      output = File.join(directory, 'package')
+      # A /tmp-style parent alias must not make an internal payload link look escaped.
+      alias_directory = File.join(directory, 'alias')
+      File.symlink(directory, alias_directory)
+      File.symlink('Base.lproj', File.join(products, 'Write.app/Contents/Resources/LocalizedResources'))
+      output = File.join(alias_directory, 'package')
       message, status = Open3.capture2e('ruby', File.expand_path('../package.rb', __dir__),
         '--candidate', candidate, '--products', products, '--output', output)
       assert status.success?, message
@@ -105,6 +109,7 @@ class PackagePayloadTest < Minitest::Test
       end
       assert_equal 'Swift compatibility runtime', File.read(File.join(expanded,
         'Payload/Applications/Folio/Write.app/Contents/Frameworks/libswiftCompatibilitySpan.dylib'))
+      assert File.symlink?(File.join(expanded, 'Payload/Applications/Folio/Write.app/Contents/Resources/LocalizedResources'))
       assert_empty Dir.glob(File.join(expanded, '**', '*.xctest'))
       assert_includes File.read(File.join(expanded, 'PackageInfo')), 'identifier="dev.foliosuite.Suite"'
       assert_includes File.read(File.join(expanded, 'PackageInfo')), 'version="0.1.0.7"'

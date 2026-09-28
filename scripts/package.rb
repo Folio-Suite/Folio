@@ -74,7 +74,7 @@ class SuitePackage
       raise "Missing required resource: #{resource}" unless File.file?(File.join(products, resource))
     end
     FileUtils.mkdir_p(output)
-    root = File.join(output, 'payload')
+    root = File.join(resolved_output, 'payload')
     bundles.each do |bundle|
       parent = File.join(root, bundle.end_with?('.app') ? 'Applications/Folio' : 'Library/Frameworks')
       FileUtils.mkdir_p(parent)
