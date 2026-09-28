@@ -4,6 +4,5 @@
 // Supported headers only; embedded libraries are private implementation.
 framework module ResearchKit {
     header "ResearchKit.h"
-    header "FRLibraryPackage.h"
     export *
 }

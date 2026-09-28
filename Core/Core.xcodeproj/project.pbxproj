@@ -104,7 +104,6 @@
 		A1641C25306ACB22004824F1 /* Exceptions for "ResearchKit" folder in "ResearchKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			publicHeaders = (
-				FRLibraryPackage.h,
 				ResearchKit.h,
 			);
 			target = A1641C15306ACB22004824F1 /* ResearchKit */;

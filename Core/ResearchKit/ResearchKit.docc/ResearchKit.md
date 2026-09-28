@@ -13,11 +13,11 @@ ResearchKit owns the domain framework boundary for Source Library behavior. The 
 
 ## Current support
 
-``FRLibraryPackage`` creates an empty native Source Library package and validates its catalog store. This supports the current Research shell; it does not populate or edit a Source catalog.
+``ResearchLibraryPackage`` creates an empty native Source Library package and validates its catalog store. It retains additional package members, rejects live SQLite sidecars, and checks the catalog model version. This supports the current Research shell; it does not populate or edit a Source catalog.
 
 ## Public interface and hosting
 
-Objective-C callers import `<ResearchKit/ResearchKit.h>` or use `@import ResearchKit;`. The owning application uses the same public interface as other hosts. Only headers listed by ResearchKit's module map are supported. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
+Swift callers import `ResearchKit` and use its public package API. The owning application uses the same public interface as other hosts. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
 
 ## Limitations
 
@@ -27,4 +27,4 @@ Source catalog editing and cross-application service operations are not implemen
 
 ### Native packages
 
-- ``FRLibraryPackage``
+- ``ResearchLibraryPackage``
