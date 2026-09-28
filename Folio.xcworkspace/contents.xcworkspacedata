@@ -5,13 +5,19 @@
       location = "group:Composer/Composer.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:FolioKit/FolioKit.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Research/Research.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Write/Write.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:FolioKit/FolioKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:UndoKit/UndoKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:TypographyKit/TypographyKit.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Folio.xctestplan">

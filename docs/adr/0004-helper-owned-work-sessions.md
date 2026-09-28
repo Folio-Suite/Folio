@@ -9,7 +9,7 @@ Amended on 2026-09-13 by [issue #15](https://github.com/Folio-Suite/Folio/issues
 
 Write owns Work capabilities, Research owns Source Library capabilities, and Composer owns Arrangement capabilities, including Editions as subsequently established by [ADR 0011](0011-composer-arrangements-and-editions.md). Their Kits define models, operations, persistence adapters, and reusable presentation; the owning domain's application or service host manages authoritative open instances. Applications primarily configure and host these capabilities. Other applications request operations through the owning domain's interfaces.
 
-This preserves specialized desktop applications while removing the central menu bar application requirement. A framework loaded by multiple processes shares implementation, not in-memory authority. XPC is a candidate service transport; exact host packaging and supervision remain open.
+This preserves specialized desktop applications while removing the central menu bar application requirement. A framework loaded by multiple processes shares implementation, not in-memory authority. The 2026-09-27 lifecycle decision in [ADR 0013](0013-document-lifecycle-and-project-archives.md) selects shared, on-demand domain hosts for the logged-in user. Clients can activate the appropriate domain without opening its application interface, and quitting that interface does not interrupt other active clients. Per-user LaunchAgents provide a hosting mechanism; exact executable packaging, registration, protocols, and supervision remain implementation work.
 
 The Undo rule is subsequently amended by [ADR 0010](0010-document-undo-and-durable-history.md): accepted edits follow document-wide ordering across applications and automation.
 
@@ -21,4 +21,4 @@ The Undo rule is subsequently amended by [ADR 0010](0010-document-undo-and-durab
 - Native Auto Save, Document Versions, Save, Close, Quit, and restoration are architectural requirements. A private recovery store alone does not satisfy the native document experience.
 - Owner startup, shutdown with active clients, recovery supervision, transport, and packaging remain to be proven. Safety does not depend on a particular presentation window remaining open. Native packages and separate archival folio export remain established by [ADR 0005](0005-native-packages-and-archival-folios.md).
 
-The retained behavior and remaining proofs are recorded in [the Work Session contract](../architecture/work-session-contract.md). The current applications host documents in process; cross-application authority is not implemented by this amendment.
+The retained behavior and remaining proofs are recorded in [the Work Session contract](../architecture/work-session-contract.md) and [document lifecycle contract](../architecture/document-lifecycle-contract.md). The current applications host documents in process; cross-application authority is not implemented by these decisions.

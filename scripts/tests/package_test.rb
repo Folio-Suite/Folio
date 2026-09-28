@@ -28,7 +28,7 @@ class PackagePayloadTest < Minitest::Test
       File.write(File.join(candidate, 'release.json'), JSON.generate({
         'schema' => 1, 'numbering' => 'Shared configuration', 'dirty' => false,
         'revision' => 'a' * 40, 'version' => '0.1.0', 'build' => '7' }))
-      bundles = %w[Write.app Research.app Composer.app FolioKit.framework WriteKit.framework ResearchKit.framework ComposerKit.framework]
+      bundles = %w[Write.app Research.app Composer.app FolioKit.framework WriteKit.framework ResearchKit.framework ComposerKit.framework UndoKit.framework TypographyKit.framework]
       bundles += %w[Write Research Composer].map { |app| "#{app}.app/Contents/XPCServices/#{app}XPCService.xpc" }
       bundles.each do |bundle|
         name = File.basename(bundle).split('.').first

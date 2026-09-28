@@ -7,6 +7,20 @@ SPDX-License-Identifier: MIT
 
 Research date: 2026-09-08. This report proposes conventions; it does not change the native format, adopt a conformance specification, or select a ZIP implementation.
 
+## Later lifecycle decision — 27 September 2026
+
+[ADR 0013](../adr/0013-document-lifecycle-and-project-archives.md) selects one
+Suite-wide `.folio` archive with one default-named Project describing its parts
+and relationships. Native app-specific bundles remain separate. Content and
+history/Undo receive documented XML representations; archives are imported and
+exported. The per-app `.flwr`, `.flrs`, and `.flcp` archive types remain for
+exports scoped to a native Document. The Project archive broadens the Work-only
+discovery examples below. Exact element names, paths, container conventions,
+and algorithms in this research remain proposals. Consult the
+[archival contract](../architecture/archival-folio-contract.md) and
+[registration inventory](../document-file-types.md) for the approved scope and
+the distinct current implementation state.
+
 ## Later naming update — 26 September 2026
 
 The extension examples below retain the research-era names. Current native

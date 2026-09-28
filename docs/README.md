@@ -13,15 +13,21 @@ The [ADRs](adr/) record decisions and their rationale. Later amendments identify
 
 - [Semantic model and Profiles](architecture/semantic-model-contract.md)
 - [Work Session authority](architecture/work-session-contract.md)
+- [Native document lifecycle](architecture/document-lifecycle-contract.md), including shared host lifetime, compatibility, upgrades, and native Versions
 - [Native packages and archival folios](architecture/archival-folio-contract.md)
 - [Source Libraries and evidence](architecture/source-library-contract.md)
+- [Professional workflows and embedded editing](architecture/professional-workflow-contract.md), including capture destinations and handoff between applications
 - [Document history and Undo](architecture/semantic-history-contract.md)
 - [Composer Arrangements and Editions](architecture/arrangement-contract.md)
 - [Composition and publication](architecture/composition-publication-contract.md), including the staged typography and coordinated-Stream experiments
 
 For the implementation that exists today, read the [current library layout](architecture/current-library-layout.md) and [first Write editor notes](architecture/native-work-v1.md). The [first native shell specification](specs/first-native-shell.md) retains the historical specification and records acceptance at pre-alpha scope; its retired requirements are not current gates. Composer's framework and document shells do not yet implement the composition contract.
 
-Public interface documentation lives with each Kit: [FolioKit](../FolioKit/FolioKit/FolioKit.docc/FolioKit.md), [WriteKit](../Write/WriteKit/WriteKit.docc/WriteKit.md), [ResearchKit](../Research/ResearchKit/ResearchKit.docc/ResearchKit.md), and [ComposerKit](../Composer/ComposerKit/ComposerKit.docc/ComposerKit.md). Build these DocC catalogs in Xcode for symbol navigation.
+The [Swift migration and Suite roadmap](plans/swift-migration-and-suite-roadmap.md) synthesizes the accepted architecture into a proposed work sequence. Only the bounded U0 UndoKit import and T0 TypographyKit Swift scaffold are approved. The full Swift migration and real TypographyKit compositor remain under review alongside [Plan the Swift migration and TypographyKit foundation](https://github.com/Folio-Suite/Folio/issues/29), which now contains 53 user stories.
+
+UndoKit source and design provenance are imported as an independent framework scaffold. See its [upstream provenance](../UndoKit/UPSTREAM.md), [dated design inventory](../UndoKit/docs/imported-design/README.md), and [original design map](https://github.com/ctwelve/UndoKit/issues/1). Issue #6 remains an open, unblocked acceptance/recovery decision; the scaffold is not a working history engine. The original upstream repository remains untouched.
+
+TypographyKit now has a Swift framework scaffold; it does not yet provide composition behavior. The current Suite production frameworks remain Objective-C. Public interface documentation lives with each Kit: [FolioKit](../FolioKit/FolioKit/FolioKit.docc/FolioKit.md), [WriteKit](../Write/WriteKit/WriteKit.docc/WriteKit.md), [ResearchKit](../Research/ResearchKit/ResearchKit.docc/ResearchKit.md), [ComposerKit](../Composer/ComposerKit/ComposerKit.docc/ComposerKit.md), [UndoKit](../UndoKit/UndoKit/UndoKit.docc/UndoKit.md), and [TypographyKit](../TypographyKit/TypographyKit/TypographyKit.docc/TypographyKit.md). Build these DocC catalogs in Xcode for symbol navigation.
 
 ## Development and distribution
 

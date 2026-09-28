@@ -57,6 +57,18 @@ class KitInterfaceCheck
       Dir.glob("#{ROOT}/#{project}/#{kit}/**/*.h").each { |path| owners[File.realpath(path)] = kit }
     end
     check(minimum_versions.size == 1, 'Kits must share a coordinated deployment target')
+    standalone_minimum_versions = {}
+    {'UndoKit' => 'UndoKit', 'TypographyKit' => 'TypographyKit'}.each do |kit, project|
+      framework = "#{products}/#{kit}.framework"
+      info = JSON.parse(capture('plutil', '-convert', 'json', '-o', '-', "#{framework}/Resources/Info.plist"))
+      standalone_minimum_versions[kit] = info.fetch('LSMinimumSystemVersion')
+      check(standalone_minimum_versions[kit] == '14.0', "#{kit} must target macOS 14.0")
+      if kit == 'UndoKit'
+        module_map = File.read("#{ROOT}/#{project}/#{kit}/#{kit}.modulemap")
+        check(File.read("#{framework}/Modules/module.modulemap") == module_map,
+              'UndoKit build did not use its explicit module map')
+      end
+    end
 
     # A Kit's implementation may use local headers; all other callers use published paths.
     by_name = owners.each_with_object({}) { |(path, kit), result| result[File.basename(path)] = [path, kit] }
@@ -112,6 +124,32 @@ class KitInterfaceCheck
         _, error, status = Open3.capture3(*common, '-fsyntax-only', source, chdir: stage)
         check(!status.success? && error.include?("module '#{name}' not found"),
               "Implementation folder must not be a public module: #{name}\n#{error}")
+      end
+
+      # These frameworks must be consumable without any Folio Kit beside them.
+      # Keep each consumer's framework search path limited to its own staged copy.
+      {'UndoKit' => %w[UndoKitConsumer.m UndoKitConsumer.swift],
+       'TypographyKit' => %w[TypographyKitConsumer.swift]}.each do |kit, fixture_names|
+        isolated = File.join(stage, "isolated-#{kit}")
+        FileUtils.mkdir_p(isolated)
+        FileUtils.cp_r("#{products}/#{kit}.framework", isolated, preserve: true)
+        fixture_names.each do |fixture_name|
+          fixture = File.join(ROOT, 'scripts/interface-checks', fixture_name)
+          if fixture_name.end_with?('.m')
+            command = ['xcrun', 'clang', '-isysroot', sdk, '-fobjc-arc', '-fmodules',
+                       "-mmacosx-version-min=#{standalone_minimum_versions.fetch(kit)}", "-fmodules-cache-path=#{isolated}/ModuleCache",
+                       '-F', isolated, fixture, '-framework', 'Foundation', '-framework', kit,
+                       '-Werror', '-Wl,-fatal_warnings', '-o', "#{isolated}/consumer-objc"]
+            check(system(*command, chdir: isolated), 'isolated UndoKit Objective-C consumer compile/link failed')
+          else
+            %w[arm64 x86_64].each do |architecture|
+              command = ['xcrun', 'swiftc', '-sdk', sdk, '-target', "#{architecture}-apple-macosx#{standalone_minimum_versions.fetch(kit)}",
+                         '-F', isolated, '-framework', kit, '-module-cache-path', "#{isolated}/ModuleCache",
+                         fixture, '-o', "#{isolated}/consumer-#{fixture_name}-#{architecture}"]
+              check(system(*command, chdir: isolated), "isolated #{kit} Swift consumer compile/link failed for #{architecture}")
+            end
+          end
+        end
       end
     end
     puts 'Kit interfaces passed: exact published headers, caller imports, isolated compile/link, and private import rejection.'

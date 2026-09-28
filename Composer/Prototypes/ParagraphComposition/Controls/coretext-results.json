@@ -1,0 +1,690 @@
+{
+  "allAssertionsPassed" : true,
+  "cases" : [
+    {
+      "actualRangesUTF16" : [
+        [
+          0,
+          5
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "approvedBreakUTF16" : [
+        5
+      ],
+      "boundaryAccepted" : true,
+      "boundaryReason" : "approved grapheme boundary",
+      "claim" : "Caller supplied exact UTF-16 ranges to CTTypesetterCreateLine; Core Text shaped each intact line.",
+      "id" : "explicit-source-ranges",
+      "image" : "exact-break.png",
+      "imageWritten" : true,
+      "lines" : [
+        {
+          "advancePoints" : 23.982421875,
+          "ascentPoints" : 9,
+          "descentPoints" : 3,
+          "glyphRuns" : 1,
+          "inkBoundsAtOriginPoints" : {
+            "height" : 7.083984375,
+            "width" : 23.724609375,
+            "x" : 0.234375,
+            "y" : -0.140625
+          },
+          "leadingPoints" : 0,
+          "originXPoints" : 0,
+          "rawAdvancePoints" : 23.982421875
+        },
+        {
+          "advancePoints" : 40.65234375,
+          "ascentPoints" : 9,
+          "descentPoints" : 3,
+          "glyphRuns" : 1,
+          "inkBoundsAtOriginPoints" : {
+            "height" : 10.81640625,
+            "width" : 40.037109375,
+            "x" : 0.3046875,
+            "y" : -2.625
+          },
+          "leadingPoints" : 0,
+          "originXPoints" : 0,
+          "rawAdvancePoints" : 40.65234375
+        }
+      ],
+      "requestedRangesUTF16" : [
+        [
+          0,
+          5
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "source" : "extraordinary",
+      "sourceCoverageComplete" : true,
+      "status" : "pass"
+    },
+    {
+      "approvedBreakUTF16" : [
+        5
+      ],
+      "claim" : "The caller inserts a visible hyphen in a derived first line after selecting an approved break; the logical source has no hyphen.",
+      "derivedLineSourceMap" : [
+        {
+          "line" : 1,
+          "renderedRangeUTF16" : [
+            0,
+            5
+          ],
+          "sourceRangeUTF16" : [
+            0,
+            5
+          ]
+        },
+        {
+          "line" : 1,
+          "renderedRangeUTF16" : [
+            5,
+            1
+          ],
+          "role" : "discretionary prebreak hyphen",
+          "sourceRangeUTF16" : null
+        },
+        {
+          "line" : 2,
+          "renderedRangeUTF16" : [
+            0,
+            8
+          ],
+          "sourceRangeUTF16" : [
+            5,
+            8
+          ]
+        }
+      ],
+      "id" : "caller-discretionary-hyphen",
+      "image" : "discretionary-hyphen.png",
+      "imageWritten" : true,
+      "lines" : [
+        {
+          "advancePoints" : 27.978515625,
+          "ascentPoints" : 9,
+          "descentPoints" : 3,
+          "glyphRuns" : 1,
+          "inkBoundsAtOriginPoints" : {
+            "height" : 7.083984375,
+            "width" : 27.1640625,
+            "x" : 0.234375,
+            "y" : -0.140625
+          },
+          "leadingPoints" : 0,
+          "originXPoints" : 0,
+          "rawAdvancePoints" : 27.978515625
+        },
+        {
+          "advancePoints" : 40.65234375,
+          "ascentPoints" : 9,
+          "descentPoints" : 3,
+          "glyphRuns" : 1,
+          "inkBoundsAtOriginPoints" : {
+            "height" : 10.81640625,
+            "width" : 40.037109375,
+            "x" : 0.3046875,
+            "y" : -2.625
+          },
+          "leadingPoints" : 0,
+          "originXPoints" : 0,
+          "rawAdvancePoints" : 40.65234375
+        }
+      ],
+      "logicalSource" : "extraordinary",
+      "originalSourcePreserved" : true,
+      "renderedLines" : [
+        "extra-",
+        "ordinary"
+      ],
+      "sourceUTF16Length" : 13,
+      "status" : "pass"
+    },
+    {
+      "attempts" : [
+        {
+          "accepted" : false,
+          "approvedBreakUTF16" : [
+            5
+          ],
+          "reason" : "offset is outside caller approved break set",
+          "requestedBreakUTF16" : 3,
+          "source" : "extraordinary"
+        },
+        {
+          "accepted" : false,
+          "approvedBreakUTF16" : [
+            1
+          ],
+          "reason" : "offset splits a composed character sequence",
+          "requestedBreakUTF16" : 1,
+          "source" : "ábc"
+        }
+      ],
+      "claim" : "Caller validation rejects an unapproved break and a composed-cluster midpoint before line creation.",
+      "id" : "reject-invalid-breaks",
+      "status" : "pass",
+      "typesetterCalledForRejectedInputs" : false
+    },
+    {
+      "actualRangeUTF16" : [
+        0,
+        8
+      ],
+      "advancePoints" : 85.359375,
+      "claim" : "An exact line may exceed the requested measure. The caller reports overflow; no automatic rebreak occurs.",
+      "id" : "explicit-overfull-line",
+      "image" : "overfull.png",
+      "imageWritten" : true,
+      "line" : {
+        "advancePoints" : 85.359375,
+        "ascentPoints" : 9,
+        "descentPoints" : 3,
+        "glyphRuns" : 1,
+        "inkBoundsAtOriginPoints" : {
+          "height" : 7.939453125,
+          "width" : 84.9140625,
+          "x" : 0.134765625,
+          "y" : 0
+        },
+        "leadingPoints" : 0,
+        "originXPoints" : 0,
+        "rawAdvancePoints" : 85.359375
+      },
+      "measurePoints" : 20,
+      "overflowPoints" : 65.359375,
+      "overfull" : true,
+      "requestedRangeUTF16" : [
+        0,
+        8
+      ],
+      "source" : "MMMMMMMM",
+      "status" : "pass"
+    },
+    {
+      "caretOffsetDeltaPoints" : 1.25,
+      "caretOffsetsByUTF16IndexPoints" : [
+        [
+          0,
+          0
+        ],
+        [
+          8.666015625,
+          8.916015625
+        ],
+        [
+          17.33203125,
+          18.08203125
+        ],
+        [
+          25.998046875,
+          27.248046875
+        ],
+        [
+          34.6640625,
+          36.1640625
+        ]
+      ],
+      "claim" : "A caller supplied fixed kCTTrackingAttributeName value moves the fourth glyph origin by three 0.5 pt intervals. Core Text caret offset is reported separately.",
+      "expectedGlyphOriginDeltaPoints" : 1.5,
+      "glyphOriginAtIndex3DeltaPoints" : 1.5,
+      "glyphOriginsPoints" : [
+        [
+          0,
+          8.666015625,
+          17.33203125,
+          25.998046875
+        ],
+        [
+          0,
+          9.166015625,
+          18.33203125,
+          27.498046875
+        ]
+      ],
+      "id" : "fixed-tracking",
+      "image" : "tracking.png",
+      "imageWritten" : true,
+      "lines" : [
+        {
+          "advancePoints" : 34.6640625,
+          "ascentPoints" : 9,
+          "descentPoints" : 3,
+          "glyphRuns" : 1,
+          "inkBoundsAtOriginPoints" : {
+            "height" : 7.939453125,
+            "width" : 34.189453125,
+            "x" : 0.193359375,
+            "y" : 0
+          },
+          "leadingPoints" : 0,
+          "originXPoints" : 0,
+          "rawAdvancePoints" : 34.6640625
+        },
+        {
+          "advancePoints" : 36.6640625,
+          "ascentPoints" : 9,
+          "descentPoints" : 3,
+          "glyphRuns" : 1,
+          "inkBoundsAtOriginPoints" : {
+            "height" : 7.939453125,
+            "width" : 35.689453125,
+            "x" : 0.193359375,
+            "y" : 0
+          },
+          "leadingPoints" : 0,
+          "originXPoints" : 0,
+          "rawAdvancePoints" : 36.6640625
+        }
+      ],
+      "measuredOffsetAtUTF16Index3Points" : [
+        25.998046875,
+        27.248046875
+      ],
+      "status" : "pass",
+      "text" : "HHHH",
+      "tolerancePoints" : 0.050000000000000003,
+      "trackingValuesPoints" : [
+        0,
+        0.5
+      ]
+    },
+    {
+      "claim" : "Core Text exposes a hanging punctuation bounds option; measured frame origins and ink bounds record what it did for this fixture. No caller percentage is claimed.",
+      "expectedInkLeftShiftPoints" : -5.326171875,
+      "frameOriginsPoints" : [
+        {
+          "lineCount" : 1,
+          "x" : 0,
+          "y" : 49
+        },
+        {
+          "lineCount" : 1,
+          "x" : 0,
+          "y" : 49
+        }
+      ],
+      "hangingOptionLineBoundsPoints" : {
+        "height" : 14.4,
+        "width" : 67.658203125,
+        "x" : 0,
+        "y" : -3
+      },
+      "id" : "built-in-hanging-punctuation",
+      "image" : "hanging-built-in.png",
+      "imageWritten" : true,
+      "lineOriginDeltaXPoints" : 0,
+      "measuredOpeningQuoteAdvancePoints" : 5.326171875,
+      "observedInkLeftShiftPoints" : -5.326171875,
+      "option" : "kCTLineBoundsUseHangingPunctuation",
+      "optionInkBoundsPoints" : {
+        "height" : 10.330078125,
+        "width" : 77.5078125,
+        "x" : -5.00390625,
+        "y" : -2.138671875
+      },
+      "paragraphStyleSpecifier" : "kCTParagraphStyleSpecifierLineBoundsOptions",
+      "plainInkBoundsPoints" : {
+        "height" : 10.330078125,
+        "width" : 77.5078125,
+        "x" : 0.322265625,
+        "y" : -2.138671875
+      },
+      "plainLineBoundsPoints" : {
+        "height" : 14.4,
+        "width" : 78.310546875,
+        "x" : 0,
+        "y" : -3
+      },
+      "status" : "pass",
+      "text" : "“Quoted words”",
+      "tolerancePoints" : 0.050000000000000003
+    },
+    {
+      "claim" : "Folio shifts an intact shaped line by 0, 50, or 100 percent of the measured opening quote advance. This moves the interior text with the quote; a fixed interior anchor needs further caller layout work.",
+      "constructedOriginAndInkEquation" : true,
+      "id" : "caller-opening-quote-protrusion",
+      "image" : "caller-protrusion.png",
+      "imageWritten" : true,
+      "samples" : [
+        {
+          "chosenOriginXPoints" : -0,
+          "line" : {
+            "advancePoints" : 78.310546875,
+            "ascentPoints" : 9,
+            "descentPoints" : 3,
+            "glyphRuns" : 1,
+            "inkBoundsAtOriginPoints" : {
+              "height" : 10.330078125,
+              "width" : 77.5078125,
+              "x" : 0.322265625,
+              "y" : -2.138671875
+            },
+            "leadingPoints" : 0,
+            "originXPoints" : -0,
+            "rawAdvancePoints" : 78.310546875
+          },
+          "measuredOpeningQuoteAdvancePoints" : 5.326171875,
+          "requestedProtrusionFraction" : 0
+        },
+        {
+          "chosenOriginXPoints" : -2.6630859375,
+          "line" : {
+            "advancePoints" : 78.310546875,
+            "ascentPoints" : 9,
+            "descentPoints" : 3,
+            "glyphRuns" : 1,
+            "inkBoundsAtOriginPoints" : {
+              "height" : 10.330078125,
+              "width" : 77.5078125,
+              "x" : -2.3408203125,
+              "y" : -2.138671875
+            },
+            "leadingPoints" : 0,
+            "originXPoints" : -2.6630859375,
+            "rawAdvancePoints" : 78.310546875
+          },
+          "measuredOpeningQuoteAdvancePoints" : 5.326171875,
+          "requestedProtrusionFraction" : 0.5
+        },
+        {
+          "chosenOriginXPoints" : -5.326171875,
+          "line" : {
+            "advancePoints" : 78.310546875,
+            "ascentPoints" : 9,
+            "descentPoints" : 3,
+            "glyphRuns" : 1,
+            "inkBoundsAtOriginPoints" : {
+              "height" : 10.330078125,
+              "width" : 77.5078125,
+              "x" : -5.00390625,
+              "y" : -2.138671875
+            },
+            "leadingPoints" : 0,
+            "originXPoints" : -5.326171875,
+            "rawAdvancePoints" : 78.310546875
+          },
+          "measuredOpeningQuoteAdvancePoints" : 5.326171875,
+          "requestedProtrusionFraction" : 1
+        }
+      ],
+      "status" : "demonstrated",
+      "text" : "“Quoted words”"
+    },
+    {
+      "claim" : "The caller repositions only the opening quote glyph extracted from a fully shaped Core Text line. Separate 4x raster bounds verify the quote moves by the requested amount while all interior glyph ink remains fixed. This is Folio-owned glyph drawing, without text hit-testing or selection integration.",
+      "id" : "quote-only-glyph-positioning",
+      "image" : "quote-only-glyph-positioning.png",
+      "imageWritten" : true,
+      "interiorGlyphCount" : 13,
+      "measuredOpeningQuoteAdvancePoints" : 5.326171875,
+      "openingQuoteGlyphCount" : 1,
+      "rasterPositionTolerancePoints" : 0.34999999999999998,
+      "rasterScale" : 4,
+      "samples" : [
+        {
+          "observedInteriorLeftShiftPoints" : 0,
+          "observedInteriorRightShiftPoints" : 0,
+          "observedQuoteLeftShiftPoints" : 0,
+          "rasterInteriorBoundsPoints" : {
+            "hasInk" : true,
+            "leftXPoints" : 5.5,
+            "rasterScale" : 4,
+            "rightXPoints" : 77.75
+          },
+          "rasterQuoteBoundsPoints" : {
+            "hasInk" : true,
+            "leftXPoints" : 0.25,
+            "rasterScale" : 4,
+            "rightXPoints" : 5
+          },
+          "requestedProtrusionFraction" : 0,
+          "requestedQuoteShiftPoints" : -0
+        },
+        {
+          "observedInteriorLeftShiftPoints" : 0,
+          "observedInteriorRightShiftPoints" : 0,
+          "observedQuoteLeftShiftPoints" : -2.75,
+          "rasterInteriorBoundsPoints" : {
+            "hasInk" : true,
+            "leftXPoints" : 5.5,
+            "rasterScale" : 4,
+            "rightXPoints" : 77.75
+          },
+          "rasterQuoteBoundsPoints" : {
+            "hasInk" : true,
+            "leftXPoints" : -2.5,
+            "rasterScale" : 4,
+            "rightXPoints" : 2.25
+          },
+          "requestedProtrusionFraction" : 0.5,
+          "requestedQuoteShiftPoints" : -2.6630859375
+        },
+        {
+          "observedInteriorLeftShiftPoints" : 0,
+          "observedInteriorRightShiftPoints" : 0,
+          "observedQuoteLeftShiftPoints" : -5.5,
+          "rasterInteriorBoundsPoints" : {
+            "hasInk" : true,
+            "leftXPoints" : 5.5,
+            "rasterScale" : 4,
+            "rightXPoints" : 77.75
+          },
+          "rasterQuoteBoundsPoints" : {
+            "hasInk" : true,
+            "leftXPoints" : -5.25,
+            "rasterScale" : 4,
+            "rightXPoints" : -0.5
+          },
+          "requestedProtrusionFraction" : 1,
+          "requestedQuoteShiftPoints" : -5.326171875
+        }
+      ],
+      "sourceLineGlyphRuns" : [
+        {
+          "fontPostScriptName" : "Times-Roman",
+          "glyphs" : [
+            {
+              "glyphID" : 180,
+              "openingQuote" : true,
+              "positionXPoints" : 0,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 0
+            },
+            {
+              "glyphID" : 52,
+              "openingQuote" : false,
+              "positionXPoints" : 5.326171875,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 1
+            },
+            {
+              "glyphID" : 88,
+              "openingQuote" : false,
+              "positionXPoints" : 13.9921875,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 2
+            },
+            {
+              "glyphID" : 82,
+              "openingQuote" : false,
+              "positionXPoints" : 19.9921875,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 3
+            },
+            {
+              "glyphID" : 87,
+              "openingQuote" : false,
+              "positionXPoints" : 25.9921875,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 4
+            },
+            {
+              "glyphID" : 72,
+              "openingQuote" : false,
+              "positionXPoints" : 29.326171875,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 5
+            },
+            {
+              "glyphID" : 71,
+              "openingQuote" : false,
+              "positionXPoints" : 34.65234375,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 6
+            },
+            {
+              "glyphID" : 3,
+              "openingQuote" : false,
+              "positionXPoints" : 40.65234375,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 7
+            },
+            {
+              "glyphID" : 90,
+              "openingQuote" : false,
+              "positionXPoints" : 43.65234375,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 8
+            },
+            {
+              "glyphID" : 82,
+              "openingQuote" : false,
+              "positionXPoints" : 52.318359375,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 9
+            },
+            {
+              "glyphID" : 85,
+              "openingQuote" : false,
+              "positionXPoints" : 58.318359375,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 10
+            },
+            {
+              "glyphID" : 71,
+              "openingQuote" : false,
+              "positionXPoints" : 62.314453125,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 11
+            },
+            {
+              "glyphID" : 86,
+              "openingQuote" : false,
+              "positionXPoints" : 68.314453125,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 12
+            },
+            {
+              "glyphID" : 181,
+              "openingQuote" : false,
+              "positionXPoints" : 72.984375,
+              "positionYPoints" : 0,
+              "stringIndexUTF16" : 13
+            }
+          ]
+        }
+      ],
+      "status" : "pass",
+      "text" : "“Quoted words”"
+    },
+    {
+      "advanceMatchesRequestedScaleWithinPoints" : 0.050000000000000003,
+      "claim" : "A caller supplied CTFont matrix scales intact Core Text line shaping to 98, 100, or 102 percent; the resulting Core Text advances and ink bounds are measured from each variant.",
+      "id" : "bounded-horizontal-expansion",
+      "image" : "horizontal-expansion.png",
+      "imageWritten" : true,
+      "samples" : [
+        {
+          "fontMatrixA" : 0.97999999999999998,
+          "line" : {
+            "advancePoints" : 58.139648437500007,
+            "ascentPoints" : 9,
+            "descentPoints" : 3,
+            "glyphRuns" : 1,
+            "inkBoundsAtOriginPoints" : {
+              "height" : 8.361328125,
+              "width" : 57.467812500000001,
+              "x" : 0.18949218749999999,
+              "y" : -0.181640625
+            },
+            "leadingPoints" : 0,
+            "originXPoints" : 0,
+            "rawAdvancePoints" : 58.139648437500007
+          },
+          "requestedHorizontalScale" : 0.97999999999999998
+        },
+        {
+          "fontMatrixA" : 1,
+          "line" : {
+            "advancePoints" : 59.326171875,
+            "ascentPoints" : 9,
+            "descentPoints" : 3,
+            "glyphRuns" : 1,
+            "inkBoundsAtOriginPoints" : {
+              "height" : 8.361328125,
+              "width" : 58.640625,
+              "x" : 0.193359375,
+              "y" : -0.181640625
+            },
+            "leadingPoints" : 0,
+            "originXPoints" : 0,
+            "rawAdvancePoints" : 59.326171875
+          },
+          "requestedHorizontalScale" : 1
+        },
+        {
+          "fontMatrixA" : 1.02,
+          "line" : {
+            "advancePoints" : 60.512695312499993,
+            "ascentPoints" : 9,
+            "descentPoints" : 3,
+            "glyphRuns" : 1,
+            "inkBoundsAtOriginPoints" : {
+              "height" : 8.361328125,
+              "width" : 59.813437499999999,
+              "x" : 0.19722656250000001,
+              "y" : -0.181640625
+            },
+            "leadingPoints" : 0,
+            "originXPoints" : 0,
+            "rawAdvancePoints" : 60.512695312499993
+          },
+          "requestedHorizontalScale" : 1.02
+        }
+      ],
+      "status" : "pass",
+      "text" : "Harmonious"
+    }
+  ],
+  "engine" : "CoreText caller controls",
+  "environment" : {
+    "kernel" : "27.0.0",
+    "machine" : "arm64",
+    "osVersion" : "Version 27.0 (Build 26A428)",
+    "pointSize" : 12,
+    "rasterScale" : 2,
+    "sdkVersion" : 270000
+  },
+  "font" : {
+    "postScriptName" : "Times-Roman",
+    "version" : "22.0d2e1"
+  },
+  "limits" : [
+    "The caller must compute and approve break opportunities, penalties, discretionary substitutions, line widths, tracking, and protrusion. This probe does not implement paragraph or page optimization.",
+    "The derived discretionary line is a proof for extraordinary only. Its source map does not prove general hyphenation, selection, copy, accessibility, or complex-script shaping across breaks.",
+    "Font-matrix expansion is an observed microprimitive, not evidence of acceptable typography or shaping for math, bidirectional text, or arbitrary scripts.",
+    "Built-in hanging punctuation is an option with observed bounds. The caller-controlled percentage is tested only for the simple quote fixture using Folio-owned glyph drawing; selection and hit-testing are unimplemented."
+  ],
+  "schemaVersion" : 1,
+  "scope" : "Simple left-to-right Latin-script fixture. The caller provides breaks and drawing choices; Core Text shapes intact lines."
+}

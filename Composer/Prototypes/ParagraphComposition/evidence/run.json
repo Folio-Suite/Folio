@@ -1,0 +1,17 @@
+{
+  "fixture_sha256": "370af6dd085b28222e30079472ba66bf9a4f65fc4edec2431bbd3c294359a330",
+  "source_sha256": "48afffa249a6f25b47a8904d6df1d8953b9af5ee2aa51bd2eee17a3aebdc1df9",
+  "fonts": [
+    {
+      "path": "fonts/.build/inputs/cmunrm.otf",
+      "sha256": "5089693f81ed5b83435be7167bf2f93c2608ce92fb3a7e13f6be238a733c38f2"
+    },
+    {
+      "path": "fonts/.build/inputs/lmroman12-regular.otf",
+      "sha256": "e6be218ae83e61aa8a29990d3cdc401c678c1962188cb9a4a8b6359e4f5e5870"
+    }
+  ],
+  "xcode": "Xcode 27.0\nBuild version 27A266a",
+  "sdk": "27.0",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0\nBuildVersion:\t\t26A428"
+}
