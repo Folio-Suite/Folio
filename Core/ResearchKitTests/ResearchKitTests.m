@@ -1,13 +1,6 @@
 // SPDX-FileCopyrightText: 2026 the Folio Project
 // SPDX-License-Identifier: MIT
 
-//
-//  ResearchKitTests.m
-//  ResearchKitTests
-//
-//  Created by Justin Croonenberghs on 9/8/26.
-//
-
 #import <XCTest/XCTest.h>
 
 @interface ResearchKitTests : XCTestCase

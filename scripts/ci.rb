@@ -13,7 +13,7 @@ $stdout.sync = true
 Dir.chdir(File.expand_path('..', __dir__))
 output = File.expand_path(ARGV.fetch(0, 'build/ci'))
 scheme_name = ARGV.fetch(1, 'Folio')
-abort 'Unknown shared scheme' unless %w[Folio Write Research Composer].include?(scheme_name)
+abort 'Unknown shared scheme' unless %w[Folio Core Write Research Composer].include?(scheme_name)
 abort 'Use a new CI output directory for each run' if File.exist?(output)
 FileUtils.mkdir_p(output)
 scheme = REXML::Document.new(File.read("Folio.xcworkspace/xcshareddata/xcschemes/#{scheme_name}.xcscheme"))

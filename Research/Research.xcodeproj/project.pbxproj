@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A15AE2CD305729DA001B9E7B /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
-		A15AE2D2305729F6001B9E7B /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; };
-		A15AE2D4305729FD001B9E7B /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
+		A1641DDE306AD6B6004824F1 /* ComposerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DDA306AD6B6004824F1 /* ComposerKit.framework */; };
+		A1641DE0306AD6B6004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DDB306AD6B6004824F1 /* FolioKit.framework */; };
+		A1641DE2306AD6B6004824F1 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DDC306AD6B6004824F1 /* ResearchKit.framework */; };
+		A1641DE4306AD6B6004824F1 /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DDD306AD6B6004824F1 /* WriteKit.framework */; };
 		A1CCD310305744DF004B4721 /* ResearchXPCService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = A1CCD305305744DF004B4721 /* ResearchXPCService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A1CCD31F3057458D004B4721 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
 		A1CCD32430574594004B4721 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; };
-		A1F83A0B3050B4D200DEB96A /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83A003050B4D100DEB96A /* ResearchKit.framework */; };
-		A1F83B193050BBAB00DEB96A /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,13 +30,6 @@
 			remoteGlobalIDString = A1064892304DFD5C001A21A6;
 			remoteInfo = Research;
 		};
-		A15AE2CF305729DA001B9E7B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F839FF3050B4D100DEB96A;
-			remoteInfo = ResearchKit;
-		};
 		A1CCD30E305744DF004B4721 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
@@ -46,45 +37,9 @@
 			remoteGlobalIDString = A1CCD304305744DF004B4721;
 			remoteInfo = ResearchXPCService;
 		};
-		A1CCD3213057458D004B4721 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F839FF3050B4D100DEB96A;
-			remoteInfo = ResearchKit;
-		};
-		A1F83A0C3050B4D200DEB96A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F839FF3050B4D100DEB96A;
-			remoteInfo = ResearchKit;
-		};
-		A1F83A0E3050B4D200DEB96A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1064892304DFD5C001A21A6;
-			remoteInfo = Research;
-		};
-		A1F83AC73050B83D00DEB96A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A106488B304DFD5C001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F839FF3050B4D100DEB96A;
-			remoteInfo = ResearchKit;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A1F83ACB3050B83D00DEB96A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			dstPath = "";
-			dstSubfolder = Frameworks;
-			files = (
-			);
-			name = "Embed Frameworks";
-		};
 		F01200000000000000000015 /* Embed XPC Services */ = {
 			isa = PBXCopyFilesBuildPhase;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
@@ -101,9 +56,11 @@
 		A10648AE304DFD5D001A21A6 /* ResearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10648B8304DFD5D001A21A6 /* ResearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15AE2BD30572766001B9E7B /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		A1641DDA306AD6B6004824F1 /* ComposerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ComposerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641DDB306AD6B6004824F1 /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641DDC306AD6B6004824F1 /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641DDD306AD6B6004824F1 /* WriteKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WriteKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1CCD305305744DF004B4721 /* ResearchXPCService.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = ResearchXPCService.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1F83A003050B4D100DEB96A /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1F83A0A3050B4D200DEB96A /* ResearchKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F83B183050BBAB00DEB96A /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -121,14 +78,6 @@
 				Info.plist,
 			);
 			target = A1CCD304305744DF004B4721 /* ResearchXPCService */;
-		};
-		A1F83A1C3050B4D200DEB96A /* Exceptions for "ResearchKit" folder in "ResearchKit" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			publicHeaders = (
-				FRLibraryPackage.h,
-				ResearchKit.h,
-			);
-			target = A1F839FF3050B4D100DEB96A /* ResearchKit */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -159,33 +108,21 @@
 			path = ResearchXPCService;
 			sourceTree = "<group>";
 		};
-		A1F83A013050B4D100DEB96A /* ResearchKit */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				A1F83A1C3050B4D200DEB96A /* Exceptions for "ResearchKit" folder in "ResearchKit" target */,
-			);
-			path = ResearchKit;
-			sourceTree = "<group>";
-		};
-		A1F83A103050B4D200DEB96A /* ResearchKitTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ResearchKitTests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A1064890304DFD5C001A21A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				A15AE2D4305729FD001B9E7B /* ResearchKit.framework in Frameworks */,
-				A15AE2D2305729F6001B9E7B /* FolioKit.framework in Frameworks */,
+				A1641DDE306AD6B6004824F1 /* ComposerKit.framework in Frameworks */,
+				A1641DE4306AD6B6004824F1 /* WriteKit.framework in Frameworks */,
+				A1641DE0306AD6B6004824F1 /* FolioKit.framework in Frameworks */,
+				A1641DE2306AD6B6004824F1 /* ResearchKit.framework in Frameworks */,
 			);
 		};
 		A10648AB304DFD5D001A21A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				A15AE2CD305729DA001B9E7B /* ResearchKit.framework in Frameworks */,
 			);
 		};
 		A10648B5304DFD5D001A21A6 /* Frameworks */ = {
@@ -196,20 +133,7 @@
 		A1CCD302305744DF004B4721 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				A1CCD31F3057458D004B4721 /* ResearchKit.framework in Frameworks */,
 				A1CCD32430574594004B4721 /* FolioKit.framework in Frameworks */,
-			);
-		};
-		A1F839FD3050B4D100DEB96A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-				A1F83B193050BBAB00DEB96A /* FolioKit.framework in Frameworks */,
-			);
-		};
-		A1F83A073050B4D200DEB96A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-				A1F83A0B3050B4D200DEB96A /* ResearchKit.framework in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -221,8 +145,6 @@
 				A1064895304DFD5C001A21A6 /* Research */,
 				A10648B1304DFD5D001A21A6 /* ResearchTests */,
 				A10648BB304DFD5D001A21A6 /* ResearchUITests */,
-				A1F83A013050B4D100DEB96A /* ResearchKit */,
-				A1F83A103050B4D200DEB96A /* ResearchKitTests */,
 				A1CCD306305744DF004B4721 /* ResearchXPCService */,
 				A1F83AC33050B83D00DEB96A /* Frameworks */,
 				A1064894304DFD5C001A21A6 /* Products */,
@@ -236,8 +158,6 @@
 				A1064893304DFD5C001A21A6 /* Research.app */,
 				A10648AE304DFD5D001A21A6 /* ResearchTests.xctest */,
 				A10648B8304DFD5D001A21A6 /* ResearchUITests.xctest */,
-				A1F83A003050B4D100DEB96A /* ResearchKit.framework */,
-				A1F83A0A3050B4D200DEB96A /* ResearchKitTests.xctest */,
 				A1CCD305305744DF004B4721 /* ResearchXPCService.xpc */,
 			);
 			name = Products;
@@ -246,20 +166,16 @@
 		A1F83AC33050B83D00DEB96A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1641DDA306AD6B6004824F1 /* ComposerKit.framework */,
+				A1641DDB306AD6B6004824F1 /* FolioKit.framework */,
+				A1641DDC306AD6B6004824F1 /* ResearchKit.framework */,
+				A1641DDD306AD6B6004824F1 /* WriteKit.framework */,
 				A1F83B183050BBAB00DEB96A /* FolioKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		A1F839FB3050B4D100DEB96A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			files = (
-			);
-		};
-/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		A1064892304DFD5C001A21A6 /* Research */ = {
@@ -270,12 +186,10 @@
 				A106488F304DFD5C001A21A6 /* Sources */,
 				A1064890304DFD5C001A21A6 /* Frameworks */,
 				A1064891304DFD5C001A21A6 /* Resources */,
-				A1F83ACB3050B83D00DEB96A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A1F83AC83050B83D00DEB96A /* PBXTargetDependency */,
 				A1CCD30F305744DF004B4721 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -298,7 +212,6 @@
 			);
 			dependencies = (
 				A10648B0304DFD5D001A21A6 /* PBXTargetDependency */,
-				A15AE2D0305729DA001B9E7B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A10648B1304DFD5D001A21A6 /* ResearchTests */,
@@ -339,9 +252,6 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-				A1CCD3223057458D004B4721 /* PBXTargetDependency */,
-			);
 			fileSystemSynchronizedGroups = (
 				A1CCD306305744DF004B4721 /* ResearchXPCService */,
 			);
@@ -349,47 +259,6 @@
 			productName = ResearchXPCService;
 			productReference = A1CCD305305744DF004B4721 /* ResearchXPCService.xpc */;
 			productType = "com.apple.product-type.xpc-service";
-		};
-		A1F839FF3050B4D100DEB96A /* ResearchKit */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1F83A1B3050B4D200DEB96A /* Build configuration list for PBXNativeTarget "ResearchKit" */;
-			buildPhases = (
-				A1F839FB3050B4D100DEB96A /* Headers */,
-				A1F839FC3050B4D100DEB96A /* Sources */,
-				A1F839FD3050B4D100DEB96A /* Frameworks */,
-				A1F839FE3050B4D100DEB96A /* Resources */,
-			);
-			buildRules = (
-			);
-			fileSystemSynchronizedGroups = (
-				A1F83A013050B4D100DEB96A /* ResearchKit */,
-			);
-			name = ResearchKit;
-			productName = ResearchKit;
-			productReference = A1F83A003050B4D100DEB96A /* ResearchKit.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		A1F83A093050B4D200DEB96A /* ResearchKitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1F83A1D3050B4D200DEB96A /* Build configuration list for PBXNativeTarget "ResearchKitTests" */;
-			buildPhases = (
-				A1F83A063050B4D200DEB96A /* Sources */,
-				A1F83A073050B4D200DEB96A /* Frameworks */,
-				A1F83A083050B4D200DEB96A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A1F83A0D3050B4D200DEB96A /* PBXTargetDependency */,
-				A1F83A0F3050B4D200DEB96A /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				A1F83A103050B4D200DEB96A /* ResearchKitTests */,
-			);
-			name = ResearchKitTests;
-			productName = ResearchKitTests;
-			productReference = A1F83A0A3050B4D200DEB96A /* ResearchKitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -415,13 +284,6 @@
 					};
 					A1CCD304305744DF004B4721 = {
 						CreatedOnToolsVersion = 26.6;
-					};
-					A1F839FF3050B4D100DEB96A = {
-						CreatedOnToolsVersion = 26.6;
-					};
-					A1F83A093050B4D200DEB96A = {
-						CreatedOnToolsVersion = 26.6;
-						TestTargetID = A1064892304DFD5C001A21A6;
 					};
 				};
 			};
@@ -452,8 +314,6 @@
 				A1064892304DFD5C001A21A6 /* Research */,
 				A10648AD304DFD5D001A21A6 /* ResearchTests */,
 				A10648B7304DFD5D001A21A6 /* ResearchUITests */,
-				A1F839FF3050B4D100DEB96A /* ResearchKit */,
-				A1F83A093050B4D200DEB96A /* ResearchKitTests */,
 				A1CCD304305744DF004B4721 /* ResearchXPCService */,
 			);
 		};
@@ -476,16 +336,6 @@
 			);
 		};
 		A1CCD303305744DF004B4721 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			files = (
-			);
-		};
-		A1F839FE3050B4D100DEB96A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			files = (
-			);
-		};
-		A1F83A083050B4D200DEB96A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -513,16 +363,6 @@
 			files = (
 			);
 		};
-		A1F839FC3050B4D100DEB96A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			files = (
-			);
-		};
-		A1F83A063050B4D200DEB96A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			files = (
-			);
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -536,35 +376,10 @@
 			target = A1064892304DFD5C001A21A6 /* Research */;
 			targetProxy = A10648B9304DFD5D001A21A6 /* PBXContainerItemProxy */;
 		};
-		A15AE2D0305729DA001B9E7B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F839FF3050B4D100DEB96A /* ResearchKit */;
-			targetProxy = A15AE2CF305729DA001B9E7B /* PBXContainerItemProxy */;
-		};
 		A1CCD30F305744DF004B4721 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A1CCD304305744DF004B4721 /* ResearchXPCService */;
 			targetProxy = A1CCD30E305744DF004B4721 /* PBXContainerItemProxy */;
-		};
-		A1CCD3223057458D004B4721 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F839FF3050B4D100DEB96A /* ResearchKit */;
-			targetProxy = A1CCD3213057458D004B4721 /* PBXContainerItemProxy */;
-		};
-		A1F83A0D3050B4D200DEB96A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F839FF3050B4D100DEB96A /* ResearchKit */;
-			targetProxy = A1F83A0C3050B4D200DEB96A /* PBXContainerItemProxy */;
-		};
-		A1F83A0F3050B4D200DEB96A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1064892304DFD5C001A21A6 /* Research */;
-			targetProxy = A1F83A0E3050B4D200DEB96A /* PBXContainerItemProxy */;
-		};
-		A1F83AC83050B83D00DEB96A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F839FF3050B4D100DEB96A /* ResearchKit */;
-			targetProxy = A1F83AC73050B83D00DEB96A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -600,7 +415,6 @@
 				INFOPLIST_FILE = Research/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Folio Research";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -653,7 +467,6 @@
 				INFOPLIST_FILE = Research/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Folio Research";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -878,7 +691,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ResearchXPCService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ResearchXPCService;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../../../../Frameworks",
@@ -906,7 +718,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ResearchXPCService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ResearchXPCService;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../../../../Frameworks",
@@ -919,106 +730,6 @@
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-			};
-			name = Release;
-		};
-		A1F83A173050B4D200DEB96A /* Debug configuration for PBXNativeTarget "ResearchKit" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MODULEMAP_FILE = "$(SRCROOT)/ResearchKit/ResearchKit.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKit;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		A1F83A183050B4D200DEB96A /* Release configuration for PBXNativeTarget "ResearchKit" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MODULEMAP_FILE = "$(SRCROOT)/ResearchKit/ResearchKit.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKit;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		A1F83A193050B4D200DEB96A /* Debug configuration for PBXNativeTarget "ResearchKitTests" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Research.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Research";
-			};
-			name = Debug;
-		};
-		A1F83A1A3050B4D200DEB96A /* Release configuration for PBXNativeTarget "ResearchKitTests" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Research.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Research";
 			};
 			name = Release;
 		};
@@ -1062,22 +773,6 @@
 			buildConfigurations = (
 				A1CCD312305744DF004B4721 /* Debug configuration for PBXNativeTarget "ResearchXPCService" */,
 				A1CCD313305744DF004B4721 /* Release configuration for PBXNativeTarget "ResearchXPCService" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		A1F83A1B3050B4D200DEB96A /* Build configuration list for PBXNativeTarget "ResearchKit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1F83A173050B4D200DEB96A /* Debug configuration for PBXNativeTarget "ResearchKit" */,
-				A1F83A183050B4D200DEB96A /* Release configuration for PBXNativeTarget "ResearchKit" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		A1F83A1D3050B4D200DEB96A /* Build configuration list for PBXNativeTarget "ResearchKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1F83A193050B4D200DEB96A /* Debug configuration for PBXNativeTarget "ResearchKitTests" */,
-				A1F83A1A3050B4D200DEB96A /* Release configuration for PBXNativeTarget "ResearchKitTests" */,
 			);
 			defaultConfigurationName = Release;
 		};

@@ -1,13 +1,6 @@
 // SPDX-FileCopyrightText: 2026 the Folio Project
 // SPDX-License-Identifier: MIT
 
-//
-//  WriteUITestsLaunchTests.m
-//  WriteUITests
-//
-//  Created by Justin Croonenberghs on 9/6/26.
-//
-
 #import <XCTest/XCTest.h>
 
 @interface WriteUITestsLaunchTests : XCTestCase

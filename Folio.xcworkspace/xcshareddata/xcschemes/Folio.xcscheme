@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
 <Scheme
    LastUpgradeVersion = "2700"
    version = "1.7">
@@ -14,10 +18,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A10648D5304DFE13001A21A6"
+               BlueprintIdentifier = "A1641BDF306ACAE0004824F1"
                BuildableName = "FolioKit.framework"
                BlueprintName = "FolioKit"
-               ReferencedContainer = "container:FolioKit/FolioKit.xcodeproj">
+               ReferencedContainer = "container:Core/Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -70,10 +74,10 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A10648E0304DFE13001A21A6"
+               BlueprintIdentifier = "A1641BE7306ACAE0004824F1"
                BuildableName = "FolioKitTests.xctest"
                BlueprintName = "FolioKitTests"
-               ReferencedContainer = "container:FolioKit/FolioKit.xcodeproj">
+               ReferencedContainer = "container:Core/Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -104,6 +108,48 @@
                ReferencedContainer = "container:TypographyKit/TypographyKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A1641BFA306ACB1F004824F1"
+               BuildableName = "WriteKit.framework"
+               BlueprintName = "WriteKit"
+               ReferencedContainer = "container:Core/Core.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A1641C15306ACB22004824F1"
+               BuildableName = "ResearchKit.framework"
+               BlueprintName = "ResearchKit"
+               ReferencedContainer = "container:Core/Core.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A1641C30306ACB26004824F1"
+               BuildableName = "ComposerKit.framework"
+               BlueprintName = "ComposerKit"
+               ReferencedContainer = "container:Core/Core.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -123,10 +169,10 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A1F839E13050B46200DEB96A"
+               BlueprintIdentifier = "A1641C02306ACB1F004824F1"
                BuildableName = "WriteKitTests.xctest"
                BlueprintName = "WriteKitTests"
-               ReferencedContainer = "container:Write/Write.xcodeproj">
+               ReferencedContainer = "container:Core/Core.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -134,10 +180,10 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A1F83A093050B4D200DEB96A"
+               BlueprintIdentifier = "A1641C1D306ACB22004824F1"
                BuildableName = "ResearchKitTests.xctest"
                BlueprintName = "ResearchKitTests"
-               ReferencedContainer = "container:Research/Research.xcodeproj">
+               ReferencedContainer = "container:Core/Core.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -162,10 +208,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A10648D5304DFE13001A21A6"
+            BlueprintIdentifier = "A1641BDF306ACAE0004824F1"
             BuildableName = "FolioKit.framework"
             BlueprintName = "FolioKit"
-            ReferencedContainer = "container:FolioKit/FolioKit.xcodeproj">
+            ReferencedContainer = "container:Core/Core.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

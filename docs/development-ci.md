@@ -50,7 +50,7 @@ invalidates reuse when source, workflow, tests, or repository configuration chan
 
 ## Schemes and parallel work
 
-After selection, a full run launches four independent macOS jobs:
+After selection, a full run launches five independent macOS jobs:
 
 - **Suite analysis, build, and repository checks** runs the Ruby tests, read-only localization
   extraction, and a clean coordinated **Folio** scheme analysis and build, including Kit
@@ -58,12 +58,13 @@ After selection, a full run launches four independent macOS jobs:
   application or UI tests and is not runtime/signing evidence.
   Analyzer findings are errors: `scripts/check-build.sh --analyze` enables
   Clang's analyzer-specific error flag, so a finding fails the full Suite gate.
-- **Test Write**, **Test Research**, and **Test Composer** each build and test their
-  existing shared scheme on a separate Mac. Those schemes also cover their Kits;
-  Write includes FolioKitTests. A failure in one does not cancel the others.
+- **Test Core** builds and tests the four domain frameworks, using the app hosts
+  where required. **Test Write**, **Test Research**, and **Test Composer** each
+  build and test their app and UI targets on a separate Mac. A failure in one
+  does not cancel the others.
 
 Xcode schemes own configurations, targets, and test selection. GitHub's matrix
-only chooses the three app schemes, so their UI tests have independent desktops.
+chooses Core and the three app schemes, so UI tests have independent desktops.
 No test lists or per-target build settings are reproduced in YAML. Full Suite
 local testing remains available through the Folio scheme and `Folio.xctestplan`.
 The generated launch-test variants are retained.
@@ -130,7 +131,7 @@ for test in scripts/tests/*_test.rb; do /usr/bin/ruby "$test" || exit; done
 /usr/bin/ruby scripts/ci.rb /absolute/path/to/new-output Write
 ```
 
-Use Research or Composer for their scheme, or omit the scheme argument to run the
+Use Core, Research, or Composer for their scheme, or omit the scheme argument to run the
 full Folio plan. Outputs must be new directories. Local signing uses normal Xcode
 settings; it neither imports nor exports your key. UI tests need an unobstructed
 logged-in desktop. Do not launch multiple app UI suites simultaneously on one Mac;

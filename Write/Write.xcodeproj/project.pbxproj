@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A15AE2D630572A33001B9E7B /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */; };
-		A15AE2D830572A3E001B9E7B /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; };
+		A1641DEA306AD6EA004824F1 /* ComposerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DE6306AD6EA004824F1 /* ComposerKit.framework */; };
+		A1641DEC306AD6EA004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DE7306AD6EA004824F1 /* FolioKit.framework */; };
+		A1641DEE306AD6EA004824F1 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DE8306AD6EA004824F1 /* ResearchKit.framework */; };
+		A1641DF0306AD6EA004824F1 /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DE9306AD6EA004824F1 /* WriteKit.framework */; };
 		A1CCD14330573F86004B4721 /* WriteXPCService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = A1CCD13830573F86004B4721 /* WriteXPCService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A1F839E33050B46200DEB96A /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; };
-		A1F839ED3050B46200DEB96A /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; };
-		A1F83B1D3050BBBF00DEB96A /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */; };
-		F01200000000000000000001 /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F839D83050B46200DEB96A /* WriteKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,40 +29,12 @@
 			remoteGlobalIDString = A1064850304DFCF6001A21A6;
 			remoteInfo = Write;
 		};
-		A15AE2DA30572A3E001B9E7B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F839D73050B46200DEB96A;
-			remoteInfo = WriteKit;
-		};
 		A1CCD14130573F86004B4721 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A1CCD13730573F86004B4721;
 			remoteInfo = WriteXPCService;
-		};
-		A1F839E43050B46200DEB96A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F839D73050B46200DEB96A;
-			remoteInfo = WriteKit;
-		};
-		A1F839E63050B46200DEB96A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1064850304DFCF6001A21A6;
-			remoteInfo = Write;
-		};
-		A1F839EB3050B46200DEB96A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A1064849304DFCF6001A21A6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F839D73050B46200DEB96A;
-			remoteInfo = WriteKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -78,14 +48,6 @@
 			);
 			name = "Embed XPC Services";
 		};
-		F01100000000000000000005 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			dstPath = "";
-			dstSubfolder = Frameworks;
-			files = (
-			);
-			name = "Embed Frameworks";
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -93,9 +55,11 @@
 		A106486C304DFCF7001A21A6 /* WriteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WriteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1064876304DFCF7001A21A6 /* WriteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WriteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15AE2BF305727A2001B9E7B /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		A1641DE6306AD6EA004824F1 /* ComposerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ComposerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641DE7306AD6EA004824F1 /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641DE8306AD6EA004824F1 /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641DE9306AD6EA004824F1 /* WriteKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WriteKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1CCD13830573F86004B4721 /* WriteXPCService.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = WriteXPCService.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1F839D83050B46200DEB96A /* WriteKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WriteKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1F839E23050B46200DEB96A /* WriteKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WriteKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -113,23 +77,6 @@
 				Info.plist,
 			);
 			target = A1CCD13730573F86004B4721 /* WriteXPCService */;
-		};
-		A1F839F43050B46200DEB96A /* Exceptions for "WriteKit" folder in "WriteKit" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			publicHeaders = (
-				FWEditor/FWEditorViewController.h,
-				FWEditor/FWManuscriptViewController.h,
-				FWManuscript/FWWork.h,
-				WriteKit.h,
-			);
-			target = A1F839D73050B46200DEB96A /* WriteKit */;
-		};
-		F01100000000000000000007 /* Exceptions for "WriteKit" folder in "Write" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Resources/Formatting.xcassets,
-			);
-			target = A1064850304DFCF6001A21A6 /* Write */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -160,34 +107,21 @@
 			path = WriteXPCService;
 			sourceTree = "<group>";
 		};
-		A1F839D93050B46200DEB96A /* WriteKit */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				F01100000000000000000007 /* Exceptions for "WriteKit" folder in "Write" target */,
-				A1F839F43050B46200DEB96A /* Exceptions for "WriteKit" folder in "WriteKit" target */,
-			);
-			path = WriteKit;
-			sourceTree = "<group>";
-		};
-		A1F839E83050B46200DEB96A /* WriteKitTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WriteKitTests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A106484E304DFCF6001A21A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				A1F839ED3050B46200DEB96A /* WriteKit.framework in Frameworks */,
-				A15AE2D630572A33001B9E7B /* FolioKit.framework in Frameworks */,
+				A1641DEA306AD6EA004824F1 /* ComposerKit.framework in Frameworks */,
+				A1641DF0306AD6EA004824F1 /* WriteKit.framework in Frameworks */,
+				A1641DEC306AD6EA004824F1 /* FolioKit.framework in Frameworks */,
+				A1641DEE306AD6EA004824F1 /* ResearchKit.framework in Frameworks */,
 			);
 		};
 		A1064869304DFCF7001A21A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				A15AE2D830572A3E001B9E7B /* WriteKit.framework in Frameworks */,
 			);
 		};
 		A1064873304DFCF7001A21A6 /* Frameworks */ = {
@@ -198,19 +132,6 @@
 		A1CCD13530573F86004B4721 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				F01200000000000000000001 /* WriteKit.framework in Frameworks */,
-			);
-		};
-		A1F839D53050B46200DEB96A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-				A1F83B1D3050BBBF00DEB96A /* FolioKit.framework in Frameworks */,
-			);
-		};
-		A1F839DF3050B46200DEB96A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			files = (
-				A1F839E33050B46200DEB96A /* WriteKit.framework in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -222,8 +143,6 @@
 				A1064853304DFCF6001A21A6 /* Write */,
 				A106486F304DFCF7001A21A6 /* WriteTests */,
 				A1064879304DFCF7001A21A6 /* WriteUITests */,
-				A1F839D93050B46200DEB96A /* WriteKit */,
-				A1F839E83050B46200DEB96A /* WriteKitTests */,
 				A1CCD13930573F86004B4721 /* WriteXPCService */,
 				A1F839F63050B47800DEB96A /* Frameworks */,
 				A1064852304DFCF6001A21A6 /* Products */,
@@ -238,8 +157,6 @@
 				A1064851304DFCF6001A21A6 /* Write.app */,
 				A106486C304DFCF7001A21A6 /* WriteTests.xctest */,
 				A1064876304DFCF7001A21A6 /* WriteUITests.xctest */,
-				A1F839D83050B46200DEB96A /* WriteKit.framework */,
-				A1F839E23050B46200DEB96A /* WriteKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -247,6 +164,10 @@
 		A1F839F63050B47800DEB96A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1641DE6306AD6EA004824F1 /* ComposerKit.framework */,
+				A1641DE7306AD6EA004824F1 /* FolioKit.framework */,
+				A1641DE8306AD6EA004824F1 /* ResearchKit.framework */,
+				A1641DE9306AD6EA004824F1 /* WriteKit.framework */,
 				A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */,
 			);
 			name = Frameworks;
@@ -254,20 +175,11 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		A1F839D33050B46200DEB96A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			files = (
-			);
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		A1064850304DFCF6001A21A6 /* Write */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A106487F304DFCF7001A21A6 /* Build configuration list for PBXNativeTarget "Write" */;
 			buildPhases = (
-				F01100000000000000000005 /* Embed Frameworks */,
 				A106484D304DFCF6001A21A6 /* Sources */,
 				A106484E304DFCF6001A21A6 /* Frameworks */,
 				A106484F304DFCF6001A21A6 /* Resources */,
@@ -277,7 +189,6 @@
 			);
 			dependencies = (
 				A1CCD14230573F86004B4721 /* PBXTargetDependency */,
-				A1F839EC3050B46200DEB96A /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A1064853304DFCF6001A21A6 /* Write */,
@@ -299,7 +210,6 @@
 			);
 			dependencies = (
 				A106486E304DFCF7001A21A6 /* PBXTargetDependency */,
-				A15AE2DB30572A3E001B9E7B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A106486F304DFCF7001A21A6 /* WriteTests */,
@@ -348,47 +258,6 @@
 			productReference = A1CCD13830573F86004B4721 /* WriteXPCService.xpc */;
 			productType = "com.apple.product-type.xpc-service";
 		};
-		A1F839D73050B46200DEB96A /* WriteKit */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1F839F33050B46200DEB96A /* Build configuration list for PBXNativeTarget "WriteKit" */;
-			buildPhases = (
-				A1F839D33050B46200DEB96A /* Headers */,
-				A1F839D43050B46200DEB96A /* Sources */,
-				A1F839D53050B46200DEB96A /* Frameworks */,
-				A1F839D63050B46200DEB96A /* Resources */,
-			);
-			buildRules = (
-			);
-			fileSystemSynchronizedGroups = (
-				A1F839D93050B46200DEB96A /* WriteKit */,
-			);
-			name = WriteKit;
-			productName = WriteKit;
-			productReference = A1F839D83050B46200DEB96A /* WriteKit.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		A1F839E13050B46200DEB96A /* WriteKitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1F839F53050B46200DEB96A /* Build configuration list for PBXNativeTarget "WriteKitTests" */;
-			buildPhases = (
-				A1F839DE3050B46200DEB96A /* Sources */,
-				A1F839DF3050B46200DEB96A /* Frameworks */,
-				A1F839E03050B46200DEB96A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A1F839E53050B46200DEB96A /* PBXTargetDependency */,
-				A1F839E73050B46200DEB96A /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				A1F839E83050B46200DEB96A /* WriteKitTests */,
-			);
-			name = WriteKitTests;
-			productName = WriteKitTests;
-			productReference = A1F839E23050B46200DEB96A /* WriteKitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -408,13 +277,6 @@
 						TestTargetID = A1064850304DFCF6001A21A6;
 					};
 					A1064875304DFCF7001A21A6 = {
-						CreatedOnToolsVersion = 26.6;
-						TestTargetID = A1064850304DFCF6001A21A6;
-					};
-					A1F839D73050B46200DEB96A = {
-						CreatedOnToolsVersion = 26.6;
-					};
-					A1F839E13050B46200DEB96A = {
 						CreatedOnToolsVersion = 26.6;
 						TestTargetID = A1064850304DFCF6001A21A6;
 					};
@@ -447,8 +309,6 @@
 				A1064850304DFCF6001A21A6 /* Write */,
 				A106486B304DFCF7001A21A6 /* WriteTests */,
 				A1064875304DFCF7001A21A6 /* WriteUITests */,
-				A1F839D73050B46200DEB96A /* WriteKit */,
-				A1F839E13050B46200DEB96A /* WriteKitTests */,
 				A1CCD13730573F86004B4721 /* WriteXPCService */,
 			);
 		};
@@ -471,16 +331,6 @@
 			);
 		};
 		A1CCD13630573F86004B4721 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			files = (
-			);
-		};
-		A1F839D63050B46200DEB96A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			files = (
-			);
-		};
-		A1F839E03050B46200DEB96A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -508,16 +358,6 @@
 			files = (
 			);
 		};
-		A1F839D43050B46200DEB96A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			files = (
-			);
-		};
-		A1F839DE3050B46200DEB96A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			files = (
-			);
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -531,30 +371,10 @@
 			target = A1064850304DFCF6001A21A6 /* Write */;
 			targetProxy = A1064877304DFCF7001A21A6 /* PBXContainerItemProxy */;
 		};
-		A15AE2DB30572A3E001B9E7B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F839D73050B46200DEB96A /* WriteKit */;
-			targetProxy = A15AE2DA30572A3E001B9E7B /* PBXContainerItemProxy */;
-		};
 		A1CCD14230573F86004B4721 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A1CCD13730573F86004B4721 /* WriteXPCService */;
 			targetProxy = A1CCD14130573F86004B4721 /* PBXContainerItemProxy */;
-		};
-		A1F839E53050B46200DEB96A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F839D73050B46200DEB96A /* WriteKit */;
-			targetProxy = A1F839E43050B46200DEB96A /* PBXContainerItemProxy */;
-		};
-		A1F839E73050B46200DEB96A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1064850304DFCF6001A21A6 /* Write */;
-			targetProxy = A1F839E63050B46200DEB96A /* PBXContainerItemProxy */;
-		};
-		A1F839EC3050B46200DEB96A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F839D73050B46200DEB96A /* WriteKit */;
-			targetProxy = A1F839EB3050B46200DEB96A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -590,7 +410,6 @@
 				INFOPLIST_FILE = Write/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Folio Write";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -643,7 +462,6 @@
 				INFOPLIST_FILE = Write/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Folio Write";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -868,7 +686,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WriteXPCService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WriteXPCService;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../../../../Frameworks",
@@ -896,7 +713,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WriteXPCService/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WriteXPCService;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../../../../Frameworks",
@@ -909,106 +725,6 @@
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-			};
-			name = Release;
-		};
-		A1F839EF3050B46200DEB96A /* Debug configuration for PBXNativeTarget "WriteKit" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MODULEMAP_FILE = "$(SRCROOT)/WriteKit/WriteKit.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKit;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		A1F839F03050B46200DEB96A /* Release configuration for PBXNativeTarget "WriteKit" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 the Folio Project";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MODULEMAP_FILE = "$(SRCROOT)/WriteKit/WriteKit.modulemap";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKit;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		A1F839F13050B46200DEB96A /* Debug configuration for PBXNativeTarget "WriteKitTests" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Write.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Write";
-			};
-			name = Debug;
-		};
-		A1F839F23050B46200DEB96A /* Release configuration for PBXNativeTarget "WriteKitTests" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = FT9KDL728H;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Write.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Write";
 			};
 			name = Release;
 		};
@@ -1052,22 +768,6 @@
 			buildConfigurations = (
 				A1CCD14530573F86004B4721 /* Debug configuration for PBXNativeTarget "WriteXPCService" */,
 				A1CCD14630573F86004B4721 /* Release configuration for PBXNativeTarget "WriteXPCService" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		A1F839F33050B46200DEB96A /* Build configuration list for PBXNativeTarget "WriteKit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1F839EF3050B46200DEB96A /* Debug configuration for PBXNativeTarget "WriteKit" */,
-				A1F839F03050B46200DEB96A /* Release configuration for PBXNativeTarget "WriteKit" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		A1F839F53050B46200DEB96A /* Build configuration list for PBXNativeTarget "WriteKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1F839F13050B46200DEB96A /* Debug configuration for PBXNativeTarget "WriteKitTests" */,
-				A1F839F23050B46200DEB96A /* Release configuration for PBXNativeTarget "WriteKitTests" */,
 			);
 			defaultConfigurationName = Release;
 		};

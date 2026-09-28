@@ -12,8 +12,7 @@ require 'tmpdir'
 # Check the published Kit SDK, then compile/link without repository header paths.
 class KitInterfaceCheck
   ROOT = File.expand_path('..', __dir__)
-  KITS = { 'FolioKit' => 'FolioKit', 'WriteKit' => 'Write',
-           'ResearchKit' => 'Research', 'ComposerKit' => 'Composer' }.freeze
+  KITS = %w[FolioKit WriteKit ResearchKit ComposerKit].freeze
   IMPLEMENTATIONS = { 'FolioKit' => %w[FKModelFoundations FKPackageSupport FKXMLSupport],
                       'WriteKit' => %w[FWManuscript FWEditor] }.freeze
 
@@ -38,8 +37,8 @@ class KitInterfaceCheck
     public_headers = {}
     owners = {}
     minimum_versions = Set.new
-    KITS.each do |kit, project|
-      module_map = File.read("#{ROOT}/#{project}/#{kit}/#{kit}.modulemap")
+    KITS.each do |kit|
+      module_map = File.read("#{ROOT}/Core/#{kit}/#{kit}.modulemap")
       public_headers[kit] = module_map.scan(/^\s*header "([^"]+)"/).flatten.to_set
       check(!public_headers[kit].empty?, "#{kit}: missing explicit public header list")
       framework = "#{products}/#{kit}.framework"
@@ -54,7 +53,7 @@ class KitInterfaceCheck
       check(Dir.glob("#{framework}/PrivateHeaders/**/*.h").empty?, "#{kit}: private headers must not be distributed to hosts")
       imported = File.read("#{framework}/Headers/#{kit}.h").scan(/#import <#{kit}\/([^>]+)>/).flatten.to_set
       check(imported == public_headers[kit] - ["#{kit}.h"], "#{kit}: umbrella and module map disagree")
-      Dir.glob("#{ROOT}/#{project}/#{kit}/**/*.h").each { |path| owners[File.realpath(path)] = kit }
+      Dir.glob("#{ROOT}/Core/#{kit}/**/*.h").each { |path| owners[File.realpath(path)] = kit }
     end
     check(minimum_versions.size == 1, 'Kits must share a coordinated deployment target')
     standalone_minimum_versions = {}
@@ -72,9 +71,9 @@ class KitInterfaceCheck
 
     # A Kit's implementation may use local headers; all other callers use published paths.
     by_name = owners.each_with_object({}) { |(path, kit), result| result[File.basename(path)] = [path, kit] }
-    KITS.each_value do |project|
-      Dir.glob("#{ROOT}/#{project}/**/*.{h,m,mm}").each do |source|
-        own_kit = KITS.find { |kit, directory| source.start_with?("#{ROOT}/#{directory}/#{kit}/") }&.first
+    %w[Core Write Research Composer].each do |source_directory|
+      Dir.glob("#{ROOT}/#{source_directory}/**/*.{h,m,mm}").each do |source|
+        own_kit = KITS.find { |kit| source.start_with?("#{ROOT}/Core/#{kit}/") }
         File.read(source).scan(/^\s*#\s*(?:import|include)\s*[<"]([^>"\n]+)[>"]/).flatten.each do |token|
           known = by_name[File.basename(token)]
           next unless known
@@ -94,16 +93,16 @@ class KitInterfaceCheck
     end
     Dir.mktmpdir('folio-kit-interface-') do |stage|
       # Only published bundles are visible, without source trees or Xcode header maps.
-      KITS.each_key { |kit| FileUtils.cp_r("#{products}/#{kit}.framework", stage, preserve: true) }
+      KITS.each { |kit| FileUtils.cp_r("#{products}/#{kit}.framework", stage, preserve: true) }
       sdk = capture('xcrun', '--sdk', 'macosx', '--show-sdk-path').strip
       common = ['xcrun', 'clang', '-isysroot', sdk, '-fobjc-arc', '-fmodules',
                 "-mmacosx-version-min=#{minimum_versions.first}", "-fmodules-cache-path=#{stage}/ModuleCache",
                 '-F', stage, '-Werror', '-Werror=non-modular-include-in-framework-module']
-      frameworks = KITS.keys.flat_map { |kit| ['-framework', kit] }
+      frameworks = KITS.flat_map { |kit| ['-framework', kit] }
       fixture = File.read("#{ROOT}/scripts/interface-checks/KitConsumer.m")
       [false, true].each do |modules|
         code = fixture.dup
-        KITS.each_key { |kit| code.gsub!("#import <#{kit}/#{kit}.h>", "@import #{kit};") } if modules
+        KITS.each { |kit| code.gsub!("#import <#{kit}/#{kit}.h>", "@import #{kit};") } if modules
         source = "#{stage}/Consumer.m"
         File.write(source, code)
         check(system(*common, source, '-framework', 'AppKit', *frameworks,
