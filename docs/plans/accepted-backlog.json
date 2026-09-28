@@ -1,0 +1,1199 @@
+{
+  "date": "2026-09-27",
+  "specification": "https://github.com/Folio-Suite/Folio/issues/29",
+  "tickets": [
+    {
+      "code": "M0",
+      "title": "Capture the accepted Swift migration baseline",
+      "deps": [],
+      "what": "Make the existing Suite behavior and supported Documents reproducible before translation, using the merged foundation as the starting point.",
+      "criteria": [
+        "Inventory production applications, Kits, services, public consumers, resources, tests, and justified language exceptions. Preserve the paragraph/control experiments and their exact provenance.",
+        "Capture actual old-writer Work and Source Library fixtures, including supported content, identifiers, ordering, Research collected files, and failure cases; record the producing revision.",
+        "Record the working native editor behavior, document/UI test coverage, and available Sonoma, Intel, and Apple Silicon runtime environments. Missing evidence remains explicit.",
+        "Confirm the already agreed public Kit, native document/UI, and TypographyKit input/result/mapping/diagnostic seams; do not invent helper-specific test APIs.",
+        "Reconcile the approved inventory and acceptance matrix against all 53 specification stories, including the amended Swift-only near-term UndoKit requirement. This is preparation; no feature or format change."
+      ],
+      "stories": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "kind": "task",
+      "origin": [],
+      "parent": 29,
+      "number": 31,
+      "id": 5609006392,
+      "url": "https://github.com/Folio-Suite/Folio/issues/31",
+      "linked": true
+    },
+    {
+      "code": "M1",
+      "title": "Use Swift FolioKit through the existing Suite consumers",
+      "deps": [
+        "M0"
+      ],
+      "what": "Build and run the existing Suite with shared identity and package-staging behavior supplied by an idiomatic public Swift FolioKit.",
+      "criteria": [
+        "Translate shared values, validated identities, and errors without changing serialized identifiers or staging semantics. Use value/reference types according to ownership.",
+        "Existing callers consume the public interface. Any temporary Objective-C adapters delegate to one implementation and preserve observable behavior.",
+        "Verify successful, nested, and failed staging operations through public consumers, including cleanup and preservation of original data.",
+        "Adapt public-module and negative-private-import checks for Swift; an isolated consumer compiles and links with built products only.",
+        "Carry affected DocC, localization, resources, schemes, and tooling with the change; preserve AppKit/Core Data conventions, macOS 14, and both supported architectures."
+      ],
+      "stories": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        25,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "kind": "task",
+      "origin": [],
+      "parent": 29,
+      "number": 32,
+      "id": 5609006724,
+      "url": "https://github.com/Folio-Suite/Folio/issues/32",
+      "linked": true
+    },
+    {
+      "code": "M2",
+      "title": "Reopen and save Works through Swift persistence",
+      "deps": [
+        "M1"
+      ],
+      "what": "Open a current Work in the existing editor, edit it, save, and reopen it with Swift-owned model and Core Data persistence.",
+      "criteria": [
+        "Preserve authored Unicode, whitespace, Content Unit and paragraph identities, ordering, semantic enum values, titles, and supported formatting. Do not introduce a schema or storage-policy change.",
+        "Old-writer fixtures round-trip logically; malformed, corrupt, unsupported, and incompatible inputs leave the source package and open state intact.",
+        "Preserve current Write treatment of package members and failure cleanup independently of Research policies.",
+        "Confine Core Data work to its context queues and keep mutable UI interaction correctly isolated. Public errors and identifiers validate external data.",
+        "Exercise the new implementation through WriteKit and a real document/editor path. Keep one source of mutable truth if a transition adapter is needed; combine with M3 on an integration branch if separate green landings are impossible.",
+        "Update affected resources, DocC, localization, public-consumer checks, and focused persistence/native tests with the slice."
+      ],
+      "stories": [
+        1,
+        2,
+        7,
+        8,
+        9,
+        20,
+        22,
+        24,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        36,
+        37
+      ],
+      "kind": "task",
+      "origin": [],
+      "parent": 29,
+      "number": 33,
+      "id": 5609007120,
+      "url": "https://github.com/Folio-Suite/Folio/issues/33",
+      "linked": true
+    },
+    {
+      "code": "M3",
+      "title": "Preserve the complete Write editing workflow in Swift",
+      "deps": [
+        "M2"
+      ],
+      "what": "Use the Swift Write application and reusable WriteKit editor for the existing open-edit-undo-save-reopen workflow.",
+      "criteria": [
+        "Preserve semantic emphasis independently of bold/italic/underline/strikethrough/alignment, selection and insertion-point controls, conflict explanation/conversion/dismissal, and non-authored diagnostic markers.",
+        "Preserve internal paste meaning and formatting with fresh paragraph identities; retain plain-text external paste and exact authored Unicode.",
+        "Preserve adding, selecting, renaming, and reordering Content Units; save content/order/warning preferences while keeping transient selection transient.",
+        "Preserve chronological native Undo/Redo across typing, deletion, formatting, and Manuscript changes, revealing the affected Content Unit when necessary. Do not integrate unfinished durable UndoKit.",
+        "Migrate native application/document hosting and service scaffold while maintaining storyboard bindings, menus, responder focus, control identities, accessibility, and shared framework resource lookup.",
+        "Use the same public WriteKit interface for every host; remove the transition adapter when all callers move. Signed native tests and focused human interaction checks verify behavior.",
+        "Carry DocC, localization, signing, schemes, and current package compatibility through the change."
+      ],
+      "stories": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "kind": "task",
+      "origin": [],
+      "parent": 29,
+      "number": 34,
+      "id": 5609007558,
+      "url": "https://github.com/Folio-Suite/Folio/issues/34",
+      "linked": true
+    },
+    {
+      "code": "M4",
+      "title": "Preserve Source Library documents in Swift Research",
+      "deps": [
+        "M1"
+      ],
+      "what": "Open, save, close, and reopen existing Source Library packages through the Swift Research shell and ResearchKit.",
+      "criteria": [
+        "Migrate the current Kit, application/document hosting, resources, and service scaffold without inventing catalog or synchronization features.",
+        "Preserve collected files and existing Research package-member policy, including additional members and failure preservation; do not substitute Write policy.",
+        "Malformed/incompatible/corrupt packages produce useful errors without damaging the source or replacing valid open state.",
+        "Use the public Kit interface and correct Core Data/UI confinement. Preserve document identities, Finder declarations, menus, focus, localization, and storyboard resources.",
+        "Verify old-writer package fixtures, isolated public consumers, signed native document behavior, DocC, and affected build/signing/tooling checks on the agreed platform scope."
+      ],
+      "stories": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "kind": "task",
+      "origin": [],
+      "parent": 29,
+      "number": 35,
+      "id": 5609007994,
+      "url": "https://github.com/Folio-Suite/Folio/issues/35",
+      "linked": true
+    },
+    {
+      "code": "M5",
+      "title": "Preserve the Composer shell in Swift",
+      "deps": [
+        "M1"
+      ],
+      "what": "Launch and use the existing Composer workspace through Swift ComposerKit and native application hosting.",
+      "criteria": [
+        "Migrate the current application, Kit, resource bindings, and service scaffold using the public Kit interface.",
+        "Preserve current supported commands, menus, focus, and accessibility. Keep unimplemented Arrangement persistence unadvertised in document registrations.",
+        "Keep Composer ownership of Arrangements, Editions, and publication meaning; preserve AppKit/storyboards and the established framework division.",
+        "Verify signed native launch/resource behavior and isolated public consumers; update localization, DocC, schemes, signing, and tooling with the slice.",
+        "Remain compatible with macOS 14 and both architectures within the evidence available; record unrun runtime checks."
+      ],
+      "stories": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        21,
+        25,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        39
+      ],
+      "kind": "task",
+      "origin": [],
+      "parent": 29,
+      "number": 36,
+      "id": 5609008402,
+      "url": "https://github.com/Folio-Suite/Folio/issues/36",
+      "linked": true
+    },
+    {
+      "code": "T1",
+      "title": "Realize controlled text through TypographyKit",
+      "deps": [
+        "M0"
+      ],
+      "what": "Let an independent Swift caller supply owned immutable text, geometry, and explicit break decisions and receive drawable measured results with source mappings and diagnostics.",
+      "criteria": [
+        "Use Core Text behind one documented public composition operation, independent of FolioKit, domain Kits, AppKit editors, and document authority. The framework scaffold from PR #30 is already complete.",
+        "Represent source identity, language/script/direction, fonts and fallback, geometry, required/forbidden boundaries, and discretionary before-break/after-break/no-break material. Validate UTF-16, grapheme, and shaping-cluster conversions.",
+        "Realize supplied line decisions with complete source coverage and mappings for repeated occurrences and inserted/omitted/substituted material; preserve original text and normalization.",
+        "Exercise supported tracking, spacing, bounded expansion, and protrusion with observable geometry and independent expectations. Keep kerning and required shaping intact; distinguish carets from ink.",
+        "Return actual fonts, relevant environment/engine/font provenance, structured diagnostics, and explicit complete/unsupported/infeasible outcomes. A preview must not imply satisfied requirements.",
+        "Retain positive TextKit 2 comparisons and primitive fixtures; obtain visual review. Allow future whole-paragraph reconsideration and inline/display formula geometry without claiming an optimizer, universal languages, math layout, or publication readiness.",
+        "Validate an isolated Swift consumer, public behavioral cases, generated DocC, and supported build architectures. Keep the core synchronous, with explicit native-resource ownership and no blanket unchecked Sendable."
+      ],
+      "stories": [
+        4,
+        5,
+        29,
+        31,
+        32,
+        33,
+        34,
+        36,
+        38,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "kind": "task",
+      "origin": [],
+      "parent": 29,
+      "number": 37,
+      "id": 5609008816,
+      "url": "https://github.com/Folio-Suite/Folio/issues/37",
+      "linked": true
+    },
+    {
+      "code": "C1",
+      "title": "Compose a bounded Composer preview through TypographyKit",
+      "deps": [
+        "M5",
+        "T1"
+      ],
+      "what": "Turn one controlled Composer publication input into a visible preview using TypographyKit, retaining source identity and actionable diagnostics.",
+      "criteria": [
+        "Translate Composer-owned meaning and configuration into the public TypographyKit inputs; the engine neither fetches domain objects nor acquires document authority.",
+        "Draw the same immutable result used for diagnostics and source relationships; visibly distinguish an incomplete or infeasible preview.",
+        "Exercise the adaptation through ComposerKit public interfaces and its native hosting path; retain an isolated TypographyKit consumer proving independence.",
+        "Use controlled fixtures and human visual review. Do not invent Arrangement persistence, a mature template designer, or final output conformance for this slice.",
+        "Update documentation, localized diagnostics, resource ownership, and affected signed/native and public-consumer checks."
+      ],
+      "stories": [
+        3,
+        6,
+        21,
+        29,
+        30,
+        36,
+        38,
+        39,
+        40,
+        46,
+        48,
+        49,
+        50
+      ],
+      "kind": "task",
+      "origin": [],
+      "parent": 29,
+      "number": 38,
+      "id": 5609009262,
+      "url": "https://github.com/Folio-Suite/Folio/issues/38",
+      "linked": true
+    },
+    {
+      "code": "I1",
+      "title": "Integrate the coordinated Swift Suite and remove transition bridges",
+      "deps": [
+        "M3",
+        "M4",
+        "C1"
+      ],
+      "what": "Build and exercise the three applications as one coherent Swift Suite with the public frameworks and resources integrated.",
+      "criteria": [
+        "Remove obsolete production implementations and temporary bridges once callers migrate; document every retained Objective-C/C interoperability or historical-evidence exception.",
+        "Coordinate public and negative interface checks, isolated consumers, resources/storyboards, Swift localization extraction, stable keys/English baselines/translator context, and generated DocC.",
+        "Verify schemes, framework products, shared version identity, signing, hardened runtime, Ruby tooling, and packaging inventory as one Suite.",
+        "Convert the imported UndoKit scaffold to an independent Swift module driven by Folio, preserving its license and design provenance and KitchenMemory requirements. Its module checks do not imply durable history. External XCFramework/Objective-C distribution is deferred beyond Folio 1.0.",
+        "Run the combined signed native tests and focused tool checks, repairing actual failures. Preserve the agreed platform targets, current package behavior, and typography evidence."
+      ],
+      "stories": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "kind": "task",
+      "origin": [],
+      "parent": 29,
+      "number": 39,
+      "id": 5609009732,
+      "url": "https://github.com/Folio-Suite/Folio/issues/39",
+      "linked": true
+    },
+    {
+      "code": "A1",
+      "title": "Verify and accept the Swift migration",
+      "deps": [
+        "I1"
+      ],
+      "what": "Demonstrate that the agreed migration inventory, existing workflows, and bounded TypographyKit foundation meet the accepted specification.",
+      "criteria": [
+        "Audit every one of the 53 stories against implementation or an explicitly scoped future capability; account for the revised Swift UndoKit independence requirement and the existing import evidence.",
+        "Run integrated signed native workflows, old-writer fixtures, public/negative/isolated consumer checks, tooling and DocC checks. Preserve behavior assertions rather than testing implementation shape.",
+        "Obtain human review of typography, focus/keyboard/accessibility, editing, Undo, saving, and reopening. A build or screenshot alone does not establish those behaviors.",
+        "Run representative flows on macOS 14 Sonoma and supported Intel/Apple Silicon runtime environments and verify installed changed-framework resolution. Record gaps explicitly; obtain maintainer disposition before closing with incomplete platform evidence.",
+        "Confirm the usable T1/C1 supported subset and distinguish it from later optimization, languages, math, page coordination, archives, and mature Research/Composer features.",
+        "Publish a concise acceptance record with actual revisions/environments/results, remaining exceptions, and successor issue links; approve no unrelated release or implementation."
+      ],
+      "stories": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "kind": "task",
+      "origin": [],
+      "parent": 29,
+      "number": 40,
+      "id": 5609010345,
+      "url": "https://github.com/Folio-Suite/Folio/issues/40",
+      "linked": true
+    },
+    {
+      "code": "U1",
+      "title": "Define UndoKit durable acceptance and interruption recovery",
+      "deps": [],
+      "what": "Agree a recoverable host/history protocol before production operations can move durable Undo/Redo position.",
+      "criteria": [
+        "Carry forward the preserved ownership vocabulary: hosts own meaning, validation, compensation, accepted outcomes and recovery evidence; UndoKit owns capabilities and storage safeguards.",
+        "Walk registration, Undo, Redo, invalidation, interruption, and reported failure across preparation/domain acceptance/finalization. Specify stable identities, outcome lookup, duplicate-free retry, unresolved states, and restored availability.",
+        "Define whole-group compensation, rejected inverses, changed/uncertain outcomes, durable invalidation, and capacity refusal before tracked domain work is accepted; preflight does not guarantee later writes.",
+        "Use Folio examples first and a bounded KitchenMemory example to expose accidental domain coupling. Record the accepted contract and precise proof obligations with maintainer review; no production implementation."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [
+        6
+      ],
+      "parent": 2,
+      "number": 41,
+      "id": 5609010695,
+      "url": "https://github.com/Folio-Suite/Folio/issues/41",
+      "linked": true
+    },
+    {
+      "code": "U2",
+      "title": "Define UndoKit branches, checkpoints, and bounded retention",
+      "deps": [],
+      "what": "Agree observable traversal and retention rules for Folio history while supporting a host-selected bounded KitchenMemory policy.",
+      "criteria": [
+        "Specify native Undo/Redo position, retained reversals, abandoned futures, branch jumps, checkpoints, restoration, and selected-material recovery; distinguish browsing from accepted changes.",
+        "Preserve Undo Group boundaries, displaced work, payload/dependency lifetimes, and checkpoint-required data through consolidation and pruning.",
+        "Retain KitchenMemory\u2019s at-most-100-group policy as a host policy, without making it a framework default or a byte/performance budget.",
+        "Identify algorithms/representations worth proving, human scale budgets still needed, and next Undo/Redo after jumps. Obtain agreement on the behavior before selecting storage implementation."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [
+        7
+      ],
+      "parent": 2,
+      "number": 42,
+      "id": 5609011022,
+      "url": "https://github.com/Folio-Suite/Folio/issues/42",
+      "linked": true
+    },
+    {
+      "code": "U3",
+      "title": "Define typed Swift UndoKit payload and host interfaces",
+      "deps": [
+        "U1"
+      ],
+      "what": "Agree a small Swift API that preserves host-defined typed data and implements the accepted recovery boundary.",
+      "criteria": [
+        "Define registration, compensation, accepted-outcome/recovery hooks, error/isolation/completion semantics, payload identity/versioning/codecs, incompatible data behavior, resource ownership, and migrations.",
+        "Show small Folio and bounded KitchenMemory call-site sketches without leaking their domain types into UndoKit or requiring manual decomposition into a generic object graph.",
+        "Decide whether Collections/Algorithms earn a concrete benefit and document any public dependency obligations; no promise of arbitrary runtime-object persistence.",
+        "Prove representative supported typed payload round trips and model/resource lookup in an isolated Swift consumer at the design\u2019s chosen scope. Agree the contract and evidence limits with the maintainer.",
+        "Swift and module independence are current requirements. Preserve historical Objective-C/XCFramework research as provenance; external binary distribution and its cross-language proof are deferred until after Folio 1.0."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [
+        8,
+        17
+      ],
+      "parent": 2,
+      "number": 43,
+      "id": 5609011386,
+      "url": "https://github.com/Folio-Suite/Folio/issues/43",
+      "linked": true
+    },
+    {
+      "code": "U4",
+      "title": "Define native UndoKit routing and restored availability",
+      "deps": [
+        "U1",
+        "U2"
+      ],
+      "what": "Agree how persisted history projects into native Undo/Redo while preserving document and focused-text behavior.",
+      "criteria": [
+        "Specify attachment/detachment, group ordering and names, ordinary Redo abandonment, connected contexts, synchronous/asynchronous host constraints, rejection/failure, interference, and restoration/disposal.",
+        "Rebuilding native availability must neither reapply edits nor dirty a document or claim acceptance prematurely.",
+        "Keep Folio document-wide ordering and navigation distinct from KitchenMemory native-text priority, logical scene scope, and no-automatic-navigation policy.",
+        "Select real native observations for the current Folio platform and a bounded secondary-consumer contract. Defer unnecessary platform expansion and generic shared history UI; record maintainer agreement."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [
+        9
+      ],
+      "parent": 2,
+      "number": 44,
+      "id": 5609011751,
+      "url": "https://github.com/Folio-Suite/Folio/issues/44",
+      "linked": true
+    },
+    {
+      "code": "U5",
+      "title": "Define UndoKit store lifecycle and safe capacity",
+      "deps": [
+        "U1",
+        "U2",
+        "U3"
+      ],
+      "what": "Agree how a separate Core Data history store remains coherent and recoverable within a Folio Document.",
+      "criteria": [
+        "Specify scope/store identity, ownership, open/close, schema/payload compatibility, corrupt/unavailable stores, recovery evidence, journal consistency, save/copy/restore, recording Off/On, checkpoints, and explicit omission.",
+        "Define the supported storage envelope using the full owned footprint: journals, payloads, protected history, pending recovery, and working headroom. Describe admission/refusal and policy-authorized maintenance.",
+        "Preserve current content and required resources through failure; unavailable history cannot masquerade as empty history. Host location/policy and framework safeguards remain separate.",
+        "Carry a bounded app-local store example for KitchenMemory. Obtain maintainer agreement on guarantees and proof fixtures without treating SQLite theoretical limits as tested capacity."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [
+        10
+      ],
+      "parent": 2,
+      "number": 45,
+      "id": 5609012206,
+      "url": "https://github.com/Folio-Suite/Folio/issues/45",
+      "linked": true
+    },
+    {
+      "code": "U6",
+      "title": "Set UndoKit acceptance scenarios and measured budgets",
+      "deps": [
+        "U4",
+        "U5"
+      ],
+      "what": "Turn the resolved contracts into a finite scenario matrix and agreed proof workload.",
+      "criteria": [
+        "Trace Folio requirements and bounded KitchenMemory requirements to interruption, inverse/invalidation failure, repeated reopen, typed payload evolution, native focus/scope, package operations, and branch/retention cases.",
+        "Agree representative history/payload sizes and latency, memory, disk and capacity budgets; include large-payload bounded history, refusal before acceptance and write failure after preflight.",
+        "Specify concrete setups and closure evidence for the four retained proof tickets; include typed Swift independence evidence from U3.",
+        "Distinguish compilation, behavioral tests, native observations, and human acceptance. Retire any unnecessary proof explicitly with reasoning; do not mark unrun evidence passed.",
+        "External binary distribution, Objective-C consumers, and broad platform certification are deferred beyond Folio 1.0 and do not block this matrix."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [
+        12
+      ],
+      "parent": 2,
+      "number": 46,
+      "id": 5609012821,
+      "url": "https://github.com/Folio-Suite/Folio/issues/46",
+      "linked": true
+    },
+    {
+      "code": "UP1",
+      "title": "Prove UndoKit interruption recovery and durable invalidation",
+      "deps": [
+        "U6"
+      ],
+      "what": "Use a disposable on-disk host/history probe to demonstrate the agreed recovery protocol at each failure boundary.",
+      "criteria": [
+        "Interrupt before/after preparation, acceptance, finalization, inverse acceptance and retry, using stable identities and authoritative outcome lookup.",
+        "Inject failed history saves and invalidation writes, including unavailable recovery evidence; reopen repeatedly.",
+        "Show no duplicate accepted effects, false Redo, or resurrected invalidation; unresolved states and whole-group compensation remain explicit.",
+        "Record artifacts, exact scenarios, actual results and limitations; review observations with the maintainer and return failures to U1. This is a design proof, not the production engine."
+      ],
+      "stories": [],
+      "kind": "prototype",
+      "origin": [
+        14
+      ],
+      "parent": 2,
+      "number": 47,
+      "id": 5609013317,
+      "url": "https://github.com/Folio-Suite/Folio/issues/47",
+      "linked": true
+    },
+    {
+      "code": "UP2",
+      "title": "Prove UndoKit native restoration and focus behavior",
+      "deps": [
+        "U6"
+      ],
+      "what": "Demonstrate restored Undo and Redo in disposable native hosts without replaying domain edits.",
+      "criteria": [
+        "Exercise successful/rejected/deferred compensation, focused text versus document history, two document contexts, names/grouping/change counts, attachment, disposal, and relaunch.",
+        "Verify both directions available at a persisted position and preserve the distinct Folio and bounded KitchenMemory policies chosen in U4/U6.",
+        "Record actual native input/control observations separately from method calls and distinguish desktop, simulator and device evidence where used.",
+        "Review the results with the maintainer; missing environments remain visible and failures return to the routing contract. No production adapter or new platform promise is implied."
+      ],
+      "stories": [],
+      "kind": "prototype",
+      "origin": [
+        15
+      ],
+      "parent": 2,
+      "number": 48,
+      "id": 5609013713,
+      "url": "https://github.com/Folio-Suite/Folio/issues/48",
+      "linked": true
+    },
+    {
+      "code": "UP3",
+      "title": "Prove UndoKit package and compatibility failure preservation",
+      "deps": [
+        "U6"
+      ],
+      "what": "Demonstrate coherent content/history/resources and recoverable originals through the selected package and compatibility scenarios.",
+      "criteria": [
+        "Use the agreed disposable Document host with active journals and model/payload fixtures; exercise save/copy/move/Save As/restore and recording Off/checkpoints/On.",
+        "Test successful and failed omission, interrupted migration, unknown schema/codec, corruption, and unavailable stores at the agreed scope.",
+        "Verify generations, live store identity, displaced history and resources; distinguish unavailable history from an empty history.",
+        "Preserve source evidence and record actual results, limits and maintainer review; revise U5 if invariants fail. This does not migrate Folio production packages."
+      ],
+      "stories": [],
+      "kind": "prototype",
+      "origin": [
+        16
+      ],
+      "parent": 2,
+      "number": 49,
+      "id": 5609014120,
+      "url": "https://github.com/Folio-Suite/Folio/issues/49",
+      "linked": true
+    },
+    {
+      "code": "UP4",
+      "title": "Prove UndoKit branching and retention at the agreed scale",
+      "deps": [
+        "U6"
+      ],
+      "what": "Measure a disposable history representation against the agreed Folio and bounded-consumer workloads.",
+      "criteria": [
+        "Exercise abandoned futures, branch jumps, restoration retaining displaced work, selected-material recovery, checkpoints, consolidation/pruning, and bounded retention.",
+        "Protect required resources, checkpoint data, complete groups, and pending recovery evidence under pressure.",
+        "Measure reopen/traversal latency, memory, full storage footprint, and capacity refusal against U6 budgets; distinguish group count from payload size.",
+        "Record simplifications and actual results for human review; return failed semantics/budgets to U2/U5/U6. Do not represent the probe as the production model."
+      ],
+      "stories": [],
+      "kind": "prototype",
+      "origin": [
+        18
+      ],
+      "parent": 2,
+      "number": 50,
+      "id": 5609014514,
+      "url": "https://github.com/Folio-Suite/Folio/issues/50",
+      "linked": true
+    },
+    {
+      "code": "U7",
+      "title": "Accept UndoKit design for Folio implementation",
+      "deps": [
+        "UP1",
+        "UP2",
+        "UP3",
+        "UP4"
+      ],
+      "what": "Approve one coherent Swift UndoKit implementation contract, with Folio as the primary consumer and KitchenMemory requirements preserved.",
+      "criteria": [
+        "Reconcile accepted recovery, branching, typed payload, native routing, store and capacity contracts with the measured proof evidence.",
+        "Ensure host-owned semantics/policy remain separate from generic framework capabilities and safeguards; require no Folio domain dependency.",
+        "Review unresolved failures or missing evidence with the maintainer and explicitly settle the production handoff boundary; create narrower follow-up decisions only when a concrete gap remains.",
+        "Preserve original design provenance and the deferred Objective-C/XCFramework material. External distribution, helper apps and every possible future consumer are outside this gate.",
+        "Link the next bounded Work integration slice; this closes design readiness, not a claim that durable history works."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [
+        1,
+        13
+      ],
+      "parent": 2,
+      "number": 51,
+      "id": 5609014978,
+      "url": "https://github.com/Folio-Suite/Folio/issues/51",
+      "linked": true
+    },
+    {
+      "code": "S1",
+      "title": "Save Work changes without rewriting unchanged content and assets",
+      "deps": [
+        "A1"
+      ],
+      "what": "Edit and save a Work while retaining an efficient Core Data working store and unchanged large assets.",
+      "criteria": [
+        "Define the smallest versioned storage change needed and honor the accepted upgrade/compatibility/cancel behavior; preserve supported old-writer fixtures and native failure semantics.",
+        "Demonstrate a small edit does not rebuild unrelated content or copy unchanged assets; measure the affected work rather than relying on package size alone.",
+        "Preserve semantic identity/order, coherent store journals/resources, save/copy/Save As behavior, original data on failure, and recovery after interruption.",
+        "Exercise public WriteKit persistence and the native open-edit-save-reopen path with meaningful failure injection. Record scope and performance evidence.",
+        "Keep history-engine integration and Library/Arrangement expansion in their own slices; document the mechanism so those consumers can adopt it deliberately."
+      ],
+      "stories": [
+        22,
+        24,
+        26,
+        27,
+        28
+      ],
+      "kind": "task",
+      "origin": [],
+      "parent": 2,
+      "number": 52,
+      "id": 5609015706,
+      "url": "https://github.com/Folio-Suite/Folio/issues/52",
+      "linked": true
+    },
+    {
+      "code": "H1",
+      "title": "Reopen a Work with durable Undo and checkpoint restoration",
+      "deps": [
+        "S1",
+        "U7"
+      ],
+      "what": "Use Swift UndoKit through WriteKit to reopen a Work with accepted Undo history, create a checkpoint, and restore while retaining displaced work.",
+      "criteria": [
+        "Implement the smallest accepted UndoKit path and Folio adapter together through the public interfaces, with one Work as the demoable host.",
+        "Preserve chronological native Undo/Redo, document ownership, semantic validation and accepted-outcome authority; never record a known no-op as accepted work.",
+        "Exercise interruption, duplicate retry, whole-group inverse failure, and capacity refusal according to the accepted contracts; restored availability reflects resolved outcomes.",
+        "Expose the owning Kit\u2019s reusable history/checkpoint presentation for the narrow workflow and preserve content/resources/displaced history through restoration.",
+        "Verify an isolated bounded Swift host can use the implemented operation without Folio types, representing KitchenMemory policy without changing that product.",
+        "Scope to the first coherent vertical operation; document any unsupported operations and publish successors for the accepted history capabilities not yet implemented."
+      ],
+      "stories": [
+        15,
+        16,
+        51,
+        52,
+        53
+      ],
+      "kind": "task",
+      "origin": [],
+      "parent": 2,
+      "number": 53,
+      "id": 5609016078,
+      "url": "https://github.com/Folio-Suite/Folio/issues/53",
+      "linked": true
+    },
+    {
+      "code": "R0",
+      "title": "Specify the first Library and Work-local citation workflow",
+      "deps": [
+        "M3",
+        "M4"
+      ],
+      "what": "Agree a bounded create-source-and-cite workflow spanning Research-owned Library records and a sufficient Work-local subset.",
+      "criteria": [
+        "Specify the minimal Source/Source Record/Citation schema and public operations, preserving distinct edition identity, provenance, locators, partial-field semantics, and required evidence.",
+        "Define first-start default user-wide Library behavior and deliberate choice of another Library, while allowing basic Work-local capture without a Library.",
+        "Show creation/citation and saving fuller research into a Library, with explicit offer of future ongoing sync and a usable offline Work subset.",
+        "Keep rich PDFs/multiple editions/research material in Research, support deliberate reconciliation first, and preserve records when counterparts are removed.",
+        "Produce a reviewed interaction example, failure cases, public/native acceptance seams, and bounded implementation successors. Persistent two-way sync is specified separately."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [],
+      "parent": 2,
+      "number": 54,
+      "id": 5609016554,
+      "url": "https://github.com/Folio-Suite/Folio/issues/54",
+      "linked": true
+    },
+    {
+      "code": "D0",
+      "title": "Specify one shared Work host and embedded editing handoff",
+      "deps": [
+        "M3",
+        "U1"
+      ],
+      "what": "Agree a concrete host/transport design for editing the same Work from two Suite contexts, including after Write quits.",
+      "criteria": [
+        "Specify on-demand registration/launch, authority, connection and lifetime, protocol versioning, receipts, narrow mutation locks, retries/recovery, and document identity.",
+        "Walk embedded editing, visible target Document, native command/history scope, handoff to the owning workspace, and continued operation after the owning UI quits.",
+        "Keep one authoritative writer and explicit multi-document boundaries; preserve drafts/pending work on failure and distinguish advisory locking from protection against arbitrary external modification.",
+        "Define packaging/signing/permissions and actual installed-host acceptance for this Work workflow without creating a helper-utility product.",
+        "Review protocol and native UX evidence requirements, then publish a bounded Work implementation slice; Library and Arrangement hosts follow actual capabilities."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [],
+      "parent": 2,
+      "number": 55,
+      "id": 5609016989,
+      "url": "https://github.com/Folio-Suite/Folio/issues/55",
+      "linked": true
+    },
+    {
+      "code": "R1",
+      "title": "Specify optional paired bibliographic synchronization",
+      "deps": [
+        "R0",
+        "D0"
+      ],
+      "what": "Agree one explicit Work/Library pair\u2019s two-way shared-field synchronization through independent document histories.",
+      "criteria": [
+        "Define enabling, shared fields, delivery identity, conflict detection/resolution, pause/resume, and reconnecting the same Library after absence.",
+        "Walk independent local records and incoming changes in each Document\u2019s history; Undo/Redo of shared fields pauses the pair without cascading or immediate reapplication.",
+        "Removing a record or disabling sync preserves its counterpart; missing fields in partial records are not deletions. An independently imported copy is never silently reconnected.",
+        "Keep rich Library material separate from the Work subset, distinct editions distinct, Citations stable, and Composer pins unaffected.",
+        "Require actual records, durable history in both Documents, and Library host delivery as prerequisites of successor implementation tickets; do not assume a Work host alone supplies them."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [],
+      "parent": 2,
+      "number": 56,
+      "id": 5609017434,
+      "url": "https://github.com/Folio-Suite/Folio/issues/56",
+      "linked": true
+    },
+    {
+      "code": "C2",
+      "title": "Specify saved Arrangements and self-contained Editions",
+      "deps": [
+        "M5"
+      ],
+      "what": "Agree the first saved Composer Arrangement workflow derived from selected Work snapshots, followed by a self-contained Edition.",
+      "criteria": [
+        "Specify minimal persistence and public snapshot interfaces, stable source relationships, revision following/pinning, required dependency retention, and independent local elaborations.",
+        "Show create/save/reopen of an Arrangement without changing its sources; an Edition contains its governing Profile and required resources and remains deliberately editable.",
+        "Preserve Composer document ownership and independent history/Undo; identify integration with the accepted history/store lifecycle.",
+        "Define native registrations only for supported behavior, corruption/compatibility handling, and testable source/pin/dependency failures.",
+        "Produce a reviewed schema/workflow and separate bounded implementation successors for saved Arrangements and Editions."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [],
+      "parent": 2,
+      "number": 57,
+      "id": 5609017913,
+      "url": "https://github.com/Folio-Suite/Folio/issues/57",
+      "linked": true
+    },
+    {
+      "code": "X1",
+      "title": "Specify portable XML Document exchange and Project collection",
+      "deps": [
+        "H1",
+        "R0",
+        "C2"
+      ],
+      "what": "Agree the first Work archive round trip and the shared exchange contract that later Library, Arrangement, and Project exports will use.",
+      "criteria": [
+        "Preserve per-app archives alongside Project .folio. Archives are imported/exported; double-click offers import into working bundles and never edits an archive in place.",
+        "Specify documented XML semantics/history, source/revision/dependency identity, resources/fonts and their provenance, validation, required/optional capabilities, supported upgrades, and explicit history omission.",
+        "Define consistent collection from participating domain hosts, one default-named top-level Project recording relationships, and import into independent Documents/resources in an ordinary folder.",
+        "Walk failure preservation, missing dependencies, unknown required features, incompatible payloads, and history-default/omission behavior without silently reconnecting imported copies.",
+        "Produce a reviewed minimal Work encoding and schema-evolution rules, then publish separate Work, Library, Arrangement and Project reconstruction slices with their real domain/history prerequisites. No full-project serialization on every native save."
+      ],
+      "stories": [
+        25
+      ],
+      "kind": "grilling",
+      "origin": [],
+      "parent": 2,
+      "number": 58,
+      "id": 5609018320,
+      "url": "https://github.com/Folio-Suite/Folio/issues/58",
+      "linked": true
+    },
+    {
+      "code": "T2",
+      "title": "Select whole-paragraph breaks with explicit constraints",
+      "deps": [
+        "T1"
+      ],
+      "what": "Let TypographyKit select complete paragraph breaks and return a constrained result or a clear infeasibility diagnosis.",
+      "criteria": [
+        "Choose and document a bounded optimizer/cost model for the controlled specimen, allowing reconsideration across the paragraph rather than committing the API to greedy lines.",
+        "Honor required/forbidden boundaries, supplied discretionary opportunities, consecutive-hyphen policy, and spacing/tracking/expansion/protrusion limits; record actual choices and geometry.",
+        "Preserve complete source/discretionary mappings, shaping clusters, font resolution, and reproducibility evidence; never silently violate a required constraint.",
+        "Compare controlled Latin/English specimens to the retained TextKit 2 and Core Text observations using independent expected cases, geometry and human visual review.",
+        "Support a documented subset and actionable unsupported outcomes. Automatic language patterns, formula layout, page coordination, and publication conformance remain separate."
+      ],
+      "stories": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "kind": "task",
+      "origin": [],
+      "parent": 2,
+      "number": 59,
+      "id": 5609018884,
+      "url": "https://github.com/Folio-Suite/Folio/issues/59",
+      "linked": true
+    },
+    {
+      "code": "T3",
+      "title": "Specify the first licensed language hyphenation package",
+      "deps": [
+        "T1"
+      ],
+      "what": "Select one language-pattern corpus and matching contract that generates legal opportunities independently of layout selection.",
+      "criteria": [
+        "Choose a language and exact upstream version with the maintainer; Latin is eligible but was optional for the migration milestone.",
+        "Evaluate Liang-compatible matching and TeX-derived patterns, with each data/code license, attribution, redistribution obligation and update policy recorded; do not import Babel wholesale.",
+        "Specify Unicode/script handling, exceptions, suppression, minima, and before-break/after-break/no-break forms with source mappings.",
+        "Define independent word/paragraph expected cases, unsupported-script behavior, and evidence needed before claiming coverage.",
+        "Publish one bounded package/matcher integration slice through TypographyKit; additional languages remain explicit later work."
+      ],
+      "stories": [
+        41,
+        44,
+        47
+      ],
+      "kind": "grilling",
+      "origin": [],
+      "parent": 2,
+      "number": 60,
+      "id": 5609019541,
+      "url": "https://github.com/Folio-Suite/Folio/issues/60",
+      "linked": true
+    },
+    {
+      "code": "T4",
+      "title": "Specify a bounded mathematical typography operation",
+      "deps": [
+        "T1"
+      ],
+      "what": "Choose a concrete mathematical representation and one inline/display layout case that fits TypographyKit\u2019s immutable geometry and source contracts.",
+      "criteria": [
+        "Agree the authored mathematical meaning boundary with Composer/Write and keep semantic ownership with callers.",
+        "Select the first representation and font/MATH-table requirements, covering the chosen baseline/stretch/spacing construction without claiming a complete math engine.",
+        "Specify source/semantic mappings, inline/display geometry, accessibility/export handoff, and unsupported or missing-font diagnostics.",
+        "Use independently derived geometric expectations and a human visual reference; ordinary Core Text text shaping alone is insufficient evidence.",
+        "Publish the first bounded implementation slice and identify later constructions and unusual-script fixtures."
+      ],
+      "stories": [
+        45,
+        46,
+        47,
+        48
+      ],
+      "kind": "grilling",
+      "origin": [],
+      "parent": 2,
+      "number": 61,
+      "id": 5609019966,
+      "url": "https://github.com/Folio-Suite/Folio/issues/61",
+      "linked": true
+    },
+    {
+      "code": "T5",
+      "title": "Prove coordinated Streams and paged reconsideration",
+      "deps": [
+        "C1",
+        "T2"
+      ],
+      "what": "Demonstrate a narrow Composer page composition with unequal parallel Streams, authored Notes, and explicit Correspondences.",
+      "criteria": [
+        "Use controlled publication fixtures and a small Page Template subset to exercise synchronization, note placement and paragraph reconsideration across page constraints.",
+        "Preserve logical meaning and source mappings across regions, report unsatisfied constraints/actionable infeasibility, and record chosen break/placement decisions.",
+        "Show the same content remains medium-independent and avoids manual adjustment of individual rendered objects as the underlying model.",
+        "Record reproducible specimens, geometry, native/font environment, visual review, and limits. A page proof does not establish a full template designer or output conformance.",
+        "Use findings to scope the next production page/Stream operation; do not wait for a general profile/theme workspace."
+      ],
+      "stories": [],
+      "kind": "prototype",
+      "origin": [],
+      "parent": 2,
+      "number": 62,
+      "id": 5609020352,
+      "url": "https://github.com/Folio-Suite/Folio/issues/62",
+      "linked": true
+    },
+    {
+      "code": "W1",
+      "title": "Specify the first reusable review and definition-design workflows",
+      "deps": [
+        "R0",
+        "C2"
+      ],
+      "what": "Choose bounded professional workspace slices around real Work, Library, Arrangement, and Edition capabilities.",
+      "criteria": [
+        "Retain Write semantic authoring/review, Research full research, and Composer production/Theme/Page Template design, with reusable Kit presentation and explicit native document scope.",
+        "Select one concrete review or definition-authoring workflow at a time, distinguishing authored Notes from editorial Comments/Proposed Revisions and preserving domain ownership.",
+        "Specify a small default path with progressive disclosure, keyboard/accessibility behavior, embedded limits and deliberate handoff to the full workspace.",
+        "Define acceptance through public Kit operations and native workflows; publish independently demoable successors instead of a complete UI redesign ticket.",
+        "Helper applications and a persistent Project manager remain deferred and are not prerequisites."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [],
+      "parent": 2,
+      "number": 63,
+      "id": 5609021090,
+      "url": "https://github.com/Folio-Suite/Folio/issues/63",
+      "linked": true
+    },
+    {
+      "code": "P1",
+      "title": "Specify paged output preflight and PDF acceptance",
+      "deps": [
+        "T5",
+        "C2"
+      ],
+      "what": "Define a narrow Edition-to-PDF workflow with explicit publication and accessibility evidence.",
+      "criteria": [
+        "Identify the supported Edition/Production Configuration/Publication Plan subset and retain authored semantics, references, numbering, resources and provenance.",
+        "Define preflight for missing content/fonts/dependencies and unsatisfied constraints; distinguish incomplete preview from releasable output.",
+        "Select concrete PDF profile/accessibility/preservation requirements from the retained standards research and verify current primary standards during this design.",
+        "Define artifact-level validators, human typography review, accessible reading/navigation evidence, and reproducible fixtures; successful drawing/export alone is insufficient.",
+        "Publish the bounded PDF implementation/acceptance slices with real semantic/layout prerequisites."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [],
+      "parent": 2,
+      "number": 64,
+      "id": 5609021583,
+      "url": "https://github.com/Folio-Suite/Folio/issues/64",
+      "linked": true
+    },
+    {
+      "code": "P2",
+      "title": "Specify a semantic EPUB rendition workflow",
+      "deps": [
+        "C2"
+      ],
+      "what": "Define the first accessible reflowable EPUB generated from the same Edition semantics.",
+      "criteria": [
+        "Select a bounded semantic subset with navigation, citations/notes, numbering, metadata and required resources retained.",
+        "Specify medium adaptations through the Production Configuration/Profile/Theme without changing authored meaning or copying paged geometry as semantics.",
+        "Verify current EPUB/accessibility requirements against primary standards and select validators and real-reader acceptance scenarios.",
+        "Describe unsupported content, diagnostics and source relationships, including mathematical/complex content boundaries.",
+        "Publish a bounded generated-artifact slice. EPUB depends on its real semantic/export inputs and does not require completion of the PDF path."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [],
+      "parent": 2,
+      "number": 65,
+      "id": 5609022131,
+      "url": "https://github.com/Folio-Suite/Folio/issues/65",
+      "linked": true
+    },
+    {
+      "code": "P3",
+      "title": "Specify a semantic static-web rendition workflow",
+      "deps": [
+        "C2"
+      ],
+      "what": "Define the first accessible static website generated from an Edition without introducing an online authoring service.",
+      "criteria": [
+        "Select a bounded semantic subset preserving document structure, references, navigation, metadata and required resources.",
+        "Specify responsive/media-specific Theme behavior and semantic source relationships independently of paged placement.",
+        "Verify relevant current web accessibility requirements, keyboard/assistive-technology review and generated-artifact checks.",
+        "Define unsupported-content diagnostics and safe self-contained resource/link behavior for the selected output scope.",
+        "Publish a bounded export slice; static web output does not depend on EPUB/PDF completion or authorize Folio Online."
+      ],
+      "stories": [],
+      "kind": "grilling",
+      "origin": [],
+      "parent": 2,
+      "number": 66,
+      "id": 5609022626,
+      "url": "https://github.com/Folio-Suite/Folio/issues/66",
+      "linked": true
+    }
+  ]
+}
