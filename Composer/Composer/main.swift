@@ -1,7 +1,6 @@
 // SPDX-FileCopyrightText: 2026 the Folio Project
 // SPDX-License-Identifier: MIT
 
-#import "ViewController.h"
+import AppKit
 
-@implementation ViewController
-@end
+_ = NSApplicationMain(CommandLine.argc, CommandLine.unsafeArgv)

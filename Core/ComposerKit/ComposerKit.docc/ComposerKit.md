@@ -15,11 +15,11 @@ For text composition, ComposerKit will adapt Publication Plans, Profiles, Themes
 
 ## Current support
 
-ComposerKit is a framework scaffold. Its public umbrella exposes framework identity and version symbols, but no Arrangement editing, publication, text-composition, or Rendition-generation API. The Composer application currently hosts its provisional document and storyboard directly.
+ComposerKit is a framework scaffold. Its public Swift module has no Arrangement editing, publication, text-composition, or Rendition-generation API. The Composer application currently hosts its provisional document and storyboard directly.
 
 ## Public interface and hosting
 
-Objective-C callers can import `<ComposerKit/ComposerKit.h>` or use `@import ComposerKit;`. The umbrella currently exposes framework identity and version symbols only. There are no public domain operations to call. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
+Swift callers use `import ComposerKit`. The Cocoa umbrella retains framework identity and version symbols. There are no public domain operations to call. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
 
 ## Limitations
 
