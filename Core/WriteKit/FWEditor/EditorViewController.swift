@@ -7,10 +7,6 @@ import FolioKit
 private final class WriteKitBundleToken {}
 let writeKitBundle = Bundle(identifier: "dev.foliosuite.WriteKit") ?? Bundle(for: WriteKitBundleToken.self)
 
-func writeString(_ key: String, _ value: String, _ comment: String) -> String {
-    NSLocalizedString(key, tableName: nil, bundle: writeKitBundle, value: value, comment: comment)
-}
-
 private func editorStoryboard() -> NSStoryboard { NSStoryboard(name: "Editor", bundle: writeKitBundle) }
 
 /// Native text editing for one Content Unit. The Work owns authored values and the host owns saving.
@@ -100,17 +96,22 @@ private func editorStoryboard() -> NSStoryboard { NSStoryboard(name: "Editor", b
         helpButton = controller.helpButton
         alignmentButton = controller.alignmentButton
         formattingButtons = [emphasisButton, strongButton]
-        emphasisButton.setAccessibilityLabel(writeString("formatting.emphasis", "Emphasis",
-            "Accessibility label for semantic emphasis, distinct from visual Italic."))
-        strongButton.setAccessibilityLabel(writeString("formatting.strong-emphasis", "Strong Emphasis",
-            "Accessibility label for strong semantic emphasis, distinct from visual Bold."))
+        emphasisButton.setAccessibilityLabel(NSLocalizedString("formatting.emphasis", tableName: nil, bundle: writeKitBundle,
+            value: "Emphasis",
+            comment: "Accessibility label for semantic emphasis, distinct from visual Italic."))
+        strongButton.setAccessibilityLabel(NSLocalizedString("formatting.strong-emphasis", tableName: nil, bundle: writeKitBundle,
+            value: "Strong Emphasis",
+            comment: "Accessibility label for strong semantic emphasis, distinct from visual Bold."))
         for button in formattingButtons { button.setAccessibilityHelp(button.toolTip) }
-        clearButton.setAccessibilityLabel(writeString("formatting.clear.accessibility-label", "Clear character formatting",
-            "Accessibility label for removing semantic and visual character formatting, preserving paragraph alignment."))
-        helpButton.setAccessibilityLabel(writeString("formatting.help.accessibility-label", "Formatting help",
-            "Accessibility label for opening help about semantic and visual formatting."))
-        alignmentButton.setAccessibilityLabel(writeString("paragraph.alignment.accessibility-label", "Paragraph alignment",
-            "Accessibility label of the paragraph alignment control."))
+        clearButton.setAccessibilityLabel(NSLocalizedString("formatting.clear.accessibility-label", tableName: nil, bundle: writeKitBundle,
+            value: "Clear character formatting",
+            comment: "Accessibility label for removing semantic and visual character formatting, preserving paragraph alignment."))
+        helpButton.setAccessibilityLabel(NSLocalizedString("formatting.help.accessibility-label", tableName: nil, bundle: writeKitBundle,
+            value: "Formatting help",
+            comment: "Accessibility label for opening help about semantic and visual formatting."))
+        alignmentButton.setAccessibilityLabel(NSLocalizedString("paragraph.alignment.accessibility-label", tableName: nil, bundle: writeKitBundle,
+            value: "Paragraph alignment",
+            comment: "Accessibility label of the paragraph alignment control."))
         updateFormattingControls()
     }
 
@@ -123,8 +124,9 @@ private func editorStoryboard() -> NSStoryboard { NSStoryboard(name: "Editor", b
         text.textContainer?.containerSize = NSSize(width: text.bounds.width, height: .greatestFiniteMagnitude)
         text.isAutomaticQuoteSubstitutionEnabled = false
         text.isAutomaticDashSubstitutionEnabled = false
-        text.setAccessibilityLabel(writeString("manuscript.text.accessibility-label", "Manuscript text",
-            "Accessibility name of the editable Manuscript text area."))
+        text.setAccessibilityLabel(NSLocalizedString("manuscript.text.accessibility-label", tableName: nil, bundle: writeKitBundle,
+            value: "Manuscript text",
+            comment: "Accessibility name of the editable Manuscript text area."))
         text.identifier = NSUserInterfaceItemIdentifier("manuscriptText")
         if work != nil { displayWork() }
     }
@@ -309,11 +311,12 @@ extension EditorViewController {
             marker.editor = self
             _ = marker.view
             marker.markerButton.contentTintColor = .systemOrange
-            marker.markerButton.setAccessibilityLabel(writeString("formatting.conflict.accessibility-label",
-                "Formatting conflict", "Accessibility name of the inline warning marker."))
-            marker.markerButton.setAccessibilityHelp(writeString("formatting.conflict.accessibility-help",
-                "Bold or Italic overlaps semantic emphasis. Show conversion and dismissal options.",
-                "Accessibility help for the formatting conflict marker; Bold and Italic are appearance choices."))
+            marker.markerButton.setAccessibilityLabel(NSLocalizedString("formatting.conflict.accessibility-label", tableName: nil, bundle: writeKitBundle,
+                value: "Formatting conflict",
+                comment: "Accessibility name of the inline warning marker."))
+            marker.markerButton.setAccessibilityHelp(NSLocalizedString("formatting.conflict.accessibility-help", tableName: nil, bundle: writeKitBundle,
+                value: "Bold or Italic overlaps semantic emphasis. Show conversion and dismissal options.",
+                comment: "Accessibility help for the formatting conflict marker; Bold and Italic are appearance choices."))
             marker.markerButton.identifier = NSUserInterfaceItemIdentifier("formattingConflictMarker")
             textView.addSubview(marker.view)
             formattingMarkers.append(marker)
@@ -352,8 +355,9 @@ extension EditorViewController {
     @IBAction public func dismissFormattingWarning(_ sender: Any?) {
         formattingConflictPopover?.close()
         setFormattingWarningDismissed(true)
-        editingUndoManager.setActionName(writeString("formatting.conflict.dismiss.undo", "Dismiss Formatting Warning",
-            "Undo action name for dismissing a warning; AppKit adds Undo or Redo."))
+        editingUndoManager.setActionName(NSLocalizedString("formatting.conflict.dismiss.undo", tableName: nil, bundle: writeKitBundle,
+            value: "Dismiss Formatting Warning",
+            comment: "Undo action name for dismissing a warning; AppKit adds Undo or Redo."))
     }
 
     @IBAction public func convertPresentationToEmphasis(_ sender: Any?) {
@@ -369,8 +373,9 @@ extension EditorViewController {
             attributes[EditorAttribute.italic] = false
             renderAttributes(&attributes)
         }
-        let name = writeString("formatting.convert-to-emphasis.undo", "Convert Presentation to Emphasis",
-            "Undo action name for converting visual Bold or Italic into semantic emphasis.")
+        let name = NSLocalizedString("formatting.convert-to-emphasis.undo", tableName: nil, bundle: writeKitBundle,
+            value: "Convert Presentation to Emphasis",
+            comment: "Undo action name for converting visual Bold or Italic into semantic emphasis.")
         editingUndoManager.beginUndoGrouping()
         editAttributes(in: NSRange(location: 0, length: (textView.string as NSString).length), name: name, transform: convert)
         if textView.selectedRange.length == 0 && hasFormattingConflict(textView.typingAttributes) {
@@ -398,34 +403,41 @@ extension EditorViewController {
 
     @IBAction public func toggleEmphasis(_ sender: Any?) {
         toggle(EditorAttribute.emphasis, value: TextEmphasis.emphasis.rawValue,
-            name: writeString("formatting.emphasis.undo", "Emphasis",
-                "Undo action name for applying semantic emphasis, distinct from visual Italic. AppKit adds Undo or Redo."))
+            name: NSLocalizedString("formatting.emphasis.undo", tableName: nil, bundle: writeKitBundle,
+                value: "Emphasis",
+                comment: "Undo action name for applying semantic emphasis, distinct from visual Italic. AppKit adds Undo or Redo."))
     }
     @IBAction public func toggleStrongEmphasis(_ sender: Any?) {
         toggle(EditorAttribute.emphasis, value: TextEmphasis.strongEmphasis.rawValue,
-            name: writeString("formatting.strong-emphasis.undo", "Strong Emphasis",
-                "Undo action name for applying strong semantic emphasis, distinct from visual Bold. AppKit adds Undo or Redo."))
+            name: NSLocalizedString("formatting.strong-emphasis.undo", tableName: nil, bundle: writeKitBundle,
+                value: "Strong Emphasis",
+                comment: "Undo action name for applying strong semantic emphasis, distinct from visual Bold. AppKit adds Undo or Redo."))
     }
     @IBAction public func toggleVeryStrongEmphasis(_ sender: Any?) {
         toggle(EditorAttribute.emphasis, value: TextEmphasis.veryStrongEmphasis.rawValue,
-            name: writeString("formatting.very-strong-emphasis", "Very Strong Emphasis",
-                "Undo action name for the strongest semantic emphasis level."))
+            name: NSLocalizedString("formatting.very-strong-emphasis", tableName: nil, bundle: writeKitBundle,
+                value: "Very Strong Emphasis",
+                comment: "Undo action name for the strongest semantic emphasis level."))
     }
     @IBAction public func toggleBold(_ sender: Any?) {
-        toggle(EditorAttribute.bold, value: 1, name: writeString("formatting.bold", "Bold",
-            "Undo action name for visual bold formatting, distinct from semantic Strong Emphasis."))
+        toggle(EditorAttribute.bold, value: 1, name: NSLocalizedString("formatting.bold", tableName: nil, bundle: writeKitBundle,
+            value: "Bold",
+            comment: "Undo action name for visual bold formatting, distinct from semantic Strong Emphasis."))
     }
     @IBAction public func toggleItalic(_ sender: Any?) {
-        toggle(EditorAttribute.italic, value: 1, name: writeString("formatting.italic", "Italic",
-            "Undo action name for visual italic formatting, distinct from semantic Emphasis."))
+        toggle(EditorAttribute.italic, value: 1, name: NSLocalizedString("formatting.italic", tableName: nil, bundle: writeKitBundle,
+            value: "Italic",
+            comment: "Undo action name for visual italic formatting, distinct from semantic Emphasis."))
     }
     @IBAction public func toggleUnderline(_ sender: Any?) {
-        toggle(EditorAttribute.underline, value: 1, name: writeString("formatting.underline", "Underline",
-            "Undo action name for visual underline formatting."))
+        toggle(EditorAttribute.underline, value: 1, name: NSLocalizedString("formatting.underline", tableName: nil, bundle: writeKitBundle,
+            value: "Underline",
+            comment: "Undo action name for visual underline formatting."))
     }
     @IBAction public func toggleStrikethrough(_ sender: Any?) {
-        toggle(EditorAttribute.strikethrough, value: 1, name: writeString("formatting.strikethrough", "Strikethrough",
-            "Undo action name for visual strikethrough formatting."))
+        toggle(EditorAttribute.strikethrough, value: 1, name: NSLocalizedString("formatting.strikethrough", tableName: nil, bundle: writeKitBundle,
+            value: "Strikethrough",
+            comment: "Undo action name for visual strikethrough formatting."))
     }
 
     @IBAction func showAppearance(_ sender: NSButton) {
@@ -491,8 +503,9 @@ extension EditorViewController {
             updateFormattingControls()
             if appearancePopover?.isShown != true { view.window?.makeFirstResponder(textView) }
         } else {
-            editAttributes(in: textView.selectedRange, name: writeString("formatting.clear.undo", "Clear Formatting",
-                "Undo action name for removing character formatting."), transform: clear)
+            editAttributes(in: textView.selectedRange, name: NSLocalizedString("formatting.clear.undo", tableName: nil, bundle: writeKitBundle,
+                value: "Clear Formatting",
+                comment: "Undo action name for removing character formatting."), transform: clear)
         }
     }
 
@@ -535,8 +548,9 @@ extension EditorViewController {
         }
         textView.typingAttributes = attributes
         textView.didChangeText()
-        editingUndoManager.setActionName(writeString("paragraph.alignment.undo", "Paragraph Alignment",
-            "Undo action name for changing paragraph alignment."))
+        editingUndoManager.setActionName(NSLocalizedString("paragraph.alignment.undo", tableName: nil, bundle: writeKitBundle,
+            value: "Paragraph Alignment",
+            comment: "Undo action name for changing paragraph alignment."))
     }
 
     @IBAction func changeParagraphAlignment(_ sender: NSPopUpButton) {
@@ -550,8 +564,9 @@ extension EditorViewController {
             attributes[.paragraphStyle] = style
             applyEmptyParagraphAttributes(attributes)
         } else {
-            editAttributes(in: range, name: writeString("paragraph.alignment.undo", "Paragraph Alignment",
-                "Undo action name for changing paragraph alignment.")) { attributes in
+            editAttributes(in: range, name: NSLocalizedString("paragraph.alignment.undo", tableName: nil, bundle: writeKitBundle,
+                value: "Paragraph Alignment",
+                comment: "Undo action name for changing paragraph alignment.")) { attributes in
                 let style = (attributes[.paragraphStyle] as? NSParagraphStyle)?.mutableCopy() as? NSMutableParagraphStyle
                     ?? NSMutableParagraphStyle()
                 style.alignment = alignment

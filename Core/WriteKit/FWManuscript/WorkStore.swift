@@ -15,14 +15,11 @@ enum WorkStore {
     private final class BundleToken {}
     private static var bundle: Bundle { Bundle(identifier: "dev.foliosuite.WriteKit") ?? Bundle(for: BundleToken.self) }
 
-    private static func localized(_ key: String, _ value: String, _ comment: String) -> String {
-        NSLocalizedString(key, tableName: nil, bundle: bundle, value: value, comment: comment)
-    }
-
     private static func readError(_ reason: String) -> NSError {
         NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: [
-            NSLocalizedDescriptionKey: localized("work-package.read.error", "Write cannot read this Work package.",
-                "Error summary when opening a native Work fails. Write is the app name; Work is a Folio domain term."),
+            NSLocalizedDescriptionKey: NSLocalizedString("work-package.read.error", tableName: nil, bundle: bundle,
+                value: "Write cannot read this Work package.",
+                comment: "Error summary when opening a native Work fails. Write is the app name; Work is a Folio domain term."),
             NSLocalizedRecoverySuggestionErrorKey: reason
         ])
     }
@@ -31,11 +28,12 @@ enum WorkStore {
         if let url = bundle.url(forResource: "FWWork", withExtension: "momd"),
            let model = NSManagedObjectModel(contentsOf: url) { return model }
         throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadUnknownError, userInfo: [
-            NSLocalizedDescriptionKey: localized("work-model.load.error", "WriteKit’s data model could not be loaded.",
-                "Error summary for a missing model resource; WriteKit is a framework name."),
-            NSLocalizedRecoverySuggestionErrorKey: localized("work-model.load.recovery",
-                "Rebuild or reinstall the application with its FWWork model resource.",
-                "Recovery advice for developers or users. Preserve FWWork as a resource name.")
+            NSLocalizedDescriptionKey: NSLocalizedString("work-model.load.error", tableName: nil, bundle: bundle,
+                value: "WriteKit’s data model could not be loaded.",
+                comment: "Error summary for a missing model resource; WriteKit is a framework name."),
+            NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString("work-model.load.recovery", tableName: nil, bundle: bundle,
+                value: "Rebuild or reinstall the application with its FWWork model resource.",
+                comment: "Recovery advice for developers or users. Preserve FWWork as a resource name.")
         ])
     }
 
@@ -48,17 +46,17 @@ enum WorkStore {
                 guard let files = package?.fileWrappers, files.count == 1,
                       let file = files["Work.sqlite"], file.isRegularFile,
                       let contents = file.regularFileContents else {
-                    throw readError(localized("work-package.structure.recovery",
-                        "Expected a native Work package containing Work.sqlite. Extra files and unfamiliar formats are left untouched.",
-                        "Recovery advice for an invalid package. Preserve the filename Work.sqlite."))
+                    throw readError(NSLocalizedString("work-package.structure.recovery", tableName: nil, bundle: bundle,
+                        value: "Expected a native Work package containing Work.sqlite. Extra files and unfamiliar formats are left untouched.",
+                        comment: "Recovery advice for an invalid package. Preserve the filename Work.sqlite."))
                 }
                 try contents.write(to: storeURL, options: .atomic)
                 let metadata = try NSPersistentStoreCoordinator.metadataForPersistentStore(
                     ofType: NSSQLiteStoreType, at: storeURL)
                 guard storeModel.isConfiguration(withName: nil, compatibleWithStoreMetadata: metadata) else {
-                    throw readError(localized("work-package.version.recovery",
-                        "This Work uses a different model version. Open it with a compatible version of Write.",
-                        "Recovery advice for an unsupported Work model version. Write is the app name."))
+                    throw readError(NSLocalizedString("work-package.version.recovery", tableName: nil, bundle: bundle,
+                        value: "This Work uses a different model version. Open it with a compatible version of Write.",
+                        comment: "Recovery advice for an unsupported Work model version. Write is the app name."))
                 }
             }
 
@@ -80,9 +78,9 @@ enum WorkStore {
     private static func identifier(_ object: NSManagedObject, _ key: String, seen: inout Set<String>) throws -> FolioIdentifier {
         guard let raw = object.value(forKey: key) as? String, !seen.contains(raw),
               let value = try? FolioIdentifier(rawValue: raw) else {
-            throw readError(localized("work-package.manuscript.recovery",
-                "The store contains invalid or unsupported Manuscript structure; no content has been changed.",
-                "Recovery explanation for invalid data. Manuscript is a Folio domain term."))
+            throw readError(NSLocalizedString("work-package.manuscript.recovery", tableName: nil, bundle: bundle,
+                value: "The store contains invalid or unsupported Manuscript structure; no content has been changed.",
+                comment: "Recovery explanation for invalid data. Manuscript is a Folio domain term."))
         }
         seen.insert(raw)
         return value
@@ -95,9 +93,9 @@ enum WorkStore {
     }
 
     private static func malformed() -> NSError {
-        readError(localized("work-package.manuscript.recovery",
-            "The store contains invalid or unsupported Manuscript structure; no content has been changed.",
-            "Recovery explanation for invalid data. Manuscript is a Folio domain term."))
+        readError(NSLocalizedString("work-package.manuscript.recovery", tableName: nil, bundle: bundle,
+            value: "The store contains invalid or unsupported Manuscript structure; no content has been changed.",
+            comment: "Recovery explanation for invalid data. Manuscript is a Folio domain term."))
     }
 
     static func readPackage(_ package: FileWrapper) throws -> Snapshot {
@@ -204,9 +202,9 @@ enum WorkStore {
         let loaded = try readPackage(wrapper)
         guard loaded.identifier == workIdentifier, loaded.manuscript == manuscript else {
             throw NSError(domain: NSCocoaErrorDomain, code: NSFileWriteUnknownError, userInfo: [
-                NSLocalizedDescriptionKey: localized("work-package.save-verification.error",
-                    "The Work could not be saved without losing information. The previous saved package has not been replaced.",
-                    "Error when save verification fails. Reassure the user that the previous package remains intact.")
+                NSLocalizedDescriptionKey: NSLocalizedString("work-package.save-verification.error", tableName: nil, bundle: bundle,
+                    value: "The Work could not be saved without losing information. The previous saved package has not been replaced.",
+                    comment: "Error when save verification fails. Reassure the user that the previous package remains intact.")
             ])
         }
         return wrapper

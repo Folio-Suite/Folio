@@ -45,19 +45,24 @@ import FolioKit
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        addButton.setAccessibilityLabel(writeString("manuscript.add-content-unit", "Add Content Unit",
-            "Accessibility label for adding a Content Unit to the Manuscript. Content Unit and Manuscript are Folio domain terms."))
-        moveUpButton.setAccessibilityLabel(writeString("manuscript.move-content-unit-up", "Move Content Unit Up",
-            "Accessibility label: move the selected Content Unit earlier in the Manuscript."))
-        moveDownButton.setAccessibilityLabel(writeString("manuscript.move-content-unit-down", "Move Content Unit Down",
-            "Accessibility label: move the selected Content Unit later in the Manuscript."))
+        addButton.setAccessibilityLabel(NSLocalizedString("manuscript.add-content-unit", tableName: nil, bundle: writeKitBundle,
+            value: "Add Content Unit",
+            comment: "Accessibility label for adding a Content Unit to the Manuscript. Content Unit and Manuscript are Folio domain terms."))
+        moveUpButton.setAccessibilityLabel(NSLocalizedString("manuscript.move-content-unit-up", tableName: nil, bundle: writeKitBundle,
+            value: "Move Content Unit Up",
+            comment: "Accessibility label: move the selected Content Unit earlier in the Manuscript."))
+        moveDownButton.setAccessibilityLabel(NSLocalizedString("manuscript.move-content-unit-down", tableName: nil, bundle: writeKitBundle,
+            value: "Move Content Unit Down",
+            comment: "Accessibility label: move the selected Content Unit later in the Manuscript."))
         unitTable.dataSource = self
         unitTable.delegate = self
-        unitTable.setAccessibilityLabel(writeString("manuscript.units.accessibility-label", "Manuscript units",
-            "Accessibility name of the table listing Content Units in reading order."))
+        unitTable.setAccessibilityLabel(NSLocalizedString("manuscript.units.accessibility-label", tableName: nil, bundle: writeKitBundle,
+            value: "Manuscript units",
+            comment: "Accessibility name of the table listing Content Units in reading order."))
         unitTable.identifier = NSUserInterfaceItemIdentifier("manuscriptUnits")
-        unitTitle.setAccessibilityLabel(writeString("content-unit.title.accessibility-label", "Content Unit title",
-            "Accessibility name of the editable title field."))
+        unitTitle.setAccessibilityLabel(NSLocalizedString("content-unit.title.accessibility-label", tableName: nil, bundle: writeKitBundle,
+            value: "Content Unit title",
+            comment: "Accessibility name of the editable title field."))
         unitTitle.identifier = NSUserInterfaceItemIdentifier("contentUnitTitle")
         selectUnit(withIdentifier: work.text.identifier)
     }
@@ -142,8 +147,9 @@ import FolioKit
         let unit = TextUnit.makeEmpty()
         units.append(unit)
         applyManuscript(verifiedValue { try Manuscript(identifier: work.manuscriptIdentifier, units: units) }, selection: unit.identifier,
-            name: writeString("manuscript.add-content-unit.undo", "Add Content Unit",
-                "Undo action name for adding a Content Unit to the Manuscript. AppKit adds Undo or Redo."))
+            name: NSLocalizedString("manuscript.add-content-unit.undo", tableName: nil, bundle: writeKitBundle,
+                value: "Add Content Unit",
+                comment: "Undo action name for adding a Content Unit to the Manuscript. AppKit adds Undo or Redo."))
         view.window?.makeFirstResponder(unitTitle)
         unitTitle.selectText(nil)
     }
@@ -152,8 +158,9 @@ import FolioKit
         guard let selectedUnitIdentifier, let unit = work.text(withIdentifier: selectedUnitIdentifier) else { return }
         var title = unitTitle.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         if title.isEmpty {
-            title = writeString("content-unit.empty-title", "Untitled",
-                "Title saved when the user submits an empty Content Unit title. Match the default title in FolioKit.")
+            title = NSLocalizedString("content-unit.empty-title", tableName: nil, bundle: writeKitBundle,
+                value: "Untitled",
+                comment: "Title saved when the user submits an empty Content Unit title. Match the default title in FolioKit.")
         }
         guard unit.title != title else { return }
         var units = work.manuscript.units
@@ -161,8 +168,9 @@ import FolioKit
         units[index] = verifiedValue { try TextUnit(identifier: unit.identifier, title: title, paragraphs: unit.paragraphs,
                                      formattingWarningDismissed: unit.formattingWarningDismissed) }
         applyManuscript(verifiedValue { try Manuscript(identifier: work.manuscriptIdentifier, units: units) }, selection: unit.identifier,
-            name: writeString("manuscript.rename-content-unit.undo", "Rename Content Unit",
-                "Undo action name for editing a Content Unit title; AppKit adds Undo or Redo."))
+            name: NSLocalizedString("manuscript.rename-content-unit.undo", tableName: nil, bundle: writeKitBundle,
+                value: "Rename Content Unit",
+                comment: "Undo action name for editing a Content Unit title; AppKit adds Undo or Redo."))
     }
 
     private func move(by delta: Int) {
@@ -174,8 +182,9 @@ import FolioKit
         units.swapAt(index, destination)
         applyManuscript(verifiedValue { try Manuscript(identifier: work.manuscriptIdentifier, units: units) },
             selection: selectedUnitIdentifier,
-            name: writeString("manuscript.reorder-content-unit.undo", "Reorder Content Unit",
-                "Undo action name for moving a Content Unit; AppKit adds Undo or Redo."))
+            name: NSLocalizedString("manuscript.reorder-content-unit.undo", tableName: nil, bundle: writeKitBundle,
+                value: "Reorder Content Unit",
+                comment: "Undo action name for moving a Content Unit; AppKit adds Undo or Redo."))
     }
 
     @IBAction public func moveContentUnitUp(_ sender: Any?) { move(by: -1) }

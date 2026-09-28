@@ -3,7 +3,7 @@
   "strings": {
     "content-unit.empty-title": {
       "comment": "Title saved when the user submits an empty Content Unit title. Match the default title in FolioKit.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -75,7 +75,7 @@
     },
     "content-unit.title.accessibility-label": {
       "comment": "Accessibility name of the editable title field.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -147,7 +147,7 @@
     },
     "formatting.bold": {
       "comment": "Undo action name for visual bold formatting, distinct from semantic Strong Emphasis.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -219,7 +219,7 @@
     },
     "formatting.clear.accessibility-label": {
       "comment": "Accessibility label for removing semantic and visual character formatting, preserving paragraph alignment.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -291,7 +291,7 @@
     },
     "formatting.clear.undo": {
       "comment": "Undo action name for removing character formatting.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -363,7 +363,7 @@
     },
     "formatting.conflict.accessibility-help": {
       "comment": "Accessibility help for the formatting conflict marker; Bold and Italic are appearance choices.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -435,7 +435,7 @@
     },
     "formatting.conflict.accessibility-label": {
       "comment": "Accessibility name of the inline warning marker.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -507,7 +507,7 @@
     },
     "formatting.conflict.dismiss.undo": {
       "comment": "Undo action name for dismissing a warning; AppKit adds Undo or Redo.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -579,7 +579,7 @@
     },
     "formatting.convert-to-emphasis.undo": {
       "comment": "Undo action name for converting visual Bold or Italic into semantic emphasis.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -651,7 +651,7 @@
     },
     "formatting.emphasis": {
       "comment": "Accessibility label for semantic emphasis, distinct from visual Italic.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -722,7 +722,7 @@
       }
     },
     "formatting.emphasis.undo": {
-      "extractionState": "stale",
+      "extractionState": "manual",
       "comment": "Undo action name for applying semantic emphasis, distinct from visual Italic. AppKit adds Undo or Redo.",
       "localizations": {
         "en": {
@@ -795,7 +795,7 @@
     },
     "formatting.help.accessibility-label": {
       "comment": "Accessibility label for opening help about semantic and visual formatting.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -867,7 +867,7 @@
     },
     "formatting.italic": {
       "comment": "Undo action name for visual italic formatting, distinct from semantic Emphasis.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -939,7 +939,7 @@
     },
     "formatting.strikethrough": {
       "comment": "Undo action name for visual strikethrough formatting.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1011,7 +1011,7 @@
     },
     "formatting.strong-emphasis": {
       "comment": "Accessibility label for strong semantic emphasis, distinct from visual Bold.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1082,7 +1082,7 @@
       }
     },
     "formatting.strong-emphasis.undo": {
-      "extractionState": "stale",
+      "extractionState": "manual",
       "comment": "Undo action name for applying strong semantic emphasis, distinct from visual Bold. AppKit adds Undo or Redo.",
       "localizations": {
         "en": {
@@ -1155,7 +1155,7 @@
     },
     "formatting.underline": {
       "comment": "Undo action name for visual underline formatting.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1227,7 +1227,7 @@
     },
     "formatting.very-strong-emphasis": {
       "comment": "Undo action name for the strongest semantic emphasis level.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1299,7 +1299,7 @@
     },
     "manuscript.add-content-unit": {
       "comment": "Accessibility label for adding a Content Unit to the Manuscript. Content Unit and Manuscript are Folio domain terms.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1370,7 +1370,7 @@
       }
     },
     "manuscript.add-content-unit.undo": {
-      "extractionState": "stale",
+      "extractionState": "manual",
       "comment": "Undo action name for adding a Content Unit to the Manuscript. AppKit adds Undo or Redo.",
       "localizations": {
         "en": {
@@ -1443,7 +1443,7 @@
     },
     "manuscript.move-content-unit-down": {
       "comment": "Accessibility label: move the selected Content Unit later in the Manuscript.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1515,7 +1515,7 @@
     },
     "manuscript.move-content-unit-up": {
       "comment": "Accessibility label: move the selected Content Unit earlier in the Manuscript.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1587,7 +1587,7 @@
     },
     "manuscript.rename-content-unit.undo": {
       "comment": "Undo action name for editing a Content Unit title; AppKit adds Undo or Redo.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1659,7 +1659,7 @@
     },
     "manuscript.reorder-content-unit.undo": {
       "comment": "Undo action name for moving a Content Unit; AppKit adds Undo or Redo.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1731,7 +1731,7 @@
     },
     "manuscript.text.accessibility-label": {
       "comment": "Accessibility name of the editable Manuscript text area.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1803,7 +1803,7 @@
     },
     "manuscript.units.accessibility-label": {
       "comment": "Accessibility name of the table listing Content Units in reading order.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1875,7 +1875,7 @@
     },
     "paragraph.alignment.accessibility-label": {
       "comment": "Accessibility label of the paragraph alignment control.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1947,7 +1947,7 @@
     },
     "paragraph.alignment.undo": {
       "comment": "Undo action name for changing paragraph alignment.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -2019,7 +2019,7 @@
     },
     "work-model.load.error": {
       "comment": "Error summary for a missing model resource; WriteKit is a framework name.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -2091,7 +2091,7 @@
     },
     "work-model.load.recovery": {
       "comment": "Recovery advice for developers or users. Preserve FWWork as a resource name.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -2163,7 +2163,7 @@
     },
     "work-package.manuscript.recovery": {
       "comment": "Recovery explanation for invalid data. Manuscript is a Folio domain term.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -2235,7 +2235,7 @@
     },
     "work-package.read.error": {
       "comment": "Error summary when opening a native Work fails. Write is the app name; Work is a Folio domain term.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -2307,7 +2307,7 @@
     },
     "work-package.save-verification.error": {
       "comment": "Error when save verification fails. Reassure the user that the previous package remains intact.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -2379,7 +2379,7 @@
     },
     "work-package.structure.recovery": {
       "comment": "Recovery advice for an invalid package. Preserve the filename Work.sqlite.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -2451,7 +2451,7 @@
     },
     "work-package.version.recovery": {
       "comment": "Recovery advice for an unsupported Work model version. Write is the app name.",
-      "extractionState": "stale",
+      "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
