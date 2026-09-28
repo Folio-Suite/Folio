@@ -13,6 +13,9 @@
 		A1641DE4306AD6B6004824F1 /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DDD306AD6B6004824F1 /* WriteKit.framework */; };
 		A1CCD310305744DF004B4721 /* ResearchXPCService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = A1CCD305305744DF004B4721 /* ResearchXPCService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A1CCD32430574594004B4721 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F83B183050BBAB00DEB96A /* FolioKit.framework */; };
+		2810F80435E8A6207491FE17 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = FE0DE3726C078D1175B1CB56 /* Defaults */; };
+		6B5F87042E4FC58FDAC10306 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = F8F61DFDA974CC7B4F4F8243 /* Collections */; };
+		7C3CA41BB926C3684813FAF7 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 361D9D64EC5B1CD68DA8C37B /* Algorithms */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +117,9 @@
 		A1064890304DFD5C001A21A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				2810F80435E8A6207491FE17 /* Defaults in Frameworks */,
+				6B5F87042E4FC58FDAC10306 /* Collections in Frameworks */,
+				7C3CA41BB926C3684813FAF7 /* Algorithms in Frameworks */,
 				A1641DDE306AD6B6004824F1 /* ComposerKit.framework in Frameworks */,
 				A1641DE4306AD6B6004824F1 /* WriteKit.framework in Frameworks */,
 				A1641DE0306AD6B6004824F1 /* FolioKit.framework in Frameworks */,
@@ -190,6 +196,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2C3B60F81D7291EFB6DF13D6 /* SwiftLintBuildToolPlugin */,
 				A1CCD30F305744DF004B4721 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -199,6 +206,11 @@
 			productName = Research;
 			productReference = A1064893304DFD5C001A21A6 /* Research.app */;
 			productType = "com.apple.product-type.application";
+			packageProductDependencies = (
+				FE0DE3726C078D1175B1CB56 /* Defaults */,
+				F8F61DFDA974CC7B4F4F8243 /* Collections */,
+				361D9D64EC5B1CD68DA8C37B /* Algorithms */,
+			);
 		};
 		A10648AD304DFD5D001A21A6 /* ResearchTests */ = {
 			isa = PBXNativeTarget;
@@ -211,6 +223,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				FC91F3C019D8CD9ED5565A9B /* SwiftLintBuildToolPlugin */,
 				A10648B0304DFD5D001A21A6 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -232,6 +245,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A320D9026FD3B81A355717AE /* SwiftLintBuildToolPlugin */,
 				A10648BA304DFD5D001A21A6 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -259,6 +273,9 @@
 			productName = ResearchXPCService;
 			productReference = A1CCD305305744DF004B4721 /* ResearchXPCService.xpc */;
 			productType = "com.apple.product-type.xpc-service";
+			dependencies = (
+				5F6A78B58D753044A4F0FA6E /* SwiftLintBuildToolPlugin */,
+			);
 		};
 /* End PBXNativeTarget section */
 
@@ -315,6 +332,12 @@
 				A10648AD304DFD5D001A21A6 /* ResearchTests */,
 				A10648B7304DFD5D001A21A6 /* ResearchUITests */,
 				A1CCD304305744DF004B4721 /* ResearchXPCService */,
+			);
+			packageReferences = (
+				8238851A50D176EF1283C4E4 /* XCRemoteSwiftPackageReference "Defaults" */,
+				6F23A0399AA1D4541CF1E0E6 /* XCRemoteSwiftPackageReference "swift-collections" */,
+				90E915C05DDD740A65F1B08A /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				8C2B2309948D976BA7E0EE3F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 		};
 /* End PBXProject section */
@@ -380,6 +403,22 @@
 			isa = PBXTargetDependency;
 			target = A1CCD304305744DF004B4721 /* ResearchXPCService */;
 			targetProxy = A1CCD30E305744DF004B4721 /* PBXContainerItemProxy */;
+		};
+		2C3B60F81D7291EFB6DF13D6 /* SwiftLintBuildToolPlugin */ = {
+			isa = PBXTargetDependency;
+			productRef = A75EC3037E1CAEB9D6094740 /* SwiftLintBuildToolPlugin */;
+		};
+		FC91F3C019D8CD9ED5565A9B /* SwiftLintBuildToolPlugin */ = {
+			isa = PBXTargetDependency;
+			productRef = DBA246B00348ADA96E33DFB6 /* SwiftLintBuildToolPlugin */;
+		};
+		A320D9026FD3B81A355717AE /* SwiftLintBuildToolPlugin */ = {
+			isa = PBXTargetDependency;
+			productRef = 40CE0475201E913BD379C942 /* SwiftLintBuildToolPlugin */;
+		};
+		5F6A78B58D753044A4F0FA6E /* SwiftLintBuildToolPlugin */ = {
+			isa = PBXTargetDependency;
+			productRef = 5816A813ABD7E8AFF71EE770 /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -777,6 +816,79 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8238851A50D176EF1283C4E4 /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				kind = exactVersion;
+				version = 9.0.9;
+			};
+		};
+		6F23A0399AA1D4541CF1E0E6 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections";
+			requirement = {
+				kind = exactVersion;
+				version = 1.7.1;
+			};
+		};
+		90E915C05DDD740A65F1B08A /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms";
+			requirement = {
+				kind = exactVersion;
+				version = 1.2.1;
+			};
+		};
+		8C2B2309948D976BA7E0EE3F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = exactVersion;
+				version = 0.65.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A75EC3037E1CAEB9D6094740 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C2B2309948D976BA7E0EE3F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		FE0DE3726C078D1175B1CB56 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8238851A50D176EF1283C4E4 /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		F8F61DFDA974CC7B4F4F8243 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6F23A0399AA1D4541CF1E0E6 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		361D9D64EC5B1CD68DA8C37B /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 90E915C05DDD740A65F1B08A /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		DBA246B00348ADA96E33DFB6 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C2B2309948D976BA7E0EE3F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		40CE0475201E913BD379C942 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C2B2309948D976BA7E0EE3F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		5816A813ABD7E8AFF71EE770 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C2B2309948D976BA7E0EE3F /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A106488B304DFD5C001A21A6 /* Project object */;
 }

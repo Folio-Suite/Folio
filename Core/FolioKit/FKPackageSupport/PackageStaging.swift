@@ -27,10 +27,3 @@ private enum TemporaryDirectory {
         try? FileManager.default.removeItem(at: directory)
     }
 }
-
-// Existing Objective-C operations can throw NSException. Keep their @finally
-// boundary in Objective-C while sharing directory creation and removal here.
-@objc(FKSwiftStagingBridge) public final class SwiftStagingBridge: NSObject {
-    @objc public static func create() throws -> URL { try TemporaryDirectory.create() }
-    @objc public static func remove(_ directory: URL) { TemporaryDirectory.remove(directory) }
-}

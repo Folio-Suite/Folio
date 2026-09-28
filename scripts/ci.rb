@@ -35,7 +35,7 @@ end
 begin
   derived = File.join(output, 'DerivedData')
   common = ['xcodebuild', '-workspace', 'Folio.xcworkspace', '-scheme', scheme_name,
-            '-destination', 'platform=macOS', '-derivedDataPath', derived]
+            '-skipPackagePluginValidation', '-destination', 'platform=macOS', '-derivedDataPath', derived]
   # Local Xcode uses the contributor's identity. Hosted jobs select only the
   # dedicated team certificate imported into their temporary keychain.
   signing = []

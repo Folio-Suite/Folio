@@ -28,7 +28,7 @@ RUBYSCHEME
 build_dir=$(mktemp -d "${TMPDIR:-/tmp}/folio-build.XXXXXX")
 trap 'rm -rf "$build_dir"' EXIT
 xcodebuild -workspace "$PWD/Folio.xcworkspace" -scheme Folio -configuration Debug \
-    -destination 'platform=macOS' -derivedDataPath "$build_dir" \
+    -skipPackagePluginValidation -destination 'platform=macOS' -derivedDataPath "$build_dir" \
     "${build_settings[@]}" "${build_actions[@]}"
 products="$build_dir/Build/Products/Debug"
 for app in Write Research Composer; do
@@ -40,6 +40,7 @@ done
 for app in Write Research Composer; do
     test -x "$products/$app.app/Contents/XPCServices/${app}XPCService.xpc/Contents/MacOS/${app}XPCService"
 done
+bash TypographyKit/Tests/run.sh "$products"
 ruby scripts/check-kit-interfaces.rb "$products"
 ruby scripts/release.rb verify --products "$products"
 echo 'Suite build and framework product checks passed; installed runtime layout is not validated.'

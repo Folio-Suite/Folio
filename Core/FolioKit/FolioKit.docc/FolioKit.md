@@ -15,15 +15,15 @@ FolioKit provides stable identity, immutable authored-text values, and temporary
 
 The text model includes identities, Manuscript reading order, text Content Units, paragraphs, runs, semantic emphasis, and independent presentation flags. ``FolioIdentifier`` rejects empty identifiers. ``TextUnit`` and ``Manuscript`` reject empty collections, and a Manuscript rejects duplicate Content Unit identities. Replacing text snapshots can preserve their identities and Content Unit warning-dismissal state.
 
-``PackageStaging`` runs a synchronous throwing operation in a unique temporary directory and removes that directory after success or failure. Callers must return results that do not depend on the temporary files remaining. The transitional Objective-C ``FKPackageSupport`` entry point also cleans up after Objective-C exceptions.
+``PackageStaging`` runs a synchronous throwing operation in a unique temporary directory and removes that directory after success or failure. Callers must return results that do not depend on the temporary files remaining.
 
 ## Public interface and hosting
 
-Swift callers use `import FolioKit`. Objective-C consumers in the current migration use `<FolioKit/FolioKit.h>` or `@import FolioKit;` and retain their existing selectors through temporary forwarding adapters. The generated `FolioKit-Swift.h` supports those adapters. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
+Swift callers use `import FolioKit`. The model and staging implementations have no transitional Objective-C adapters. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
 
 ## Limitations
 
-FolioKit supplies shared model foundations, not Work persistence, Source Library behavior, Arrangement behavior, or reusable AppKit editing. `FKXMLSupport` is an empty placeholder; XML exchange is not implemented. The authored-text model does not contain editor selection or undo-manager state.
+FolioKit supplies shared model foundations, not Work persistence, Source Library behavior, Arrangement behavior, or reusable AppKit editing. XML exchange is not implemented. The authored-text model does not contain editor selection or undo-manager state.
 
 ## Topics
 

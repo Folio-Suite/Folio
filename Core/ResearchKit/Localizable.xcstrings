@@ -74,7 +74,7 @@
       }
     },
     "source-library.structure.recovery": {
-      "comment": "Recovery advice for unsupported library structure. Preserve Library.sqlite as a filename.",
+      "comment": "Recovery guidance for a malformed Source Library package.",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -146,7 +146,7 @@
       }
     },
     "source-library.version.recovery": {
-      "comment": "Recovery advice for an unsupported library model. Research is the app name.",
+      "comment": "Recovery guidance for an unsupported Source Library catalog model.",
       "extractionState": "manual",
       "localizations": {
         "en": {

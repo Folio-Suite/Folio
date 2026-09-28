@@ -2,9 +2,17 @@
 // SPDX-License-Identifier: MIT
 
 #import <Foundation/Foundation.h>
-#import "WriteXPCServiceProtocol.h"
-#import "ResearchXPCServiceProtocol.h"
-#import "ComposerXPCServiceProtocol.h"
+// Independent Objective-C consumer of the Swift services' stable Cocoa selector.
+// Keep these declarations separate from implementation source to detect drift.
+@protocol WriteXPCServiceProtocol
+- (void)ping:(NSString *)nonce reply:(void (^)(NSString *, int))reply;
+@end
+@protocol ResearchXPCServiceProtocol
+- (void)ping:(NSString *)nonce reply:(void (^)(NSString *, int))reply;
+@end
+@protocol ComposerXPCServiceProtocol
+- (void)ping:(NSString *)nonce reply:(void (^)(NSString *, int))reply;
+@end
 
 static void Emit(NSDictionary *record) {
     NSData *data = [NSJSONSerialization dataWithJSONObject:record options:NSJSONWritingSortedKeys error:NULL];

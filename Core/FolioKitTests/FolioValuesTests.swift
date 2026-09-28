@@ -39,6 +39,30 @@ final class FolioValuesTests: XCTestCase {
         }
     }
 
+    func testStagingReturnsIndependentContentAndRemovesTemporaryFiles() throws {
+        var stagingDirectory: URL?
+        let result = try PackageStaging.withTemporaryDirectory { directory in
+            stagingDirectory = directory
+            let file = directory.appendingPathComponent("content")
+            try Data("A staged package".utf8).write(to: file)
+            return try Data(contentsOf: file)
+        }
+        XCTAssertEqual(result, Data("A staged package".utf8))
+        XCTAssertFalse(FileManager.default.fileExists(atPath: try XCTUnwrap(stagingDirectory).path))
+    }
+
+    func testStagingPropagatesTheOriginalError() throws {
+        let expected = NSError(domain: NSCocoaErrorDomain, code: NSFileWriteNoPermissionError)
+        var stagingDirectory: URL?
+        XCTAssertThrowsError(try PackageStaging.withTemporaryDirectory { directory in
+            stagingDirectory = directory
+            throw expected
+        }) { error in
+            XCTAssertEqual(error as NSError, expected)
+        }
+        XCTAssertFalse(FileManager.default.fileExists(atPath: try XCTUnwrap(stagingDirectory).path))
+    }
+
     func testSwiftStagingCleansNestedDirectoriesOnFailure() throws {
         struct ExpectedFailure: Error {}
         var directories: [URL] = []

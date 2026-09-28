@@ -1802,7 +1802,7 @@
       }
     },
     "Cc7-nU-5Mv.title": {
-      "comment": "Cc7-nU-5Mv — textFieldCell title: \"Your document contents here\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Cc7-nU-5Mv — textFieldCell title: \"Composition preview\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "ar": {
@@ -1814,7 +1814,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your document contents here"
+            "value": "Composition preview"
           }
         },
         "ja": {
@@ -1874,7 +1874,7 @@
       }
     },
     "Ckk-yw-fiv.title": {
-      "comment": "Ckk-yw-fiv — window title: \"Window\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Ckk-yw-fiv — window title: \"Composition Preview\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "ar": {
@@ -1886,7 +1886,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Window"
+            "value": "Composition Preview"
           }
         },
         "ja": {
@@ -3458,7 +3458,7 @@
       }
     },
     "LE2-aR-0XJ.title": {
-      "comment": "Main Menu > Window > LE2-aR-0XJ — menuItem title: \"Bring All to Front\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Main Menu > Composition Preview > LE2-aR-0XJ — menuItem title: \"Bring All to Front\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "ar": {
@@ -3890,7 +3890,7 @@
       }
     },
     "OY7-WF-poV.title": {
-      "comment": "Main Menu > Window > OY7-WF-poV — menuItem title: \"Minimize\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Main Menu > Composition Preview > OY7-WF-poV — menuItem title: \"Minimize\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "ar": {
@@ -4394,7 +4394,7 @@
       }
     },
     "R4o-n2-Eq4.title": {
-      "comment": "Main Menu > Window > R4o-n2-Eq4 — menuItem title: \"Zoom\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Main Menu > Composition Preview > R4o-n2-Eq4 — menuItem title: \"Zoom\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "ar": {
@@ -4754,7 +4754,7 @@
       }
     },
     "Td7-aD-5lo.title": {
-      "comment": "Main Menu > Window > Td7-aD-5lo — menu title: \"Window\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Main Menu > Composition Preview > Td7-aD-5lo — menu title: \"Composition Preview\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "ar": {
@@ -4766,7 +4766,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Window"
+            "value": "Composition Preview"
           }
         },
         "ja": {
@@ -5906,7 +5906,7 @@
       }
     },
     "aUF-d1-5bR.title": {
-      "comment": "Main Menu > aUF-d1-5bR — menuItem title: \"Window\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Main Menu > aUF-d1-5bR — menuItem title: \"Composition Preview\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "ar": {
@@ -5918,7 +5918,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Window"
+            "value": "Composition Preview"
           }
         },
         "ja": {

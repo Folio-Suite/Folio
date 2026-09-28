@@ -21,7 +21,7 @@ class LocalizationUpdate
   ].freeze
 
   def source_files(folder)
-    Dir.glob("#{folder}/**/*.{h,m,mm}").sort
+    Dir.glob("#{folder}/**/*.{h,m,mm,swift}").sort
   end
 
   def mark_for_review(node)
@@ -83,7 +83,7 @@ class LocalizationUpdate
     write = false
     parser = OptionParser.new do |options|
       options.banner = 'Usage: ruby scripts/update-localizations.rb [--write]'
-      options.separator 'Check English catalogs against Objective-C and Interface Builder.'
+      options.separator 'Check English catalogs against Swift, Objective-C and Interface Builder.'
       options.on('--write', 'Refresh source entries while preserving translations.') { write = true }
     end
     parser.parse!(arguments)

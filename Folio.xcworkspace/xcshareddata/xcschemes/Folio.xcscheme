@@ -150,6 +150,9 @@ SPDX-License-Identifier: MIT
                ReferencedContainer = "container:Core/Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry buildForTesting="YES" buildForRunning="NO" buildForProfiling="NO" buildForArchiving="NO" buildForAnalyzing="NO">
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="B13000000000000000000006" BuildableName="TypographyKitTests.xctest" BlueprintName="TypographyKitTests" ReferencedContainer="container:TypographyKit/TypographyKit.xcodeproj"/>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

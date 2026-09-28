@@ -7,10 +7,10 @@ require 'tmpdir'
 require_relative '../update-localizations'
 
 class LocalizationsTest < Minitest::Test
-  def test_headers_and_objective_c_plus_plus_are_extracted
+  def test_swift_and_objective_c_sources_are_extracted
     Dir.mktmpdir do |directory|
-      %w[Labels.h Model.m Adapter.mm Ignored.txt].each { |name| File.write(File.join(directory, name), '') }
-      assert_equal %w[Adapter.mm Labels.h Model.m], LocalizationUpdate.new.source_files(directory).map { |path| File.basename(path) }
+      %w[Labels.h Model.m Adapter.mm Values.swift Ignored.txt].each { |name| File.write(File.join(directory, name), '') }
+      assert_equal %w[Adapter.mm Labels.h Model.m Values.swift], LocalizationUpdate.new.source_files(directory).map { |path| File.basename(path) }
     end
   end
 

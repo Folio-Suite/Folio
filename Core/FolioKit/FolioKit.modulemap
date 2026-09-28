@@ -4,7 +4,5 @@
 // Supported headers only; embedded libraries are private implementation.
 framework module FolioKit {
     header "FolioKit.h"
-    header "FKText.h"
-    header "FKPackageSupport.h"
     export *
 }

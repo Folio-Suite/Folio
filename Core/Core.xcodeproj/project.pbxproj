@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18DF29B95445F000918BFFA8 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 5C5BD5EE88C2C8C7DEE8472C /* Collections */; };
+		2341F1B3D94A4B42383CFC23 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 979C724CF4738B0EED6B91C9 /* Collections */; };
+		3EA71AA9A87D66792204965F /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = CFA7504585586603772650C0 /* Defaults */; };
+		42C4121CD79002CAA1C28AAE /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 19F060071CC1A8019DE2B538 /* Algorithms */; };
+		4795E3B71E7987664DECA750 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 11AE50FCC9674F13F4F2955C /* Collections */; };
+		4F06780053B45DDEF2F011B9 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 1ADE38125927BDEDE039E719 /* Defaults */; };
+		53CE7D2750C41DF9A3A8AD46 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = AEF1FF07E94C37C43C14BCC9 /* Collections */; };
+		62D4437438D8114EBE458D24 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 6DDF8CBA03F3AE60BD237B65 /* Defaults */; };
+		9153E3B341B6FBD34A642B38 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 91FC3489D7D01F0BF0219C45 /* Algorithms */; };
 		A1641BE9306ACAE0004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
 		A1641C04306ACB1F004824F1 /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BFB306ACB1F004824F1 /* WriteKit.framework */; };
 		A1641C1F306ACB22004824F1 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641C16306ACB22004824F1 /* ResearchKit.framework */; };
@@ -15,6 +24,10 @@
 		A1641DF3306AD71B004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
 		A1641DF8306AD741004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
 		A1641DFD306AD75F004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
+		C13800000000000000000002 /* TypographyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C13800000000000000000001 /* TypographyKit.framework */; };
+		D3D5E082B3C0CEABE20A5E60 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 9D29DA6DB8E05FB373738746 /* Defaults */; };
+		EB0B35F6E643F3604C2B5D6A /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 83E6900DC3C9127A03C132A8 /* Algorithms */; };
+		F441E78308151CA4F57C0A25 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = AC8E1DC32F0808B2E497571A /* Algorithms */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,14 +92,13 @@
 		A1641C31306ACB26004824F1 /* ComposerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComposerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1641C39306ACB26004824F1 /* ComposerKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComposerKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1641C94306AD035004824F1 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		C13800000000000000000001 /* TypographyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
 		A1641BEF306ACAE0004824F1 /* Exceptions for "FolioKit" folder in "FolioKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			publicHeaders = (
-				FKModelFoundations/FKText.h,
-				FKPackageSupport/FKPackageSupport.h,
 				FolioKit.h,
 			);
 			target = A1641BDF306ACAE0004824F1 /* FolioKit */;
@@ -94,9 +106,6 @@
 		A1641C0A306ACB1F004824F1 /* Exceptions for "WriteKit" folder in "WriteKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			publicHeaders = (
-				FWEditor/FWEditorViewController.h,
-				FWEditor/FWManuscriptViewController.h,
-				FWManuscript/FWWork.h,
 				WriteKit.h,
 			);
 			target = A1641BFA306ACB1F004824F1 /* WriteKit */;
@@ -176,6 +185,9 @@
 		A1641BDD306ACAE0004824F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				D3D5E082B3C0CEABE20A5E60 /* Defaults in Frameworks */,
+				2341F1B3D94A4B42383CFC23 /* Collections in Frameworks */,
+				F441E78308151CA4F57C0A25 /* Algorithms in Frameworks */,
 			);
 		};
 		A1641BE5306ACAE0004824F1 /* Frameworks */ = {
@@ -187,6 +199,9 @@
 		A1641BF8306ACB1F004824F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				4F06780053B45DDEF2F011B9 /* Defaults in Frameworks */,
+				18DF29B95445F000918BFFA8 /* Collections in Frameworks */,
+				EB0B35F6E643F3604C2B5D6A /* Algorithms in Frameworks */,
 				A1641DF3306AD71B004824F1 /* FolioKit.framework in Frameworks */,
 			);
 		};
@@ -199,6 +214,9 @@
 		A1641C13306ACB22004824F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				62D4437438D8114EBE458D24 /* Defaults in Frameworks */,
+				4795E3B71E7987664DECA750 /* Collections in Frameworks */,
+				9153E3B341B6FBD34A642B38 /* Algorithms in Frameworks */,
 				A1641DF8306AD741004824F1 /* FolioKit.framework in Frameworks */,
 			);
 		};
@@ -211,7 +229,11 @@
 		A1641C2E306ACB26004824F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				3EA71AA9A87D66792204965F /* Defaults in Frameworks */,
+				53CE7D2750C41DF9A3A8AD46 /* Collections in Frameworks */,
+				42C4121CD79002CAA1C28AAE /* Algorithms in Frameworks */,
 				A1641DFD306AD75F004824F1 /* FolioKit.framework in Frameworks */,
+				C13800000000000000000002 /* TypographyKit.framework in Frameworks */,
 			);
 		};
 		A1641C36306ACB26004824F1 /* Frameworks */ = {
@@ -258,6 +280,7 @@
 		A1641DF2306AD71B004824F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C13800000000000000000001 /* TypographyKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -299,10 +322,18 @@
 			);
 			buildRules = (
 			);
+			dependencies = (
+				8CE9D0FB6C3C67B4904751D0 /* PBXTargetDependency */,
+			);
 			fileSystemSynchronizedGroups = (
 				A1641BE1306ACAE0004824F1 /* FolioKit */,
 			);
 			name = FolioKit;
+			packageProductDependencies = (
+				9D29DA6DB8E05FB373738746 /* Defaults */,
+				979C724CF4738B0EED6B91C9 /* Collections */,
+				AC8E1DC32F0808B2E497571A /* Algorithms */,
+			);
 			productName = FolioKit;
 			productReference = A1641BE0306ACAE0004824F1 /* FolioKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -318,6 +349,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2EDDA205BBA094EC8A608BC9 /* PBXTargetDependency */,
 				A1641BEB306ACAE0004824F1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -340,12 +372,18 @@
 			buildRules = (
 			);
 			dependencies = (
+				E5DB23A3A2475C32524E31A2 /* PBXTargetDependency */,
 				A1641DF6306AD71B004824F1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A1641BFC306ACB1F004824F1 /* WriteKit */,
 			);
 			name = WriteKit;
+			packageProductDependencies = (
+				1ADE38125927BDEDE039E719 /* Defaults */,
+				5C5BD5EE88C2C8C7DEE8472C /* Collections */,
+				83E6900DC3C9127A03C132A8 /* Algorithms */,
+			);
 			productName = WriteKit;
 			productReference = A1641BFB306ACB1F004824F1 /* WriteKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -361,6 +399,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				77F852385460BF3E23752215 /* PBXTargetDependency */,
 				A1641C06306ACB1F004824F1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -383,12 +422,18 @@
 			buildRules = (
 			);
 			dependencies = (
+				BDBA3B3F17512A28C217EB7B /* PBXTargetDependency */,
 				A1641DFB306AD741004824F1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A1641C17306ACB22004824F1 /* ResearchKit */,
 			);
 			name = ResearchKit;
+			packageProductDependencies = (
+				6DDF8CBA03F3AE60BD237B65 /* Defaults */,
+				11AE50FCC9674F13F4F2955C /* Collections */,
+				91FC3489D7D01F0BF0219C45 /* Algorithms */,
+			);
 			productName = ResearchKit;
 			productReference = A1641C16306ACB22004824F1 /* ResearchKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -404,6 +449,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				198283F3C92F67E99DC363FF /* PBXTargetDependency */,
 				A1641C21306ACB22004824F1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -426,12 +472,18 @@
 			buildRules = (
 			);
 			dependencies = (
+				CBA564345E025B3B14B161E0 /* PBXTargetDependency */,
 				A1641E00306AD75F004824F1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A1641C32306ACB26004824F1 /* ComposerKit */,
 			);
 			name = ComposerKit;
+			packageProductDependencies = (
+				CFA7504585586603772650C0 /* Defaults */,
+				AEF1FF07E94C37C43C14BCC9 /* Collections */,
+				19F060071CC1A8019DE2B538 /* Algorithms */,
+			);
 			productName = ComposerKit;
 			productReference = A1641C31306ACB26004824F1 /* ComposerKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -447,6 +499,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9B7CFF128A6317804878B442 /* PBXTargetDependency */,
 				A1641C3C306ACB26004824F1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -504,6 +557,12 @@
 			);
 			mainGroup = A1641BAE306AC910004824F1;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B598A15ECDEE307D233E9A1E /* XCRemoteSwiftPackageReference "Defaults" */,
+				594D98D8823E6E82B4496DBC /* XCRemoteSwiftPackageReference "swift-collections" */,
+				F332B06AE55E924BFEAE44F3 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+			);
 			preferredProjectObjectVersion = 110;
 			productRefGroup = A1641BB9306AC910004824F1 /* Products */;
 			projectDirPath = "";
@@ -609,6 +668,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		198283F3C92F67E99DC363FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = DA19E24CA971996B056E8E68 /* SwiftLintBuildToolPlugin */;
+		};
+		2EDDA205BBA094EC8A608BC9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = B7BE03225D9D2C8A26A80746 /* SwiftLintBuildToolPlugin */;
+		};
+		77F852385460BF3E23752215 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = A6FDB74989DAA0368A4B51A3 /* SwiftLintBuildToolPlugin */;
+		};
+		8CE9D0FB6C3C67B4904751D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 4291E30E5086E632186C840F /* SwiftLintBuildToolPlugin */;
+		};
+		9B7CFF128A6317804878B442 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 594FF3704E394D810C436975 /* SwiftLintBuildToolPlugin */;
+		};
 		A1641BEB306ACAE0004824F1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A1641BDF306ACAE0004824F1 /* FolioKit */;
@@ -643,6 +722,18 @@
 			isa = PBXTargetDependency;
 			target = A1641BDF306ACAE0004824F1 /* FolioKit */;
 			targetProxy = A1641DFF306AD75F004824F1 /* PBXContainerItemProxy */;
+		};
+		BDBA3B3F17512A28C217EB7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 81FFC82EE29C124263EC3047 /* SwiftLintBuildToolPlugin */;
+		};
+		CBA564345E025B3B14B161E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = E7062ADE76F9E1C4D230D9E7 /* SwiftLintBuildToolPlugin */;
+		};
+		E5DB23A3A2475C32524E31A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 209AC79764A52C755E7669C8 /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1291,6 +1382,144 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		594D98D8823E6E82B4496DBC /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections";
+			requirement = {
+				kind = exactVersion;
+				version = 1.7.1;
+			};
+		};
+		B598A15ECDEE307D233E9A1E /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				kind = exactVersion;
+				version = 9.0.9;
+			};
+		};
+		DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = exactVersion;
+				version = 0.65.1;
+			};
+		};
+		F332B06AE55E924BFEAE44F3 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms";
+			requirement = {
+				kind = exactVersion;
+				version = 1.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		11AE50FCC9674F13F4F2955C /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 594D98D8823E6E82B4496DBC /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		19F060071CC1A8019DE2B538 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F332B06AE55E924BFEAE44F3 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		1ADE38125927BDEDE039E719 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B598A15ECDEE307D233E9A1E /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		209AC79764A52C755E7669C8 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		4291E30E5086E632186C840F /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		594FF3704E394D810C436975 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		5C5BD5EE88C2C8C7DEE8472C /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 594D98D8823E6E82B4496DBC /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		6DDF8CBA03F3AE60BD237B65 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B598A15ECDEE307D233E9A1E /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		81FFC82EE29C124263EC3047 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		83E6900DC3C9127A03C132A8 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F332B06AE55E924BFEAE44F3 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		91FC3489D7D01F0BF0219C45 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F332B06AE55E924BFEAE44F3 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		979C724CF4738B0EED6B91C9 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 594D98D8823E6E82B4496DBC /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		9D29DA6DB8E05FB373738746 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B598A15ECDEE307D233E9A1E /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		A6FDB74989DAA0368A4B51A3 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		AC8E1DC32F0808B2E497571A /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F332B06AE55E924BFEAE44F3 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		AEF1FF07E94C37C43C14BCC9 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 594D98D8823E6E82B4496DBC /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		B7BE03225D9D2C8A26A80746 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		CFA7504585586603772650C0 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B598A15ECDEE307D233E9A1E /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		DA19E24CA971996B056E8E68 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		E7062ADE76F9E1C4D230D9E7 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A1641BAF306AC910004824F1 /* Project object */;
 	validationLevel = 1;

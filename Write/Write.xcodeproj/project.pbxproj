@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		369C1C9557170E5AEE6F6DD1 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = DE4A4C1EA8EE64AF6FD13595 /* Collections */; };
 		A1641DEA306AD6EA004824F1 /* ComposerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DE6306AD6EA004824F1 /* ComposerKit.framework */; };
 		A1641DEC306AD6EA004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DE7306AD6EA004824F1 /* FolioKit.framework */; };
 		A1641DEE306AD6EA004824F1 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DE8306AD6EA004824F1 /* ResearchKit.framework */; };
 		A1641DF0306AD6EA004824F1 /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DE9306AD6EA004824F1 /* WriteKit.framework */; };
 		A1CCD14330573F86004B4721 /* WriteXPCService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = A1CCD13830573F86004B4721 /* WriteXPCService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D217D69BF9E318965D8F793D /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = A256E39AE3B2E4E2B13CBC11 /* Algorithms */; };
+		DCA3483B2111D4536625F43B /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 271E8823355D631D3B3EB29E /* Defaults */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +116,9 @@
 		A106484E304DFCF6001A21A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				DCA3483B2111D4536625F43B /* Defaults in Frameworks */,
+				369C1C9557170E5AEE6F6DD1 /* Collections in Frameworks */,
+				D217D69BF9E318965D8F793D /* Algorithms in Frameworks */,
 				A1641DEA306AD6EA004824F1 /* ComposerKit.framework in Frameworks */,
 				A1641DF0306AD6EA004824F1 /* WriteKit.framework in Frameworks */,
 				A1641DEC306AD6EA004824F1 /* FolioKit.framework in Frameworks */,
@@ -188,12 +194,18 @@
 			buildRules = (
 			);
 			dependencies = (
+				0AC6A4CAD6405425FD0C4B8E /* PBXTargetDependency */,
 				A1CCD14230573F86004B4721 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A1064853304DFCF6001A21A6 /* Write */,
 			);
 			name = Write;
+			packageProductDependencies = (
+				271E8823355D631D3B3EB29E /* Defaults */,
+				DE4A4C1EA8EE64AF6FD13595 /* Collections */,
+				A256E39AE3B2E4E2B13CBC11 /* Algorithms */,
+			);
 			productName = Write;
 			productReference = A1064851304DFCF6001A21A6 /* Write.app */;
 			productType = "com.apple.product-type.application";
@@ -209,6 +221,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F49370A33EBE620DE57EF8F8 /* PBXTargetDependency */,
 				A106486E304DFCF7001A21A6 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -230,6 +243,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5E0D70FC7BB05F83006F3A1B /* PBXTargetDependency */,
 				A1064878304DFCF7001A21A6 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -249,6 +263,9 @@
 				A1CCD13630573F86004B4721 /* Resources */,
 			);
 			buildRules = (
+			);
+			dependencies = (
+				C207408CB400590EDF2450AE /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A1CCD13930573F86004B4721 /* WriteXPCService */,
@@ -301,6 +318,12 @@
 			);
 			mainGroup = A1064848304DFCF6001A21A6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1B21297EB6D9F601E2B40E52 /* XCRemoteSwiftPackageReference "Defaults" */,
+				2A1B770D4A469C6D247CED2D /* XCRemoteSwiftPackageReference "swift-collections" */,
+				726761ACB49170C000332662 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				95F80D1B56903A824D6AAEC5 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+			);
 			preferredProjectObjectVersion = 110;
 			productRefGroup = A1064852304DFCF6001A21A6 /* Products */;
 			projectDirPath = "";
@@ -361,6 +384,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0AC6A4CAD6405425FD0C4B8E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2095DE643826308D3D63131F /* SwiftLintBuildToolPlugin */;
+		};
+		5E0D70FC7BB05F83006F3A1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 9662A7EA6E3D4FE28B7F977A /* SwiftLintBuildToolPlugin */;
+		};
 		A106486E304DFCF7001A21A6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A1064850304DFCF6001A21A6 /* Write */;
@@ -375,6 +406,14 @@
 			isa = PBXTargetDependency;
 			target = A1CCD13730573F86004B4721 /* WriteXPCService */;
 			targetProxy = A1CCD14130573F86004B4721 /* PBXContainerItemProxy */;
+		};
+		C207408CB400590EDF2450AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = B798657D5D2E25ECDCD1CAC7 /* SwiftLintBuildToolPlugin */;
+		};
+		F49370A33EBE620DE57EF8F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 15D7B7189274ABBAA0A57A23 /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -772,6 +811,79 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1B21297EB6D9F601E2B40E52 /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				kind = exactVersion;
+				version = 9.0.9;
+			};
+		};
+		2A1B770D4A469C6D247CED2D /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections";
+			requirement = {
+				kind = exactVersion;
+				version = 1.7.1;
+			};
+		};
+		726761ACB49170C000332662 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms";
+			requirement = {
+				kind = exactVersion;
+				version = 1.2.1;
+			};
+		};
+		95F80D1B56903A824D6AAEC5 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = exactVersion;
+				version = 0.65.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		15D7B7189274ABBAA0A57A23 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95F80D1B56903A824D6AAEC5 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		2095DE643826308D3D63131F /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95F80D1B56903A824D6AAEC5 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		271E8823355D631D3B3EB29E /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B21297EB6D9F601E2B40E52 /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		9662A7EA6E3D4FE28B7F977A /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95F80D1B56903A824D6AAEC5 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		A256E39AE3B2E4E2B13CBC11 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 726761ACB49170C000332662 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		B798657D5D2E25ECDCD1CAC7 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95F80D1B56903A824D6AAEC5 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		DE4A4C1EA8EE64AF6FD13595 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A1B770D4A469C6D247CED2D /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A1064849304DFCF6001A21A6 /* Project object */;
 }

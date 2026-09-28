@@ -5,30 +5,65 @@ SPDX-License-Identifier: MIT
 
 # TypographyKit
 
-TypographyKit is an independent Foundation, Core Text, and Core Graphics
-framework for text measurement and composition. It has no FolioKit, domainKit,
-or AppKit dependency. ComposerKit owns publication meaning and adapts its domain
-inputs to TypographyKit.
+TypographyKit is an independent Swift framework for controlled text composition
+above Core Text. It depends on Foundation, Core Text, and Core Graphics. ComposerKit
+owns publication meaning and supplies neutral, immutable inputs.
 
-This directory is a framework scaffold. It does not yet provide composition
-behavior or claim typography correctness. The future public operation is
-intended to accept owned immutable inputs and return geometry, source mappings,
-and diagnostics. Its supported text and composition behavior remains to be
-implemented and verified.
+`TypographyComposer.compose(_:)` is synchronous. A caller supplies one or more
+source occurrences, a PostScript font name, language/script/direction, line width
+and height, exact selected UTF-16 break offsets, required and forbidden break
+constraints, optional discretionary replacements, and numeric adjustments. The
+final break must equal the total source length. The operation does not choose
+breaks. A new request can reconsider the paragraph under new constraints.
 
-## Build
+The result retains the original Unicode text without normalization, exact
+rendered lines, occurrence-aware source mappings, glyph positions, separate caret
+positions, ink bounds, actual font names and font version, OS provenance,
+structured diagnostic codes, and a status of `complete`, `unsupported`, or
+`infeasible`. Drawing uses native glyph resources retained by that same result.
+An overfull line is returned with `infeasible` status so the caller can inspect
+its actual geometry; rejected inputs return no lines. Hosts should translate
+structured diagnostic codes into their own localized wording.
 
-From this directory, build the standalone framework with:
+## Supported subset
+
+- Left-to-right Latin text with a resolved PostScript font. Fallback can be
+  allowed explicitly; otherwise a fallback makes the result infeasible.
+- Caller-selected legal grapheme and shaping-cluster boundaries. No opportunity
+  generation or hyphenation dictionary is included.
+- Discretionary before-break, after-break, and no-break material, including
+  inserted, omitted, and substituted source mapping.
+- Fixed tracking, positive added interior ASCII-space width, bounded horizontal
+  font-matrix expansion, and bounded protrusion of an opening quotation glyph.
+  Protrusion moves only that glyph; caret offsets retain their logical positions.
+
+Complex scripts, bidirectional text, mathematical layout, paragraph optimization,
+negative space adjustment, arbitrary punctuation rules, native selection and
+accessibility hosting, and publication output remain separate work. The explicit
+subset and result status prevent a preview from claiming those capabilities.
+The checked-in Core Text and TextKit 2 specimens under
+`Composer/Prototypes/ParagraphComposition/` remain comparison evidence.
+
+## Validation
+
+Build the standalone framework:
 
 ```sh
-xcodebuild -project TypographyKit.xcodeproj -scheme TypographyKit -destination 'platform=macOS' build
+xcodebuild -project TypographyKit/TypographyKit.xcodeproj -scheme TypographyKit \
+  -destination 'platform=macOS' -derivedDataPath /tmp/typography-build build
 ```
 
-The framework targets macOS 14 in Swift 6 language mode. A successful scaffold build
-checks project integration only; it does not demonstrate typography correctness
-or the foundation acceptance described in the Suite roadmap.
+Run the public behavioral cases against its product:
 
-`Project.xcconfig` provides standalone version defaults and optionally inherits
-the enclosing Suite's version configuration. The shared scheme can also archive
-the framework. No stable external API or separately versioned binary release is
-published by this scaffold.
+```sh
+TypographyKit/Tests/run.sh /tmp/typography-build/Build/Products/Debug
+```
+
+The shared `TypographyKit` scheme also runs the `TypographyKitTests` XCTest
+target with `xcodebuild test`. The behavior runner above compiles a separate
+Swift client against the built framework. The Suite's
+`scripts/check-kit-interfaces.rb` also compiles and links the isolated
+Swift consumer on arm64 and x86_64. The framework targets macOS 14, Swift 6 with
+nonisolated core code, and the Suite's coordinated version and signing settings.
+These checks establish the stated subset; human page-quality review and native
+interaction acceptance remain separate.

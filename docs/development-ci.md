@@ -166,3 +166,9 @@ the published pipeline preserves both Hardened Runtime and library validation.
 
 Actionlint 1.7.12 validation passed with only its unknown-label diagnostic excluded
 for the documented `xcode-27` preview runner.
+
+## Current Swift migration verification
+
+The September 24 results above predate the current Swift ports and TypographyKit/
+ComposerKit preview. Integrated signed native tests and final migration acceptance
+for the current source are pending; those earlier results do not cover this work.
