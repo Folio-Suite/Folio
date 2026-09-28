@@ -31,7 +31,7 @@ Typography work already has reproducible, checked-in native comparison evidence 
 
 ## Platform and execution evidence
 
-The signed baseline Suite build passed at the recorded commit, and the public interface checks passed. Ruby tooling reported 17 tests and 98 assertions passing. The native Xcode application test run was still pending at capture time. No Sonoma clean-install or separate Intel and Apple Silicon runtime result is recorded here.
+The signed baseline Suite build passed at the recorded commit, and the public interface checks passed. Ruby tooling reported 17 tests and 98 assertions passing. The signed native Folio test plan passed on macOS 27 / Apple Silicon: 42 tests, 105 executions, no failures or skips. The completed Xcode result bundle confirmed the full result after the tool summary omitted some test results. Sonoma and Intel runtime checks remain unrun.
 
 ## Migration use
 
