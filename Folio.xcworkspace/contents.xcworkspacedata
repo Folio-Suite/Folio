@@ -14,10 +14,10 @@
       location = "group:FolioKit/FolioKit.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:UndoKit/UndoKit.xcodeproj">
+      location = "group:TypographyKit/TypographyKit.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:TypographyKit/TypographyKit.xcodeproj">
+      location = "group:UndoKit/UndoKit.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Folio.xctestplan">
