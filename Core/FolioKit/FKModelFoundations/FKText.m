@@ -2,13 +2,14 @@
 // SPDX-License-Identifier: MIT
 
 #import "FKText.h"
+#import <FolioKit/FolioKit-Swift.h>
 
 @implementation FKIdentifiedObject
 - (instancetype)init {
-    return [self initWithIdentifier:[@"o" stringByAppendingString:NSUUID.UUID.UUIDString.lowercaseString]];
+    return [self initWithIdentifier:[FKSwiftValueBridge newIdentifier]];
 }
 - (instancetype)initWithIdentifier:(NSString *)identifier {
-    NSParameterAssert(identifier.length > 0);
+    NSParameterAssert([FKSwiftValueBridge validIdentifier:identifier]);
     if ((self = [super init])) _identifier = [identifier copy];
     return self;
 }
@@ -60,9 +61,9 @@
     return self;
 }
 - (NSString *)string {
-    NSMutableString *result = [NSMutableString string];
-    for (FKTextRun *run in self.runs) [result appendString:run.string];
-    return result;
+    NSMutableArray<NSString *> *strings = [NSMutableArray arrayWithCapacity:self.runs.count];
+    for (FKTextRun *run in self.runs) [strings addObject:run.string];
+    return [FKSwiftValueBridge joinedRuns:strings];
 }
 @end
 
@@ -78,7 +79,7 @@
 }
 - (instancetype)initWithIdentifier:(NSString *)identifier title:(NSString *)title paragraphs:(NSArray<FKParagraph *> *)paragraphs formattingWarningDismissed:(BOOL)dismissed {
     NSParameterAssert(title);
-    NSParameterAssert(paragraphs.count > 0);
+    NSParameterAssert([FKSwiftValueBridge validParagraphCount:paragraphs.count]);
     if ((self = [super initWithIdentifier:identifier])) {
         _title = [title copy];
         _paragraphs = [paragraphs copy];
@@ -89,7 +90,7 @@
 - (NSString *)string {
     NSMutableArray<NSString *> *strings = [NSMutableArray array];
     for (FKParagraph *paragraph in self.paragraphs) [strings addObject:paragraph.string];
-    return [strings componentsJoinedByString:@"\n"];
+    return [FKSwiftValueBridge joinedParagraphs:strings];
 }
 @end
 
@@ -98,8 +99,7 @@
     return [self initWithIdentifier:identifier units:@[[FKText new]]];
 }
 - (instancetype)initWithIdentifier:(NSString *)identifier units:(NSArray<FKText *> *)units {
-    NSParameterAssert(units.count > 0);
-    NSParameterAssert([NSSet setWithArray:[units valueForKey:@"identifier"]].count == units.count);
+    NSParameterAssert([FKSwiftValueBridge validUnitIdentifiers:[units valueForKey:@"identifier"]]);
     if ((self = [super initWithIdentifier:identifier])) _units = [units copy];
     return self;
 }

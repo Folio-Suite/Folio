@@ -46,8 +46,11 @@ class KitInterfaceCheck
       minimum_versions.add(info.fetch('LSMinimumSystemVersion'))
       actual = Dir.glob("#{framework}/Headers/**/*", File::FNM_DOTMATCH)
                   .select { |path| File.file?(path) }.map { |path| path.delete_prefix("#{framework}/Headers/") }.to_set
-      check(actual == public_headers[kit],
-            "#{kit}: published headers differ: extra=#{(actual - public_headers[kit]).to_a.sort}, missing=#{(public_headers[kit] - actual).to_a.sort}")
+      # Swift frameworks publish Xcode's generated Objective-C bridge in addition
+      # to their explicit Clang module map. FolioKit retains it for old consumers.
+      expected_headers = public_headers[kit] | (kit == 'FolioKit' ? Set['FolioKit-Swift.h'] : Set.new)
+      check(actual == expected_headers,
+            "#{kit}: published headers differ: extra=#{(actual - expected_headers).to_a.sort}, missing=#{(expected_headers - actual).to_a.sort}")
       check(File.read("#{framework}/Modules/module.modulemap") == module_map,
             "#{kit}: build did not use the explicit module map")
       check(Dir.glob("#{framework}/PrivateHeaders/**/*.h").empty?, "#{kit}: private headers must not be distributed to hosts")
@@ -123,6 +126,48 @@ class KitInterfaceCheck
         _, error, status = Open3.capture3(*common, '-fsyntax-only', source, chdir: stage)
         check(!status.success? && error.include?("module '#{name}' not found"),
               "Implementation folder must not be a public module: #{name}\n#{error}")
+      end
+
+      # Swift must see the public value and staging interface using a copied
+      # FolioKit product alone, with no source tree or other Folio framework.
+      isolated_folio = File.join(stage, 'isolated-FolioKit')
+      FileUtils.mkdir_p(isolated_folio)
+      FileUtils.cp_r("#{products}/FolioKit.framework", isolated_folio, preserve: true)
+      swift_consumer = File.join(isolated_folio, 'Consumer.swift')
+      File.write(swift_consumer, <<~SWIFT)
+        import FolioKit
+
+        let identity = try FolioIdentifier(rawValue: "unit-1")
+        let run = TextRun(string: "text", emphasis: .emphasis,
+                          presentation: TextPresentation(bold: true))
+        let paragraph = TextParagraph(identifier: identity, runs: [run])
+        let unit = try TextUnit(identifier: identity, title: "Title", paragraphs: [paragraph])
+        let manuscript = try Manuscript(identifier: identity, units: [unit])
+        let result = try PackageStaging.withTemporaryDirectory { directory in
+            try "contents".write(to: directory.appendingPathComponent("text"), atomically: true,
+                                 encoding: .utf8)
+            return try String(contentsOf: directory.appendingPathComponent("text"), encoding: .utf8)
+        }
+        precondition(manuscript.units[0].string == "text" && result == "contents")
+      SWIFT
+      architectures = capture('lipo', '-archs', "#{isolated_folio}/FolioKit.framework/FolioKit").split
+      architectures.each do |architecture|
+        command = ['xcrun', 'swiftc', '-sdk', sdk,
+                   '-target', "#{architecture}-apple-macosx#{minimum_versions.first}",
+                   '-F', isolated_folio, '-framework', 'FolioKit',
+                   '-module-cache-path', "#{isolated_folio}/ModuleCache",
+                   swift_consumer, '-o', "#{isolated_folio}/consumer-#{architecture}"]
+        check(system(*command, chdir: isolated_folio),
+              "isolated FolioKit Swift consumer compile/link failed for #{architecture}")
+      end
+      private_swift = File.join(isolated_folio, 'PrivateImport.swift')
+      %w[FKModelFoundations FKPackageSupport FKXMLSupport].each do |name|
+        File.write(private_swift, "import #{name}\n")
+        _, error, status = Open3.capture3('xcrun', 'swiftc', '-typecheck', '-sdk', sdk,
+                                          '-target', "#{architectures.first}-apple-macosx#{minimum_versions.first}",
+                                          '-F', isolated_folio, private_swift, chdir: isolated_folio)
+        check(!status.success? && error.include?("no such module '#{name}'"),
+              "FolioKit implementation module must be unavailable to Swift hosts: #{name}\n#{error}")
       end
 
       # These frameworks must be consumable without any Folio Kit beside them.
