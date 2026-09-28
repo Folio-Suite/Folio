@@ -40,7 +40,7 @@ class ReleaseTest < Minitest::Test
 
   def make_products
     products = File.join(@temporary, 'Products')
-    bundles = %w[Write.app Research.app Composer.app FolioKit.framework WriteKit.framework ResearchKit.framework ComposerKit.framework]
+    bundles = %w[Write.app Research.app Composer.app FolioKit.framework WriteKit.framework ResearchKit.framework ComposerKit.framework UndoKit.framework TypographyKit.framework]
     bundles += %w[Write Research Composer].map { |app| "#{app}.app/Contents/XPCServices/#{app}XPCService.xpc" }
     bundles << 'Write.app/Contents/Frameworks/WriteKit.framework'
     bundles.each do |bundle|

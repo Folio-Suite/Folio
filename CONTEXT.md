@@ -13,6 +13,14 @@ Folio is a document-centric environment for creating and publishing large, compl
 The complete Folio product: a coordinated collection of desktop applications and shared capabilities that is versioned and distributed as one whole.
 _Avoid_: Product family, app bundle
 
+**Document**:
+An independently saved, app-native container for one Work, Source Library, or Composer Arrangement, with its own history and Undo boundary.
+_Avoid_: Project, folio, rendition
+
+**Project**:
+A collection of Works, Source Libraries, Arrangements (including Editions), settings, and resources, with the relationships and dependencies needed for independent reconstruction and reproduction.
+_Avoid_: Work, Document, application
+
 **Profile**:
 A user-authorable governing definition with explicit domain scope: a Write Profile specializes a Work’s semantic environment, while a Composer Profile defines Arrangement construction, layout, and production rules within that environment.
 _Avoid_: Format, document type, theme
@@ -28,7 +36,7 @@ The canonical, output-independent intellectual object, including its Manuscript,
 _Avoid_: Document, file, project
 
 **folio**:
-The durable archival exchange form of a Work, containing the content and dependencies needed to reconstruct it independently of the originating environment, with history included by default or explicitly declared omitted. It is distinct from the Folio Suite and from a published Rendition.
+The durable archival exchange form of a Project, containing its selected Documents, relationships, and required dependencies independently of the originating environment, with history included by default or explicitly declared omitted. It is distinct from the Folio Suite and from a published Rendition.
 _Avoid_: Backup, rendition, working package
 
 **Manuscript**:

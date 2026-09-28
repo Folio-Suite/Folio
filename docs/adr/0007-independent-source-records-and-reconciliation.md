@@ -5,7 +5,7 @@ SPDX-License-Identifier: MIT
 
 # Keep Work-local Source records independent and reconcile deliberately
 
-A Work copies the immediately useful subset of Source data into an independently editable record, retaining Source identity and provenance linking it to its fuller library context. This supports focused, portable writing and multiple independently organized Source Libraries without allowing library edits to silently rewrite existing Works. Changes in either direction are offered for deliberate reconciliation against the last shared state.
+A Work copies the immediately useful subset of Source data into an independently editable record, retaining Source identity and provenance linking it to its fuller library context. This supports focused, portable writing and multiple independently organized Source Libraries. Changes in either direction are offered for deliberate reconciliation against the last shared state unless the author explicitly enables the paired synchronization introduced by [ADR 0014](0014-professional-workspaces-and-optional-source-sync.md).
 
 ## Consequences
 
@@ -13,5 +13,6 @@ A Work copies the immediately useful subset of Source data into an independently
 - Shared text foundations let research commentary become independently editable Manuscript content while preserving Citations and their required Source and evidence dependencies.
 - Native Works may use exact-version external materials. Complete archival folios gather required records and materials across the Work, history, and Editions; unrelated library contents do not automatically follow.
 - Replacing or removing research material preserves existing controlled dependencies. Replacement does not promise to migrate annotations; unavailable external material remains an explicit missing dependency.
+- ADR 0014 adds a default user-wide Library and routes fuller reusable research into Libraries. Its opt-in synchronization exchanges nonconflicting shared bibliographic edits while preserving separate document histories; Undo/Redo pauses the affected pair without a cascade. Independent ownership and deliberate reconciliation remain the default.
 
 The approved [Source Library and portable evidence contract](../architecture/source-library-contract.md) resolves [issue #7](https://github.com/Folio-Suite/Folio/issues/7) and refines ADRs 0005 and 0006. Storage mechanisms, framework divisions, reconciliation algorithms, and operating-system versioning proofs remain further work.

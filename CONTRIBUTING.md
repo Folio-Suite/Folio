@@ -5,7 +5,7 @@ SPDX-License-Identifier: MIT
 
 # Working on Folio
 
-Folio is a monorepo. Clone it with `git clone <repository-url>` and open the workspace at the repository root. FolioKit, Write, Research, and Composer retain separate Xcode projects and module ownership within this checkout.
+Folio is a monorepo. Clone it with `git clone <repository-url>` and open the workspace at the repository root. FolioKit, Write, Research, Composer, UndoKit, and TypographyKit retain separate Xcode projects and module ownership within this checkout.
 
 Open `Folio.xcworkspace`. Use the shared **Write**, **Research**, or **Composer** scheme to run an application, **FolioKit** for framework work, and **Folio** to build or test the entire Suite. The applications use their domain frameworks, which consume FolioKit. Implementation sources compile directly into their owning frameworks. Application linking and embedding are being configured for an installed shared-framework deployment. A successful build does not establish that an app is self-contained or that its installed dependencies resolve outside Xcode. Open the enclosing workspace when developing the applications.
 
@@ -63,7 +63,7 @@ PKG staging command and clean-install proof procedure.
 
 Application, framework, test, and pasteboard identifiers use `dev.foliosuite`; document-type identifiers use `app.foliosuite`. Write declares `app.foliosuite.Write.Doc` (`.flwrbundle`); Research declares `app.foliosuite.Research.Doc` (`.flrsbundle`). Composer reserves `app.foliosuite.Composer.Doc` (`.flcpbundle`); its old SQLite document scaffold is no longer registered, and package persistence remains to be implemented. The paired bundle/ZIP declarations and reserved Composer bundle are listed in [document file types](docs/document-file-types.md). ZIP handling is not yet implemented. Objective-C prefixes are **FK** for FolioKit, **FW** for Write, **FR** for Research, and **FC** for Composer. The current document subclasses follow those prefixes; other generated application classes may acquire prefixes when developed.
 
-Write's first editor uses `.flwrbundle` packages containing a Core Data store, with NSDocument hosting in-process persistence behind WriteKit. Research uses `.flrsbundle` packages containing a closed `Library.sqlite` snapshot and preserves additional package members. Its source catalog remains an empty shell. The early Write package schema is documented in `docs/architecture/native-work-v1.md`; neither application implements complete archival folio exchange. Separately hosted domain persistence and shared editing still require lifecycle design and proof; the first editor does not settle issue #13 or implement the domain-hosted Work Session contract.
+Write's first editor uses `.flwrbundle` packages containing a Core Data store, with NSDocument hosting in-process persistence behind WriteKit. Research uses `.flrsbundle` packages containing a closed `Library.sqlite` snapshot and preserves additional package members. Its source catalog remains an empty shell. The early Write package schema is documented in `docs/architecture/native-work-v1.md`; neither application implements complete archival folio exchange. The approved [document lifecycle](docs/architecture/document-lifecycle-contract.md) selects efficient Core Data working storage, shared on-demand domain hosts, and a Suite-wide `.folio` archive. These require explicit implementation slices; current registrations and snapshot stores do not implement them. Issue #13 remains retired as superseded.
 
 ## Coordinated changes
 
@@ -86,6 +86,13 @@ Use Xcode’s versioned Core Data model editor for persistent schemas. WriteKit�
 The current pre-alpha model replaces the experimental code-defined format without a migration requirement. Model versions remain explicit so compatibility can be governed as the project matures.
 
 ## Public Kit interfaces
+
+UndoKit and TypographyKit are independent framework scaffolds with their own
+shared schemes. They target macOS 14 and can build without the enclosing Suite.
+TypographyKit uses Swift 6 with explicit isolation and publishes its generated
+Swift module. Swift interfaces use access control and DocC; the explicit-header
+rules below apply to Objective-C interfaces. The interface check also links
+isolated Swift consumers of both frameworks and an Objective-C UndoKit consumer.
 
 Every host, including the owning application, uses the Kit's public headers. The
 explicit list lives in `<Kit>.modulemap` alongside each Kit’s umbrella header. When deliberately adding

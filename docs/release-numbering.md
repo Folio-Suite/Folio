@@ -6,7 +6,7 @@ SPDX-License-Identifier: MIT
 # Suite version and build identity
 
 `Config/Version.xcconfig` supplies **0.1.0 (1)** to Write, Research, Composer,
-the four Kits, and all three bundled XPC services. The native About panels use
+the six Kits, and all three bundled XPC services. The native About panels use
 this standard bundle metadata. Mixed Suite versions remain unsupported.
 
 Builds, tests, and archives do not allocate numbers or modify tracked source.
@@ -58,7 +58,7 @@ the build. `--configuration Debug --action build-for-testing` prepares native te
 products. Output must be outside source or Git-ignored. Failed builds retain their
 diagnostic output without a completed candidate record.
 
-Verification checks all three apps, four Kits, three embedded services, and nested
+Verification checks all three apps, six Kits, three embedded services, and nested
 Folio framework copies against the shared configuration or a supplied candidate.
 Missing bundles, unexpected identifiers, and mismatched versions fail validation.
 Test runners are excluded. See [Development CI](development-ci.md) for development

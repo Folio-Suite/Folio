@@ -22,7 +22,7 @@ scheme = REXML::Document.new(File.read('Folio.xcworkspace/xcshareddata/xcschemes
 built = REXML::XPath.match(scheme, './Scheme/BuildAction/BuildActionEntries/BuildActionEntry')
                    .select { |entry| entry.attributes['buildForRunning'] == 'YES' }
                    .map { |entry| entry.elements['BuildableReference'].attributes['BlueprintName'] }
-missing = %w[Write Research Composer FolioKit] - built
+missing = %w[Write Research Composer FolioKit UndoKit TypographyKit] - built
 abort 'Folio scheme is missing build entries: ' + missing.sort.join(', ') unless missing.empty?
 RUBYSCHEME
 build_dir=$(mktemp -d "${TMPDIR:-/tmp}/folio-build.XXXXXX")
@@ -33,9 +33,10 @@ xcodebuild -workspace "$PWD/Folio.xcworkspace" -scheme Folio -configuration Debu
 products="$build_dir/Build/Products/Debug"
 for app in Write Research Composer; do
     test -x "$products/$app.app/Contents/MacOS/$app"
-    test -f "$products/${app}Kit.framework/Versions/A/${app}Kit"
 done
-test -f "$products/FolioKit.framework/Versions/A/FolioKit"
+for kit in FolioKit WriteKit ResearchKit ComposerKit UndoKit TypographyKit; do
+    test -f "$products/${kit}.framework/Versions/A/${kit}"
+done
 for app in Write Research Composer; do
     test -x "$products/$app.app/Contents/XPCServices/${app}XPCService.xpc/Contents/MacOS/${app}XPCService"
 done

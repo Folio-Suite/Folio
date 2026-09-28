@@ -18,7 +18,7 @@ historical checklists as reference when distribution is deliberately resumed.
 | `/Applications/Folio/Write.app` | Write and its bundled WriteXPCService |
 | `/Applications/Folio/Research.app` | Research and its bundled ResearchXPCService |
 | `/Applications/Folio/Composer.app` | Composer and its bundled ComposerXPCService |
-| `/Library/Frameworks` | FolioKit, WriteKit, ResearchKit, ComposerKit |
+| `/Library/Frameworks` | FolioKit, WriteKit, ResearchKit, ComposerKit, UndoKit, TypographyKit |
 
 The apps link shared Kits without embedding copies. The Suite configuration adds
 `/Library/Frameworks` to runtime lookup for apps, Kits, and services. Framework
@@ -43,8 +43,8 @@ ruby scripts/package.rb --candidate /tmp/folio-candidate \
 Use new candidate and output directories. Packaging neither builds nor changes
 the Suite identity, and never installs on the development machine. It verifies the
 candidate identity against all shipping bundles, rejects missing executables,
-embedded framework copies, missing required storyboards/models/assets, and obsolete dylibs, and stages only the seven shipping
-bundles (including their three nested XPC services). Build-directory test products
+embedded framework copies, missing required storyboards/models/assets, and obsolete dylibs, and stages the nine shipping
+bundles plus their three nested XPC services. Build-directory test products
 are not selected. Failed packaging can leave diagnostic staging output; retain or
 remove that output before retrying in a new directory.
 

@@ -5,9 +5,28 @@ SPDX-License-Identifier: MIT
 
 # Document file types
 
-The Suite uses four-character lowercase filename stems, one per app. Native
-working documents use `<stem>bundle`; ZIP packages use the bare stem. These are
-filename conventions, not legacy Finder creator/type OSType codes.
+## Approved direction and current registrations
+
+[ADR 0013](adr/0013-document-lifecycle-and-project-archives.md), approved through
+[issue #4](https://github.com/Folio-Suite/Folio/issues/4) on 2026-09-27, retains
+the app-native bundle types and the per-app `.flwr`, `.flrs`, and `.flcp` archives.
+Those archives support exports scoped to a native Document and its required
+dependencies. Add a Suite-wide `.folio` for a Project and its related Documents;
+initially it contains one default-named Project expressing its parts and
+relationships. Both scopes use documented XML, history, validation, and
+import/export rules. Archives are never edited or saved in place. A
+`.foliobundle` and Project-management app remain deferred.
+
+The table below records the **existing application metadata**. The shared
+`.folio` UTI and media-type declarations, icons, localization, import routing,
+and native checks require an implementation slice. Per-app archive handling
+also remains unimplemented despite its reserved registrations. No `.folio`
+registration or importer is claimed here.
+
+The current metadata uses four-character lowercase filename stems, one per app.
+Native working documents use `<stem>bundle`; the reserved ZIP declarations use
+the bare stem. These are filename conventions, not legacy Finder creator/type
+OSType codes.
 
 | App | Native directory package | ZIP package | ZIP media type |
 | --- | --- | --- | --- |

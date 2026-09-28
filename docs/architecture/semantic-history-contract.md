@@ -7,6 +7,8 @@ SPDX-License-Identifier: MIT
 
 Approved through the design interview for [issue #8](https://github.com/Folio-Suite/Folio/issues/8). See [ADR 0010](../adr/0010-document-undo-and-durable-history.md). This records intended behavior, not implemented persistence or automation guarantees.
 
+On 2026-09-27 the maintainer directed that UndoKit be imported into Folio while remaining independently consumable by other applications. The [roadmap](../plans/swift-migration-and-suite-roadmap.md#undokit-incorporation-and-design-track) records the bounded import approval. The upstream [source provenance](../../UndoKit/UPSTREAM.md) and [dated design inventory](../../UndoKit/docs/imported-design/README.md) preserve the imported snapshot and original issue history; the upstream repository remains untouched. The local framework is only a scaffold. UndoKit owns history capabilities and storage safeguards; the document-domain Kits retain semantic meaning, validation, compensation, accepted outcomes, dependencies, and policy. Its [acceptance and recovery decision](https://github.com/ctwelve/UndoKit/issues/6) remains open and unblocked, and must be resolved before durable behavior is designed and implemented. External XCFramework release/version policy also remains future work. Existing native Undo remains the migration baseline.
+
 ## Ownership and ordinary Undo
 
 Each independently saved document owns one durable history and one ordering of accepted undoable actions. This follows the native document boundary, not individual files inside a package or the application displaying it. A Work and a Source Library have independent histories. The subsequent [Arrangement contract](arrangement-contract.md) establishes independently saved Composer Arrangements, including Editions, with their own histories; their source Works retain separate histories. This supersedes the earlier Work-owned Edition configuration assumption.
@@ -14,6 +16,8 @@ Each independently saved document owns one durable history and one ordering of a
 Undo and Redo use familiar native behavior and follow the document, including the author's edits made through automation or another application. This supersedes the originating-application/context rule in the earlier Work Session contract. Native controls may handle unfinished local interactions; accepted document edits share document-wide ordering. The Session validates reversals and preserves structural integrity. No global Undo, linked reversal machinery, or selective cross-application Undo is required.
 
 Cross-document transfers retain their data-preservation requirements, including securing a destination before source removal. Each document independently owns its resulting edits and Undo; Undo does not silently mutate another document.
+
+The [professional workflow decision](../adr/0014-professional-workspaces-and-optional-source-sync.md) permits opt-in bibliographic synchronization between independently owned Work-local and Library records. Incoming changes enter the receiving Document's history. Undo/Redo affecting synchronized fields pauses that pair for reconciliation: the reversal neither cascades to the other Document nor is immediately overwritten by synchronization. Ordinary shared edits can synchronize while the pair is active; removing a record preserves its counterpart.
 
 With durable history enabled, ordinary Undo survives closing and reopening. Undo records a reversal rather than erasing the original action; Redo is likewise recorded. Editing after Undo preserves the abandoned wording in branching history even when ordinary Redo is no longer available.
 
@@ -23,9 +27,9 @@ Automatically retain meaningful accepted changes, including deleted material, an
 
 A checkpoint captures a coherent state at the independently saved document boundary, including its owned content and exact dependency versions. A Work checkpoint includes unplaced content and research records; a Composer Arrangement checkpoint includes its owned snapshots, elaborations, and production configuration. Cross-document checkpoint coordination is not implied. It does not imply an archival export or independent backup.
 
-Restoring a checkpoint or native Document Version establishes a new current state while retaining the displaced history as a branch. Record the restored state and its origin; ordinary restoration must not silently delete later accepted work. The native lifecycle prototype must prove this behavior across connected applications.
+Restoring a checkpoint or native Document Version establishes a new current state while retaining the displaced history as a branch. Record the restored state and its origin; ordinary restoration must not silently delete later accepted work. Focused native lifecycle checks must prove this behavior across connected applications. The [document lifecycle contract](document-lifecycle-contract.md) distinguishes Folio-managed restoration from external replacement when displaced data may no longer be available.
 
-Authors can recover selected historical material as a new undoable edit, preserving provenance, without restoring the whole document. History-browser UX and whether its presentation belongs in the primary application or its Kit are later decisions.
+Authors can recover selected historical material as a new undoable edit, preserving provenance, without restoring the whole document. The [professional workflow contract](professional-workflow-contract.md) places the history interface in the owning Kit, available to hosts as a compact view or substantial window. Shared presentation may be reused across domains. Detailed UX remains implementation work; accepted history stays distinct from editorial Comments and Proposed Revisions.
 
 ## Recording settings and deliberate omission
 
@@ -39,7 +43,9 @@ A successful overwrite with omission removes historical states and action record
 
 Omission preserves current Comments, unresolved Proposed Revisions, and attribution belonging to current content. Snapshots and elaborations required by current Arrangements remain current dependencies and must also survive omission, as specified by the [Arrangement contract](arrangement-contract.md). Removing current editorial material is a separate choice. Removal applies to the saved document or exported artifact and, for an overwrite, its active Folio history. Existing native Document Versions, backups, and prior exports are unaffected; this is not a secure-erasure guarantee.
 
-A history-omitted folio is valid and reconstructs the current Work with its required dependencies. Its manifest explicitly declares history omitted, and it cannot claim complete historical reconstruction. Export preserves history by default. This qualifies the mandatory-history rule in ADR 0005 without weakening dependency or current-content preservation requirements.
+A history-omitted archive is valid and reconstructs its declared current content with required dependencies. Its manifest explicitly declares history omitted, and it cannot claim complete historical reconstruction. Export preserves history by default. This qualifies the mandatory-history rule in ADR 0005 without weakening dependency or current-content preservation requirements.
+
+The 2026-09-27 [Project archive decision](../adr/0013-document-lifecycle-and-project-archives.md) extends this export rule across all included Documents. The `.folio` manifest declares omission for each affected Document, and export leaves source Documents unchanged. Portable XML specifies retained historical states, branches, action ordering and grouping, Undo/Redo position, attribution, and relationships. A Project does not combine its Documents' histories or introduce Project-wide Undo.
 
 ## Semantic operations and automation
 
@@ -61,4 +67,4 @@ Passing the editorial baton does not accept, reject, rewrite, or reattribute Com
 
 ## Remaining proofs
 
-Exact storage schemas, branching algorithms, native Undo persistence, history scale, consolidation and retention, automation adapters, cross-process reconciliation, and UI placement remain implementation or further design work. Issue #4 retains lifecycle design. Issue #13 was retired as superseded; native save/restore, recovery, and archival reconstruction checks should target Folio-owned behavior as it is implemented. This contract does not select event sourcing or require replaying historical commands to reconstruct current state.
+Exact storage schemas, branching algorithms, native Undo persistence, history scale, consolidation and retention, automation adapters, cross-process reconciliation, and UI placement remain implementation or further design work. Issue #4 resolves lifecycle design through the document lifecycle contract. Issue #13 was retired as superseded; native save/restore, recovery, and archival reconstruction checks should target Folio-owned behavior as it is implemented. This contract does not select event sourcing or require replaying historical commands to reconstruct current state.
