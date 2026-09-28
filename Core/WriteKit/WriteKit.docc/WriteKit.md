@@ -13,23 +13,23 @@ WriteKit owns supported Work and Manuscript behavior, private Core Data package 
 
 ## Current support
 
-``FWWork`` reads and writes the current native Core Data package and exposes an immutable Manuscript snapshot. A Manuscript contains a flat, ordered list of text Content Units. ``FWManuscriptViewController`` provides a sidebar and retained per-unit editors. ``FWEditorViewController`` edits text and formatting on the main thread, and routes native typing and semantic formatting through the host's undo manager.
+``Work`` reads and writes the current native Core Data package and owns a FolioKit ``Manuscript`` value. A Manuscript contains a flat, ordered list of text Content Units. ``ManuscriptViewController`` provides a sidebar and retained per-unit editors. ``EditorViewController`` edits text and formatting on the main actor, and routes native typing and semantic formatting through the host's undo manager.
 
 The editor supports semantic emphasis categories separately from explicit bold, italic, underline, and strikethrough. It provides formatting-conflict warnings, conversion and dismissal actions, and internal copy/paste that preserves supported formatting with independent text identities. External paste imports plain text.
 
 ### Embed the Manuscript editor
 
-Create and use the editor on the main thread. Supply the document's undo manager so native typing and semantic formatting share its undo history.
+Create and use the editor on the main actor. Supply the document's undo manager so native typing and semantic formatting share its undo history.
 
-```objective-c
-FWWork *work = [FWWork new];
-FWManuscriptViewController *editor = [[FWManuscriptViewController alloc]
-    initWithWork:work undoManager:document.undoManager];
-NSWindowController *windowController = [editor makeWindowController];
-[document addWindowController:windowController];
+```swift
+let work = Work()
+let editor = ManuscriptViewController.make(work: work, undoManager: document.undoManager!)
+editor.workDidChange = { [weak document] in document?.updateChangeCount(.changeDone) }
+let windowController = editor.makeWindowController()
+document.addWindowController(windowController)
 ```
 
-The editor loads its interface from WriteKit's bundled `Editor.storyboard`; the host does not provide a storyboard or construct the controls. The host supplies saving and edited-state tracking through ``FWManuscriptViewController/workDidChange``. Capture the host weakly in that callback. Save with ``FWWork/fileWrapperWithError:`` and handle the returned error; producing an in-memory package does not write a destination file.
+The editor loads its interface from WriteKit's bundled `Editor.storyboard`; the host does not provide a storyboard or construct the controls. The host supplies saving and edited-state tracking through ``ManuscriptViewController/workDidChange``. Capture the host weakly in that callback. Save with ``Work/fileWrapper()`` and handle the thrown error; producing an in-memory package does not write a destination file. Reopen with ``Work/init(fileWrapper:)``. A document host passes one `UndoManager` to all editors in a Work.
 
 ### Formatting behavior
 
@@ -41,7 +41,7 @@ Semantic Emphasis is exclusive: None, Emphasis, Strong Emphasis, or Very Strong 
 
 ## Public interface and hosting
 
-Objective-C callers import `<WriteKit/WriteKit.h>` or use `@import WriteKit;`. The owning application uses this same interface as other hosts. Only headers listed by WriteKit's module map are supported. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
+Swift callers import `WriteKit` and `FolioKit`. The Work's ``Work/manuscript`` and ``Work/text`` properties use native FolioKit values, including stable identifiers, paragraphs, runs, semantic emphasis, and explicit presentation. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
 
 ## Limitations
 
@@ -51,6 +51,6 @@ The Manuscript supports a flat list of text Content Units. Adding, renaming, and
 
 ### Authoring
 
-- ``FWWork``
-- ``FWEditorViewController``
-- ``FWManuscriptViewController``
+- ``Work``
+- ``EditorViewController``
+- ``ManuscriptViewController``

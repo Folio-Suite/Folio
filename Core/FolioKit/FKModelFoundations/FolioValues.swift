@@ -73,7 +73,7 @@ public enum ParagraphAlignment: UInt, Sendable {
 }
 
 /// An immutable paragraph whose identity survives text replacement.
-public struct TextParagraph: Sendable {
+public struct TextParagraph: Equatable, Sendable {
     public let identifier: FolioIdentifier
     public let runs: [TextRun]
     public let alignment: ParagraphAlignment
@@ -87,14 +87,25 @@ public struct TextParagraph: Sendable {
     }
 }
 
+private final class FolioValueBundleToken {}
+
 /// A text Content Unit. Its title is authored once and does not follow later locale changes.
-public struct TextUnit: Sendable {
+public struct TextUnit: Equatable, Sendable {
     public let identifier: FolioIdentifier
     public let title: String
     public let paragraphs: [TextParagraph]
     public let formattingWarningDismissed: Bool
 
     public var string: String { paragraphs.map(\.string).joined(separator: "\n") }
+
+    /// Starts a new, empty Content Unit with the FolioKit-owned authored title.
+    public static func makeEmpty() -> Self {
+        let bundle = Bundle(identifier: "dev.foliosuite.FolioKit") ?? Bundle(for: FolioValueBundleToken.self)
+        let title = NSLocalizedString("content-unit.default-title", tableName: nil, bundle: bundle,
+                                      value: "Untitled", comment: "Initial title of a newly created Content Unit. Stored as authored content at creation; never retranslate existing titles.")
+        do { return try Self(identifier: .make(), title: title, paragraphs: [TextParagraph(identifier: .make())]) }
+        catch { preconditionFailure("Invalid default Content Unit: \(error)") }
+    }
 
     public init(identifier: FolioIdentifier, title: String, paragraphs: [TextParagraph],
                 formattingWarningDismissed: Bool = false) throws {
@@ -107,7 +118,7 @@ public struct TextUnit: Sendable {
 }
 
 /// The reading order of text Content Units, independent of editor selection.
-public struct Manuscript: Sendable {
+public struct Manuscript: Equatable, Sendable {
     public let identifier: FolioIdentifier
     public let units: [TextUnit]
 

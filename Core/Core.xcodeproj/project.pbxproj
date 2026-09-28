@@ -94,9 +94,6 @@
 		A1641C0A306ACB1F004824F1 /* Exceptions for "WriteKit" folder in "WriteKit" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			publicHeaders = (
-				FWEditor/FWEditorViewController.h,
-				FWEditor/FWManuscriptViewController.h,
-				FWManuscript/FWWork.h,
 				WriteKit.h,
 			);
 			target = A1641BFA306ACB1F004824F1 /* WriteKit */;
