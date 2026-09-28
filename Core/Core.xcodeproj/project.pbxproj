@@ -15,6 +15,7 @@
 		A1641DF3306AD71B004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
 		A1641DF8306AD741004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
 		A1641DFD306AD75F004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
+		C13800000000000000000002 /* TypographyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C13800000000000000000001 /* TypographyKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		A1641C31306ACB26004824F1 /* ComposerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComposerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1641C39306ACB26004824F1 /* ComposerKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComposerKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1641C94306AD035004824F1 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		C13800000000000000000001 /* TypographyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -213,6 +215,7 @@
 			isa = PBXFrameworksBuildPhase;
 			files = (
 				A1641DFD306AD75F004824F1 /* FolioKit.framework in Frameworks */,
+				C13800000000000000000002 /* TypographyKit.framework in Frameworks */,
 			);
 		};
 		A1641C36306ACB26004824F1 /* Frameworks */ = {
@@ -259,6 +262,7 @@
 		A1641DF2306AD71B004824F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C13800000000000000000001 /* TypographyKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

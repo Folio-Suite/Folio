@@ -8,17 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		A120CDEC306A0DA30097A0D5 /* Project.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A120CDEB306A0DA30097A0D5 /* Project.xcconfig */; };
+		B13000000000000000000001 /* TypographyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A120CDD4306A0BBA0097A0D5 /* TypographyKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A120CDD4306A0BBA0097A0D5 /* TypographyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A120CDEB306A0DA30097A0D5 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		B13000000000000000000002 /* TypographyKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TypographyKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A120CDD6306A0BBA0097A0D5 /* TypographyKit */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = TypographyKit;
+			sourceTree = "<group>";
+		};
+		B13000000000000000000003 /* TypographyKitTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TypographyKitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -29,6 +36,12 @@
 			files = (
 			);
 		};
+		B13000000000000000000004 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				B13000000000000000000001 /* TypographyKit.framework in Frameworks */,
+			);
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -36,6 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				A120CDD6306A0BBA0097A0D5 /* TypographyKit */,
+				B13000000000000000000003 /* TypographyKitTests */,
 				A120CDEB306A0DA30097A0D5 /* Project.xcconfig */,
 				A120CDD5306A0BBA0097A0D5 /* Products */,
 			);
@@ -45,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				A120CDD4306A0BBA0097A0D5 /* TypographyKit.framework */,
+				B13000000000000000000002 /* TypographyKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,6 +73,16 @@
 			);
 		};
 /* End PBXHeadersBuildPhase section */
+
+/* Begin PBXContainerItemProxy section */
+		B13000000000000000000005 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A120CDCB306A0BBA0097A0D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A120CDD3306A0BBA0097A0D5;
+			remoteInfo = TypographyKit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXNativeTarget section */
 		A120CDD3306A0BBA0097A0D5 /* TypographyKit */ = {
@@ -79,6 +104,27 @@
 			productReference = A120CDD4306A0BBA0097A0D5 /* TypographyKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		B13000000000000000000006 /* TypographyKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B13000000000000000000009 /* Build configuration list for PBXNativeTarget "TypographyKitTests" */;
+			buildPhases = (
+				B13000000000000000000007 /* Sources */,
+				B13000000000000000000004 /* Frameworks */,
+				B13000000000000000000008 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1300000000000000000000A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B13000000000000000000003 /* TypographyKitTests */,
+			);
+			name = TypographyKitTests;
+			productName = TypographyKitTests;
+			productReference = B13000000000000000000002 /* TypographyKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -92,6 +138,10 @@
 				TargetAttributes = {
 					A120CDD3306A0BBA0097A0D5 = {
 						CreatedOnToolsVersion = 27.0;
+					};
+					B13000000000000000000006 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = A120CDD3306A0BBA0097A0D5;
 					};
 				};
 			};
@@ -110,6 +160,7 @@
 			projectRoot = "";
 			targets = (
 				A120CDD3306A0BBA0097A0D5 /* TypographyKit */,
+				B13000000000000000000006 /* TypographyKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -122,6 +173,29 @@
 			);
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B1300000000000000000000A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A120CDD3306A0BBA0097A0D5 /* TypographyKit */;
+			targetProxy = B13000000000000000000005 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B13000000000000000000007 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B13000000000000000000008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
 
 /* Begin PBXSourcesBuildPhase section */
 		A120CDD0306A0BBA0097A0D5 /* Sources */ = {
@@ -344,6 +418,38 @@
 			};
 			name = Release;
 		};
+		B1300000000000000000000B /* Debug configuration for PBXNativeTarget "TypographyKitTests" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A120CDEB306A0DA30097A0D5 /* Project.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.TypographyKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		B1300000000000000000000C /* Release configuration for PBXNativeTarget "TypographyKitTests" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A120CDEB306A0DA30097A0D5 /* Project.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.TypographyKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -360,6 +466,14 @@
 			buildConfigurations = (
 				A120CDDE306A0BBA0097A0D5 /* Debug configuration for PBXNativeTarget "TypographyKit" */,
 				A120CDDF306A0BBA0097A0D5 /* Release configuration for PBXNativeTarget "TypographyKit" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		B13000000000000000000009 /* Build configuration list for PBXNativeTarget "TypographyKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1300000000000000000000B /* Debug configuration for PBXNativeTarget "TypographyKitTests" */,
+				B1300000000000000000000C /* Release configuration for PBXNativeTarget "TypographyKitTests" */,
 			);
 			defaultConfigurationName = Release;
 		};

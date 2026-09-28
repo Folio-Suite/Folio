@@ -9,18 +9,14 @@ The domain framework for Folio Composer's Arrangements, including Editions.
 
 ## Overview
 
-ComposerKit is the intended owner of Arrangement and Edition meaning, publication inputs, and publication orchestration. An Edition is a self-contained production Arrangement with pinned content and retained dependencies. Its editorial identity is independent of medium; named Production Configurations govern its output presentation. An Edition is distinct from the complete archival folio and from generated Renditions.
+ComposerKit owns publication meaning and adapts it to the independent TypographyKit engine. Document authority remains with the host. The current public operation is a bounded composition preview; Arrangement persistence, Editions, Production Configurations, coordinated Streams and output generation remain future capabilities.
 
-For text composition, ComposerKit will adapt Publication Plans, Profiles, Themes, and coordinated Stream meaning to the independent TypographyKit interface. TypographyKit owns neutral text composition and returns typography results; ComposerKit interprets those results within publication semantics. This division preserves TypographyKit's independence from Folio domain models.
+## Controlled preview
 
-## Current support
+A ``PublicationPreviewInput`` identifies caller-owned source text and supplies exact UTF-16 line breaks and a width. ``ComposerPreview/compose(_:)`` adapts it to TypographyKit with the preview's fixed Latin, left-to-right Times typography. The returned immutable result retains source identity, geometry and structured diagnostics. Its drawing uses the same result that supplies those relationships.
 
-ComposerKit is a framework scaffold. Its public Swift module has no Arrangement editing, publication, text-composition, or Rendition-generation API. The Composer application currently hosts its provisional document and storyboard directly.
+``CompositionPreviewView`` is a reusable AppKit canvas, loaded by the Composer storyboard. Call ``CompositionPreviewView/show(_:)`` on the main actor. The canvas visibly and accessibly distinguishes complete, unsupported and infeasible results. Composer's initial window displays a controlled specimen through this public interface; it does not open or save an Arrangement.
 
 ## Public interface and hosting
 
-Swift callers use `import ComposerKit`. The Cocoa umbrella retains framework identity and version symbols. There are no public domain operations to call. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
-
-## Limitations
-
-Arrangement persistence and editing are not implemented. ComposerKit does not own or implement TypographyKit's text-composition engine; its future role is to adapt publication meaning to that independent framework and coordinate its results. Coordinated Streams, paragraph composition, output generation, and reusable Composer presentation remain design or implementation work, not current APIs.
+Use `import ComposerKit`. The owning application uses the same public interface as other hosts. AppKit presentation is main-actor isolated; the composition adapter is synchronous. TypographyKit retains neutral text shaping and geometry without acquiring Folio objects or storage. Apps and Kits ship as one coordinated Suite version.
