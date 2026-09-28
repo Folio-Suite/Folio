@@ -20,8 +20,30 @@ The migration is finite: it does not include a complete catalog, shared-host imp
 - Target macOS 14 Sonoma explicitly and retain Intel and Apple Silicon support. Use a maintained Swift toolchain; Swift 6 language mode with explicit isolation remains the specification's recommended configuration.
 - Kits own domain capabilities and reusable editors, review, and history presentation. Applications host complete professional workspaces. Embedded editing identifies its actual Document, and deliberate handoff reveals the same Document and object.
 - Native Documents retain independent authority, history, and Undo. Efficient Core Data working storage, shared on-demand domain hosts, compatibility prompts, verified upgrades, and restoration safeguards follow the [lifecycle contract](../architecture/document-lifecycle-contract.md).
-- Retain per-app archives alongside Project `.folio`. Portable document semantics and history use extensively documented XML. Import creates independent native Documents; it does not silently reconnect them. A possible central Project-manager app named Folio remains future fog: no target or requirements are approved. `.foliobundle` remains deferred.
+- Retain per-app archives alongside Project `.folio`. Portable document semantics and history use extensively documented XML. Import creates independent native Documents; it does not silently reconnect them. A possible Folio Project utility and the treatment of small helper apps remain future design work. `.foliobundle` remains deferred.
 - Offer a default user-wide Library; keep Work-local records sufficient for references. Richer reusable research belongs in a Library. Optional paired bibliographic sync preserves independent records, conflict resolution, and document-local Undo. Undo/Redo affecting shared fields pauses the pair without cascading or immediate reapplication.
+
+## Small utilities and full Suite applications
+
+The maintainer's current direction is that a possible Folio Project app would be
+a small utility providing focused operations. Write, Research, and Composer
+remain the full professional workspaces. FolioKit could be distributed alongside
+this utility and other small helper apps; their exact placement is still open.
+
+Before implementing such a utility, resolve:
+
+- **Scope and discovery:** which operations deserve a utility, how users launch
+  it, and when a task should hand off to a professional workspace.
+- **Packaging:** whether helpers install beside a framework or in another shared
+  location, how they are registered, and how optional installation works.
+- **Lifecycle and ownership:** which component launches and manages a helper,
+  what happens when it quits, and which existing domain host owns each Document
+  it accesses. A utility interface does not by itself grant document authority.
+- **Distribution:** signing, permissions, version compatibility, updates, and
+  removal, including whether standalone framework consumers receive any helpers.
+
+This is a design question for the roadmap. No utility target, persistent Project
+store, or change to the accepted domain-host architecture is introduced here.
 
 ## Framework and internal module allocation
 
