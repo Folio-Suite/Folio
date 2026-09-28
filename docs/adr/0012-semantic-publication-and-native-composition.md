@@ -18,3 +18,5 @@ Approved on 2026-09-26 through the design interview for [issue #12](https://gith
 - XML schema evolution and migrations preserve the declared meaning of inputs. Versioned composition behavior and feature flags govern algorithm changes; exact historical appearance can be retained in the original Rendition without promising identical output from every future engine.
 - Begin with controlled native typography experiments using the first question of the *Summa Theologiae*, then prove coordinated Streams and paged production before completing the separate HTML and EPUB output paths. Exact specimen sources and implementation choices remain to be established.
 - This records architecture and experiment scope. The provisional Composer shell does not implement it; no composition, publication-conformance, or archival lifecycle proof is claimed.
+
+[ADR 0015](0015-swift-suite-and-independent-frameworks.md) assigns reusable Core Text composition to TypographyKit, with ComposerKit retaining publication semantics and coordination. The native comparison evidence is complete in issue #22; further quality/control verification accompanies implementation.

@@ -5,6 +5,8 @@ SPDX-License-Identifier: MIT
 
 # Continue the Cocoa Suite with document-domain Kits
 
+**Language policy superseded:** [ADR 0015](0015-swift-suite-and-independent-frameworks.md) adopts the accepted Swift migration. The original rationale below is retained as history; domain and Kit boundaries remain current.
+
 Folio serves both a practical publishing need and sustained learning through building software. Continue the existing monorepo toward completion using Objective-C, AppKit storyboards, and visually authored Core Data models; introduce Swift selectively when it provides a concrete benefit. A rewrite, successor repository, SwiftUI/SwiftData replacement, and single-app persona redesign were considered but are not the adopted direction.
 
 Write/WriteKit specializes in Works, Research/ResearchKit in Source Libraries, and Composer/ComposerKit in Arrangements, including Editions. FolioKit supplies shared foundations. Keep most domain behavior and reusable presentation in the Kits, with applications responsible for setup and native hosting. These roles do not require every semantic object to become a separate file or application.
@@ -29,4 +31,4 @@ Validation checks the actual published headers and module maps, rejects private 
 
 [ADR 0011](0011-composer-arrangements-and-editions.md) subsequently establishes Composer-owned Arrangements and the self-contained Edition Profile, scoped Profiles, and explicit archival associations. It supersedes earlier Work-owned Arrangement/Edition assumptions while preserving independent document histories.
 
-[ADR 0014](0014-professional-workspaces-and-optional-source-sync.md) resolves mature workflow placement, embedded editing and handoff, reusable review/history presentation, and capture entry points. The language and header-centric interface guidance above describe the current implementation direction; [Plan the Swift migration and TypographyKit foundation](https://github.com/Folio-Suite/Folio/issues/29) proposes their explicit replacement while retaining these domain and presentation responsibilities. Its detailed execution plan remains under review.
+[ADR 0014](0014-professional-workspaces-and-optional-source-sync.md) resolves mature workflow placement, embedded editing and handoff, reusable review/history presentation, and capture entry points. The language and header-centric interface guidance above is superseded by [ADR 0015](0015-swift-suite-and-independent-frameworks.md), which accepts the Swift migration while retaining these domain and presentation responsibilities.
