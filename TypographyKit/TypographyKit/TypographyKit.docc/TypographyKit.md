@@ -5,20 +5,59 @@ SPDX-FileCopyrightText: 2026 the Folio Project
 SPDX-License-Identifier: MIT
 -->
 
-An independent Swift framework for text measurement and composition.
+Compose exact caller-selected lines with Core Text and inspect the geometry and
+source relationships used to draw them.
 
 ## Overview
 
-TypographyKit is independent of FolioKit, Folio's domain frameworks, and AppKit. Its boundary is neutral text inputs and typography results, such as measured geometry, source mappings, and diagnostics. ComposerKit owns publication meaning and adapts its inputs to this framework.
+`TypographyComposer.compose(_:)` accepts an immutable ``CompositionRequest`` and
+returns a ``CompositionResult``. Text is supplied as ``TextOccurrence`` values;
+repeated source IDs remain distinct through occurrence indices. Breaks index
+UTF-16 in the concatenated original text, increase strictly, and end at its
+length. A discretionary supplies before-break, after-break, and no-break
+material while preserving the original source.
 
-## Current support
+The synchronous operation validates selected breaks, required and forbidden
+boundaries, grapheme and shaping-cluster positions, font resolution, and the
+supported adjustment limits. Its ``CompositionStatus`` explicitly distinguishes
+complete results from unsupported requests and infeasible selected geometry.
+A caller can submit another request when a page or region changes. TypographyKit
+does not search break sequences or own a Folio Document.
 
-TypographyKit is currently an empty framework scaffold. The Swift module builds from Foundation, Core Text, and Core Graphics imports, but it defines no public types or composition operations. No typography behavior or correctness is implemented or established.
+```swift
+let request = CompositionRequest(
+    occurrences: [TextOccurrence(sourceID: "passage", text: "extraordinary")],
+    fontPostScriptName: "Times-Roman", fontSize: 12,
+    lineWidth: 100, lineHeight: 16, breaks: [5, 13],
+    discretionaries: [Discretionary(boundary: 5,
+        replacementRange: NSRange(location: 5, length: 0), beforeBreak: "-")])
+let result = TypographyComposer.compose(request)
+if result.status == .complete {
+    // Result lines read "extra-" and "ordinary"; originalText is unchanged.
+    result.draw(in: context, at: CGPoint(x: 20, y: 100))
+}
+```
 
-## Public interface and hosting
+``ComposedLine`` exposes source and rendered ranges, mappings, glyph positions,
+caret positions, advance, baseline, and ink bounds. ``CompositionProvenance``
+records the engine, OS, requested and actual fonts, and requested font version.
+The result retains Core Text fonts and glyphs privately so drawing and reported
+geometry describe the same composition. The caller owns the graphics context.
+The result is an immutable reference value and has no unchecked `Sendable`
+conformance; transfer across concurrency boundaries remains the host's decision.
 
-Swift clients can import the `TypographyKit` module, but the module currently has no public API to call. ComposerKit will use this same independent framework boundary when composition behavior is implemented.
+## Supported behavior and limits
 
-## Limitations
+This first operation supports explicit left-to-right Latin text, a resolved
+PostScript font, exact break realization, insertion/omission/substitution
+mappings, fixed tracking, positive interior ASCII-space adjustment, bounded
+horizontal expansion, and bounded opening-quote protrusion. It preserves the
+original Unicode sequence and does not normalize text. Fallback requires an
+explicit opt-in and the result reports actual font names.
 
-The planned composition contract, supported text subset, font resolution, shaping, break realization, geometry, source mapping, diagnostics, optimization, and language coverage are not implemented or verified. Core Text availability alone does not establish those capabilities.
+It does not generate language opportunities, optimize a paragraph, compose
+mathematics or complex scripts, implement bidirectional layout, or provide native
+editing and accessibility hosting. Constraints that are not met yield
+`infeasible`; unsupported controls yield `unsupported`. Consumers should use
+``CompositionDiagnostic`` codes for localized explanations and never treat a
+drawn line as proof of publication readiness.
