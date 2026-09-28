@@ -22,7 +22,7 @@ fixtures are recorded in [Swift migration baseline](swift-migration-baseline.md)
 | M5 Composer shell | #71 | #70 |
 | T1 TypographyKit | #72 | #69 |
 | C1 Composer preview | #74 | #71 and #72 |
-| I1 integration / A1 evidence | coordinated integration PR | all above |
+| I1 integration / A1 evidence | #76 | all above |
 
 The final integration branch contains each source branch as ancestry and adds
 bridge removal, package pins, lint, public-consumer checks, localization extraction,
@@ -84,9 +84,55 @@ scope; runtime and human evidence is recorded separately below.
 
 ## Verification results
 
-Integrated build, native tests, public consumers, DocC and final review results are
-being recorded against the final integration revision. See the PR for current
-execution status until this section is finalized.
+Local execution used Xcode 27 on macOS 27 (26A428), arm64. The final runtime
+repairs are in `a1746b3`; preceding integration/review commits are `fc30a7a`,
+`aba22d8`, and `8339aa1`. Subsequent evidence-only commits do not change binaries.
+
+| Check | Result |
+| --- | --- |
+| Signed Folio build-for-testing | Passed after final runtime repairs. |
+| Full native plan | 54 distinct tests / 117 executions: 52 passed, two test assertions failed. The initial interrupted run was stopped while XCTest waited for diagnostic crash logs. |
+| Affected native rerun | All 31 passed: all 23 WriteKit tests, four TypographyKit tests, two ComposerKit tests, and two Composer UI tests. This rerun repairs both failures and verifies the actual composed canvas. No runtime warnings. Together the full run and affected rerun cover all 54 tests. |
+| Universal build | arm64 and x86_64 build passed with macOS 14 deployment settings. This is build coverage, not Intel/Sonoma runtime evidence. |
+| Public interfaces | Swift consumers compile/link for both architectures; private symbols are rejected; isolated TypographyKit and UndoKit imports pass. |
+| DocC | All six Kit catalogs generate. Project-owned unresolved-symbol and concurrency diagnostics were corrected. |
+| Signatures and identity | Shared team, Hardened Runtime, library validation and 0.1.0 (1) bundle identity checks pass. |
+| XPC transport | All three services echo the nonce from distinct processes in a signed temporary development harness with current framework/package dependencies. |
+| Ruby tooling | 17 tests / 144 assertions pass, including signed package dependency fixtures and aliased staging paths. |
+| Localization and lint | Swift/Interface Builder extraction check passes. SwiftLint has zero errors; 124 nonblocking style warnings remain under the imported policy. |
+| Installer staging | Universal development products produce a PKG; package frameworks and Swift compatibility runtime are retained. Nothing was installed. |
+
+Local artifacts are under `/tmp/folio-swift-loop`: `SwiftSuiteFinalTests.xcresult`
+(full run), `SwiftRepairTests.xcresult` (passing affected rerun),
+`universal-reviewed.log`, `universal-interfaces-final.log`,
+`integration-xpc-development.log`, `tooling-tests-final.log`, and the staged
+`package-reviewed/Folio-0.1.0.1.pkg`. These are development evidence, not release
+artifacts. Hosted CI status is attached to PR #76's exact current head.
+
+### Standards review
+
+The independent standards review found one P2: overview documentation still
+claimed Objective-C production and a typography scaffold. The pages now describe
+the implemented Swift modules and bounded compositor. Follow-up review found no
+remaining standards issue.
+
+### Specification review
+
+The independent spec review found a P1 duplicate-font dictionary trap and a P2
+Window menu rename. Duplicate Core Text font runs now merge provenance safely;
+a public regression covers disallowed/allowed fallback. The Window menu item,
+system submenu and catalog are restored. Follow-up review confirmed the fixes.
+
+Native execution also corrected an explicit-Undo-group omission in a migrated
+test and the fallback test's expected `infeasible` status. Runtime diagnostics
+exposed an incorrectly qualified storyboard class name; the canvas now resolves
+its preserved Objective-C name, and its UI test requires the composed source
+value as well as the visible heading. These affected suites pass.
+
+Reproduction commands are `scripts/check-build.sh --analyze`,
+`ruby scripts/ci.rb <new-output-directory>`, `ruby scripts/update-localizations.rb`,
+and the Ruby tests under `scripts/tests/`. Use the pinned plugin approval policy
+from CONTRIBUTING. Run `docbuild` on the shared Folio scheme for Kit catalogs.
 
 ## Remaining human and platform evidence
 
