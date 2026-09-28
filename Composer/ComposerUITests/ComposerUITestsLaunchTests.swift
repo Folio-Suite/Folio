@@ -11,7 +11,7 @@ final class ComposerUITestsLaunchTests: XCTestCase {
         continueAfterFailure = false
         let app = XCUIApplication()
         app.launch()
-        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot)
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         attachment.name = "Launch Screen"
         attachment.lifetime = .keepAlways
         add(attachment)
