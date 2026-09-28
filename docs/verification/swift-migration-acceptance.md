@@ -134,16 +134,34 @@ Reproduction commands are `scripts/check-build.sh --analyze`,
 and the Ruby tests under `scripts/tests/`. Use the pinned plugin approval policy
 from CONTRIBUTING. Run `docbuild` on the shared Folio scheme for Kit catalogs.
 
-## Remaining human and platform evidence
+## Maintainer acceptance and temporary waiver
 
-Issue #40 remains open until the maintainer disposes of these acceptance items:
+On 2026-09-28 the maintainer supplied the human acceptance disposition for this
+pre-alpha milestone:
 
-- Human typography review of the controlled Composer preview and retained specimens.
-- Human keyboard/focus/VoiceOver review, formatting, chronological Undo, save and reopen.
-- Representative macOS 14 Sonoma and Intel runtime workflows; the available local
-  test host is macOS 27 on Apple Silicon.
-- Installed changed-framework resolution outside Xcode and clean-install/Finder
-  behavior. Build products and a development XPC probe do not prove deployment.
+- **Typography accepted.** The maintainer accepts the prior day's typography
+  review and the decision to build Folio's own engine on Core Text as sufficient
+  for this milestone. This does not claim a separate human review of every new
+  rendered result or mature typography support.
+- **Keyboard, focus and VoiceOver accepted.** The maintainer reports that these
+  are basically functional and accepts the current behavior at pre-alpha scope.
+  Editing, Undo, saving and reopening retain the automated evidence above.
+- **Sonoma testing and installation verification temporarily waived.** The
+  maintainer explicitly waives these checks while the project remains in its
+  early, breakage-tolerant phase. Sonoma runtime, clean installation, Finder and
+  installed-framework resolution are unverified. Intel runtime also remains
+  unrun; the recorded Intel evidence is universal build/interface coverage.
+
+This disposition resolves the milestone's human/platform acceptance gate for
+#40. The waiver is temporary and does not establish OS, hardware or deployment
+proof for a later release. PR #76 may resolve #37, #38 and #40 when the coordinated
+stack merges; this acceptance does not itself merge the stack.
+
+Full hosted CI passed on implementation/evidence head
+`2bd244a99e2556db43437e7bc0919da1b94b7a3a`: Core, Write, Research, Composer,
+Suite analysis/build/repository checks, and the final Suite gate all passed in
+[run 36499796715](https://github.com/Folio-Suite/Folio/actions/runs/36499796715).
+This acceptance update changes documentation only.
 
 This batch implements neither durable history, shared domain hosts, `.folio`
 archives, a Research catalog, Arrangement persistence, paragraph optimization,
