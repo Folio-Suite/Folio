@@ -123,4 +123,4 @@ Typography stories include both foundation support and later behavior: T1/C1 def
 
 ## UndoKit preservation
 
-See the [inventory](../../UndoKit/docs/imported-design/README.md) for original-to-successor issue mappings, preserved accepted research, full tracker snapshot and Git recovery instructions. The local original checkout is retained. Historical URLs identify provenance after the remote repository is deleted.
+See the [inventory](../../UndoKit/docs/imported-design/README.md) for original-to-successor issue mappings, preserved accepted research, full tracker snapshot and Git recovery instructions. The local original checkout is retained. The authorized remote deletion was rejected by GitHub because the CLI credential lacks `delete_repo`; the original repository remains present. No credential change was made. Historical URLs remain recorded for provenance.
