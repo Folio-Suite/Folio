@@ -13,7 +13,7 @@ WriteKit owns supported Work and Manuscript behavior, private Core Data package 
 
 ## Current support
 
-``Work`` reads and writes the current native Core Data package and owns a FolioKit ``Manuscript`` value. A Manuscript contains a flat, ordered list of text Content Units. ``ManuscriptViewController`` provides a sidebar and retained per-unit editors. ``EditorViewController`` edits text and formatting on the main actor, and routes native typing and semantic formatting through the host's undo manager.
+``Work`` reads and writes the current native Core Data package and owns a FolioKit `Manuscript` value. A Manuscript contains a flat, ordered list of text Content Units. ``ManuscriptViewController`` provides a sidebar and retained per-unit editors. ``EditorViewController`` edits text and formatting on the main actor, and routes native typing and semantic formatting through the host's undo manager.
 
 The editor supports semantic emphasis categories separately from explicit bold, italic, underline, and strikethrough. It provides formatting-conflict warnings, conversion and dismissal actions, and internal copy/paste that preserves supported formatting with independent text identities. External paste imports plain text.
 

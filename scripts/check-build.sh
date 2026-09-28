@@ -5,7 +5,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 build_actions=(build)
-build_settings=(CODE_SIGNING_ALLOWED=NO)
+build_settings=(CODE_SIGNING_ALLOWED=NO ONLY_ACTIVE_ARCH=NO)
 if [[ $# -gt 0 ]]; then
     if [[ $# -ne 1 || "$1" != --analyze ]]; then
         echo 'Usage: scripts/check-build.sh [--analyze]' >&2

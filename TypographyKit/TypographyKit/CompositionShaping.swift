@@ -67,9 +67,9 @@ extension CompositionEngine {
                 sourceOffset: rendered.sourceRange.location
             )),
             fontNames: Set(runs.map(\.fontName)),
-            fontVersions: Dictionary(uniqueKeysWithValues: runs.compactMap { run in
+            fontVersions: Dictionary(runs.compactMap { run in
                 run.fontVersion.map { (run.fontName, $0) }
-            }),
+            }, uniquingKeysWith: { first, _ in first }),
             protruded: protrusion > 0
         )
     }

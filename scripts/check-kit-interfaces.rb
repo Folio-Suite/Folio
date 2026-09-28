@@ -51,6 +51,11 @@ class KitInterfaceCheck
     Dir.mktmpdir('folio-swift-interfaces-') do |stage|
       KITS.each { |kit| FileUtils.cp_r("#{products}/#{kit}.framework", stage, preserve: true) }
       architectures = capture('lipo', '-archs', "#{stage}/FolioKit.framework/FolioKit").split
+      check(architectures.to_set == Set['arm64', 'x86_64'], 'Suite products must contain arm64 and x86_64')
+      KITS.each do |kit|
+        actual = capture('lipo', '-archs', "#{stage}/#{kit}.framework/#{kit}").split.to_set
+        check(actual == architectures.to_set, "#{kit}: architecture coverage differs from FolioKit")
+      end
       architectures.each do |architecture|
         command = ['xcrun', 'swiftc', '-swift-version', '6', '-sdk', sdk,
                    '-target', "#{architecture}-apple-macosx14.0", '-F', stage,

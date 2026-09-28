@@ -34,6 +34,21 @@ final class CompositionTests: XCTestCase {
         XCTAssertEqual(invalid.diagnostics.first?.code, .invalidBoundary)
     }
 
+    func testRepeatedFontRunsPreserveFallbackPolicyAndProvenance() {
+        for allowsFallback in [false, true] {
+            let result = TypographyComposer.compose(.init(
+                occurrences: [.init(sourceID: "fallback", text: "A\u{202F}A")],
+                fontPostScriptName: "Times-Roman", fontSize: 12,
+                allowsFontFallback: allowsFallback, lineWidth: 200, lineHeight: 30, breaks: [3]
+            ))
+            XCTAssertEqual(result.originalText, "A\u{202F}A")
+            XCTAssertEqual(result.lines.count, 1)
+            XCTAssertFalse(result.provenance.actualFontVersions.isEmpty)
+            let usedFallback = result.diagnostics.contains { $0.code == .fontFallback }
+            XCTAssertEqual(result.status, usedFallback && !allowsFallback ? .unsupported : .complete)
+        }
+    }
+
     func testControlsHaveMeasuredGeometry() {
         func compose(_ text: String, _ controls: CompositionAdjustments) -> CompositionResult {
             TypographyComposer.compose(.init(occurrences: [.init(sourceID: "a", text: text)],

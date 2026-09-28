@@ -58,6 +58,32 @@ class PackagePayloadTest < Minitest::Test
         FileUtils.mkdir_p(File.dirname(path)); File.write(path, 'fixture resource')
       end
       FileUtils.mkdir_p(File.join(products, 'WriteTests.xctest'))
+
+      package_frameworks = %w[
+        Algorithms_-79BF82D738C97CDC_PackageProduct
+        Collections_47BB0D94F2814A8A_PackageProduct
+        Defaults_-6679B2A78FDF15C0_PackageProduct
+        RealModule_20918C39686D2FF4_PackageProduct
+      ]
+      %w[Write Research Composer].each do |app|
+        framework_root = File.join(products, "#{app}.app/Contents/Frameworks")
+        package_frameworks.each do |name|
+          framework = File.join(framework_root, "#{name}.framework")
+          resources_directory = File.join(framework, 'Resources')
+          FileUtils.mkdir_p(resources_directory)
+          executable = File.join(framework, name)
+          FileUtils.cp('/usr/bin/true', executable)
+          info = File.join(resources_directory, 'Info.plist')
+          File.write(info, JSON.generate({ 'CFBundleIdentifier' => "test.#{name}",
+            'CFBundleExecutable' => name, 'CFBundlePackageType' => 'FMWK' }))
+          system('/usr/bin/plutil', '-convert', 'xml1', info, exception: true)
+          File.write(File.join(resources_directory, 'package-marker.txt'), "package marker #{name}")
+          system('/usr/bin/codesign', '--remove-signature', executable, exception: true)
+          system('/usr/bin/codesign', '--force', '--sign', '-', '--timestamp=none', framework, exception: true)
+        end
+        File.write(File.join(framework_root, 'libswiftCompatibilitySpan.dylib'), 'Swift compatibility runtime')
+      end
+
       output = File.join(directory, 'package')
       message, status = Open3.capture2e('ruby', File.expand_path('../package.rb', __dir__),
         '--candidate', candidate, '--products', products, '--output', output)
@@ -67,6 +93,18 @@ class PackagePayloadTest < Minitest::Test
       assert status.success?, message
       assert File.directory?(File.join(expanded, 'Payload/Applications/Folio/Research.app/Contents/XPCServices/ResearchXPCService.xpc'))
       assert File.directory?(File.join(expanded, 'Payload/Library/Frameworks/FolioKit.framework'))
+      package_frameworks.each do |name|
+        path = File.join(expanded, 'Payload/Applications/Folio/Write.app/Contents/Frameworks', "#{name}.framework", name)
+        marker = File.join(File.dirname(path), 'Resources/package-marker.txt')
+        assert_equal "package marker #{name}", File.read(marker)
+        framework = File.dirname(path)
+        message, status = Open3.capture2e('/usr/bin/codesign', '--verify', '--deep', '--strict', framework)
+        assert status.success?, message
+        assert File.file?(File.join(expanded, 'Payload/Applications/Folio/Research.app/Contents/Frameworks', "#{name}.framework", name))
+        assert File.file?(File.join(expanded, 'Payload/Applications/Folio/Composer.app/Contents/Frameworks', "#{name}.framework", name))
+      end
+      assert_equal 'Swift compatibility runtime', File.read(File.join(expanded,
+        'Payload/Applications/Folio/Write.app/Contents/Frameworks/libswiftCompatibilitySpan.dylib'))
       assert_empty Dir.glob(File.join(expanded, '**', '*.xctest'))
       assert_includes File.read(File.join(expanded, 'PackageInfo')), 'identifier="dev.foliosuite.Suite"'
       assert_includes File.read(File.join(expanded, 'PackageInfo')), 'version="0.1.0.7"'
@@ -87,6 +125,62 @@ class PackagePayloadTest < Minitest::Test
       refute status.success?, message
       assert_includes message, 'Missing executable'
       refute File.exist?(output + '-invalid')
+
+      FileUtils.cp('/usr/bin/true', File.join(products, 'Write.app/Contents/MacOS/Write'))
+      suite_framework = File.join(products, 'Write.app/Contents/Frameworks/FolioKit.framework')
+      FileUtils.cp_r(File.join(products, 'FolioKit.framework'), suite_framework)
+      assert_package_rejected(candidate, products, output + '-suite-kit', 'Unexpected embedded framework')
+      FileUtils.rm_rf(suite_framework)
+
+      unknown_framework = File.join(products, 'Write.app/Contents/Frameworks/Other_123_PackageProduct.framework')
+      FileUtils.mkdir_p(unknown_framework)
+      write_non_suite_framework_info(unknown_framework)
+      assert_package_rejected(candidate, products, output + '-unknown-framework', 'Unexpected embedded framework')
+      FileUtils.rm_rf(unknown_framework)
+
+      misplaced_framework = File.join(products, 'Write.app/Contents/Resources/Algorithms_123_PackageProduct.framework')
+      FileUtils.mkdir_p(misplaced_framework)
+      write_non_suite_framework_info(misplaced_framework)
+      assert_package_rejected(candidate, products, output + '-misplaced-framework', 'Unexpected embedded framework')
+      FileUtils.rm_rf(misplaced_framework)
+
+      kit_nested_framework = File.join(products, 'FolioKit.framework/Contents/Frameworks/Algorithms_123_PackageProduct.framework')
+      FileUtils.mkdir_p(kit_nested_framework)
+      write_non_suite_framework_info(kit_nested_framework)
+      assert_package_rejected(candidate, products, output + '-kit-nested-framework', 'Unexpected embedded framework')
+      FileUtils.rm_rf(kit_nested_framework)
+
+      unexpected_runtime = File.join(products, 'Write.app/Contents/Frameworks/libswiftCore.dylib')
+      File.write(unexpected_runtime, 'unexpected runtime')
+      assert_package_rejected(candidate, products, output + '-unexpected-runtime', 'Unexpected development product')
+      File.unlink(unexpected_runtime)
+
+      misplaced_runtime = File.join(products, 'Write.app/Contents/Resources/libswiftCompatibilitySpan.dylib')
+      File.write(misplaced_runtime, 'misplaced compatibility runtime')
+      assert_package_rejected(candidate, products, output + '-misplaced-runtime', 'Unexpected development product')
+      File.unlink(misplaced_runtime)
+
+      embedded_tests = File.join(products, 'Write.app/Contents/Frameworks/WriteTests.xctest')
+      FileUtils.mkdir_p(embedded_tests)
+      assert_package_rejected(candidate, products, output + '-embedded-tests', 'Unexpected development product')
+      FileUtils.rm_rf(embedded_tests)
     end
+  end
+
+  private
+
+  def assert_package_rejected(candidate, products, output, expected_message)
+    message, status = Open3.capture2e('ruby', File.expand_path('../package.rb', __dir__),
+      '--candidate', candidate, '--products', products, '--output', output)
+    refute status.success?, message
+    assert_includes message, expected_message
+    refute File.exist?(output)
+  end
+
+  def write_non_suite_framework_info(framework)
+    info = File.join(framework, 'Resources/Info.plist')
+    FileUtils.mkdir_p(File.dirname(info))
+    File.write(info, JSON.generate({ 'CFBundleIdentifier' => 'test.unapproved', 'CFBundlePackageType' => 'FMWK' }))
+    system('/usr/bin/plutil', '-convert', 'xml1', info, exception: true)
   end
 end

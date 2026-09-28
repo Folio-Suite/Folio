@@ -20,9 +20,16 @@ historical checklists as reference when distribution is deliberately resumed.
 | `/Applications/Folio/Composer.app` | Composer and its bundled ComposerXPCService |
 | `/Library/Frameworks` | FolioKit, WriteKit, ResearchKit, ComposerKit, UndoKit, TypographyKit |
 
-The apps link shared Kits without embedding copies. The Suite configuration adds
-`/Library/Frameworks` to runtime lookup for apps, Kits, and services. Framework
-resources remain in their owning framework bundles. Installed files belong to
+The apps link shared Kits from `/Library/Frameworks` without embedding Folio Kit
+copies. Swift package dependencies are embedded in each app's
+`Contents/Frameworks`: only generated `Algorithms_*_PackageProduct.framework`,
+`Collections_*_PackageProduct.framework`, `Defaults_*_PackageProduct.framework`,
+and `RealModule_*_PackageProduct.framework` products, plus
+`libswiftCompatibilitySpan.dylib`, are accepted there. Packaging copies their
+signed contents and records their files in the payload manifest; it does not
+re-sign them. Suite Kit frameworks, unapproved frameworks or dylibs, test bundles,
+and debug-symbol bundles remain rejected inside app bundles. Framework resources
+remain in their owning framework bundles. Installed files belong to
 `root:wheel`; directories and executable files use 0755, other regular files 0644.
 Framework symlinks retain their relative targets. Bundle relocation is disabled.
 No installation scripts or background services are added.
@@ -43,8 +50,9 @@ ruby scripts/package.rb --candidate /tmp/folio-candidate \
 Use new candidate and output directories. Packaging neither builds nor changes
 the Suite identity, and never installs on the development machine. It verifies the
 candidate identity against all shipping bundles, rejects missing executables,
-embedded framework copies, missing required storyboards/models/assets, and obsolete dylibs, and stages the nine shipping
-bundles plus their three nested XPC services. Build-directory test products
+unexpected embedded frameworks or dylibs, missing required storyboards/models/assets,
+and debug products, and stages the nine shipping bundles plus their three nested
+XPC services. Build-directory test products
 are not selected. Failed packaging can leave diagnostic staging output; retain or
 remove that output before retrying in a new directory.
 

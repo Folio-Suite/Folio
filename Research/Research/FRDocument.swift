@@ -4,6 +4,7 @@
 import AppKit
 import ResearchKit
 
+@MainActor
 @objc(FRDocument)
 final class FRDocument: NSDocument {
     private var libraryPackage: FileWrapper?
@@ -27,7 +28,12 @@ final class FRDocument: NSDocument {
     }
 
     override func read(from fileWrapper: FileWrapper, ofType typeName: String) throws {
-        try ResearchLibraryPackage.validate(fileWrapper)
-        libraryPackage = fileWrapper
+        // NSDocument concurrent reading remains disabled. This synchronous Cocoa
+        // override runs on the main thread; no FileWrapper crosses a task boundary.
+        nonisolated(unsafe) let input = fileWrapper
+        try MainActor.assumeIsolated {
+            try ResearchLibraryPackage.validate(input)
+            libraryPackage = input
+        }
     }
 }

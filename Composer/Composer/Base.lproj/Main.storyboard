@@ -632,7 +632,7 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Composition Preview" id="aUF-d1-5bR">
+                            <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Composition Preview" systemMenu="window" id="Td7-aD-5lo">
                                     <items>
