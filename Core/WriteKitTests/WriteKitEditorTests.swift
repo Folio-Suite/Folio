@@ -212,9 +212,11 @@ import XCTest
     }
 
     func testSplittingParagraphMakesDistinctIdentityAndRetainsOriginal() throws {
-        let (work, _, editor) = makeEditor()
+        let (work, undo, editor) = makeEditor()
         let paragraphID = work.text.paragraphs[0].identifier
-        editor.textView.insertText("First\nSecond\n", replacementRange: NSRange(location: 0, length: 0))
+        grouped(undo) {
+            editor.textView.insertText("First\nSecond\n", replacementRange: NSRange(location: 0, length: 0))
+        }
         XCTAssertEqual(work.text.string, "First\nSecond\n")
         XCTAssertEqual(work.text.paragraphs[0].identifier, paragraphID)
         XCTAssertEqual(Set(work.text.paragraphs.map(\.identifier)).count, 3)

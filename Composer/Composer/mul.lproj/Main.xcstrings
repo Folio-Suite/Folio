@@ -3458,7 +3458,7 @@
       }
     },
     "LE2-aR-0XJ.title": {
-      "comment": "Main Menu > Window > Composition Preview > LE2-aR-0XJ — menuItem title: \"Bring All to Front\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Main Menu > Window > LE2-aR-0XJ — menuItem title: \"Bring All to Front\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "ar": {
@@ -3890,7 +3890,7 @@
       }
     },
     "OY7-WF-poV.title": {
-      "comment": "Main Menu > Window > Composition Preview > OY7-WF-poV — menuItem title: \"Minimize\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Main Menu > Window > OY7-WF-poV — menuItem title: \"Minimize\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "ar": {
@@ -4394,7 +4394,7 @@
       }
     },
     "R4o-n2-Eq4.title": {
-      "comment": "Main Menu > Window > Composition Preview > R4o-n2-Eq4 — menuItem title: \"Zoom\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Main Menu > Window > R4o-n2-Eq4 — menuItem title: \"Zoom\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "ar": {
@@ -4754,7 +4754,7 @@
       }
     },
     "Td7-aD-5lo.title": {
-      "comment": "Main Menu > Window > Td7-aD-5lo — menu title: \"Composition Preview\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Main Menu > Window > Td7-aD-5lo — menu title: \"Window\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "ar": {
@@ -4766,7 +4766,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Composition Preview"
+            "value": "Window"
           }
         },
         "ja": {

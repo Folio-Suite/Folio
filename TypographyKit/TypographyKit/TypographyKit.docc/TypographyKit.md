@@ -61,3 +61,7 @@ editing and accessibility hosting. Constraints that are not met yield
 `infeasible`; unsupported controls yield `unsupported`. Consumers should use
 ``CompositionDiagnostic`` codes for localized explanations and never treat a
 drawn line as proof of publication readiness.
+
+A font fallback that the caller disallows produces `infeasible`: the requested
+font constraint cannot be satisfied. Allowing fallback retains the actual fonts
+and versions in provenance without making fallback alone a failure.

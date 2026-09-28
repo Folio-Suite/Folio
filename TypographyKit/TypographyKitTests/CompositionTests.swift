@@ -45,7 +45,7 @@ final class CompositionTests: XCTestCase {
             XCTAssertEqual(result.lines.count, 1)
             XCTAssertFalse(result.provenance.actualFontVersions.isEmpty)
             let usedFallback = result.diagnostics.contains { $0.code == .fontFallback }
-            XCTAssertEqual(result.status, usedFallback && !allowsFallback ? .unsupported : .complete)
+            XCTAssertEqual(result.status, usedFallback && !allowsFallback ? .infeasible : .complete)
         }
     }
 

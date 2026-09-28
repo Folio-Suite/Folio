@@ -47,6 +47,7 @@ public final class CompositionPreviewView: NSView {
         super.viewDidMoveToWindow()
         setAccessibilityElement(true)
         setAccessibilityRole(.group)
+        setAccessibilityIdentifier("compositionPreview")
         updateStatus()
     }
 

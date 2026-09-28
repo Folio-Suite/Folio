@@ -10,7 +10,12 @@ final class ComposerUITests: XCTestCase {
         app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
         app.launch()
         defer { app.terminate() }
-        XCTAssertTrue(app.staticTexts["Composition preview"].firstMatch.waitForExistence(timeout: 5))
+        let preview = app.groups["compositionPreview"]
+        XCTAssertTrue(preview.waitForExistence(timeout: 5))
+        XCTAssertEqual(preview.label, "Composition preview")
+        XCTAssertEqual(preview.value as? String,
+            "Folio composes authored text.Source identity stays with the publication.")
+        XCTAssertTrue(app.menuBars.menuBarItems["Window"].exists)
     }
 
     func testAboutPanelReportsSuiteIdentity() throws {
