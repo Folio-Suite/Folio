@@ -9,7 +9,7 @@ For skill setup, selection, maintenance, or attribution, read [AI skill usage an
 
 ### Issue tracker
 
-Issues and specs live in this repository's GitHub Issues. See `docs/agents/issue-tracker.md`.
+Issues and specs for all three contexts live in Folio-Suite/Folio GitHub Issues. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 
@@ -17,7 +17,7 @@ The repository uses the default triage-label vocabulary. See `docs/agents/triage
 
 ### Domain docs
 
-Folio is a monorepo with one shared domain context. Before exploring or changing code, read `docs/agents/domain.md`.
+Folio uses a multi-context layout for the Suite, TypographyKit, and UndoKit. Before exploring or changing code, read `docs/agents/domain.md`.
 
 ## Licensing
 
