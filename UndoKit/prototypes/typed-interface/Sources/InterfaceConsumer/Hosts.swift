@@ -28,6 +28,7 @@ final class WriteAdapter: HostEndpoint {
         switch codecID {
         case "json-v1": bytes = try JSONCodec<ReplaceText>().encode(command)
         case "xml-plist-v1": bytes = try XMLPropertyListCodec<ReplaceText>().encode(command)
+        case "binary-plist-v1": bytes = try BinaryPropertyListCodec<ReplaceText>().encode(command)
         default: throw ProbeError.unsupportedCodec
         }
         // Host-defined intent representation, independent of selected storage codec.
@@ -47,6 +48,7 @@ final class WriteAdapter: HostEndpoint {
             return ReplaceText(unit: old.unit, replacement: old.content)
         case (2, "json-v1"): return try JSONCodec<ReplaceText>().decode(payload.bytes)
         case (2, "xml-plist-v1"): return try XMLPropertyListCodec<ReplaceText>().decode(payload.bytes)
+        case (2, "binary-plist-v1"): return try BinaryPropertyListCodec<ReplaceText>().decode(payload.bytes)
         case (1...2, _): throw ProbeError.unsupportedCodec
         default: throw ProbeError.unsupportedVersion
         }

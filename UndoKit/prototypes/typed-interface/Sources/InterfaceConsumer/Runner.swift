@@ -48,6 +48,11 @@ struct Runner {
         let command = ReplaceText(unit: "chapter-1", replacement: "After")
         let json = try host.request(command)
         let xml = try host.request(command, codecID: "xml-plist-v1")
+        let binary = try host.request(command, codecID: "binary-plist-v1")
+        try check(binary.command.bytes.starts(with: Data("bplist00".utf8)), "binary codec emits a binary property list")
+        try check(binary.intentFingerprint == json.intentFingerprint && binary.command.integrity != json.command.integrity,
+                  "binary plist preserves host intent while changing byte representation")
+        print("SIZE OBSERVATION (one small fixture, not a benchmark): JSON=\(json.command.bytes.count), XML plist=\(xml.command.bytes.count), binary plist=\(binary.command.bytes.count) bytes")
         try check(json.intentFingerprint == xml.intentFingerprint && json.command.integrity != xml.command.integrity,
                   "host intent identity stays stable across JSON/XML byte representations")
         try check(String(decoding: xml.command.bytes, as: UTF8.self).contains("<plist"), "XML codec emits a property list")
@@ -62,6 +67,10 @@ struct Runner {
         try check(host.text == "Before" && undone.effect != effect.effect, "compensation returns its own encoded effect")
         _ = try accepted(await probe.deliver(xml))
         try check(host.text == "After", "XML payload decodes and dispatches on the host actor")
+        _ = try accepted(await probe.compensate(operationID: json.operationID, effect: effect.effect,
+                                               scope: scope, commandID: UUID()))
+        _ = try accepted(await probe.deliver(binary))
+        try check(host.text == "After", "binary property-list payload decodes and dispatches on the host actor")
         let resource = try await probe.resolve(operationID: json.operationID, reference: effect.resources[0])
         try check(resource == Data("host-owned chapter asset".utf8), "host-owned resource resolves by store and object identity")
         do {
@@ -98,6 +107,10 @@ struct Runner {
                              intentFingerprint: "fixture", command: Payload(typeID: json.command.typeID,
                              version: 2, codecID: "xml-plist-v1", bytes: Data("<broken".utf8)))
         try await expectFailure("malformed XML property list") { _ = try await probe.deliver(badXML) }
+        let badBinary = Request(scope: scope, commandID: UUID(), operationID: json.operationID,
+                                intentFingerprint: "fixture", command: Payload(typeID: json.command.typeID,
+                                version: 2, codecID: "binary-plist-v1", bytes: Data("bplist00broken".utf8)))
+        try await expectFailure("malformed binary property list") { _ = try await probe.deliver(badBinary) }
         let kitchenCountBefore = await kitchen.applicationCount()
         let badCustom = Request(scope: kitchenRequest.scope, commandID: UUID(), operationID: kitchenRequest.operationID,
                                 intentFingerprint: "fixture", command: Payload(typeID: kitchenRequest.command.typeID,
@@ -148,19 +161,20 @@ struct Runner {
                           bytes: try JSONCodec<OldReplaceText>().encode(OldReplaceText(unit: "chapter-1", content: "Legacy"))))
         let fixtures = ["json": SavedFixture(request: json, evidence: effect),
                         "xml": SavedFixture(request: xml, evidence: effect),
+                        "binary": SavedFixture(request: binary, evidence: effect),
                         "custom": SavedFixture(request: kitchenRequest, evidence: kitchenEvidence),
                         "old": SavedFixture(request: old, evidence: effect)]
         for (name, saved) in fixtures {
             try JSONEncoder().encode(saved).write(to: directory.appendingPathComponent("\(name).json"), options: .atomic)
         }
-        try check(fixtures.count == 4, "saved bounded fixture envelopes for a fresh reader process")
+        try check(fixtures.count == 5, "saved bounded fixture envelopes for a fresh reader process")
         print("WRITE PHASE COMPLETE")
     }
     @MainActor
     static func read(_ directory: URL) async throws {
         var records: [String: SavedFixture] = [:]
         var originals: [String: Data] = [:]
-        for name in ["json", "xml", "custom", "old"] {
+        for name in ["json", "xml", "binary", "custom", "old"] {
             let bytes = try Data(contentsOf: directory.appendingPathComponent("\(name).json"))
             originals[name] = bytes
             records[name] = try JSONDecoder().decode(SavedFixture.self, from: bytes)
@@ -171,7 +185,7 @@ struct Runner {
         let probe = BoundaryProbe()
         try await probe.register("folio.replace-text", endpoint: host)
         try await probe.register("kitchen.organize", endpoint: kitchen)
-        for name in ["json", "xml", "old"] {
+        for name in ["json", "xml", "binary", "old"] {
             let saved = records[name]!
             try saved.request.command.validate()
             let decoded = try host.decode(saved.request.command)

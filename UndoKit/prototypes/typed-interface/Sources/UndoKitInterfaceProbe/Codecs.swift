@@ -26,3 +26,15 @@ public struct XMLPropertyListCodec<Value: Codable> {
         try PropertyListDecoder().decode(Value.self, from: bytes)
     }
 }
+
+public struct BinaryPropertyListCodec<Value: Codable> {
+    public init() {}
+    public func encode(_ value: Value) throws -> Data {
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .binary
+        return try encoder.encode(value)
+    }
+    public func decode(_ bytes: Data) throws -> Value {
+        try PropertyListDecoder().decode(Value.self, from: bytes)
+    }
+}

@@ -9,12 +9,13 @@ Question: can a small host adapter keep typed domain values and actor-owned mode
 on the application's side while UndoKit receives bounded, opaque, identifiable
 messages through an independent Swift module?
 
-**Result, 2026-09-29: feasible at the tested interface boundary.** All 44 checks
+**Result, 2026-09-29: feasible at the tested interface boundary.** All 50 checks
 passed using Apple Swift 6.4, Swift language mode 6, complete concurrency checking
 and warnings treated as errors on the current arm64 macOS 27 host. The writer
 and reader run as separate processes. This is evidence for the design discussion
-in [#43](https://github.com/Folio-Suite/Folio/issues/43), not final acceptance of
-that ticket or a production implementation.
+in [#43](https://github.com/Folio-Suite/Folio/issues/43), accepted by the maintainer as interface feasibility evidence on 2026-09-29.
+The binary property-list extension is included; no production implementation
+is claimed.
 
 ## Run
 
@@ -79,12 +80,12 @@ failure envelopes must preserve the accepted transaction contract.
 
 See [results.md](results.md) for the captured run. The checks cover:
 
-- JSON and XML property-list bytes with the same host intent fingerprint and
+- JSON, XML property-list and binary property-list bytes with the same host intent fingerprint and
   distinct stored-byte integrity values;
 - actor-owned domain state, independent command/effect payloads, compensation,
   Accepted/Rejected/Unresolved protocol outcomes and explicit outcome lookup;
 - a host custom format for a non-Codable command containing coordinated changes;
-- unknown schemas/codecs, malformed JSON/XML/custom data, corrupt integrity,
+- unknown schemas/codecs, malformed JSON/XML/binary-plist/custom data, corrupt integrity,
   illustrative size refusal and absent/duplicate registrations;
 - no semantic handler invocation for invalid inputs;
 - display metadata whose contents the module cannot interpret;
@@ -107,11 +108,11 @@ The visible adapter includes domain effect/compensation logic, codecs and receip
 fixtures; these examples are not a claim that production host integration is
 free or already minimal.
 
-XML property lists worked with Foundation's encoder and decoder. This establishes
-an optional Codable codec, not an arbitrary XML-schema implementation or Folio
+XML and binary property lists worked with Foundation's encoder and decoder. This establishes
+optional Codable codecs, not an arbitrary XML-schema implementation or Folio
 archival XML. The JSON helper rejected non-finite floating point by default;
 codec profiles must document their supported values and settings. Custom codecs
-remain available for different requirements. Neither serialization format is
+remain available for different requirements. None of these serialization formats is
 promised to provide canonical semantic identity.
 
 The probe currently carries generic `throws` across the endpoint for convenience.
@@ -121,6 +122,11 @@ as proof of no domain effect. Likewise, the probe does not enforce durable Comma
 identity/retry binding, serialize reentrant actor calls, or finalize accepted
 outcomes. Those omissions are deliberate and must not be copied as engine behavior.
 
+The small sample encoded to 42 JSON bytes, 281 XML property-list bytes, and 83
+binary property-list bytes. This is one footprint observation, not a performance
+benchmark or evidence that one representation is universally smaller. #46 must
+measure representative payloads before selecting efficiency recommendations.
+
 ## Evidence limits
 
 No Core Data history model or real application resource model was created; bundle
@@ -128,8 +134,8 @@ lookup uses a clearly named fixture. The run does not prove a production store,
 FIFO or backpressure, crash/restart recovery, actual app integration, native Undo
 routing, state reconstruction, protection during pruning, recovery-plan lifetime,
 complete generic API design, performance, or runtime compatibility on macOS 14
-or Intel. XML round trips cover the representative fixture, not all Codable shapes.
+or Intel. Property-list round trips cover the representative fixture, not all Codable shapes.
 
-#44–#50 retain their design and proof responsibilities. #43 remains open pending
-maintainer review and final agreement. Production source and the main checkout
+#44–#50 retain their design and proof responsibilities. The maintainer accepted
+the interface design and its evidence limits; #43 records that design resolution. Production source and the main checkout
 remain unchanged by this prototype.
