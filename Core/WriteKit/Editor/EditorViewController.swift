@@ -591,13 +591,10 @@ extension EditorViewController {
     }
 
     private func installSemanticImages() {
-        for (identifier, name, button) in [
-            ("dev.foliosuite.Write.emphasis", "Emphasis", emphasisButton!),
-            ("dev.foliosuite.Write.strong", "StrongEmphasis", strongButton!)
+        for (identifier, image, button) in [
+            ("dev.foliosuite.Write.emphasis", FormattingImages.emphasis, emphasisButton!),
+            ("dev.foliosuite.Write.strong", FormattingImages.strongEmphasis, strongButton!)
         ] {
-            guard let image = writeKitBundle.image(forResource: NSImage.Name(name)) else {
-                preconditionFailure("WriteKit formatting image \(name) is missing")
-            }
             button.image = image
             window?.toolbar?.items.first(where: { $0.itemIdentifier.rawValue == identifier })?.image = image
         }

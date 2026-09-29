@@ -46,7 +46,8 @@ Verified locally with Xcode 27 on macOS 27:
 - Clean, signed universal Suite build; all 58 native tests passed, with no skips.
   New checks exercise public Kit window factories and document class registration.
   Existing old-writer package fixtures still reopen. A subsequent focused run of
-  all 24 WriteKit tests passes, including the custom toolbar image regression.
+  all 27 WriteKit and Write app tests passes, including the custom toolbar and
+  menu image regressions. Both use WriteKit’s public formatting-image API.
 - External Swift consumers compile for arm64 and x86_64; private declarations
   are rejected, and TypographyKit/UndoKit import independently.
 - All six Kit documentation archives build. TypographyKit's independent public

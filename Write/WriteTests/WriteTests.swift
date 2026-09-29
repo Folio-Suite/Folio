@@ -12,6 +12,14 @@ import XCTest
         XCTAssertTrue(NSDocumentController.shared.documentClass(forType: workDocumentType) === WriteDocument.self)
     }
 
+    func testAppMenusUseWriteKitSemanticImages() throws {
+        let delegate = try XCTUnwrap(NSApplication.shared.delegate as? AppDelegate)
+        let emphasis = try XCTUnwrap(delegate.emphasisMenuItem)
+        let strong = try XCTUnwrap(delegate.strongEmphasisMenuItem)
+        XCTAssertNotNil(emphasis.image)
+        XCTAssertNotNil(strong.image)
+    }
+
     private func titleField(in view: NSView) -> NSTextField? {
         if let field = view as? NSTextField, field.identifier?.rawValue == "contentUnitTitle" { return field }
         for child in view.subviews {
