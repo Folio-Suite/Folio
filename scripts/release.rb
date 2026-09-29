@@ -145,7 +145,7 @@ class SuiteRelease
     derived = File.join(directory, 'DerivedData')
     command = ['xcodebuild', '-workspace', File.join(@root, 'Folio.xcworkspace'),
                '-scheme', 'Folio', '-configuration', configuration, '-destination', 'platform=macOS',
-               '-derivedDataPath', derived, action]
+               '-derivedDataPath', derived, '-skipPackagePluginValidation', 'ONLY_ACTIVE_ARCH=NO', action]
     raise 'Xcode build failed' unless system(*command)
     after = source_identity
     raise 'Source changed during the build' unless after == before

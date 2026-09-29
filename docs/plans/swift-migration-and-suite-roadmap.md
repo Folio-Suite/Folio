@@ -3,19 +3,21 @@ SPDX-FileCopyrightText: 2026 the Folio Project
 SPDX-License-Identifier: MIT
 -->
 
-# Swift migration and Suite roadmap
+# Core framework and Suite roadmap
 
-**Status: accepted, 2026-09-27.** The maintainer accepted the full migration plan and authorized its ticket handoff. U0 (UndoKit source/design import) and T0 (TypographyKit scaffold) are implemented in merged PR #30; remaining implementation is tracked in the [accepted backlog](accepted-backlog.md). The canonical specification remains [#29](https://github.com/Folio-Suite/Folio/issues/29), including its 53 stories and confirmed test seams. [ADR 0015](../adr/0015-swift-suite-and-independent-frameworks.md) records the language and framework decision.
+**Status: Core framework structure accepted, 2026-09-28; Swift migration plan accepted, 2026-09-27.** The app and domain-Kit Swift ports are implemented, and TypographyKit now has a bounded controlled-composition API with a small ComposerKit preview. No production `.m` or `.mm` sources remain; Objective-C files are limited to prototypes and supporting scripts. Integrated signed verification for this implementation is pending; these source changes do not establish runtime acceptance. U0 (UndoKit source/design import) and T0 (TypographyKit scaffold) were implemented in merged PR #30. The canonical specification remains [#29](https://github.com/Folio-Suite/Folio/issues/29), including its 53 stories and confirmed test seams. [ADR 0015](../adr/0015-swift-suite-and-independent-frameworks.md) records the language and framework decision. Later capabilities and acceptance evidence remain tracked in the [backlog](accepted-backlog.md).
 
-## Accepted route
+## Current implementation direction
 
-Preserve the working Suite while moving production code to idiomatic Swift and building the first usable TypographyKit composition operation. Keep AppKit, Core Data, Core Text, domain ownership, public Kit interfaces, supported packages and native Undo. Resolve UndoKit's remaining design before durable integration. No production implementation is performed during ticket generation.
+The framework structure is in place: FolioKit, WriteKit, ResearchKit, and ComposerKit are separate targets in `Core/Core.xcodeproj`, with sources and unit tests under `Core/`. Application projects retain apps, services, and app/UI tests, and link all four frameworks. TypographyKit and UndoKit remain standalone independent frameworks. See [ADR 0016](../adr/0016-core-framework-project.md).
 
-The migration is finite: it does not include a complete catalog, shared-host implementation, archive exchange, paragraph optimizer, or publishing engine. Those capabilities have separate tickets. The completed native typography evidence remains a reference; another engine-selection experiment and the retired broad storage prototype are not prerequisites.
+The Swift ports preserve app-specific workflows over domain-owned frameworks; deeper professional tools follow later. Domain ownership remains unchanged, and this work does not establish sandbox or App Store support.
 
-## Accepted constraints
+The accepted Swift migration remains finite: it does not include a complete catalog, shared-host implementation, archive exchange, paragraph optimizer, or publishing engine. Those capabilities have separate tickets. The completed native typography evidence remains a reference; another engine-selection experiment and the retired broad storage prototype are not prerequisites.
 
-- Retain Write/WriteKit, Research/ResearchKit, Composer/ComposerKit, FolioKit, AppKit storyboards, Core Data, and Core Text during the planned idiomatic Swift migration. Existing production code remains Objective-C at this scaffold stage. TypographyKit is an independent Swift framework; a working compositor remains future work.
+## Accepted migration constraints
+
+- Retain Write/WriteKit, Research/ResearchKit, Composer/ComposerKit, FolioKit, AppKit storyboards, Core Data, and Core Text through the idiomatic Swift ports. TypographyKit is an independent Swift framework with bounded controlled-composition behavior; paragraph optimization and production publishing remain future work.
 - Fold UndoKit into Folio proper. Folio is its most urgent and demanding consumer, while other applications remain supported through a standalone public framework. Source location does not transfer Folio semantics or policies into UndoKit.
 - Target macOS 14 Sonoma explicitly and retain Intel and Apple Silicon support. Use a maintained Swift toolchain; Swift 6 language mode with explicit isolation remains the specification's recommended configuration.
 - Kits own domain capabilities and reusable editors, review, and history presentation. Applications host complete professional workspaces. Embedded editing identifies its actual Document, and deliberate handoff reveals the same Document and object.
@@ -29,7 +31,7 @@ Create a project for helper apps only if a concrete need arises. A possible Foli
 
 External framework distribution, release artifacts and their compatibility policy will be revisited after a working Folio Suite 1.0. Swift module independence and preservation of KitchenMemory's requirements suffice for UndoKit's current architectural boundary. These deferrals do not relax ordinary Suite signing, packaging, installed-framework or runtime verification.
 
-## Framework and internal module allocation
+## Framework responsibility allocation
 
 | Public framework | Responsibility | Internal organization to begin with |
 | --- | --- | --- |
@@ -40,7 +42,7 @@ External framework distribution, release artifacts and their compatibility polic
 | TypographyKit | Neutral text shaping, measurement, break realization and eventual optimization, source mappings, typographic geometry | Mapping, font resolution/shaping, discretionaries, paragraph search, geometry/drawing; math and specialized language support later |
 | UndoKit | Durable history structure, ordering, branches/checkpoints as selected capabilities, native Undo integration, and history-storage safeguards | Core Data history storage, acceptance/recovery coordination, history operations, and platform-specific native adapters; no Folio model dependency |
 
-These are source and responsibility divisions, not one target per row or submodule. Extract a private library when actual reuse, a dependency seam, or measured build/testing benefit justifies it. Keep public interfaces small and test through them.
+The first four rows correspond to separate targets in `Core/Core.xcodeproj`, each with its own source and unit-test directory. UndoKit and TypographyKit remain standalone projects. Internal modules are not required by this target split. Extract another library when actual reuse, a dependency seam, or measured build/testing benefit justifies it. Keep public interfaces small and test through them.
 
 TypographyKit depends on Foundation, Core Text, and Core Graphics, without FolioKit or domain-Kit dependencies. ComposerKit adapts Folio meaning to its inputs. Document ownership stays with the document-domain Kit even when another Kit supplies an editor. Cross-domain presentation integration must preserve this separation without circular framework dependencies; choose the concrete adapter where the first real workflow needs it.
 
@@ -52,9 +54,9 @@ The [preservation record](../../UndoKit/UPSTREAM.md) and [design inventory](../.
 
 The imported framework remains a scaffold. Standalone builds and isolated imports establish build independence, not a working history engine. Preserve current native Undo during migration. Production recovery implementation gates durable history, shared-host recovery, archival history reconstruction and non-cascading Source sync.
 
-## Completed scaffolds and accepted migration work
+## Accepted migration slices
 
-The migration sequence is accepted and published with native dependencies. U0/T0 are complete and have no duplicate implementation tickets. Each remaining slice carries its affected resources, tests, DocC, localization and tooling. Temporary interoperability delegates to one implementation; shared integration files have one owner. See the [ticket index](accepted-backlog.md) for live identifiers and the explicit human-review gates.
+The Swift migration sequence remains accepted and published with native dependencies. U0/T0 are complete and have no duplicate implementation tickets. The slices below retain their accepted dependencies and acceptance evidence; each carries its affected resources, tests, DocC, localization, and tooling. Temporary interoperability delegates to one implementation; shared integration files have one owner. See the [ticket index](accepted-backlog.md) for current identifiers and human-review gates.
 
 | Slice | Depends on | Reviewable result and acceptance evidence |
 | --- | --- | --- |
@@ -71,7 +73,9 @@ The migration sequence is accepted and published with native dependencies. U0/T0
 | **I1 — Finish the coordinated Swift Suite** | M3, M4, C1, U0 | Remove obsolete production implementations and temporary bridges. Integrate framework products, signing, resources, localization, DocC, schemes, public/negative interface checks, Ruby tooling, and packaging. Keep UndoKit's independent Swift module boundary intact; external distribution is deferred. Record every retained production interoperability exception. |
 | **A1 — Verify migration acceptance** | I1 | Review against standards and all migration user stories. Run integrated signed native checks, public consumer checks, tooling and DocC checks, representative Sonoma workflows, and relevant installed-framework checks. Record architecture coverage and any missing runtime evidence precisely. |
 
-U0 and T0 are the completed scaffold batch. T1 supplies the first real compositor operation in the accepted migration. After M1, Write, Research, and Composer can progress separately where ownership is clear. UndoKit's remaining design proceeds independently of source import. C1 waits for T1 and its real inputs. Integration keeps the Suite coherent, and each slice carries its own focused checks; A1 establishes the combined result rather than postponing all verification until the end.
+The implementation snapshot above covers the source ports and bounded preview only. I1/A1 verification remains pending; the migration is not accepted until its integrated signed checks and remaining review gates pass.
+
+U0 and T0 are the completed scaffold batch. The bounded T1 API and C1 preview are now implemented; full paragraph optimization and publication workflows remain later work. Write, Research, and Composer ports are implemented, while UndoKit's remaining design proceeds independently of source import. I1 integrates the Suite checks, and A1 records the combined acceptance result.
 
 The Write model/editor split is the accepted starting boundary. If a narrow temporary adapter cannot preserve native behavior cleanly, combine M2 and M3 in the integration checkout and report green status only for the combined result. Do not grow a permanent compatibility architecture to keep those two rows separate.
 
@@ -106,7 +110,7 @@ The supported subset must exercise controlled breaking, tracking/spacing and sup
 
 The foundation may realize supplied decisions before selecting whole-paragraph breaks itself. Its interface must permit reconsideration under new Composer constraints. Paragraph optimization, language opportunity generation, OpenType MATH layout, coordinated Streams, and production exports have separate completion criteria. Keep existing positive TextKit 2 observations as a quality reference.
 
-## Follow-on implementation route
+## Later implementation areas
 
 These work areas now have bounded successor tickets. Unsettled detailed designs retain maintainer review before production implementation; the roadmap does not imply that each whole area fits one implementation ticket.
 
@@ -127,13 +131,13 @@ The typography work can continue alongside persistence, research, and hosting. X
 
 ## Verification and review gates
 
-1. **Architecture versus execution:** the lifecycle, workflow and migration plan are accepted. U0/T0 are complete. The published tickets distinguish specified implementation from remaining design and proof gates; this handoff performs no implementation.
+1. **Architecture versus execution:** the lifecycle, workflow, and Swift migration plan remain accepted. U0/T0 are complete. The Core framework structure supports the first implementation wave of common capabilities across all apps, followed by app-specific workflows and deeper professional tools. This structural decision does not change the migration ticket dependencies. Specified implementation remains distinct from design and proof gates.
 2. **Existing behavior:** use the agreed public Kit interfaces and native document/UI flows. Preserve old-writer fixtures, semantic/presentation distinctions, stable identifiers, and the intentionally different current Write/Research package policies. Do not test private implementation shape.
 3. **Native integration:** use signed Xcode application/UI testing for resources, menus, focus, Undo, saving, and accessibility. Verify affected installed products and supported runtime environments when claiming those behaviors. A deployment setting or unsigned build is insufficient evidence.
 4. **Typography:** assert source coverage, legal boundaries, mappings, constraints, and geometry through TypographyKit's public interface, with independently derived expectations. Keep visual quality and native interaction as explicit human review during implementation.
 5. **Delivery:** review and validate the integrated Suite before proposing a merge. Do not claim Sonoma or Intel runtime proof from another environment, and do not turn missing evidence into an implied pass.
 
-Scaffolding U0 or T0 does not complete the migration or establish framework behavior. The full migration is complete only when its production inventory is Swift or a documented interoperability exception, existing behavior and supported package compatibility pass, the TypographyKit foundation is usable, public interfaces and DocC are verified, and native/platform evidence meets an approved scope. A historical Objective-C experiment may remain as reproducible evidence; it is not unfinished production migration.
+U0 and T0 alone did not complete the migration. The app and Kit source ports and bounded TypographyKit/ComposerKit preview are implemented, but migration acceptance still requires existing behavior and supported package compatibility checks, public-interface and DocC verification, and native/platform evidence within the approved scope. Historical Objective-C experiments may remain as reproducible evidence; they are not production implementations.
 
 ## Remaining design at the relevant slice
 

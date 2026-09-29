@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
 <Scheme
    LastUpgradeVersion = "2700"
    version = "1.3">
@@ -14,10 +18,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A10648D5304DFE13001A21A6"
+               BlueprintIdentifier = "A1641BDF306ACAE0004824F1"
                BuildableName = "FolioKit.framework"
                BlueprintName = "FolioKit"
-               ReferencedContainer = "container:FolioKit/FolioKit.xcodeproj">
+               ReferencedContainer = "container:Core/Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -34,6 +38,48 @@
                ReferencedContainer = "container:Composer/Composer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A1641BFA306ACB1F004824F1"
+               BuildableName = "WriteKit.framework"
+               BlueprintName = "WriteKit"
+               ReferencedContainer = "container:Core/Core.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A1641C15306ACB22004824F1"
+               BuildableName = "ResearchKit.framework"
+               BlueprintName = "ResearchKit"
+               ReferencedContainer = "container:Core/Core.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A1641C30306ACB26004824F1"
+               BuildableName = "ComposerKit.framework"
+               BlueprintName = "ComposerKit"
+               ReferencedContainer = "container:Core/Core.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -42,16 +88,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A10648E0304DFE13001A21A6"
-               BuildableName = "FolioKitTests.xctest"
-               BlueprintName = "FolioKitTests"
-               ReferencedContainer = "container:FolioKit/FolioKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -69,17 +105,6 @@
                BlueprintIdentifier = "A15AE2723057244D001B9E7B"
                BuildableName = "ComposerUITests.xctest"
                BlueprintName = "ComposerUITests"
-               ReferencedContainer = "container:Composer/Composer.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A15AE2953057247A001B9E7B"
-               BuildableName = "ComposerKitTests.xctest"
-               BlueprintName = "ComposerKitTests"
                ReferencedContainer = "container:Composer/Composer.xcodeproj">
             </BuildableReference>
          </TestableReference>

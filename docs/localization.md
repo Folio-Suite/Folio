@@ -21,7 +21,7 @@ resources; the flag does not prevent display. Reviewers may mark entries
 
 ## Code strings
 
-Use `NSLocalizedStringWithDefaultValue` with a stable, descriptive key, literal English fallback, and a translator comment. Name the intent, such as `work-package.read.error` or `manuscript.rename-content-unit.undo`, rather than using the English sentence as the key. Separate meanings even when their English spelling matches. Give AppKit the action name for undo; do not construct an English “Undo …” sentence.
+In Swift and Objective-C, use `NSLocalizedString` or `NSLocalizedStringWithDefaultValue` with a stable, descriptive key, literal English fallback, and a translator comment. Name the intent, such as `work-package.read.error` or `manuscript.rename-content-unit.undo`, rather than using the English sentence as the key. Separate meanings even when their English spelling matches. Give AppKit the action name for undo; do not construct an English “Undo …” sentence.
 
 Resolve strings from the owning framework's bundle (`dev.foliosuite.FolioKit`, `dev.foliosuite.WriteKit`, `dev.foliosuite.ResearchKit`, or `dev.foliosuite.ComposerKit`). Implementation subfolders share that framework’s catalog; do not assume the application’s main bundle. Application-owned strings use their app bundle. XPC services own their strings separately; add their catalog resource when the first user-facing service message is introduced.
 
@@ -84,9 +84,9 @@ be globally marked “do not translate.” Visible shortcut glyphs remain protec
 
 ## Refresh and verify
 
-Run `ruby scripts/update-localizations.rb --write` after changing source text or storyboard labels. This extracts Objective-C with `genstrings` and Interface Builder text with `ibtool`, preserves translations, marks changed translations for review, and retains removed entries as stale for explicit review. Framework implementation subfolders are included in their owning framework’s catalog. Run without `--write` to check that extracted keys and English values match; remove reviewed stale entries explicitly.
+Run `ruby scripts/update-localizations.rb --write` after changing source text or storyboard labels. This extracts Swift and Objective-C strings with `genstrings` and Interface Builder text with `ibtool`, preserves translations, marks changed translations for review, and retains removed entries as stale for explicit review. Framework implementation subfolders are included in their owning framework’s catalog. Run without `--write` to check that extracted keys and English values match; remove reviewed stale entries explicitly.
 
-Extraction includes `.h`, `.m`, and `.mm` files in applications, Kits, and XPC
+Extraction includes `.swift`, `.h`, `.m`, and `.mm` files in applications, Kits, and XPC
 services. Verification also checks extracted translator comments. Structured
 English plural/device/substitution entries require manual review: the script
 refuses to flatten them into a plain fallback. Changes to plain English sources

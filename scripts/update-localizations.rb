@@ -12,16 +12,16 @@ require 'tmpdir'
 # Requires active Xcode developer tools. Existing translations are preserved.
 class LocalizationUpdate
   ROOT = File.expand_path('..', __dir__)
-  CODE = %w[FolioKit/FolioKit Write/Write Write/WriteKit Write/WriteXPCService Research/Research Research/ResearchKit Research/ResearchXPCService Composer/Composer Composer/ComposerKit Composer/ComposerXPCService].freeze
+  CODE = %w[Core/FolioKit Write/Write Core/WriteKit Write/WriteXPCService Research/Research Core/ResearchKit Research/ResearchXPCService Composer/Composer Core/ComposerKit Composer/ComposerXPCService].freeze
   STORYBOARDS = [
     ['Write/Write/Base.lproj/Main.storyboard', 'Write/Write/mul.lproj/Main.xcstrings'],
     ['Research/Research/Base.lproj/Main.storyboard', 'Research/Research/mul.lproj/Main.xcstrings'],
-    ['Write/WriteKit/Resources/Base.lproj/Editor.storyboard', 'Write/WriteKit/Resources/mul.lproj/Editor.xcstrings'],
+    ['Core/WriteKit/Resources/Base.lproj/Editor.storyboard', 'Core/WriteKit/Resources/mul.lproj/Editor.xcstrings'],
     ['Composer/Composer/Base.lproj/Main.storyboard', 'Composer/Composer/mul.lproj/Main.xcstrings']
   ].freeze
 
   def source_files(folder)
-    Dir.glob("#{folder}/**/*.{h,m,mm}").sort
+    Dir.glob("#{folder}/**/*.{h,m,mm,swift}").sort
   end
 
   def mark_for_review(node)
@@ -83,7 +83,7 @@ class LocalizationUpdate
     write = false
     parser = OptionParser.new do |options|
       options.banner = 'Usage: ruby scripts/update-localizations.rb [--write]'
-      options.separator 'Check English catalogs against Objective-C and Interface Builder.'
+      options.separator 'Check English catalogs against Swift, Objective-C and Interface Builder.'
       options.on('--write', 'Refresh source entries while preserving translations.') { write = true }
     end
     parser.parse!(arguments)

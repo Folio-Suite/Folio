@@ -10,6 +10,9 @@ require_relative 'suite-products'
 
 # Packages an explicitly recorded build; never invokes Installer.
 class SuitePackage
+  SWIFT_PACKAGE_FRAMEWORK = /\A(?:Algorithms|Collections|Defaults|RealModule)_[A-Za-z0-9-]+_PackageProduct\.framework\z/
+  SWIFT_COMPATIBILITY_DYLIB = 'libswiftCompatibilitySpan.dylib'
+
   def initialize(arguments)
     @options = {}
     OptionParser.new do |parser|
@@ -40,9 +43,20 @@ class SuitePackage
     end
     bundles = SuiteProducts::BUNDLES
     bundles.each do |bundle|
-      embedded = Dir.glob(File.join(products, bundle, '**', '*.framework'))
-      raise "Embedded framework in #{bundle}; build the installed Suite configuration" unless embedded.empty?
-      unwanted = Dir.glob(File.join(products, bundle, '**', '*')).find { |path| path.end_with?('.dylib', '.xctest', '.dSYM') }
+      root = File.join(products, bundle)
+      app = bundle.end_with?('.app')
+      framework_directory = File.join(root, 'Contents', 'Frameworks')
+      embedded = Dir.glob(File.join(root, '**', '*.framework'))
+      unwanted_framework = embedded.find do |path|
+        !app || File.dirname(path) != framework_directory || !SWIFT_PACKAGE_FRAMEWORK.match?(File.basename(path))
+      end
+      if unwanted_framework
+        raise "Unexpected embedded framework in #{bundle}: #{File.basename(unwanted_framework)}; build the installed Suite configuration"
+      end
+      unexpected_dylib = Dir.glob(File.join(root, '**', '*.dylib')).find do |path|
+        !(app && File.dirname(path) == framework_directory && File.basename(path) == SWIFT_COMPATIBILITY_DYLIB)
+      end
+      unwanted = unexpected_dylib || Dir.glob(File.join(root, '**', '*')).find { |path| path.end_with?('.xctest', '.dSYM') }
       raise "Unexpected development product: #{unwanted}" if unwanted
     end
     shipping = bundles + SuiteProducts::SERVICES
@@ -60,7 +74,7 @@ class SuitePackage
       raise "Missing required resource: #{resource}" unless File.file?(File.join(products, resource))
     end
     FileUtils.mkdir_p(output)
-    root = File.join(output, 'payload')
+    root = File.join(resolved_output, 'payload')
     bundles.each do |bundle|
       parent = File.join(root, bundle.end_with?('.app') ? 'Applications/Folio' : 'Library/Frameworks')
       FileUtils.mkdir_p(parent)

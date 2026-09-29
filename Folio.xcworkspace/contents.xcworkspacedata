@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Core/Core.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Composer/Composer.xcodeproj">
    </FileRef>
    <FileRef
@@ -9,9 +12,6 @@
    </FileRef>
    <FileRef
       location = "group:Write/Write.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:FolioKit/FolioKit.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:TypographyKit/TypographyKit.xcodeproj">

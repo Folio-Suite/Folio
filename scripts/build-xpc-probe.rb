@@ -42,10 +42,9 @@ plist = { 'CFBundleIdentifier' => 'dev.foliosuite.tests.XPCProbe', 'CFBundleExec
 File.write(File.join(contents, 'Info.plist'), JSON.generate(plist))
 run('plutil', '-convert', 'xml1', File.join(contents, 'Info.plist'))
 services.each { |path| run('ditto', '--noqtn', path, File.join(contents, 'XPCServices', File.basename(path))) }
-includes = names.flat_map { |name| ['-I', File.join(root, name, "#{name}XPCService")] }
 run('xcrun', '--sdk', 'macosx', 'clang', '-fobjc-arc', '-Wall', '-Wextra', '-Werror',
     '-mmacosx-version-min=14.0', '-arch', 'arm64', '-arch', 'x86_64', '-framework', 'Foundation',
-    *includes, File.join(__dir__, 'xpc-probe/main.m'), '-o', File.join(contents, 'MacOS/FolioXPCProbe'))
+    File.join(__dir__, 'xpc-probe/main.m'), '-o', File.join(contents, 'MacOS/FolioXPCProbe'))
 run('codesign', '--force', '--options', 'runtime', '--sign', options.fetch('identity'), app)
 run('codesign', '--verify', '--deep', '--strict', app)
 files = Dir.glob(File.join(app, '**', '*')).select { |path| File.file?(path) && !File.symlink?(path) }

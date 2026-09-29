@@ -3,4 +3,6 @@
 
 import UndoKit
 
-print(UndoKitVersionNumber)
+// The scaffold deliberately has no history operations yet. Compile and link
+// this independent module consumer without inventing a public API for a test.
+print("UndoKit Swift module imported and linked")

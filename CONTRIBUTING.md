@@ -5,9 +5,9 @@ SPDX-License-Identifier: MIT
 
 # Working on Folio
 
-Folio is a monorepo. Clone it with `git clone <repository-url>` and open the workspace at the repository root. FolioKit, Write, Research, Composer, UndoKit, and TypographyKit retain separate Xcode projects and module ownership within this checkout.
+Folio is a monorepo. Clone it with `git clone <repository-url>` and open the workspace at the repository root. The four domain frameworks are separate targets in `Core/Core.xcodeproj`; their sources and unit tests live under `Core/`. Write, Research, and Composer projects retain their applications, services, and app/UI tests. UndoKit and TypographyKit remain standalone frameworks.
 
-Open `Folio.xcworkspace`. Use the shared **Write**, **Research**, or **Composer** scheme to run an application, **FolioKit** for framework work, and **Folio** to build or test the entire Suite. The applications use their domain frameworks, which consume FolioKit. Implementation sources compile directly into their owning frameworks. Application linking and embedding are being configured for an installed shared-framework deployment. A successful build does not establish that an app is self-contained or that its installed dependencies resolve outside Xcode. Open the enclosing workspace when developing the applications.
+Open `Folio.xcworkspace`. Use the shared **Write**, **Research**, or **Composer** scheme to run an application, **Core** to build or test the four domain frameworks, and **Folio** to build or test the entire Suite. Each app links FolioKit, WriteKit, ResearchKit, and ComposerKit. Framework sources compile into their owning targets. Application linking and embedding are being configured for an installed shared-framework deployment. A successful build does not establish that an app is self-contained or that its installed dependencies resolve outside Xcode. Open the enclosing workspace when developing the applications.
 
 Folio requires **macOS 14 Sonoma or newer** and builds with Xcode 27. `SDKROOT = macosx` selects the installed macOS SDK; using SDK 27 does not raise the deployment minimum. The Suite configuration, component `Project.xcconfig` fallbacks, and targets use `$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)`, which resolves to 14.0 with Xcode 27. Recheck this value and compatibility when upgrading Xcode; it follows Apple’s recommendation rather than pinning an OS version. Signing uses the existing project team settings. Contributors may select their own team locally; keep personal signing changes out of shared commits.
 
@@ -31,8 +31,8 @@ Our [AI skill usage and attribution](docs/ai-skills.md) describes the globally i
 
 ## Validation
 
-Debug uses unoptimized Objective-C compilation for predictable debugging. Release
-uses Xcode’s size-conscious `-Os` optimization and dead-code stripping, and
+Debug uses unoptimized Swift compilation for predictable debugging. Release
+uses optimized Swift compilation and dead-code stripping, and
 `Config/Suite.xcconfig` disables coverage instrumentation for Release. Keep fast
 math disabled for predictable numeric behavior. Consider incremental link-time
 optimization only after comparing representative workloads and build times;
@@ -40,11 +40,11 @@ there is no measured Folio performance benefit yet. See Apple’s
 [build settings reference](https://developer.apple.com/documentation/xcode/build-settings-reference)
 for these controls.
 
-Build the shared **Folio** scheme in Xcode, or run `xcodebuild -workspace Folio.xcworkspace -scheme Folio -configuration Debug -destination 'platform=macOS' build` from the parent checkout. `scripts/check-build.sh` performs a clean unsigned Suite build and checks application and framework products. It does not validate signing, installed framework resolution, runtime loading, or distribution packaging. Composer and its tests remain skeletons. Each app embeds its own XPC service skeleton; the build check verifies all three products exist.
+Build the shared **Folio** scheme in Xcode, or run `xcodebuild -workspace Folio.xcworkspace -scheme Folio -configuration Debug -destination 'platform=macOS' build` from the parent checkout. `scripts/check-build.sh` performs a clean unsigned Suite build and checks application and framework products. It does not validate signing, installed framework resolution, runtime loading, or distribution packaging. Composer includes a bounded, read-only composition preview. Each app embeds its own XPC service skeleton; the build check verifies all three products exist.
 
-For the editor and package tests, select **Write** in Xcode and use Product → Test. That scheme includes FolioKitTests, WriteKitTests, WriteTests, and WriteUITests. Start native UI runners through Xcode, or prepare the signed test products with build-for-testing before using the CLI test runner. The shared **Folio** scheme also covers the Research shell, including native file-type discovery, package reopening, and preservation of collected files across saves. Its remaining framework and UI tests are templates. Passing the current tests does not prove cross-application Work Session or archival behavior.
+Use the shared **Core** scheme to build or test the four domain framework targets. Use the shared **Write**, **Research**, and **Composer** schemes for their application and UI tests; start native UI runners through Xcode, or prepare signed test products with build-for-testing before using the CLI test runner. The **Folio** scheme checks coordinated Suite integration. Passing current tests does not prove cross-application Work Session or archival behavior.
 
-Full GitHub development CI builds the Folio scheme and runs the three shared app
+Full GitHub development CI builds the Folio scheme and runs the Core and three shared app
 schemes in parallel on separate Macs. Drafts get repository checks; identical
 recently validated source trees can reuse full evidence.
 See [Development CI](docs/development-ci.md) for triggers, local reproduction,
@@ -67,13 +67,13 @@ Write's first editor uses `.flwrbundle` packages containing a Core Data store, w
 
 ## Coordinated changes
 
-Use one branch for coordinated changes across FolioKit, Write, Research, and Composer. Commit source, project references, shared schemes, and documentation together so each revision describes a coherent Suite. Keep issue tracking and cross-Suite architecture in this repository, and symbol documentation alongside its owning code.
+Use one branch for coordinated changes across Core framework targets, Write, Research, and Composer. Commit source, project references, shared schemes, and documentation together so each revision describes a coherent Suite. Keep issue tracking and cross-Suite architecture in this repository, and symbol documentation alongside its owning code.
 
 ## Interface design
 
 Keep application and reusable Kit interfaces in storyboards so designers can inspect and edit their layout in Interface Builder. Controllers own behavior and model integration; runtime construction is reserved for genuinely dynamic content.
 
-Write's menus live in `Write/Write/Base.lproj/Main.storyboard`. Its document window, native toolbar, Manuscript sidebar, reusable text editor, inline warning marker and popover, and help content live in `Write/WriteKit/Resources/Base.lproj/Editor.storyboard`, bundled with WriteKit. The native toolbar is attached to the Editor Window scene. Its semantic E icons live in `Write/WriteKit/Resources/Formatting.xcassets`. Edit those scenes to change layout, labels, symbols, and spacing. The editor loads that framework resource explicitly, independent of the host application's main storyboard.
+Write's menus live in `Write/Write/Base.lproj/Main.storyboard`. Its document window, native toolbar, Manuscript sidebar, reusable text editor, inline warning marker and popover, and help content live in `Core/WriteKit/Resources/Base.lproj/Editor.storyboard`, bundled with WriteKit. The native toolbar is attached to the Editor Window scene. Its semantic E icons live in `Core/WriteKit/Resources/Formatting.xcassets`. Edit those scenes to change layout, labels, symbols, and spacing. The editor loads that framework resource explicitly, independent of the host application's main storyboard.
 
 ## Localization
 
@@ -81,38 +81,49 @@ Keep user-facing strings in the owning bundle’s catalogs, with stable semantic
 
 ## Data modeling
 
-Use Xcode’s versioned Core Data model editor for persistent schemas. WriteKit’s authoritative model is `Write/WriteKit/Resources/FWWork.xcdatamodeld`; edit entities, attributes, inverses, ordered relationships, validation, and deletion rules there. The private store adapter loads the compiled model from WriteKit rather than reconstructing the schema in code. Managed objects stay inside that adapter; application callers use the Kit’s public model interface.
+Use Xcode’s versioned Core Data model editor for persistent schemas. WriteKit’s authoritative model is `Core/WriteKit/Resources/FWWork.xcdatamodeld`; edit entities, attributes, inverses, ordered relationships, validation, and deletion rules there. The private store adapter loads the compiled model from WriteKit rather than reconstructing the schema in code. Managed objects stay inside that adapter; application callers use the Kit’s public model interface.
 
 The current pre-alpha model replaces the experimental code-defined format without a migration requirement. Model versions remain explicit so compatibility can be governed as the project matures.
 
 ## Public Kit interfaces
 
-UndoKit and TypographyKit are independent framework scaffolds with their own
-shared schemes. They target macOS 14 and can build without the enclosing Suite.
-TypographyKit uses Swift 6 with explicit isolation and publishes its generated
-Swift module. Swift interfaces use access control and DocC; the explicit-header
-rules below apply to Objective-C interfaces. The interface check also links
-isolated Swift consumers of both frameworks and an Objective-C UndoKit consumer.
+All six Kits publish Swift modules. Callers, including each owning application,
+use `import KitName` and public Swift declarations. Keep implementation types
+internal or private, and keep production callers free of `@testable import`.
+Update DocC together with public declarations. Framework source files compile
+into their owning target; callers do not add repository source or header paths.
 
-Every host, including the owning application, uses the Kit's public headers. The
-explicit list lives in `<Kit>.modulemap` alongside each Kit’s umbrella header. When deliberately adding
-an interface, update that map, the Kit umbrella, Xcode's Public header membership,
-and DocC together. Keep implementation headers at Project visibility; do not
-publish them as Private headers or add repository header search paths to callers.
-Implementation sources compile into the owning Kit. Separate libraries require
-demonstrated reuse; if introduced, their interfaces remain private to their owning
-Kit unless deliberately adopted as a separate public boundary.
+Swift 6 language mode uses explicit isolation: UI owners are `@MainActor`, while
+immutable values and pure composition remain nonisolated. Core Data managed
+objects stay inside their store adapter. Preserve Objective-C runtime names only
+where Cocoa storyboards, document registration, or XPC require interoperability.
+The retained umbrella headers publish framework identity/version symbols; they
+do not carry a parallel model implementation.
 
-`Config/Suite.xcconfig` enables modules and explicit module builds. The normal
-`scripts/check-build.sh` also checks actual exported headers, rejects private
-imports, and compiles/links an outside consumer without repository header maps.
-Apps and Kits must be from the same coordinated Suite version; mixed versions are
-unsupported. See [ADR 0009](docs/adr/0009-continue-cocoa-suite-with-domain-kits.md)
-for the distinction between owner preferences and per-host presentation settings.
+UndoKit and TypographyKit have independent projects and shared schemes, target
+macOS 14, and build without Folio domain frameworks. `scripts/check-kit-interfaces.rb`
+compiles external Swift consumers from built products, checks private-symbol
+rejection, and imports both independent frameworks in isolation. Apps and Kits
+ship as one coordinated Suite version; mixed versions are unsupported.
+
+### Packages and lint
+
+Each project pins Defaults 9.0.9, swift-collections 1.7.1, swift-algorithms 1.2.1,
+and SwiftLintPlugins 0.65.1. Applications and frameworks link the library products;
+all native targets run the SwiftLint build plugin. Commit resolved package files
+with deliberate upgrades. Use Defaults for preferences, Collections for suitable
+data structures, and Algorithms for suitable sequence operations as those needs
+arise. Adding a dependency does not imply a new preference or feature.
+
+`.swiftlint.yml` adapts the maintainer's KitchenMemory configuration for AppKit
+and the Folio source layout. Fix lint errors before review; warnings guide focused
+cleanup. The repository build scripts pass `-skipPackagePluginValidation` to run
+the explicitly pinned SwiftLint plugin in unattended builds. Xcode may ask local
+contributors to trust this package plugin when first opening the workspace.
 
 ## Kit documentation
 
-FolioKit, WriteKit, ResearchKit, ComposerKit, and future Kits use DocC at a standard suitable for a public API. Document caller-facing contracts alongside declarations and provide module introductions and useful examples in each Kit's catalog. New or changed interfaces include documentation and generated-documentation validation in the same change. See [ADR 0008](docs/adr/0008-public-api-quality-kit-documentation.md) for scope and expectations.
+FolioKit, WriteKit, ResearchKit, ComposerKit, TypographyKit, UndoKit, and future Kits use DocC at a standard suitable for a public API. Each catalog states the Kit's ownership and boundary, current supported behavior, public import and hosting rules, and material limitations where applicable. Keep claims aligned with public Swift declarations and implemented behavior. Describe planned capabilities as plans, not current APIs. Add examples only for implemented public APIs and verify that they match current callers; scaffold catalogs must not invent examples for unavailable behavior. Document caller-facing contracts beside declarations, and validate generated documentation when interfaces change. See [ADR 0008](docs/adr/0008-public-api-quality-kit-documentation.md) for scope and expectations.
 
 ## Licensing
 

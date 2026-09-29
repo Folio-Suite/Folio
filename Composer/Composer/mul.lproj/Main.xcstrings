@@ -1802,7 +1802,7 @@
       }
     },
     "Cc7-nU-5Mv.title": {
-      "comment": "Cc7-nU-5Mv — textFieldCell title: \"Your document contents here\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Cc7-nU-5Mv — textFieldCell title: \"Composition preview\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "ar": {
@@ -1814,7 +1814,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your document contents here"
+            "value": "Composition preview"
           }
         },
         "ja": {
@@ -1874,7 +1874,7 @@
       }
     },
     "Ckk-yw-fiv.title": {
-      "comment": "Ckk-yw-fiv — window title: \"Window\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "comment": "Ckk-yw-fiv — window title: \"Composition Preview\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",
       "localizations": {
         "ar": {
@@ -1886,7 +1886,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Window"
+            "value": "Composition Preview"
           }
         },
         "ja": {

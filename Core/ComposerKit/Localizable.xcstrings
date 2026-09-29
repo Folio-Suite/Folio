@@ -1,0 +1,54 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "preview.complete": {
+      "extractionState": "manual",
+      "comment": "Heading for a bounded preview that satisfies its requested line constraints.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Composition preview"
+          }
+        }
+      }
+    },
+    "preview.empty": {
+      "extractionState": "manual",
+      "comment": "Empty state of the reusable composition canvas.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No composition preview"
+          }
+        }
+      }
+    },
+    "preview.infeasible": {
+      "extractionState": "manual",
+      "comment": "Heading when the selected breaks or available width cannot satisfy the publication input.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview incomplete: line constraints cannot be satisfied"
+          }
+        }
+      }
+    },
+    "preview.unsupported": {
+      "extractionState": "manual",
+      "comment": "Heading when the typography engine cannot support the requested input.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview incomplete: unsupported text or controls"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.2"
+}

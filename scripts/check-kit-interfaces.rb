@@ -5,17 +5,15 @@
 require 'fileutils'
 require 'json'
 require 'open3'
-require 'optparse'
 require 'set'
 require 'tmpdir'
 
-# Check the published Kit SDK, then compile/link without repository header paths.
+# Check the actual published Swift modules using built products only.
 class KitInterfaceCheck
   ROOT = File.expand_path('..', __dir__)
-  KITS = { 'FolioKit' => 'FolioKit', 'WriteKit' => 'Write',
-           'ResearchKit' => 'Research', 'ComposerKit' => 'Composer' }.freeze
-  IMPLEMENTATIONS = { 'FolioKit' => %w[FKModelFoundations FKPackageSupport FKXMLSupport],
-                      'WriteKit' => %w[FWManuscript FWEditor] }.freeze
+  KITS = %w[FolioKit WriteKit ResearchKit ComposerKit TypographyKit UndoKit].freeze
+  PRIVATE_SYMBOLS = { 'FolioKit' => 'TemporaryDirectory', 'WriteKit' => 'WorkStore',
+                      'ResearchKit' => 'ResearchKitBundleToken', 'TypographyKit' => 'DrawingRun' }.freeze
 
   def check(condition, message)
     raise message unless condition
@@ -28,131 +26,65 @@ class KitInterfaceCheck
   end
 
   def run(arguments)
-    parser = OptionParser.new do |options|
-      options.banner = 'Usage: ruby scripts/check-kit-interfaces.rb PRODUCTS'
-      options.separator 'Check published Kit interfaces in Xcode Build/Products/Debug or Release.'
-    end
-    parser.parse!(arguments)
-    check(arguments.length == 1, parser.to_s)
+    check(arguments.length == 1, 'Usage: ruby scripts/check-kit-interfaces.rb PRODUCTS')
     products = File.expand_path(arguments.first)
-    public_headers = {}
-    owners = {}
-    minimum_versions = Set.new
-    KITS.each do |kit, project|
-      module_map = File.read("#{ROOT}/#{project}/#{kit}/#{kit}.modulemap")
-      public_headers[kit] = module_map.scan(/^\s*header "([^"]+)"/).flatten.to_set
-      check(!public_headers[kit].empty?, "#{kit}: missing explicit public header list")
+    sdk = capture('xcrun', '--sdk', 'macosx', '--show-sdk-path').strip
+    minimums = Set.new
+    KITS.each do |kit|
       framework = "#{products}/#{kit}.framework"
       info = JSON.parse(capture('plutil', '-convert', 'json', '-o', '-', "#{framework}/Resources/Info.plist"))
-      minimum_versions.add(info.fetch('LSMinimumSystemVersion'))
-      actual = Dir.glob("#{framework}/Headers/**/*", File::FNM_DOTMATCH)
-                  .select { |path| File.file?(path) }.map { |path| path.delete_prefix("#{framework}/Headers/") }.to_set
-      check(actual == public_headers[kit],
-            "#{kit}: published headers differ: extra=#{(actual - public_headers[kit]).to_a.sort}, missing=#{(public_headers[kit] - actual).to_a.sort}")
-      check(File.read("#{framework}/Modules/module.modulemap") == module_map,
-            "#{kit}: build did not use the explicit module map")
-      check(Dir.glob("#{framework}/PrivateHeaders/**/*.h").empty?, "#{kit}: private headers must not be distributed to hosts")
-      imported = File.read("#{framework}/Headers/#{kit}.h").scan(/#import <#{kit}\/([^>]+)>/).flatten.to_set
-      check(imported == public_headers[kit] - ["#{kit}.h"], "#{kit}: umbrella and module map disagree")
-      Dir.glob("#{ROOT}/#{project}/#{kit}/**/*.h").each { |path| owners[File.realpath(path)] = kit }
+      minimums.add(info.fetch('LSMinimumSystemVersion'))
+      check(Dir.glob("#{framework}/Modules/#{kit}.swiftmodule/*.swiftmodule").any?, "#{kit}: missing public Swift module")
+      check(Dir.glob("#{framework}/PrivateHeaders/**/*.h").empty?, "#{kit}: private headers must not ship")
+      headers = Dir.glob("#{framework}/Headers/**/*.h").map { |path| File.basename(path) }.to_set
+      allowed = Set["#{kit}.h", "#{kit}-Swift.h"]
+      check((headers - allowed).empty?, "#{kit}: unexpected exported headers: #{(headers - allowed).to_a}")
     end
-    check(minimum_versions.size == 1, 'Kits must share a coordinated deployment target')
-    standalone_minimum_versions = {}
-    {'UndoKit' => 'UndoKit', 'TypographyKit' => 'TypographyKit'}.each do |kit, project|
-      framework = "#{products}/#{kit}.framework"
-      info = JSON.parse(capture('plutil', '-convert', 'json', '-o', '-', "#{framework}/Resources/Info.plist"))
-      standalone_minimum_versions[kit] = info.fetch('LSMinimumSystemVersion')
-      check(standalone_minimum_versions[kit] == '14.0', "#{kit} must target macOS 14.0")
-      if kit == 'UndoKit'
-        module_map = File.read("#{ROOT}/#{project}/#{kit}/#{kit}.modulemap")
-        check(File.read("#{framework}/Modules/module.modulemap") == module_map,
-              'UndoKit build did not use its explicit module map')
+    check(minimums == Set['14.0'], "Kits must share macOS 14.0 deployment support: #{minimums.to_a}")
+    %w[Core Write Research Composer].each do |directory|
+      Dir.glob("#{ROOT}/#{directory}/**/*.swift").each do |source|
+        next if source.include?('/Prototypes/') || source.match?(%r{/(?:[^/]*Tests)/})
+        check(!File.read(source).match?(/@testable\s+import\s+(?:FolioKit|WriteKit|ResearchKit|ComposerKit)/),
+              "#{source}: production hosts must use public Kit imports")
       end
     end
-
-    # A Kit's implementation may use local headers; all other callers use published paths.
-    by_name = owners.each_with_object({}) { |(path, kit), result| result[File.basename(path)] = [path, kit] }
-    KITS.each_value do |project|
-      Dir.glob("#{ROOT}/#{project}/**/*.{h,m,mm}").each do |source|
-        own_kit = KITS.find { |kit, directory| source.start_with?("#{ROOT}/#{directory}/#{kit}/") }&.first
-        File.read(source).scan(/^\s*#\s*(?:import|include)\s*[<"]([^>"\n]+)[>"]/).flatten.each do |token|
-          known = by_name[File.basename(token)]
-          next unless known
-          header, owner = known
-          next if own_kit == owner
-          name = File.basename(header)
-          check(token == "#{owner}/#{name}" && public_headers[owner].include?(name),
-                "#{source.delete_prefix(ROOT + '/')}: use #{owner}'s public interface, not #{token}")
+    Dir.mktmpdir('folio-swift-interfaces-') do |stage|
+      KITS.each { |kit| FileUtils.cp_r("#{products}/#{kit}.framework", stage, preserve: true) }
+      architectures = capture('lipo', '-archs', "#{stage}/FolioKit.framework/FolioKit").split
+      check(architectures.to_set == Set['arm64', 'x86_64'], 'Suite products must contain arm64 and x86_64')
+      KITS.each do |kit|
+        actual = capture('lipo', '-archs', "#{stage}/#{kit}.framework/#{kit}").split.to_set
+        check(actual == architectures.to_set, "#{kit}: architecture coverage differs from FolioKit")
+      end
+      architectures.each do |architecture|
+        command = ['xcrun', 'swiftc', '-swift-version', '6', '-sdk', sdk,
+                   '-target', "#{architecture}-apple-macosx14.0", '-F', stage,
+                   '-module-cache-path', "#{stage}/ModuleCache"]
+        check(system(*command, "#{ROOT}/scripts/interface-checks/KitConsumer.swift",
+                     *KITS.flat_map { |kit| ['-framework', kit] }, '-o', "#{stage}/consumer-#{architecture}"),
+              "Suite public Swift consumer failed for #{architecture}")
+        PRIVATE_SYMBOLS.each do |kit, symbol|
+          source = "#{stage}/Private.swift"
+          File.write(source, "import #{kit}\nlet hidden = #{symbol}.self\n")
+          _, error, status = Open3.capture3(*command, '-typecheck', source)
+          check(!status.success? && error.include?("cannot find '#{symbol}'"),
+                "#{kit}: private symbol test did not reject #{symbol}: #{error}")
         end
       end
-    end
-    IMPLEMENTATIONS.each do |kit, names|
-      names.each do |name|
-        check(Dir.glob("#{products}/#{kit}.framework/**/lib#{name}.dylib").empty?,
-              "#{name} must compile into #{kit}, not remain embedded")
-      end
-    end
-    Dir.mktmpdir('folio-kit-interface-') do |stage|
-      # Only published bundles are visible, without source trees or Xcode header maps.
-      KITS.each_key { |kit| FileUtils.cp_r("#{products}/#{kit}.framework", stage, preserve: true) }
-      sdk = capture('xcrun', '--sdk', 'macosx', '--show-sdk-path').strip
-      common = ['xcrun', 'clang', '-isysroot', sdk, '-fobjc-arc', '-fmodules',
-                "-mmacosx-version-min=#{minimum_versions.first}", "-fmodules-cache-path=#{stage}/ModuleCache",
-                '-F', stage, '-Werror', '-Werror=non-modular-include-in-framework-module']
-      frameworks = KITS.keys.flat_map { |kit| ['-framework', kit] }
-      fixture = File.read("#{ROOT}/scripts/interface-checks/KitConsumer.m")
-      [false, true].each do |modules|
-        code = fixture.dup
-        KITS.each_key { |kit| code.gsub!("#import <#{kit}/#{kit}.h>", "@import #{kit};") } if modules
-        source = "#{stage}/Consumer.m"
-        File.write(source, code)
-        check(system(*common, source, '-framework', 'AppKit', *frameworks,
-                     '-Wl,-fatal_warnings', '-o', "#{stage}/consumer", chdir: stage), 'Kit consumer compile/link failed')
-      end
-      owners.each do |header, kit|
-        name = File.basename(header)
-        next if public_headers[kit].include?(name)
-        source = "#{stage}/PrivateImport.m"
-        File.write(source, "#import <#{kit}/#{name}>\n")
-        _, error, status = Open3.capture3(*common, '-fsyntax-only', source, chdir: stage)
-        check(!status.success? && error.include?("'#{kit}/#{name}' file not found"),
-              "#{kit}: private header import was not rejected as expected: #{name}\n#{error}")
-      end
-      IMPLEMENTATIONS.values.flatten.each do |name|
-        source = "#{stage}/PrivateModule.m"
-        File.write(source, "@import #{name};\n")
-        _, error, status = Open3.capture3(*common, '-fsyntax-only', source, chdir: stage)
-        check(!status.success? && error.include?("module '#{name}' not found"),
-              "Implementation folder must not be a public module: #{name}\n#{error}")
-      end
-
-      # These frameworks must be consumable without any Folio Kit beside them.
-      # Keep each consumer's framework search path limited to its own staged copy.
-      {'UndoKit' => %w[UndoKitConsumer.m UndoKitConsumer.swift],
-       'TypographyKit' => %w[TypographyKitConsumer.swift]}.each do |kit, fixture_names|
-        isolated = File.join(stage, "isolated-#{kit}")
+      %w[TypographyKit UndoKit].each do |kit|
+        isolated = "#{stage}/isolated-#{kit}"
         FileUtils.mkdir_p(isolated)
         FileUtils.cp_r("#{products}/#{kit}.framework", isolated, preserve: true)
-        fixture_names.each do |fixture_name|
-          fixture = File.join(ROOT, 'scripts/interface-checks', fixture_name)
-          if fixture_name.end_with?('.m')
-            command = ['xcrun', 'clang', '-isysroot', sdk, '-fobjc-arc', '-fmodules',
-                       "-mmacosx-version-min=#{standalone_minimum_versions.fetch(kit)}", "-fmodules-cache-path=#{isolated}/ModuleCache",
-                       '-F', isolated, fixture, '-framework', 'Foundation', '-framework', kit,
-                       '-Werror', '-Wl,-fatal_warnings', '-o', "#{isolated}/consumer-objc"]
-            check(system(*command, chdir: isolated), 'isolated UndoKit Objective-C consumer compile/link failed')
-          else
-            %w[arm64 x86_64].each do |architecture|
-              command = ['xcrun', 'swiftc', '-sdk', sdk, '-target', "#{architecture}-apple-macosx#{standalone_minimum_versions.fetch(kit)}",
-                         '-F', isolated, '-framework', kit, '-module-cache-path', "#{isolated}/ModuleCache",
-                         fixture, '-o', "#{isolated}/consumer-#{fixture_name}-#{architecture}"]
-              check(system(*command, chdir: isolated), "isolated #{kit} Swift consumer compile/link failed for #{architecture}")
-            end
-          end
+        architectures.each do |architecture|
+          check(system('xcrun', 'swiftc', '-swift-version', '6', '-sdk', sdk,
+                       '-target', "#{architecture}-apple-macosx14.0", '-F', isolated,
+                       '-module-cache-path', "#{isolated}/ModuleCache", '-framework', kit,
+                       "#{ROOT}/scripts/interface-checks/#{kit}Consumer.swift", '-o', "#{isolated}/consumer-#{architecture}"),
+                "#{kit}: standalone Swift consumer failed for #{architecture}")
         end
       end
     end
-    puts 'Kit interfaces passed: exact published headers, caller imports, isolated compile/link, and private import rejection.'
+    puts 'Kit interfaces passed: public Swift consumers, private symbol rejection, standalone framework imports.'
   end
 end
 

@@ -3,4 +3,11 @@
 
 // Standalone defaults; the enclosing Suite may override them.
 MACOSX_DEPLOYMENT_TARGET = $(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)
+MARKETING_VERSION = 0.1.0
+CURRENT_PROJECT_VERSION = 1
 #include? "../Config/Suite.xcconfig"
+
+SWIFT_VERSION = 6.0
+SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated
+SWIFT_STRICT_CONCURRENCY = complete
+SWIFT_EMIT_LOC_STRINGS = YES

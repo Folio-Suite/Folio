@@ -1,0 +1,1526 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 110;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18DF29B95445F000918BFFA8 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 5C5BD5EE88C2C8C7DEE8472C /* Collections */; };
+		2341F1B3D94A4B42383CFC23 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 979C724CF4738B0EED6B91C9 /* Collections */; };
+		3EA71AA9A87D66792204965F /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = CFA7504585586603772650C0 /* Defaults */; };
+		42C4121CD79002CAA1C28AAE /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 19F060071CC1A8019DE2B538 /* Algorithms */; };
+		4795E3B71E7987664DECA750 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 11AE50FCC9674F13F4F2955C /* Collections */; };
+		4F06780053B45DDEF2F011B9 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 1ADE38125927BDEDE039E719 /* Defaults */; };
+		53CE7D2750C41DF9A3A8AD46 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = AEF1FF07E94C37C43C14BCC9 /* Collections */; };
+		62D4437438D8114EBE458D24 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 6DDF8CBA03F3AE60BD237B65 /* Defaults */; };
+		9153E3B341B6FBD34A642B38 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 91FC3489D7D01F0BF0219C45 /* Algorithms */; };
+		A1641BE9306ACAE0004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
+		A1641C04306ACB1F004824F1 /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BFB306ACB1F004824F1 /* WriteKit.framework */; };
+		A1641C1F306ACB22004824F1 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641C16306ACB22004824F1 /* ResearchKit.framework */; };
+		A1641C3A306ACB26004824F1 /* ComposerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641C31306ACB26004824F1 /* ComposerKit.framework */; };
+		A1641C95306AD035004824F1 /* Project.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A1641C94306AD035004824F1 /* Project.xcconfig */; };
+		A1641DF3306AD71B004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
+		A1641DF8306AD741004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
+		A1641DFD306AD75F004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
+		C13800000000000000000002 /* TypographyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C13800000000000000000001 /* TypographyKit.framework */; };
+		D3D5E082B3C0CEABE20A5E60 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 9D29DA6DB8E05FB373738746 /* Defaults */; };
+		EB0B35F6E643F3604C2B5D6A /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 83E6900DC3C9127A03C132A8 /* Algorithms */; };
+		F441E78308151CA4F57C0A25 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = AC8E1DC32F0808B2E497571A /* Algorithms */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A1641BEA306ACAE0004824F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1641BAF306AC910004824F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1641BDF306ACAE0004824F1;
+			remoteInfo = FolioKit;
+		};
+		A1641C05306ACB1F004824F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1641BAF306AC910004824F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1641BFA306ACB1F004824F1;
+			remoteInfo = WriteKit;
+		};
+		A1641C20306ACB22004824F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1641BAF306AC910004824F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1641C15306ACB22004824F1;
+			remoteInfo = ResearchKit;
+		};
+		A1641C3B306ACB26004824F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1641BAF306AC910004824F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1641C30306ACB26004824F1;
+			remoteInfo = ComposerKit;
+		};
+		A1641DF5306AD71B004824F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1641BAF306AC910004824F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1641BDF306ACAE0004824F1;
+			remoteInfo = FolioKit;
+		};
+		A1641DFA306AD741004824F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1641BAF306AC910004824F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1641BDF306ACAE0004824F1;
+			remoteInfo = FolioKit;
+		};
+		A1641DFF306AD75F004824F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1641BAF306AC910004824F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1641BDF306ACAE0004824F1;
+			remoteInfo = FolioKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A1641BE0306ACAE0004824F1 /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641BE8306ACAE0004824F1 /* FolioKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FolioKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641BFB306ACB1F004824F1 /* WriteKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WriteKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641C03306ACB1F004824F1 /* WriteKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WriteKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641C16306ACB22004824F1 /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641C1E306ACB22004824F1 /* ResearchKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResearchKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641C31306ACB26004824F1 /* ComposerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComposerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641C39306ACB26004824F1 /* ComposerKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComposerKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1641C94306AD035004824F1 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		C13800000000000000000001 /* TypographyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A1641BEF306ACAE0004824F1 /* Exceptions for "FolioKit" folder in "FolioKit" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			publicHeaders = (
+				FolioKit.h,
+			);
+			target = A1641BDF306ACAE0004824F1 /* FolioKit */;
+		};
+		A1641C0A306ACB1F004824F1 /* Exceptions for "WriteKit" folder in "WriteKit" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			publicHeaders = (
+				WriteKit.h,
+			);
+			target = A1641BFA306ACB1F004824F1 /* WriteKit */;
+		};
+		A1641C25306ACB22004824F1 /* Exceptions for "ResearchKit" folder in "ResearchKit" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			publicHeaders = (
+				ResearchKit.h,
+			);
+			target = A1641C15306ACB22004824F1 /* ResearchKit */;
+		};
+		A1641C40306ACB26004824F1 /* Exceptions for "ComposerKit" folder in "ComposerKit" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			publicHeaders = (
+				ComposerKit.h,
+			);
+			target = A1641C30306ACB26004824F1 /* ComposerKit */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A1641BE1306ACAE0004824F1 /* FolioKit */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A1641BEF306ACAE0004824F1 /* Exceptions for "FolioKit" folder in "FolioKit" target */,
+			);
+			path = FolioKit;
+			sourceTree = "<group>";
+		};
+		A1641BEC306ACAE0004824F1 /* FolioKitTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FolioKitTests;
+			sourceTree = "<group>";
+		};
+		A1641BFC306ACB1F004824F1 /* WriteKit */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A1641C0A306ACB1F004824F1 /* Exceptions for "WriteKit" folder in "WriteKit" target */,
+			);
+			path = WriteKit;
+			sourceTree = "<group>";
+		};
+		A1641C07306ACB1F004824F1 /* WriteKitTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WriteKitTests;
+			sourceTree = "<group>";
+		};
+		A1641C17306ACB22004824F1 /* ResearchKit */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A1641C25306ACB22004824F1 /* Exceptions for "ResearchKit" folder in "ResearchKit" target */,
+			);
+			path = ResearchKit;
+			sourceTree = "<group>";
+		};
+		A1641C22306ACB22004824F1 /* ResearchKitTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ResearchKitTests;
+			sourceTree = "<group>";
+		};
+		A1641C32306ACB26004824F1 /* ComposerKit */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A1641C40306ACB26004824F1 /* Exceptions for "ComposerKit" folder in "ComposerKit" target */,
+			);
+			path = ComposerKit;
+			sourceTree = "<group>";
+		};
+		A1641C3D306ACB26004824F1 /* ComposerKitTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ComposerKitTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1641BDD306ACAE0004824F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				D3D5E082B3C0CEABE20A5E60 /* Defaults in Frameworks */,
+				2341F1B3D94A4B42383CFC23 /* Collections in Frameworks */,
+				F441E78308151CA4F57C0A25 /* Algorithms in Frameworks */,
+			);
+		};
+		A1641BE5306ACAE0004824F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				A1641BE9306ACAE0004824F1 /* FolioKit.framework in Frameworks */,
+			);
+		};
+		A1641BF8306ACB1F004824F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				4F06780053B45DDEF2F011B9 /* Defaults in Frameworks */,
+				18DF29B95445F000918BFFA8 /* Collections in Frameworks */,
+				EB0B35F6E643F3604C2B5D6A /* Algorithms in Frameworks */,
+				A1641DF3306AD71B004824F1 /* FolioKit.framework in Frameworks */,
+			);
+		};
+		A1641C00306ACB1F004824F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				A1641C04306ACB1F004824F1 /* WriteKit.framework in Frameworks */,
+			);
+		};
+		A1641C13306ACB22004824F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				62D4437438D8114EBE458D24 /* Defaults in Frameworks */,
+				4795E3B71E7987664DECA750 /* Collections in Frameworks */,
+				9153E3B341B6FBD34A642B38 /* Algorithms in Frameworks */,
+				A1641DF8306AD741004824F1 /* FolioKit.framework in Frameworks */,
+			);
+		};
+		A1641C1B306ACB22004824F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				A1641C1F306ACB22004824F1 /* ResearchKit.framework in Frameworks */,
+			);
+		};
+		A1641C2E306ACB26004824F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				3EA71AA9A87D66792204965F /* Defaults in Frameworks */,
+				53CE7D2750C41DF9A3A8AD46 /* Collections in Frameworks */,
+				42C4121CD79002CAA1C28AAE /* Algorithms in Frameworks */,
+				A1641DFD306AD75F004824F1 /* FolioKit.framework in Frameworks */,
+				C13800000000000000000002 /* TypographyKit.framework in Frameworks */,
+			);
+		};
+		A1641C36306ACB26004824F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				A1641C3A306ACB26004824F1 /* ComposerKit.framework in Frameworks */,
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A1641BAE306AC910004824F1 = {
+			isa = PBXGroup;
+			children = (
+				A1641BE1306ACAE0004824F1 /* FolioKit */,
+				A1641BEC306ACAE0004824F1 /* FolioKitTests */,
+				A1641BFC306ACB1F004824F1 /* WriteKit */,
+				A1641C07306ACB1F004824F1 /* WriteKitTests */,
+				A1641C17306ACB22004824F1 /* ResearchKit */,
+				A1641C22306ACB22004824F1 /* ResearchKitTests */,
+				A1641C32306ACB26004824F1 /* ComposerKit */,
+				A1641C3D306ACB26004824F1 /* ComposerKitTests */,
+				A1641C94306AD035004824F1 /* Project.xcconfig */,
+				A1641DF2306AD71B004824F1 /* Frameworks */,
+				A1641BB9306AC910004824F1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A1641BB9306AC910004824F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1641BE0306ACAE0004824F1 /* FolioKit.framework */,
+				A1641BE8306ACAE0004824F1 /* FolioKitTests.xctest */,
+				A1641BFB306ACB1F004824F1 /* WriteKit.framework */,
+				A1641C03306ACB1F004824F1 /* WriteKitTests.xctest */,
+				A1641C16306ACB22004824F1 /* ResearchKit.framework */,
+				A1641C1E306ACB22004824F1 /* ResearchKitTests.xctest */,
+				A1641C31306ACB26004824F1 /* ComposerKit.framework */,
+				A1641C39306ACB26004824F1 /* ComposerKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1641DF2306AD71B004824F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C13800000000000000000001 /* TypographyKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A1641BDB306ACAE0004824F1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			files = (
+			);
+		};
+		A1641BF6306ACB1F004824F1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			files = (
+			);
+		};
+		A1641C11306ACB22004824F1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			files = (
+			);
+		};
+		A1641C2C306ACB26004824F1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			files = (
+			);
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A1641BDF306ACAE0004824F1 /* FolioKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1641BF0306ACAE0004824F1 /* Build configuration list for PBXNativeTarget "FolioKit" */;
+			buildPhases = (
+				A1641BDB306ACAE0004824F1 /* Headers */,
+				A1641BDC306ACAE0004824F1 /* Sources */,
+				A1641BDD306ACAE0004824F1 /* Frameworks */,
+				A1641BDE306ACAE0004824F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8CE9D0FB6C3C67B4904751D0 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1641BE1306ACAE0004824F1 /* FolioKit */,
+			);
+			name = FolioKit;
+			packageProductDependencies = (
+				9D29DA6DB8E05FB373738746 /* Defaults */,
+				979C724CF4738B0EED6B91C9 /* Collections */,
+				AC8E1DC32F0808B2E497571A /* Algorithms */,
+			);
+			productName = FolioKit;
+			productReference = A1641BE0306ACAE0004824F1 /* FolioKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A1641BE7306ACAE0004824F1 /* FolioKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1641BF3306ACAE0004824F1 /* Build configuration list for PBXNativeTarget "FolioKitTests" */;
+			buildPhases = (
+				A1641BE4306ACAE0004824F1 /* Sources */,
+				A1641BE5306ACAE0004824F1 /* Frameworks */,
+				A1641BE6306ACAE0004824F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2EDDA205BBA094EC8A608BC9 /* PBXTargetDependency */,
+				A1641BEB306ACAE0004824F1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1641BEC306ACAE0004824F1 /* FolioKitTests */,
+			);
+			name = FolioKitTests;
+			productName = FolioKitTests;
+			productReference = A1641BE8306ACAE0004824F1 /* FolioKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A1641BFA306ACB1F004824F1 /* WriteKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1641C0B306ACB1F004824F1 /* Build configuration list for PBXNativeTarget "WriteKit" */;
+			buildPhases = (
+				A1641BF6306ACB1F004824F1 /* Headers */,
+				A1641BF7306ACB1F004824F1 /* Sources */,
+				A1641BF8306ACB1F004824F1 /* Frameworks */,
+				A1641BF9306ACB1F004824F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5DB23A3A2475C32524E31A2 /* PBXTargetDependency */,
+				A1641DF6306AD71B004824F1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1641BFC306ACB1F004824F1 /* WriteKit */,
+			);
+			name = WriteKit;
+			packageProductDependencies = (
+				1ADE38125927BDEDE039E719 /* Defaults */,
+				5C5BD5EE88C2C8C7DEE8472C /* Collections */,
+				83E6900DC3C9127A03C132A8 /* Algorithms */,
+			);
+			productName = WriteKit;
+			productReference = A1641BFB306ACB1F004824F1 /* WriteKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A1641C02306ACB1F004824F1 /* WriteKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1641C0E306ACB1F004824F1 /* Build configuration list for PBXNativeTarget "WriteKitTests" */;
+			buildPhases = (
+				A1641BFF306ACB1F004824F1 /* Sources */,
+				A1641C00306ACB1F004824F1 /* Frameworks */,
+				A1641C01306ACB1F004824F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				77F852385460BF3E23752215 /* PBXTargetDependency */,
+				A1641C06306ACB1F004824F1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1641C07306ACB1F004824F1 /* WriteKitTests */,
+			);
+			name = WriteKitTests;
+			productName = WriteKitTests;
+			productReference = A1641C03306ACB1F004824F1 /* WriteKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A1641C15306ACB22004824F1 /* ResearchKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1641C26306ACB22004824F1 /* Build configuration list for PBXNativeTarget "ResearchKit" */;
+			buildPhases = (
+				A1641C11306ACB22004824F1 /* Headers */,
+				A1641C12306ACB22004824F1 /* Sources */,
+				A1641C13306ACB22004824F1 /* Frameworks */,
+				A1641C14306ACB22004824F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BDBA3B3F17512A28C217EB7B /* PBXTargetDependency */,
+				A1641DFB306AD741004824F1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1641C17306ACB22004824F1 /* ResearchKit */,
+			);
+			name = ResearchKit;
+			packageProductDependencies = (
+				6DDF8CBA03F3AE60BD237B65 /* Defaults */,
+				11AE50FCC9674F13F4F2955C /* Collections */,
+				91FC3489D7D01F0BF0219C45 /* Algorithms */,
+			);
+			productName = ResearchKit;
+			productReference = A1641C16306ACB22004824F1 /* ResearchKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A1641C1D306ACB22004824F1 /* ResearchKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1641C29306ACB22004824F1 /* Build configuration list for PBXNativeTarget "ResearchKitTests" */;
+			buildPhases = (
+				A1641C1A306ACB22004824F1 /* Sources */,
+				A1641C1B306ACB22004824F1 /* Frameworks */,
+				A1641C1C306ACB22004824F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				198283F3C92F67E99DC363FF /* PBXTargetDependency */,
+				A1641C21306ACB22004824F1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1641C22306ACB22004824F1 /* ResearchKitTests */,
+			);
+			name = ResearchKitTests;
+			productName = ResearchKitTests;
+			productReference = A1641C1E306ACB22004824F1 /* ResearchKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A1641C30306ACB26004824F1 /* ComposerKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1641C41306ACB26004824F1 /* Build configuration list for PBXNativeTarget "ComposerKit" */;
+			buildPhases = (
+				A1641C2C306ACB26004824F1 /* Headers */,
+				A1641C2D306ACB26004824F1 /* Sources */,
+				A1641C2E306ACB26004824F1 /* Frameworks */,
+				A1641C2F306ACB26004824F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CBA564345E025B3B14B161E0 /* PBXTargetDependency */,
+				A1641E00306AD75F004824F1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1641C32306ACB26004824F1 /* ComposerKit */,
+			);
+			name = ComposerKit;
+			packageProductDependencies = (
+				CFA7504585586603772650C0 /* Defaults */,
+				AEF1FF07E94C37C43C14BCC9 /* Collections */,
+				19F060071CC1A8019DE2B538 /* Algorithms */,
+			);
+			productName = ComposerKit;
+			productReference = A1641C31306ACB26004824F1 /* ComposerKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A1641C38306ACB26004824F1 /* ComposerKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1641C44306ACB26004824F1 /* Build configuration list for PBXNativeTarget "ComposerKitTests" */;
+			buildPhases = (
+				A1641C35306ACB26004824F1 /* Sources */,
+				A1641C36306ACB26004824F1 /* Frameworks */,
+				A1641C37306ACB26004824F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9B7CFF128A6317804878B442 /* PBXTargetDependency */,
+				A1641C3C306ACB26004824F1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1641C3D306ACB26004824F1 /* ComposerKitTests */,
+			);
+			name = ComposerKitTests;
+			productName = ComposerKitTests;
+			productReference = A1641C39306ACB26004824F1 /* ComposerKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A1641BAF306AC910004824F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				CLASSPREFIX = FC;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+				ORGANIZATIONNAME = "the Folio Project";
+				TargetAttributes = {
+					A1641BDF306ACAE0004824F1 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					A1641BE7306ACAE0004824F1 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					A1641BFA306ACB1F004824F1 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					A1641C02306ACB1F004824F1 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					A1641C15306ACB22004824F1 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					A1641C1D306ACB22004824F1 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					A1641C30306ACB26004824F1 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					A1641C38306ACB26004824F1 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+				};
+			};
+			buildConfigurationList = A1641BB2306AC910004824F1 /* Build configuration list for PBXProject "Core" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A1641BAE306AC910004824F1;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B598A15ECDEE307D233E9A1E /* XCRemoteSwiftPackageReference "Defaults" */,
+				594D98D8823E6E82B4496DBC /* XCRemoteSwiftPackageReference "swift-collections" */,
+				F332B06AE55E924BFEAE44F3 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+			);
+			preferredProjectObjectVersion = 110;
+			productRefGroup = A1641BB9306AC910004824F1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1641BDF306ACAE0004824F1 /* FolioKit */,
+				A1641BE7306ACAE0004824F1 /* FolioKitTests */,
+				A1641BFA306ACB1F004824F1 /* WriteKit */,
+				A1641C02306ACB1F004824F1 /* WriteKitTests */,
+				A1641C15306ACB22004824F1 /* ResearchKit */,
+				A1641C1D306ACB22004824F1 /* ResearchKitTests */,
+				A1641C30306ACB26004824F1 /* ComposerKit */,
+				A1641C38306ACB26004824F1 /* ComposerKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1641BDE306ACAE0004824F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A1641BE6306ACAE0004824F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A1641BF9306ACB1F004824F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A1641C01306ACB1F004824F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A1641C14306ACB22004824F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A1641C1C306ACB22004824F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		A1641C2F306ACB26004824F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				A1641C95306AD035004824F1 /* Project.xcconfig in Resources */,
+			);
+		};
+		A1641C37306ACB26004824F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1641BDC306ACAE0004824F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1641BE4306ACAE0004824F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1641BF7306ACB1F004824F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1641BFF306ACB1F004824F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1641C12306ACB22004824F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1641C1A306ACB22004824F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1641C2D306ACB26004824F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A1641C35306ACB26004824F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		198283F3C92F67E99DC363FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = DA19E24CA971996B056E8E68 /* SwiftLintBuildToolPlugin */;
+		};
+		2EDDA205BBA094EC8A608BC9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = B7BE03225D9D2C8A26A80746 /* SwiftLintBuildToolPlugin */;
+		};
+		77F852385460BF3E23752215 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = A6FDB74989DAA0368A4B51A3 /* SwiftLintBuildToolPlugin */;
+		};
+		8CE9D0FB6C3C67B4904751D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 4291E30E5086E632186C840F /* SwiftLintBuildToolPlugin */;
+		};
+		9B7CFF128A6317804878B442 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 594FF3704E394D810C436975 /* SwiftLintBuildToolPlugin */;
+		};
+		A1641BEB306ACAE0004824F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1641BDF306ACAE0004824F1 /* FolioKit */;
+			targetProxy = A1641BEA306ACAE0004824F1 /* PBXContainerItemProxy */;
+		};
+		A1641C06306ACB1F004824F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1641BFA306ACB1F004824F1 /* WriteKit */;
+			targetProxy = A1641C05306ACB1F004824F1 /* PBXContainerItemProxy */;
+		};
+		A1641C21306ACB22004824F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1641C15306ACB22004824F1 /* ResearchKit */;
+			targetProxy = A1641C20306ACB22004824F1 /* PBXContainerItemProxy */;
+		};
+		A1641C3C306ACB26004824F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1641C30306ACB26004824F1 /* ComposerKit */;
+			targetProxy = A1641C3B306ACB26004824F1 /* PBXContainerItemProxy */;
+		};
+		A1641DF6306AD71B004824F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1641BDF306ACAE0004824F1 /* FolioKit */;
+			targetProxy = A1641DF5306AD71B004824F1 /* PBXContainerItemProxy */;
+		};
+		A1641DFB306AD741004824F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1641BDF306ACAE0004824F1 /* FolioKit */;
+			targetProxy = A1641DFA306AD741004824F1 /* PBXContainerItemProxy */;
+		};
+		A1641E00306AD75F004824F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1641BDF306ACAE0004824F1 /* FolioKit */;
+			targetProxy = A1641DFF306AD75F004824F1 /* PBXContainerItemProxy */;
+		};
+		BDBA3B3F17512A28C217EB7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 81FFC82EE29C124263EC3047 /* SwiftLintBuildToolPlugin */;
+		};
+		CBA564345E025B3B14B161E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = E7062ADE76F9E1C4D230D9E7 /* SwiftLintBuildToolPlugin */;
+		};
+		E5DB23A3A2475C32524E31A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 209AC79764A52C755E7669C8 /* SwiftLintBuildToolPlugin */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A1641BCA306AC910004824F1 /* Debug configuration for PBXProject "Core" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1641C94306AD035004824F1 /* Project.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A1641BCB306AC910004824F1 /* Release configuration for PBXProject "Core" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1641C94306AD035004824F1 /* Project.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A1641BF1306ACAE0004824F1 /* Debug configuration for PBXNativeTarget "FolioKit" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULEMAP_FILE = "$(SRCROOT)/FolioKit/FolioKit.modulemap";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.FolioKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		A1641BF2306ACAE0004824F1 /* Release configuration for PBXNativeTarget "FolioKit" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULEMAP_FILE = "$(SRCROOT)/FolioKit/FolioKit.modulemap";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.FolioKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		A1641BF4306ACAE0004824F1 /* Debug configuration for PBXNativeTarget "FolioKitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.FolioKit.FolioKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		A1641BF5306ACAE0004824F1 /* Release configuration for PBXNativeTarget "FolioKitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.FolioKit.FolioKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		A1641C0C306ACB1F004824F1 /* Debug configuration for PBXNativeTarget "WriteKit" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULEMAP_FILE = "$(SRCROOT)/WriteKit/WriteKit.modulemap";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		A1641C0D306ACB1F004824F1 /* Release configuration for PBXNativeTarget "WriteKit" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULEMAP_FILE = "$(SRCROOT)/WriteKit/WriteKit.modulemap";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		A1641C0F306ACB1F004824F1 /* Debug configuration for PBXNativeTarget "WriteKitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Write.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Write";
+			};
+			name = Debug;
+		};
+		A1641C10306ACB1F004824F1 /* Release configuration for PBXNativeTarget "WriteKitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Write.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Write";
+			};
+			name = Release;
+		};
+		A1641C27306ACB22004824F1 /* Debug configuration for PBXNativeTarget "ResearchKit" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULEMAP_FILE = "$(SRCROOT)/ResearchKit/ResearchKit.modulemap";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		A1641C28306ACB22004824F1 /* Release configuration for PBXNativeTarget "ResearchKit" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULEMAP_FILE = "$(SRCROOT)/ResearchKit/ResearchKit.modulemap";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		A1641C2A306ACB22004824F1 /* Debug configuration for PBXNativeTarget "ResearchKitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Research.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Research";
+			};
+			name = Debug;
+		};
+		A1641C2B306ACB22004824F1 /* Release configuration for PBXNativeTarget "ResearchKitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ResearchKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Research.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Research";
+			};
+			name = Release;
+		};
+		A1641C42306ACB26004824F1 /* Debug configuration for PBXNativeTarget "ComposerKit" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULEMAP_FILE = "$(SRCROOT)/ComposerKit/ComposerKit.modulemap";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ComposerKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		A1641C43306ACB26004824F1 /* Release configuration for PBXNativeTarget "ComposerKit" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULEMAP_FILE = "$(SRCROOT)/ComposerKit/ComposerKit.modulemap";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ComposerKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		A1641C45306ACB26004824F1 /* Debug configuration for PBXNativeTarget "ComposerKitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ComposerKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Composer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Composer";
+			};
+			name = Debug;
+		};
+		A1641C46306ACB26004824F1 /* Release configuration for PBXNativeTarget "ComposerKitTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = FT9KDL728H;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.ComposerKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Composer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Composer";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A1641BB2306AC910004824F1 /* Build configuration list for PBXProject "Core" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1641BCA306AC910004824F1 /* Debug configuration for PBXProject "Core" */,
+				A1641BCB306AC910004824F1 /* Release configuration for PBXProject "Core" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1641BF0306ACAE0004824F1 /* Build configuration list for PBXNativeTarget "FolioKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1641BF1306ACAE0004824F1 /* Debug configuration for PBXNativeTarget "FolioKit" */,
+				A1641BF2306ACAE0004824F1 /* Release configuration for PBXNativeTarget "FolioKit" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1641BF3306ACAE0004824F1 /* Build configuration list for PBXNativeTarget "FolioKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1641BF4306ACAE0004824F1 /* Debug configuration for PBXNativeTarget "FolioKitTests" */,
+				A1641BF5306ACAE0004824F1 /* Release configuration for PBXNativeTarget "FolioKitTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1641C0B306ACB1F004824F1 /* Build configuration list for PBXNativeTarget "WriteKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1641C0C306ACB1F004824F1 /* Debug configuration for PBXNativeTarget "WriteKit" */,
+				A1641C0D306ACB1F004824F1 /* Release configuration for PBXNativeTarget "WriteKit" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1641C0E306ACB1F004824F1 /* Build configuration list for PBXNativeTarget "WriteKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1641C0F306ACB1F004824F1 /* Debug configuration for PBXNativeTarget "WriteKitTests" */,
+				A1641C10306ACB1F004824F1 /* Release configuration for PBXNativeTarget "WriteKitTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1641C26306ACB22004824F1 /* Build configuration list for PBXNativeTarget "ResearchKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1641C27306ACB22004824F1 /* Debug configuration for PBXNativeTarget "ResearchKit" */,
+				A1641C28306ACB22004824F1 /* Release configuration for PBXNativeTarget "ResearchKit" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1641C29306ACB22004824F1 /* Build configuration list for PBXNativeTarget "ResearchKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1641C2A306ACB22004824F1 /* Debug configuration for PBXNativeTarget "ResearchKitTests" */,
+				A1641C2B306ACB22004824F1 /* Release configuration for PBXNativeTarget "ResearchKitTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1641C41306ACB26004824F1 /* Build configuration list for PBXNativeTarget "ComposerKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1641C42306ACB26004824F1 /* Debug configuration for PBXNativeTarget "ComposerKit" */,
+				A1641C43306ACB26004824F1 /* Release configuration for PBXNativeTarget "ComposerKit" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1641C44306ACB26004824F1 /* Build configuration list for PBXNativeTarget "ComposerKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1641C45306ACB26004824F1 /* Debug configuration for PBXNativeTarget "ComposerKitTests" */,
+				A1641C46306ACB26004824F1 /* Release configuration for PBXNativeTarget "ComposerKitTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		594D98D8823E6E82B4496DBC /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections";
+			requirement = {
+				kind = exactVersion;
+				version = 1.7.1;
+			};
+		};
+		B598A15ECDEE307D233E9A1E /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				kind = exactVersion;
+				version = 9.0.9;
+			};
+		};
+		DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = exactVersion;
+				version = 0.65.1;
+			};
+		};
+		F332B06AE55E924BFEAE44F3 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms";
+			requirement = {
+				kind = exactVersion;
+				version = 1.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		11AE50FCC9674F13F4F2955C /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 594D98D8823E6E82B4496DBC /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		19F060071CC1A8019DE2B538 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F332B06AE55E924BFEAE44F3 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		1ADE38125927BDEDE039E719 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B598A15ECDEE307D233E9A1E /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		209AC79764A52C755E7669C8 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		4291E30E5086E632186C840F /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		594FF3704E394D810C436975 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		5C5BD5EE88C2C8C7DEE8472C /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 594D98D8823E6E82B4496DBC /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		6DDF8CBA03F3AE60BD237B65 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B598A15ECDEE307D233E9A1E /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		81FFC82EE29C124263EC3047 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		83E6900DC3C9127A03C132A8 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F332B06AE55E924BFEAE44F3 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		91FC3489D7D01F0BF0219C45 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F332B06AE55E924BFEAE44F3 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		979C724CF4738B0EED6B91C9 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 594D98D8823E6E82B4496DBC /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		9D29DA6DB8E05FB373738746 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B598A15ECDEE307D233E9A1E /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		A6FDB74989DAA0368A4B51A3 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		AC8E1DC32F0808B2E497571A /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F332B06AE55E924BFEAE44F3 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		AEF1FF07E94C37C43C14BCC9 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 594D98D8823E6E82B4496DBC /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		B7BE03225D9D2C8A26A80746 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		CFA7504585586603772650C0 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B598A15ECDEE307D233E9A1E /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		DA19E24CA971996B056E8E68 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		E7062ADE76F9E1C4D230D9E7 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DFF20FFE697626755D5C5EAC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = A1641BAF306AC910004824F1 /* Project object */;
+	validationLevel = 1;
+}

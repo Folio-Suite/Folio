@@ -17,5 +17,8 @@ ENABLE_CODE_COVERAGE[config=Release] = NO
 // One release identity for all apps, Kits, tests, and bundled services.
 #include "Version.xcconfig"
 
+// Common bundle attribution for apps, frameworks, tests, and services.
+INFOPLIST_KEY_NSHumanReadableCopyright = Copyright © 2026 the Folio Project
+
 // Shared Kits in the traditional Suite installation.
 LD_RUNPATH_SEARCH_PATHS = $(inherited) /Library/Frameworks
