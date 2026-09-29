@@ -8,43 +8,26 @@ SPDX-License-Identifier: MIT
 
 Adapted from [Matt Pocock's skill setup templates](https://github.com/mattpocock/skills), with Folio-specific conventions. See the retained [MIT notice](MATT-POCOCK-LICENSE) and [skill usage and attribution](../ai-skills.md).
 
-How the engineering skills should consume this repository's domain documentation when exploring the codebase.
+How the engineering skills should consume this repository's domain documentation.
 
-## Before exploring, read these
+## Before exploring or changing code
 
-- **`CONTEXT.md`** at the repository root: the shared Suite vocabulary.
-- **`docs/adr/`**: read ADRs that touch the area about to be changed.
-- **`CONTRIBUTING.md`**: read the workspace, validation, and coordinated-change guidance when changing code or project configuration.
+1. Read the root `CONTEXT-MAP.md` and follow its pointers for each context involved in the task.
+2. Read the relevant glossary, contracts, and ADRs for those contexts, together with applicable shared decisions in `docs/adr/`.
+3. When changing code or project configuration, read `CONTRIBUTING.md` for workspace, validation, coordinated-change, and licensing guidance.
 
-If a domain document does not exist, proceed silently. The `/domain-modeling` skill creates domain documents lazily when terms or decisions are resolved.
+For work spanning a framework and its consumer, read both contexts. Keep framework concepts and host-owned meaning distinct using the boundaries recorded in the map and linked documents.
 
 ## File structure
 
-Folio uses one shared domain context across its Xcode monorepo:
+This monorepo uses three contexts: the Folio Suite, TypographyKit, and UndoKit. `CONTEXT-MAP.md` is the routing index. The Suite glossary remains at root `CONTEXT.md`; framework glossaries belong alongside their frameworks. Shared and Suite architecture decisions remain in `docs/adr/`; context-specific ADRs belong in the owning framework's `docs/adr/` when needed.
 
-```text
-/
-├── CONTEXT.md
-├── docs/adr/
-├── Folio.xcworkspace/
-├── Core/
-├── TypographyKit/
-├── UndoKit/
-├── Write/
-├── Research/
-└── Composer/
-```
+If a glossary or ADR directory does not exist, proceed silently using the existing documentation named in the map. The `domain-modeling` skill creates domain documents when vocabulary or decisions are resolved.
 
-The root glossary and ADRs apply across the Suite. Core contains the FolioKit, WriteKit, ResearchKit, and ComposerKit framework targets. TypographyKit and UndoKit retain independent projects. Separate Xcode projects and module ownership do not require separate domain glossaries. Keep cross-Suite decisions here and symbol documentation alongside its owning code.
+## Use the owning context's vocabulary
 
-If a root `CONTEXT-MAP.md` is introduced later, follow its pointers to the relevant context-specific glossaries and decision records, together with system-wide ADRs in `docs/adr/`.
-
-## Use the glossary's vocabulary
-
-When output names a domain concept—in an issue title, refactor proposal, hypothesis, or test name—use the term as defined in `CONTEXT.md`. Do not drift to synonyms the glossary explicitly avoids.
-
-If a needed concept is absent from the glossary, either reconsider whether the term belongs to Folio or note a genuine gap for `/domain-modeling`.
+When naming a domain concept in an issue, proposal, hypothesis, or test, use the definition from its owning context. Preserve explicit distinctions when connecting concepts across contexts. If a needed concept has no agreed definition, raise the gap through `domain-modeling`.
 
 ## Flag ADR conflicts
 
-If proposed work contradicts an existing ADR, surface the conflict explicitly rather than silently overriding the recorded decision.
+If proposed work contradicts an existing ADR or accepted contract, surface the conflict explicitly rather than silently overriding the recorded decision. Use current accepted decisions to interpret imported design records; the map identifies the relevant historical index.
