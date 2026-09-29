@@ -44,10 +44,10 @@
           "name" : "Page text",
           "opacity" : 0.65,
           "position" : {
-            "scale" : 1.05,
+            "scale" : 1.12,
             "translation-in-points" : [
               0,
-              0
+              -59.95564344652587
             ]
           }
         }
@@ -93,10 +93,10 @@
           "name" : "Right page",
           "opacity" : 0.92,
           "position" : {
-            "scale" : 1.05,
+            "scale" : 1.12,
             "translation-in-points" : [
               0,
-              0
+              -53.53182450582665
             ]
           }
         },
@@ -127,10 +127,10 @@
           "name" : "Left page",
           "opacity" : 0.92,
           "position" : {
-            "scale" : 1.05,
+            "scale" : 1.12,
             "translation-in-points" : [
               0,
-              0
+              -53.53182450582665
             ]
           }
         },
@@ -161,17 +161,17 @@
           "name" : "Book cover",
           "opacity" : 0.92,
           "position" : {
-            "scale" : 1.05,
+            "scale" : 1.12,
             "translation-in-points" : [
               0,
-              0
+              -53.53182450582665
             ]
           }
         }
       ],
       "name" : "Glass Research",
       "position" : {
-        "scale" : 1.05,
+        "scale" : 1.12,
         "translation-in-points" : [
           0,
           0
