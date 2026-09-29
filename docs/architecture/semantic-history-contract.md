@@ -12,9 +12,31 @@ On 2026-09-28 the maintainer accepted UndoKit's [durable-acceptance contract](..
 
 ## Ownership and ordinary Undo
 
+The 2026-09-29 [UndoKit typed-interface contract](../../UndoKit/docs/typed-interface-contract.md)
+accepts host-owned adapters, opaque typed payload encoding, asynchronous ordered
+submission and bounded history queries. An isolated Swift consumer establishes
+codec and isolation feasibility, not native Undo or durable-history behavior.
+Folio domain Kits retain application meaning, actor ownership and presentation.
+
 Each independently saved document owns one durable history and one ordering of accepted undoable actions. This follows the native document boundary, not individual files inside a package or the application displaying it. A Work and a Source Library have independent histories. The subsequent [Arrangement contract](arrangement-contract.md) establishes independently saved Composer Arrangements, including Editions, with their own histories; their source Works retain separate histories. This supersedes the earlier Work-owned Edition configuration assumption.
 
 Undo and Redo use familiar native behavior and follow the document, including the author's edits made through automation or another application. This supersedes the originating-application/context rule in the earlier Work Session contract. Native controls may handle unfinished local interactions; accepted document edits share document-wide ordering. The Session validates reversals and preserves structural integrity. No global Undo, linked reversal machinery, or selective cross-application Undo is required.
+
+The accepted [native-routing contract](../../UndoKit/docs/native-routing-contract.md)
+requires a host-applied editing barrier across relevant views while native Undo
+or Redo waits and finalizes. All views refresh accepted changes; only the
+initiating view may reveal affected content, respecting later user navigation.
+Separate local text editors never fall through to document Undo when empty.
+The reusable bridge rebuilds availability without replaying edits or dirtying
+the document. These obligations require real AppKit proof in #48.
+
+The accepted [store-lifecycle contract](../../UndoKit/docs/store-lifecycle-contract.md)
+places Folio history inside its Document package through host registration.
+Independent copies preserve inherited history with separate working associations;
+coordinated capture secures matching content, history and resources. Missing
+history is reported explicitly. Safe close may preserve unresolved recovery
+evidence for reopening, and Omit History protects current resources. These
+requirements await the disposable package proof in #49.
 
 Cross-document transfers retain their data-preservation requirements, including securing a destination before source removal. Each document independently owns its resulting edits and Undo; Undo does not silently mutate another document.
 

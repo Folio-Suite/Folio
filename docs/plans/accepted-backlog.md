@@ -123,11 +123,40 @@ Typography stories include both foundation support and later behavior: T1/C1 def
 
 ## UndoKit preservation
 
+The maintainer accepted U6 ([#46](https://github.com/Folio-Suite/Folio/issues/46))
+on 2026-09-29. The [measurement plan](../../UndoKit/docs/acceptance-measurement-plan.md)
+records mandatory workloads, exploratory multi-GiB cases, advisory timings,
+resource targets, candidate request limits, cancellation and four-proof evidence.
+All #47–#50 proofs remain required and need maintainer review; numeric candidates
+are not validated production ceilings. No benchmark is claimed passed.
+
+The maintainer accepted U5 ([#45](https://github.com/Folio-Suite/Folio/issues/45))
+on 2026-09-29. The [store-lifecycle contract](../../UndoKit/docs/store-lifecycle-contract.md)
+records host registration, the app-owned Application Support default, ownership,
+copying, compatibility, recovery, closing, checkpoints, omission and full-footprint
+capacity safeguards. U6 now records candidate budgets; storage proof remains #49 with
+related #47–#50 evidence. This accepts design without implementing persistence.
+
+The maintainer accepted U4 ([#44](https://github.com/Folio-Suite/Folio/issues/44))
+on 2026-09-29. The [native-routing contract](../../UndoKit/docs/native-routing-contract.md)
+records the reusable bridge, ordered native invocations, host editing barriers,
+local text and view policies, rejection, interference and restored availability.
+Host obligations are normative documentation requirements. Concrete AppKit proof
+remains in #48 under the accepted U6 plan; accepting design does not implement the bridge.
+
+The maintainer accepted U3 ([#43](https://github.com/Folio-Suite/Folio/issues/43))
+on 2026-09-29 after the isolated Swift feasibility proof. The
+[typed-interface contract](../../UndoKit/docs/typed-interface-contract.md)
+records adapters, codecs including binary property lists, asynchronous ordered
+submission, bounded queries and the proof's limits. Prototype source and results
+remain on a separate evidence branch. U4 and U5 record native routing and storage
+lifecycle behavior; U6 records budgets and runtime proof continues in #47–#50.
+
 The maintainer accepted U2 ([#42](https://github.com/Folio-Suite/Folio/issues/42))
 on 2026-09-29. The [history-retention contract](../../UndoKit/docs/history-retention-contract.md)
 records restoration, shared Undo/Redo depth, checkpoints, independent retention
-holds and safe consolidation. This resolves the design gate; #46 still owns
-measured budgets and #50 owns branching/retention proof. The ticket graph above
+holds and safe consolidation. This resolves the design gate; U6 now defines the
+measurement plan and #50 owns branching/retention proof. The ticket graph above
 records the original dependencies; GitHub carries live completion state.
 
 See the [inventory](../../UndoKit/docs/imported-design/README.md) for original-to-successor issue mappings, preserved accepted research, full tracker snapshot and Git recovery instructions. The local original checkout is retained. The maintainer confirmed deletion of the original remote on 2026-09-27. Historical URLs remain recorded for provenance; use the local design inventory and Folio successor tickets for current work.
