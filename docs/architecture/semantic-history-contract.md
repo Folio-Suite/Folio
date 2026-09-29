@@ -24,11 +24,17 @@ With durable history enabled, ordinary Undo survives closing and reopening. Undo
 
 ## History, checkpoints, and restoration
 
-Automatically retain meaningful accepted changes, including deleted material, and support author-named checkpoints. Design for very large histories. Exact typing/action consolidation, retention recommendations, pruning policy, and Time Machine-like behavior remain deferred.
+Automatically retain meaningful accepted changes, including deleted material, and support author-named checkpoints. Design for very large histories. The 2026-09-29 [UndoKit history-retention contract](../../UndoKit/docs/history-retention-contract.md), accepted in #42, defines restoration, shared Undo/Redo depth, checkpoint protection and safe consolidation. Exact typing grouping, retention schedules, scale budgets and Time Machine integration remain future work.
 
 A checkpoint captures a coherent state at the independently saved document boundary, including its owned content and exact dependency versions. A Work checkpoint includes unplaced content and research records; a Composer Arrangement checkpoint includes its owned snapshots, elaborations, and production configuration. Cross-document checkpoint coordination is not implied. It does not imply an archival export or independent backup.
 
 Restoring a checkpoint or native Document Version establishes a new current state while retaining the displaced history as a branch. Record the restored state and its origin; ordinary restoration must not silently delete later accepted work. Focused native lifecycle checks must prove this behavior across connected applications. The [document lifecycle contract](document-lifecycle-contract.md) distinguishes Folio-managed restoration from external replacement when displaced data may no longer be available.
+
+Both interactive and programmatic restoration create a new undoable change; there is no separate historical branch-position resumption operation. Restoring A after A → B → C makes the next Undo return to C and Redo reapply the restoration. Browsing alone changes no accepted state or Undo/Redo Position.
+
+Checkpoints protect recoverable state and required dependencies, without automatically retaining the edits that produced it. Explicit state holds and detailed-history holds are separate; a protected sequence does not implicitly protect side branches. Folio supplies the states, segments and ordinary Undo depth to retain, and UndoKit determines safe dependencies and pruning. Ordinary Undo/Redo share a configurable allowance of complete groups, independent of older retained material. KitchenMemory's 100-group policy is not a Folio or framework default.
+
+Folio can request progressively coarser checkpoints as history ages. No particular calendar schedule is selected. Automatic pruning respects holds even when retention targets cannot be met; hard limits cannot silently release protection. Consolidation may remove unprotected detail while preserving faithful states and provenance, and must expose the resulting gaps.
 
 Authors can recover selected historical material as a new undoable edit, preserving provenance, without restoring the whole document. The [professional workflow contract](professional-workflow-contract.md) places the history interface in the owning Kit, available to hosts as a compact view or substantial window. Shared presentation may be reused across domains. Detailed UX remains implementation work; accepted history stays distinct from editorial Comments and Proposed Revisions.
 
@@ -68,4 +74,4 @@ Passing the editorial baton does not accept, reject, rewrite, or reattribute Com
 
 ## Remaining proofs
 
-Exact storage schemas, branching algorithms, native Undo persistence, history scale, consolidation and retention, automation adapters, cross-process reconciliation, and UI placement remain implementation or further design work. Issue #4 resolves lifecycle design through the document lifecycle contract. Issue #13 was retired as superseded; native save/restore, recovery, and archival reconstruction checks should target Folio-owned behavior as it is implemented. This contract does not select event sourcing or require replaying historical commands to reconstruct current state.
+Exact storage schemas, branching algorithms, native Undo persistence, history scale, consolidation algorithms and retention schedules, automation adapters, cross-process reconciliation, and UI placement remain implementation or further design work. Issue #4 resolves lifecycle design through the document lifecycle contract. Issue #13 was retired as superseded; native save/restore, recovery, and archival reconstruction checks should target Folio-owned behavior as it is implemented. This contract does not select event sourcing or require replaying historical commands to reconstruct current state.
