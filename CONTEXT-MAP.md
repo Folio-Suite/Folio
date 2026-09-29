@@ -33,6 +33,11 @@ Covers generic durable-history capabilities and storage safeguards in `UndoKit/`
 
 - [UndoKit/CONTEXT.md](UndoKit/CONTEXT.md): history vocabulary and host/framework ownership.
 - [UndoKit/docs/durable-acceptance-contract.md](UndoKit/docs/durable-acceptance-contract.md): accepted transaction and recovery boundary.
+- [UndoKit/docs/history-retention-contract.md](UndoKit/docs/history-retention-contract.md): accepted restoration, Undo depth, checkpoint, hold and pruning behavior.
+- [UndoKit/docs/typed-interface-contract.md](UndoKit/docs/typed-interface-contract.md): accepted host adapters, codecs, asynchronous submission, bounded queries and interface proof.
+- [UndoKit/docs/native-routing-contract.md](UndoKit/docs/native-routing-contract.md): accepted native bridge behavior, host integration obligations and AppKit proof requirements.
+- [UndoKit/docs/store-lifecycle-contract.md](UndoKit/docs/store-lifecycle-contract.md): accepted storage registration, lifecycle, capacity and failure-preservation contract.
+- [UndoKit/docs/acceptance-measurement-plan.md](UndoKit/docs/acceptance-measurement-plan.md): accepted workloads, candidate limits, runner safeguards and four-proof evidence matrix.
 - [UndoKit/README.md](UndoKit/README.md): implementation status and integration guidance.
 - For imported design or research, start with [the design index](UndoKit/docs/imported-design/README.md) and [provenance](UndoKit/UPSTREAM.md) to distinguish preserved records from current decisions.
 
