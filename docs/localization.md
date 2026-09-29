@@ -23,7 +23,7 @@ resources; the flag does not prevent display. Reviewers may mark entries
 
 In Swift and Objective-C, use `NSLocalizedString` or `NSLocalizedStringWithDefaultValue` with a stable, descriptive key, literal English fallback, and a translator comment. Name the intent, such as `work-package.read.error` or `manuscript.rename-content-unit.undo`, rather than using the English sentence as the key. Separate meanings even when their English spelling matches. Give AppKit the action name for undo; do not construct an English “Undo …” sentence.
 
-Resolve strings from the owning framework's bundle (`dev.foliosuite.FolioKit`, `dev.foliosuite.WriteKit`, `dev.foliosuite.ResearchKit`, or `dev.foliosuite.ComposerKit`). Implementation subfolders share that framework’s catalog; do not assume the application’s main bundle. Application-owned strings use their app bundle. XPC services own their strings separately; add their catalog resource when the first user-facing service message is introduced.
+Resolve strings from the owning framework's bundle (`dev.foliosuite.FolioKit`, `dev.foliosuite.WriteKit`, `dev.foliosuite.ResearchKit`, or `dev.foliosuite.ComposerKit`). Implementation subfolders share that framework’s catalog; do not assume the application’s main bundle. Application-owned strings use their app bundle. XPC services own their strings separately; add their catalog resource when the first user-facing service message is introduced. TypographyKit and UndoKit are also scanned; add an owning catalog when either Kit introduces user-facing prose. TypographyKit's `CompositionDiagnostic.code` is the stable presentation input. Hosts map its codes to localized wording; its English `message` is technical context.
 
 Keep filenames, model attributes, format identifiers, action selectors, and accessibility identifiers stable and untranslated. Localize accessible labels and help. A new Content Unit gets its default title in the current language at creation; subsequently that title is authored data and must survive language changes unchanged.
 
@@ -45,7 +45,7 @@ Preserve Unicode text and authored titles through editing, undo, and persistence
 
 ## Interface Builder and metadata
 
-Menus remain in each application's `Base.lproj/Main.storyboard`. The editor's scenes remain in WriteKit's `Resources/Base.lproj/Editor.storyboard`. Their `mul.lproj/Main.xcstrings` and `mul.lproj/Editor.xcstrings` catalogs use Interface Builder's required `objectID.property` keys. Objects containing localizable text have readable IDs and user labels. Preserve those IDs after translation begins and keep connections intact when adding scenes.
+Menus remain in each application's `Base.lproj/Main.storyboard`. The editor's scenes remain in WriteKit's `Resources/Base.lproj/Editor.storyboard`; ResearchKit owns `Resources/Base.lproj/Library.storyboard`, and ComposerKit owns `Resources/Base.lproj/Preview.storyboard`. Each storyboard has a matching `mul.lproj/*.xcstrings` catalog in its owning bundle. These catalogs use Interface Builder's required `objectID.property` keys. Objects containing localizable text have readable IDs and user labels. Preserve those IDs after translation begins and keep connections intact when adding scenes.
 
 `InfoPlist.xcstrings` uses Apple's metadata keys and document-type names as lookup keys. These keys are exceptions to the semantic code-key convention. Brand names and shortcut glyphs are not ordinary translatable prose.
 
@@ -84,21 +84,21 @@ be globally marked “do not translate.” Visible shortcut glyphs remain protec
 
 ## Refresh and verify
 
-Run `ruby scripts/update-localizations.rb --write` after changing source text or storyboard labels. This extracts Swift and Objective-C strings with `genstrings` and Interface Builder text with `ibtool`, preserves translations, marks changed translations for review, and retains removed entries as stale for explicit review. Framework implementation subfolders are included in their owning framework’s catalog. Run without `--write` to check that extracted keys and English values match; remove reviewed stale entries explicitly.
+Run `ruby scripts/update-localizations.rb --write` after changing source text or storyboard labels. This extracts Swift and Objective-C strings with `genstrings` and Interface Builder text with `ibtool`, preserves translations, marks changed translations for review, and retains removed entries as stale for explicit review. Framework implementation subfolders are included in their owning framework’s catalog. Run without `--write` to check that extracted keys and English values match; review and remove stale entries explicitly before expecting the check to pass. The check also compares English `InfoPlist.xcstrings` entries with document-type and icon text in each app's `Info.plist`, plus generated display names and the Suite copyright setting.
 
 Extraction includes `.swift`, `.h`, `.m`, and `.mm` files in applications, Kits, and XPC
 services. Verification also checks extracted translator comments. Structured
 English plural/device/substitution entries require manual review: the script
 refuses to flatten them into a plain fallback. Changes to plain English sources
 mark nested translation variants for review too. This is a preservation guard,
-not an automated plural authoring workflow. Validate metadata catalogs separately
-against Info.plist and generated bundle settings.
+not an automated plural authoring workflow. Finder localization of icon text
+still requires a built-app check.
 
 Never mark copied English prose as a completed translation. Brand names and
 shortcut glyphs can intentionally stay identical; prose needs language review.
 Do not discard existing translation text merely because its status is suspect.
 
-Composer’s Base storyboard and `mul.lproj/Main.xcstrings` catalog participate in the same extraction check.
+Composer's app menu and framework Preview storyboards participate in the same extraction check, as do Research's app menu and framework Library storyboards.
 
 Run `scripts/check-build.sh` to validate compilation and framework products; installed resource and dependency resolution still require a runtime check. Before shipping translations, verify the built apps: menus, editor scenes, toolbar tooltips, accessibility labels, undo/redo names, errors, and Help. Test long text, right-to-left layout, mixed Arabic/Latin content, and missing-translation fallback separately. Do not translate authored Work content when the UI language changes.
 

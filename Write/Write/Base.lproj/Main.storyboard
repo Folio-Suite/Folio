@@ -341,12 +341,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Format" id="menu-format-format" userLabel="Format &gt; Format">
                                     <items>
-                                        <menuItem title="Emphasis" secondaryImage="Emphasis" keyEquivalent="i" id="FW-menu-toggleEmphasis" userLabel="Format &gt; Emphasis">
+                                        <menuItem title="Emphasis" keyEquivalent="i" id="FW-menu-toggleEmphasis" userLabel="Format &gt; Emphasis">
                                             <connections>
                                                 <action selector="toggleEmphasis:" target="Ady-hI-5gd" id="FW-action-toggleEmphasis"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Strong Emphasis" image="StrongEmphasis" keyEquivalent="b" id="FW-menu-toggleStrongEmphasis" userLabel="Format &gt; Strong Emphasis">
+                                        <menuItem title="Strong Emphasis" keyEquivalent="b" id="FW-menu-toggleStrongEmphasis" userLabel="Format &gt; Strong Emphasis">
                                             <connections>
                                                 <action selector="toggleStrongEmphasis:" target="Ady-hI-5gd" id="FW-action-toggleStrongEmphasis"/>
                                             </connections>
@@ -463,7 +463,12 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Write">
+                    <connections>
+                        <outlet property="emphasisMenuItem" destination="FW-menu-toggleEmphasis" id="write-emphasis-menu-outlet"/>
+                        <outlet property="strongEmphasisMenuItem" destination="FW-menu-toggleStrongEmphasis" id="write-strong-menu-outlet"/>
+                    </connections>
+                </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -471,8 +476,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Emphasis" width="8" height="10"/>
-        <image name="StrongEmphasis" width="6" height="10"/>
         <image name="strikethrough" catalog="system" width="32" height="32"/>
         <image name="underline" catalog="system" width="32" height="32"/>
     </resources>

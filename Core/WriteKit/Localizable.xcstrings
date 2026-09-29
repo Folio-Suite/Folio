@@ -2090,13 +2090,13 @@
       }
     },
     "work-model.load.recovery": {
-      "comment": "Recovery advice for developers or users. Preserve FWWork as a resource name.",
+      "comment": "Recovery advice for developers or users. Work is the compiled model resource name.",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rebuild or reinstall the application with its FWWork model resource."
+            "value": "Rebuild or reinstall the application with its Work model resource."
           }
         },
         "ja": {

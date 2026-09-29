@@ -80,6 +80,34 @@ SPDX-License-Identifier: MIT
                ReferencedContainer = "container:Core/Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A1819381306767B600D3F601"
+               BuildableName = "UndoKit.framework"
+               BlueprintName = "UndoKit"
+               ReferencedContainer = "container:UndoKit/UndoKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A120CDD3306A0BBA0097A0D5"
+               BuildableName = "TypographyKit.framework"
+               BlueprintName = "TypographyKit"
+               ReferencedContainer = "container:TypographyKit/TypographyKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

@@ -23,6 +23,10 @@ func exercisePublicInterfaces() throws {
     _ = editor.makeWindowController()
     let library = try ResearchLibraryPackage.empty()
     try ResearchLibraryPackage.validate(library)
+    _ = ResearchLibraryWindow.makeWindowController()
+    _ = CompositionPreviewWindow.makeWindowController(input: PublicationPreviewInput(
+        sourceIdentifier: identifier.rawValue, text: unit.string,
+        selectedBreaks: [unit.string.utf16.count], lineWidth: 400))
     let preview = ComposerPreview.compose(PublicationPreviewInput(sourceIdentifier: identifier.rawValue,
         text: unit.string, selectedBreaks: [unit.string.utf16.count], lineWidth: 400))
     precondition(preview.status == .complete)

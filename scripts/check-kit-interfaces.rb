@@ -36,9 +36,8 @@ class KitInterfaceCheck
       minimums.add(info.fetch('LSMinimumSystemVersion'))
       check(Dir.glob("#{framework}/Modules/#{kit}.swiftmodule/*.swiftmodule").any?, "#{kit}: missing public Swift module")
       check(Dir.glob("#{framework}/PrivateHeaders/**/*.h").empty?, "#{kit}: private headers must not ship")
-      headers = Dir.glob("#{framework}/Headers/**/*.h").map { |path| File.basename(path) }.to_set
-      allowed = Set["#{kit}.h", "#{kit}-Swift.h"]
-      check((headers - allowed).empty?, "#{kit}: unexpected exported headers: #{(headers - allowed).to_a}")
+      headers = Dir.glob("#{framework}/Headers/**/*.h")
+      check(headers.empty?, "#{kit}: Swift-only framework must not export headers: #{headers}")
     end
     check(minimums == Set['14.0'], "Kits must share macOS 14.0 deployment support: #{minimums.to_a}")
     %w[Core Write Research Composer].each do |directory|
@@ -84,7 +83,7 @@ class KitInterfaceCheck
         end
       end
     end
-    puts 'Kit interfaces passed: public Swift consumers, private symbol rejection, standalone framework imports.'
+    puts 'Kit interfaces passed: Swift modules without headers, public consumers, private symbol rejection, independent imports.'
   end
 end
 

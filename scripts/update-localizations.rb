@@ -12,12 +12,14 @@ require 'tmpdir'
 # Requires active Xcode developer tools. Existing translations are preserved.
 class LocalizationUpdate
   ROOT = File.expand_path('..', __dir__)
-  CODE = %w[Core/FolioKit Write/Write Core/WriteKit Write/WriteXPCService Research/Research Core/ResearchKit Research/ResearchXPCService Composer/Composer Core/ComposerKit Composer/ComposerXPCService].freeze
+  CODE = %w[Core/FolioKit Write/Write Core/WriteKit Write/WriteXPCService Research/Research Core/ResearchKit Research/ResearchXPCService Composer/Composer Core/ComposerKit Composer/ComposerXPCService TypographyKit/TypographyKit UndoKit/UndoKit].freeze
   STORYBOARDS = [
     ['Write/Write/Base.lproj/Main.storyboard', 'Write/Write/mul.lproj/Main.xcstrings'],
     ['Research/Research/Base.lproj/Main.storyboard', 'Research/Research/mul.lproj/Main.xcstrings'],
+    ['Core/ResearchKit/Resources/Base.lproj/Library.storyboard', 'Core/ResearchKit/Resources/mul.lproj/Library.xcstrings'],
     ['Core/WriteKit/Resources/Base.lproj/Editor.storyboard', 'Core/WriteKit/Resources/mul.lproj/Editor.xcstrings'],
-    ['Composer/Composer/Base.lproj/Main.storyboard', 'Composer/Composer/mul.lproj/Main.xcstrings']
+    ['Composer/Composer/Base.lproj/Main.storyboard', 'Composer/Composer/mul.lproj/Main.xcstrings'],
+    ['Core/ComposerKit/Resources/Base.lproj/Preview.storyboard', 'Core/ComposerKit/Resources/mul.lproj/Preview.xcstrings']
   ].freeze
 
   def source_files(folder)
@@ -34,6 +36,38 @@ class LocalizationUpdate
     output, error, status = Open3.capture3('plutil', '-convert', 'json', '-o', '-', path)
     raise "plutil failed: #{error}" unless status.success?
     JSON.parse(output)
+  end
+
+  def check_metadata(app, root: ROOT)
+    plist = read_strings("#{root}/#{app}/#{app}/Info.plist")
+    catalog_path = "#{root}/#{app}/#{app}/InfoPlist.xcstrings"
+    catalog = JSON.parse(File.read(catalog_path))
+    project = File.read("#{root}/#{app}/#{app}.xcodeproj/project.pbxproj")
+    display_names = project.scan(/INFOPLIST_KEY_CFBundleDisplayName = "([^"]+)";/).flatten.uniq
+    raise "#{app}: inconsistent generated bundle display names" unless display_names == ["Folio #{app}"]
+    copyright = File.read("#{root}/Config/Suite.xcconfig")
+                    .match(/^INFOPLIST_KEY_NSHumanReadableCopyright = (.+)$/)&.captures&.first
+    raise 'Missing Suite copyright setting' unless copyright
+
+    type_names = plist.fetch('CFBundleDocumentTypes').map { |type| type.fetch('CFBundleTypeName') }
+    exported = plist.fetch('UTExportedTypeDeclarations')
+    descriptions = exported.map { |type| type.fetch('UTTypeDescription') }
+    icon_text = exported.map { |type| type.fetch('UTTypeIcons').fetch('UTTypeIconText') }
+    raise "#{app}: document type and exported description mismatch" unless type_names.sort == descriptions.sort
+    expected = {
+      'CFBundleDisplayName' => display_names.first,
+      'CFBundleName' => app,
+      'NSHumanReadableCopyright' => copyright
+    }
+    (type_names + icon_text).each { |value| expected[value] = value }
+    raise "#{app}: unexpected metadata catalog keys" unless catalog.fetch('strings').keys.sort == expected.keys.sort
+    expected.each do |key, value|
+      entry = catalog.fetch('strings').fetch(key)
+      english = entry.dig('localizations', 'en', 'stringUnit', 'value')
+      raise "#{app}: incorrect metadata English value for #{key}" unless english == value
+      raise "#{app}: missing metadata translator context for #{key}" if entry['comment'].to_s.empty?
+    end
+    puts "#{app}/#{app}/InfoPlist.xcstrings: #{expected.size} metadata strings"
   end
 
   def refresh(path, values, comments, write)
@@ -96,7 +130,7 @@ class LocalizationUpdate
         raise 'genstrings failed' unless system('xcrun', 'genstrings', '-q', '-o', output, *sources)
         strings = "#{output}/Localizable.strings"
         values = File.exist?(strings) ? read_strings(strings) : {}
-        # Empty service skeletons need no new resource until they contain text.
+        # Code targets without extracted user-facing strings need no catalog yet.
         next if values.empty? && !File.exist?("#{ROOT}/#{folder}/Localizable.xcstrings")
         comments = {}
         if File.exist?(strings)
@@ -130,6 +164,7 @@ class LocalizationUpdate
         end
         refresh("#{ROOT}/#{catalog}", values, comments, write)
       end
+      %w[Write Research Composer].each { |app| check_metadata(app) }
     end
   end
 end

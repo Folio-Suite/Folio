@@ -5,10 +5,12 @@
 // Recheck the resolved minimum when upgrading Xcode.
 MACOSX_DEPLOYMENT_TARGET = $(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)
 
-// Use Clang modules and scan/build their dependencies explicitly across the Suite.
-// Each Kit supplies its supported headers through its own <Kit>.modulemap.
+// Swift frameworks retain generated module metadata without authored headers.
 CLANG_ENABLE_MODULES = YES
 CLANG_ENABLE_EXPLICIT_MODULES = YES
+
+// The coordinated Suite installs the six Kits once in /Library/Frameworks.
+FOLIO_DISTRIBUTION = suite
 
 // Shipping builds do not need test-coverage counters or coverage mapping.
 // Debug retains Xcode's coverage setting for the test schemes.

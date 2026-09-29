@@ -167,8 +167,6 @@ the published pipeline preserves both Hardened Runtime and library validation.
 Actionlint 1.7.12 validation passed with only its unknown-label diagnostic excluded
 for the documented `xcode-27` preview runner.
 
-## Current Swift migration verification
+## Swift and distribution validation
 
-The September 24 results above predate the current Swift ports and TypographyKit/
-ComposerKit preview. Integrated signed native tests and final migration acceptance
-for the current source are pending; those earlier results do not cover this work.
+The Swift migration is recorded in the [migration acceptance record](verification/swift-migration-acceptance.md). Full repository checks now build both the shared-framework Suite and all three standalone apps. Standalone checks inspect embedded frameworks, Kit resources, sandbox configuration, and runtime dependencies. Signed native tests continue to use the Suite configuration. Distribution signing and installed acceptance remain separate from these development checks.

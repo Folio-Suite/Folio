@@ -22,7 +22,7 @@ SPDX-License-Identifier: MIT
 				<string>app.foliosuite.Research.Doc</string>
 			</array>
 			<key>NSDocumentClass</key>
-			<string>FRDocument</string>
+			<string>Research.ResearchDocument</string>
 			<key>LSTypeIsPackage</key>
 			<true/>
 		</dict>

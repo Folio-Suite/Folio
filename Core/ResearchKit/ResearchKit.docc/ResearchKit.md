@@ -9,15 +9,15 @@ Native Source Library package support for Folio Research.
 
 ## Overview
 
-ResearchKit owns the domain framework boundary for Source Library behavior. The Research application hosts the native document and currently preserves package members when saving.
+ResearchKit owns the domain framework boundary for Source Library behavior and its reusable window scene. The Research application hosts the native document and currently preserves package members when saving.
 
 ## Current support
 
-``ResearchLibraryPackage`` creates an empty native Source Library package and validates its catalog store. It retains additional package members, rejects live SQLite sidecars, and checks the catalog model version. This supports the current Research shell; it does not populate or edit a Source catalog.
+``ResearchLibraryPackage`` creates an empty native Source Library package and validates its catalog store. It retains additional package members, rejects live SQLite sidecars, and checks the catalog model version. ``ResearchLibraryWindow`` loads the placeholder Source Library window from ResearchKit's `Library.storyboard` on the main actor. This supports the current Research shell; it does not populate or edit a Source catalog.
 
 ## Public interface and hosting
 
-Swift callers import `ResearchKit` and use its public package API. The owning application uses the same public interface as other hosts. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
+Swift callers import `ResearchKit` and use its public package and window APIs. Hosts call ``ResearchLibraryWindow/makeWindowController()`` and attach the returned controller to their document. The owning application uses the same public interface as other hosts. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
 
 ## Limitations
 
@@ -28,3 +28,4 @@ Source catalog editing and cross-application service operations are not implemen
 ### Native packages
 
 - ``ResearchLibraryPackage``
+- ``ResearchLibraryWindow``

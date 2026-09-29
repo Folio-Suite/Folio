@@ -3,10 +3,31 @@
 # SPDX-License-Identifier: MIT
 
 require 'minitest/autorun'
+require 'fileutils'
 require 'tmpdir'
 require_relative '../update-localizations'
 
 class LocalizationsTest < Minitest::Test
+  def test_metadata_catalog_matches_registered_document_types_and_bundle_settings
+    Dir.mktmpdir do |directory|
+      sources = %w[Write/Write/Info.plist Write/Write/InfoPlist.xcstrings
+                   Write/Write.xcodeproj/project.pbxproj Config/Suite.xcconfig]
+      sources.each do |relative|
+        destination = File.join(directory, relative)
+        FileUtils.mkdir_p(File.dirname(destination))
+        FileUtils.cp(File.join(LocalizationUpdate::ROOT, relative), destination)
+      end
+      updater = LocalizationUpdate.new
+      capture_io { updater.check_metadata('Write', root: directory) }
+      catalog_path = File.join(directory, 'Write/Write/InfoPlist.xcstrings')
+      catalog = JSON.parse(File.read(catalog_path))
+      catalog.fetch('strings').fetch('Folio Write Document')
+             .fetch('localizations').fetch('en').fetch('stringUnit')['value'] = 'Outdated type'
+      File.write(catalog_path, JSON.generate(catalog))
+      assert_raises(RuntimeError) { updater.check_metadata('Write', root: directory) }
+    end
+  end
+
   def test_swift_and_objective_c_sources_are_extracted
     Dir.mktmpdir do |directory|
       %w[Labels.h Model.m Adapter.mm Values.swift Ignored.txt].each { |name| File.write(File.join(directory, name), '') }

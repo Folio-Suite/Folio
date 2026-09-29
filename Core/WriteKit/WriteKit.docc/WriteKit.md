@@ -31,6 +31,8 @@ document.addWindowController(windowController)
 
 The editor loads its interface from WriteKit's bundled `Editor.storyboard`; the host does not provide a storyboard or construct the controls. The host supplies saving and edited-state tracking through ``ManuscriptViewController/workDidChange``. Capture the host weakly in that callback. Save with ``Work/fileWrapper()`` and handle the thrown error; producing an in-memory package does not write a destination file. Reopen with ``Work/init(fileWrapper:)``. A document host passes one `UndoManager` to all editors in a Work.
 
+The editor and host menus use ``FormattingImages`` for the semantic Emphasis symbols. The images live in WriteKit's asset catalog, so a host should request them through this API when configuring its own menu items.
+
 ### Formatting behavior
 
 The italic E and bold E toolbar controls apply semantic Emphasis and Strong Emphasis. Option-click applies explicit Italic or Bold. The Format menu provides the same actions: Command-I/B applies semantic formatting, and Option-Command-I/B applies explicit formatting. Clear Formatting removes semantic and explicit character formatting while preserving paragraph alignment.
@@ -54,3 +56,4 @@ The Manuscript supports a flat list of text Content Units. Adding, renaming, and
 - ``Work``
 - ``EditorViewController``
 - ``ManuscriptViewController``
+- ``FormattingImages``

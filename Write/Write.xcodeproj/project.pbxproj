@@ -190,6 +190,7 @@
 				A106484E304DFCF6001A21A6 /* Frameworks */,
 				A106484F304DFCF6001A21A6 /* Resources */,
 				A1CCD14830573F86004B4721 /* Embed XPC Services */,
+				D80000000000000000000001 /* Embed standalone Kits */,
 			);
 			buildRules = (
 			);
@@ -282,7 +283,6 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				CLASSPREFIX = FW;
 				LastUpgradeCheck = 2700;
 				ORGANIZATIONNAME = "the Folio Project";
 				TargetAttributes = {
@@ -359,6 +359,36 @@
 			);
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D80000000000000000000001 /* Embed standalone Kits */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = ();
+			inputPaths = (
+				"$(SRCROOT)/../scripts/embed-standalone-frameworks.sh",
+				"$(BUILT_PRODUCTS_DIR)/FolioKit.framework",
+				"$(BUILT_PRODUCTS_DIR)/WriteKit.framework",
+				"$(BUILT_PRODUCTS_DIR)/ResearchKit.framework",
+				"$(BUILT_PRODUCTS_DIR)/ComposerKit.framework",
+				"$(BUILT_PRODUCTS_DIR)/UndoKit.framework",
+				"$(BUILT_PRODUCTS_DIR)/TypographyKit.framework",
+			);
+			name = "Embed standalone Kits";
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/FolioKit.framework",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/WriteKit.framework",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ResearchKit.framework",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ComposerKit.framework",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/UndoKit.framework",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/TypographyKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "\"${SRCROOT}/../scripts/embed-standalone-frameworks.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A106484D304DFCF6001A21A6 /* Sources */ = {
@@ -728,8 +758,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../../../../Frameworks",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
-				);
+					);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteXPCService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -755,8 +784,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../../../../Frameworks",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
-				);
+					);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteXPCService;
 				PRODUCT_NAME = "$(TARGET_NAME)";

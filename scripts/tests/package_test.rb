@@ -44,12 +44,10 @@ class PackagePayloadTest < Minitest::Test
       end
       resources = %w[Write.app/Contents/Resources/Base.lproj/Main.storyboardc/MainMenu.nib
         Research.app/Contents/Resources/Base.lproj/Main.storyboardc/MainMenu.nib
-        Research.app/Contents/Resources/Base.lproj/Main.storyboardc/Document\ Window\ Controller.nib
+        ResearchKit.framework/Resources/Base.lproj/Library.storyboardc/Document\ Window\ Controller.nib
         Composer.app/Contents/Resources/Base.lproj/Main.storyboardc/MainMenu.nib
-        Composer.app/Contents/Resources/Base.lproj/Main.storyboardc/Document\ Window\ Controller.nib
-        Research.app/Contents/Resources/FRDocument.momd/FRDocument.mom
-        Composer.app/Contents/Resources/Document.momd/Document.mom
-        WriteKit.framework/Resources/FWWork.momd/FWWorkV1.mom
+        ComposerKit.framework/Resources/Base.lproj/Preview.storyboardc/Document\ Window\ Controller.nib
+        WriteKit.framework/Resources/Work.momd/WorkV1.mom
         WriteKit.framework/Resources/Base.lproj/Editor.storyboardc/EditorWindow.nib
         WriteKit.framework/Resources/Base.lproj/Editor.storyboardc/Editor.nib
         WriteKit.framework/Resources/Assets.car]
@@ -116,7 +114,7 @@ class PackagePayloadTest < Minitest::Test
       manifest = JSON.parse(File.read(File.join(output, 'package.json')))
       assert_equal '7', manifest['identity']['build']
       assert_equal 64, manifest['package_sha256'].size
-      missing_resource = File.join(products, 'WriteKit.framework/Resources/FWWork.momd/FWWorkV1.mom')
+      missing_resource = File.join(products, 'WriteKit.framework/Resources/Work.momd/WorkV1.mom')
       File.unlink(missing_resource)
       message, status = Open3.capture2e('ruby', File.expand_path('../package.rb', __dir__),
         '--candidate', candidate, '--products', products, '--output', output + '-no-model')
