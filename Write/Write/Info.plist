@@ -24,7 +24,7 @@ SPDX-License-Identifier: MIT
 			<key>LSTypeIsPackage</key>
 			<true/>
 			<key>NSDocumentClass</key>
-			<string>FWDocument</string>
+			<string>Write.WriteDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>

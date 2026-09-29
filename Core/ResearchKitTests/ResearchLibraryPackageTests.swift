@@ -1,12 +1,22 @@
 // SPDX-FileCopyrightText: 2026 the Folio Project
 // SPDX-License-Identifier: MIT
 
+import AppKit
 import CoreData
 import Foundation
 import ResearchKit
 import XCTest
 
 final class ResearchLibraryPackageTests: XCTestCase {
+    @MainActor
+    func testLibraryWindowLoadsFromResearchKit() throws {
+        let controller = ResearchLibraryWindow.makeWindowController()
+        XCTAssertNotNil(controller.window)
+        let content = try XCTUnwrap(controller.contentViewController)
+        XCTAssertEqual(NSStringFromClass(type(of: content)), "ResearchKit.LibraryViewController")
+        XCTAssertNotNil(content.view)
+    }
+
     func testEmptyPackageCreatesClosedCatalogStore() throws {
         let package = try ResearchLibraryPackage.empty()
 

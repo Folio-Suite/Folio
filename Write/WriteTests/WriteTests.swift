@@ -8,6 +8,10 @@ import XCTest
 @testable import Write
 
 @MainActor final class WriteTests: XCTestCase {
+    func testDocumentRegistrationUsesWriteDocument() {
+        XCTAssertTrue(NSDocumentController.shared.documentClass(forType: workDocumentType) === WriteDocument.self)
+    }
+
     private func titleField(in view: NSView) -> NSTextField? {
         if let field = view as? NSTextField, field.identifier?.rawValue == "contentUnitTitle" { return field }
         for child in view.subviews {

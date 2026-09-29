@@ -43,4 +43,5 @@ done
 bash TypographyKit/Tests/run.sh "$products"
 ruby scripts/check-kit-interfaces.rb "$products"
 ruby scripts/release.rb verify --products "$products"
-echo 'Suite build and framework product checks passed; installed runtime layout is not validated.'
+bash scripts/build-standalone.sh Folio --derived-data "$build_dir/standalone" --unsigned
+echo 'Suite and standalone builds, resources, and framework interfaces passed.'

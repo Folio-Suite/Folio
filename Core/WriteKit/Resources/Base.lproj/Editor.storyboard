@@ -9,7 +9,7 @@
         <!--Editor View Controller-->
         <scene sceneID="editor-scene">
             <objects>
-                <viewController storyboardIdentifier="Editor" id="editor" customClass="FWEditorViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Editor" id="editor" customClass="EditorViewController" customModule="WriteKit" sceneMemberID="viewController">
                     <view key="view" id="editor-view">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -20,7 +20,7 @@
                                     <rect key="frame" x="1" y="1" width="798" height="598"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" verticallyResizable="YES" allowsUndo="YES" id="text" customClass="FWTextView">
+                                        <textView importsGraphics="NO" verticallyResizable="YES" allowsUndo="YES" id="text" customClass="EditorTextView" customModule="WriteKit">
                                             <rect key="frame" x="0.0" y="0.0" width="798" height="598"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -93,7 +93,7 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
         <!--Window Controller-->
         <scene sceneID="FW-window-scene">
             <objects>
-                <windowController storyboardIdentifier="EditorWindow" id="FW-window-controller" customClass="FWEditorWindowController" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="EditorWindow" id="FW-window-controller" customClass="EditorWindowController" customModule="WriteKit" sceneMemberID="viewController">
                     <window key="window" title="Untitled" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="WriteEditor" animationBehavior="default" id="FW-window" userLabel="Untitled">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -102,11 +102,11 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
                         <value key="minSize" type="size" width="620" height="388"/>
                         <toolbar key="toolbar" implicitIdentifier="FolioWriteFormattingToolbar" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="formatting-toolbar">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.emphasis" label="Emphasis" paletteLabel="Emphasis" image="Emphasis" title="Emphasis" sizingBehavior="auto" id="toolbar-emphasis" userLabel="Emphasis">
+                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.emphasis" label="Emphasis" paletteLabel="Emphasis" title="Emphasis" sizingBehavior="auto" id="toolbar-emphasis" userLabel="Emphasis">
                                     <button key="view" toolTip="Emphasis. Option-click for explicit Italic." id="emphasis" userLabel="Emphasis. Option-click for explicit Italic.">
                                         <rect key="frame" x="9" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="push" title="Emphasis" bezelStyle="rounded" image="Emphasis" imagePosition="only" alignment="center" borderStyle="border" allowsMixedState="YES" id="emphasis-cell" userLabel="Emphasis">
+                                        <buttonCell key="cell" type="push" title="Emphasis" bezelStyle="rounded" imagePosition="only" alignment="center" borderStyle="border" allowsMixedState="YES" id="emphasis-cell" userLabel="Emphasis">
                                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -119,11 +119,11 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.strong" label="Strong Emphasis" paletteLabel="Strong Emphasis" image="StrongEmphasis" title="Strong Emphasis" sizingBehavior="auto" id="toolbar-strong" userLabel="Strong Emphasis">
+                                <toolbarItem implicitItemIdentifier="dev.foliosuite.Write.strong" label="Strong Emphasis" paletteLabel="Strong Emphasis" title="Strong Emphasis" sizingBehavior="auto" id="toolbar-strong" userLabel="Strong Emphasis">
                                     <button key="view" toolTip="Strong Emphasis. Option-click for explicit Bold." id="strong" userLabel="Strong Emphasis. Option-click for explicit Bold.">
                                         <rect key="frame" x="28" y="14" width="40" height="28"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="push" title="Strong Emphasis" bezelStyle="rounded" image="StrongEmphasis" imagePosition="only" alignment="center" borderStyle="border" allowsMixedState="YES" id="strong-cell" userLabel="Strong Emphasis">
+                                        <buttonCell key="cell" type="push" title="Strong Emphasis" bezelStyle="rounded" imagePosition="only" alignment="center" borderStyle="border" allowsMixedState="YES" id="strong-cell" userLabel="Strong Emphasis">
                                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -254,7 +254,7 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
         <!--Appearance View Controller-->
         <scene sceneID="appearance-scene">
             <objects>
-                <viewController storyboardIdentifier="Appearance" id="appearance-controller" customClass="FWAppearanceViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Appearance" id="appearance-controller" customClass="AppearanceViewController" customModule="WriteKit" sceneMemberID="viewController">
                     <view key="view" id="appearance-view">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="190"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -381,7 +381,7 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
         <!--Formatting Warning View Controller-->
         <scene sceneID="conflict-marker-scene">
             <objects>
-                <viewController storyboardIdentifier="FormattingConflictMarker" id="conflict-marker-controller" customClass="FWFormattingWarningViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FormattingConflictMarker" id="conflict-marker-controller" customClass="FormattingWarningViewController" customModule="WriteKit" sceneMemberID="viewController">
                     <view key="view" id="conflict-marker-view">
                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -410,7 +410,7 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
         <!--Formatting Warning View Controller-->
         <scene sceneID="conflict-detail-scene">
             <objects>
-                <viewController storyboardIdentifier="FormattingConflict" id="conflict-detail-controller" customClass="FWFormattingWarningViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FormattingConflict" id="conflict-detail-controller" customClass="FormattingWarningViewController" customModule="WriteKit" sceneMemberID="viewController">
                     <view key="view" id="conflict-detail-view">
                         <rect key="frame" x="0.0" y="0.0" width="380" height="170"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -467,7 +467,7 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
         <!--Manuscript View Controller-->
         <scene sceneID="manuscript-scene">
             <objects>
-                <viewController storyboardIdentifier="Manuscript" id="manuscript-controller" customClass="FWManuscriptViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Manuscript" id="manuscript-controller" customClass="ManuscriptViewController" customModule="WriteKit" sceneMemberID="viewController">
                     <view key="view" id="manuscript-view">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -598,8 +598,6 @@ The Appearance popover offers Bold, Italic, Underline, and Strikethrough. Option
         </scene>
     </scenes>
     <resources>
-        <image name="Emphasis" width="8" height="10"/>
-        <image name="StrongEmphasis" width="6" height="10"/>
         <image name="arrow.down" catalog="system" width="13" height="14"/>
         <image name="arrow.up" catalog="system" width="13" height="14"/>
         <image name="bold" catalog="system" width="11" height="12"/>

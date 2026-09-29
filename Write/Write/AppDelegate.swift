@@ -3,6 +3,6 @@
 
 import AppKit
 
-@MainActor @objc(AppDelegate) final class AppDelegate: NSObject, NSApplicationDelegate {
+@MainActor final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool { true }
 }

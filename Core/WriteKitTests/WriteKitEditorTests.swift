@@ -21,6 +21,19 @@ import XCTest
         undo.endUndoGrouping()
     }
 
+    func testSemanticToolbarImagesLoadFromWriteKit() throws {
+        let (_, _, editor) = makeEditor()
+        let controller = editor.makeWindowController()
+        defer { controller.close() }
+        let items = try XCTUnwrap(controller.window?.toolbar?.items)
+        for identifier in ["dev.foliosuite.Write.emphasis", "dev.foliosuite.Write.strong"] {
+            let item = try XCTUnwrap(items.first { $0.itemIdentifier.rawValue == identifier })
+            let button = try XCTUnwrap(item.view as? NSButton)
+            XCTAssertNotNil(item.image, identifier)
+            XCTAssertNotNil(button.image, identifier)
+        }
+    }
+
     func testExclusiveEmphasisPreservesPresentationAndSplitsOnlyTheSelectedWord() throws {
         let (work, undo, editor) = makeEditor()
         grouped(undo) {

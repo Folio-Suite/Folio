@@ -15,8 +15,17 @@ ComposerKit owns publication meaning and adapts it to the independent Typography
 
 A ``PublicationPreviewInput`` identifies caller-owned source text and supplies exact UTF-16 line breaks and a width. ``ComposerPreview/compose(_:)`` adapts it to TypographyKit with the preview's fixed Latin, left-to-right Times typography. The returned immutable result retains source identity, geometry and structured diagnostics. Its drawing uses the same result that supplies those relationships.
 
-``CompositionPreviewView`` is a reusable AppKit canvas, loaded by the Composer storyboard. Call ``CompositionPreviewView/show(_:)`` on the main actor. The canvas visibly and accessibly distinguishes complete, unsupported and infeasible results. Composer's initial window displays a controlled specimen through this public interface; it does not open or save an Arrangement.
+``CompositionPreviewView`` is a reusable AppKit canvas, loaded by ComposerKit's `Preview.storyboard`. Call ``CompositionPreviewWindow/makeWindowController(input:)`` on the main actor to create its window with caller-owned input. The canvas visibly and accessibly distinguishes complete, unsupported and infeasible results. Composer's initial window displays a controlled specimen through this public interface; it does not open or save an Arrangement.
 
 ## Public interface and hosting
 
 Use `import ComposerKit`. The owning application uses the same public interface as other hosts. AppKit presentation is main-actor isolated; the composition adapter is synchronous. TypographyKit retains neutral text shaping and geometry without acquiring Folio objects or storage. Apps and Kits ship as one coordinated Suite version.
+
+## Topics
+
+### Preview
+
+- ``PublicationPreviewInput``
+- ``ComposerPreview``
+- ``CompositionPreviewView``
+- ``CompositionPreviewWindow``

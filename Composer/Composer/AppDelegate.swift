@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: MIT
 
 import AppKit
+import ComposerKit
 
 @MainActor
-@objc(AppDelegate)
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var previewWindow: NSWindowController?
 
@@ -19,8 +19,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func showPreview() {
         if previewWindow == nil {
-            previewWindow = NSStoryboard(name: "Main", bundle: nil)
-                .instantiateController(withIdentifier: "Document Window Controller") as? NSWindowController
+            let first = "Folio composes authored text."
+            let second = "Source identity stays with the publication."
+            let input = PublicationPreviewInput(sourceIdentifier: "composer-preview-specimen",
+                text: first + second, selectedBreaks: [first.utf16.count, first.utf16.count + second.utf16.count],
+                lineWidth: 430)
+            previewWindow = CompositionPreviewWindow.makeWindowController(input: input)
         }
         previewWindow?.showWindow(nil)
     }
