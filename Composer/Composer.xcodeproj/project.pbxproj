@@ -285,7 +285,6 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				CLASSPREFIX = FC;
 				LastUpgradeCheck = 2700;
 				ORGANIZATIONNAME = "the Folio Project";
 				TargetAttributes = {

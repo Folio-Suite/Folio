@@ -45,7 +45,8 @@ Verified locally with Xcode 27 on macOS 27:
 
 - Clean, signed universal Suite build; all 58 native tests passed, with no skips.
   New checks exercise public Kit window factories and document class registration.
-  Existing old-writer package fixtures still reopen.
+  Existing old-writer package fixtures still reopen. A subsequent focused run of
+  all 24 WriteKit tests passes, including the custom toolbar image regression.
 - External Swift consumers compile for arm64 and x86_64; private declarations
   are rejected, and TypographyKit/UndoKit import independently.
 - All six Kit documentation archives build. TypographyKit's independent public
@@ -54,6 +55,13 @@ Verified locally with Xcode 27 on macOS 27:
   translations match the source catalogs.
 - Team signing, Hardened Runtime, library validation, and coordinated product
   identities pass for the Suite build.
+- Signed standalone builds pass dependency, resource, sandbox-entitlement, and
+  signature checks for all three apps. Relocated copies launch without DYLD
+  overrides and map their Kits from their embedded frameworks. All three bundled
+  services respond with matching nonces from a sandboxed XPC probe.
+- The 25 Ruby tooling tests pass (156 assertions). Independent Standards review
+  found no issues. Spec review caught five legacy Xcode class-prefix settings;
+  those template settings are removed.
 
 Full development CI also builds and checks all three unsigned standalone apps;
 signed native tests use the Suite layout. This is development composition
