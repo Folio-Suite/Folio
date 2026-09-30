@@ -22,6 +22,11 @@ semantic effects and durable outcome receipts. See the public DocC catalog and
 
 Public declarations are grouped in `UndoKit/Interface/`; persistence, transaction
 coordination and storage implementations live in `UndoKit/Modules/History/`.
+`Interface/HistoryReconstruction.swift`, `HistoryRecoveryPlanning.swift` and
+`HistoryPresentation.swift` describe reconstruction and presentation.
+`HistoryRetention.swift`, `HistoryRetentionHolds.swift`,
+`HistoryConsolidation.swift` and `HistoryRetentionResources.swift` expose
+holds, consolidation and cross-scope resource maintenance.
 Folio's translation layer lives in `Core/WriteKit/WorkAdapter/`; UndoKit imports
 no Folio domain framework. The Core Data model is bundled from
 `UndoKit/Resources/`.
@@ -44,13 +49,18 @@ observations and documented mechanism gaps; the first production bridge extends 
 
 The accepted [store-lifecycle contract](docs/store-lifecycle-contract.md) defines
 host-registered document stores, an Application Support default for app-owned
-history, safe opening/closing, copying, migration and capacity handling. Measured
-limits remain provisional; accepted storage and scale evidence is linked below.
+history, safe opening/closing, copying, migration and capacity handling. The
+physical `HistoryStore` now supports multiple ordered scopes, one writer, read-only
+inspection, coordinated whole-store copies and asynchronous closure. Structural
+migration and measured production limits remain future work.
 
 The accepted [measurement plan](docs/acceptance-measurement-plan.md) specifies
 mandatory workloads through 100,000 retained groups, optional multi-GiB payload
 experiments, runner safeguards and evidence for all four proofs. Timing targets
 are advisory; candidate production limits require measurement and review.
+
+See [retention implementation and measurements](docs/retention-implementation.md)
+for the supported maintenance boundary and guarded production-engine case.
 
 ## Disposable proofs
 
@@ -86,11 +96,14 @@ carry the Folio Project's MIT SPDX notices.
 
 ## Scope of this implementation
 
-The initial public host adapter is main-actor isolated and opens one scope per
-physical store. It supports bounded groups and full checkpoint payloads. Retention
-holds, pruning, recording controls, explicit reset, resource cleanup, other actor
-adapters and large paged reconstruction remain follow-up work. The current format
-is the first concrete pre-alpha format; no legacy storage migration is required.
+The public typed host adapters support main-actor and actor-owned models, with
+host-registered codecs for current writes and earlier payload versions. A physical
+store supports independent scopes, bounded groups, full checkpoint payloads,
+durable state and detail holds, bounded consolidation, opaque resource references
+and serialized host cleanup across scopes. See the DocC retention guide and
+[reconstruction](docs/history-reconstruction.md) for bounded historical reads and
+presentation metadata. Recording controls and explicit generation reset remain
+follow-up work. The current format is pre-alpha; no legacy migration is required.
 
 Run the independent tests with `swift test --package-path UndoKit`, or use the
 signed Xcode UndoKit scheme. Work integration tests use Core; native document

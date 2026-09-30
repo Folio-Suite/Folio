@@ -7,7 +7,9 @@
         <attribute name="workingID" attributeType="String"/>
         <attribute name="generationID" attributeType="String"/>
         <attribute name="nextSequence" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="committedVersion" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="suspended" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="latestAcceptedSequence" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <uniquenessConstraints><uniquenessConstraint><constraint value="key"/></uniquenessConstraint></uniquenessConstraints>
     </entity>
     <entity name="HistoryTransactionRecord" representedClassName="NSManagedObject" syncable="YES">
@@ -18,12 +20,19 @@
         <attribute name="generationID" attributeType="String"/>
         <attribute name="sequence" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="stage" attributeType="String"/>
+        <attribute name="failureCause" optional="YES" attributeType="String"/>
+        <attribute name="failureStage" optional="YES" attributeType="String"/>
+        <attribute name="failureDescription" optional="YES" attributeType="String"/>
         <attribute name="kind" attributeType="String"/>
         <attribute name="groupID" attributeType="String"/>
         <attribute name="targetGroupID" optional="YES" attributeType="String"/>
         <attribute name="restorationOrigin" optional="YES" attributeType="String"/>
         <attribute name="memberCount" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="recordedAt" attributeType="Date"/>
+        <attribute name="presentationFamily" optional="YES" attributeType="String"/>
+        <attribute name="presentationVersion" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="presentationPayload" optional="YES" attributeType="Binary"/>
+        <attribute name="presentationDigest" optional="YES" attributeType="Binary"/>
         <relationship name="members" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HistoryMemberRecord" inverseName="transaction" inverseEntity="HistoryMemberRecord"/>
         <uniquenessConstraints><uniquenessConstraint><constraint value="key"/></uniquenessConstraint></uniquenessConstraints>
     </entity>
@@ -57,8 +66,13 @@
         <attribute name="restorationOrigin" optional="YES" attributeType="String"/>
         <attribute name="memberCount" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="recordedAt" attributeType="Date"/>
+        <attribute name="presentationFamily" optional="YES" attributeType="String"/>
+        <attribute name="presentationVersion" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="presentationPayload" optional="YES" attributeType="Binary"/>
+        <attribute name="presentationDigest" optional="YES" attributeType="Binary"/>
         <relationship name="actions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HistoryActionRecord" inverseName="group" inverseEntity="HistoryActionRecord"/>
-        <uniquenessConstraints><uniquenessConstraint><constraint value="key"/></uniquenessConstraint></uniquenessConstraints>
+        <attribute name="previousAcceptedSequence" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <uniquenessConstraints><uniquenessConstraint><constraint value="scopeKey"/><constraint value="key"/></uniquenessConstraint></uniquenessConstraints>
     </entity>
     <entity name="HistoryActionRecord" representedClassName="NSManagedObject" syncable="YES">
         <attribute name="key" attributeType="String"/>
@@ -87,6 +101,54 @@
         <attribute name="version" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="state" attributeType="Binary"/>
         <attribute name="stateDigest" attributeType="Binary"/>
+        <attribute name="latestAcceptedSequence" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <uniquenessConstraints><uniquenessConstraint><constraint value="scopeKey"/><constraint value="key"/></uniquenessConstraint></uniquenessConstraints>
+    </entity>
+    <entity name="HistoryStoreRecord" representedClassName="NSManagedObject" syncable="YES">
+        <attribute name="key" attributeType="String"/>
+        <attribute name="workingID" attributeType="String"/>
+        <attribute name="storeID" attributeType="String"/>
+        <uniquenessConstraints><uniquenessConstraint><constraint value="key"/></uniquenessConstraint></uniquenessConstraints>
+    </entity>
+    <entity name="HistoryGapRecord" representedClassName="NSManagedObject" syncable="YES">
+        <attribute name="key" attributeType="String"/>
+        <attribute name="scopeKey" attributeType="String"/>
+        <attribute name="generationID" attributeType="String"/>
+        <attribute name="lowerExclusiveSequence" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="upperInclusiveSequence" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <uniquenessConstraints><uniquenessConstraint><constraint value="key"/></uniquenessConstraint></uniquenessConstraints>
+    </entity>
+    <entity name="HistoryHoldRecord" representedClassName="NSManagedObject" syncable="YES">
+        <attribute name="key" attributeType="String"/>
+        <attribute name="scopeKey" attributeType="String"/>
+        <attribute name="generationID" attributeType="String"/>
+        <attribute name="kind" attributeType="String"/>
+        <attribute name="checkpointID" optional="YES" attributeType="String"/>
+        <attribute name="lowerSequence" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="upperSequence" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <uniquenessConstraints><uniquenessConstraint><constraint value="key"/></uniquenessConstraint></uniquenessConstraints>
+    </entity>
+    <entity name="HistoryResourceRecord" representedClassName="NSManagedObject" syncable="YES">
+        <attribute name="key" attributeType="String"/>
+        <attribute name="storeID" attributeType="String"/>
+        <attribute name="objectKey" attributeType="String"/>
+        <attribute name="versionKey" optional="YES" attributeType="String"/>
+        <attribute name="ownerType" attributeType="String"/>
+        <attribute name="ownerKey" attributeType="String"/>
+        <uniquenessConstraints><uniquenessConstraint><constraint value="key"/></uniquenessConstraint></uniquenessConstraints>
+    </entity>
+    <entity name="HistoryRetiredCommandRecord" representedClassName="NSManagedObject" syncable="YES">
+        <attribute name="key" attributeType="String"/>
+        <attribute name="fingerprint" attributeType="Binary"/>
+        <attribute name="generationID" attributeType="String"/>
+        <attribute name="sequence" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="groupID" attributeType="String"/>
+        <attribute name="commandID" attributeType="String"/>
+        <attribute name="scopeKey" attributeType="String"/>
+        <uniquenessConstraints><uniquenessConstraint><constraint value="key"/></uniquenessConstraint></uniquenessConstraints>
+    </entity>
+    <entity name="HistoryCleanupRecord" representedClassName="NSManagedObject" syncable="YES">
+        <attribute name="key" attributeType="String"/>
         <uniquenessConstraints><uniquenessConstraint><constraint value="key"/></uniquenessConstraint></uniquenessConstraints>
     </entity>
 </model>

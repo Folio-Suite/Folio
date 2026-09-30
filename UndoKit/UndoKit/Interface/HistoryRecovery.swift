@@ -15,10 +15,17 @@ extension HistoryEngine {
         case "rejected":
             return .rejected
         case "cancelled":
+            if let causeName = transaction.string("failureCause"),
+               let stageName = transaction.string("failureStage"),
+               let cause = HistoryFailureCause(rawValue: causeName),
+               let stage = HistoryFailureStage(rawValue: stageName) {
+                return .failure(HistoryFailure(cause, stage: stage, disposition: .usable,
+                                               underlyingDescription: transaction.string("failureDescription")))
+            }
             return .failure(HistoryFailure(.busy, stage: .reconciliation, disposition: .usable))
         case "prepared":
             transaction.setValue("cancelled", forKey: "stage")
-            do { try context.save() } catch { context.rollback() }
+            do { try saveContext() } catch { context.rollback() }
             return .failure(HistoryFailure(.busy, stage: .reconciliation, disposition: .usable))
         case "acceptancePending":
             return finalize(transaction, accepting: true)
@@ -42,7 +49,13 @@ extension HistoryEngine {
     private func reconcileDelivered(_ transaction: NSManagedObject) async -> HistoryResult {
         do {
             let token = try token(for: transaction)
-            let outcome = await host.outcome(for: token)
+            let activeStores = HistoryStore.deliveringStores.union([ObjectIdentifier(store)])
+            let outcome = await HistoryStore.$deliveringStores.withValue(activeStores) {
+                let activeEngines = HistoryHostCallbackContext.activeEngines.union([ObjectIdentifier(self)])
+                return await HistoryHostCallbackContext.$activeEngines.withValue(activeEngines) {
+                    await host.outcome(for: token)
+                }
+            }
             return await finish(transactionKey: transaction.string("key") ?? "", outcome: outcome)
         } catch {
             suspend()
@@ -65,7 +78,11 @@ extension HistoryEngine {
     /// Rechecks a suspended transaction against authoritative host evidence.
     /// This never redelivers an operation whose delivery may have started.
     public func reconcile() async -> HistoryResult? {
-        guard !draining, !closed, !closing, !reconciling else {
+        if store.writeFailed {
+            return .failure(HistoryFailure(.storage, stage: .reconciliation, disposition: .suspended))
+        }
+        guard !draining, !closed, !closing, !reconciling, !store.closing,
+              !store.closed, !store.maintenance else {
             return .failure(HistoryFailure(.busy, stage: .reconciliation,
                                            disposition: closing ? .suspended : .usable))
         }

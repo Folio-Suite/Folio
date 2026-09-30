@@ -3,6 +3,10 @@
 
 import Foundation
 
+enum HistoryHostCallbackContext {
+    @TaskLocal static var activeEngines: Set<ObjectIdentifier> = []
+}
+
 /// An opaque, versioned value supplied and interpreted by a history host.
 public struct HistoryPayload: Equatable, Sendable {
     public let family: String
@@ -35,17 +39,23 @@ public struct HistoryCommand: Equatable, Sendable {
     public let fingerprint: Data
     public let members: [HistoryMember]
     public let restorationOrigin: UUID?
+    /// Small host-authored display data. It is never required to recover an effect.
+    public let presentation: HistoryPayload?
 
-    public init(id: UUID = UUID(), fingerprint: Data, members: [HistoryMember], restorationOrigin: UUID? = nil) {
+    public init(id: UUID = UUID(), fingerprint: Data, members: [HistoryMember],
+                restorationOrigin: UUID? = nil, presentation: HistoryPayload? = nil) {
         self.id = id
         self.fingerprint = fingerprint
         self.members = members
         self.restorationOrigin = restorationOrigin
+        self.presentation = presentation
     }
 
-    public init(id: UUID = UUID(), fingerprint: Data, payload: HistoryPayload, restorationOrigin: UUID? = nil) {
+    public init(id: UUID = UUID(), fingerprint: Data, payload: HistoryPayload,
+                restorationOrigin: UUID? = nil, presentation: HistoryPayload? = nil) {
         self.init(id: id, fingerprint: fingerprint,
-                  members: [HistoryMember(id: id, payload: payload)], restorationOrigin: restorationOrigin)
+                  members: [HistoryMember(id: id, payload: payload)],
+                  restorationOrigin: restorationOrigin, presentation: presentation)
     }
 }
 
@@ -89,11 +99,15 @@ public struct HistoryEffect: Equatable, Sendable {
     public let memberID: UUID
     public let undo: HistoryPayload
     public let redo: HistoryPayload
+    /// Opaque dependencies of this accepted effect, including versions required by recovery.
+    public let resources: [HistoryObjectReference]
 
-    public init(memberID: UUID, undo: HistoryPayload, redo: HistoryPayload) {
+    public init(memberID: UUID, undo: HistoryPayload, redo: HistoryPayload,
+                resources: [HistoryObjectReference] = []) {
         self.memberID = memberID
         self.undo = undo
         self.redo = redo
+        self.resources = resources
     }
 }
 
@@ -103,12 +117,16 @@ public enum HistoryHostOutcome: Equatable, Sendable {
     case accepted([HistoryEffect])
     case rejected
     case unresolved
+    /// A callback may report a known pre-effect failure. Failures after a possible
+    /// semantic effect must remain `unresolved` until authoritative lookup.
+    case failure(HistoryFailure)
 }
 
 /// A host adapter must persist an accepted receipt with its semantic mutation.
-/// Callbacks run on the main actor in this first slice and must not await reentrant
-/// submission to the same scope. Outcome lookup never applies a command again.
-@MainActor public protocol HistoryHost: AnyObject {
+/// Implementations may be isolated to any actor. Only opaque, Sendable history
+/// values cross this boundary; domain values remain on the host's actor.
+/// Outcome lookup never applies a command again.
+public protocol HistoryHost: AnyObject, Sendable {
     /// Applies all members atomically or proves that none took effect.
     func deliver(_ delivery: HistoryDelivery) async -> HistoryHostOutcome
     /// Reads authoritative durable evidence for an already prepared token.
@@ -118,6 +136,12 @@ public enum HistoryHostOutcome: Equatable, Sendable {
 /// Broad failure categories independent of a host's domain vocabulary.
 public enum HistoryFailureCause: String, Sendable {
     case storage, capacity, identityConflict, invalidInput, hostProtocol, unresolved, busy, compatibility, cancelled
+    /// A host expected registered history, but no database exists at that location.
+    case missingHistory
+    /// Existing bytes are not a readable SQLite history database.
+    case corruptHistory
+    /// The expected location exists but cannot currently be opened.
+    case unavailableStore
 }
 
 /// The transaction stage at which completion failed.
@@ -193,16 +217,19 @@ public struct HistoryLimits: Equatable, Sendable {
     public var maxStoreBytes: Int64
     public var maxUndoGroups: Int
     public var maxReadPage: Int
+    public var maxRecoveryPlans: Int
 
     public init(maxPayloadBytes: Int = 8 * 1024 * 1024, maxMembers: Int = 100,
                 maxQueueDepth: Int = 64, maxStoreBytes: Int64 = 2 * 1024 * 1024 * 1024,
-                maxUndoGroups: Int = 1_000, maxReadPage: Int = 100) {
+                maxUndoGroups: Int = 1_000, maxReadPage: Int = 100,
+                maxRecoveryPlans: Int = 32) {
         self.maxPayloadBytes = maxPayloadBytes
         self.maxMembers = maxMembers
         self.maxQueueDepth = maxQueueDepth
         self.maxStoreBytes = maxStoreBytes
         self.maxUndoGroups = maxUndoGroups
         self.maxReadPage = maxReadPage
+        self.maxRecoveryPlans = maxRecoveryPlans
     }
 }
 

@@ -6,7 +6,15 @@ import CryptoKit
 import Foundation
 
 extension HistoryEngine {
-    func register(workingIdentity: UUID, mode: HistoryOpenMode) throws {
+    func saveContext() throws {
+        do { try context.save() } catch {
+            context.rollback()
+            store.noteWriteFailure()
+            throw error
+        }
+    }
+
+    func register(mode: HistoryScopeOpenMode) throws {
         let key = scope.uuidString
         let row = try fetchOne("HistoryScopeRecord", key: key)
         switch mode {
@@ -14,26 +22,25 @@ extension HistoryEngine {
             guard row == nil else { throw HistoryFailure(.identityConflict, stage: .admission, disposition: .usable) }
             let new = insert("HistoryScopeRecord")
             new.setValue(key, forKey: "key")
-            new.setValue(workingIdentity.uuidString, forKey: "workingID")
+            new.setValue(store.workingIdentity.uuidString, forKey: "workingID")
             new.setValue(UUID().uuidString, forKey: "generationID")
             new.setValue(Int64(1), forKey: "nextSequence")
             new.setValue(false, forKey: "suspended")
-            try context.save()
+            try saveContext()
         case .existing:
-            guard row?.string("workingID") == workingIdentity.uuidString else {
+            guard row?.string("workingID") == store.workingIdentity.uuidString else {
                 throw HistoryFailure(.identityConflict, stage: .admission, disposition: .usable)
             }
-        case .independentCopy(let source):
-            guard let row, row.string("workingID") == source.uuidString,
-                  workingIdentity != source else {
-                throw HistoryFailure(.identityConflict, stage: .admission, disposition: .usable)
-            }
-            row.setValue(workingIdentity.uuidString, forKey: "workingID")
-            try context.save()
         }
     }
 
     func updateSnapshot() {
+        if store.writeFailed {
+            publishSnapshot(canUndo: false, canRedo: false, isSuspended: true,
+                            hasPending: draining || !queue.isEmpty,
+                            generation: snapshot.generation)
+            return
+        }
         guard !closed else {
             publishSnapshot(canUndo: false, canRedo: false,
                             isSuspended: snapshot.isSuspended, hasPending: false,
@@ -48,8 +55,10 @@ extension HistoryEngine {
         let suspended = row.bool("suspended")
         let canUndo = try eligibleGroup(for: .undo) != nil
         let canRedo = try eligibleGroup(for: .redo) != nil
-        publishSnapshot(canUndo: !suspended && canUndo, canRedo: !suspended && canRedo,
-                        isSuspended: suspended, hasPending: draining || !queue.isEmpty,
+        publishSnapshot(canUndo: !suspended && !store.writeFailed && canUndo,
+                        canRedo: !suspended && !store.writeFailed && canRedo,
+                        isSuspended: suspended || store.writeFailed,
+                        hasPending: draining || !queue.isEmpty,
                         generation: try row.uuid("generationID"))
     }
 
@@ -57,7 +66,7 @@ extension HistoryEngine {
         context.rollback()
         if let row = try? scopeRecord() {
             row.setValue(true, forKey: "suspended")
-            try? context.save()
+            try? saveContext()
         }
         publishSnapshot(canUndo: false, canRedo: false, isSuspended: true,
                         hasPending: draining || !queue.isEmpty,
@@ -67,7 +76,7 @@ extension HistoryEngine {
     func unsuspend() {
         if let row = try? scopeRecord() {
             row.setValue(false, forKey: "suspended")
-            try? context.save()
+            try? saveContext()
         }
         updateSnapshot()
     }
@@ -116,6 +125,7 @@ extension HistoryEngine {
             !command.members.isEmpty && command.members.count <= limits.maxMembers &&
             Set(command.members.map(\.id)).count == command.members.count &&
             command.members.allSatisfy { valid($0.payload) } &&
+            command.presentation.map { valid($0) && $0.data.count <= 4_096 } != false &&
             command.members.reduce(0) { $0 + $1.payload.data.count } <= limits.maxPayloadBytes
     }
 
@@ -196,6 +206,12 @@ extension HistoryEngine {
         return row
     }
 
+    func groupRecord(key: String) throws -> NSManagedObject? {
+        try fetch("HistoryGroupRecord", predicate: NSPredicate(
+            format: "scopeKey == %@ AND key == %@", scope.uuidString, key
+        )).first
+    }
+
     func transactionKey(_ id: UUID) -> String { scope.uuidString + ":" + id.uuidString }
 
     func insert(_ name: String) -> NSManagedObject {
@@ -212,6 +228,7 @@ extension HistoryEngine {
         sort: [NSSortDescriptor] = []
     ) throws -> [NSManagedObject] {
         let request = NSFetchRequest<NSManagedObject>(entityName: name)
+        request.fetchBatchSize = 256
         request.predicate = predicate
         request.sortDescriptors = sort
         return try context.fetch(request)
