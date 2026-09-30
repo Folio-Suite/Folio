@@ -85,7 +85,7 @@ public struct WorkSaveReport: Sendable {
     if FileManager.default.fileExists(atPath: packageURL.appendingPathComponent("History").path) {
       history = try WorkHistorySession(work: self, packageURL: packageURL)
     } else {
-      historyBaseline = try WorkHistoryBaseline(packageURL: packageURL)
+      historyBaseline = try WorkHistoryBaseline(packageURL: packageURL, resources: resourceStore)
     }
   }
 

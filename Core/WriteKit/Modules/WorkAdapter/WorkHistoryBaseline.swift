@@ -8,13 +8,14 @@ import Foundation
 final class WorkHistoryBaseline {
   let directory: URL
 
-  init(packageURL: URL) throws {
+  init(packageURL: URL, resources: WorkResourceStore) throws {
     directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
     try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: false)
     do {
       _ = try WorkStore.cloneOrCopy(
         packageURL.appendingPathComponent("Work.sqlite"),
         to: directory.appendingPathComponent("Work.sqlite"))
+      _ = try resources.write(to: directory)
     } catch {
       try? FileManager.default.removeItem(at: directory)
       throw error

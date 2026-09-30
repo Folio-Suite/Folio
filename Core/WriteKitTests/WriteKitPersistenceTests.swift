@@ -190,7 +190,8 @@ import XCTest
     try wrapped.exportResource(withIdentifier: resourceID, to: wrapperExportURL)
     XCTAssertEqual(try Data(contentsOf: wrapperExportURL), originalBytes)
     XCTAssertEqual(
-      Set(try FileManager.default.contentsOfDirectory(atPath: originalURL.path)), ["Work.sqlite"])
+      Set(try FileManager.default.contentsOfDirectory(atPath: originalURL.path)),
+      ["Work.sqlite", "Package.json", "Resources"])
     XCTAssertGreaterThan(report.clonedResourceBytes + report.copiedResourceBytes, 0)
   }
 

@@ -2664,18 +2664,6 @@
           }
         }
       }
-    },
-    "work-resource.upgrade-required.error": {
-      "comment": "Error when importing an opaque resource into an older native Work package.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Upgrade this Work's storage before importing resources."
-          }
-        }
-      }
     }
   },
   "version": "1.2"

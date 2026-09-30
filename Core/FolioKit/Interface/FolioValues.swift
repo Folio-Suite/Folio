@@ -106,7 +106,8 @@ public struct TextUnit: Equatable, Sendable {
             tableName: nil,
             bundle: bundle,
             value: "Untitled",
-            comment: "Stored as authored content at creation; existing titles are not retranslated."
+            comment: "Initial title of a newly created Content Unit. " +
+                "Stored as authored content at creation; never retranslate existing titles."
         )
         do {
             return try Self(identifier: .make(), title: title, paragraphs: [TextParagraph(identifier: .make())])

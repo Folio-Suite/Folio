@@ -48,9 +48,6 @@ public struct WorkCheckpoint: Identifiable, Sendable {
   public let recordedAt: Date
 }
 
-/// Work's adapter for durable manuscript edits. Callers settle provisional editing before submission.
-/// This first operation preserves the resource set captured when history is enabled; resource editing is disabled.
-/// Calls and callbacks are main-actor isolated. A failed submission may require `reconcile()` before editing resumes.
 struct WorkHistoryRegistration: Codable {
   let version: Int
   let work: String
@@ -75,6 +72,9 @@ struct WorkHistoryEvidence: Codable {
   let effects: [WorkHistoryEffect]
 }
 
+/// Work's adapter for durable manuscript edits. Callers settle provisional editing before submission.
+/// This first operation preserves the resource set captured when history is enabled; resource editing is disabled.
+/// Calls and callbacks are main-actor isolated. A failed submission may require `reconcile()` before editing resumes.
 @MainActor public final class WorkHistorySession {
   static let family = "app.foliosuite.work.manuscript.replace"
   weak var work: Work?
@@ -116,6 +116,7 @@ struct WorkHistoryEvidence: Codable {
       if let packageURL {
         _ = try WorkStore.cloneOrCopy(
           packageURL.appendingPathComponent("Work.sqlite"), to: hostStore)
+        _ = try work.resourceStore.write(to: hostDirectory)
         let source = packageURL.appendingPathComponent("History/History.sqlite")
         try WorkResourceStore.checkRegularFile(source)
         _ = try WorkStore.cloneOrCopy(source, to: historyStore)

@@ -57,7 +57,8 @@ public final class ManuscriptViewController: NSViewController,
       NSLocalizedString(
         "manuscript.add-content-unit", tableName: nil, bundle: writeKitBundle,
         value: "Add Content Unit",
-        comment: "Accessibility label for adding a Content Unit to the Manuscript."
+        comment: "Accessibility label for adding a Content Unit to the Manuscript. "
+            + "Content Unit and Manuscript are Folio domain terms."
       ))
     moveUpButton.setAccessibilityLabel(
       NSLocalizedString(
@@ -257,7 +258,12 @@ public final class ManuscriptViewController: NSViewController,
         comment: "Undo action name for editing a Content Unit title; AppKit adds Undo or Redo."))
   }
 
-  private func move(by delta: Int) {
+  @IBAction public func moveContentUnitUp(_ sender: Any?) { move(by: -1) }
+  @IBAction public func moveContentUnitDown(_ sender: Any?) { move(by: 1) }
+}
+
+private extension ManuscriptViewController {
+  func move(by delta: Int) {
     guard let selectedUnitIdentifier,
       let index = work.manuscript.units.firstIndex(where: {
         $0.identifier == selectedUnitIdentifier
@@ -275,7 +281,4 @@ public final class ManuscriptViewController: NSViewController,
         value: "Reorder Content Unit",
         comment: "Undo action name for moving a Content Unit; AppKit adds Undo or Redo."))
   }
-
-  @IBAction public func moveContentUnitUp(_ sender: Any?) { move(by: -1) }
-  @IBAction public func moveContentUnitDown(_ sender: Any?) { move(by: 1) }
 }

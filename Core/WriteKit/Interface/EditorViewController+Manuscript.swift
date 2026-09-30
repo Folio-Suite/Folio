@@ -278,7 +278,8 @@ extension EditorViewController {
       NSLocalizedString(
         "formatting.conflict.accessibility-help", tableName: nil, bundle: writeKitBundle,
         value: "Bold or Italic overlaps semantic emphasis. Show conversion and dismissal options.",
-        comment: "Accessibility help for the formatting conflict marker."
+        comment: "Accessibility help for the formatting conflict marker; "
+            + "Bold and Italic are appearance choices."
       ))
     marker.markerButton.identifier = NSUserInterfaceItemIdentifier("formattingConflictMarker")
     textView.addSubview(marker.view)
