@@ -19,6 +19,9 @@ ResearchKit owns the domain framework boundary for Source Library behavior and i
 
 Swift callers import `ResearchKit` and use its public package and window APIs. Hosts call ``ResearchLibraryWindow/makeWindowController()`` and attach the returned controller to their document. The owning application uses the same public interface as other hosts. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
 
+The public declarations and their DocC comments are in
+`Interface/ResearchLibraryPackage.swift` and `Interface/ResearchLibraryWindow.swift`.
+
 ## Limitations
 
 Source catalog editing and cross-application service operations are not implemented. The package helper does not provide Source Record capture, enrichment, reconciliation, or synchronization APIs. These capabilities remain future work.

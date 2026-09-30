@@ -30,10 +30,23 @@
         <attribute name="text" attributeType="String" />
         <relationship name="paragraph" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Paragraph" inverseName="runs" inverseEntity="Paragraph" />
     </entity>
+    <entity name="HistoryReceipt" representedClassName="NSManagedObject" syncable="YES">
+        <attribute name="commandID" attributeType="String" />
+        <attribute name="fingerprint" attributeType="String" />
+        <attribute name="accepted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" />
+        <attribute name="evidence" attributeType="Binary" allowsExternalBinaryDataStorage="NO" />
+        <relationship name="work" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Work" inverseName="historyReceipts" inverseEntity="Work" />
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="commandID" />
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="Work" representedClassName="NSManagedObject" syncable="YES">
         <attribute name="formatVersion" attributeType="Integer 16" minValueString="1" maxValueString="1" defaultValueString="1" usesScalarValueType="YES" />
         <attribute name="identifier" attributeType="String" />
         <relationship name="manuscript" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Manuscript" inverseName="work" inverseEntity="Manuscript" />
         <relationship name="units" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="ContentUnit" inverseName="work" inverseEntity="ContentUnit" />
+        <relationship name="historyReceipts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HistoryReceipt" inverseName="work" inverseEntity="HistoryReceipt" />
     </entity>
 </model>

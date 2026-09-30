@@ -2377,6 +2377,18 @@
         }
       }
     },
+    "menuitem-edit-history.title": {
+      "comment": "Main Menu > Edit > Edit > History… — menuItem title: \"History…\" in Main. Keep Folio domain terms consistent with the glossary.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History…"
+          }
+        }
+      }
+    },
     "menuitem-edit-paste-and-match-style.title": {
       "comment": "Main Menu > Edit > Edit > Paste and Match Style — menuItem title: \"Paste and Match Style\" in Main. Keep Folio domain terms consistent with the glossary.",
       "extractionState": "manual",

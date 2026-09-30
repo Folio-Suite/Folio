@@ -47,7 +47,6 @@ struct WorkPersistenceProbe {
         let original = root.appendingPathComponent("Original.flwrbundle", isDirectory: true)
         try FileManager.default.createDirectory(at: original, withIntermediateDirectories: false)
         _ = try work.stageSave(from: nil, toEmptyPackageAt: original)
-        try work.upgradeStorage()
         let resource = root.appendingPathComponent("opaque-resource.bin")
         try Data().write(to: resource)
         let block = Data(repeating: 0xA5, count: 1_048_576)

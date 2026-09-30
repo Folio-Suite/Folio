@@ -21,7 +21,7 @@ final class ResearchLibraryPackageTests: XCTestCase {
         let package = try ResearchLibraryPackage.empty()
 
         XCTAssertTrue(package.isDirectory)
-        XCTAssertEqual(Set(package.fileWrappers?.keys.map { $0 } ?? []), ["Library.sqlite"])
+        XCTAssertEqual(Set(package.fileWrappers.map { Array($0.keys) } ?? []), ["Library.sqlite"])
         try ResearchLibraryPackage.validate(package)
     }
 
@@ -32,13 +32,15 @@ final class ResearchLibraryPackageTests: XCTestCase {
         let withAsset = FileWrapper(directoryWithFileWrappers: [
             "Library.sqlite": package.fileWrappers!["Library.sqlite"]!,
             "assets": FileWrapper(directoryWithFileWrappers: ["Notes.txt": asset]),
-            "catalog.json": FileWrapper(regularFileWithContents: Data("metadata".utf8))
+            "catalog.json": FileWrapper(regularFileWithContents: Data("metadata".utf8)),
         ])
 
         try ResearchLibraryPackage.validate(withAsset)
 
         XCTAssertEqual(withAsset.fileWrappers?["Library.sqlite"]?.regularFileContents, original)
-        XCTAssertEqual(withAsset.fileWrappers?["assets"]?.fileWrappers?["Notes.txt"]?.regularFileContents, Data("collected bytes".utf8))
+        XCTAssertEqual(
+            withAsset.fileWrappers?["assets"]?.fileWrappers?["Notes.txt"]?.regularFileContents,
+            Data("collected bytes".utf8))
         XCTAssertNotNil(withAsset.fileWrappers?["catalog.json"])
     }
 
@@ -48,7 +50,7 @@ final class ResearchLibraryPackageTests: XCTestCase {
         for sidecar in ["Library.sqlite-wal", "Library.sqlite-shm", "Library.sqlite-journal"] {
             let package = FileWrapper(directoryWithFileWrappers: [
                 "Library.sqlite": validDatabase,
-                sidecar: FileWrapper(regularFileWithContents: Data())
+                sidecar: FileWrapper(regularFileWithContents: Data()),
             ])
 
             XCTAssertThrowsError(try ResearchLibraryPackage.validate(package), sidecar)
@@ -57,16 +59,17 @@ final class ResearchLibraryPackageTests: XCTestCase {
 
     func testValidationRejectsMalformedAndIncompatibleStores() throws {
         let malformed = FileWrapper(directoryWithFileWrappers: [
-            "Library.sqlite": FileWrapper(regularFileWithContents: Data("not a database".utf8))
+            "Library.sqlite": FileWrapper(regularFileWithContents: Data("not a database".utf8)),
         ])
         XCTAssertThrowsError(try ResearchLibraryPackage.validate(malformed))
 
-        let incompatible = try packageWithVersion("UnsupportedCatalogV2")
+        let incompatible = try packageWithVersion("UnsupportedCatalog")
         XCTAssertThrowsError(try ResearchLibraryPackage.validate(incompatible))
     }
 
     private func packageWithVersion(_ version: String) throws -> FileWrapper {
-        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
+        let directory = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: false)
         defer { try? FileManager.default.removeItem(at: directory) }
 

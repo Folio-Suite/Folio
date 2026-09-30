@@ -5,7 +5,7 @@ import XCTest
 
 @MainActor
 final class ComposerUITestsLaunchTests: XCTestCase {
-    override class var runsForEachTargetApplicationUIConfiguration: Bool { true }
+    override static var runsForEachTargetApplicationUIConfiguration: Bool { true }
 
     func testLaunch() {
         continueAfterFailure = false

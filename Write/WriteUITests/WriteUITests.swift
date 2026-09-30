@@ -73,6 +73,19 @@ import XCTest
         text.typeKey(XCUIKeyboardKey.delete, modifierFlags: [])
     }
 
+    func testEditHistoryMenuOpensForForegroundWork() {
+        let app = launchDocument()
+        defer { app.terminate() }
+        let text = app.textViews["manuscriptText"].firstMatch
+        XCTAssertTrue(text.waitForExistence(timeout: 5))
+        text.click()
+        app.menuBars.menuBarItems["Edit"].click()
+        app.menuItems["History…"].click()
+        XCTAssertTrue(app.menuItems["Create Checkpoint…"].firstMatch.waitForExistence(timeout: 5),
+            "The foreground Work must receive Edit > History")
+        app.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+    }
+
     func testFormattingConflictOffersConversionWithoutChangingWords() {
         let app = launchDocument()
         defer { app.terminate() }
@@ -131,12 +144,12 @@ import XCTest
         let emphasis = app.checkBoxes["Emphasis"].firstMatch
         let off = String(describing: emphasis.value)
         emphasis.click()
-        let on = String(describing: emphasis.value)
-        XCTAssertNotEqual(on, off)
+        let enabledValue = String(describing: emphasis.value)
+        XCTAssertNotEqual(enabledValue, off)
         app.typeKey("z", modifierFlags: .command)
         XCTAssertEqual(String(describing: emphasis.value), off)
         app.typeKey("z", modifierFlags: [.command, .shift])
-        XCTAssertEqual(String(describing: emphasis.value), on)
+        XCTAssertEqual(String(describing: emphasis.value), enabledValue)
         text.typeKey(XCUIKeyboardKey.delete, modifierFlags: [])
         XCTAssertEqual(text.value as? String, "")
         app.typeKey("z", modifierFlags: .command)

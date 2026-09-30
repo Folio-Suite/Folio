@@ -4,7 +4,9 @@
 import AppKit
 import WriteKit
 
-@MainActor final class AppDelegate: NSObject, NSApplicationDelegate {
+@main
+@MainActor
+final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet private(set) var emphasisMenuItem: NSMenuItem!
     @IBOutlet private(set) var strongEmphasisMenuItem: NSMenuItem!
 

@@ -132,6 +132,11 @@
                                                 <action selector="redo:" target="Ady-hI-5gd" id="oIA-Rs-6OD"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="History…" id="menuitem-edit-history" userLabel="Edit &gt; History…">
+                                            <connections>
+                                                <action selector="showHistory:" target="Ady-hI-5gd" id="history-menu-action"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="WRV-NI-Exz"/>
                                         <menuItem title="Cut" keyEquivalent="x" id="menuitem-edit-cut" userLabel="Edit &gt; Cut">
                                             <connections>

@@ -89,6 +89,16 @@ The current pre-alpha model replaces the experimental code-defined format withou
 
 ## Public Kit interfaces
 
+Follow [ADR 0017](docs/adr/0017-discoverable-swift-interfaces-and-resources.md):
+keep each public API in a clearly named file or known set of interface files,
+with DocC beside the declarations and an entry-point guide in the module's
+README or DocC overview. Keep `AppDelegate.swift` at each app's source root.
+Group implementation areas under top-level `Modules/`, alongside `Interface/`
+and `Resources/`; module folders do not automatically become separate targets.
+Collect bundled resources at the owning app or framework's root or in its
+top-level `Resources/` directory. Future internal libraries remain components
+of that enclosing product, with resource ownership retained by the product.
+
 All six Kits publish Swift modules. Callers, including each owning application,
 use `import KitName` and public Swift declarations. Keep implementation types
 internal or private, and keep production callers free of `@testable import`.
@@ -119,7 +129,10 @@ data structures, and Algorithms for suitable sequence operations as those needs
 arise. Adding a dependency does not imply a new preference or feature.
 
 `.swiftlint.yml` adapts the maintainer's KitchenMemory configuration for AppKit
-and the Folio source layout. Fix lint errors before review; warnings guide focused
+and the Folio source layout. Each project directory has a small `.swiftlint.yml`
+that inherits the root configuration because Xcode's build plugin searches only
+within that project directory. Keep shared rules in the root configuration so
+command-line and Xcode lint use the same policy. Fix lint errors before review; warnings guide focused
 cleanup. The repository build scripts pass `-skipPackagePluginValidation` to run
 the explicitly pinned SwiftLint plugin in unattended builds. Xcode may ask local
 contributors to trust this package plugin when first opening the workspace.

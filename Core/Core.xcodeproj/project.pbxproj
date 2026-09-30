@@ -25,6 +25,7 @@
 		A1641DF8306AD741004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
 		A1641DFD306AD75F004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
 		C13800000000000000000002 /* TypographyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C13800000000000000000001 /* TypographyKit.framework */; };
+		C15300000000000000000002 /* UndoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15300000000000000000001 /* UndoKit.framework */; };
 		D3D5E082B3C0CEABE20A5E60 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 9D29DA6DB8E05FB373738746 /* Defaults */; };
 		EB0B35F6E643F3604C2B5D6A /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 83E6900DC3C9127A03C132A8 /* Algorithms */; };
 		F441E78308151CA4F57C0A25 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = AC8E1DC32F0808B2E497571A /* Algorithms */; };
@@ -93,6 +94,7 @@
 		A1641C39306ACB26004824F1 /* ComposerKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComposerKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1641C94306AD035004824F1 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		C13800000000000000000001 /* TypographyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C15300000000000000000001 /* UndoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UndoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -156,6 +158,7 @@
 		A1641BF8306ACB1F004824F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				C15300000000000000000002 /* UndoKit.framework in Frameworks */,
 				4F06780053B45DDEF2F011B9 /* Defaults in Frameworks */,
 				18DF29B95445F000918BFFA8 /* Collections in Frameworks */,
 				EB0B35F6E643F3604C2B5D6A /* Algorithms in Frameworks */,
@@ -238,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				C13800000000000000000001 /* TypographyKit.framework */,
+				C15300000000000000000001 /* UndoKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

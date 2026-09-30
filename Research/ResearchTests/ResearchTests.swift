@@ -35,7 +35,8 @@ final class ResearchTests: XCTestCase {
         XCTAssertTrue(type.conforms(to: .package))
         XCTAssertTrue(type.conforms(to: .content))
 
-        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
+        let directory = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: false)
         defer { try? FileManager.default.removeItem(at: directory) }
 
@@ -49,13 +50,16 @@ final class ResearchTests: XCTestCase {
         let reopened = try ResearchDocument(contentsOf: firstURL, ofType: libraryType)
         defer { reopened.close() }
         let reopenedPackage = try reopened.fileWrapper(ofType: libraryType)
-        XCTAssertEqual(reopenedPackage.fileWrappers?["assets"]?.fileWrappers?["Collected.txt"]?.regularFileContents, collectedBytes)
+        XCTAssertEqual(
+            reopenedPackage.fileWrappers?["assets"]?.fileWrappers?["Collected.txt"]?.regularFileContents,
+            collectedBytes)
 
         try reopened.writeSafely(to: copyURL, ofType: libraryType, for: .saveAsOperation)
         let copied = try ResearchDocument(contentsOf: copyURL, ofType: libraryType)
         defer { copied.close() }
         let copiedPackage = try copied.fileWrapper(ofType: libraryType)
-        XCTAssertEqual(copiedPackage.fileWrappers?["assets"]?.fileWrappers?["Collected.txt"]?.regularFileContents, collectedBytes)
+        XCTAssertEqual(
+            copiedPackage.fileWrappers?["assets"]?.fileWrappers?["Collected.txt"]?.regularFileContents, collectedBytes)
         XCTAssertNotNil(copiedPackage.fileWrappers?["Library.sqlite"])
     }
 
@@ -66,11 +70,13 @@ final class ResearchTests: XCTestCase {
         let corruptBytes = Data("Not a SQLite database".utf8)
         let invalidPackages = [
             FileWrapper(directoryWithFileWrappers: [:]),
-            FileWrapper(directoryWithFileWrappers: ["Library.sqlite": FileWrapper(regularFileWithContents: corruptBytes)]),
+            FileWrapper(directoryWithFileWrappers: [
+                "Library.sqlite": FileWrapper(regularFileWithContents: corruptBytes),
+            ]),
             FileWrapper(directoryWithFileWrappers: [
                 "Library.sqlite": original.fileWrappers!["Library.sqlite"]!,
-                "Library.sqlite-wal": FileWrapper(regularFileWithContents: Data())
-            ])
+                "Library.sqlite-wal": FileWrapper(regularFileWithContents: Data()),
+            ]),
         ]
 
         for invalid in invalidPackages {

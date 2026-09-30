@@ -60,7 +60,15 @@ final class CompositionTests: XCTestCase {
         XCTAssertEqual(tracked.lines[0].glyphs[3].position.x - base.lines[0].glyphs[3].position.x, 1.5, accuracy: 0.1)
         let plainQuote = compose("“Quoted words”", .init())
         let hungQuote = compose("“Quoted words”", .init(leadingProtrusion: 2.5))
-        XCTAssertEqual(hungQuote.lines[0].glyphs[0].position.x - plainQuote.lines[0].glyphs[0].position.x, -2.5, accuracy: 0.01)
-        XCTAssertEqual(hungQuote.lines[0].glyphs[1].position.x, plainQuote.lines[0].glyphs[1].position.x, accuracy: 0.01)
+        XCTAssertEqual(
+            hungQuote.lines[0].glyphs[0].position.x - plainQuote.lines[0].glyphs[0].position.x,
+            -2.5,
+            accuracy: 0.01
+        )
+        XCTAssertEqual(
+            hungQuote.lines[0].glyphs[1].position.x,
+            plainQuote.lines[0].glyphs[1].position.x,
+            accuracy: 0.01
+        )
     }
 }

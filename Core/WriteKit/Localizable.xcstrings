@@ -2017,6 +2017,126 @@
         }
       }
     },
+    "work-history.busy": {
+      "extractionState": "manual",
+      "comment": "Work save or history operation cannot run while edits are unsettled.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wait for the current edit or history recovery to finish, then try again."
+          }
+        }
+      }
+    },
+    "work-history.cancel": {
+      "comment": "Cancel checkpoint creation.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "work-history.checkpoint-name": {
+      "comment": "Prompt for a Work checkpoint name.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name this checkpoint"
+          }
+        }
+      }
+    },
+    "work-history.closed": {
+      "extractionState": "manual",
+      "comment": "Operation attempted after explicitly closing history.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This Work’s history session has closed."
+          }
+        }
+      }
+    },
+    "work-history.create": {
+      "comment": "Create a named Work checkpoint.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create Checkpoint…"
+          }
+        }
+      }
+    },
+    "work-history.create-button": {
+      "comment": "Button confirming checkpoint creation.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create"
+          }
+        }
+      }
+    },
+    "work-history.invalid-package": {
+      "extractionState": "manual",
+      "comment": "History package validation failed; existing bytes are preserved.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This Work’s history is missing, damaged, or unsupported."
+          }
+        }
+      }
+    },
+    "work-history.menu": {
+      "comment": "Title of the Work history menu.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History"
+          }
+        }
+      }
+    },
+    "work-history.rejected": {
+      "extractionState": "manual",
+      "comment": "A history operation failed semantic validation without changing the Work.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This history operation could not be applied to the current Work."
+          }
+        }
+      }
+    },
+    "work-history.resources-unsupported": {
+      "extractionState": "manual",
+      "comment": "First implementation supports manuscript history but not resource changes.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resource changes are not yet supported while durable history is enabled."
+          }
+        }
+      }
+    },
     "work-model.load.error": {
       "comment": "Error summary for a missing model resource; WriteKit is a framework name.",
       "extractionState": "manual",
@@ -2541,18 +2661,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "The Work resource is unavailable."
-          }
-        }
-      }
-    },
-    "work-resource.upgrade-required.error": {
-      "comment": "Error when importing an opaque resource into an older native Work package.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Upgrade this Work's storage before importing resources."
           }
         }
       }
