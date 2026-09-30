@@ -29,7 +29,7 @@ let windowController = editor.makeWindowController()
 document.addWindowController(windowController)
 ```
 
-The editor loads its interface from WriteKit's bundled `Editor.storyboard`; the host does not provide a storyboard or construct the controls. The host supplies saving and edited-state tracking through ``ManuscriptViewController/workDidChange``. Capture the host weakly in that callback. Save with ``Work/fileWrapper()`` and handle the thrown error; producing an in-memory package does not write a destination file. Reopen with ``Work/init(fileWrapper:)``. A document host passes one `UndoManager` to all editors in a Work.
+The editor loads its interface from WriteKit's bundled `Editor.storyboard`; the host does not provide a storyboard or construct the controls. The host supplies saving and edited-state tracking through ``ManuscriptViewController/workDidChange``. Capture the host weakly in that callback. For native saving, prepare a separate empty package with ``Work/stageSave(from:toEmptyPackageAt:)`` and let the document host complete safe replacement. The original must be a closed package; preparation never writes into it. Reopen with ``Work/init(contentsOf:)``. ``Work/fileWrapper()`` remains a complete in-memory serialization convenience, rather than the incremental native-save path. A document host passes one `UndoManager` to all editors in a Work.
 
 The editor and host menus use ``FormattingImages`` for the semantic Emphasis symbols. The images live in WriteKit's asset catalog, so a host should request them through this API when configuring its own menu items.
 
@@ -57,3 +57,40 @@ The Manuscript supports a flat list of text Content Units. Adding, renaming, and
 - ``EditorViewController``
 - ``ManuscriptViewController``
 - ``FormattingImages``
+
+## Incremental native saving
+
+The staging operation reuses a closed Core Data store and reconciles authored
+identities and order. It updates changed values and relationships without
+reinserting unaffected paragraphs or Content Units. The returned save report
+records changed content and logical bytes cloned or copied. Successful filesystem
+cloning avoids copying unchanged file data; a supported copy fallback preserves
+correctness on other volumes.
+
+Preparation does not mark an NSDocument clean or acknowledge final replacement.
+Use the advanced NSDocument write hook so AppKit retains responsibility for
+safe replacement, Auto Save, native Versions and change counts. A failed
+preparation leaves the original package and the Work's pending edits available
+for retry. Never pass the original itself or a directory inside it as staging.
+
+The text-only WorkV1 schema remains supported. Existing package readers still
+reject unknown structure rather than dropping it on the next save.
+
+## Opaque resources and compatibility
+
+New and existing text-only Works retain package V1 until a host explicitly calls
+``Work/upgradeStorage()``. ``Work/importResource(from:)`` requires that opt-in;
+the pending change reaches the native package only after successful saving.
+The authored Core Data model remains WorkV1.
+
+Package V2 declares a bounded resource manifest alongside the store and immutable
+resource files, with at most 4,096 resources and a 4 MiB manifest. ``Work/resources`` describes them; use
+``Work/exportResource(withIdentifier:to:)`` to obtain an independent copy.
+``Work/removeResource(withIdentifier:)`` changes the pending collection. These
+operations attach no publication meaning to the bytes.
+
+Use ``Work/init(contentsOf:)`` for native opening with large resources. The
+FileWrapper convenience is still available when a complete in-memory package
+is appropriate. Resource-capable UI must obtain explicit upgrade consent and
+allow users to retain V1 editing or cancel; the existing editor has no resource
+import command.

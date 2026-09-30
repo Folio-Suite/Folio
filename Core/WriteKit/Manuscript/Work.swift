@@ -7,6 +7,31 @@ import Foundation
 /// The current native Work document type.
 public let workDocumentType = "app.foliosuite.Write.Doc"
 
+/// The native package envelope used by a Work.
+public enum WorkStorageVersion: Int, Sendable {
+    case v1 = 1
+    case v2 = 2
+}
+
+/// Metadata for one opaque resource retained with a Work.
+public struct WorkResource: Equatable, Sendable {
+    public let identifier: FolioIdentifier
+    public let filename: String
+    public let byteCount: Int64
+    public let sha256: String
+}
+
+/// Work changed while preparing a closed native package for document replacement.
+public struct WorkSaveReport: Sendable {
+    public let changedContentUnits: Int
+    public let changedParagraphs: Int
+    public let changedRuns: Int
+    public let clonedStoreBytes: Int64
+    public let copiedStoreBytes: Int64
+    public let clonedResourceBytes: Int64
+    public let copiedResourceBytes: Int64
+}
+
 @MainActor func verifiedValue<Value>(_ make: () throws -> Value) -> Value {
     do { return try make() }
     catch { preconditionFailure("Invalid internal Work value: \(error)") }
@@ -15,6 +40,7 @@ public let workDocumentType = "app.foliosuite.Write.Doc"
 /// The main-actor authority for one open Work. Its authored snapshots use FolioKit values.
 @MainActor public final class Work {
     public let identifier: FolioIdentifier
+    private var resourceStore: WorkResourceStore?
     public var manuscript: Manuscript {
         didSet { precondition(manuscript.identifier == oldValue.identifier) }
     }
@@ -34,20 +60,76 @@ public let workDocumentType = "app.foliosuite.Write.Doc"
     public init() {
         identifier = .make()
         manuscript = verifiedValue { try Manuscript(identifier: .make(), units: [.makeEmpty()]) }
+        resourceStore = nil
     }
 
-    private init(identifier: FolioIdentifier, manuscript: Manuscript) {
+    private init(identifier: FolioIdentifier, manuscript: Manuscript, resourceStore: WorkResourceStore? = nil) {
         self.identifier = identifier
         self.manuscript = manuscript
+        self.resourceStore = resourceStore
     }
 
     public convenience init(fileWrapper: FileWrapper) throws {
-        let snapshot = try WorkStore.readPackage(fileWrapper)
-        self.init(identifier: snapshot.identifier, manuscript: snapshot.manuscript)
+        let opened = try PackageStaging.withTemporaryDirectory { directory in
+            let packageURL = directory.appendingPathComponent("Input.flwrbundle", isDirectory: true)
+            try fileWrapper.write(to: packageURL, options: .atomic, originalContentsURL: nil)
+            return try WorkStore.openPackage(at: packageURL)
+        }
+        self.init(identifier: opened.snapshot.identifier, manuscript: opened.snapshot.manuscript,
+                  resourceStore: opened.resources)
+    }
+
+    /// Open a native Work package directly without loading its resources into a file wrapper.
+    public convenience init(contentsOf packageURL: URL) throws {
+        let opened = try WorkStore.openPackage(at: packageURL)
+        self.init(identifier: opened.snapshot.identifier, manuscript: opened.snapshot.manuscript,
+                  resourceStore: opened.resources)
     }
 
     public func fileWrapper() throws -> FileWrapper {
-        try WorkStore.package(workIdentifier: identifier, manuscript: manuscript)
+        if resourceStore != nil {
+            return try PackageStaging.withTemporaryDirectory { directory in
+                let packageURL = directory.appendingPathComponent("Output.flwrbundle", isDirectory: true)
+                try FileManager.default.createDirectory(at: packageURL, withIntermediateDirectories: false)
+                try stageSave(from: nil, toEmptyPackageAt: packageURL)
+                return try FileWrapper(url: packageURL, options: .immediate)
+            }
+        }
+        return try WorkStore.package(workIdentifier: identifier, manuscript: manuscript)
+    }
+
+    public var storageVersion: WorkStorageVersion { resourceStore == nil ? .v1 : .v2 }
+
+    /// Select the V2 package envelope. Existing V1 bytes remain intact until a later successful save.
+    public func upgradeStorage() throws {
+        if resourceStore == nil { resourceStore = try WorkResourceStore() }
+    }
+
+    public var resources: [WorkResource] { resourceStore?.resources ?? [] }
+
+    /// Retain a private, immutable snapshot of a regular file. V1 Works require an explicit upgrade first.
+    @discardableResult public func importResource(from sourceURL: URL) throws -> FolioIdentifier {
+        guard let resourceStore else { throw WorkStore.upgradeRequiredError() }
+        return try resourceStore.importResource(from: sourceURL)
+    }
+
+    /// Copy an opaque resource to an absent destination file.
+    public func exportResource(withIdentifier identifier: FolioIdentifier, to destinationURL: URL) throws {
+        guard let resourceStore else { throw WorkStore.missingResourceError() }
+        try resourceStore.exportResource(identifier, to: destinationURL)
+    }
+
+    public func removeResource(withIdentifier identifier: FolioIdentifier) throws {
+        guard let resourceStore else { throw WorkStore.missingResourceError() }
+        try resourceStore.removeResource(identifier)
+    }
+
+    /// Prepare this Work in an existing empty package directory. The original package is read but never changed.
+    /// Pass nil for a new Work; otherwise pass a closed native package at a different URL.
+    @discardableResult public func stageSave(from originalPackageURL: URL?,
+                                              toEmptyPackageAt destinationPackageURL: URL) throws -> WorkSaveReport {
+        try WorkStore.stageSave(workIdentifier: identifier, manuscript: manuscript,
+                                resources: resourceStore, from: originalPackageURL, to: destinationPackageURL)
     }
 
     public func text(withIdentifier identifier: FolioIdentifier) -> TextUnit? {

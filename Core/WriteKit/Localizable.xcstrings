@@ -2520,6 +2520,42 @@
           }
         }
       }
+    },
+    "work-resource.invalid.error": {
+      "comment": "Error when a native Work resource or resource manifest cannot be validated.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The Work contains an invalid or unsupported resource. No content has been changed."
+          }
+        }
+      }
+    },
+    "work-resource.missing.error": {
+      "comment": "Error when exporting or removing a resource identifier absent from this Work.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The Work resource is unavailable."
+          }
+        }
+      }
+    },
+    "work-resource.upgrade-required.error": {
+      "comment": "Error when importing an opaque resource into an older native Work package.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upgrade this Work's storage before importing resources."
+          }
+        }
+      }
     }
   },
   "version": "1.2"
