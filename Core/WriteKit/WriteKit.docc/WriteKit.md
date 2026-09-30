@@ -153,6 +153,10 @@ its coherent current Manuscript and call
 quarantines failed evidence before installing a new generation. Native hosts use
 `WorkHistorySession.availability` for exact scope, generation and version, then
 explicitly attach the router after a reset.
+Recording preference belongs to the host. An omitted saved Work has no History
+store to carry that preference, so the host persists its app or per-Work policy
+separately and reapplies it when enabling history after reopening. Suite settings
+UI and policy storage are separate work.
 
 A checkpoint captures the complete supported Manuscript. The host must save the
 document successfully before announcing a saved checkpoint. Restoring a checkpoint
