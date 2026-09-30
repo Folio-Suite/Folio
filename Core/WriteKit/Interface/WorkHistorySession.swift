@@ -136,7 +136,7 @@ struct WorkHistoryEvidence: Codable {
   }
 
   // The private copy retains unresolved evidence until close. A process crash never edits the saved original.
-  final class Adapter: HistoryHost {
+  @MainActor final class Adapter: HistoryHost {
     weak var session: WorkHistorySession?
     init(session: WorkHistorySession) { self.session = session }
     func deliver(_ delivery: HistoryDelivery) async -> HistoryHostOutcome {
