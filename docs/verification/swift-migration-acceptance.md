@@ -10,6 +10,16 @@ The maintainer authorized rapid implementation and a reviewable PR stack; mergin
 and human/platform acceptance remain separate actions. The baseline and old-writer
 fixtures are recorded in [Swift migration baseline](swift-migration-baseline.md).
 
+## Historical status
+
+The implementation inventory and results below describe the migration batch at
+its recorded commits. Later cleanup is documented in [Swift cleanup](swift-cleanup.md).
+On 2026-09-30 the maintainer retired the old-writer compatibility fixtures and
+the Objective-C capture recipe; [baseline provenance](swift-migration-baseline.md#historical-status)
+retains their Git locations. Current save/reopen and resource-preservation tests
+use freshly generated Documents. Historical passing results below remain valid;
+they do not imply an ongoing support promise for the retired pre-alpha writer.
+
 ## Review stack
 
 | Slice | PR | Base |
@@ -36,15 +46,18 @@ Folio values are structs; Work and AppKit owners declare main-actor isolation;
 Core Data managed objects stay inside private store operations. No temporary
 Objective-C model or staging adapters remain.
 
-Retained exceptions are intentional:
+Exceptions retained at the migration snapshot were intentional:
 
-- Kit umbrella headers/module maps export framework identity and version symbols.
+- Kit umbrella headers/module maps exported framework identity and version symbols
+  at this migration snapshot. The subsequent Swift cleanup removed them; current
+  Kits publish Swift modules without authored module maps or exported headers.
 - Swift `@objc` runtime names preserve storyboard/document registration and XPC
   selectors; AppKit, Core Data and Core Text remain the implementation frameworks.
 - Three Objective-C files under `Composer/Prototypes/ParagraphComposition` retain
   the original typography evidence and provenance.
-- `scripts/capture-migration-baseline-fixtures.m` preserves the historical writer
-  fixture recipe; it requires baseline framework products.
+- The [historical Objective-C capture recipe](https://github.com/Folio-Suite/Folio/blob/b5f42c2/scripts/capture-migration-baseline-fixtures.m)
+  required baseline framework products. It was retained for the migration and
+  retired with the fixtures on 2026-09-30.
 - `scripts/xpc-probe/main.m` is an independent Objective-C runtime client of the
   Swift services. Its separate protocol declarations detect selector drift.
 
