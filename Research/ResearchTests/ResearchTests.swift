@@ -21,11 +21,15 @@ final class ResearchTests: XCTestCase {
         XCTAssertNotNil(document.windowControllers.first?.window)
     }
 
-    func testBaselineWriterPackageReopensAndPreservesCollectedFilesAcrossSaves() throws {
-        let fixtureURL = repositoryRoot
-            .appendingPathComponent("tests/fixtures/swift-migration-baseline/Baseline.flrsbundle", isDirectory: true)
-        let fixture = try FileWrapper(url: fixtureURL, options: [])
-        try ResearchLibraryPackage.validate(fixture)
+    func testCurrentPackagePreservesCollectedFilesAcrossSaves() throws {
+        let package = try ResearchLibraryPackage.empty()
+        let collectedBytes = Data("Collected research file: café, 日本語\n".utf8)
+        let assets = FileWrapper(directoryWithFileWrappers: [
+            "Collected.txt": FileWrapper(regularFileWithContents: collectedBytes)
+        ])
+        assets.preferredFilename = "assets"
+        package.addFileWrapper(assets)
+        try ResearchLibraryPackage.validate(package)
 
         let type = UTType(exportedAs: libraryType)
         XCTAssertTrue(type.conforms(to: .package))
@@ -38,18 +42,20 @@ final class ResearchTests: XCTestCase {
         let firstURL = directory.appendingPathComponent("Library.flrsbundle", isDirectory: true)
         let copyURL = directory.appendingPathComponent("Copy.flrsbundle", isDirectory: true)
         let document = ResearchDocument()
-        try document.read(from: fixture, ofType: libraryType)
+        defer { document.close() }
+        try document.read(from: package, ofType: libraryType)
         try document.writeSafely(to: firstURL, ofType: libraryType, for: .saveOperation)
 
         let reopened = try ResearchDocument(contentsOf: firstURL, ofType: libraryType)
-        let collectedBytes = Data("Research baseline collected file: café, 日本語\n".utf8)
+        defer { reopened.close() }
         let reopenedPackage = try reopened.fileWrapper(ofType: libraryType)
-        XCTAssertEqual(reopenedPackage.fileWrappers?["assets"]?.fileWrappers?["Baseline.txt"]?.regularFileContents, collectedBytes)
+        XCTAssertEqual(reopenedPackage.fileWrappers?["assets"]?.fileWrappers?["Collected.txt"]?.regularFileContents, collectedBytes)
 
         try reopened.writeSafely(to: copyURL, ofType: libraryType, for: .saveAsOperation)
         let copied = try ResearchDocument(contentsOf: copyURL, ofType: libraryType)
+        defer { copied.close() }
         let copiedPackage = try copied.fileWrapper(ofType: libraryType)
-        XCTAssertEqual(copiedPackage.fileWrappers?["assets"]?.fileWrappers?["Baseline.txt"]?.regularFileContents, collectedBytes)
+        XCTAssertEqual(copiedPackage.fileWrappers?["assets"]?.fileWrappers?["Collected.txt"]?.regularFileContents, collectedBytes)
         XCTAssertNotNil(copiedPackage.fileWrappers?["Library.sqlite"])
     }
 
@@ -75,10 +81,4 @@ final class ResearchTests: XCTestCase {
         XCTAssertEqual(invalidPackages[1].fileWrappers?["Library.sqlite"]?.regularFileContents, corruptBytes)
     }
 
-    private var repositoryRoot: URL {
-        URL(fileURLWithPath: #filePath)
-            .deletingLastPathComponent()
-            .deletingLastPathComponent()
-            .deletingLastPathComponent()
-    }
 }

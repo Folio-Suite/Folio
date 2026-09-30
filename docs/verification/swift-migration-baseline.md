@@ -7,6 +7,22 @@ SPDX-License-Identifier: MIT
 
 Baseline captured at `b50fa0023848d0f81961b7c85df924af3917eb1a` (2026-09-28), before production migration work, for [M0 / issue #31](https://github.com/Folio-Suite/Folio/issues/31).
 
+## Historical status
+
+This is the inventory and evidence recorded at the baseline commit, not a current
+source inventory. The Swift migration was subsequently accepted; see the
+[acceptance record](swift-migration-acceptance.md).
+
+On 2026-09-30 the maintainer retired the pre-Swift package compatibility fixtures
+and their Objective-C capture tool. The fixtures were removed in commit
+`0f0b732`; their [last retained snapshot](https://github.com/Folio-Suite/Folio/tree/b5f42c2/tests/fixtures/swift-migration-baseline)
+and [capture recipe](https://github.com/Folio-Suite/Folio/blob/b5f42c2/scripts/capture-migration-baseline-fixtures.m)
+remain available in Git history. Current tests use freshly generated Documents
+to check current save/reopen behavior and resource preservation. This pre-alpha
+cleanup ends the continuing compatibility check against that historical writer;
+it does not invalidate the migration results recorded below or change the
+migration commitment for publicly supported released formats.
+
 ## Production inventory
 
 The tracked tree contains 45 Objective-C implementation files (`.m`), 28 Objective-C headers (`.h`), five Swift files, four storyboards, and six versioned Core Data model files. Counts include production, test, and prototype sources; they are a locator inventory, not a migration completion metric. Production Objective-C remains in the three app targets, their XPC service targets, and FolioKit, WriteKit, ResearchKit, and ComposerKit. The checked-in Swift is limited to the TypographyKit scaffold and small interface-check/probe sources; TypographyKit currently exposes no composition behavior.
@@ -17,13 +33,13 @@ The applications remain Write, Research, and Composer. AppKit document controlle
 
 The accepted specification confirms two existing seams: public Kit interfaces for domain values, packages, and editor behavior; and native document/UI workflows for hosting, resources, focus, menus, Undo, saving, and accessibility. TypographyKit work will add one public composition interface over immutable inputs/results, source mappings, and diagnostics. Tests should exercise these seams and independently derive expected results rather than add public test-only hooks. See [accepted-backlog specification coverage](../plans/accepted-backlog.md#specification-coverage), which maps each of stories 1–53 to owning slices.
 
-Current concrete examples:
+Concrete examples at the baseline commit:
 
 - `Write/WriteTests/WriteTests.m` creates a Work through the current writer, checks `.flwrbundle` type/package identity, reopens it, and checks text, bold presentation, Content Unit identity, and title.
 - `Research/ResearchTests/ResearchTests.m` creates a Research package, checks `.flrsbundle` identity, preserves an added asset across save/save-as, and checks that invalid packages do not replace an open Library.
 - Kit unit tests live under `Core/*KitTests/`; app interaction tests live under each app's `*UITests/`; localization, packaging, release, and CI helper tests live under `scripts/tests/`.
 
-The checked-in synthetic fixtures in [`tests/fixtures/swift-migration-baseline`](../../tests/fixtures/swift-migration-baseline/README.md) were captured from the baseline writer. The Work package covers identity, ordered paragraphs, Unicode, formatting, title, and warning preference; the Research package covers the empty catalog shell and a collected asset. The fixture README records provenance and regeneration guidance.
+The synthetic fixtures were captured from the baseline writer. The Work package covered identity, ordered paragraphs, Unicode, formatting, title, and warning preference; the Research package covered the empty catalog shell and a collected asset. The [historical fixture README](https://github.com/Folio-Suite/Folio/blob/b5f42c2/tests/fixtures/swift-migration-baseline/README.md) records provenance and regeneration guidance for that writer.
 
 ## Typography evidence and provenance
 
@@ -35,4 +51,4 @@ The signed baseline Suite build passed at the recorded commit, and the public in
 
 ## Migration use
 
-Use this inventory and the baseline-writer packages for M1–M5 and I1. The maintainer has stated this is a pre-alpha product with no valuable user data and accepts breakage during migration; the accepted stories and compatibility checks remain the migration contract.
+This inventory and the baseline-writer packages supplied the M1–M5 and I1 migration checks. The maintainer accepted breakage in this pre-alpha product while requiring the recorded migration evidence. Those checks fulfilled their migration purpose; the historical writer is no longer a continuing compatibility target after the retirement noted above.

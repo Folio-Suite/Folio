@@ -113,25 +113,6 @@ import XCTest
         XCTAssertThrowsError(try work.fileWrapper())
     }
 
-    func testBaselineWriterPackageReopensThroughPublicWorkAPI() throws {
-        let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
-            .deletingLastPathComponent()
-        let url = root.appendingPathComponent("tests/fixtures/swift-migration-baseline/Baseline.flwrbundle")
-        let work = try Work(fileWrapper: FileWrapper(url: url))
-        XCTAssertEqual(work.text.title, "Migration baseline")
-        XCTAssertEqual(work.text.paragraphs.count, 2)
-        XCTAssertEqual(work.text.paragraphs.map(\.alignment), [.left, .natural])
-        XCTAssertEqual(work.text.paragraphs[0].runs[0].emphasis, .strongEmphasis)
-        XCTAssertEqual(work.text.paragraphs[0].runs[0].presentation, TextPresentation(bold: true))
-        XCTAssertTrue(work.text.formattingWarningDismissed)
-        XCTAssertEqual(work.text.string,
-            "Baseline Work fixture: authored words, Unicode café / 日本語, and paragraph order.\n" +
-            "Second paragraph preserves a separate paragraph boundary.")
-        let reopened = try Work(fileWrapper: work.fileWrapper())
-        XCTAssertEqual(reopened.identifier, work.identifier)
-        XCTAssertEqual(reopened.manuscript, work.manuscript)
-    }
-
     func testStagedSaveChangesOneParagraphAndKeepsOriginalWorkReadable() throws {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
