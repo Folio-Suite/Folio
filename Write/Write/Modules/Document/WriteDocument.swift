@@ -227,7 +227,7 @@ extension WriteDocument {
     @IBAction func showHistory(_ sender: Any?) {
         guard let history = work.history, let window = windowControllers.first?.window,
               let contentView = window.contentView else { return }
-        Task { @MainActor in
+        Task { @MainActor [self] in
             do {
                 try await flushHistory()
                 let menuController = WorkHistoryMenuController(history: history, save: { [weak self] in

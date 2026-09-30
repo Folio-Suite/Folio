@@ -174,7 +174,7 @@ final class WorkResourceStore {
     else {
       throw WorkStore.resourceError()
     }
-    let store = try WorkResourceStore()
+    let store = WorkResourceStore()
     for entry in manifest.resources {
       guard validIdentifier(entry.identifier), validFilename(entry.filename), entry.byteCount >= 0,
         entry.sha256.count == 64, entry.sha256.allSatisfy({ $0.isHexDigit && !$0.isUppercase })

@@ -129,7 +129,10 @@ data structures, and Algorithms for suitable sequence operations as those needs
 arise. Adding a dependency does not imply a new preference or feature.
 
 `.swiftlint.yml` adapts the maintainer's KitchenMemory configuration for AppKit
-and the Folio source layout. Fix lint errors before review; warnings guide focused
+and the Folio source layout. Each project directory has a small `.swiftlint.yml`
+that inherits the root configuration because Xcode's build plugin searches only
+within that project directory. Keep shared rules in the root configuration so
+command-line and Xcode lint use the same policy. Fix lint errors before review; warnings guide focused
 cleanup. The repository build scripts pass `-skipPackagePluginValidation` to run
 the explicitly pinned SwiftLint plugin in unattended builds. Xcode may ask local
 contributors to trust this package plugin when first opening the workspace.
