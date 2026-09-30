@@ -508,32 +508,32 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
 			requirement = {
-				kind = exactVersion;
-				version = 9.0.9;
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.9;
 			};
 		};
 		56C08FB7A88C032127DC8E1D /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-algorithms";
 			requirement = {
-				kind = exactVersion;
-				version = 1.2.1;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
 			};
 		};
 		719AA2288F142FBB17427F73 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
 			requirement = {
-				kind = exactVersion;
-				version = 0.65.1;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.65.1;
 			};
 		};
 		EFA2C16C6143D16C29DB60E6 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections";
 			requirement = {
-				kind = exactVersion;
-				version = 1.7.1;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

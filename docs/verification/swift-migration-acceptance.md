@@ -61,8 +61,9 @@ Exceptions retained at the migration snapshot were intentional:
 - `scripts/xpc-probe/main.m` is an independent Objective-C runtime client of the
   Swift services. Its separate protocol declarations detect selector drift.
 
-Each of the six projects pins Defaults 9.0.9, swift-collections 1.7.1,
-swift-algorithms 1.2.1 and SwiftLintPlugins 0.65.1. SwiftLint configuration comes
+Each of the six projects uses Up to Next Major Version requirements starting at
+Defaults 9.0.9, swift-collections 1.7.1, swift-algorithms 1.2.1 and
+SwiftLintPlugins 0.65.1. SwiftLint configuration comes
 from KitchenMemory, with Folio paths and AppKit-appropriate rules. CI explicitly
 uses `-skipPackagePluginValidation`; interactive Xcode retains first-run approval.
 
