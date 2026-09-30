@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import AppKit
+import FolioKit
 import WriteKit
 
 @MainActor final class WriteDocument: NSDocument {
@@ -23,6 +24,23 @@ import WriteKit
         let controller = editor.makeWindowController()
         controller.window?.center()
         addWindowController(controller)
+    }
+
+    func upgradeStorage() throws {
+        guard work.storageVersion == .v1 else { return }
+        try work.upgradeStorage()
+        updateChangeCount(.changeDone)
+    }
+
+    @discardableResult func importResource(from sourceURL: URL) throws -> FolioIdentifier {
+        let identifier = try work.importResource(from: sourceURL)
+        updateChangeCount(.changeDone)
+        return identifier
+    }
+
+    func removeResource(withIdentifier identifier: FolioIdentifier) throws {
+        try work.removeResource(withIdentifier: identifier)
+        updateChangeCount(.changeDone)
     }
 
     override func fileWrapper(ofType typeName: String) throws -> FileWrapper {

@@ -230,8 +230,8 @@ import XCTest
 
         let document = try WriteDocument(contentsOf: originalURL, ofType: workDocumentType)
         defer { document.close() }
-        try document.work.upgradeStorage()
-        let resourceIdentifier = try document.work.importResource(from: resourceURL)
+        try document.upgradeStorage()
+        let resourceIdentifier = try document.importResource(from: resourceURL)
         try insert("First text.", in: document)
 
         do {
@@ -272,5 +272,90 @@ import XCTest
         let autosavedExport = directory.appendingPathComponent("Autosaved Export.bin")
         try autosaved.work.exportResource(withIdentifier: resourceIdentifier, to: autosavedExport)
         XCTAssertEqual(try Data(contentsOf: autosavedExport), resourceBytes)
+    }
+
+    func testResourceOnlyMutationsMarkDocumentEditedAndAutosave() async throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: false)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let packageURL = directory.appendingPathComponent("Work.flwrbundle")
+        let resourceURL = directory.appendingPathComponent("Reference.bin")
+        let resourceBytes = Data(repeating: 0x73, count: 4_096)
+        try resourceBytes.write(to: resourceURL)
+
+        let initial = WriteDocument()
+        try initial.write(to: packageURL, ofType: workDocumentType)
+        initial.close()
+        let document = try WriteDocument(contentsOf: packageURL, ofType: workDocumentType)
+        defer { document.close() }
+        XCTAssertFalse(document.isDocumentEdited)
+
+        try document.upgradeStorage()
+        XCTAssertTrue(document.isDocumentEdited)
+        let resourceIdentifier = try document.importResource(from: resourceURL)
+        try await save(document, to: packageURL, for: .autosaveInPlaceOperation)
+        XCTAssertFalse(document.isDocumentEdited)
+        let reopened = try WriteDocument(contentsOf: packageURL, ofType: workDocumentType)
+        defer { reopened.close() }
+        XCTAssertEqual(reopened.work.storageVersion, .v2)
+        XCTAssertEqual(reopened.work.resources.map(\.identifier), [resourceIdentifier])
+        let exportedURL = directory.appendingPathComponent("Exported.bin")
+        try reopened.work.exportResource(withIdentifier: resourceIdentifier, to: exportedURL)
+        XCTAssertEqual(try Data(contentsOf: exportedURL), resourceBytes)
+
+        try document.removeResource(withIdentifier: resourceIdentifier)
+        XCTAssertTrue(document.isDocumentEdited)
+        try await save(document, to: packageURL, for: .autosaveInPlaceOperation)
+        XCTAssertFalse(document.isDocumentEdited)
+        let afterRemoval = try WriteDocument(contentsOf: packageURL, ofType: workDocumentType)
+        defer { afterRemoval.close() }
+        XCTAssertEqual(afterRemoval.work.storageVersion, .v2)
+        XCTAssertTrue(afterRemoval.work.resources.isEmpty)
+        XCTAssertEqual(afterRemoval.work.text.string, "")
+    }
+
+    func testFailedResourceMutationsAndSavePreserveDirtyState() async throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: false)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let packageURL = directory.appendingPathComponent("Work.flwrbundle")
+        let resourceURL = directory.appendingPathComponent("Reference.bin")
+        try Data([0x52, 0x46]).write(to: resourceURL)
+        let invalidURL = directory.appendingPathComponent("Missing.bin")
+        let unavailableURL = directory.appendingPathComponent("Missing Parent")
+            .appendingPathComponent("Failed.flwrbundle")
+
+        let initial = WriteDocument()
+        try initial.write(to: packageURL, ofType: workDocumentType)
+        initial.close()
+        let document = try WriteDocument(contentsOf: packageURL, ofType: workDocumentType)
+        defer { document.close() }
+        XCTAssertFalse(document.isDocumentEdited)
+        XCTAssertThrowsError(try document.importResource(from: resourceURL))
+        XCTAssertFalse(document.isDocumentEdited)
+
+        try document.upgradeStorage()
+        try await save(document, to: packageURL, for: .saveOperation)
+        XCTAssertFalse(document.isDocumentEdited)
+        try document.upgradeStorage()
+        XCTAssertFalse(document.isDocumentEdited)
+        XCTAssertThrowsError(try document.importResource(from: invalidURL))
+        XCTAssertThrowsError(try document.removeResource(withIdentifier: document.work.identifier))
+        XCTAssertFalse(document.isDocumentEdited)
+
+        let resourceIdentifier = try document.importResource(from: resourceURL)
+        XCTAssertTrue(document.isDocumentEdited)
+        do {
+            try await save(document, to: unavailableURL, for: .saveToOperation)
+            XCTFail("Saving into a missing parent directory should fail")
+        } catch {
+            XCTAssertTrue(document.isDocumentEdited)
+            XCTAssertEqual(document.work.resources.map(\.identifier), [resourceIdentifier])
+        }
+        try await save(document, to: packageURL, for: .autosaveInPlaceOperation)
+        XCTAssertFalse(document.isDocumentEdited)
+        let reopened = try WriteDocument(contentsOf: packageURL, ofType: workDocumentType)
+        defer { reopened.close() }
+        XCTAssertEqual(reopened.work.resources.map(\.identifier), [resourceIdentifier])
     }
 }
