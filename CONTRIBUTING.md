@@ -121,7 +121,8 @@ ship as one coordinated Suite version; mixed versions are unsupported.
 
 ### Packages and lint
 
-Each project pins Defaults 9.0.9, swift-collections 1.7.1, swift-algorithms 1.2.1,
+Each project uses Up to Next Major Version requirements with minimum versions
+Defaults 9.0.9, swift-collections 1.7.1, swift-algorithms 1.2.1,
 and SwiftLintPlugins 0.65.1. Applications and frameworks link the library products;
 all native targets run the SwiftLint build plugin. Commit resolved package files
 with deliberate upgrades. Use Defaults for preferences, Collections for suitable
@@ -134,7 +135,7 @@ that inherits the root configuration because Xcode's build plugin searches only
 within that project directory. Keep shared rules in the root configuration so
 command-line and Xcode lint use the same policy. Fix lint errors before review; warnings guide focused
 cleanup. The repository build scripts pass `-skipPackagePluginValidation` to run
-the explicitly pinned SwiftLint plugin in unattended builds. Xcode may ask local
+the resolved SwiftLint plugin in unattended builds. Xcode may ask local
 contributors to trust this package plugin when first opening the workspace.
 
 ## Kit documentation
