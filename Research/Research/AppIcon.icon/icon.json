@@ -44,7 +44,7 @@
           "name" : "Page text",
           "opacity" : 0.65,
           "position" : {
-            "scale" : 1.16,
+            "scale" : 1.0999999999999992,
             "translation-in-points" : [
               0,
               -59.955643446525926
@@ -53,6 +53,13 @@
         }
       ],
       "name" : "Page text",
+      "position" : {
+        "scale" : 0.9399999999999991,
+        "translation-in-points" : [
+          0,
+          0
+        ]
+      },
       "shadow" : {
         "kind" : "neutral",
         "opacity" : 0
@@ -93,7 +100,7 @@
           "name" : "Right page",
           "opacity" : 0.92,
           "position" : {
-            "scale" : 1.16,
+            "scale" : 1.0999999999999992,
             "translation-in-points" : [
               0,
               -53.531824505826705
@@ -127,7 +134,7 @@
           "name" : "Left page",
           "opacity" : 0.92,
           "position" : {
-            "scale" : 1.16,
+            "scale" : 1.0999999999999992,
             "translation-in-points" : [
               0,
               -53.531824505826705
@@ -161,7 +168,7 @@
           "name" : "Book cover",
           "opacity" : 0.92,
           "position" : {
-            "scale" : 1.16,
+            "scale" : 1.0999999999999992,
             "translation-in-points" : [
               0,
               -53.531824505826705
@@ -171,7 +178,7 @@
       ],
       "name" : "Glass Research",
       "position" : {
-        "scale" : 1.12,
+        "scale" : 1.06,
         "translation-in-points" : [
           0,
           0
