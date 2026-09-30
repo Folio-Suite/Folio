@@ -47,6 +47,7 @@ extension WorkHistorySession {
 
   /// Reconcile any delivered command from durable host receipts before enabling Undo/Redo.
   public func reconcile() async throws {
+    guard !omissionPending else { throw WorkHistoryError.busy }
     let engine = try await ready()
     if let result = await engine.reconcile() { try finish(result) }
     if engine.snapshot.isSuspended { throw WorkHistoryError.busy }
@@ -82,6 +83,7 @@ extension WorkHistorySession {
   }
 
   func submit(manuscript: Manuscript, origin: UUID?) async throws {
+    guard !omissionPending else { throw WorkHistoryError.busy }
     let engine = try await ready()
     guard manuscript.identifier == committed.identifier else { throw WorkHistoryError.rejected }
     guard manuscript != committed else { return }
@@ -91,17 +93,84 @@ extension WorkHistorySession {
     let result = await engine.submit(
       HistoryCommand(
         fingerprint: Data(SHA256.hash(data: payload.data)),
-        payload: payload, restorationOrigin: origin))
+        payload: payload, restorationOrigin: origin,
+        expectedGeneration: engine.snapshot.generation))
     try finish(result)
   }
 
   public func undo() async throws {
+    guard !omissionPending else { throw WorkHistoryError.busy }
     let engine = try await ready()
-    try finish(await engine.undo())
+    try finish(await engine.undo(expectedGeneration: engine.snapshot.generation))
   }
   public func redo() async throws {
+    guard !omissionPending else { throw WorkHistoryError.busy }
     let engine = try await ready()
-    try finish(await engine.redo())
+    try finish(await engine.redo(expectedGeneration: engine.snapshot.generation))
+  }
+
+  /// Select whether new ordinary edits are retained. Re-enabling saves a
+  /// coherent Manuscript baseline and cannot reconstruct edits made while Off.
+  public func setRecording(_ mode: HistoryRecordingMode) async throws {
+    let engine = try await ready()
+    guard canSave else { throw WorkHistoryError.busy }
+    if mode == .on {
+      _ = try engine.setRecording(.on,
+        baseline: HistoryPayload(family: Self.family, data: try WorkHistoryPayload.encode(committed)))
+    } else {
+      try engine.setRecording(.off)
+    }
+    didChange?()
+  }
+
+  /// Call only after a staged omission has replaced the saved Document.
+  /// A failed publication must leave this session and its retained history intact.
+  /// A post-publication failure is reported as such; the published package stays
+  /// history-free. Retry this call if generation retirement or host-receipt
+  /// cleanup fails; new edits and saves remain blocked until both succeed.
+  public func completeOmissionAfterSave() throws {
+    guard let engine else { throw WorkHistoryError.busy }
+    if omissionPhase == .none {
+      guard canSave else { throw WorkHistoryError.busy }
+      omissionPhase = .retireGeneration
+      didChange?()
+    }
+    if omissionPhase == .retireGeneration {
+      let baseline = HistoryPayload(family: Self.family,
+                                    data: try WorkHistoryPayload.encode(committed))
+      _ = try engine.clearHistory(adopting: baseline)
+      omissionPhase = .stripReceipts
+      didChange?()
+    }
+    try WorkStore.stripHistoryReceipts(at: hostStore)
+    omissionPhase = .none
+    didChange?()
+  }
+
+  /// Acknowledge irrecoverable history continuity after the host has verified its
+  /// coherent current Manuscript. The failed history store is copied to an absent
+  /// quarantine URL before a new generation is installed. A post-reset receipt
+  /// cleanup failure blocks saves; retry `completeOmissionAfterSave()` to finish it.
+  @discardableResult public func resetUnresolvedHistory(
+    adopting manuscript: Manuscript, quarantineAt destination: URL
+  ) throws -> UUID {
+    guard !closed, !omissionPending, let engine, let work,
+      manuscript.identifier == committed.identifier,
+      try WorkStore.readStore(at: hostStore).manuscript == manuscript else {
+      throw WorkHistoryError.busy
+    }
+    let baseline = HistoryPayload(family: Self.family,
+                                  data: try WorkHistoryPayload.encode(manuscript))
+    let generation = try engine.resetUnresolvedHistory(
+      adopting: baseline, quarantineAt: destination)
+    committed = manuscript
+    work.manuscript = manuscript
+    omissionPhase = .stripReceipts
+    didChange?()
+    try WorkStore.stripHistoryReceipts(at: hostStore)
+    omissionPhase = .none
+    didChange?()
+    return generation
   }
 
   func finish(_ result: HistoryResult) throws {
@@ -154,11 +223,14 @@ extension WorkHistorySession {
     if !preserveRecovery && !isSuspended { try? FileManager.default.removeItem(at: directory) }
   }
 
-  func stageSave(resources: WorkResourceStore, to destination: URL) throws -> WorkSaveReport {
+  func stageSave(resources: WorkResourceStore, to destination: URL,
+                 omittingHistory: Bool = false) throws -> WorkSaveReport {
     guard canSave, let work else { throw WorkHistoryError.busy }
     let report = try WorkStore.stageSave(
       workIdentifier: work.identifier, manuscript: committed,
-      resources: resources, from: hostDirectory, to: destination)
+      resources: resources, from: hostDirectory, to: destination,
+      omitHistoryReceipts: omittingHistory)
+    if omittingHistory { return report }
     let history = destination.appendingPathComponent("History")
     try FileManager.default.createDirectory(at: history, withIntermediateDirectories: false)
     guard let engine else { throw WorkHistoryError.busy }
@@ -180,7 +252,7 @@ extension WorkHistorySession {
   }
 
   func deliver(_ delivery: HistoryDelivery) -> HistoryHostOutcome {
-    guard let work, !closed else { return .unresolved }
+    guard let work, !closed, !omissionPending else { return .unresolved }
     do {
       if let receipt = try WorkStore.historyReceipt(
         at: hostStore, commandID: delivery.token.command) {

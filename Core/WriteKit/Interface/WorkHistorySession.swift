@@ -86,17 +86,44 @@ struct WorkHistoryEvidence: Codable {
   var opening: Task<HistoryEngine, Error>?
   var host: Adapter?
   var closed = false
+  enum OmissionFinalizationPhase { case none, retireGeneration, stripReceipts }
+  var omissionPhase: OmissionFinalizationPhase = .none
+  var omissionPending: Bool { omissionPhase != .none }
+  private var projectedAvailability: HistorySnapshot?
+  private var projectedEngineVersion: Int64?
 
   /// Called after coherent availability changes. Refresh views without creating another edit.
   public var didChange: (() -> Void)?
   /// The last host-accepted state, distinct from provisional native input.
   public var committedManuscript: Manuscript { committed }
-  public var canUndo: Bool { engine?.snapshot.canUndo ?? false }
-  public var canRedo: Bool { engine?.snapshot.canRedo ?? false }
+  public var canUndo: Bool { availability.canUndo }
+  public var canRedo: Bool { availability.canRedo }
+  /// The exact scope, generation, and version used by native presentation.
+  public var availability: HistorySnapshot {
+    let source = engine?.snapshot ?? HistorySnapshot(
+      canUndo: false, canRedo: false, isSuspended: false, hasPending: opening != nil)
+    let prior = projectedAvailability
+    let candidate = HistorySnapshot(
+      canUndo: !omissionPending && source.canUndo,
+      canRedo: !omissionPending && source.canRedo,
+      isSuspended: omissionPending || source.isSuspended,
+      hasPending: source.hasPending, scope: source.scope, generation: source.generation,
+      version: prior?.version ?? 0)
+    if let prior, projectedEngineVersion == source.version, candidate == prior { return prior }
+    let projection = HistorySnapshot(
+      canUndo: candidate.canUndo, canRedo: candidate.canRedo,
+      isSuspended: candidate.isSuspended, hasPending: candidate.hasPending,
+      scope: candidate.scope, generation: candidate.generation,
+      version: (prior?.version ?? -1) + 1)
+    projectedAvailability = projection
+    projectedEngineVersion = source.version
+    return projection
+  }
   public var isPending: Bool { opening != nil || engine?.snapshot.hasPending == true }
-  public var isSuspended: Bool { engine?.snapshot.isSuspended ?? false }
+  public var isSuspended: Bool { omissionPending || engine?.snapshot.isSuspended == true }
   public var canSave: Bool {
-    !closed && engine != nil && !isPending && !isSuspended && work?.manuscript == committed
+    !closed && engine != nil && !isPending && !isSuspended &&
+      work?.manuscript == committed
   }
 
   var hostDirectory: URL { directory.appendingPathComponent("Host") }

@@ -23,7 +23,17 @@ Create and use the editor on the main actor. Supply one `UndoManager` to all edi
 
 For durable hosting, use `NativeHistoryRouter.undoManager` and implement the settlement and accepted-outcome callbacks described below. `workDidChange` reports provisional input; it must not immediately advance the document's authoritative change count. Keep the provisional manager separate from NSDocument's automatic counting. The Write application's `WriteDocument` is the complete native host example.
 
-For native saving, prepare a separate empty package with ``Work/stageSave(from:toEmptyPackageAt:)`` and let the document host complete safe replacement. The original must be a closed package; preparation never writes into it. Reopen with ``Work/init(contentsOf:)``. ``Work/fileWrapper()`` provides complete in-memory serialization. Durable hosts must finish opening, settle input and finalize pending history before either save path.
+For native saving, prepare a separate empty package with ``Work/stageSave(from:toEmptyPackageAt:omittingHistory:)`` and let the document host complete safe replacement. The original must be a closed package; preparation never writes into it. Reopen with ``Work/init(contentsOf:)``. ``Work/fileWrapper()`` provides complete in-memory serialization. Durable hosts must finish opening, settle input and finalize pending history before either save path.
+
+To save without retained history, pass `omittingHistory: true` while staging. The
+staged package keeps the current Work and resources, omits `History/` and removes
+obsolete host history receipts from `Work.sqlite`. Keep live Undo until the host
+confirms successful safe replacement, then call
+`WorkHistorySession.completeOmissionAfterSave()`. A failed stage or publication
+leaves the original and live history intact. If post-publication receipt cleanup
+fails, the new generation remains fenced from edits and saves; retry the same
+completion call. Write's `WriteDocument.saveOmittingHistory` shows the native
+save boundary.
 
 The editor and host menus use ``FormattingImages`` for the semantic Emphasis symbols. The images live in WriteKit's asset catalog, so a host should request them through this API when configuring its own menu items.
 
@@ -130,6 +140,16 @@ Saving refuses pending, suspended, or unsettled work. After reopening, await
 ``WorkHistorySession/reconcile()`` before enabling native history commands.
 Attachment does not replay edits or mark the document changed.
 
+`WorkHistorySession.setRecording(_:)` selects On or Off for new ordinary edits.
+Off keeps Undo in this open session; the first accepted Off edit creates a gap
+to older Undo. Turning On records the accepted current Manuscript as a new
+baseline. For a failed outcome that cannot be reconciled, the host can establish
+its coherent current Manuscript and call
+`WorkHistorySession.resetUnresolvedHistory(adopting:quarantineAt:)`. The method
+quarantines failed evidence before installing a new generation. Native hosts use
+`WorkHistorySession.availability` for exact scope, generation and version, then
+explicitly attach the router after a reset.
+
 A checkpoint captures the complete supported Manuscript. The host must save the
 document successfully before announcing a saved checkpoint. Restoring a checkpoint
 submits a new edit: restoring A after A → B → C makes ordinary Undo return to C.
@@ -140,7 +160,7 @@ provides native saving and error presentation. Larger host interfaces can use
 This first operation retains every existing resource unchanged. Resource import
 and removal are refused while history is enabled, so a checkpoint cannot refer to
 an asset that the host has deleted. Resource-changing history, pruning, retention
-schedules, recording controls, and cross-process Work Sessions are separate work.
+schedules and cross-process Work Sessions are separate work.
 Payloads are bounded complete Manuscript values; this is not a claim that every
 large Work edit already uses a minimal text delta.
 

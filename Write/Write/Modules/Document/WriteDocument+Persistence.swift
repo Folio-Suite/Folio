@@ -27,8 +27,12 @@ extension WriteDocument {
         // NSDocument creates a safe-save location and performs the final replacement,
         // backup, Versions, and change-count work after this hook returns.
         try MainActor.assumeIsolated {
+            if omittingHistoryForCurrentSave && saveOperation != .saveOperation {
+                throw WorkHistoryError.busy
+            }
             try FileManager.default.createDirectory(at: url, withIntermediateDirectories: false)
-            try work.stageSave(from: absoluteOriginalContentsURL, toEmptyPackageAt: url)
+            try work.stageSave(from: absoluteOriginalContentsURL, toEmptyPackageAt: url,
+                               omittingHistory: omittingHistoryForCurrentSave)
         }
     }
 

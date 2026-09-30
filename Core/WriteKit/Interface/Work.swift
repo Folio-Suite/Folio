@@ -129,12 +129,17 @@ public struct WorkSaveReport: Sendable {
 
   /// Prepare this Work in an existing empty package directory. The original package is read but never changed.
   /// Pass nil for a new Work; otherwise pass a closed native package at a different URL.
+  /// When omitting history, the staged artifact contains current Work and resources
+  /// without the History directory or host receipt rows. Confirm successful host
+  /// publication before calling `WorkHistorySession.completeOmissionAfterSave()`.
   @discardableResult public func stageSave(
     from originalPackageURL: URL?,
-    toEmptyPackageAt destinationPackageURL: URL
+    toEmptyPackageAt destinationPackageURL: URL,
+    omittingHistory: Bool = false
   ) throws -> WorkSaveReport {
     if let history {
-      return try history.stageSave(resources: resourceStore, to: destinationPackageURL)
+      return try history.stageSave(resources: resourceStore, to: destinationPackageURL,
+                                   omittingHistory: omittingHistory)
     }
     return try WorkStore.stageSave(
       workIdentifier: identifier, manuscript: manuscript,
