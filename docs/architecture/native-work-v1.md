@@ -29,7 +29,11 @@ store where the filesystem supports copy-on-write, reconciles values and ordered
 relationships by their existing identities, closes the staged store with DELETE
 journaling, and verifies the resulting authored state. Unchanged rows are retained.
 On a volume without cloning, it makes an independent file copy and reports that
-cost. New Works still require an initial store. The `fileWrapper()` convenience
+cost. This is the accepted portability boundary: avoiding unchanged-asset copies
+is a clone-capable-filesystem optimization; independent copying preserves correct
+saves elsewhere. Both paths have bounded interruption/retry evidence in
+[the persistence results](../evidence/work-persistence/README.md).
+New Works still require an initial store. The `fileWrapper()` convenience
 continues to support complete in-memory serialization.
 
 `WriteDocument` supplies this preparation through NSDocument's advanced write

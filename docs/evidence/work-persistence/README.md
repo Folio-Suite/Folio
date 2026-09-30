@@ -60,8 +60,8 @@ They supersede the earlier 0.64-second observation made before URL validation wa
 changed. Clone counts describe logical file sizes, not measured physical I/O.
 Validation still traverses text and reads resource bytes; staging is not constant
 time. The runner cannot prove power-loss durability or interruption during
-AppKit's final replacement. Native Versions restoration, a resource-import UI,
-and the copy fallback on a filesystem without cloning remain outside this proof.
+AppKit's final replacement. Native Versions restoration and a resource-import UI remain outside this proof.
+The copy fallback was subsequently exercised as described below.
 
 ## Compatibility
 
@@ -82,7 +82,36 @@ The two-axis review compared `79c6beb...2ae6762`.
   with Auto Save and reopening, failed mutations/save with retained dirty state
   and retry, and the existing independent resource-copy test. The full suites
   above ran before this follow-up; they were not repeated.
-- Spec: the no-copy performance criterion remains partial on filesystems without
-  cloning. Independent-copy fallback is retained to preserve original/copy
-  isolation. This result does not establish zero unchanged-asset copies on those
-  volumes and does not close #52's portable performance question.
+- Spec: the maintainer accepted cloning as the fast path and independent copying
+  as the portable fallback. The HFS+ run below completes fallback verification;
+  zero unchanged-asset copies is not promised on filesystems without cloning.
+
+## Verified portable fallback
+
+The maintainer accepted the portability boundary before PR delivery: avoid copying
+unchanged assets where filesystem cloning is available, and preserve independent
+packages through ordinary copying elsewhere. Small text edits still reconcile
+only changed authored rows on either path.
+
+The existing public-API probe ran with `TMPDIR` pointing at a disposable, mounted
+512 MiB HFS+ sparse image. No injected clone result or production test switch was
+used. [The fallback report](fallback-hfs-2026-09-29.json) records:
+
+- Zero cloned bytes; 811,008 store bytes and 33,554,432 resource bytes copied.
+- One changed paragraph and one changed run.
+- Signal-9 interruption with identical original package hashes before and after.
+- Successful retry and public reopening; 0.744 seconds staging, 1.041 seconds
+  complete retry, and 160,480 KiB sampled process-group peak RSS.
+
+These numbers are observations from a local disk image, not a comparison of real
+APFS and HFS+ device performance. The temporary volume was detached after testing.
+To repeat, mount a disposable HFS+ volume with at least 512 MiB available and run:
+
+```sh
+TMPDIR=/path/to/disposable-hfs-volume/ ruby scripts/verify-work-persistence.rb \
+  "$PWD/DerivedData/Folio/Build/Products/Debug"
+```
+
+The runner owns and removes only its temporary fixture directory. Detach the test
+volume afterward. All executable sources are unchanged from the preceding tested
+implementation; this completion adds evidence and the accepted scope clarification.
