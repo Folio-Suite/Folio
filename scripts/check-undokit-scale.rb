@@ -59,6 +59,10 @@ begin
     sleep 0.5
   end
   raise "Scale test failed: #{status}" unless status.success?
+  metrics = File.foreach(log).grep(/^SCALE /)
+  %w[fixture farBack divergent].each do |phase|
+    raise "Missing scale result: #{phase}" unless metrics.any? { |line| line.start_with?("SCALE #{phase} ") }
+  end
   report[:result] = 'completed'
 rescue StandardError, Interrupt => error
   report[:failure] = "#{error.class}: #{error.message}"
@@ -72,7 +76,7 @@ ensure
     end
   end
   report[:elapsed_seconds] = Process.clock_gettime(Process::CLOCK_MONOTONIC) - start
-  report[:metrics] = File.exist?(log) ? File.readlines(log).grep(/^SCALE /).map(&:strip) : []
+  report[:metrics] = File.exist?(log) ? File.foreach(log).grep(/^SCALE /).map(&:strip) : []
   File.write(File.join(scratch, 'report.json'), JSON.pretty_generate(report) + "\n")
   puts JSON.pretty_generate(report)
   puts "Evidence retained in #{scratch}"
