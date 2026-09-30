@@ -60,7 +60,7 @@ begin
   end
   raise "Scale test failed: #{status}" unless status.success?
   metrics = File.foreach(log).grep(/^SCALE /)
-  %w[fixture farBack divergent].each do |phase|
+  %w[fixture farBack divergent consolidation].each do |phase|
     raise "Missing scale result: #{phase}" unless metrics.any? { |line| line.start_with?("SCALE #{phase} ") }
   end
   report[:result] = 'completed'
