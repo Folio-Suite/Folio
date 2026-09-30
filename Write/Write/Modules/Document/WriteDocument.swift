@@ -428,11 +428,16 @@ private enum WriteHistoryOmissionError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .published:
-            return "The Work was saved without history, but the open history session needs recovery before another save."
+            return NSLocalizedString(
+                "write.history.omission-published", tableName: nil, bundle: .main,
+                value: "The Work was saved without history. Resolve the open history session before another save.",
+                comment: "History omission published, but live generation reset or receipt cleanup failed.")
         }
     }
 
     var underlyingError: Error {
-        switch self { case .published(let cause): cause }
+        switch self {
+        case .published(let cause): cause
+        }
     }
 }
