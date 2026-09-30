@@ -36,6 +36,11 @@ import XCTest
         return condition()
     }
 
+    private func finishProgrammaticNativeGroup(_ manager: UndoManager) {
+        XCTAssertLessThanOrEqual(manager.groupingLevel, 1)
+        if manager.groupingLevel == 1 { manager.endUndoGrouping() }
+    }
+
     func testHistoryActionForwardsThroughOwnedEditorResponder() async throws {
         let document = WriteDocument()
         document.makeWindowControllers()
@@ -205,6 +210,7 @@ import XCTest
         let manager = try XCTUnwrap(textView.undoManager)
         textView.insertText("Before omission", replacementRange: NSRange(location: 0, length: 0))
         try await document.flushHistory()
+        finishProgrammaticNativeGroup(manager)
         try await save(document, to: url)
         let history = try XCTUnwrap(document.work.history)
         let oldGeneration = try XCTUnwrap(history.availability.generation)
@@ -216,6 +222,7 @@ import XCTest
         XCTAssertNotEqual(history.availability.generation, oldGeneration)
         XCTAssertFalse(history.canUndo)
         XCTAssertFalse(manager.canUndo)
+        XCTAssertFalse(document.isDocumentEdited)
         let reopened = try Work(contentsOf: url)
         XCTAssertNil(reopened.history)
         XCTAssertEqual(reopened.text.string, "Before omission")
@@ -245,6 +252,7 @@ import XCTest
         let manager = try XCTUnwrap(textView.undoManager)
         textView.insertText("Original text", replacementRange: NSRange(location: 0, length: 0))
         try await document.flushHistory()
+        finishProgrammaticNativeGroup(manager)
         try await save(document, to: original)
         try await document.flushHistory(waitForNativeIdle: true)
         let history = try XCTUnwrap(document.work.history)
@@ -254,7 +262,11 @@ import XCTest
         do {
             try await saveOmittingHistory(document, to: unavailable)
             XCTFail("Saving into a missing parent must fail")
-        } catch {}
+        } catch {
+            if case WorkHistoryError.busy = error {
+                XCTFail("The failed save must reach NSDocument staging after native settlement")
+            }
+        }
         XCTAssertEqual(try Data(contentsOf: original.appendingPathComponent("Work.sqlite")), originalWorkBytes)
         XCTAssertEqual(try Data(contentsOf: original.appendingPathComponent("History/History.sqlite")),
                        originalHistoryBytes)
@@ -262,6 +274,7 @@ import XCTest
         XCTAssertFalse(history.availability.isSuspended)
         XCTAssertTrue(history.canUndo)
         XCTAssertTrue(manager.canUndo)
+        XCTAssertFalse(document.isDocumentEdited)
         XCTAssertEqual(document.work.text.string, "Original text")
         XCTAssertFalse(FileManager.default.fileExists(atPath: unavailable.path))
     }
