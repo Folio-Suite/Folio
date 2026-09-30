@@ -25,15 +25,19 @@ For durable hosting, use `NativeHistoryRouter.undoManager` and implement the set
 
 For native saving, prepare a separate empty package with ``Work/stageSave(from:toEmptyPackageAt:omittingHistory:)`` and let the document host complete safe replacement. The original must be a closed package; preparation never writes into it. Reopen with ``Work/init(contentsOf:)``. ``Work/fileWrapper()`` provides complete in-memory serialization. Durable hosts must finish opening, settle input and finalize pending history before either save path.
 
-To save without retained history, pass `omittingHistory: true` while staging. The
+To save without retained history, call
+`WorkHistorySession.beginOmissionPublication()` after settling edits, then pass
+`omittingHistory: true` while staging. The publication token fences new edits and
+Undo until the save outcome is known. The
 staged package keeps the current Work and resources, omits `History/` and removes
 obsolete host history receipts from `Work.sqlite`. Keep live Undo until the host
 confirms successful safe replacement, then call
-`WorkHistorySession.completeOmissionAfterSave()`. A failed stage or publication
-leaves the original and live history intact. If post-publication receipt cleanup
-fails, the new generation remains fenced from edits and saves; retry the same
-completion call. Write's `WriteDocument.saveOmittingHistory` shows the native
-save boundary.
+`WorkHistorySession.completeOmissionAfterSave(_:)` with the token. On failed
+staging or publication, call `cancelOmissionPublication(_:)` to restore live
+Undo; the original remains intact. If post-publication reset or receipt cleanup
+fails, the session stays fenced; retry completion with
+`pendingOmissionPublication`. Write's `WriteDocument.saveOmittingHistory` and
+`retryPublishedHistoryOmission` show the native save boundary.
 
 The editor and host menus use ``FormattingImages`` for the semantic Emphasis symbols. The images live in WriteKit's asset catalog, so a host should request them through this API when configuring its own menu items.
 

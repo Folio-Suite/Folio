@@ -86,9 +86,11 @@ struct WorkHistoryEvidence: Codable {
   var opening: Task<HistoryEngine, Error>?
   var host: Adapter?
   var closed = false
-  enum OmissionFinalizationPhase { case none, retireGeneration, stripReceipts }
+  enum OmissionFinalizationPhase { case none, publishing, retireGeneration, stripReceipts }
   var omissionPhase: OmissionFinalizationPhase = .none
   var omissionPending: Bool { omissionPhase != .none }
+  var omissionPublication: UUID?
+  var omissionManuscript: Manuscript?
   private var projectedAvailability: HistorySnapshot?
   private var projectedEngineVersion: Int64?
 
@@ -96,6 +98,9 @@ struct WorkHistoryEvidence: Codable {
   public var didChange: (() -> Void)?
   /// The last host-accepted state, distinct from provisional native input.
   public var committedManuscript: Manuscript { committed }
+  /// Token to retry finalization after a successfully published omission.
+  /// Cancel it only while publication has not succeeded.
+  public var pendingOmissionPublication: UUID? { omissionPublication }
   public var canUndo: Bool { availability.canUndo }
   public var canRedo: Bool { availability.canRedo }
   /// The exact scope, generation, and version used by native presentation.

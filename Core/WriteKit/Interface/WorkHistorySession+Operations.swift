@@ -123,15 +123,42 @@ extension WorkHistorySession {
     didChange?()
   }
 
+  /// Fence edits while the host publishes an omission of this coherent Work.
+  /// Call after settling native input and before staging or safe replacement.
+  /// The returned token identifies the save attempt and its later completion.
+  public func beginOmissionPublication() throws -> UUID {
+    guard canSave else { throw WorkHistoryError.busy }
+    let token = UUID()
+    omissionPublication = token
+    omissionManuscript = committed
+    omissionPhase = .publishing
+    didChange?()
+    return token
+  }
+
+  /// Release a publication fence after staging or safe replacement failed.
+  /// Live Undo and retained history then become available again.
+  public func cancelOmissionPublication(_ token: UUID) throws {
+    guard omissionPhase == .publishing, omissionPublication == token else {
+      throw WorkHistoryError.busy
+    }
+    omissionPhase = .none
+    omissionPublication = nil
+    omissionManuscript = nil
+    didChange?()
+  }
+
   /// Call only after a staged omission has replaced the saved Document.
   /// A failed publication must leave this session and its retained history intact.
   /// A post-publication failure is reported as such; the published package stays
   /// history-free. Retry this call if generation retirement or host-receipt
   /// cleanup fails; new edits and saves remain blocked until both succeed.
-  public func completeOmissionAfterSave() throws {
+  public func completeOmissionAfterSave(_ token: UUID) throws {
     guard let engine else { throw WorkHistoryError.busy }
-    if omissionPhase == .none {
-      guard canSave else { throw WorkHistoryError.busy }
+    guard omissionPublication == token, omissionManuscript == committed else {
+      throw WorkHistoryError.busy
+    }
+    if omissionPhase == .publishing {
       omissionPhase = .retireGeneration
       didChange?()
     }
@@ -144,13 +171,25 @@ extension WorkHistorySession {
     }
     try WorkStore.stripHistoryReceipts(at: hostStore)
     omissionPhase = .none
+    omissionPublication = nil
+    omissionManuscript = nil
+    didChange?()
+  }
+
+  /// Retry host-receipt cleanup after an explicit unresolved reset failed late.
+  public func retryResetReceiptCleanup() throws {
+    guard omissionPhase == .stripReceipts, omissionPublication == nil else {
+      throw WorkHistoryError.busy
+    }
+    try WorkStore.stripHistoryReceipts(at: hostStore)
+    omissionPhase = .none
     didChange?()
   }
 
   /// Acknowledge irrecoverable history continuity after the host has verified its
   /// coherent current Manuscript. The failed history store is copied to an absent
   /// quarantine URL before a new generation is installed. A post-reset receipt
-  /// cleanup failure blocks saves; retry `completeOmissionAfterSave()` to finish it.
+  /// cleanup failure blocks saves; retry `retryResetReceiptCleanup()` to finish it.
   @discardableResult public func resetUnresolvedHistory(
     adopting manuscript: Manuscript, quarantineAt destination: URL
   ) throws -> UUID {
@@ -225,7 +264,15 @@ extension WorkHistorySession {
 
   func stageSave(resources: WorkResourceStore, to destination: URL,
                  omittingHistory: Bool = false) throws -> WorkSaveReport {
-    guard canSave, let work else { throw WorkHistoryError.busy }
+    guard let work else { throw WorkHistoryError.busy }
+    if omittingHistory {
+      guard omissionPhase == .publishing, omissionManuscript == committed,
+        work.manuscript == committed, !isPending, !engineSnapshotSuspended else {
+        throw WorkHistoryError.busy
+      }
+    } else {
+      guard canSave else { throw WorkHistoryError.busy }
+    }
     let report = try WorkStore.stageSave(
       workIdentifier: work.identifier, manuscript: committed,
       resources: resources, from: hostDirectory, to: destination,
@@ -242,6 +289,8 @@ extension WorkHistorySession {
     try WorkResourceStore.markHistory(in: destination)
     return report
   }
+
+  private var engineSnapshotSuspended: Bool { engine?.snapshot.isSuspended ?? true }
 
   func encodeChange(before: Data, after: Data) throws -> HistoryPayload {
     let encoder = PropertyListEncoder()

@@ -131,7 +131,8 @@ public struct WorkSaveReport: Sendable {
   /// Pass nil for a new Work; otherwise pass a closed native package at a different URL.
   /// When omitting history, the staged artifact contains current Work and resources
   /// without the History directory or host receipt rows. Confirm successful host
-  /// publication before calling `WorkHistorySession.completeOmissionAfterSave()`.
+  /// publication before calling `WorkHistorySession.completeOmissionAfterSave(_:)`.
+  /// Begin an omission publication on the history session before staging.
   @discardableResult public func stageSave(
     from originalPackageURL: URL?,
     toEmptyPackageAt destinationPackageURL: URL,

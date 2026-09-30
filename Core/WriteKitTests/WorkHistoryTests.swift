@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: 2026 the Folio Project
 // SPDX-License-Identifier: MIT
 
+import AppKit
 import CoreData
 import FolioKit
 import Foundation
@@ -170,10 +171,11 @@ import XCTest
     let history = try work.enableHistory()
     try await history.submit(manuscript: manuscript(work, text: "Keep current wording"))
     try work.stageSave(from: nil, toEmptyPackageAt: original)
+    let publication = try history.beginOmissionPublication()
     try work.stageSave(from: original, toEmptyPackageAt: omitted, omittingHistory: true)
     XCTAssertEqual(try receiptCount(in: original), 1)
     XCTAssertEqual(try receiptCount(in: omitted), 0)
-    XCTAssertTrue(history.canUndo, "A staged but unpublished omission preserves live history")
+    XCTAssertFalse(history.canUndo, "Publication fences edits until its outcome is known")
     XCTAssertTrue(FileManager.default.fileExists(atPath: original.appendingPathComponent("History").path))
     XCTAssertFalse(FileManager.default.fileExists(atPath: omitted.appendingPathComponent("History").path))
     let manifest = try String(contentsOf: omitted.appendingPathComponent("Package.json"), encoding: .utf8)
@@ -181,7 +183,7 @@ import XCTest
     let omittedWork = try Work(contentsOf: omitted)
     XCTAssertNil(omittedWork.history)
     XCTAssertEqual(omittedWork.text.string, "Keep current wording")
-    try history.completeOmissionAfterSave()
+    try history.completeOmissionAfterSave(publication)
     XCTAssertFalse(history.canUndo)
     XCTAssertTrue(history.canSave)
     XCTAssertEqual(work.text.string, "Keep current wording")
@@ -202,8 +204,23 @@ import XCTest
     try await history.submit(manuscript: manuscript(work, text: "Saved original"))
     try work.stageSave(from: nil, toEmptyPackageAt: original)
     try Data("occupied".utf8).write(to: failed.appendingPathComponent("occupant"))
+    let publication = try history.beginOmissionPublication()
+    let publishing = history.availability
+    XCTAssertTrue(publishing.isSuspended)
+    XCTAssertFalse(history.canSave)
+    do {
+      try await history.submit(manuscript: manuscript(work, text: "Edit during replacement"))
+      XCTFail("Publication must refuse a later semantic edit")
+    } catch {}
+    do {
+      try await history.undo()
+      XCTFail("Publication must refuse Undo until its outcome is known")
+    } catch {}
     XCTAssertThrowsError(try work.stageSave(
       from: original, toEmptyPackageAt: failed, omittingHistory: true))
+    try history.cancelOmissionPublication(publication)
+    XCTAssertGreaterThan(history.availability.version, publishing.version)
+    XCTAssertFalse(history.availability.isSuspended)
     XCTAssertTrue(history.canUndo)
     XCTAssertTrue(FileManager.default.fileExists(atPath: original.appendingPathComponent("History").path))
     XCTAssertEqual(try receiptCount(in: original), 1)
@@ -224,11 +241,12 @@ import XCTest
     let work = Work()
     let history = try work.enableHistory()
     try await history.submit(manuscript: manuscript(work, text: "Current"))
+    let publication = try history.beginOmissionPublication()
     try work.stageSave(from: nil, toEmptyPackageAt: omitted, omittingHistory: true)
     let before = history.availability
     let heldStore = directory.appendingPathComponent("Held.sqlite")
     try FileManager.default.moveItem(at: history.hostStore, to: heldStore)
-    XCTAssertThrowsError(try history.completeOmissionAfterSave())
+    XCTAssertThrowsError(try history.completeOmissionAfterSave(publication))
     let fenced = history.availability
     XCTAssertNotEqual(fenced.generation, before.generation)
     XCTAssertGreaterThan(fenced.version, before.version)
@@ -243,7 +261,7 @@ import XCTest
       XCTFail("A fenced session must reject Undo")
     } catch {}
     try FileManager.default.moveItem(at: heldStore, to: history.hostStore)
-    try history.completeOmissionAfterSave()
+    try history.completeOmissionAfterSave(publication)
     let resumed = history.availability
     XCTAssertGreaterThan(resumed.version, fenced.version)
     XCTAssertFalse(resumed.isSuspended)
@@ -288,23 +306,45 @@ import XCTest
     let history = try work.enableHistory()
     try await history.submit(manuscript: manuscript(work, text: "Current"))
     let checkpoint = try await history.createCheckpoint(name: "Current")
+    let before = history.availability
+    let publication = try history.beginOmissionPublication()
     try work.stageSave(from: nil, toEmptyPackageAt: omitted, omittingHistory: true)
     let engine = try XCTUnwrap(history.engine)
     let plan = try engine.beginRecoveryPlan(to: .checkpoint(checkpoint), using: .acceptedEffects)
-    let before = history.availability
-    XCTAssertThrowsError(try history.completeOmissionAfterSave())
+    XCTAssertThrowsError(try history.completeOmissionAfterSave(publication))
     let fenced = history.availability
     XCTAssertEqual(fenced.generation, before.generation)
     XCTAssertGreaterThan(fenced.version, before.version)
     XCTAssertTrue(fenced.isSuspended)
     XCTAssertFalse(history.canSave)
     engine.releaseRecoveryPlan(plan)
-    try history.completeOmissionAfterSave()
+    try history.completeOmissionAfterSave(publication)
     let resumed = history.availability
     XCTAssertNotEqual(resumed.generation, before.generation)
     XCTAssertGreaterThan(resumed.version, fenced.version)
     XCTAssertFalse(resumed.isSuspended)
     XCTAssertEqual(try receiptCount(in: omitted), 0)
+    try await history.close()
+  }
+
+  func testCheckpointMenuRefusesRestoreWhenNativeAdmissionFails() async throws {
+    let work = Work()
+    let history = try work.enableHistory()
+    try await history.submit(manuscript: manuscript(work, text: "Current"))
+    let checkpoint = try await history.createCheckpoint(name: "Current")
+    var reported = 0
+    var restored = 0
+    let menuController = WorkHistoryMenuController(
+      history: history, save: {}, restored: { restored += 1 },
+      reportError: { _ in reported += 1 },
+      willRestore: { throw WorkHistoryError.busy })
+    let item = try XCTUnwrap(menuController.menu().items.first {
+      $0.representedObject as? UUID == checkpoint
+    })
+    XCTAssertTrue(NSApp.sendAction(try XCTUnwrap(item.action), to: item.target, from: item))
+    XCTAssertEqual(reported, 1)
+    XCTAssertEqual(restored, 0)
+    XCTAssertEqual(work.text.string, "Current")
     try await history.close()
   }
 

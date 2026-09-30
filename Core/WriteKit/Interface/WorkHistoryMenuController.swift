@@ -9,14 +9,15 @@ import AppKit
   private let history: WorkHistorySession
   private let save: @MainActor () async throws -> Void
   private let restored: @MainActor () -> Void
-  private let willRestore: @MainActor () -> Void
+  private let willRestore: @MainActor () throws -> Void
   private let restoreFinished: @MainActor () -> Void
   private let reportError: @MainActor (Error) -> Void
 
   public init(
     history: WorkHistorySession, save: @escaping @MainActor () async throws -> Void,
     restored: @escaping @MainActor () -> Void, reportError: @escaping @MainActor (Error) -> Void,
-    willRestore: @escaping @MainActor () -> Void = {},
+    // Throw when native restoration admission is busy; no restore is queued.
+    willRestore: @escaping @MainActor () throws -> Void = {},
     restoreFinished: @escaping @MainActor () -> Void = {}
   ) {
     self.history = history
@@ -83,7 +84,7 @@ import AppKit
 
   @objc private func restoreCheckpoint(_ sender: NSMenuItem) {
     guard let id = sender.representedObject as? UUID else { return }
-    willRestore()
+    do { try willRestore() } catch { reportError(error); return }
     Task {
       defer { restoreFinished() }
       do {

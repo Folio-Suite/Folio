@@ -77,11 +77,12 @@ import WriteKit
                 self?.finishInitialHistoryOpen(history, router: router)
             } catch {
                 self?.reportHistoryError(error)
-                self?.initialHistoryOpening = false
-                if let invocation = self?.initialHistoryInvocation {
-                    router.finishInvocation(invocation, snapshot: HistorySnapshot(canUndo: false, canRedo: false,
-                        isSuspended: true, hasPending: false))
+                if let snapshot = self?.historySnapshot(history),
+                   snapshot.scope != nil, snapshot.generation != nil,
+                   let invocation = self?.initialHistoryInvocation {
+                    router.finishInvocation(invocation, snapshot: snapshot)
                     self?.initialHistoryInvocation = nil
+                    self?.initialHistoryOpening = false
                 }
             }
         }
@@ -253,7 +254,10 @@ extension WriteDocument {
                     self?.refreshCommittedEditors()
                 }, reportError: { [weak self] error in self?.reportHistoryError(error) },
                 willRestore: { [weak self] in
-                    self?.restorationInvocation = self?.nativeHistory?.beginExternalOperation()
+                    guard let self, let invocation = self.nativeHistory?.beginExternalOperation() else {
+                        throw WorkHistoryError.busy
+                    }
+                    self.restorationInvocation = invocation
                 },
                 restoreFinished: { [weak self] in
                     guard let self, let nativeHistory = self.nativeHistory else { return }
@@ -319,18 +323,32 @@ extension WriteDocument {
                 guard !documentSaveInProgress, nativeHistory?.canAttach ?? true else {
                     throw WorkHistoryError.busy
                 }
+                let publication = try history.beginOmissionPublication()
                 let invocation = nativeHistory?.beginExternalOperation()
+                if nativeHistory != nil && invocation == nil {
+                    try history.cancelOmissionPublication(publication)
+                    throw WorkHistoryError.busy
+                }
                 documentSaveInProgress = true
                 omittingHistoryForCurrentSave = true
                 super.save(to: url, ofType: typeName, for: .saveOperation) { [self] error in
                     omittingHistoryForCurrentSave = false
                     documentSaveInProgress = false
+                    if let error {
+                        do { try history.cancelOmissionPublication(publication) } catch {
+                            reportHistoryError(error)
+                        }
+                        if let invocation {
+                            nativeHistory?.finishInvocation(invocation, snapshot: historySnapshot(history))
+                        }
+                        completionHandler(error)
+                        return
+                    }
                     if let invocation {
                         nativeHistory?.finishInvocation(invocation, snapshot: historySnapshot(history))
                     }
-                    if let error { completionHandler(error); return }
                     do {
-                        try history.completeOmissionAfterSave()
+                        try history.completeOmissionAfterSave(publication)
                         try nativeHistory?.attach(snapshot: historySnapshot(history))
                         completionHandler(nil)
                     } catch {
@@ -341,6 +359,19 @@ extension WriteDocument {
                     }
                 }
             } catch { completionHandler(error) }
+        }
+    }
+
+    /// Retry live reset or receipt cleanup after the package was already saved
+    /// without history. A second call can also finish native reattachment.
+    func retryPublishedHistoryOmission() throws {
+        guard !documentSaveInProgress, let history = work.history else { throw WorkHistoryError.busy }
+        if let publication = history.pendingOmissionPublication {
+            try history.completeOmissionAfterSave(publication)
+        }
+        if let nativeHistory {
+            guard nativeHistory.canAttach else { throw WorkHistoryError.busy }
+            try nativeHistory.attach(snapshot: historySnapshot(history))
         }
     }
 
