@@ -53,7 +53,7 @@
           "name" : "Header",
           "opacity" : 0.88,
           "position" : {
-            "scale" : 1.21,
+            "scale" : 1.15,
             "translation-in-points" : [
               9.334850776593782,
               2.969673917781904
@@ -87,7 +87,7 @@
           "name" : "Body",
           "opacity" : 0.88,
           "position" : {
-            "scale" : 1.21,
+            "scale" : 1.15,
             "translation-in-points" : [
               9.334850776593782,
               2.969673917781904
@@ -120,7 +120,7 @@
           "name" : "Side",
           "opacity" : 0.88,
           "position" : {
-            "scale" : 1.21,
+            "scale" : 1.15,
             "translation-in-points" : [
               9.334850776593782,
               2.969673917781904
@@ -130,7 +130,7 @@
       ],
       "name" : "Composition regions",
       "position" : {
-        "scale" : 1.1300000000000001,
+        "scale" : 1.07,
         "translation-in-points" : [
           -1,
           7
@@ -177,7 +177,7 @@
           "name" : "Front page",
           "opacity" : 0.92,
           "position" : {
-            "scale" : 1.21,
+            "scale" : 1.15,
             "translation-in-points" : [
               8.713053423848862,
               2.768324308919887
@@ -218,7 +218,7 @@
           "name" : "Rear page",
           "opacity" : 0.75,
           "position" : {
-            "scale" : 1.21,
+            "scale" : 1.15,
             "translation-in-points" : [
               8.713053423848862,
               2.768324308919887
@@ -228,7 +228,7 @@
       ],
       "name" : "Page pair",
       "position" : {
-        "scale" : 1.21,
+        "scale" : 1.15,
         "translation-in-points" : [
           -1,
           7
