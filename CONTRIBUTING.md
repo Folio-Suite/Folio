@@ -89,6 +89,14 @@ The current pre-alpha model replaces the experimental code-defined format withou
 
 ## Public Kit interfaces
 
+Follow [ADR 0017](docs/adr/0017-discoverable-swift-interfaces-and-resources.md):
+keep each public API in a clearly named file or known set of interface files,
+with DocC beside the declarations and an entry-point guide in the module's
+README or DocC overview. Keep `AppDelegate.swift` at each app's source root.
+Collect bundled resources at the owning app or framework's root or in its
+top-level `Resources/` directory. Future internal libraries remain components
+of that enclosing product, with resource ownership retained by the product.
+
 All six Kits publish Swift modules. Callers, including each owning application,
 use `import KitName` and public Swift declarations. Keep implementation types
 internal or private, and keep production callers free of `@testable import`.
