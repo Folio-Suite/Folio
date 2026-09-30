@@ -19,7 +19,7 @@ Each Document has its own Save, Undo, history, and checkpoint boundary. Other Su
 
 Core Data is the native working-store foundation. Domain Kits own persistence and schema meaning. Native packages hold files directly and may refer to exact-version external dependencies. Ordinary Save and Auto Save must avoid rebuilding unchanged document content or rewriting unchanged large assets. XML conversion of the Project belongs to archival export. Sharing package utilities does not require identical schemas across domains.
 
-Write's present serializer rebuilds and validates a closed SQLite snapshot for every save. That is the accepted pre-alpha baseline, not the intended large-document strategy. Research retains its package wrapper and collected files around an empty catalog shell. Preserve current package readers and behavior while introducing efficient storage through explicit, tested implementation slices; neither a bundle extension nor a successful Core Data save establishes the full lifecycle contract.
+Write now stages native saves by cloning a closed SQLite store and reconciling changed authored content, with an independent-copy fallback. Its opt-in V2 package preserves unchanged opaque resources through the same staging boundary; see [native Work storage](native-work-v1.md). The FileWrapper convenience still produces a complete snapshot. Research retains its package wrapper and collected files around an empty catalog shell. Preserve current package readers and behavior while introducing efficient storage through explicit, tested implementation slices; neither a bundle extension nor a successful Core Data save establishes the full lifecycle contract.
 
 ## Shared authority and host lifetime
 

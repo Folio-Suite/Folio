@@ -23,7 +23,25 @@ The versioned Xcode model `Core/WriteKit/Resources/Work.xcdatamodeld` is the aut
 
 The supported subset is a flat Manuscript with one or more text Content Units, each containing one or more paragraphs. Unplaced units, nested structure, and deletion are not yet exposed. This pre-alpha visual model intentionally replaces the experimental programmatic schema; no migration from that prototype is provided. Earlier packages are rejected by Core Data’s model-compatibility check. Retain versioned model resources and make future compatibility decisions explicitly. The reader rejects incompatible schemas, unsupported structure, duplicate identities, invalid relationships or style values, and unfamiliar package entries rather than dropping content on save. This is a limited reader, not the general extension-preserving model.
 
-For this small slice, each save materializes a fresh Core Data snapshot in a temporary store, saves and closes the store with DELETE journal mode, verifies reconstruction, and hands a complete file wrapper to NSDocument for package replacement. There is no live SQLite handle into the package that NSDocument replaces, and no uncheckpointed WAL is omitted. Reading also uses an isolated temporary copy. Temporary stores are removed after the operation. This deliberately simple full-snapshot approach is not the eventual large-Work incremental persistence implementation.
+The native save path prepares a separate package through WriteKit's
+`Work.stageSave(from:toEmptyPackageAt:)`. It clones the original closed SQLite
+store where the filesystem supports copy-on-write, reconciles values and ordered
+relationships by their existing identities, closes the staged store with DELETE
+journaling, and verifies the resulting authored state. Unchanged rows are retained.
+On a volume without cloning, it makes an independent file copy and reports that
+cost. This is the accepted portability boundary: avoiding unchanged-asset copies
+is a clone-capable-filesystem optimization; independent copying preserves correct
+saves elsewhere. Both paths have bounded interruption/retry evidence in
+[the persistence results](../evidence/work-persistence/README.md).
+New Works still require an initial store. The `fileWrapper()` convenience
+continues to support complete in-memory serialization.
+
+`WriteDocument` supplies this preparation through NSDocument's advanced write
+hook. AppKit retains safe replacement, Auto Save, Versions and change-count
+handling. No writable SQLite handle targets the package being replaced. Failed
+preparation preserves the original and leaves the in-memory edits available for
+retry. This remains an in-process document implementation; it does not establish
+the later shared Work Session host or durable history.
 
 The old empty `NSPersistentDocument` prototype's SQLite UTI is not claimed by the new package type. No legacy store conversion or archival export is implemented in this slice.
 
@@ -48,3 +66,29 @@ When Bold or Italic overlaps any semantic emphasis, the editor temporarily highl
 ## Planned semantic analysis
 
 A later semantic analyzer should identify text with explicit Bold and/or Italic but no semantic emphasis and offer conversion. This is a review aid for authors who intended meaning; it must not assume that visual formatting proves intent or automatically replace deliberate presentation. The current overlap warning does not implement this analyzer. Future output and archival XML should represent the authored enum and independent booleans explicitly, without deriving semantics from the editor’s visual idiom.
+
+## Explicit opaque-resource storage
+
+Text-only packages remain V1, containing exactly `Work.sqlite`, with the existing
+WorkV1 Core Data model. Opening and editing the supported baseline does not
+upgrade it. Unknown package members continue to be rejected.
+
+A host can explicitly call `Work.upgradeStorage()` before importing opaque
+resources. This opts the pending Work into package V2; it does not rewrite the
+saved original. V2 adds a versioned `Package.json` manifest and a `Resources`
+directory while retaining the same authored Core Data schema. The manifest
+identifies the required resource capability, listed files, byte counts and
+SHA-256 digests. Unsupported capabilities, unexpected members, invalid paths and
+corrupt resources are refused rather than silently omitted.
+
+Resources are immutable retained bytes, with public descriptors and copy-out
+export. They do not introduce Figure semantics, an asset browser or automatic
+resource interpretation. Imports preserve their own snapshots so changing the
+source file later cannot change the Work. Native URL-based reading and staged
+saving avoid using an in-memory file wrapper for the entire resource collection.
+
+V1 remains a supported compatibility mode: resource import requires explicit
+upgrade. Declining upgrade leaves the original format intact; failed preparation
+also preserves the original V1 package. There is no resource-import command in
+the current editor. A future UI for that operation must offer the agreed
+upgrade, compatibility and cancellation choices before requesting conversion.
