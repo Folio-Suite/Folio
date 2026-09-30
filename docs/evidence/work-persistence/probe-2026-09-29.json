@@ -1,0 +1,64 @@
+{
+  "scope": "Work Kit staging interruption probe; no AppKit promotion or power-loss claim",
+  "limits": {
+    "childSeconds": 60,
+    "rssKiB": 1048576,
+    "paragraphs": 5000,
+    "opaqueResourceBytes": 33554432
+  },
+  "classification": "passed",
+  "sourceSHA256": {
+    "/Users/ctwelve/Developer/Folio/scripts/fixtures/work-persistence-probe.swift": "28826a463026d55a3cdf12d1fd87eecc122979cbd2832b819e824214f762db51",
+    "scripts/verify-work-persistence.rb": "5f5ea7ce8afc761637a8abaaecd9ecdadc7fb17e5c8b344a3f65c24641273cda",
+    "/Users/ctwelve/Developer/Folio/Core/WriteKit/Editor/EditorTextAttributes.swift": "1cd1b95aee279ef6b8d0a326585d8705b3311cee6dc4c5559fd1d7459df69e4d",
+    "/Users/ctwelve/Developer/Folio/Core/WriteKit/Editor/EditorTextView.swift": "402a15e50be625d94e4b581eaa3146a8a75e10633db4ddb62f517fad57a946ae",
+    "/Users/ctwelve/Developer/Folio/Core/WriteKit/Editor/EditorViewController.swift": "1a02ef82a122fc7efdc531c7bd1bddd232aacbf9a998ec7f1782731f860b4234",
+    "/Users/ctwelve/Developer/Folio/Core/WriteKit/Editor/FormattingImages.swift": "93fe3faa2300d07fec8f39bb14d6ae1fa132ea9d1f146dc1088b3866b51d8a55",
+    "/Users/ctwelve/Developer/Folio/Core/WriteKit/Editor/ManuscriptViewController.swift": "41b64d45e7f191aa42f3077fcfb9b25d92e72ddad939c6836c367c8011831b14",
+    "/Users/ctwelve/Developer/Folio/Core/WriteKit/Manuscript/Work.swift": "b443d3361123275109d7554e28ef1a6a73ad3c1517292bbd557e2f1c29fdcddc",
+    "/Users/ctwelve/Developer/Folio/Core/WriteKit/Manuscript/WorkStore+Resources.swift": "d0c86b306b94d97a10a256288e0ae5bda91711452e9a21c6bcab9b1ac28b99b6",
+    "/Users/ctwelve/Developer/Folio/Core/WriteKit/Manuscript/WorkStore+Staging.swift": "442f609d7a7ca4895225cca05df113aac9fb48df6cc8b6dda2e24325e561cfab",
+    "/Users/ctwelve/Developer/Folio/Core/WriteKit/Manuscript/WorkStore.swift": "ed225f992d2fcfd9537318be7567e0cb4ce3777f65bbba90500162d5ee52bd35"
+  },
+  "productSHA256": {
+    "/Users/ctwelve/Developer/Folio/DerivedData/Folio/Build/Products/Debug/WriteKit.framework/Versions/A/WriteKit": "061e04b7aa97ca9df1e83ed4b2c55a3f392f900dd976389b79778bbc0a878df0",
+    "/Users/ctwelve/Developer/Folio/DerivedData/Folio/Build/Products/Debug/FolioKit.framework/Versions/A/FolioKit": "6f0de2a1e359a9c8a9d12e848df01de673600474cfbce0cc467d62a609f1bbfd"
+  },
+  "sourcePackageSHA256Before": {
+    "Package.json": "202618688f97a405551d2777d2bfb406746f35cc047644ca67a9393d1edd3834",
+    "Resources/o58b423b4-2bdc-41ee-bfdb-c70b7c6492ef": "edeadec8f638055689d5be63b4bcf2654fb64bf91fb6651e9a924f052a9c7db0",
+    "Work.sqlite": "a2702398a02ac9af3765806ae8f80eddbe779a4c6ba266e54f936be643e1128f"
+  },
+  "sourcePackageSHA256After": {
+    "Package.json": "202618688f97a405551d2777d2bfb406746f35cc047644ca67a9393d1edd3834",
+    "Resources/o58b423b4-2bdc-41ee-bfdb-c70b7c6492ef": "edeadec8f638055689d5be63b4bcf2654fb64bf91fb6651e9a924f052a9c7db0",
+    "Work.sqlite": "a2702398a02ac9af3765806ae8f80eddbe779a4c6ba266e54f936be643e1128f"
+  },
+  "performance": {
+    "elapsedSeconds": 0.9188120365142822,
+    "changedContentUnits": 0,
+    "changedParagraphs": 1,
+    "changedRuns": 1,
+    "clonedStoreBytes": 819200,
+    "copiedStoreBytes": 0,
+    "clonedResourceBytes": 33554432,
+    "copiedResourceBytes": 0
+  },
+  "interruption": {
+    "elapsedSeconds": 0.6212719999966794,
+    "peakRSSKiB": 89376,
+    "exitStatus": null,
+    "signal": 9,
+    "killSent": true,
+    "proved": true
+  },
+  "retry": {
+    "elapsedSeconds": 1.297976000001654,
+    "peakRSSKiB": 159632,
+    "exitStatus": 0,
+    "signal": null,
+    "killSent": false,
+    "proved": false
+  },
+  "implementationCommit": "2ae6762c5b5795ba99b630a45e0c33a72b7dd38c"
+}
