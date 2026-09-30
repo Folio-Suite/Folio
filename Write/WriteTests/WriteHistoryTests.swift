@@ -15,8 +15,7 @@ import XCTest
                       operation: NSDocument.SaveOperationType = .saveAsOperation) async throws {
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             document.save(to: url, ofType: workDocumentType, for: operation) { error in
-                if let error { continuation.resume(throwing: error) }
-                else { continuation.resume() }
+                if let error { continuation.resume(throwing: error) } else { continuation.resume() }
             }
         }
     }
@@ -41,7 +40,7 @@ import XCTest
         XCTAssertNotNil(controller.historyRequested, "The Write document must install its History callback")
         XCTAssertNotNil(controller.activeEditor.historyRequested,
             "The active editor must forward History to the Manuscript controller")
-        XCTAssertTrue(controller.activeEditor.work === document.work)
+        XCTAssertIdentical(controller.activeEditor.work, document.work)
         var forwarded = 0
         controller.historyRequested = { forwarded += 1 }
         XCTAssertTrue(NSApp.sendAction(#selector(WriteDocument.showHistory(_:)), to: textView, from: nil))
@@ -78,8 +77,8 @@ import XCTest
         XCTAssertFalse(reopened.isDocumentEdited,
             "Dispatching native Undo must not count a change before the host outcome")
         let reversed = await waitUntil {
-            reopened.work.text.string == "" && reopened.work.history?.canRedo == true &&
-                reopenedEditor.textView.string == "" && reopened.isDocumentEdited && manager.canRedo
+            reopened.work.text.string.isEmpty && reopened.work.history?.canRedo == true &&
+                reopenedEditor.textView.string.isEmpty && reopened.isDocumentEdited && manager.canRedo
         }
         XCTAssertTrue(reversed, "One native Undo should reverse the settled typing group")
         XCTAssertTrue(reopened.isDocumentEdited)
@@ -105,8 +104,8 @@ import XCTest
         XCTAssertTrue(manager.canUndo, "Provisional text is eligible before its history result arrives")
         manager.undo()
         let reversed = await waitUntil {
-            document.work.text.string == "" && document.work.history?.canRedo == true &&
-                textView.string == "" && manager.canRedo
+            document.work.text.string.isEmpty && document.work.history?.canRedo == true &&
+                textView.string.isEmpty && manager.canRedo
         }
         XCTAssertTrue(reversed, "Undo must wait behind the typing submission")
         XCTAssertEqual(textView.string, "")

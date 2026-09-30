@@ -24,6 +24,9 @@ complete results from unsupported requests and infeasible selected geometry.
 A caller can submit another request when a page or region changes. TypographyKit
 does not search break sequences or own a Folio Document.
 
+The public declarations and their DocC comments are in
+`Interface/TypographyKit.swift`. `Modules/Composition/` contains implementation details.
+
 ```swift
 let request = CompositionRequest(
     occurrences: [TextOccurrence(sourceID: "passage", text: "extraordinary")],

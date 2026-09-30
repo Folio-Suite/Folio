@@ -21,7 +21,7 @@ A `.flwrbundle` package has UTI `app.foliosuite.Write.Doc` and contains `Work.sq
 
 The Xcode model `Core/WriteKit/Resources/Work.xcdatamodeld` is the authoritative schema. Its current `WorkV1` model defines Work, Manuscript, ContentUnit, Paragraph, Run, and HistoryReceipt entities. Open it in Xcode’s data model editor to inspect attributes, inverses, validation, and deletion rules. The Work owns its Content Units, Manuscript, and command receipts; a receipt records identity, fingerprint binding, accepted status, and host outcome evidence. The Manuscript arranges units through its ordered `contentUnits` relationship. Paragraphs and runs also use native ordered to-many relationships. Each relationship has an inverse, including the optional Manuscript placement on a Content Unit. Supported numeric ranges are expressed in the model; the persistence adapter validates identifier uniqueness across the Work. Work, Manuscript, Content Unit, and paragraphs retain independent identifiers. Paragraph alignment is authored presentation. Run emphasis is one exclusive enum value: None, Emphasis, Strong Emphasis, or Very Strong Emphasis. Bold, Italic, Underline, and Strikethrough are four independent Boolean attributes. ContentUnit also stores its display `title` and `formattingWarningDismissed`. The public Foundation model groups those booleans in immutable `TextPresentation`, separately from `TextRun.emphasis`.
 
-The supported subset is a flat Manuscript with one or more text Content Units, each containing one or more paragraphs. Unplaced units, nested structure, and deletion are not yet exposed. This pre-alpha model now includes receipts in the single current `WorkV1` schema; it does not migrate earlier SQLite schemas. Package-envelope V1 support below refers to the current model, not compatibility with files written before this schema change. The reader rejects incompatible schemas, unsupported structure, duplicate identities, invalid relationships or style values, and unfamiliar package entries rather than dropping content on save. This is a limited reader, not the general extension-preserving model.
+The supported subset is a flat Manuscript with one or more text Content Units, each containing one or more paragraphs. Unplaced units, nested structure, and deletion are not yet exposed. This pre-alpha model now includes receipts in the single current `WorkV1` schema; it does not migrate earlier SQLite schemas. The reader rejects incompatible schemas, unsupported structure, duplicate identities, invalid relationships or style values, and unfamiliar package entries rather than dropping content on save. This is a limited reader, not the general extension-preserving model.
 
 The native save path prepares a separate package through WriteKit's
 `Work.stageSave(from:toEmptyPackageAt:)`. It clones the original closed SQLite
@@ -69,33 +69,25 @@ When Bold or Italic overlaps any semantic emphasis, the editor temporarily highl
 
 A later semantic analyzer should identify text with explicit Bold and/or Italic but no semantic emphasis and offer conversion. This is a review aid for authors who intended meaning; it must not assume that visual formatting proves intent or automatically replace deliberate presentation. The current overlap warning does not implement this analyzer. Future output and archival XML should represent the authored enum and independent booleans explicitly, without deriving semantics from the editor’s visual idiom.
 
-## Explicit opaque-resource storage
+## Opaque-resource storage
 
-Text-only packages retain the V1 envelope containing exactly `Work.sqlite`, now
-using the current pre-alpha `WorkV1` Core Data schema with a receipt entity.
-Opening and editing that supported envelope does not change it into a V2 package.
-This is not a promise to open earlier SQLite schemas. Unknown package members
-continue to be rejected.
-
-A host can explicitly call `Work.upgradeStorage()` before importing opaque
-resources. This opts the pending Work into package V2; it does not rewrite the
-saved original. V2 adds a versioned `Package.json` manifest and a `Resources`
-directory while retaining the same current Core Data schema. The manifest
-identifies the required resource capability, listed files, byte counts and
-SHA-256 digests. Unsupported capabilities, unexpected members, invalid paths and
-corrupt resources are refused rather than silently omitted.
+Every Work uses one current package layout: `Work.sqlite`, a bounded
+`Package.json` manifest, and a `Resources` directory. Resource support is present
+from creation, including for text-only Works. There is no storage-version API,
+upgrade operation, or legacy package mode during pre-alpha development.
+Compatibility and migration will be introduced only when explicitly required.
+The manifest identifies required capabilities, listed files, byte counts, and
+SHA-256 digests. Unsupported capabilities, unexpected members, invalid paths,
+and corrupt resources are refused rather than silently omitted.
 
 Resources are immutable retained bytes, with public descriptors and copy-out
-export. They do not introduce Figure semantics, an asset browser or automatic
+export. They do not introduce Figure semantics, an asset browser, or automatic
 resource interpretation. Imports preserve their own snapshots so changing the
 source file later cannot change the Work. Native URL-based reading and staged
 saving avoid using an in-memory file wrapper for the entire resource collection.
+Failed preparation preserves the original package and pending edits for retry.
+The current editor has no resource-import command.
 
-V1 remains a supported package-envelope mode: resource import requires explicit
-upgrade. Declining upgrade leaves the original format intact; failed preparation
-also preserves the original V1 package. There is no resource-import command in
-the current editor. A future UI for that operation must offer the agreed
-upgrade, compatibility and cancellation choices before requesting conversion.
-Enabling Work history selects the V2 envelope and adds a declared `History`
-directory; the first history operation preserves resources but blocks their
-import and removal until those edits have their own durable command.
+Enabling Work history adds a declared `History` directory. The first history
+operation preserves resources but blocks their import and removal until those
+edits have their own durable command.

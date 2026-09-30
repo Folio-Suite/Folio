@@ -21,6 +21,9 @@ A ``PublicationPreviewInput`` identifies caller-owned source text and supplies e
 
 Use `import ComposerKit`. The owning application uses the same public interface as other hosts. AppKit presentation is main-actor isolated; the composition adapter is synchronous. TypographyKit retains neutral text shaping and geometry without acquiring Folio objects or storage. Apps and Kits ship as one coordinated Suite version.
 
+The public declarations and their DocC comments are in `Interface/ComposerPreview.swift`,
+`Interface/CompositionPreviewView.swift`, and `Interface/CompositionPreviewWindow.swift`.
+
 ## Topics
 
 ### Preview

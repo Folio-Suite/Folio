@@ -39,6 +39,22 @@ Semantic Emphasis is exclusive: None, Emphasis, Strong Emphasis, or Very Strong 
 
 Swift callers import `WriteKit` and `FolioKit`. The Work's ``Work/manuscript`` and ``Work/text`` properties use native FolioKit values, including stable identifiers, paragraphs, runs, semantic emphasis, and explicit presentation. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
 
+### Source map
+
+The public declarations live in `Interface/`:
+
+- `Work.swift` — Work identity, Manuscript access, persistence, resources, and save reports.
+- `WorkHistorySession.swift` and `WorkHistorySession+Operations.swift` — durable
+  history errors, checkpoints, and Work history session operations.
+- `WorkHistoryMenuController.swift` — the native checkpoint menu.
+- `ManuscriptViewController.swift` — the Manuscript sidebar and editor host.
+- `EditorViewController.swift` and its `+Manuscript` and `+Formatting` extensions —
+  the single Content Unit editor, native editing delegates, and formatting actions.
+- `FormattingImages.swift` — semantic formatting menu images.
+
+Implementation details are grouped in `Modules/Editor/`, `Modules/Manuscript/`,
+and `Modules/WorkAdapter/`; resources are collected in `Resources/`.
+
 ## Limitations
 
 The Manuscript supports a flat list of text Content Units. Adding, renaming, and reordering are undoable; selection is transient. Nested and unplaced units are unsupported. The host must resolve pending edits and manage undo history before replacing a Work. The current in-process package adapter does not provide shared Work Session recovery or archival folio export. The interface is evolving and has no independent compatibility guarantee.
@@ -67,27 +83,26 @@ safe replacement, Auto Save, native Versions and change counts. A failed
 preparation leaves the original package and the Work's pending edits available
 for retry. Never pass the original itself or a directory inside it as staging.
 
-The text-only WorkV1 schema remains supported. Existing package readers still
-reject unknown structure rather than dropping it on the next save.
+Readers validate the single current pre-alpha schema and reject unknown
+structure rather than dropping it on the next save.
 
-## Opaque resources and compatibility
+## Opaque resources
 
-New and existing text-only Works retain package V1 until a host explicitly calls
-``Work/upgradeStorage()``. ``Work/importResource(from:)`` requires that opt-in;
-the pending change reaches the native package only after successful saving.
-The authored Core Data model remains WorkV1.
+Every Work supports opaque resources from creation. ``Work/importResource(from:)``
+adds immutable retained bytes; the pending change reaches the native package
+only after successful saving. There is one current storage model and no upgrade
+API or legacy package mode.
 
-Package V2 declares a bounded resource manifest alongside the store and immutable
-resource files, with at most 4,096 resources and a 4 MiB manifest. ``Work/resources`` describes them; use
+The package declares a bounded resource manifest alongside the store and immutable
+resource files, with at most 4,096 resources and a 4 MiB manifest.
+``Work/resources`` describes them; use
 ``Work/exportResource(withIdentifier:to:)`` to obtain an independent copy.
 ``Work/removeResource(withIdentifier:)`` changes the pending collection. These
 operations attach no publication meaning to the bytes.
 
 Use ``Work/init(contentsOf:)`` for native opening with large resources. The
-FileWrapper convenience is still available when a complete in-memory package
-is appropriate. Resource-capable UI must obtain explicit upgrade consent and
-allow users to retain V1 editing or cancel; the existing editor has no resource
-import command.
+FileWrapper convenience is available when a complete in-memory package is
+appropriate. The existing editor has no resource import command.
 
 ## Durable manuscript history
 
@@ -95,7 +110,7 @@ import command.
 The session translates complete, settled Manuscript edits into UndoKit commands.
 It owns semantic validation and writes a command receipt in the same Core Data
 transaction as the authored change. UndoKit owns transaction ordering, history
-relationships, and recovery. The implementation files live in `WorkAdapter/`;
+relationships, and recovery. The implementation files live in `Modules/WorkAdapter/`;
 no Folio value types enter UndoKit.
 
 ```swift

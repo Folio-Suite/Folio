@@ -4,6 +4,7 @@
 import AppKit
 import ComposerKit
 
+@main
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var previewWindow: NSWindowController?

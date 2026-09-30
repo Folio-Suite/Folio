@@ -11,7 +11,7 @@ final class FolioValuesTests: XCTestCase {
         let paragraph = TextParagraph(
             identifier: try FolioIdentifier(rawValue: "paragraph-1"),
             runs: [TextRun(string: "Folio", emphasis: .emphasis,
-                           presentation: TextPresentation(bold: true, underline: true))]
+                           presentation: TextPresentation(bold: true, underline: true)), ]
         )
         let unit = try TextUnit(identifier: unitID, title: "Chapter", paragraphs: [paragraph],
                                 formattingWarningDismissed: true)

@@ -13,7 +13,7 @@ Keep public types, protocols, initializers, methods, and properties in one clear
 
 These files contain the actual Swift declarations. Use extensions and internal implementation types where useful, while respecting Swift's rules for stored properties, access control, and type declarations. Small implementations may remain beside their public declarations; avoid duplicating signatures or adding forwarding layers solely to imitate a header. Swift visibility and module boundaries remain authoritative; this convention requires no authored module map or umbrella header.
 
-Keep each app's `AppDelegate.swift` at the app source root, visible as its entry point, and use `@main` for the AppKit application entry point. Implementation folders describe cohesive responsibilities and allow readers to descend into those responsibilities as needed.
+Keep each app's `AppDelegate.swift` at the app source root, visible as its entry point, and use `@main` for the AppKit application entry point. Collect implementation areas under a top-level `Modules/` directory, with capability folders such as `Modules/History/` or `Modules/Document/`. Keep `Interface/` and `Resources/` alongside `Modules/`, so readers can inspect the contract and bundled resources before descending into implementation. These module folders organize source; they do not by themselves create Swift targets or separate libraries.
 
 ## Resources and future libraries
 

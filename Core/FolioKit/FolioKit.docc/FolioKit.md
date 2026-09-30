@@ -21,6 +21,9 @@ The text model includes identities, Manuscript reading order, text Content Units
 
 Swift callers use `import FolioKit`. The model and staging implementations have no transitional Objective-C adapters. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.
 
+The public declarations and their DocC comments are in `Interface/FolioValues.swift`
+and `Interface/PackageStaging.swift`.
+
 ## Limitations
 
 FolioKit supplies shared model foundations, not Work persistence, Source Library behavior, Arrangement behavior, or reusable AppKit editing. XML exchange is not implemented. The authored-text model does not contain editor selection or undo-manager state.

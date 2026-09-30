@@ -3,6 +3,7 @@
 
 import AppKit
 import CoreData
+import FolioKit
 import UniformTypeIdentifiers
 import WriteKit
 import XCTest
@@ -45,7 +46,8 @@ import XCTest
     private func insert(_ string: String, in document: WriteDocument) async throws {
         if document.windowControllers.isEmpty { document.makeWindowControllers() }
         try await document.flushHistory()
-        let manuscript = try XCTUnwrap(document.windowControllers.first?.contentViewController as? ManuscriptViewController)
+        let manuscript = try XCTUnwrap(
+            document.windowControllers.first?.contentViewController as? ManuscriptViewController)
         let editor = try XCTUnwrap(manuscript.activeEditor)
         _ = editor.view
         editor.textView.insertText(string, replacementRange: NSRange(location: editor.textView.string.count, length: 0))
@@ -56,10 +58,12 @@ import XCTest
         document.makeWindowControllers()
         try await document.flushHistory()
         defer { document.close() }
-        let manuscript = try XCTUnwrap(document.windowControllers.first?.contentViewController as? ManuscriptViewController)
+        let manuscript = try XCTUnwrap(
+            document.windowControllers.first?.contentViewController as? ManuscriptViewController)
         let editor = try XCTUnwrap(manuscript.activeEditor)
         _ = editor.view
-        editor.textView.insertText("A beginning.\nAnother paragraph.", replacementRange: NSRange(location: 0, length: 0))
+        editor.textView.insertText("A beginning.\nAnother paragraph.",
+            replacementRange: NSRange(location: 0, length: 0))
         editor.textView.setSelectedRange(NSRange(location: 2, length: 9))
         editor.toggleBold(nil)
         manuscript.addContentUnit(nil)
@@ -85,7 +89,8 @@ import XCTest
         loaded.makeWindowControllers()
         try await loaded.flushHistory()
         defer { loaded.close() }
-        let loadedManuscript = try XCTUnwrap(loaded.windowControllers.first?.contentViewController as? ManuscriptViewController)
+        let loadedManuscript = try XCTUnwrap(
+            loaded.windowControllers.first?.contentViewController as? ManuscriptViewController)
         let reopened = try XCTUnwrap(loadedManuscript.activeEditor)
         _ = reopened.view
         XCTAssertEqual(reopened.textView.string, editor.textView.string)
@@ -113,7 +118,8 @@ import XCTest
         document.makeWindowControllers()
         try await document.flushHistory()
         defer { document.close() }
-        let manuscript = try XCTUnwrap(document.windowControllers.first?.contentViewController as? ManuscriptViewController)
+        let manuscript = try XCTUnwrap(
+            document.windowControllers.first?.contentViewController as? ManuscriptViewController)
         let editor = try XCTUnwrap(manuscript.activeEditor)
         _ = editor.view
         editor.textView.insertText("Saved through AppKit.", replacementRange: NSRange(location: 0, length: 0))
@@ -217,7 +223,12 @@ import XCTest
         XCTAssertEqual(retried.work.text.string, "Still editable.")
     }
 
-    func testUpgradedResourceSurvivesNativeSaveAutosaveAndIndependentCopy() async throws {
+}
+
+// MARK: - Resource persistence
+
+extension WriteTests {
+    func testResourceSurvivesNativeSaveAutosaveAndIndependentCopy() async throws {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: false)
         defer { try? FileManager.default.removeItem(at: directory) }
@@ -236,7 +247,6 @@ import XCTest
 
         let document = try WriteDocument(contentsOf: originalURL, ofType: workDocumentType)
         defer { document.close() }
-        try document.upgradeStorage()
         let resourceIdentifier = try document.importResource(from: resourceURL)
         try await insert("First text.", in: document)
 
@@ -247,18 +257,15 @@ import XCTest
             XCTAssertEqual(try Data(contentsOf: originalURL.appendingPathComponent("Work.sqlite")), originalStoreBytes)
             let oldPackage = try WriteDocument(contentsOf: originalURL, ofType: workDocumentType)
             defer { oldPackage.close() }
-            XCTAssertEqual(oldPackage.work.storageVersion, .v1)
+            XCTAssertTrue(oldPackage.work.resources.isEmpty)
         }
 
         try await save(document, to: originalURL, for: .saveOperation)
         XCTAssertEqual(document.fileURL, originalURL)
         let reopened = try WriteDocument(contentsOf: originalURL, ofType: workDocumentType)
         defer { reopened.close() }
-        XCTAssertEqual(reopened.work.storageVersion, .v2)
         XCTAssertEqual(reopened.work.text.string, "First text.")
-        let reopenedExport = directory.appendingPathComponent("Reopened Export.bin")
-        try reopened.work.exportResource(withIdentifier: resourceIdentifier, to: reopenedExport)
-        XCTAssertEqual(try Data(contentsOf: reopenedExport), resourceBytes)
+        try assertResource(in: reopened, identifier: resourceIdentifier, matches: resourceBytes, directory: directory)
 
         try await save(document, to: copyURL, for: .saveToOperation)
         try await insert(" Second text.", in: document)
@@ -267,17 +274,19 @@ import XCTest
         let copied = try WriteDocument(contentsOf: copyURL, ofType: workDocumentType)
         defer { copied.close() }
         XCTAssertEqual(copied.work.text.string, "First text.")
-        XCTAssertEqual(copied.work.storageVersion, .v2)
-        let copiedExport = directory.appendingPathComponent("Copied Export.bin")
-        try copied.work.exportResource(withIdentifier: resourceIdentifier, to: copiedExport)
-        XCTAssertEqual(try Data(contentsOf: copiedExport), resourceBytes)
+        try assertResource(in: copied, identifier: resourceIdentifier, matches: resourceBytes, directory: directory)
 
         let autosaved = try WriteDocument(contentsOf: originalURL, ofType: workDocumentType)
         defer { autosaved.close() }
         XCTAssertEqual(autosaved.work.text.string, "First text. Second text.")
-        let autosavedExport = directory.appendingPathComponent("Autosaved Export.bin")
-        try autosaved.work.exportResource(withIdentifier: resourceIdentifier, to: autosavedExport)
-        XCTAssertEqual(try Data(contentsOf: autosavedExport), resourceBytes)
+        try assertResource(in: autosaved, identifier: resourceIdentifier, matches: resourceBytes, directory: directory)
+    }
+
+    private func assertResource(in document: WriteDocument, identifier: FolioIdentifier,
+                                matches bytes: Data, directory: URL) throws {
+        let destination = directory.appendingPathComponent(UUID().uuidString)
+        try document.work.exportResource(withIdentifier: identifier, to: destination)
+        XCTAssertEqual(try Data(contentsOf: destination), bytes)
     }
 
     func testResourceOnlyMutationsMarkDocumentEditedAndAutosave() async throws {
@@ -296,14 +305,12 @@ import XCTest
         defer { document.close() }
         XCTAssertFalse(document.isDocumentEdited)
 
-        try document.upgradeStorage()
-        XCTAssertTrue(document.isDocumentEdited)
         let resourceIdentifier = try document.importResource(from: resourceURL)
+        XCTAssertTrue(document.isDocumentEdited)
         try await save(document, to: packageURL, for: .autosaveInPlaceOperation)
         XCTAssertFalse(document.isDocumentEdited)
         let reopened = try WriteDocument(contentsOf: packageURL, ofType: workDocumentType)
         defer { reopened.close() }
-        XCTAssertEqual(reopened.work.storageVersion, .v2)
         XCTAssertEqual(reopened.work.resources.map(\.identifier), [resourceIdentifier])
         let exportedURL = directory.appendingPathComponent("Exported.bin")
         try reopened.work.exportResource(withIdentifier: resourceIdentifier, to: exportedURL)
@@ -315,7 +322,6 @@ import XCTest
         XCTAssertFalse(document.isDocumentEdited)
         let afterRemoval = try WriteDocument(contentsOf: packageURL, ofType: workDocumentType)
         defer { afterRemoval.close() }
-        XCTAssertEqual(afterRemoval.work.storageVersion, .v2)
         XCTAssertTrue(afterRemoval.work.resources.isEmpty)
         XCTAssertEqual(afterRemoval.work.text.string, "")
     }
@@ -336,14 +342,6 @@ import XCTest
         initial.close()
         let document = try WriteDocument(contentsOf: packageURL, ofType: workDocumentType)
         defer { document.close() }
-        XCTAssertFalse(document.isDocumentEdited)
-        XCTAssertThrowsError(try document.importResource(from: resourceURL))
-        XCTAssertFalse(document.isDocumentEdited)
-
-        try document.upgradeStorage()
-        try await save(document, to: packageURL, for: .saveOperation)
-        XCTAssertFalse(document.isDocumentEdited)
-        try document.upgradeStorage()
         XCTAssertFalse(document.isDocumentEdited)
         XCTAssertThrowsError(try document.importResource(from: invalidURL))
         XCTAssertThrowsError(try document.removeResource(withIdentifier: document.work.identifier))
