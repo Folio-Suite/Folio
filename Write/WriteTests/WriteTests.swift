@@ -42,17 +42,19 @@ import XCTest
         }
     }
 
-    private func insert(_ string: String, in document: WriteDocument) throws {
+    private func insert(_ string: String, in document: WriteDocument) async throws {
         if document.windowControllers.isEmpty { document.makeWindowControllers() }
+        try await document.flushHistory()
         let manuscript = try XCTUnwrap(document.windowControllers.first?.contentViewController as? ManuscriptViewController)
         let editor = try XCTUnwrap(manuscript.activeEditor)
         _ = editor.view
         editor.textView.insertText(string, replacementRange: NSRange(location: editor.textView.string.count, length: 0))
     }
 
-    func testDocumentWritesAndReopensNativePackage() throws {
+    func testDocumentWritesAndReopensNativePackage() async throws {
         let document = WriteDocument()
         document.makeWindowControllers()
+        try await document.flushHistory()
         defer { document.close() }
         let manuscript = try XCTUnwrap(document.windowControllers.first?.contentViewController as? ManuscriptViewController)
         let editor = try XCTUnwrap(manuscript.activeEditor)
@@ -70,6 +72,7 @@ import XCTest
             .appendingPathComponent(UUID().uuidString).appendingPathExtension("flwrbundle")
         defer { try? FileManager.default.removeItem(at: url) }
 
+        try await document.flushHistory()
         try document.write(to: url, ofType: workDocumentType)
         XCTAssertTrue(FileManager.default.fileExists(atPath: url.appendingPathComponent("Work.sqlite").path))
         let detectedType = try NSDocumentController.shared.typeForContents(of: url)
@@ -80,6 +83,7 @@ import XCTest
 
         let loaded = try WriteDocument(contentsOf: url, ofType: detectedType)
         loaded.makeWindowControllers()
+        try await loaded.flushHistory()
         defer { loaded.close() }
         let loadedManuscript = try XCTUnwrap(loaded.windowControllers.first?.contentViewController as? ManuscriptViewController)
         let reopened = try XCTUnwrap(loadedManuscript.activeEditor)
@@ -92,7 +96,7 @@ import XCTest
         XCTAssertEqual(loadedManuscript.work.text(withIdentifier: secondIdentifier)?.title, "Next Chapter")
     }
 
-    func testNativeSafeSaveKeepsStoreIdentityAfterAnEdit() throws {
+    func testNativeSafeSaveKeepsStoreIdentityAfterAnEdit() async throws {
         let url = FileManager.default.temporaryDirectory
             .appendingPathComponent(UUID().uuidString).appendingPathExtension("flwrbundle")
         defer { try? FileManager.default.removeItem(at: url) }
@@ -107,6 +111,7 @@ import XCTest
 
         let document = try WriteDocument(contentsOf: url, ofType: workDocumentType)
         document.makeWindowControllers()
+        try await document.flushHistory()
         defer { document.close() }
         let manuscript = try XCTUnwrap(document.windowControllers.first?.contentViewController as? ManuscriptViewController)
         let editor = try XCTUnwrap(manuscript.activeEditor)
@@ -114,6 +119,7 @@ import XCTest
         editor.textView.insertText("Saved through AppKit.", replacementRange: NSRange(location: 0, length: 0))
         XCTAssertTrue(document.isDocumentEdited)
 
+        try await document.flushHistory()
         try document.writeSafely(to: url, ofType: workDocumentType, for: .saveOperation)
 
         let savedMetadata = try NSPersistentStoreCoordinator.metadataForPersistentStore(
@@ -138,7 +144,7 @@ import XCTest
 
         let document = try WriteDocument(contentsOf: originalURL, ofType: workDocumentType)
         defer { document.close() }
-        try insert("First edit.", in: document)
+        try await insert("First edit.", in: document)
         try await save(document, to: saveAsURL, for: .saveAsOperation)
         XCTAssertEqual(document.fileURL, saveAsURL)
 
@@ -149,7 +155,7 @@ import XCTest
         defer { savedAs.close() }
         XCTAssertEqual(savedAs.work.text.string, "First edit.")
 
-        try insert(" Second edit.", in: document)
+        try await insert(" Second edit.", in: document)
         try await save(document, to: saveToURL, for: .saveToOperation)
         XCTAssertEqual(document.fileURL, saveAsURL)
         let copied = try WriteDocument(contentsOf: saveToURL, ofType: workDocumentType)
@@ -170,7 +176,7 @@ import XCTest
 
         let document = try WriteDocument(contentsOf: url, ofType: workDocumentType)
         defer { document.close() }
-        try insert("Autosaved edit.", in: document)
+        try await insert("Autosaved edit.", in: document)
         XCTAssertTrue(document.isDocumentEdited)
         try await save(document, to: url, for: .autosaveInPlaceOperation)
         XCTAssertFalse(document.isDocumentEdited)
@@ -195,7 +201,7 @@ import XCTest
 
         let document = try WriteDocument(contentsOf: originalURL, ofType: workDocumentType)
         defer { document.close() }
-        try insert("Still editable.", in: document)
+        try await insert("Still editable.", in: document)
         do {
             try await save(document, to: unavailableURL, for: .saveToOperation)
             XCTFail("Saving into a missing parent directory should fail")
@@ -232,7 +238,7 @@ import XCTest
         defer { document.close() }
         try document.upgradeStorage()
         let resourceIdentifier = try document.importResource(from: resourceURL)
-        try insert("First text.", in: document)
+        try await insert("First text.", in: document)
 
         do {
             try await save(document, to: unavailableURL, for: .saveToOperation)
@@ -255,7 +261,7 @@ import XCTest
         XCTAssertEqual(try Data(contentsOf: reopenedExport), resourceBytes)
 
         try await save(document, to: copyURL, for: .saveToOperation)
-        try insert(" Second text.", in: document)
+        try await insert(" Second text.", in: document)
         try await save(document, to: originalURL, for: .autosaveInPlaceOperation)
 
         let copied = try WriteDocument(contentsOf: copyURL, ofType: workDocumentType)

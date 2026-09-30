@@ -109,6 +109,16 @@ final class WorkResourceStore {
         return (cloned, copied)
     }
 
+    static func markHistory(in packageURL: URL) throws {
+        let url = packageURL.appendingPathComponent("Package.json")
+        let previous = try decodeManifest(Data(contentsOf: url))
+        let manifest = WorkPackageManifest(formatVersion: 2,
+            requiredCapabilities: ["opaque-resources-v1", "durable-history-v1"], resources: previous.resources)
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.sortedKeys]
+        try encoder.encode(manifest).write(to: url, options: .atomic)
+    }
+
     static func read(from packageURL: URL) throws -> WorkResourceStore {
         let manifestURL = packageURL.appendingPathComponent("Package.json")
         try checkRegularFile(manifestURL)
@@ -117,8 +127,13 @@ final class WorkResourceStore {
             throw WorkStore.resourceError()
         }
         let manifest = try decodeManifest(Data(contentsOf: manifestURL))
-        guard manifest.formatVersion == 2, manifest.requiredCapabilities == ["opaque-resources-v1"],
+        guard manifest.formatVersion == 2, (manifest.requiredCapabilities == ["opaque-resources-v1"] ||
+               manifest.requiredCapabilities == ["opaque-resources-v1", "durable-history-v1"]),
               manifest.resources.count <= 4_096 else { throw WorkStore.resourceError() }
+        let historyExpected = manifest.requiredCapabilities.contains("durable-history-v1")
+        guard historyExpected == FileManager.default.fileExists(atPath: packageURL.appendingPathComponent("History").path) else {
+            throw WorkStore.resourceError()
+        }
         let resourceDirectory = packageURL.appendingPathComponent("Resources", isDirectory: true)
         let directoryValues = try resourceDirectory.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
         guard directoryValues.isDirectory == true, directoryValues.isSymbolicLink != true else {
@@ -216,7 +231,8 @@ extension WorkStore {
         let resources: WorkResourceStore?
         if names == ["Work.sqlite"] {
             resources = nil
-        } else if names == ["Work.sqlite", "Package.json", "Resources"] {
+        } else if names == ["Work.sqlite", "Package.json", "Resources"] ||
+                    names == ["Work.sqlite", "Package.json", "Resources", "History"] {
             resources = try WorkResourceStore.read(from: packageURL)
         } else {
             throw resourceError()

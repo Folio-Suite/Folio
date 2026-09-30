@@ -19,7 +19,11 @@ import FolioKit
     }
     public private(set) var activeEditor: EditorViewController!
     public private(set) var selectedUnitIdentifier: FolioIdentifier?
+    public private(set) var navigationRevision = 0
     public var workDidChange: (() -> Void)?
+    public var transientNativeEdit: (() -> Void)?
+    public var nativeEditingDidSettle: (() -> Void)?
+    public var historyRequested: (() -> Void)?
 
     @IBOutlet private var unitTable: NSTableView!
     @IBOutlet var unitTitle: NSTextField!
@@ -32,6 +36,7 @@ import FolioKit
     private var editors: [FolioIdentifier: EditorViewController] = [:]
     private weak var documentWindowController: NSWindowController?
     private var updatingSelection = false
+    private var semanticEditingBlocked = false
 
     public static func make(work: Work, undoManager: UndoManager) -> ManuscriptViewController {
         guard let controller = NSStoryboard(name: "Editor", bundle: writeKitBundle)
@@ -91,10 +96,12 @@ import FolioKit
         selectUnit(withIdentifier: work.manuscript.units[unitTable.selectedRow].identifier)
     }
 
-    public func selectUnit(withIdentifier identifier: FolioIdentifier) {
+    public func selectUnit(withIdentifier identifier: FolioIdentifier, focus: Bool = true) {
         guard let unit = work.text(withIdentifier: identifier) else { return }
         _ = view
         activeEditor?.textView?.breakUndoCoalescing()
+        nativeEditingDidSettle?()
+        if selectedUnitIdentifier != identifier { navigationRevision += 1 }
         activeEditor?.view.removeFromSuperview()
         let editor: EditorViewController
         if let existing = editors[identifier] {
@@ -110,6 +117,10 @@ import FolioKit
                 self.workDidChange?()
             }
             editor.undoDidChangeText = { [weak self] in self?.selectUnit(withIdentifier: identifier) }
+            editor.transientNativeEdit = { [weak self] in self?.transientNativeEdit?() }
+            editor.nativeEditingDidSettle = { [weak self] in self?.nativeEditingDidSettle?() }
+            editor.historyRequested = { [weak self] in self?.historyRequested?() }
+            editor.setSemanticEditingBlocked(semanticEditingBlocked)
         }
         activeEditor = editor
         selectedUnitIdentifier = identifier
@@ -123,16 +134,51 @@ import FolioKit
         unitTable.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: false)
         unitTable.scrollRowToVisible(index)
         unitTitle.stringValue = unit.title
-        moveUpButton.isEnabled = index > 0
-        moveDownButton.isEnabled = index + 1 < work.manuscript.units.count
+        moveUpButton.isEnabled = !semanticEditingBlocked && index > 0
+        moveDownButton.isEnabled = !semanticEditingBlocked && index + 1 < work.manuscript.units.count
         updatingSelection = false
-        view.window?.makeFirstResponder(editor.textView)
+        if focus { view.window?.makeFirstResponder(editor.textView) }
     }
 
+    /// Apply a finalized Work state to attached editors without registering another edit.
+    public func refreshFromWork() {
+        guard isViewLoaded else { return }
+        for (identifier, editor) in editors where work.text(withIdentifier: identifier) != nil {
+            editor.refreshFromWork()
+        }
+        if let selectedUnitIdentifier, work.text(withIdentifier: selectedUnitIdentifier) != nil {
+            selectUnit(withIdentifier: selectedUnitIdentifier, focus: false)
+        } else {
+            selectUnit(withIdentifier: work.text.identifier, focus: false)
+        }
+    }
+
+    public func setSemanticEditingBlocked(_ blocked: Bool) {
+        semanticEditingBlocked = blocked
+        guard isViewLoaded else { return }
+        unitTitle.isEditable = !blocked
+        addButton.isEnabled = !blocked
+        moveUpButton.isEnabled = !blocked && unitTable.selectedRow > 0
+        moveDownButton.isEnabled = !blocked && unitTable.selectedRow >= 0 &&
+            unitTable.selectedRow + 1 < work.manuscript.units.count
+        for editor in editors.values { editor.setSemanticEditingBlocked(blocked) }
+    }
+
+    public var hasMarkedText: Bool { activeEditor?.textView?.hasMarkedText() ?? false }
+
+    public func settleNativeEditing() {
+        activeEditor?.textView?.breakUndoCoalescing()
+        nativeEditingDidSettle?()
+    }
+
+    @IBAction public func showHistory(_ sender: Any?) { historyRequested?() }
+
     private func applyManuscript(_ manuscript: Manuscript, selection: FolioIdentifier?, name: String) {
+        guard !semanticEditingBlocked else { return }
         let before = work.manuscript
         let previousSelection = selectedUnitIdentifier
         activeEditor?.textView?.breakUndoCoalescing()
+        nativeEditingDidSettle?()
         documentUndoManager.registerUndo(withTarget: self) { target in
             MainActor.assumeIsolated { target.applyManuscript(before, selection: previousSelection, name: name) }
         }
@@ -140,6 +186,7 @@ import FolioKit
         if let selection { selectUnit(withIdentifier: selection) }
         documentUndoManager.setActionName(name)
         workDidChange?()
+        nativeEditingDidSettle?()
     }
 
     @IBAction public func addContentUnit(_ sender: Any?) {

@@ -20,6 +20,9 @@ private func editorStoryboard() -> NSStoryboard { NSStoryboard(name: "Editor", b
     public private(set) var contentUnitIdentifier: FolioIdentifier!
     public var textDidChange: (() -> Void)?
     public var undoDidChangeText: (() -> Void)?
+    public var transientNativeEdit: (() -> Void)?
+    public var nativeEditingDidSettle: (() -> Void)?
+    public var historyRequested: (() -> Void)?
     @IBOutlet public private(set) var textView: NSTextView!
     @IBOutlet private var alignmentButton: NSPopUpButton!
     @IBOutlet private var emphasisButton: NSButton!
@@ -31,6 +34,8 @@ private func editorStoryboard() -> NSStoryboard { NSStoryboard(name: "Editor", b
     private var capturedText: NSAttributedString?
     private var trailingParagraphIdentifier: FolioIdentifier?
     private var loading = false
+    private var semanticEditingBlocked = false
+    private var coordinatingFormattingGroup = false
     private var formattingButtons: [NSButton] = []
     private var formattingHelp: NSPopover?
     private var formattingConflictRanges: [NSRange] = []
@@ -167,6 +172,24 @@ extension EditorViewController {
         capturedText = textView.textStorage?.copy() as? NSAttributedString
         loading = false
         updateFormattingControls()
+    }
+
+    /// Refresh authored text after a finalized history operation without creating an
+    /// editor change or moving the user's current selection to another Content Unit.
+    public func refreshFromWork() {
+        guard isViewLoaded, work.text(withIdentifier: contentUnitIdentifier) != nil else { return }
+        let selection = textView.selectedRange
+        editingUndoManager.disableUndoRegistration()
+        displayWork()
+        editingUndoManager.enableUndoRegistration()
+        let end = (textView.string as NSString).length
+        textView.setSelectedRange(NSRange(location: min(selection.location, end),
+                                          length: min(selection.length, end - min(selection.location, end))))
+    }
+
+    public func setSemanticEditingBlocked(_ blocked: Bool) {
+        semanticEditingBlocked = blocked
+        if isViewLoaded { textView.isEditable = !blocked }
     }
 
     public func undoManager(for view: NSTextView) -> UndoManager? { editingUndoManager }
@@ -340,6 +363,7 @@ extension EditorViewController {
 
 extension EditorViewController {
     private func setFormattingWarningDismissed(_ dismissed: Bool) {
+        guard !semanticEditingBlocked else { return }
         let previous = unitText.formattingWarningDismissed
         guard previous != dismissed else { return }
         editingUndoManager.registerUndo(withTarget: self) { target in
@@ -358,9 +382,11 @@ extension EditorViewController {
         editingUndoManager.setActionName(NSLocalizedString("formatting.conflict.dismiss.undo", tableName: nil, bundle: writeKitBundle,
             value: "Dismiss Formatting Warning",
             comment: "Undo action name for dismissing a warning; AppKit adds Undo or Redo."))
+        nativeEditingDidSettle?()
     }
 
     @IBAction public func convertPresentationToEmphasis(_ sender: Any?) {
+        guard !semanticEditingBlocked else { return }
         formattingConflictPopover?.close()
         let convert: (inout [NSAttributedString.Key: Any]) -> Void = { attributes in
             guard hasFormattingConflict(attributes) else { return }
@@ -376,6 +402,7 @@ extension EditorViewController {
         let name = NSLocalizedString("formatting.convert-to-emphasis.undo", tableName: nil, bundle: writeKitBundle,
             value: "Convert Presentation to Emphasis",
             comment: "Undo action name for converting visual Bold or Italic into semantic emphasis.")
+        coordinatingFormattingGroup = true
         editingUndoManager.beginUndoGrouping()
         editAttributes(in: NSRange(location: 0, length: (textView.string as NSString).length), name: name, transform: convert)
         if textView.selectedRange.length == 0 && hasFormattingConflict(textView.typingAttributes) {
@@ -386,10 +413,14 @@ extension EditorViewController {
         setFormattingWarningDismissed(true)
         editingUndoManager.setActionName(name)
         editingUndoManager.endUndoGrouping()
+        coordinatingFormattingGroup = false
+        nativeEditingDidSettle?()
         updateFormattingControls()
     }
 
     private func applyTypingFormatting(_ attributes: [NSAttributedString.Key: Any]) {
+        guard !semanticEditingBlocked else { return }
+        transientNativeEdit?()
         let previous = textView.typingAttributes
         editingUndoManager.registerUndo(withTarget: self) { target in
             MainActor.assumeIsolated { target.applyTypingFormatting(previous) }
@@ -475,6 +506,7 @@ extension EditorViewController {
     }
 
     private func toggle(_ key: NSAttributedString.Key, value: UInt, name: String) {
+        guard !semanticEditingBlocked else { return }
         let remove = state(for: key, value: value) == .on
         let change: (inout [NSAttributedString.Key: Any]) -> Void = { attributes in
             attributes[key] = remove ? 0 : value
@@ -490,6 +522,7 @@ extension EditorViewController {
     }
 
     @IBAction public func clearFormatting(_ sender: Any?) {
+        guard !semanticEditingBlocked else { return }
         let clear: (inout [NSAttributedString.Key: Any]) -> Void = { attributes in
             attributes[EditorAttribute.emphasis] = TextEmphasis.none.rawValue
             for key in [EditorAttribute.bold, EditorAttribute.italic,
@@ -511,6 +544,7 @@ extension EditorViewController {
 
     private func editAttributes(in range: NSRange, name: String,
                                 transform: (inout [NSAttributedString.Key: Any]) -> Void) {
+        guard !semanticEditingBlocked else { return }
         guard range.length > 0, let storage = textView.textStorage else { return }
         let selection = textView.selectedRange
         let before = storage.attributedSubstring(from: range)
@@ -521,7 +555,9 @@ extension EditorViewController {
             after.setAttributes(changed, range: subrange)
         }
         textView.breakUndoCoalescing()
+        nativeEditingDidSettle?()
         applyFormatting(after, range: range, actionName: name)
+        if !coordinatingFormattingGroup { nativeEditingDidSettle?() }
         textView.setSelectedRange(selection)
         if appearancePopover?.isShown != true { view.window?.makeFirstResponder(textView) }
     }
@@ -554,6 +590,7 @@ extension EditorViewController {
     }
 
     @IBAction func changeParagraphAlignment(_ sender: NSPopUpButton) {
+        guard !semanticEditingBlocked else { return }
         let alignment = nativeAlignment(ParagraphAlignment(rawValue: UInt(sender.indexOfSelectedItem)) ?? .natural)
         let range = (textView.string as NSString).paragraphRange(for: textView.selectedRange)
         if range.length == 0 {
@@ -563,6 +600,7 @@ extension EditorViewController {
             style.alignment = alignment
             attributes[.paragraphStyle] = style
             applyEmptyParagraphAttributes(attributes)
+            nativeEditingDidSettle?()
         } else {
             editAttributes(in: range, name: NSLocalizedString("paragraph.alignment.undo", tableName: nil, bundle: writeKitBundle,
                 value: "Paragraph Alignment",

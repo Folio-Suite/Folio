@@ -19,17 +19,11 @@ The editor supports semantic emphasis categories separately from explicit bold, 
 
 ### Embed the Manuscript editor
 
-Create and use the editor on the main actor. Supply the document's undo manager so native typing and semantic formatting share its undo history.
+Create and use the editor on the main actor. Supply one `UndoManager` to all editors in a Work through ``ManuscriptViewController/make(work:undoManager:)``. The editor loads `Editor.storyboard` from WriteKit's bundle; its window factory supplies the reusable window and controls.
 
-```swift
-let work = Work()
-let editor = ManuscriptViewController.make(work: work, undoManager: document.undoManager!)
-editor.workDidChange = { [weak document] in document?.updateChangeCount(.changeDone) }
-let windowController = editor.makeWindowController()
-document.addWindowController(windowController)
-```
+For durable hosting, use `NativeHistoryRouter.undoManager` and implement the settlement and accepted-outcome callbacks described below. `workDidChange` reports provisional input; it must not immediately advance the document's authoritative change count. Keep the provisional manager separate from NSDocument's automatic counting. The Write application's `WriteDocument` is the complete native host example.
 
-The editor loads its interface from WriteKit's bundled `Editor.storyboard`; the host does not provide a storyboard or construct the controls. The host supplies saving and edited-state tracking through ``ManuscriptViewController/workDidChange``. Capture the host weakly in that callback. For native saving, prepare a separate empty package with ``Work/stageSave(from:toEmptyPackageAt:)`` and let the document host complete safe replacement. The original must be a closed package; preparation never writes into it. Reopen with ``Work/init(contentsOf:)``. ``Work/fileWrapper()`` remains a complete in-memory serialization convenience, rather than the incremental native-save path. A document host passes one `UndoManager` to all editors in a Work.
+For native saving, prepare a separate empty package with ``Work/stageSave(from:toEmptyPackageAt:)`` and let the document host complete safe replacement. The original must be a closed package; preparation never writes into it. Reopen with ``Work/init(contentsOf:)``. ``Work/fileWrapper()`` provides complete in-memory serialization. Durable hosts must finish opening, settle input and finalize pending history before either save path.
 
 The editor and host menus use ``FormattingImages`` for the semantic Emphasis symbols. The images live in WriteKit's asset catalog, so a host should request them through this API when configuring its own menu items.
 
@@ -94,3 +88,48 @@ FileWrapper convenience is still available when a complete in-memory package
 is appropriate. Resource-capable UI must obtain explicit upgrade consent and
 allow users to retain V1 editing or cancel; the existing editor has no resource
 import command.
+
+## Durable manuscript history
+
+``Work/enableHistory()`` creates a ``WorkHistorySession`` for the current Work.
+The session translates complete, settled Manuscript edits into UndoKit commands.
+It owns semantic validation and writes a command receipt in the same Core Data
+transaction as the authored change. UndoKit owns transaction ordering, history
+relationships, and recovery. The implementation files live in `WorkAdapter/`;
+no Folio value types enter UndoKit.
+
+```swift
+let history = try work.enableHistory()
+try await history.reconcile()
+try await history.submit(manuscript: editedManuscript)
+// Settle all native editing and await submissions before native Save.
+try await history.undo()
+try await history.redo()
+```
+
+`submit` filters known no-ops. The host must serialize its intended edit order;
+concurrent independent submissions cannot infer each other's intended prior state.
+The Work's public Manuscript may contain provisional native input. The session's
+``WorkHistorySession/committedManuscript`` identifies authoritative accepted state.
+Saving refuses pending, suspended, or unsettled work. After reopening, await
+``WorkHistorySession/reconcile()`` before enabling native history commands.
+Attachment does not replay edits or mark the document changed.
+
+A checkpoint captures the complete supported Manuscript. The host must save the
+document successfully before announcing a saved checkpoint. Restoring a checkpoint
+submits a new edit: restoring A after A → B → C makes ordinary Undo return to C.
+``WorkHistoryMenuController`` supplies a bounded dynamic checkpoint menu; its host
+provides native saving and error presentation. Larger host interfaces can use
+``WorkHistorySession/checkpoints(limit:)`` without reconstructing content.
+
+This first operation retains every existing resource unchanged. Resource import
+and removal are refused while history is enabled, so a checkpoint cannot refer to
+an asset that the host has deleted. Resource-changing history, pruning, retention
+schedules, recording controls, and cross-process Work Sessions are separate work.
+Payloads are bounded complete Manuscript values; this is not a claim that every
+large Work edit already uses a minimal text delta.
+
+A history-bearing package declares `durable-history-v1` as a required capability
+and includes the history database and registration in `History/`. This is the
+first implementation format; it carries no migration or backward-compatibility
+promise. Package-definition issue #89 remains deferred.

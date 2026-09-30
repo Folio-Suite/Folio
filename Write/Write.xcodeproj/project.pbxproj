@@ -13,6 +13,7 @@
 		A1641DEE306AD6EA004824F1 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DE8306AD6EA004824F1 /* ResearchKit.framework */; };
 		A1641DF0306AD6EA004824F1 /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641DE9306AD6EA004824F1 /* WriteKit.framework */; };
 		A1CCD14330573F86004B4721 /* WriteXPCService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = A1CCD13830573F86004B4721 /* WriteXPCService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D15300000000000000000002 /* UndoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D15300000000000000000001 /* UndoKit.framework */; };
 		D217D69BF9E318965D8F793D /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = A256E39AE3B2E4E2B13CBC11 /* Algorithms */; };
 		DCA3483B2111D4536625F43B /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 271E8823355D631D3B3EB29E /* Defaults */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		A1641DE9306AD6EA004824F1 /* WriteKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WriteKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1CCD13830573F86004B4721 /* WriteXPCService.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = WriteXPCService.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F83B1C3050BBBF00DEB96A /* FolioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FolioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D15300000000000000000001 /* UndoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UndoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -116,6 +118,7 @@
 		A106484E304DFCF6001A21A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				D15300000000000000000002 /* UndoKit.framework in Frameworks */,
 				DCA3483B2111D4536625F43B /* Defaults in Frameworks */,
 				369C1C9557170E5AEE6F6DD1 /* Collections in Frameworks */,
 				D217D69BF9E318965D8F793D /* Algorithms in Frameworks */,
@@ -170,6 +173,7 @@
 		A1F839F63050B47800DEB96A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D15300000000000000000001 /* UndoKit.framework */,
 				A1641DE6306AD6EA004824F1 /* ComposerKit.framework */,
 				A1641DE7306AD6EA004824F1 /* FolioKit.framework */,
 				A1641DE8306AD6EA004824F1 /* ResearchKit.framework */,

@@ -41,6 +41,9 @@ public struct WorkSaveReport: Sendable {
 @MainActor public final class Work {
     public let identifier: FolioIdentifier
     private var resourceStore: WorkResourceStore?
+    private var historyBaseline: WorkHistoryBaseline?
+    /// Durable manuscript history, when explicitly enabled or present in the saved package.
+    public private(set) var history: WorkHistorySession?
     public var manuscript: Manuscript {
         didSet { precondition(manuscript.identifier == oldValue.identifier) }
     }
@@ -70,20 +73,34 @@ public struct WorkSaveReport: Sendable {
     }
 
     public convenience init(fileWrapper: FileWrapper) throws {
-        let opened = try PackageStaging.withTemporaryDirectory { directory in
-            let packageURL = directory.appendingPathComponent("Input.flwrbundle", isDirectory: true)
-            try fileWrapper.write(to: packageURL, options: .atomic, originalContentsURL: nil)
-            return try WorkStore.openPackage(at: packageURL)
-        }
-        self.init(identifier: opened.snapshot.identifier, manuscript: opened.snapshot.manuscript,
-                  resourceStore: opened.resources)
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: false)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let packageURL = directory.appendingPathComponent("Input.flwrbundle")
+        try fileWrapper.write(to: packageURL, options: .atomic, originalContentsURL: nil)
+        try self.init(contentsOf: packageURL)
     }
 
-    /// Open a native Work package directly without loading its resources into a file wrapper.
+    /// Open a native Work package directly without loading resources into a file wrapper.
     public convenience init(contentsOf packageURL: URL) throws {
         let opened = try WorkStore.openPackage(at: packageURL)
         self.init(identifier: opened.snapshot.identifier, manuscript: opened.snapshot.manuscript,
                   resourceStore: opened.resources)
+        if FileManager.default.fileExists(atPath: packageURL.appendingPathComponent("History").path) {
+            history = try WorkHistorySession(work: self, packageURL: packageURL)
+        } else {
+            historyBaseline = try WorkHistoryBaseline(packageURL: packageURL)
+        }
+    }
+
+    /// Enable durable manuscript history. Resources remain preserved but cannot be edited in this first slice.
+    @discardableResult public func enableHistory() throws -> WorkHistorySession {
+        if let history { return history }
+        try upgradeStorage()
+        let session = try WorkHistorySession(work: self, packageURL: nil, baseline: historyBaseline?.directory)
+        history = session
+        historyBaseline = nil
+        return session
     }
 
     public func fileWrapper() throws -> FileWrapper {
@@ -109,6 +126,7 @@ public struct WorkSaveReport: Sendable {
 
     /// Retain a private, immutable snapshot of a regular file. V1 Works require an explicit upgrade first.
     @discardableResult public func importResource(from sourceURL: URL) throws -> FolioIdentifier {
+        guard history == nil else { throw WorkHistoryError.resourceEditingUnsupported }
         guard let resourceStore else { throw WorkStore.upgradeRequiredError() }
         return try resourceStore.importResource(from: sourceURL)
     }
@@ -120,6 +138,7 @@ public struct WorkSaveReport: Sendable {
     }
 
     public func removeResource(withIdentifier identifier: FolioIdentifier) throws {
+        guard history == nil else { throw WorkHistoryError.resourceEditingUnsupported }
         guard let resourceStore else { throw WorkStore.missingResourceError() }
         try resourceStore.removeResource(identifier)
     }
@@ -128,8 +147,11 @@ public struct WorkSaveReport: Sendable {
     /// Pass nil for a new Work; otherwise pass a closed native package at a different URL.
     @discardableResult public func stageSave(from originalPackageURL: URL?,
                                               toEmptyPackageAt destinationPackageURL: URL) throws -> WorkSaveReport {
-        try WorkStore.stageSave(workIdentifier: identifier, manuscript: manuscript,
-                                resources: resourceStore, from: originalPackageURL, to: destinationPackageURL)
+        if let history {
+            return try history.stageSave(resources: resourceStore, to: destinationPackageURL)
+        }
+        return try WorkStore.stageSave(workIdentifier: identifier, manuscript: manuscript,
+                                       resources: resourceStore, from: originalPackageURL, to: destinationPackageURL)
     }
 
     public func text(withIdentifier identifier: FolioIdentifier) -> TextUnit? {

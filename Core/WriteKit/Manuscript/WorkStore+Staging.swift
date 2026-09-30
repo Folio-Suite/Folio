@@ -15,7 +15,7 @@ extension WorkStore {
         ])
     }
 
-    private static func checkIdentifiers(workIdentifier: FolioIdentifier, manuscript: Manuscript) throws {
+    static func checkIdentifiers(workIdentifier: FolioIdentifier, manuscript: Manuscript) throws {
         var identifiers: Set<String> = [workIdentifier.rawValue, manuscript.identifier.rawValue]
         guard identifiers.count == 2 else { throw writeError() }
         for unit in manuscript.units {
@@ -101,7 +101,7 @@ extension WorkStore {
         return byID
     }
 
-    private static func update(_ context: NSManagedObjectContext, workIdentifier: FolioIdentifier,
+    static func update(_ context: NSManagedObjectContext, workIdentifier: FolioIdentifier,
                                manuscript: Manuscript) throws -> (units: Int, paragraphs: Int, runs: Int) {
         let works = try context.fetch(NSFetchRequest<NSManagedObject>(entityName: "Work"))
         let manuscripts = try context.fetch(NSFetchRequest<NSManagedObject>(entityName: "Manuscript"))

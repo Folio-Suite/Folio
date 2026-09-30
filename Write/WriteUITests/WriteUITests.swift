@@ -73,6 +73,19 @@ import XCTest
         text.typeKey(XCUIKeyboardKey.delete, modifierFlags: [])
     }
 
+    func testEditHistoryMenuOpensForForegroundWork() {
+        let app = launchDocument()
+        defer { app.terminate() }
+        let text = app.textViews["manuscriptText"].firstMatch
+        XCTAssertTrue(text.waitForExistence(timeout: 5))
+        text.click()
+        app.menuBars.menuBarItems["Edit"].click()
+        app.menuItems["History…"].click()
+        XCTAssertTrue(app.menuItems["Create Checkpoint…"].firstMatch.waitForExistence(timeout: 5),
+            "The foreground Work must receive Edit > History")
+        app.typeKey(XCUIKeyboardKey.escape, modifierFlags: [])
+    }
+
     func testFormattingConflictOffersConversionWithoutChangingWords() {
         let app = launchDocument()
         defer { app.terminate() }

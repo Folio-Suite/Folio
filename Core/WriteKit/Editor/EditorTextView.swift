@@ -23,6 +23,10 @@ import FolioKit
         editor?.layoutFormattingMarkers()
     }
 
+    @IBAction func undo(_ sender: Any?) { undoManager?.undo() }
+    @IBAction func redo(_ sender: Any?) { undoManager?.redo() }
+    @IBAction func showHistory(_ sender: Any?) { editor?.historyRequested?() }
+
     @IBAction func toggleEmphasis(_ sender: Any?) { editor?.toggleEmphasis(sender) }
     @IBAction func toggleStrongEmphasis(_ sender: Any?) { editor?.toggleStrongEmphasis(sender) }
     @IBAction func toggleVeryStrongEmphasis(_ sender: Any?) { editor?.toggleVeryStrongEmphasis(sender) }
