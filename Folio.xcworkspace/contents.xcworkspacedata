@@ -32,6 +32,9 @@
       location = "group:CONTEXT.md">
    </FileRef>
    <FileRef
+      location = "group:CONTEXT-MAP.md">
+   </FileRef>
+   <FileRef
       location = "group:CONTRIBUTING.md">
    </FileRef>
    <FileRef
