@@ -20,12 +20,25 @@ import XCTest
         }
     }
 
+    private func saveOmittingHistory(_ document: WriteDocument, to url: URL) async throws {
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            document.saveOmittingHistory(to: url, ofType: workDocumentType) { error in
+                if let error { continuation.resume(throwing: error) } else { continuation.resume() }
+            }
+        }
+    }
+
     private func waitUntil(_ condition: @MainActor () -> Bool) async -> Bool {
         for _ in 0..<500 {
             if condition() { return true }
             try? await Task.sleep(for: .milliseconds(10))
         }
         return condition()
+    }
+
+    private func finishProgrammaticNativeGroup(_ manager: UndoManager) {
+        XCTAssertLessThanOrEqual(manager.groupingLevel, 1)
+        if manager.groupingLevel == 1 { manager.endUndoGrouping() }
     }
 
     func testHistoryActionForwardsThroughOwnedEditorResponder() async throws {
@@ -183,5 +196,86 @@ import XCTest
             reopened.work.manuscript.units.count == 2 && manager.canUndo
         }
         XCTAssertTrue(restored)
+    }
+
+    func testNativeSaveOmittingHistoryRetiresLiveGenerationAndAllowsNextEdit() async throws {
+        let url = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString).appendingPathExtension("flwrbundle")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let document = WriteDocument()
+        document.makeWindowControllers()
+        defer { document.close() }
+        try await document.flushHistory()
+        let textView = try XCTUnwrap(manuscript(in: document).activeEditor.textView)
+        let manager = try XCTUnwrap(textView.undoManager)
+        textView.insertText("Before omission", replacementRange: NSRange(location: 0, length: 0))
+        try await document.flushHistory()
+        finishProgrammaticNativeGroup(manager)
+        try await save(document, to: url)
+        let history = try XCTUnwrap(document.work.history)
+        let oldGeneration = try XCTUnwrap(history.availability.generation)
+        XCTAssertTrue(manager.canUndo)
+
+        try await saveOmittingHistory(document, to: url)
+        XCTAssertEqual(document.work.text.string, "Before omission")
+        XCTAssertFalse(FileManager.default.fileExists(atPath: url.appendingPathComponent("History").path))
+        XCTAssertNotEqual(history.availability.generation, oldGeneration)
+        XCTAssertFalse(history.canUndo)
+        XCTAssertFalse(manager.canUndo)
+        XCTAssertFalse(document.isDocumentEdited)
+        let reopened = try Work(contentsOf: url)
+        XCTAssertNil(reopened.history)
+        XCTAssertEqual(reopened.text.string, "Before omission")
+
+        textView.insertText(" again", replacementRange: NSRange(location: 15, length: 0))
+        try await document.flushHistory()
+        XCTAssertEqual(document.work.text.string, "Before omission again")
+        XCTAssertTrue(manager.canUndo)
+        manager.undo()
+        let undone = await waitUntil {
+            document.work.text.string == "Before omission" && textView.string == "Before omission"
+        }
+        XCTAssertTrue(undone)
+    }
+
+    func testFailedNativeOmissionPreservesOriginalHistoryAndUndo() async throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: false)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let original = directory.appendingPathComponent("Original.flwrbundle")
+        let unavailable = directory.appendingPathComponent("Missing/Failed.flwrbundle")
+        let document = WriteDocument()
+        document.makeWindowControllers()
+        defer { document.close() }
+        try await document.flushHistory()
+        let textView = try XCTUnwrap(manuscript(in: document).activeEditor.textView)
+        let manager = try XCTUnwrap(textView.undoManager)
+        textView.insertText("Original text", replacementRange: NSRange(location: 0, length: 0))
+        try await document.flushHistory()
+        finishProgrammaticNativeGroup(manager)
+        try await save(document, to: original)
+        try await document.flushHistory(waitForNativeIdle: true)
+        let history = try XCTUnwrap(document.work.history)
+        let generation = history.availability.generation
+        let originalWorkBytes = try Data(contentsOf: original.appendingPathComponent("Work.sqlite"))
+        let originalHistoryBytes = try Data(contentsOf: original.appendingPathComponent("History/History.sqlite"))
+        do {
+            try await saveOmittingHistory(document, to: unavailable)
+            XCTFail("Saving into a missing parent must fail")
+        } catch {
+            if case WorkHistoryError.busy = error {
+                XCTFail("The failed save must reach NSDocument staging after native settlement")
+            }
+        }
+        XCTAssertEqual(try Data(contentsOf: original.appendingPathComponent("Work.sqlite")), originalWorkBytes)
+        XCTAssertEqual(try Data(contentsOf: original.appendingPathComponent("History/History.sqlite")),
+                       originalHistoryBytes)
+        XCTAssertEqual(history.availability.generation, generation)
+        XCTAssertFalse(history.availability.isSuspended)
+        XCTAssertTrue(history.canUndo)
+        XCTAssertTrue(manager.canUndo)
+        XCTAssertFalse(document.isDocumentEdited)
+        XCTAssertEqual(document.work.text.string, "Original text")
+        XCTAssertFalse(FileManager.default.fileExists(atPath: unavailable.path))
     }
 }

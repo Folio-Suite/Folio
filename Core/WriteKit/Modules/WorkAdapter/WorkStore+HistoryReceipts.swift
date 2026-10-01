@@ -6,6 +6,37 @@ import FolioKit
 import Foundation
 
 extension WorkStore {
+  /// Remove obsolete command evidence from a closed staged or reset host store.
+  static func stripHistoryReceipts(at storeURL: URL) throws {
+    let storeModel = try model()
+    let metadata = try NSPersistentStoreCoordinator.metadataForPersistentStore(
+      ofType: NSSQLiteStoreType, at: storeURL)
+    guard storeModel.isConfiguration(withName: nil, compatibleWithStoreMetadata: metadata) else {
+      throw writeError()
+    }
+    let coordinator = NSPersistentStoreCoordinator(managedObjectModel: storeModel)
+    let store = try coordinator.addPersistentStore(
+      ofType: NSSQLiteStoreType, configurationName: nil,
+      at: storeURL, options: [NSSQLitePragmasOption: ["journal_mode": "DELETE"]])
+    var removed = false
+    defer { if !removed { try? coordinator.remove(store) } }
+    let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+    context.persistentStoreCoordinator = coordinator
+    try context.performAndWait {
+      do {
+        for receipt in try context.fetch(NSFetchRequest<NSManagedObject>(entityName: "HistoryReceipt")) {
+          context.delete(receipt)
+        }
+        if context.hasChanges { try context.save() }
+      } catch {
+        context.rollback()
+        throw error
+      }
+    }
+    try coordinator.remove(store)
+    removed = true
+  }
+
   /// Host-owned evidence of one authoritative Command outcome.
   struct HistoryReceipt: Sendable {
     let commandID: UUID

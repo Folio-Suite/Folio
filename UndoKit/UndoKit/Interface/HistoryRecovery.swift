@@ -38,7 +38,9 @@ extension HistoryEngine {
 
     private func finalize(_ transaction: NSManagedObject, accepting: Bool) -> HistoryResult {
         do {
-            return try accepting ? finalizeAccepted(transaction) : finalizeRejected(transaction)
+            if !accepting { return try finalizeRejected(transaction) }
+            return try transaction.bool("recordsAction")
+                ? finalizeAccepted(transaction) : finalizeSessionAccepted(transaction)
         } catch {
             context.rollback()
             suspend()
@@ -95,11 +97,13 @@ extension HistoryEngine {
             request.sortDescriptors = [NSSortDescriptor(key: "sequence", ascending: true)]
             guard let row = try context.fetch(request).first else {
                 unsuspend()
+                if sessionGroups.isEmpty { try releaseSessionReferences() }
                 return nil
             }
             let result = await reconcile(row)
-            if case .accepted = result { unsuspend() }
-            if case .rejected = result { unsuspend() }
+            if case .accepted = result, try context.fetch(request).isEmpty { unsuspend() }
+            if case .rejected = result, try context.fetch(request).isEmpty { unsuspend() }
+            if !snapshot.isSuspended && sessionGroups.isEmpty { try releaseSessionReferences() }
             return result
         } catch {
             return .failure(HistoryFailure(.storage, stage: .reconciliation, disposition: .suspended))

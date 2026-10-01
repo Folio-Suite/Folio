@@ -276,7 +276,8 @@ extension WorkStore {
 
   static func stageSave(
     workIdentifier: FolioIdentifier, manuscript: Manuscript, resources: WorkResourceStore,
-    from originalPackageURL: URL?, to destinationPackageURL: URL
+    from originalPackageURL: URL?, to destinationPackageURL: URL,
+    omitHistoryReceipts: Bool = false
   ) throws -> WorkSaveReport {
     try checkIdentifiers(workIdentifier: workIdentifier, manuscript: manuscript)
     try checkEmptyDestination(destinationPackageURL)
@@ -317,6 +318,7 @@ extension WorkStore {
       )
       copied = (0, 0)
     }
+    if omitHistoryReceipts { try stripHistoryReceipts(at: storeURL) }
     let resourceBytes = try resources.write(to: destinationPackageURL)
     let verified = try openPackage(at: destinationPackageURL)
     guard verified.snapshot.identifier == workIdentifier,
