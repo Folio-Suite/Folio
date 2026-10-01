@@ -27,19 +27,21 @@ import UndoKit
     let scope = UUID()
     let engine = try await HistoryEngine.open(at: storeURL, scope: scope,
         workingIdentity: UUID(), mode: .create, host: host, limits: limits)
-    engine.snapshotDidChange = { snapshot in
+    let transactions: any HistoryTransactions = engine
+    transactions.snapshotDidChange = { snapshot in
         _ = (snapshot.canUndo, snapshot.canRedo, snapshot.hasPending, snapshot.isSuspended)
     }
 
     let payload = HistoryPayload(family: "example.recipe.title", data: Data("New title".utf8))
     let command = HistoryCommand(fingerprint: Data("canonical intent".utf8), payload: payload)
-    switch await engine.submit(command) {
+    switch await transactions.submit(command) {
     case .accepted(let receipt): _ = (receipt.token, receipt.groupID)
     case .rejected: break
     case .failure(let failure): _ = (failure.cause, failure.stage, failure.disposition)
     }
-    _ = await engine.undo()
-    _ = await engine.redo()
+    _ = await transactions.undo(expectedGeneration: transactions.snapshot.generation)
+    _ = await transactions.redo(expectedGeneration: transactions.snapshot.generation)
+    _ = await transactions.reconcile()
     let checkpoint = try engine.createCheckpoint(name: "Before review", state: payload)
     _ = try engine.checkpoint(id: checkpoint.id)
     _ = try engine.checkpoints(limit: 20)

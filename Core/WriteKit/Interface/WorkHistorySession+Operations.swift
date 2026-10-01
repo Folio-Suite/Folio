@@ -48,7 +48,7 @@ extension WorkHistorySession {
   /// Reconcile any delivered command from durable host receipts before enabling Undo/Redo.
   public func reconcile() async throws {
     guard !omissionPending else { throw WorkHistoryError.busy }
-    let engine = try await ready()
+    let engine: any HistoryTransactions = try await transactions()
     if let result = await engine.reconcile() { try finish(result) }
     if engine.snapshot.isSuspended { throw WorkHistoryError.busy }
     didChange?()
@@ -77,6 +77,10 @@ extension WorkHistorySession {
     return opened
   }
 
+  func transactions() async throws -> any HistoryTransactions {
+    try await ready()
+  }
+
   /// Submit a complete settled manuscript edit. Known no-ops create no transaction.
   public func submit(manuscript: Manuscript) async throws {
     try await submit(manuscript: manuscript, origin: nil)
@@ -84,7 +88,7 @@ extension WorkHistorySession {
 
   func submit(manuscript: Manuscript, origin: UUID?) async throws {
     guard !omissionPending else { throw WorkHistoryError.busy }
-    let engine = try await ready()
+    let engine: any HistoryTransactions = try await transactions()
     guard manuscript.identifier == committed.identifier else { throw WorkHistoryError.rejected }
     guard manuscript != committed else { return }
     let before = try WorkHistoryPayload.encode(committed)
@@ -100,12 +104,12 @@ extension WorkHistorySession {
 
   public func undo() async throws {
     guard !omissionPending else { throw WorkHistoryError.busy }
-    let engine = try await ready()
+    let engine: any HistoryTransactions = try await transactions()
     try finish(await engine.undo(expectedGeneration: engine.snapshot.generation))
   }
   public func redo() async throws {
     guard !omissionPending else { throw WorkHistoryError.busy }
-    let engine = try await ready()
+    let engine: any HistoryTransactions = try await transactions()
     try finish(await engine.redo(expectedGeneration: engine.snapshot.generation))
   }
 
