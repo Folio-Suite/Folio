@@ -13,7 +13,8 @@ class KitInterfaceCheck
   ROOT = File.expand_path('..', __dir__)
   KITS = %w[FolioKit WriteKit ResearchKit ComposerKit TypographyKit UndoKit].freeze
   PRIVATE_SYMBOLS = { 'FolioKit' => 'TemporaryDirectory', 'WriteKit' => 'WorkStore',
-                      'ResearchKit' => 'ResearchKitBundleToken', 'TypographyKit' => 'DrawingRun' }.freeze
+                      'ResearchKit' => 'ResearchKitBundleToken', 'TypographyKit' => 'DrawingRun',
+                      'UndoKit' => 'RetainedHistory' }.freeze
 
   def check(condition, message)
     raise message unless condition

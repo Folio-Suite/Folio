@@ -28,6 +28,8 @@ import UndoKit
     let engine = try await HistoryEngine.open(at: storeURL, scope: scope,
         workingIdentity: UUID(), mode: .create, host: host, limits: limits)
     let transactions: any HistoryTransactions = engine
+    let history: any HistoryReading = engine
+    let retention: any HistoryRetentionManaging = engine
     transactions.snapshotDidChange = { snapshot in
         _ = (snapshot.canUndo, snapshot.canRedo, snapshot.hasPending, snapshot.isSuspended)
     }
@@ -42,10 +44,32 @@ import UndoKit
     _ = await transactions.undo(expectedGeneration: transactions.snapshot.generation)
     _ = await transactions.redo(expectedGeneration: transactions.snapshot.generation)
     _ = await transactions.reconcile()
-    let checkpoint = try engine.createCheckpoint(name: "Before review", state: payload)
-    _ = try engine.checkpoint(id: checkpoint.id)
-    _ = try engine.checkpoints(limit: 20)
-    _ = try engine.historyPage(limit: 20)
+    let checkpointID = UUID()
+    let checkpoint = try retention.createCheckpoint(
+        id: checkpointID, name: "Before review", state: payload)
+    _ = try history.checkpoint(id: checkpoint.id)
+    _ = try history.checkpoints(limit: 20)
+    _ = try history.historyPage(limit: 20)
+    let identity = try history.readIdentity()
+    _ = try history.presentation(forGroup: identity.latestGroupID ?? UUID())
+    _ = try history.nativeActionNames(resolve: { _ in nil })
+
+    let plan = try history.beginRecoveryPlan(
+        to: .checkpoint(checkpoint.id), using: .acceptedEffects)
+    let page = try history.recoveryPage(plan, limit: 20)
+    _ = try history.recoveryCheckpoint(plan)
+    for step in page.steps {
+        for ordinal in 0..<step.memberCount {
+            _ = try history.recoveryMaterial(plan, groupID: step.groupID, ordinal: ordinal)
+        }
+    }
+    history.releaseRecoveryPlan(plan)
+
+    let hold = try retention.holdState(checkpoint.id)
+    _ = try retention.retentionHolds()
+    try retention.releaseHold(hold.id)
+    _ = try retention.consolidateHistory(
+        through: checkpoint.id, policy: HistoryRetentionPolicy(targetDetailedGroups: 100))
     try await engine.close()
 }
 

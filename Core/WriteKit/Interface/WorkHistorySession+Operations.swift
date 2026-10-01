@@ -227,20 +227,21 @@ extension WorkHistorySession {
 
   /// Capture a recoverable Manuscript. The document host must save successfully before announcing a saved checkpoint.
   public func createCheckpoint(name: String) async throws -> UUID {
-    let engine = try await ready()
+    let retention: any HistoryRetentionManaging = try await ready()
     guard canSave else { throw WorkHistoryError.busy }
     let id = UUID()
-    _ = try engine.createCheckpoint(
+    _ = try retention.createCheckpoint(
       id: id, name: name,
-      state: HistoryPayload(family: Self.family, data: WorkHistoryPayload.encode(committed)))
+      state: HistoryPayload(family: Self.family, data: WorkHistoryPayload.encode(committed)),
+      resources: [])
     didChange?()
     return id
   }
 
   /// Restore through a new undoable edit; the displaced continuation remains in history.
   public func restore(checkpointID: UUID) async throws {
-    let engine = try await ready()
-    guard let checkpoint = try engine.checkpoint(id: checkpointID),
+    let history: any HistoryReading = try await ready()
+    guard let checkpoint = try history.checkpoint(id: checkpointID),
       checkpoint.state.family == Self.family, checkpoint.state.version == 1
     else {
       throw WorkHistoryError.invalidPackage
@@ -252,7 +253,8 @@ extension WorkHistorySession {
   /// Fetch at most one bounded page of checkpoint metadata for a compact or window-based host presentation.
   public func checkpoints(limit: Int = 100) throws -> [WorkCheckpoint] {
     guard let engine else { return [] }
-    return try engine.checkpoints(limit: limit).map {
+    let history: any HistoryReading = engine
+    return try history.checkpoints(after: nil, limit: limit).map {
       WorkCheckpoint(id: $0.id, name: $0.name ?? "", recordedAt: $0.recordedAt)
     }
   }
