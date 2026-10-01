@@ -9,7 +9,7 @@ This slice gives a Work one history operation: replace a settled Manuscript snap
 
 ## Ownership and delivery
 
-`Core/WriteKit/Interface/WorkHistorySession.swift` is the Folio host adapter. It translates one complete Manuscript replacement into an opaque, versioned `HistoryPayload` for UndoKit. `WorkHistoryPayload.swift` defines the host codec. UndoKit owns preparation, serialized delivery, the history graph, availability, and finalization. WriteKit owns the meaning and validation of a replacement, no-op filtering, compensation data, and the authoritative accepted or rejected outcome. Neither framework stores the other's managed objects.
+`Core/WriteKit/Interface/WorkHistorySession.swift` is the public host session. Its typed handler lives in `Core/WriteKit/Modules/WorkAdapter/WorkHistoryAdapter.swift`, which builds a `HistoryOperationRegistration` for complete Manuscript replacements. The registration supplies stable command/effect/state codec identities and versions; UndoKit adds codec envelopes to produce opaque `HistoryPayload` values. `WorkHistoryPayload.swift` defines the host representation. UndoKit owns preparation, serialized delivery, the history graph, availability, and finalization. WriteKit owns the meaning and validation of a replacement, no-op filtering, compensation data, and the authoritative accepted or rejected outcome. Neither framework stores the other's managed objects.
 
 An enabled Work has a private working directory containing `Host/Work.sqlite` and `History.sqlite`. Enabling history on a new Work creates the host SQLite store from its current Manuscript. A saved Work without history retains a private clone of its original store; enabling history updates that clone while preserving its store and object identities. Opening a saved Work with history copies its closed host store and history store into that directory and assigns a fresh working identity. The saved package remains the source snapshot until a later successful document save. `WorkHistorySession` holds the last host-accepted Manuscript separately from provisional edits. A submission whose decoded `before` state does not match that committed state is rejected without changing authored data. Each command has an identity and a fingerprint; the adapter records a compact host receipt in the Work store for outcome lookup.
 
@@ -35,9 +35,8 @@ The resource set is preserved when saving a history-enabled Work, but resource i
 
 ## Successors
 
-The accepted capabilities outside this operation are tracked separately:
+Further accepted capabilities outside this operation are tracked separately:
 
-- [#91 — Typed adapters and codec conveniences](https://github.com/Folio-Suite/Folio/issues/91).
 - [#92 — Store registration, multiple scopes and recovery lifecycle](https://github.com/Folio-Suite/Folio/issues/92).
 - [#93 — Retention holds, pruning and consolidation](https://github.com/Folio-Suite/Folio/issues/93).
 - [#94 — Paged reconstruction and host metadata, including persisted action names](https://github.com/Folio-Suite/Folio/issues/94).
