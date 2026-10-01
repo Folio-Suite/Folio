@@ -55,23 +55,6 @@ struct WorkHistoryRegistration: Codable {
   let workingIdentity: UUID
 }
 
-struct WorkHistoryChange: Codable {
-  let before: Data
-  let after: Data
-}
-
-struct WorkHistoryEffect: Codable {
-  let member: UUID
-  let undo: Data
-  let redo: Data
-}
-
-struct WorkHistoryEvidence: Codable {
-  let generation: UUID
-  let sequence: Int64
-  let effects: [WorkHistoryEffect]
-}
-
 /// Work's adapter for durable manuscript edits. Callers settle provisional editing before submission.
 /// This first operation preserves the resource set captured when history is enabled; resource editing is disabled.
 /// Calls and callbacks are main-actor isolated. A failed submission may require `reconcile()` before editing resumes.
@@ -84,7 +67,8 @@ struct WorkHistoryEvidence: Codable {
   var committed: Manuscript
   var engine: HistoryEngine?
   var opening: Task<HistoryEngine, Error>?
-  var host: Adapter?
+  var host: MainActorHistoryRegisteredHost<WorkHistoryAdapter>?
+  var typedRegistration: HistoryOperationRegistration<WorkHistoryAdapter>?
   var closed = false
   enum OmissionFinalizationPhase { case none, publishing, retireGeneration, stripReceipts }
   var omissionPhase: OmissionFinalizationPhase = .none
@@ -167,24 +151,4 @@ struct WorkHistoryEvidence: Codable {
     }
   }
 
-  // The private copy retains unresolved evidence until close. A process crash never edits the saved original.
-  @MainActor final class Adapter: HistoryHost {
-    weak var session: WorkHistorySession?
-    init(session: WorkHistorySession) { self.session = session }
-    func deliver(_ delivery: HistoryDelivery) async -> HistoryHostOutcome {
-      session?.deliver(delivery) ?? .unresolved
-    }
-    func outcome(for token: HistoryToken) async -> HistoryHostOutcome {
-      guard let session else { return .unresolved }
-      do {
-        guard
-          let receipt = try WorkStore.historyReceipt(
-            at: session.hostStore, commandID: token.command)
-        else {
-          return .unresolved
-        }
-        return try session.outcome(receipt, token: token)
-      } catch { return .unresolved }
-    }
-  }
 }

@@ -48,7 +48,7 @@ extension WorkHistorySession {
   /// Reconcile any delivered command from durable host receipts before enabling Undo/Redo.
   public func reconcile() async throws {
     guard !omissionPending else { throw WorkHistoryError.busy }
-    let engine = try await ready()
+    let engine: any HistoryTransactions = try await transactions()
     if let result = await engine.reconcile() { try finish(result) }
     if engine.snapshot.isSuspended { throw WorkHistoryError.busy }
     didChange?()
@@ -58,7 +58,9 @@ extension WorkHistorySession {
     guard !closed else { throw WorkHistoryError.closed }
     if let engine { return engine }
     if let opening { return try await opening.value }
-    let adapter = Adapter(session: self)
+    let typed = try WorkHistoryAdapter.registration(for: self)
+    let adapter = MainActorHistoryRegisteredHost(typed)
+    typedRegistration = typed
     host = adapter
     let url = historyStore
     let registration = registration
@@ -77,6 +79,10 @@ extension WorkHistorySession {
     return opened
   }
 
+  func transactions() async throws -> any HistoryTransactions {
+    try await ready()
+  }
+
   /// Submit a complete settled manuscript edit. Known no-ops create no transaction.
   public func submit(manuscript: Manuscript) async throws {
     try await submit(manuscript: manuscript, origin: nil)
@@ -84,28 +90,28 @@ extension WorkHistorySession {
 
   func submit(manuscript: Manuscript, origin: UUID?) async throws {
     guard !omissionPending else { throw WorkHistoryError.busy }
-    let engine = try await ready()
+    let engine: any HistoryTransactions = try await transactions()
     guard manuscript.identifier == committed.identifier else { throw WorkHistoryError.rejected }
     guard manuscript != committed else { return }
-    let before = try WorkHistoryPayload.encode(committed)
-    let after = try WorkHistoryPayload.encode(manuscript)
-    let payload = try encodeChange(before: before, after: after)
-    let result = await engine.submit(
-      HistoryCommand(
-        fingerprint: Data(SHA256.hash(data: payload.data)),
-        payload: payload, restorationOrigin: origin,
-        expectedGeneration: engine.snapshot.generation))
+    guard let typedRegistration else { throw WorkHistoryError.busy }
+    let change = WorkHistoryChange(before: committed, after: manuscript)
+    let fingerprint = Data(SHA256.hash(data: try WorkHistoryAdapter.canonicalIntentData(for: change)))
+    let result = await typedRegistration.handler.submit(
+      HistoryTypedCommand(
+        fingerprint: fingerprint, value: change, restorationOrigin: origin,
+        expectedGeneration: engine.snapshot.generation),
+      using: typedRegistration, to: engine)
     try finish(result)
   }
 
   public func undo() async throws {
     guard !omissionPending else { throw WorkHistoryError.busy }
-    let engine = try await ready()
+    let engine: any HistoryTransactions = try await transactions()
     try finish(await engine.undo(expectedGeneration: engine.snapshot.generation))
   }
   public func redo() async throws {
     guard !omissionPending else { throw WorkHistoryError.busy }
-    let engine = try await ready()
+    let engine: any HistoryTransactions = try await transactions()
     try finish(await engine.redo(expectedGeneration: engine.snapshot.generation))
   }
 
@@ -115,8 +121,9 @@ extension WorkHistorySession {
     let engine = try await ready()
     guard canSave else { throw WorkHistoryError.busy }
     if mode == .on {
+      guard let typedRegistration else { throw WorkHistoryError.busy }
       _ = try engine.setRecording(.on,
-        baseline: HistoryPayload(family: Self.family, data: try WorkHistoryPayload.encode(committed)))
+        baseline: typedRegistration.handler.encodeState(committed, using: typedRegistration))
     } else {
       try engine.setRecording(.off)
     }
@@ -163,8 +170,8 @@ extension WorkHistorySession {
       didChange?()
     }
     if omissionPhase == .retireGeneration {
-      let baseline = HistoryPayload(family: Self.family,
-                                    data: try WorkHistoryPayload.encode(committed))
+      guard let typedRegistration else { throw WorkHistoryError.busy }
+      let baseline = try typedRegistration.handler.encodeState(committed, using: typedRegistration)
       _ = try engine.clearHistory(adopting: baseline)
       omissionPhase = .stripReceipts
       didChange?()
@@ -198,8 +205,8 @@ extension WorkHistorySession {
       try WorkStore.readStore(at: hostStore).manuscript == manuscript else {
       throw WorkHistoryError.busy
     }
-    let baseline = HistoryPayload(family: Self.family,
-                                  data: try WorkHistoryPayload.encode(manuscript))
+    guard let typedRegistration else { throw WorkHistoryError.busy }
+    let baseline = try typedRegistration.handler.encodeState(manuscript, using: typedRegistration)
     let generation = try engine.resetUnresolvedHistory(
       adopting: baseline, quarantineAt: destination)
     committed = manuscript
@@ -223,32 +230,35 @@ extension WorkHistorySession {
 
   /// Capture a recoverable Manuscript. The document host must save successfully before announcing a saved checkpoint.
   public func createCheckpoint(name: String) async throws -> UUID {
-    let engine = try await ready()
+    let retention: any HistoryRetentionManaging = try await ready()
     guard canSave else { throw WorkHistoryError.busy }
+    guard let typedRegistration else { throw WorkHistoryError.busy }
     let id = UUID()
-    _ = try engine.createCheckpoint(
+    _ = try retention.createCheckpoint(
       id: id, name: name,
-      state: HistoryPayload(family: Self.family, data: WorkHistoryPayload.encode(committed)))
+      state: typedRegistration.handler.encodeState(committed, using: typedRegistration),
+      resources: [])
     didChange?()
     return id
   }
 
   /// Restore through a new undoable edit; the displaced continuation remains in history.
   public func restore(checkpointID: UUID) async throws {
-    let engine = try await ready()
-    guard let checkpoint = try engine.checkpoint(id: checkpointID),
-      checkpoint.state.family == Self.family, checkpoint.state.version == 1
-    else {
+    let history: any HistoryReading = try await ready()
+    guard let typedRegistration,
+      let checkpoint = try history.checkpoint(id: checkpointID) else {
       throw WorkHistoryError.invalidPackage
     }
     try await submit(
-      manuscript: WorkHistoryPayload.decode(checkpoint.state.data), origin: checkpointID)
+      manuscript: typedRegistration.handler.decodeState(checkpoint.state, using: typedRegistration),
+      origin: checkpointID)
   }
 
   /// Fetch at most one bounded page of checkpoint metadata for a compact or window-based host presentation.
   public func checkpoints(limit: Int = 100) throws -> [WorkCheckpoint] {
     guard let engine else { return [] }
-    return try engine.checkpoints(limit: limit).map {
+    let history: any HistoryReading = engine
+    return try history.checkpoints(after: nil, limit: limit).map {
       WorkCheckpoint(id: $0.id, name: $0.name ?? "", recordedAt: $0.recordedAt)
     }
   }
@@ -291,100 +301,4 @@ extension WorkHistorySession {
   }
 
   private var engineSnapshotSuspended: Bool { engine?.snapshot.isSuspended ?? true }
-
-  func encodeChange(before: Data, after: Data) throws -> HistoryPayload {
-    let encoder = PropertyListEncoder()
-    encoder.outputFormat = .binary
-    return HistoryPayload(
-      family: Self.family,
-      data: try encoder.encode(WorkHistoryChange(before: before, after: after)))
-  }
-
-  func deliver(_ delivery: HistoryDelivery) -> HistoryHostOutcome {
-    guard let work, !closed, !omissionPending else { return .unresolved }
-    do {
-      if let receipt = try WorkStore.historyReceipt(
-        at: hostStore, commandID: delivery.token.command) {
-        return try outcome(receipt, token: delivery.token)
-      }
-      let stored = try WorkStore.readStore(at: hostStore)
-      guard stored.identifier == work.identifier, stored.manuscript == committed else {
-        return .unresolved
-      }
-      var state = committed
-      var effects: [HistoryEffect] = []
-      for member in delivery.members {
-        guard member.payload.family == Self.family, member.payload.version == 1,
-          member.payload.data.count <= 16 * 1_024 * 1_024
-        else {
-          return try reject(delivery.token)
-        }
-        let change = try PropertyListDecoder().decode(WorkHistoryChange.self, from: member.payload.data)
-        let before = try WorkHistoryPayload.decode(change.before)
-        let after = try WorkHistoryPayload.decode(change.after)
-        guard state == before, before != after, after.identifier == committed.identifier else {
-          return try reject(delivery.token)
-        }
-        effects.append(
-          HistoryEffect(
-            memberID: member.id,
-            undo: try encodeChange(before: change.after, after: change.before), redo: member.payload
-          ))
-        state = after
-      }
-      let evidence = WorkHistoryEvidence(
-        generation: delivery.token.generation, sequence: delivery.token.sequence,
-        effects: effects.map {
-          WorkHistoryEffect(member: $0.memberID, undo: $0.undo.data, redo: $0.redo.data)
-        })
-      let encoded = try PropertyListEncoder().encode(evidence)
-      try WorkStore.commitHistory(
-        at: hostStore, workIdentifier: work.identifier, manuscript: state,
-        receipt: WorkStore.HistoryReceipt(
-          commandID: delivery.token.command,
-          fingerprint: delivery.token.generation.uuidString + ":" + String(delivery.token.sequence),
-          accepted: true, evidence: encoded))
-      let hasLaterProvisionalInput = work.manuscript != committed && work.manuscript != state
-      committed = state
-      if !hasLaterProvisionalInput { work.manuscript = state }
-      return .accepted(effects)
-    } catch {
-      // A save error is not evidence of rejection. Look up the atomic host receipt on reconciliation.
-      return .unresolved
-    }
-  }
-
-  func reject(_ token: HistoryToken) throws -> HistoryHostOutcome {
-    guard let work else { return .unresolved }
-    try WorkStore.commitHistory(
-      at: hostStore, workIdentifier: work.identifier, manuscript: committed,
-      receipt: WorkStore.HistoryReceipt(
-        commandID: token.command,
-        fingerprint: token.generation.uuidString + ":" + String(token.sequence), accepted: false,
-        evidence: Data()))
-    return .rejected
-  }
-
-  func outcome(_ receipt: WorkStore.HistoryReceipt, token: HistoryToken) throws
-    -> HistoryHostOutcome {
-    guard receipt.fingerprint == token.generation.uuidString + ":" + String(token.sequence) else {
-      return .unresolved
-    }
-    guard receipt.accepted else { return .rejected }
-    let evidence = try PropertyListDecoder().decode(WorkHistoryEvidence.self, from: receipt.evidence)
-    guard evidence.generation == token.generation, evidence.sequence == token.sequence else {
-      return .unresolved
-    }
-    let stored = try WorkStore.readStore(at: hostStore)
-    guard let work, stored.identifier == work.identifier else { return .unresolved }
-    let hasProvisionalInput = work.manuscript != committed
-    committed = stored.manuscript
-    if !hasProvisionalInput { work.manuscript = stored.manuscript }
-    return .accepted(
-      evidence.effects.map {
-        HistoryEffect(
-          memberID: $0.member, undo: HistoryPayload(family: Self.family, data: $0.undo),
-          redo: HistoryPayload(family: Self.family, data: $0.redo))
-      })
-  }
 }

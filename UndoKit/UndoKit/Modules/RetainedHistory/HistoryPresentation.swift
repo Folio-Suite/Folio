@@ -4,11 +4,10 @@
 import CoreData
 import Foundation
 
-extension HistoryEngine {
-    /// Identity and accepted position observed together on this scope's actor.
-    public func readIdentity() throws -> HistoryReadIdentity {
-        guard !closed else { throw HistoryFailure(.busy, stage: .admission, disposition: .usable) }
-        let scopeRow = try scopeRecord()
+extension RetainedHistory {
+    func readIdentity() throws -> HistoryReadIdentity {
+        guard !activity.closed else { throw HistoryFailure(.busy, stage: .admission, disposition: .usable) }
+        let scopeRow = try history.scopeRecord()
         let floor = scopeRow.int64("undoFloorSequence")
         let request = NSFetchRequest<NSManagedObject>(entityName: "HistoryGroupRecord")
         request.predicate = NSPredicate(format: "scopeKey == %@ AND sequence >= %@",
@@ -27,28 +26,25 @@ extension HistoryEngine {
             latestGroupID: try latest?.uuid("key"))
     }
 
-    /// Retrieves only a small encoded display value; absent data uses a generic label.
-    public func presentation(forGroup id: UUID) throws -> HistoryPayload? {
-        guard !closed else { throw HistoryFailure(.busy, stage: .admission, disposition: .usable) }
-        let rows = try fetch("HistoryGroupRecord", predicate: NSPredicate(
+    func presentation(forGroup id: UUID) throws -> HistoryPayload? {
+        guard !activity.closed else { throw HistoryFailure(.busy, stage: .admission, disposition: .usable) }
+        let rows = try history.fetch("HistoryGroupRecord", predicate: NSPredicate(
             format: "scopeKey == %@ AND key == %@", scope.uuidString, id.uuidString))
         guard let row = rows.first else { return nil }
         guard row.string("presentationFamily") != nil else { return nil }
-        let value = try payload(on: row, prefix: "presentation")
+        let value = try history.payload(on: row, prefix: "presentation")
         guard value.data.count <= 4_096 else {
             throw HistoryFailure(.storage, stage: .reconciliation, disposition: .suspended)
         }
         return value
     }
 
-    /// Resolve native menu names through the host's metadata codec. The returned
-    /// snapshot and names are read in one actor turn for `NativeHistoryRouter.update`.
-    public func nativeActionNames(
+    func nativeActionNames(
         resolve: (HistoryPayload) throws -> String?
     ) throws -> (snapshot: HistorySnapshot, names: HistoryNativeActionNames) {
-        guard !closed else { throw HistoryFailure(.busy, stage: .admission, disposition: .usable) }
-        let undoRow = try eligibleGroup(for: .undo)
-        let redoRow = try eligibleGroup(for: .redo)
+        guard !activity.closed else { throw HistoryFailure(.busy, stage: .admission, disposition: .usable) }
+        let undoRow = try history.eligibleGroup(for: .undo)
+        let redoRow = try history.eligibleGroup(for: .redo)
         func name(_ row: NSManagedObject?) throws -> String {
             guard let row, let id = try? row.uuid("key"),
                   let presentation = try? presentation(forGroup: id) else { return "" }

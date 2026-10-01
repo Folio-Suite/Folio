@@ -6,6 +6,44 @@ SPDX-License-Identifier: MIT
 # UndoKit
 A managed persistent undo manager for modern Apple ecosystem apps
 
+## Ordinary transactions
+
+Pass `HistoryTransactions` to code that submits edits or performs ordinary
+Undo/Redo. `HistoryEngine` conforms to this narrow main-actor interface; the
+owner keeps the concrete engine for recording, generation changes and closure.
+
+```swift
+@MainActor
+func apply(_ command: HistoryCommand, using transactions: any HistoryTransactions) async -> HistoryResult {
+    return await transactions.submit(command)
+}
+```
+
+The interface also provides `HistoryTransactions/undo(expectedGeneration:)`,
+`HistoryTransactions/redo(expectedGeneration:)` and
+`HistoryTransactions/reconcile()`. It exposes one availability callback;
+await each operation for its result and use the snapshot for current capability.
+
+The accepted [transaction module ownership decision](docs/adr/0001-transaction-module-ownership.md)
+records why ordinary transaction coordination is behind this protocol while
+lifecycle controls remain on `HistoryEngine`.
+
+## Retained history
+
+Pass `HistoryReading` to history browsers for bounded metadata, checkpoint
+retrieval, reconstruction and coherent native action names. Pass
+`HistoryRetentionManaging` to code that creates checkpoints, manages holds and
+requests consolidation. `HistoryEngine` implements both capabilities through one
+scope-local owner, so an active Recovery Plan protects its required material
+automatically. Release or cancel the plan when finished; closing the scope also
+ends its protection.
+
+Reading can establish temporary plan protection; it does not imply a read-only
+physical store. Hosts interpret the opaque material and reconstruct state.
+Physical-store resource cleanup remains on `HistoryStore`, where it covers all
+scopes. The [retained-history ownership decision](docs/adr/0002-retained-history-module-ownership.md)
+records this split and its lifecycle guarantees.
+
 ## Integration with Folio
 
 UndoKit is an independently buildable framework in the Folio monorepo. Its source,
@@ -20,14 +58,21 @@ stores protocol structure; host payloads remain opaque. The host owns atomic
 semantic effects and durable outcome receipts. See the public DocC catalog and
 [Work adapter description](../docs/architecture/work-history-first-operation.md).
 
-Public declarations are grouped in `UndoKit/Interface/`; persistence, transaction
-coordination and storage implementations live in `UndoKit/Modules/History/`.
-`Interface/HistoryReconstruction.swift`, `HistoryRecoveryPlanning.swift` and
-`HistoryPresentation.swift` describe reconstruction and presentation.
-`HistoryRetention.swift`, `HistoryRetentionHolds.swift`,
-`HistoryConsolidation.swift` and `HistoryRetentionResources.swift` expose
-holds, consolidation and cross-scope resource maintenance.
-Folio's translation layer lives in `Core/WriteKit/WorkAdapter/`; UndoKit imports
+Public declarations are grouped in `UndoKit/Interface/`; transaction coordination
+lives in `UndoKit/Modules/Transactions/`, retained-history behavior lives in
+`UndoKit/Modules/RetainedHistory/`, and persistence and scoped store activity
+live in `UndoKit/Modules/Storage/`. Typed host adaptation lives in
+`UndoKit/Modules/HostAdaptation/`: it owns codecs, registration validation and
+version selection, typed delivery and outcome conversion, and opaque operation
+family routing. `Interface/` holds the public contracts and forwarding entry
+points; `// MARK:` divisions keep declarations discoverable without duplicating
+implementation.
+Start with `Interface/HistoryReading.swift` and `HistoryRetentionManaging.swift`
+for the retained-history capabilities. `HistoryReconstruction.swift` and
+`HistoryRetention.swift` contain their values; `HistorySessionLifecycle.swift`
+contains concrete session copy and closure controls. `HistoryRetentionResources.swift`
+exposes cross-scope resource maintenance.
+Folio's translation layer lives in `Core/WriteKit/Modules/WorkAdapter/`; UndoKit imports
 no Folio domain framework. The Core Data model is bundled from
 `UndoKit/Resources/`.
 
@@ -37,10 +82,12 @@ history holds, and safe pruning under host-selected policy. Its representation
 candidates and scale scenarios have accepted bounded proof results.
 
 The accepted [typed-interface contract](docs/typed-interface-contract.md)
-defines thin host adapters, opaque versioned payloads, JSON and XML/binary
-property-list conveniences, asynchronous ordered submission and bounded reads.
-Its isolated Swift proof establishes adapter and codec feasibility, including
-fresh-process decoding; it does not implement the production history engine.
+defines typed host adapters, opaque versioned payloads, codec conveniences,
+asynchronous ordered submission and bounded reads. Its isolated Swift proof
+establishes adapter and codec feasibility, including fresh-process decoding;
+it does not implement the production history engine. The implementation's
+module ownership and typed callback context are recorded in
+[ADR 0003](docs/adr/0003-host-adaptation-module-ownership.md).
 
 The accepted [native-routing contract](docs/native-routing-contract.md) defines
 the reusable bridge, pending editing barriers, local text routing, coherent

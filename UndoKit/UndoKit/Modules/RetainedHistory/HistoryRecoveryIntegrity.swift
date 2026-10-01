@@ -4,11 +4,11 @@
 import CoreData
 import Foundation
 
-extension HistoryEngine {
+extension RetainedHistory {
     func recoveryAcceptedSequence(_ source: HistoryRecoverySource) throws -> Int64 {
         switch source {
         case .current:
-            return try scopeRecord().int64("latestAcceptedSequence")
+            return try history.scopeRecord().int64("latestAcceptedSequence")
         case .checkpoint(let id):
             let request = NSFetchRequest<NSManagedObject>(entityName: "HistoryCheckpointRecord")
             request.predicate = NSPredicate(format: "scopeKey == %@ AND key == %@", scope.uuidString, id.uuidString)
