@@ -85,6 +85,8 @@ Keep user-facing strings in the owning bundle’s catalogs, with stable semantic
 
 Use Xcode’s versioned Core Data model editor for persistent schemas. WriteKit’s authoritative model is `Core/WriteKit/Resources/Work.xcdatamodeld`; edit entities, attributes, inverses, ordered relationships, validation, and deletion rules there. The private store adapter loads the compiled model from WriteKit rather than reconstructing the schema in code. Managed objects stay inside that adapter; application callers use the Kit’s public model interface.
 
+Work and History models use Swift as their source language and internal, manually declared `NSManagedObject` subclasses. Keep entity class mappings and `@NSManaged` declarations coordinated with the model. Use typed properties, fetches, and compiler-checked key paths in the adapters. Reference properties may remain optional in Swift so corrupt or incomplete stored values reach explicit validation; a required model attribute does not justify a force unwrap. Managed-object classes are implementation details and must not enter public Kit APIs.
+
 The current pre-alpha model replaces the experimental code-defined format without a migration requirement. Model versions remain explicit so compatibility can be governed as the project matures.
 
 ## Public Kit interfaces
@@ -148,7 +150,14 @@ Shared `IDETemplateMacros.plist` files in the workspace and each project configu
 Xcode's `FILEHEADER` macro for new Objective-C and Swift source files. They insert
 the creation year, `the Folio Project` attribution, and the MIT SPDX identifier.
 These templates affect new files; they do not rewrite existing headers or update
-copyright years on every build. Files with other comment syntax still need the
-appropriate notice from the conventions below.
+copyright years on every build. Authored files with other comment syntax follow the
+conventions below.
 
-Folio and its components use the MIT License. Use `the Folio Project` as the copyright holder in project notices and Xcode organization metadata. Add `SPDX-FileCopyrightText: 2026 the Folio Project` (using the appropriate creation year) and `SPDX-License-Identifier: MIT` in the file format’s comment syntax to new project-owned files. Keep shebangs, XML declarations, Xcode encoding markers, and Markdown front matter in their required positions. Do not create license sidecars. Project-owned assets and formats without comments, such as JSON, are covered by the repository’s MIT license. Preserve upstream authorship and license terms for imported `.agents/skills` and the Contributor Covenant in `CODE_OF_CONDUCT.md`.
+Folio and its components use the MIT License. Use `the Folio Project` as the copyright holder in project notices and Xcode organization metadata. Add `SPDX-FileCopyrightText: 2026 the Folio Project` (using the appropriate creation year) and `SPDX-License-Identifier: MIT` in the file format’s comment syntax to new project-authored files. Keep shebangs, XML declarations, Xcode encoding markers, and Markdown front matter in their required positions. Do not create license sidecars. Project-owned assets and formats without comments, such as JSON, are covered by the repository’s MIT license. Preserve upstream authorship and license terms for imported `.agents/skills` and the Contributor Covenant in `CODE_OF_CONDUCT.md`.
+
+Environment-generated files do not require copyright or SPDX notices, and must
+not receive license sidecars. This includes Xcode-generated or maintained Core
+Data model XML (such as `HistoryV1.xcdatamodel/contents`), storyboards, project
+files, shared schemes, and generated source. Accept the development environment’s
+serialization changes without restoring notices it removes. This exemption does
+not remove attribution or license obligations for imported third-party material.

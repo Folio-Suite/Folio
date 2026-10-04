@@ -107,9 +107,9 @@ enum WorkStore {
     }
   }
 
-  private static func identifier(_ object: NSManagedObject, _ key: String, seen: inout Set<String>)
+  private static func identifier(_ raw: String?, seen: inout Set<String>)
     throws -> FolioIdentifier {
-    guard let raw = object.value(forKey: key) as? String, !seen.contains(raw),
+    guard let raw, !seen.contains(raw),
       let value = try? FolioIdentifier(rawValue: raw)
     else {
       throw readError(
@@ -123,11 +123,26 @@ enum WorkStore {
     return value
   }
 
-  static func ordered(_ object: NSManagedObject, _ key: String) throws -> [NSManagedObject] {
-    guard let values = object.value(forKey: key) as? NSOrderedSet,
-      let objects = values.array as? [NSManagedObject]
+  static func ordered<Record: NSManagedObject>(_ values: NSOrderedSet?, as: Record.Type)
+    throws -> [Record] {
+    guard let values, let objects = values.array as? [Record]
     else { throw malformed() }
     return objects
+  }
+
+  static func fetch<Record: NSManagedObject>(
+    _ type: Record.Type, entity: String, in context: NSManagedObjectContext
+  ) throws -> [Record] {
+    try context.fetch(NSFetchRequest<Record>(entityName: entity))
+  }
+
+  static func insert<Record: NSManagedObject>(
+    _ type: Record.Type, entity: String, in context: NSManagedObjectContext
+  ) throws -> Record {
+    guard let record = NSEntityDescription.insertNewObject(forEntityName: entity, into: context)
+      as? Record
+    else { throw writeError() }
+    return record
   }
 
   static func malformed() -> NSError {
@@ -186,37 +201,37 @@ extension WorkStore {
   }
 
   private static func decode(_ context: NSManagedObjectContext) throws -> Snapshot {
-    let works = try context.fetch(NSFetchRequest<NSManagedObject>(entityName: "Work"))
+    let works = try fetch(WorkRecord.self, entity: "Work", in: context)
     guard works.count == 1, let work = works.first,
-      (work.value(forKey: "formatVersion") as? NSNumber)?.intValue == 1,
-      let manuscriptObject = work.value(forKey: "manuscript") as? NSManagedObject,
-      let unitSet = work.value(forKey: "units") as? Set<NSManagedObject>
+      work.formatVersion?.intValue == 1,
+      let manuscriptObject = work.manuscript,
+      let unitSet = work.units
     else { throw malformed() }
-    let orderedUnits = try ordered(manuscriptObject, "contentUnits")
+    let orderedUnits = try ordered(manuscriptObject.contentUnits, as: ContentUnitRecord.self)
     guard !orderedUnits.isEmpty, Set(orderedUnits) == unitSet else { throw malformed() }
     var seen: Set<String> = []
-    let workID = try identifier(work, "identifier", seen: &seen)
-    let manuscriptID = try identifier(manuscriptObject, "identifier", seen: &seen)
+    let workID = try identifier(work.identifier, seen: &seen)
+    let manuscriptID = try identifier(manuscriptObject.identifier, seen: &seen)
     var counts = DecodedCounts()
     let units = try orderedUnits.map { try decodeUnit($0, seen: &seen, counts: &counts) }
     try validateCounts(context, units: units.count, counts: counts)
     guard let manuscript = try? Manuscript(identifier: manuscriptID, units: units) else {
       throw malformed()
     }
-    let membership = try (work.value(forKey: "resourceMembership") as? Data).map {
+    let membership = try work.resourceMembership.map {
       try PropertyListDecoder().decode([WorkResource].self, from: $0)
     }
     return Snapshot(identifier: workID, manuscript: manuscript, resourceMembership: membership)
   }
 
   private static func decodeUnit(
-    _ object: NSManagedObject, seen: inout Set<String>, counts: inout DecodedCounts
+    _ object: ContentUnitRecord, seen: inout Set<String>, counts: inout DecodedCounts
   ) throws -> TextUnit {
-    let unitID = try identifier(object, "identifier", seen: &seen)
-    guard let title = object.value(forKey: "title") as? String,
-      let dismissed = object.value(forKey: "formattingWarningDismissed") as? NSNumber
+    let unitID = try identifier(object.identifier, seen: &seen)
+    guard let title = object.title,
+      let dismissed = object.formattingWarningDismissed
     else { throw malformed() }
-    let paragraphs = try ordered(object, "paragraphs").map {
+    let paragraphs = try ordered(object.paragraphs, as: ParagraphRecord.self).map {
       try decodeParagraph($0, seen: &seen, counts: &counts)
     }
     counts.paragraphs += paragraphs.count
@@ -228,28 +243,28 @@ extension WorkStore {
   }
 
   private static func decodeParagraph(
-    _ object: NSManagedObject, seen: inout Set<String>, counts: inout DecodedCounts
+    _ object: ParagraphRecord, seen: inout Set<String>, counts: inout DecodedCounts
   ) throws -> TextParagraph {
-    let paragraphID = try identifier(object, "identifier", seen: &seen)
-    guard let rawAlignment = object.value(forKey: "alignment") as? NSNumber,
+    let paragraphID = try identifier(object.identifier, seen: &seen)
+    guard let rawAlignment = object.alignment,
       rawAlignment.doubleValue == Double(rawAlignment.uintValue),
       let alignment = ParagraphAlignment(rawValue: rawAlignment.uintValue)
     else { throw malformed() }
-    let runs = try ordered(object, "runs").map(decodeRun)
+    let runs = try ordered(object.runs, as: RunRecord.self).map(decodeRun)
     counts.runs += runs.count
     return TextParagraph(identifier: paragraphID, runs: runs, alignment: alignment)
   }
 
-  private static func decodeRun(_ object: NSManagedObject) throws -> TextRun {
-    guard let string = object.value(forKey: "text") as? String,
+  private static func decodeRun(_ object: RunRecord) throws -> TextRun {
+    guard let string = object.text,
       string.rangeOfCharacter(from: CharacterSet(charactersIn: "\r\n\u{2029}")) == nil,
-      let rawEmphasis = object.value(forKey: "emphasis") as? NSNumber,
+      let rawEmphasis = object.emphasis,
       rawEmphasis.doubleValue == Double(rawEmphasis.uintValue),
       let emphasis = TextEmphasis(rawValue: rawEmphasis.uintValue),
-      let bold = object.value(forKey: "bold") as? NSNumber,
-      let italic = object.value(forKey: "italic") as? NSNumber,
-      let underline = object.value(forKey: "underline") as? NSNumber,
-      let strikethrough = object.value(forKey: "strikethrough") as? NSNumber
+      let bold = object.bold,
+      let italic = object.italic,
+      let underline = object.underline,
+      let strikethrough = object.strikethrough
     else { throw malformed() }
     return TextRun(
       string: string, emphasis: emphasis,
@@ -269,15 +284,6 @@ extension WorkStore {
       guard try context.count(for: NSFetchRequest<NSFetchRequestResult>(entityName: entity)) == count
       else { throw malformed() }
     }
-  }
-
-  static func insert(
-    _ entity: String, in context: NSManagedObjectContext,
-    values: [String: Any]
-  ) -> NSManagedObject {
-    let object = NSEntityDescription.insertNewObject(forEntityName: entity, into: context)
-    object.setValuesForKeys(values)
-    return object
   }
 
   static func package(workIdentifier: FolioIdentifier, manuscript: Manuscript) throws -> FileWrapper {
@@ -311,55 +317,53 @@ extension WorkStore {
     workIdentifier: FolioIdentifier, manuscript: Manuscript,
     in context: NSManagedObjectContext
   ) throws {
-    let work = insert(
-      "Work", in: context, values: ["identifier": workIdentifier.rawValue, "formatVersion": 1])
-    let storedManuscript = insert(
-      "Manuscript", in: context,
-      values: ["identifier": manuscript.identifier.rawValue, "work": work])
+    let work = try insert(WorkRecord.self, entity: "Work", in: context)
+    work.identifier = workIdentifier.rawValue
+    work.formatVersion = 1
+    let storedManuscript = try insert(ManuscriptRecord.self, entity: "Manuscript", in: context)
+    storedManuscript.identifier = manuscript.identifier.rawValue
+    storedManuscript.work = work
     let storedUnits = try manuscript.units.map { text in
       try encode(text, under: work, in: context)
     }
-    storedManuscript.setValue(NSOrderedSet(array: storedUnits), forKey: "contentUnits")
+    storedManuscript.contentUnits = NSOrderedSet(array: storedUnits)
     try context.save()
   }
 
   private static func encode(
-    _ text: TextUnit, under work: NSManagedObject, in context: NSManagedObjectContext
-  ) throws -> NSManagedObject {
-    let unit = insert(
-      "ContentUnit", in: context,
-      values: [
-        "identifier": text.identifier.rawValue,
-        "title": text.title, "work": work,
-        "formattingWarningDismissed": text.formattingWarningDismissed,
-      ])
+    _ text: TextUnit, under work: WorkRecord, in context: NSManagedObjectContext
+  ) throws -> ContentUnitRecord {
+    let unit = try insert(ContentUnitRecord.self, entity: "ContentUnit", in: context)
+    unit.identifier = text.identifier.rawValue
+    unit.title = text.title
+    unit.work = work
+    unit.formattingWarningDismissed = NSNumber(value: text.formattingWarningDismissed)
     let paragraphs = try text.paragraphs.map { paragraph in
       try encode(paragraph, under: unit, in: context)
     }
-    unit.setValue(NSOrderedSet(array: paragraphs), forKey: "paragraphs")
+    unit.paragraphs = NSOrderedSet(array: paragraphs)
     return unit
   }
 
   private static func encode(
-    _ paragraph: TextParagraph, under unit: NSManagedObject, in context: NSManagedObjectContext
-  ) throws -> NSManagedObject {
-    let object = insert(
-      "Paragraph", in: context,
-      values: [
-        "identifier": paragraph.identifier.rawValue,
-        "alignment": paragraph.alignment.rawValue, "unit": unit,
-      ])
-    let runs = paragraph.runs.map { run in
-      insert(
-        "Run", in: context,
-        values: [
-          "text": run.string,
-          "emphasis": run.emphasis.rawValue, "bold": run.presentation.bold,
-          "italic": run.presentation.italic, "underline": run.presentation.underline,
-          "strikethrough": run.presentation.strikethrough, "paragraph": object,
-        ])
+    _ paragraph: TextParagraph, under unit: ContentUnitRecord, in context: NSManagedObjectContext
+  ) throws -> ParagraphRecord {
+    let object = try insert(ParagraphRecord.self, entity: "Paragraph", in: context)
+    object.identifier = paragraph.identifier.rawValue
+    object.alignment = NSNumber(value: paragraph.alignment.rawValue)
+    object.unit = unit
+    let runs = try paragraph.runs.map { run in
+      let record = try insert(RunRecord.self, entity: "Run", in: context)
+      record.text = run.string
+      record.emphasis = NSNumber(value: run.emphasis.rawValue)
+      record.bold = NSNumber(value: run.presentation.bold)
+      record.italic = NSNumber(value: run.presentation.italic)
+      record.underline = NSNumber(value: run.presentation.underline)
+      record.strikethrough = NSNumber(value: run.presentation.strikethrough)
+      record.paragraph = object
+      return record
     }
-    object.setValue(NSOrderedSet(array: runs), forKey: "runs")
+    object.runs = NSOrderedSet(array: runs)
     return object
   }
 
