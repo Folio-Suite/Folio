@@ -130,12 +130,6 @@ enum WorkStore {
     return objects
   }
 
-  static func fetch<Record: NSManagedObject>(
-    _ type: Record.Type, entity: String, in context: NSManagedObjectContext
-  ) throws -> [Record] {
-    try context.fetch(NSFetchRequest<Record>(entityName: entity))
-  }
-
   static func insert<Record: NSManagedObject>(
     _ type: Record.Type, entity: String, in context: NSManagedObjectContext
   ) throws -> Record {
@@ -152,6 +146,63 @@ enum WorkStore {
         value:
           "The store contains invalid or unsupported Manuscript structure; no content has been changed.",
         comment: "Recovery explanation for invalid data. Manuscript is a Folio domain term."))
+  }
+
+  /// Ask the store whether required scalar values are in the supported domain
+  /// sets before Core Data projects them through generated scalar accessors.
+  static func validateRequiredScalars(
+    _ context: NSManagedObjectContext, onlyEntity: String? = nil,
+    matching: NSPredicate? = nil
+  ) throws {
+    guard let entities = context.persistentStoreCoordinator?.managedObjectModel.entities else {
+      throw malformed()
+    }
+    var matchedEntity = onlyEntity == nil
+    for entity in entities {
+      guard let name = entity.name else { throw malformed() }
+      if let onlyEntity, name != onlyEntity { continue }
+      matchedEntity = true
+      let attributes = entity.attributesByName.values.filter {
+        !$0.isOptional
+          && ($0.attributeType == .booleanAttributeType
+            || $0.attributeType == .integer16AttributeType)
+      }
+      guard !attributes.isEmpty else { continue }
+      var invalid: [NSPredicate] = []
+      for attribute in attributes {
+        let allowed: [NSNumber]
+        switch attribute.attributeType {
+        case .booleanAttributeType:
+          allowed = [0, 1]
+        case .integer16AttributeType:
+          switch (name, attribute.name) {
+          case ("Work", "formatVersion"):
+            allowed = [1]
+          case ("Paragraph", "alignment"):
+            allowed = [
+              ParagraphAlignment.natural, .left, .center, .right, .justified,
+            ].map { NSNumber(value: $0.rawValue) }
+          case ("Run", "emphasis"):
+            allowed = [
+              TextEmphasis.none, .emphasis, .strongEmphasis, .veryStrongEmphasis,
+            ].map { NSNumber(value: $0.rawValue) }
+          default:
+            throw malformed()
+          }
+        default:
+          continue
+        }
+        invalid.append(NSPredicate(format: "%K == nil", attribute.name))
+        invalid.append(NSPredicate(format: "NOT (%K IN %@)", attribute.name, allowed))
+      }
+      let invalidValue = NSCompoundPredicate(orPredicateWithSubpredicates: invalid)
+      let request = NSFetchRequest<NSFetchRequestResult>(entityName: name)
+      request.predicate = matching.map {
+        NSCompoundPredicate(andPredicateWithSubpredicates: [$0, invalidValue])
+      } ?? invalidValue
+      guard try context.count(for: request) == 0 else { throw malformed() }
+    }
+    guard matchedEntity else { throw malformed() }
   }
 
   static func readPackage(_ package: FileWrapper) throws -> Snapshot {
@@ -201,14 +252,15 @@ extension WorkStore {
   }
 
   private static func decode(_ context: NSManagedObjectContext) throws -> Snapshot {
-    let works = try fetch(WorkRecord.self, entity: "Work", in: context)
+    try validateRequiredScalars(context)
+    let works = try context.fetch(WorkRecord.fetchRequest())
     guard works.count == 1, let work = works.first,
-      work.formatVersion?.intValue == 1,
+      work.formatVersion == 1,
       let manuscriptObject = work.manuscript,
-      let unitSet = work.units
+      let unitSet = work.units?.allObjects as? [ContentUnitRecord]
     else { throw malformed() }
     let orderedUnits = try ordered(manuscriptObject.contentUnits, as: ContentUnitRecord.self)
-    guard !orderedUnits.isEmpty, Set(orderedUnits) == unitSet else { throw malformed() }
+    guard !orderedUnits.isEmpty, Set(orderedUnits) == Set(unitSet) else { throw malformed() }
     var seen: Set<String> = []
     let workID = try identifier(work.identifier, seen: &seen)
     let manuscriptID = try identifier(manuscriptObject.identifier, seen: &seen)
@@ -228,16 +280,14 @@ extension WorkStore {
     _ object: ContentUnitRecord, seen: inout Set<String>, counts: inout DecodedCounts
   ) throws -> TextUnit {
     let unitID = try identifier(object.identifier, seen: &seen)
-    guard let title = object.title,
-      let dismissed = object.formattingWarningDismissed
-    else { throw malformed() }
+    guard let title = object.title else { throw malformed() }
     let paragraphs = try ordered(object.paragraphs, as: ParagraphRecord.self).map {
       try decodeParagraph($0, seen: &seen, counts: &counts)
     }
     counts.paragraphs += paragraphs.count
     guard let unit = try? TextUnit(
       identifier: unitID, title: title, paragraphs: paragraphs,
-      formattingWarningDismissed: dismissed.boolValue
+      formattingWarningDismissed: object.formattingWarningDismissed
     ) else { throw malformed() }
     return unit
   }
@@ -246,9 +296,9 @@ extension WorkStore {
     _ object: ParagraphRecord, seen: inout Set<String>, counts: inout DecodedCounts
   ) throws -> TextParagraph {
     let paragraphID = try identifier(object.identifier, seen: &seen)
-    guard let rawAlignment = object.alignment,
-      rawAlignment.doubleValue == Double(rawAlignment.uintValue),
-      let alignment = ParagraphAlignment(rawValue: rawAlignment.uintValue)
+    let rawAlignment = object.alignment
+    guard rawAlignment >= 0,
+      let alignment = ParagraphAlignment(rawValue: UInt(rawAlignment))
     else { throw malformed() }
     let runs = try ordered(object.runs, as: RunRecord.self).map(decodeRun)
     counts.runs += runs.count
@@ -258,19 +308,14 @@ extension WorkStore {
   private static func decodeRun(_ object: RunRecord) throws -> TextRun {
     guard let string = object.text,
       string.rangeOfCharacter(from: CharacterSet(charactersIn: "\r\n\u{2029}")) == nil,
-      let rawEmphasis = object.emphasis,
-      rawEmphasis.doubleValue == Double(rawEmphasis.uintValue),
-      let emphasis = TextEmphasis(rawValue: rawEmphasis.uintValue),
-      let bold = object.bold,
-      let italic = object.italic,
-      let underline = object.underline,
-      let strikethrough = object.strikethrough
+      object.emphasis >= 0,
+      let emphasis = TextEmphasis(rawValue: UInt(object.emphasis))
     else { throw malformed() }
     return TextRun(
       string: string, emphasis: emphasis,
       presentation: TextPresentation(
-        bold: bold.boolValue, italic: italic.boolValue,
-        underline: underline.boolValue, strikethrough: strikethrough.boolValue))
+        bold: object.bold, italic: object.italic,
+        underline: object.underline, strikethrough: object.strikethrough))
   }
 
   private static func validateCounts(
@@ -337,7 +382,7 @@ extension WorkStore {
     unit.identifier = text.identifier.rawValue
     unit.title = text.title
     unit.work = work
-    unit.formattingWarningDismissed = NSNumber(value: text.formattingWarningDismissed)
+    unit.formattingWarningDismissed = text.formattingWarningDismissed
     let paragraphs = try text.paragraphs.map { paragraph in
       try encode(paragraph, under: unit, in: context)
     }
@@ -350,16 +395,16 @@ extension WorkStore {
   ) throws -> ParagraphRecord {
     let object = try insert(ParagraphRecord.self, entity: "Paragraph", in: context)
     object.identifier = paragraph.identifier.rawValue
-    object.alignment = NSNumber(value: paragraph.alignment.rawValue)
+    object.alignment = Int16(paragraph.alignment.rawValue)
     object.unit = unit
     let runs = try paragraph.runs.map { run in
       let record = try insert(RunRecord.self, entity: "Run", in: context)
       record.text = run.string
-      record.emphasis = NSNumber(value: run.emphasis.rawValue)
-      record.bold = NSNumber(value: run.presentation.bold)
-      record.italic = NSNumber(value: run.presentation.italic)
-      record.underline = NSNumber(value: run.presentation.underline)
-      record.strikethrough = NSNumber(value: run.presentation.strikethrough)
+      record.emphasis = Int16(run.emphasis.rawValue)
+      record.bold = run.presentation.bold
+      record.italic = run.presentation.italic
+      record.underline = run.presentation.underline
+      record.strikethrough = run.presentation.strikethrough
       record.paragraph = object
       return record
     }

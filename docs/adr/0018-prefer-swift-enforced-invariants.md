@@ -1,0 +1,16 @@
+<!--
+SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT
+-->
+
+# Prefer Swift-enforced invariants and model-generated persistence properties
+
+Accepted by the maintainer on 2026-10-04. Building on [ADR 0015](0015-swift-suite-and-independent-frameworks.md), Folio uses Swift to gain its correctness protections throughout the Suite and its Kits. Prefer designs that make invalid states and operations unrepresentable, enforce implementation boundaries with access control, and let the compiler check property access, operation variants, value types, optionality, and isolation. The current pre-alpha stage favors bounded rewrites that establish these guarantees now over preserving dynamic patterns merely because they already work.
+
+Use concrete types, meaningful enums, typed key paths, and explicit concurrency isolation where they express the domain or framework contract. A protocol describes an interface; access control determines whether callers can bypass it. Keep persistence implementation types internal and expose deliberately designed domain interfaces. Avoid unnecessary type erasure, string-based property access, unchecked casts, and duplicated declarations when a supported compiler-checked or generated representation is available. Cocoa interoperability remains necessary; keep dynamic behavior at the narrow boundary that requires it and explain material exceptions.
+
+For Core Data, the Xcode model remains authoritative for stored entities, properties, relationships, and their generated accessors. Use **Category/Extension** generation with small, authored internal managed-object class declarations. Xcode generates the properties during the build; generated files are not copied into the repository or edited by hand. This retains Kit access control while avoiding a second manually maintained property schema. Use generated Swift scalar types for required scalar values. Preserve nullable representations where absence is meaningful; where Core Data's Swift generator cannot represent an optional numeric scalar, a generated nullable `NSNumber` property is an interoperability boundary, not a reason to erase types elsewhere. Validate and convert such values at that boundary.
+
+Compiler checking does not establish that persisted data is valid or that a transaction is durable. Retain validation of identifiers, enum ranges, relationships, resource bytes, compatibility, and recovery evidence. Keep managed objects confined to their owning persistence contexts. Demonstrate these contracts through the existing public Kit and document tests for save/reopen, Undo/Redo, and failure/recovery behavior, plus external Swift consumer checks that verify the intended API and reject access to internal persistence types.
+
+This decision refines the Swift implementation policy without replacing AppKit, Core Data, the public domain Kits, or the independence of UndoKit and TypographyKit. Apply it to new work and the areas being changed; unrelated rewrites remain separately scoped. Automatic full-class generation was not selected for internal persistence objects because its default public class declarations expose implementation types. Fully manual property declarations remain an exception requiring a concrete need that supported generation cannot meet.

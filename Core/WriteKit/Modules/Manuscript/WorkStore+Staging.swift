@@ -70,7 +70,7 @@ extension WorkStore {
     context.persistentStoreCoordinator = coordinator
     let changed = try context.performAndWait {
       let changed = try update(context, workIdentifier: workIdentifier, manuscript: manuscript)
-      let works = try fetch(WorkRecord.self, entity: "Work", in: context)
+      let works = try context.fetch(WorkRecord.fetchRequest())
       guard let work = works.first, works.count == 1 else { throw writeError() }
       work.resourceMembership = try PropertyListEncoder().encode(resources)
       if context.hasChanges { try context.save() }
@@ -83,27 +83,23 @@ extension WorkStore {
 
   private static func runValue(_ object: RunRecord) throws -> TextRun {
     guard let string = object.text,
-      let rawEmphasis = object.emphasis,
-      let emphasis = TextEmphasis(rawValue: rawEmphasis.uintValue),
-      let bold = object.bold,
-      let italic = object.italic,
-      let underline = object.underline,
-      let strikethrough = object.strikethrough
+      object.emphasis >= 0,
+      let emphasis = TextEmphasis(rawValue: UInt(object.emphasis))
     else { throw malformed() }
     return TextRun(
       string: string, emphasis: emphasis,
       presentation: TextPresentation(
-        bold: bold.boolValue, italic: italic.boolValue,
-        underline: underline.boolValue, strikethrough: strikethrough.boolValue))
+        bold: object.bold, italic: object.italic,
+        underline: object.underline, strikethrough: object.strikethrough))
   }
 
   private static func apply(_ run: TextRun, to object: RunRecord) {
     object.text = run.string
-    object.emphasis = NSNumber(value: run.emphasis.rawValue)
-    object.bold = NSNumber(value: run.presentation.bold)
-    object.italic = NSNumber(value: run.presentation.italic)
-    object.underline = NSNumber(value: run.presentation.underline)
-    object.strikethrough = NSNumber(value: run.presentation.strikethrough)
+    object.emphasis = Int16(run.emphasis.rawValue)
+    object.bold = run.presentation.bold
+    object.italic = run.presentation.italic
+    object.underline = run.presentation.underline
+    object.strikethrough = run.presentation.strikethrough
   }
 
   struct Changes {
@@ -121,10 +117,10 @@ extension WorkStore {
   }
 
   private static func objects<Record: NSManagedObject>(
-    _ type: Record.Type, entity: String, in context: NSManagedObjectContext,
+    _ request: NSFetchRequest<Record>, in context: NSManagedObjectContext,
     identifier: (Record) -> String?
   ) throws -> [String: Record] {
-    let fetched = try fetch(type, entity: entity, in: context)
+    let fetched = try context.fetch(request)
     var byID: [String: Record] = [:]
     for object in fetched {
       guard let identifier = identifier(object), byID.updateValue(object, forKey: identifier) == nil
@@ -137,8 +133,8 @@ extension WorkStore {
     _ context: NSManagedObjectContext, workIdentifier: FolioIdentifier,
     manuscript: Manuscript
   ) throws -> Changes {
-    let works = try fetch(WorkRecord.self, entity: "Work", in: context)
-    let manuscripts = try fetch(ManuscriptRecord.self, entity: "Manuscript", in: context)
+    let works = try context.fetch(WorkRecord.fetchRequest())
+    let manuscripts = try context.fetch(ManuscriptRecord.fetchRequest())
     guard works.count == 1, manuscripts.count == 1, let work = works.first,
       let storedManuscript = manuscripts.first,
       work.identifier == workIdentifier.rawValue,
@@ -146,12 +142,12 @@ extension WorkStore {
     else {
       throw writeError()
     }
-    let units = try objects(ContentUnitRecord.self, entity: "ContentUnit", in: context) {
+    let units = try objects(ContentUnitRecord.fetchRequest(), in: context) {
       $0.identifier
     }
     var state = UnitUpdateState(
       work: work,
-      paragraphs: try objects(ParagraphRecord.self, entity: "Paragraph", in: context) {
+      paragraphs: try objects(ParagraphRecord.fetchRequest(), in: context) {
         $0.identifier
       }, context: context)
     var orderedUnits: [ContentUnitRecord] = []
@@ -187,9 +183,8 @@ extension WorkStore {
         existing.title = text.title
         unitChanged = true
       }
-      if existing.formattingWarningDismissed?.boolValue
-        != text.formattingWarningDismissed {
-        existing.formattingWarningDismissed = NSNumber(value: text.formattingWarningDismissed)
+      if existing.formattingWarningDismissed != text.formattingWarningDismissed {
+        existing.formattingWarningDismissed = text.formattingWarningDismissed
         unitChanged = true
       }
     } else {
@@ -197,7 +192,7 @@ extension WorkStore {
       unit.identifier = text.identifier.rawValue
       unit.title = text.title
       unit.work = state.work
-      unit.formattingWarningDismissed = NSNumber(value: text.formattingWarningDismissed)
+      unit.formattingWarningDismissed = text.formattingWarningDismissed
       unitChanged = true
     }
     var orderedParagraphs: [ParagraphRecord] = []
@@ -226,9 +221,8 @@ extension WorkStore {
     var paragraphChanged = false
     if let existing {
       object = existing
-      if existing.alignment?.uintValue
-        != paragraph.alignment.rawValue {
-        existing.alignment = NSNumber(value: paragraph.alignment.rawValue)
+      if existing.alignment != Int16(paragraph.alignment.rawValue) {
+        existing.alignment = Int16(paragraph.alignment.rawValue)
         paragraphChanged = true
       }
       if existing.unit != unit {
@@ -238,7 +232,7 @@ extension WorkStore {
     } else {
       object = try insert(ParagraphRecord.self, entity: "Paragraph", in: context)
       object.identifier = paragraph.identifier.rawValue
-      object.alignment = NSNumber(value: paragraph.alignment.rawValue)
+      object.alignment = Int16(paragraph.alignment.rawValue)
       object.unit = unit
       paragraphChanged = true
     }

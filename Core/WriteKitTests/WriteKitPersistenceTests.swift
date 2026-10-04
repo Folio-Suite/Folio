@@ -3,6 +3,7 @@
 
 import FolioKit
 import Foundation
+import SQLite3
 import WriteKit
 import XCTest
 
@@ -25,6 +26,26 @@ import XCTest
     work.text = try TextUnit(
       identifier: work.text.identifier, title: work.text.title, paragraphs: paragraphs)
     return work
+  }
+
+  private func package(_ original: FileWrapper, updatingStore sql: String) throws -> FileWrapper {
+    let packageURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    try original.write(to: packageURL, options: .atomic, originalContentsURL: nil)
+    defer { try? FileManager.default.removeItem(at: packageURL) }
+    let storeURL = packageURL.appendingPathComponent("Work.sqlite")
+    var database: OpaquePointer?
+    guard sqlite3_open_v2(storeURL.path, &database, SQLITE_OPEN_READWRITE, nil) == SQLITE_OK,
+      let database
+    else {
+      if let database { sqlite3_close(database) }
+      throw NSError(domain: "WriteKitPersistenceTests.SQLite", code: 1)
+    }
+    let update = sqlite3_exec(database, sql, nil, nil, nil)
+    let changed = sqlite3_changes(database)
+    let close = sqlite3_close(database)
+    guard update == SQLITE_OK, changed == 1, close == SQLITE_OK
+    else { throw NSError(domain: "WriteKitPersistenceTests.SQLite", code: 2) }
+    return try FileWrapper(url: packageURL, options: .immediate)
   }
 
   func testMixedScriptAuthoredTitleAndTextSurvivePackageRoundTrip() throws {
@@ -117,6 +138,50 @@ import XCTest
       "Work.sqlite": FileWrapper(regularFileWithContents: Data("not a database".utf8))
     ])
     XCTAssertThrowsError(try Work(fileWrapper: package))
+  }
+
+  func testRequiredScalarCorruptionIsRejectedWithoutChangingOriginal() throws {
+    let original = try sampleWork().fileWrapper()
+    let originalStore = try XCTUnwrap(original.fileWrappers?["Work.sqlite"]?.regularFileContents)
+    let corrupted = try package(
+      original,
+      updatingStore: "UPDATE ZRUN SET ZBOLD = NULL WHERE Z_PK = (SELECT MIN(Z_PK) FROM ZRUN)")
+    XCTAssertThrowsError(try Work(fileWrapper: corrupted))
+    XCTAssertEqual(original.fileWrappers?["Work.sqlite"]?.regularFileContents, originalStore)
+    XCTAssertNoThrow(try Work(fileWrapper: original))
+  }
+
+  func testFractionalStoredEmphasisIsRejected() throws {
+    let original = try sampleWork().fileWrapper()
+    let corrupted = try package(
+      original,
+      updatingStore: "UPDATE ZRUN SET ZEMPHASIS = 1.5 WHERE Z_PK = (SELECT MIN(Z_PK) FROM ZRUN)")
+    XCTAssertThrowsError(try Work(fileWrapper: corrupted))
+    XCTAssertNoThrow(try Work(fileWrapper: original))
+  }
+
+  func testCorruptAcceptedReceiptIsRejectedOnPublicReopen() async throws {
+    let work = Work()
+    let history = try work.enableHistory()
+    let unit = work.text
+    let paragraph = TextParagraph(
+      identifier: unit.paragraphs[0].identifier,
+      runs: [TextRun(string: "Accepted change", emphasis: .none)])
+    let changedUnit = try TextUnit(
+      identifier: unit.identifier, title: unit.title, paragraphs: [paragraph])
+    let changed = try Manuscript(identifier: work.manuscriptIdentifier, units: [changedUnit])
+    try await history.submit(manuscript: changed)
+    let original = try work.fileWrapper()
+    let corrupted = try package(
+      original,
+      updatingStore:
+        "UPDATE ZHISTORYRECEIPT SET ZACCEPTED = NULL "
+          + "WHERE Z_PK = (SELECT MIN(Z_PK) FROM ZHISTORYRECEIPT)")
+    XCTAssertThrowsError(try Work(fileWrapper: corrupted))
+    let reopened = try Work(fileWrapper: original)
+    XCTAssertEqual(reopened.text.string, "Accepted change")
+    try await history.close()
+    try await reopened.history?.close()
   }
 
   func testDuplicateParagraphIdentityCannotBeSaved() throws {

@@ -24,7 +24,7 @@ extension WorkStore {
     context.persistentStoreCoordinator = coordinator
     try context.performAndWait {
       do {
-        for receipt in try fetch(WorkHistoryReceiptRecord.self, entity: "HistoryReceipt", in: context) {
+        for receipt in try context.fetch(WorkHistoryReceiptRecord.fetchRequest()) {
           context.delete(receipt)
         }
         if context.hasChanges { try context.save() }
@@ -68,14 +68,14 @@ extension WorkStore {
     context.persistentStoreCoordinator = coordinator
     try context.performAndWait {
       do {
-        let existing = NSFetchRequest<WorkHistoryReceiptRecord>(entityName: "HistoryReceipt")
+        let existing = WorkHistoryReceiptRecord.fetchRequest()
         existing.predicate = NSPredicate(
           format: "%K == %@", #keyPath(WorkHistoryReceiptRecord.commandID),
           receipt.commandID.uuidString)
         existing.fetchLimit = 1
         guard try context.fetch(existing).isEmpty else { throw writeError() }
 
-        let works = try fetch(WorkRecord.self, entity: "Work", in: context)
+        let works = try context.fetch(WorkRecord.fetchRequest())
         guard works.count == 1, let work = works.first,
           work.identifier == workIdentifier.rawValue
         else {
@@ -87,7 +87,7 @@ extension WorkStore {
           WorkHistoryReceiptRecord.self, entity: "HistoryReceipt", in: context)
         storedReceipt.commandID = receipt.commandID.uuidString
         storedReceipt.fingerprint = receipt.fingerprint
-        storedReceipt.accepted = NSNumber(value: receipt.accepted)
+        storedReceipt.accepted = receipt.accepted
         storedReceipt.evidence = receipt.evidence
         storedReceipt.work = work
         try context.save()
@@ -121,27 +121,28 @@ extension WorkStore {
     let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
     context.persistentStoreCoordinator = coordinator
     let receipt: HistoryReceipt? = try context.performAndWait {
-      let works = try fetch(WorkRecord.self, entity: "Work", in: context)
+      let works = try context.fetch(WorkRecord.fetchRequest())
       guard works.count == 1, let work = works.first,
         work.identifier != nil
       else { throw malformed() }
-      let request = NSFetchRequest<WorkHistoryReceiptRecord>(entityName: "HistoryReceipt")
+      let request = WorkHistoryReceiptRecord.fetchRequest()
       request.predicate = NSPredicate(
         format: "%K == %@", #keyPath(WorkHistoryReceiptRecord.commandID), commandID.uuidString)
       request.fetchLimit = 2
+      try validateRequiredScalars(
+        context, onlyEntity: "HistoryReceipt", matching: request.predicate)
       let matches = try context.fetch(request)
       guard matches.count <= 1 else { throw malformed() }
       guard let object = matches.first else { return nil }
       guard let rawID = object.commandID,
         let storedID = UUID(uuidString: rawID), storedID == commandID,
         let fingerprint = object.fingerprint,
-        let accepted = object.accepted,
         let evidence = object.evidence,
         object.work == work
       else { throw malformed() }
       return HistoryReceipt(
         commandID: storedID, fingerprint: fingerprint,
-        accepted: accepted.boolValue, evidence: evidence)
+        accepted: object.accepted, evidence: evidence)
     }
     try coordinator.remove(store)
     removed = true
