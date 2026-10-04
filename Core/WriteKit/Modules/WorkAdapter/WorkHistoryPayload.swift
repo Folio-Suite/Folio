@@ -115,11 +115,7 @@ struct WorkHistoryStatePayload: Codable {
   }
 
   func state() throws -> WorkHistoryState {
-    guard resources.count <= 4_096,
-      Set(resources.map(\.identifier)).count == resources.count,
-      resources == resources.sorted(by: { $0.identifier.rawValue < $1.identifier.rawValue }) else {
-      throw WorkStore.resourceError()
-    }
+    try WorkResourceStore.validateMembership(resources)
     return WorkHistoryState(manuscript: try manuscript.manuscript(), resources: resources)
   }
 

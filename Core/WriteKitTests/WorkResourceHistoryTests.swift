@@ -222,6 +222,33 @@ import XCTest
     try FileManager.default.removeItem(at: history.directory)
   }
 
+  func testPreacceptanceResourceStagingFailureRejectsAndAllowsRepairThenRetry() async throws {
+    let directory = try directory()
+    let work = Work()
+    let history = try work.enableHistory()
+    let identifier = try await history.importResource(from: source(in: directory))
+    let membership = work.resources
+    let manifest = history.hostDirectory.appendingPathComponent("Package.json")
+    let held = directory.appendingPathComponent("Held.json")
+    try FileManager.default.moveItem(at: manifest, to: held)
+    try FileManager.default.createDirectory(at: manifest, withIntermediateDirectories: false)
+    // Atomic manifest publication must fail before the SQLite semantic transaction.
+    do {
+      try await history.removeResource(withIdentifier: identifier)
+      XCTFail("Staging must fail")
+    } catch {}
+    XCTAssertEqual(work.resources, membership)
+    XCTAssertFalse(history.isSuspended, "Proven no-effect must close as rejection")
+    try FileManager.default.removeItem(at: manifest)
+    try FileManager.default.moveItem(at: held, to: manifest)
+    try await history.reconcile()
+    try await history.removeResource(withIdentifier: identifier)
+    XCTAssertTrue(work.resources.isEmpty)
+    try await history.undo()
+    XCTAssertEqual(work.resources, membership)
+    try await history.close()
+  }
+
   func testInvalidImportAndMissingRemovalLeaveHistoryUsable() async throws {
     let directory = try directory()
     let work = Work()

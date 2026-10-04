@@ -107,12 +107,16 @@ final class WorkResourceStore {
   }
 
   /// Validate every dependency before publishing a whole membership replacement.
-  func validate(_ resources: [WorkResource]) throws {
+  static func validateMembership(_ resources: [WorkResource]) throws {
     guard resources.count <= 4_096,
       Set(resources.map(\.identifier)).count == resources.count,
       resources == resources.sorted(by: { $0.identifier.rawValue < $1.identifier.rawValue }) else {
       throw WorkStore.resourceError()
     }
+  }
+
+  func validate(_ resources: [WorkResource]) throws {
+    try Self.validateMembership(resources)
     for resource in resources {
       guard entries[resource.identifier] == resource else { throw WorkStore.missingResourceError() }
       try Self.checkRegularFile(privateURL(resource.identifier))

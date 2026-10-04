@@ -167,7 +167,13 @@ private struct WorkHistoryEvidence: Codable {
         state = change.after
       }
       // Immutable bytes are already secured before the authoritative membership/receipt save.
-      _ = try work.resourceStore.write(to: session.hostDirectory, extending: true)
+      do {
+        _ = try work.resourceStore.write(to: session.hostDirectory, extending: true)
+      } catch {
+        // No semantic transaction has started. Persist authoritative no-effect
+        // if the host store remains writable; otherwise reconciliation stays unresolved.
+        return try reject(token, session: session, work: work)
+      }
       let evidence = WorkHistoryEvidence(
         generation: token.generation, sequence: token.sequence,
         effects: effects.map(WorkHistoryStoredEffect.init))
