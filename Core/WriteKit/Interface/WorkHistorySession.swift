@@ -8,7 +8,7 @@ import UndoKit
 
 /// A host validation or lifecycle failure. Existing content and history remain available for recovery.
 public enum WorkHistoryError: Error, LocalizedError {
-  case busy, rejected, resourceEditingUnsupported, invalidPackage, closed
+  case busy, rejected, resourceHistoryRequired, invalidPackage, closed
 
   public var errorDescription: String? {
     switch self {
@@ -22,11 +22,11 @@ public enum WorkHistoryError: Error, LocalizedError {
         "work-history.rejected", tableName: nil, bundle: WorkStore.bundle,
         value: "This history operation could not be applied to the current Work.",
         comment: "A history operation failed semantic validation without changing the Work.")
-    case .resourceEditingUnsupported:
+    case .resourceHistoryRequired:
       return NSLocalizedString(
         "work-history.resources-unsupported", tableName: nil, bundle: WorkStore.bundle,
-        value: "Resource changes are not yet supported while durable history is enabled.",
-        comment: "First implementation supports manuscript history but not resource changes.")
+        value: "Use the Work’s history session to import or remove resources.",
+        comment: "Direct synchronous resource edits must use the asynchronous history session.")
     case .invalidPackage:
       return NSLocalizedString(
         "work-history.invalid-package", tableName: nil, bundle: WorkStore.bundle,
@@ -55,16 +55,20 @@ struct WorkHistoryRegistration: Codable {
   let workingIdentity: UUID
 }
 
-/// Work's adapter for durable manuscript edits. Callers settle provisional editing before submission.
-/// This first operation preserves the resource set captured when history is enabled; resource editing is disabled.
+/// Work's adapter for durable Manuscript and resource edits. Settle provisional editing before submission.
+/// Resource bytes are retained separately from current membership for Undo and checkpoint restoration.
 /// Calls and callbacks are main-actor isolated. A failed submission may require `reconcile()` before editing resumes.
 @MainActor public final class WorkHistorySession {
-  static let family = "app.foliosuite.work.manuscript.replace"
+  static let family = "app.foliosuite.work.content.replace"
   weak var work: Work?
   let directory: URL
   let registration: WorkHistoryRegistration
   let openMode: HistoryOpenMode
   var committed: Manuscript
+  var committedResources: [WorkResource]
+  var committedState: WorkHistoryState {
+    WorkHistoryState(manuscript: committed, resources: committedResources)
+  }
   var engine: HistoryEngine?
   var opening: Task<HistoryEngine, Error>?
   var host: MainActorHistoryRegisteredHost<WorkHistoryAdapter>?
@@ -112,7 +116,7 @@ struct WorkHistoryRegistration: Codable {
   public var isSuspended: Bool { omissionPending || engine?.snapshot.isSuspended == true }
   public var canSave: Bool {
     !closed && engine != nil && !isPending && !isSuspended &&
-      work?.manuscript == committed
+      work?.manuscript == committed && work?.resources == committedResources
   }
 
   var hostDirectory: URL { directory.appendingPathComponent("Host") }
@@ -122,6 +126,7 @@ struct WorkHistoryRegistration: Codable {
   init(work: Work, packageURL: URL?, baseline: URL? = nil) throws {
     self.work = work
     committed = work.manuscript
+    committedResources = work.resources
     directory = FileManager.default.temporaryDirectory.appendingPathComponent(
       "FolioHistory-" + UUID().uuidString)
     let setup = try Self.registrationSetup(packageURL: packageURL, workIdentifier: work.identifier)

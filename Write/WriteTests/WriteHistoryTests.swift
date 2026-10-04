@@ -41,6 +41,50 @@ import XCTest
         if manager.groupingLevel == 1 { manager.endUndoGrouping() }
     }
 
+    func testResourceOnlyNativeUndoRedoAfterReopenCountsAcceptedChanges() async throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: false)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let url = directory.appendingPathComponent("Resource.flwrbundle")
+        let source = directory.appendingPathComponent("Figure.dat")
+        try Data("Retained figure".utf8).write(to: source)
+        let document = WriteDocument()
+        document.makeWindowControllers()
+        defer { document.close() }
+        try await document.flushHistory()
+        let identifier = try await document.importResource(from: source)
+        XCTAssertTrue(document.isDocumentEdited)
+        try await save(document, to: url)
+        let reopened = try WriteDocument(contentsOf: url, ofType: workDocumentType)
+        reopened.makeWindowControllers()
+        defer { reopened.close() }
+        try await reopened.flushHistory()
+        XCTAssertFalse(reopened.isDocumentEdited)
+        let manager = try XCTUnwrap(manuscript(in: reopened).activeEditor.textView.undoManager)
+        XCTAssertTrue(manager.canUndo)
+        manager.undo()
+        XCTAssertFalse(reopened.isDocumentEdited)
+        let undone = await waitUntil {
+            reopened.work.resources.isEmpty && manager.canRedo && reopened.isDocumentEdited
+        }
+        XCTAssertTrue(undone)
+        try await save(reopened, to: url, operation: .saveOperation)
+        XCTAssertFalse(reopened.isDocumentEdited)
+        manager.redo()
+        let redone = await waitUntil {
+            reopened.work.resources.map(\.identifier) == [identifier] && manager.canUndo && reopened.isDocumentEdited
+        }
+        XCTAssertTrue(redone)
+        try await reopened.removeResource(withIdentifier: identifier)
+        XCTAssertTrue(reopened.work.resources.isEmpty)
+        try await save(reopened, to: url, operation: .saveOperation)
+        manager.undo()
+        let removalUndone = await waitUntil {
+            reopened.work.resources.map(\.identifier) == [identifier] && reopened.isDocumentEdited
+        }
+        XCTAssertTrue(removalUndone)
+    }
+
     func testHistoryActionForwardsThroughOwnedEditorResponder() async throws {
         let document = WriteDocument()
         document.makeWindowControllers()

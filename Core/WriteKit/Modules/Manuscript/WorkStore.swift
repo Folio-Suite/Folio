@@ -10,6 +10,7 @@ enum WorkStore {
   struct Snapshot: Sendable {
     let identifier: FolioIdentifier
     let manuscript: Manuscript
+    let resourceMembership: [WorkResource]?
   }
 
   private final class BundleToken {}
@@ -202,7 +203,10 @@ extension WorkStore {
     guard let manuscript = try? Manuscript(identifier: manuscriptID, units: units) else {
       throw malformed()
     }
-    return Snapshot(identifier: workID, manuscript: manuscript)
+    let membership = try (work.value(forKey: "resourceMembership") as? Data).map {
+      try PropertyListDecoder().decode([WorkResource].self, from: $0)
+    }
+    return Snapshot(identifier: workID, manuscript: manuscript, resourceMembership: membership)
   }
 
   private static func decodeUnit(

@@ -8,11 +8,36 @@ import Foundation
 public let workDocumentType = "app.foliosuite.Write.Doc"
 
 /// Metadata for one opaque resource retained with a Work.
-public struct WorkResource: Equatable, Sendable {
+public struct WorkResource: Equatable, Sendable, Codable {
   public let identifier: FolioIdentifier
   public let filename: String
   public let byteCount: Int64
   public let sha256: String
+
+  private enum CodingKeys: String, CodingKey { case identifier, filename, byteCount, sha256 }
+
+  init(identifier: FolioIdentifier, filename: String, byteCount: Int64, sha256: String) {
+    self.identifier = identifier
+    self.filename = filename
+    self.byteCount = byteCount
+    self.sha256 = sha256
+  }
+
+  public init(from decoder: any Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    identifier = try FolioIdentifier(rawValue: values.decode(String.self, forKey: .identifier))
+    filename = try values.decode(String.self, forKey: .filename)
+    byteCount = try values.decode(Int64.self, forKey: .byteCount)
+    sha256 = try values.decode(String.self, forKey: .sha256)
+  }
+
+  public func encode(to encoder: any Encoder) throws {
+    var values = encoder.container(keyedBy: CodingKeys.self)
+    try values.encode(identifier.rawValue, forKey: .identifier)
+    try values.encode(filename, forKey: .filename)
+    try values.encode(byteCount, forKey: .byteCount)
+    try values.encode(sha256, forKey: .sha256)
+  }
 }
 
 /// Work changed while preparing a closed native package for document replacement.
@@ -35,7 +60,7 @@ public struct WorkSaveReport: Sendable {
   public let identifier: FolioIdentifier
   var resourceStore: WorkResourceStore
   private var historyBaseline: WorkHistoryBaseline?
-  /// Durable manuscript history, when explicitly enabled or present in the saved package.
+  /// Durable Manuscript and resource history, when explicitly enabled or present in the saved package.
   public private(set) var history: WorkHistorySession?
   public var manuscript: Manuscript {
     didSet { precondition(manuscript.identifier == oldValue.identifier) }
@@ -89,7 +114,7 @@ public struct WorkSaveReport: Sendable {
     }
   }
 
-  /// Enable durable manuscript history. Resources remain preserved but cannot be edited in this first slice.
+  /// Enable durable Manuscript and resource history. Submit resource edits through the returned session.
   @discardableResult public func enableHistory() throws -> WorkHistorySession {
     if let history { return history }
     let session = try WorkHistorySession(
@@ -110,9 +135,10 @@ public struct WorkSaveReport: Sendable {
 
   public var resources: [WorkResource] { resourceStore.resources }
 
-  /// Retain a private, immutable snapshot of a regular file.
+  /// Retain a private, immutable snapshot before history is enabled.
+  /// With history enabled, use `WorkHistorySession.importResource(from:)` instead.
   @discardableResult public func importResource(from sourceURL: URL) throws -> FolioIdentifier {
-    guard history == nil else { throw WorkHistoryError.resourceEditingUnsupported }
+    guard history == nil else { throw WorkHistoryError.resourceHistoryRequired }
     return try resourceStore.importResource(from: sourceURL)
   }
 
@@ -122,8 +148,9 @@ public struct WorkSaveReport: Sendable {
     try resourceStore.exportResource(identifier, to: destinationURL)
   }
 
+  /// Remove a resource before history is enabled; otherwise use the asynchronous history session.
   public func removeResource(withIdentifier identifier: FolioIdentifier) throws {
-    guard history == nil else { throw WorkHistoryError.resourceEditingUnsupported }
+    guard history == nil else { throw WorkHistoryError.resourceHistoryRequired }
     try resourceStore.removeResource(identifier)
   }
 

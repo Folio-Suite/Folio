@@ -57,7 +57,7 @@ extension WorkStore {
   }
 
   private static func stagedStore(
-    _ url: URL, workIdentifier: FolioIdentifier, manuscript: Manuscript
+    _ url: URL, workIdentifier: FolioIdentifier, manuscript: Manuscript, resources: [WorkResource]
   ) throws
     -> Changes {
     let coordinator = NSPersistentStoreCoordinator(managedObjectModel: try model())
@@ -70,6 +70,9 @@ extension WorkStore {
     context.persistentStoreCoordinator = coordinator
     let changed = try context.performAndWait {
       let changed = try update(context, workIdentifier: workIdentifier, manuscript: manuscript)
+      let works = try context.fetch(NSFetchRequest<NSManagedObject>(entityName: "Work"))
+      guard let work = works.first, works.count == 1 else { throw writeError() }
+      work.setValue(try PropertyListEncoder().encode(resources), forKey: "resourceMembership")
       if context.hasChanges { try context.save() }
       return changed
     }
@@ -304,7 +307,8 @@ extension WorkStore {
     if let originalPackageURL {
       copied = try cloneOrCopy(
         originalPackageURL.appendingPathComponent("Work.sqlite"), to: storeURL)
-      changed = try stagedStore(storeURL, workIdentifier: workIdentifier, manuscript: manuscript)
+      changed = try stagedStore(storeURL, workIdentifier: workIdentifier, manuscript: manuscript,
+                                resources: resources.resources)
     } else {
       let wrapper = try package(workIdentifier: workIdentifier, manuscript: manuscript)
       guard let data = wrapper.fileWrappers?["Work.sqlite"]?.regularFileContents else {
@@ -318,8 +322,12 @@ extension WorkStore {
       )
       copied = (0, 0)
     }
+    if originalPackageURL == nil {
+      _ = try stagedStore(storeURL, workIdentifier: workIdentifier, manuscript: manuscript,
+                          resources: resources.resources)
+    }
     if omitHistoryReceipts { try stripHistoryReceipts(at: storeURL) }
-    let resourceBytes = try resources.write(to: destinationPackageURL)
+    let resourceBytes = try resources.write(to: destinationPackageURL, retainingHistory: !omitHistoryReceipts)
     let verified = try openPackage(at: destinationPackageURL)
     guard verified.snapshot.identifier == workIdentifier,
       verified.snapshot.manuscript == manuscript,

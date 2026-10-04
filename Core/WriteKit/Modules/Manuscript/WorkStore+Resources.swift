@@ -21,6 +21,7 @@ private struct WorkPackageManifest: Codable {
 /// Opaque resources are private snapshots, independent of their import source and document URL.
 final class WorkResourceStore {
   private let directory: URL
+  private var active: Set<FolioIdentifier> = []
   private var entries: [FolioIdentifier: WorkResource] = [:]
 
   init() {
@@ -31,6 +32,10 @@ final class WorkResourceStore {
   deinit { try? FileManager.default.removeItem(at: directory) }
 
   var resources: [WorkResource] {
+    retainedResources.filter { active.contains($0.identifier) }
+  }
+
+  var retainedResources: [WorkResource] {
     entries.values.sorted { $0.identifier.rawValue < $1.identifier.rawValue }
   }
 
@@ -59,6 +64,7 @@ final class WorkResourceStore {
       entries[identifier] = WorkResource(
         identifier: identifier, filename: filename,
         byteCount: digest.bytes, sha256: digest.sha256)
+      active.insert(identifier)
       return identifier
     } catch {
       try? FileManager.default.removeItem(at: destination)
@@ -78,6 +84,7 @@ final class WorkResourceStore {
         throw WorkStore.resourceError()
       }
       entries[resource.identifier] = resource
+      active.insert(resource.identifier)
     } catch {
       try? FileManager.default.removeItem(at: destination)
       throw error
@@ -85,7 +92,7 @@ final class WorkResourceStore {
   }
 
   func exportResource(_ identifier: FolioIdentifier, to destinationURL: URL) throws {
-    guard entries[identifier] != nil, !FileManager.default.fileExists(atPath: destinationURL.path)
+    guard active.contains(identifier), !FileManager.default.fileExists(atPath: destinationURL.path)
     else {
       throw WorkStore.missingResourceError()
     }
@@ -96,17 +103,54 @@ final class WorkResourceStore {
     guard entries[identifier] != nil else { throw WorkStore.missingResourceError() }
     try FileManager.default.removeItem(at: privateURL(identifier))
     entries.removeValue(forKey: identifier)
+    active.remove(identifier)
   }
 
-  func write(to packageURL: URL) throws -> (cloned: Int64, copied: Int64) {
+  /// Validate every dependency before publishing a whole membership replacement.
+  func validate(_ resources: [WorkResource]) throws {
+    guard resources.count <= 4_096,
+      Set(resources.map(\.identifier)).count == resources.count,
+      resources == resources.sorted(by: { $0.identifier.rawValue < $1.identifier.rawValue }) else {
+      throw WorkStore.resourceError()
+    }
+    for resource in resources {
+      guard entries[resource.identifier] == resource else { throw WorkStore.missingResourceError() }
+      try Self.checkRegularFile(privateURL(resource.identifier))
+      let digest = try Self.digest(privateURL(resource.identifier))
+      guard digest.bytes == resource.byteCount, digest.sha256 == resource.sha256 else {
+        throw WorkStore.resourceError()
+      }
+    }
+  }
+
+  func select(_ resources: [WorkResource]) throws {
+    try validate(resources)
+    adoptValidated(resources)
+  }
+
+  func adoptValidated(_ resources: [WorkResource]) {
+    active = Set(resources.map(\.identifier))
+  }
+
+  /// Secure immutable bytes before the SQLite acceptance transaction. Extra bytes
+  /// after a refused/interrupted command are harmless and are retained conservatively.
+  func write(to packageURL: URL, retainingHistory: Bool = true,
+             extending: Bool = false) throws -> (cloned: Int64, copied: Int64) {
     let resourceDirectory = packageURL.appendingPathComponent("Resources", isDirectory: true)
     try FileManager.default.createDirectory(
-      at: resourceDirectory, withIntermediateDirectories: false)
+      at: resourceDirectory, withIntermediateDirectories: extending)
     var cloned: Int64 = 0
     var copied: Int64 = 0
-    for resource in resources {
+    let savedResources = retainingHistory ? retainedResources : resources
+    for resource in savedResources {
       let destination = resourceDirectory.appendingPathComponent(resource.identifier.rawValue)
-      let result = try WorkStore.cloneOrCopy(privateURL(resource.identifier), to: destination)
+      let result: (cloned: Int64, copied: Int64)
+      if extending && FileManager.default.fileExists(atPath: destination.path) {
+        try Self.checkRegularFile(destination)
+        result = (0, 0)
+      } else {
+        result = try WorkStore.cloneOrCopy(privateURL(resource.identifier), to: destination)
+      }
       let digest = try Self.digest(destination)
       guard digest.bytes == resource.byteCount, digest.sha256 == resource.sha256 else {
         throw WorkStore.resourceError()
@@ -116,7 +160,7 @@ final class WorkResourceStore {
     }
     let manifest = WorkPackageManifest(
       formatVersion: 2, requiredCapabilities: ["opaque-resources-v1"],
-      resources: resources.map {
+      resources: savedResources.map {
         WorkPackageManifest.Entry(
           identifier: $0.identifier.rawValue,
           filename: $0.filename, byteCount: $0.byteCount, sha256: $0.sha256)
@@ -274,6 +318,9 @@ extension WorkStore {
     let resources = try WorkResourceStore.read(from: packageURL)
     let storeURL = packageURL.appendingPathComponent("Work.sqlite")
     try WorkResourceStore.checkRegularFile(storeURL)
-    return (try readStore(at: storeURL), resources)
+    let snapshot = try readStore(at: storeURL)
+    guard let membership = snapshot.resourceMembership else { throw resourceError() }
+    try resources.select(membership)
+    return (snapshot, resources)
   }
 }

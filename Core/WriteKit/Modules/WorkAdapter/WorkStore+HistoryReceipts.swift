@@ -49,7 +49,7 @@ extension WorkStore {
   /// The caller owns the private, closed working store and serializes access to it.
   static func commitHistory(
     at storeURL: URL, workIdentifier: FolioIdentifier,
-    manuscript: Manuscript, receipt: HistoryReceipt
+    manuscript: Manuscript, resources: [WorkResource], receipt: HistoryReceipt
   ) throws {
     try checkIdentifiers(workIdentifier: workIdentifier, manuscript: manuscript)
     let storeModel = try model()
@@ -80,6 +80,7 @@ extension WorkStore {
           throw writeError()
         }
         _ = try update(context, workIdentifier: workIdentifier, manuscript: manuscript)
+        work.setValue(try PropertyListEncoder().encode(resources), forKey: "resourceMembership")
         _ = insert(
           "HistoryReceipt", in: context,
           values: [

@@ -102,26 +102,42 @@ structure rather than dropping it on the next save.
 
 ## Opaque resources
 
-Every Work supports opaque resources from creation. ``Work/importResource(from:)``
-adds immutable retained bytes; the pending change reaches the native package
-only after successful saving. There is one current storage model and no upgrade
-API or legacy package mode.
+Every Work supports opaque resources from creation. Before enabling history,
+``Work/importResource(from:)`` and ``Work/removeResource(withIdentifier:)`` edit
+its pending collection. With history enabled, settle provisional text and use
+``WorkHistorySession/importResource(from:)`` and
+``WorkHistorySession/removeResource(withIdentifier:)``. These asynchronous commands
+share the Manuscript's durable Undo/Redo ordering. Write's document adapter uses
+them and counts resource-only accepted changes, including native Undo/Redo.
 
-The package declares a bounded resource manifest alongside the store and immutable
-resource files, with at most 4,096 resources and a 4 MiB manifest.
-``Work/resources`` describes them; use
-``Work/exportResource(withIdentifier:to:)`` to obtain an independent copy.
-``Work/removeResource(withIdentifier:)`` changes the pending collection. These
-operations attach no publication meaning to the bytes.
+``Work/resources`` lists current membership. Export a current resource with
+``Work/exportResource(withIdentifier:to:)`` to an absent destination. Import captures
+an independent immutable snapshot; changing the original file does not change it.
+Resource bytes never enter history payloads. The Work store records membership
+and the command receipt in one Core Data save, after securing required bytes in
+the private host directory. Failed or unresolved delivery preserves the saved
+original; unresolved evidence fences new edits and saves until reconciled.
 
-Use ``Work/init(contentsOf:)`` for native opening with large resources. The
-FileWrapper convenience is available when a complete in-memory package is
-appropriate. The existing editor has no resource import command.
+Checkpoints capture both the Manuscript and resource membership. Restoration is
+one new undoable change and retains displaced resources. Ordinary saves retain
+all historical resource bytes conservatively, including bytes on displaced
+continuations. The manifest inventories retained bytes; SQLite identifies current
+membership. The current implementation bounds the retained inventory to 4,096
+resources and the manifest to 4 MiB. Action, checkpoint and generation-baseline
+references identify dependencies by scope-backed retention-store identity,
+resource identifier and SHA-256. Automatic byte reclamation is not implemented;
+a future cleanup must combine current membership with UndoKit's stable required
+object collection. Omit History writes only current resources to the staged
+package, and failed publication preserves live history and bytes.
 
-## Durable manuscript history
+The current pre-alpha Work model and content codec replace the earlier
+Manuscript-only history representation. There is no legacy migration or upgrade
+API; incompatible stores are refused without modification.
+
+## Durable Work history
 
 ``Work/enableHistory()`` creates a ``WorkHistorySession`` for the current Work.
-The session translates complete, settled Manuscript edits into UndoKit commands.
+The session translates complete, settled Manuscript and resource edits into UndoKit commands.
 It owns semantic validation and writes a command receipt in the same Core Data
 transaction as the authored change. UndoKit owns transaction ordering, history
 relationships, and recovery. The implementation files live in `Modules/WorkAdapter/`;
@@ -146,7 +162,7 @@ Attachment does not replay edits or mark the document changed.
 
 `WorkHistorySession.setRecording(_:)` selects On or Off for new ordinary edits.
 Off keeps Undo in this open session; the first accepted Off edit creates a gap
-to older Undo. Turning On records the accepted current Manuscript as a new
+to older Undo. Turning On records the accepted current Work state as a new
 baseline. For a failed outcome that cannot be reconciled, the host can establish
 its coherent current Manuscript and call
 `WorkHistorySession.resetUnresolvedHistory(adopting:quarantineAt:)`. The method
@@ -158,19 +174,17 @@ store to carry that preference, so the host persists its app or per-Work policy
 separately and reapplies it when enabling history after reopening. Suite settings
 UI and policy storage are separate work.
 
-A checkpoint captures the complete supported Manuscript. The host must save the
+A checkpoint captures the complete supported Manuscript and resource membership. The host must save the
 document successfully before announcing a saved checkpoint. Restoring a checkpoint
 submits a new edit: restoring A after A → B → C makes ordinary Undo return to C.
 ``WorkHistoryMenuController`` supplies a bounded dynamic checkpoint menu; its host
 provides native saving and error presentation. Larger host interfaces can use
 ``WorkHistorySession/checkpoints(limit:)`` without reconstructing content.
 
-This first operation retains every existing resource unchanged. Resource import
-and removal are refused while history is enabled, so a checkpoint cannot refer to
-an asset that the host has deleted. Resource-changing history, pruning, retention
-schedules and cross-process Work Sessions are separate work.
-Payloads are bounded complete Manuscript values; this is not a claim that every
-large Work edit already uses a minimal text delta.
+Resource commands use the same ordering and authoritative outcome path as text.
+Pruning schedules and cross-process Work Sessions remain separate work.
+Payloads are bounded complete Manuscript values plus resource descriptors; bytes
+remain in host-owned storage. This is not a minimal-text-delta implementation.
 
 A history-bearing package declares `durable-history-v1` as a required capability
 and includes the history database and registration in `History/`. This is the

@@ -98,3 +98,39 @@ struct WorkHistoryPayload: Codable {
     return try PropertyListDecoder().decode(Self.self, from: data).manuscript()
   }
 }
+
+/// A coherent Work checkpoint or command boundary; resource bytes stay out of history payloads.
+struct WorkHistoryState: Equatable {
+  let manuscript: Manuscript
+  let resources: [WorkResource]
+}
+
+struct WorkHistoryStatePayload: Codable {
+  let manuscript: WorkHistoryPayload
+  let resources: [WorkResource]
+
+  init(_ state: WorkHistoryState) {
+    manuscript = WorkHistoryPayload(state.manuscript)
+    resources = state.resources
+  }
+
+  func state() throws -> WorkHistoryState {
+    guard resources.count <= 4_096,
+      Set(resources.map(\.identifier)).count == resources.count,
+      resources == resources.sorted(by: { $0.identifier.rawValue < $1.identifier.rawValue }) else {
+      throw WorkStore.resourceError()
+    }
+    return WorkHistoryState(manuscript: try manuscript.manuscript(), resources: resources)
+  }
+
+  static func encode(_ state: WorkHistoryState) throws -> Data {
+    let encoder = PropertyListEncoder()
+    encoder.outputFormat = .binary
+    return try encoder.encode(Self(state))
+  }
+
+  static func decode(_ data: Data) throws -> WorkHistoryState {
+    guard data.count <= 16 * 1_024 * 1_024 else { throw WorkStore.malformed() }
+    return try PropertyListDecoder().decode(Self.self, from: data).state()
+  }
+}

@@ -12,6 +12,7 @@ import WriteKit
     private var historyMenu: WorkHistoryMenuController?
     private var submittedManuscript: Manuscript?
     private var countedManuscript: Manuscript?
+    private var countedResources: [WorkResource]?
     private var submissionTail: Task<Void, Never>?
     private var submissionsPending = 0
     private var submissionError: Error?
@@ -56,6 +57,7 @@ import WriteKit
         nativeHistory = router
         if submittedManuscript == nil { submittedManuscript = history.committedManuscript }
         if countedManuscript == nil { countedManuscript = history.committedManuscript }
+        if countedResources == nil { countedResources = work.resources }
         configure(router: router, history: history)
         initialHistoryOpening = true
         initialHistoryInvocation = router.beginExternalOperation()
@@ -180,8 +182,9 @@ extension WriteDocument {
     private func accountCommittedChange(_ kind: NSDocument.ChangeType) {
         guard let history = work.history else { return }
         let committed = history.committedManuscript
-        guard countedManuscript != committed else { return }
+        guard countedManuscript != committed || countedResources != work.resources else { return }
         countedManuscript = committed
+        countedResources = work.resources
         updateChangeCount(kind)
     }
 
@@ -275,6 +278,26 @@ extension WriteDocument {
                 menu.popUp(positioning: nil, at: NSPoint(x: 20, y: contentView.bounds.height - 40), in: contentView)
             } catch { presentError(error) }
         }
+    }
+
+    /// Resource commands share native ordering, editing barriers and accepted change counts.
+    func performResourceChange<Result>(
+        _ operation: (WorkHistorySession) async throws -> Result
+    ) async throws -> Result {
+        guard !documentSaveInProgress, !closeInProgress else { throw WorkHistoryError.busy }
+        let history = try work.enableHistory()
+        if countedManuscript == nil { countedManuscript = history.committedManuscript }
+        if countedResources == nil { countedResources = work.resources }
+        try await flushHistory()
+        let invocation = nativeHistory?.beginExternalOperation()
+        if nativeHistory != nil && invocation == nil { throw WorkHistoryError.busy }
+        defer {
+            accountCommittedChange(.changeDone)
+            if let invocation {
+                nativeHistory?.finishInvocation(invocation, snapshot: historySnapshot(history))
+            }
+        }
+        return try await operation(history)
     }
 
     /// Settle native text coalescing and wait for every earlier group before saving.
@@ -443,6 +466,7 @@ extension WriteDocument {
         nativeHistory = nil
         submittedManuscript = nil
         countedManuscript = nil
+        countedResources = nil
         submissionTail = nil
         submissionsPending = 0
         submissionError = nil
