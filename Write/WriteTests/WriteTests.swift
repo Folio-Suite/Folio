@@ -247,7 +247,7 @@ extension WriteTests {
 
         let document = try WriteDocument(contentsOf: originalURL, ofType: workDocumentType)
         defer { document.close() }
-        let resourceIdentifier = try document.importResource(from: resourceURL)
+        let resourceIdentifier = try await document.importResource(from: resourceURL)
         try await insert("First text.", in: document)
 
         do {
@@ -305,7 +305,7 @@ extension WriteTests {
         defer { document.close() }
         XCTAssertFalse(document.isDocumentEdited)
 
-        let resourceIdentifier = try document.importResource(from: resourceURL)
+        let resourceIdentifier = try await document.importResource(from: resourceURL)
         XCTAssertTrue(document.isDocumentEdited)
         try await save(document, to: packageURL, for: .autosaveInPlaceOperation)
         XCTAssertFalse(document.isDocumentEdited)
@@ -316,7 +316,7 @@ extension WriteTests {
         try reopened.work.exportResource(withIdentifier: resourceIdentifier, to: exportedURL)
         XCTAssertEqual(try Data(contentsOf: exportedURL), resourceBytes)
 
-        try document.removeResource(withIdentifier: resourceIdentifier)
+        try await document.removeResource(withIdentifier: resourceIdentifier)
         XCTAssertTrue(document.isDocumentEdited)
         try await save(document, to: packageURL, for: .autosaveInPlaceOperation)
         XCTAssertFalse(document.isDocumentEdited)
@@ -343,11 +343,17 @@ extension WriteTests {
         let document = try WriteDocument(contentsOf: packageURL, ofType: workDocumentType)
         defer { document.close() }
         XCTAssertFalse(document.isDocumentEdited)
-        XCTAssertThrowsError(try document.importResource(from: invalidURL))
-        XCTAssertThrowsError(try document.removeResource(withIdentifier: document.work.identifier))
+        do {
+            _ = try await document.importResource(from: invalidURL)
+            XCTFail("Missing import must fail")
+        } catch {}
+        do {
+            try await document.removeResource(withIdentifier: document.work.identifier)
+            XCTFail("Missing resource must fail")
+        } catch {}
         XCTAssertFalse(document.isDocumentEdited)
 
-        let resourceIdentifier = try document.importResource(from: resourceURL)
+        let resourceIdentifier = try await document.importResource(from: resourceURL)
         XCTAssertTrue(document.isDocumentEdited)
         do {
             try await save(document, to: unavailableURL, for: .saveToOperation)

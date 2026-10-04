@@ -24,7 +24,7 @@ extension WorkStore {
     context.persistentStoreCoordinator = coordinator
     try context.performAndWait {
       do {
-        for receipt in try context.fetch(NSFetchRequest<NSManagedObject>(entityName: "HistoryReceipt")) {
+        for receipt in try context.fetch(WorkHistoryReceiptRecord.fetchRequest()) {
           context.delete(receipt)
         }
         if context.hasChanges { try context.save() }
@@ -49,7 +49,7 @@ extension WorkStore {
   /// The caller owns the private, closed working store and serializes access to it.
   static func commitHistory(
     at storeURL: URL, workIdentifier: FolioIdentifier,
-    manuscript: Manuscript, receipt: HistoryReceipt
+    manuscript: Manuscript, resources: [WorkResource], receipt: HistoryReceipt
   ) throws {
     try checkIdentifiers(workIdentifier: workIdentifier, manuscript: manuscript)
     let storeModel = try model()
@@ -68,27 +68,28 @@ extension WorkStore {
     context.persistentStoreCoordinator = coordinator
     try context.performAndWait {
       do {
-        let existing = NSFetchRequest<NSManagedObject>(entityName: "HistoryReceipt")
-        existing.predicate = NSPredicate(format: "commandID == %@", receipt.commandID.uuidString)
+        let existing = WorkHistoryReceiptRecord.fetchRequest()
+        existing.predicate = NSPredicate(
+          format: "%K == %@", #keyPath(WorkHistoryReceiptRecord.commandID),
+          receipt.commandID.uuidString)
         existing.fetchLimit = 1
         guard try context.fetch(existing).isEmpty else { throw writeError() }
 
-        let works = try context.fetch(NSFetchRequest<NSManagedObject>(entityName: "Work"))
+        let works = try context.fetch(WorkRecord.fetchRequest())
         guard works.count == 1, let work = works.first,
-          work.value(forKey: "identifier") as? String == workIdentifier.rawValue
+          work.identifier == workIdentifier.rawValue
         else {
           throw writeError()
         }
         _ = try update(context, workIdentifier: workIdentifier, manuscript: manuscript)
-        _ = insert(
-          "HistoryReceipt", in: context,
-          values: [
-            "commandID": receipt.commandID.uuidString,
-            "fingerprint": receipt.fingerprint,
-            "accepted": receipt.accepted,
-            "evidence": receipt.evidence,
-            "work": work,
-          ])
+        work.resourceMembership = try PropertyListEncoder().encode(resources)
+        let storedReceipt = try insert(
+          WorkHistoryReceiptRecord.self, entity: "HistoryReceipt", in: context)
+        storedReceipt.commandID = receipt.commandID.uuidString
+        storedReceipt.fingerprint = receipt.fingerprint
+        storedReceipt.accepted = receipt.accepted
+        storedReceipt.evidence = receipt.evidence
+        storedReceipt.work = work
         try context.save()
       } catch {
         context.rollback()
@@ -120,26 +121,28 @@ extension WorkStore {
     let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
     context.persistentStoreCoordinator = coordinator
     let receipt: HistoryReceipt? = try context.performAndWait {
-      let works = try context.fetch(NSFetchRequest<NSManagedObject>(entityName: "Work"))
+      let works = try context.fetch(WorkRecord.fetchRequest())
       guard works.count == 1, let work = works.first,
-        work.value(forKey: "identifier") is String
+        work.identifier != nil
       else { throw malformed() }
-      let request = NSFetchRequest<NSManagedObject>(entityName: "HistoryReceipt")
-      request.predicate = NSPredicate(format: "commandID == %@", commandID.uuidString)
+      let request = WorkHistoryReceiptRecord.fetchRequest()
+      request.predicate = NSPredicate(
+        format: "%K == %@", #keyPath(WorkHistoryReceiptRecord.commandID), commandID.uuidString)
       request.fetchLimit = 2
+      try validateRequiredScalars(
+        context, onlyEntity: "HistoryReceipt", matching: request.predicate)
       let matches = try context.fetch(request)
       guard matches.count <= 1 else { throw malformed() }
       guard let object = matches.first else { return nil }
-      guard let rawID = object.value(forKey: "commandID") as? String,
+      guard let rawID = object.commandID,
         let storedID = UUID(uuidString: rawID), storedID == commandID,
-        let fingerprint = object.value(forKey: "fingerprint") as? String,
-        let accepted = object.value(forKey: "accepted") as? NSNumber,
-        let evidence = object.value(forKey: "evidence") as? Data,
-        object.value(forKey: "work") as? NSManagedObject == work
+        let fingerprint = object.fingerprint,
+        let evidence = object.evidence,
+        object.work == work
       else { throw malformed() }
       return HistoryReceipt(
         commandID: storedID, fingerprint: fingerprint,
-        accepted: accepted.boolValue, evidence: evidence)
+        accepted: object.accepted, evidence: evidence)
     }
     try coordinator.remove(store)
     removed = true

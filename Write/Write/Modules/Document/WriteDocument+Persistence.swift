@@ -6,15 +6,16 @@ import FolioKit
 import WriteKit
 
 extension WriteDocument {
-    @discardableResult func importResource(from sourceURL: URL) throws -> FolioIdentifier {
-        let identifier = try work.importResource(from: sourceURL)
-        updateChangeCount(.changeDone)
-        return identifier
+    @discardableResult func importResource(from sourceURL: URL) async throws -> FolioIdentifier {
+        try await performResourceChange { history in
+            try await history.importResource(from: sourceURL)
+        }
     }
 
-    func removeResource(withIdentifier identifier: FolioIdentifier) throws {
-        try work.removeResource(withIdentifier: identifier)
-        updateChangeCount(.changeDone)
+    func removeResource(withIdentifier identifier: FolioIdentifier) async throws {
+        try await performResourceChange { history in
+            try await history.removeResource(withIdentifier: identifier)
+        }
     }
 
     override func fileWrapper(ofType typeName: String) throws -> FileWrapper {

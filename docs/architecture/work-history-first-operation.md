@@ -5,15 +5,15 @@ SPDX-License-Identifier: MIT
 
 # First durable Work history operation
 
-This slice gives a Work one history operation: replace a settled Manuscript snapshot with another. It covers text, presentation, Content Unit titles and order, and the current formatting warning flags because those values belong to the Manuscript snapshot. `Work` exposes `enableHistory()` and a `history` session; the Write host settles native editing, submits the resulting Manuscript through `WorkHistorySession.submit(manuscript:)`, and refreshes its views after an accepted outcome. `undo()` and `redo()` use the same host acceptance path. Native routing for existing Manuscript edits belongs to this slice; signed AppKit interaction remains a distinct acceptance check.
+The first slice gave a Work one history operation: replace a settled Manuscript snapshot with another. Issue #96 extends that boundary to a coherent Manuscript and resource-membership snapshot. It covers text, presentation, Content Unit titles and order, and the current formatting warning flags because those values belong to the Manuscript snapshot. `Work` exposes `enableHistory()` and a `history` session; the Write host settles native editing, submits the resulting Manuscript through `WorkHistorySession.submit(manuscript:)`, and refreshes its views after an accepted outcome. `undo()` and `redo()` use the same host acceptance path. Native routing for existing Manuscript edits belongs to this slice; signed AppKit interaction remains a distinct acceptance check.
 
 ## Ownership and delivery
 
-`Core/WriteKit/Interface/WorkHistorySession.swift` is the public host session. Its typed handler lives in `Core/WriteKit/Modules/WorkAdapter/WorkHistoryAdapter.swift`, which builds a `HistoryOperationRegistration` for complete Manuscript replacements. The registration supplies stable command/effect/state codec identities and versions; UndoKit adds codec envelopes to produce opaque `HistoryPayload` values. `WorkHistoryPayload.swift` defines the host representation. UndoKit owns preparation, serialized delivery, the history graph, availability, and finalization. WriteKit owns the meaning and validation of a replacement, no-op filtering, compensation data, and the authoritative accepted or rejected outcome. Neither framework stores the other's managed objects.
+`Core/WriteKit/Interface/WorkHistorySession.swift` is the public host session. Its typed handler lives in `Core/WriteKit/Modules/WorkAdapter/WorkHistoryAdapter.swift`, which builds a `HistoryOperationRegistration` for coherent Work replacements. The registration supplies stable command/effect/state codec identities and versions; UndoKit adds codec envelopes to produce opaque `HistoryPayload` values. `WorkHistoryPayload.swift` defines the host representation. UndoKit owns preparation, serialized delivery, the history graph, availability, and finalization. WriteKit owns the meaning and validation of a replacement, no-op filtering, compensation data, and the authoritative accepted or rejected outcome. Neither framework stores the other's managed objects.
 
 An enabled Work has a private working directory containing `Host/Work.sqlite` and `History.sqlite`. Enabling history on a new Work creates the host SQLite store from its current Manuscript. A saved Work without history retains a private clone of its original store; enabling history updates that clone while preserving its store and object identities. Opening a saved Work with history copies its closed host store and history store into that directory and assigns a fresh working identity. The saved package remains the source snapshot until a later successful document save. `WorkHistorySession` holds the last host-accepted Manuscript separately from provisional edits. A submission whose decoded `before` state does not match that committed state is rejected without changing authored data. Each command has an identity and a fingerprint; the adapter records a compact host receipt in the Work store for outcome lookup.
 
-`Core/WriteKit/Modules/WorkAdapter/WorkStore+HistoryReceipts.swift` writes the Manuscript change and the command receipt with **one Core Data context save**. The receipt stores command identity, fingerprint binding, accepted status, and bounded encoded effect evidence. A duplicate identity or failed validation leaves no new semantic change. A callback error or a missing receipt means the outcome is unresolved; it does not establish rejection. Reconciliation looks up the host receipt, checks the token binding and evidence, and reads the authoritative host snapshot while preserving any newer provisional input for resubmission. UndoKit's history store is separate, so this receipt is the bridge across an interrupted finalization rather than a distributed transaction.
+`Core/WriteKit/Modules/WorkAdapter/WorkStore+HistoryReceipts.swift` writes the Manuscript, current resource membership and the command receipt with **one Core Data context save**. The receipt stores command identity, fingerprint binding, accepted status, and bounded encoded effect evidence. A duplicate identity or failed validation leaves no new semantic change. A callback error or a missing receipt means the outcome is unresolved; it does not establish rejection. Reconciliation looks up the host receipt, checks the token binding and evidence, and reads the authoritative host snapshot while preserving any newer provisional input for resubmission. UndoKit's history store is separate, so this receipt is the bridge across an interrupted finalization rather than a distributed transaction.
 
 ## Native editing route
 
@@ -29,9 +29,33 @@ The current native package keeps `Work.sqlite` at its root. A history-enabled pa
 
 ## Checkpoints and scope
 
-`createCheckpoint(name:)` records the current host Manuscript as a named recoverable state. `checkpoints(limit:)` returns bounded metadata for presentation. `restore(checkpointID:)` decodes the saved state and submits a new replacement command with the checkpoint as its restoration origin. The displaced continuation stays in the history graph; restoration does not erase it. Ordinary history browsing is likewise bounded and does not reconstruct every old Manuscript.
+`createCheckpoint(name:)` records the current host Manuscript and resource membership as a named recoverable state. `checkpoints(limit:)` returns bounded metadata for presentation. `restore(checkpointID:)` decodes the saved state and submits a new replacement command with the checkpoint as its restoration origin. The displaced continuation stays in the history graph; restoration does not erase it. Ordinary history browsing is likewise bounded and does not reconstruct every old Manuscript.
 
-The resource set is preserved when saving a history-enabled Work, but resource import and removal are blocked for this first operation. Resource changes need their own semantic command and recovery evidence before they can join durable history. The current adapter does not claim durable operations for Source Libraries or Arrangements, cross-application Work Sessions, automation, archival folio reconstruction, or production release readiness. Its current storage schema and package capability are pre-alpha implementation choices, not a Folio 1.0 format promise. Broader behavior remains governed by [the semantic history contract](semantic-history-contract.md) and [UndoKit's acceptance contract](../../UndoKit/docs/durable-acceptance-contract.md).
+Resource import and removal now use `WorkHistorySession.importResource(from:)`
+and `removeResource(withIdentifier:)`. The application settles text first,
+applies its native editing barrier, and counts accepted resource-only changes.
+The synchronous Work helpers remain available before history is enabled.
+Imports secure immutable bytes in the private host directory before delivery.
+Whole-group validation checks every resource dependency before a single
+membership/Manuscript/receipt save. Removal changes membership and keeps bytes
+available for compensation, checkpoints and displaced continuations.
+
+Saved manifests inventory retained bytes, while `Work.resourceMembership` in the
+Core Data store declares current membership. Ordinary saving preserves the full
+bounded inventory; Omit History copies only current resources. Accepted effects,
+checkpoints and new-generation baselines supply versioned UndoKit object
+references. No automatic resource reclamation is enabled yet. A future cleanup
+must use UndoKit's stable reference maintenance boundary and preserve current
+membership independently. Host receipt lookup restores accepted membership and
+returns the same compensation references without applying the command again.
+
+The #96 tests cover resource save/reopen, source independence, native resource-only
+Undo/Redo and document change counts, checkpoint restoration on a displaced
+continuation, reference inspection, whole-group rejection, missing inverse bytes,
+host-store failure, authoritative receipt lookup, failed staging and omission.
+Process-interruption discovery remains #97. The pre-alpha model and content codec
+change without a legacy migration; older incompatible stores are preserved and
+refused. This is not archival format or release-readiness evidence.
 
 ## Successors
 
@@ -41,7 +65,7 @@ Further accepted capabilities outside this operation are tracked separately:
 - [#93 — Retention holds, pruning and consolidation](https://github.com/Folio-Suite/Folio/issues/93).
 - [#94 — Paged reconstruction and host metadata, including persisted action names](https://github.com/Folio-Suite/Folio/issues/94).
 - [#95 — Recording controls and explicit generation reset](https://github.com/Folio-Suite/Folio/issues/95).
-- [#96 — Durable Work resource commands](https://github.com/Folio-Suite/Folio/issues/96).
+- #96 implements the resource commands described above.
 - [#97 — Interrupted working-copy discovery and native Versions restoration](https://github.com/Folio-Suite/Folio/issues/97).
 
 The first Write host uses generic Undo/Redo names and always records settled Manuscript edits. It refuses ordinary read/adopt replacement of an already history-enabled Work until restoration can retain the displaced continuation. Unresolved private copies remain available on disk; automatic discovery after a process interruption belongs to #97. UndoKit continues to extend native UndoManager grouping and routing; these successors do not transfer host semantics or document saving into the framework.

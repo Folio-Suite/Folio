@@ -19,7 +19,7 @@ NSDocument operates in the Write process. A separately supervised domain persist
 
 A `.flwrbundle` package has UTI `app.foliosuite.Write.Doc` and contains `Work.sqlite`, a Core Data SQLite store. XML belongs to the later complete-folio import/export path and is not this native representation.
 
-The Xcode model `Core/WriteKit/Resources/Work.xcdatamodeld` is the authoritative schema. Its current `WorkV1` model defines Work, Manuscript, ContentUnit, Paragraph, Run, and HistoryReceipt entities. Open it in Xcode’s data model editor to inspect attributes, inverses, validation, and deletion rules. The Work owns its Content Units, Manuscript, and command receipts; a receipt records identity, fingerprint binding, accepted status, and host outcome evidence. The Manuscript arranges units through its ordered `contentUnits` relationship. Paragraphs and runs also use native ordered to-many relationships. Each relationship has an inverse, including the optional Manuscript placement on a Content Unit. Supported numeric ranges are expressed in the model; the persistence adapter validates identifier uniqueness across the Work. Work, Manuscript, Content Unit, and paragraphs retain independent identifiers. Paragraph alignment is authored presentation. Run emphasis is one exclusive enum value: None, Emphasis, Strong Emphasis, or Very Strong Emphasis. Bold, Italic, Underline, and Strikethrough are four independent Boolean attributes. ContentUnit also stores its display `title` and `formattingWarningDismissed`. The public Foundation model groups those booleans in immutable `TextPresentation`, separately from `TextRun.emphasis`.
+The Xcode model `Core/WriteKit/Resources/Work.xcdatamodeld` is the authoritative schema. Its current `WorkV1` model defines Work, Manuscript, ContentUnit, Paragraph, Run, and HistoryReceipt entities. Open it in Xcode’s data model editor to inspect attributes, inverses, validation, and deletion rules. The Work owns its Content Units, Manuscript, bounded resource-membership data, and command receipts; a receipt records identity, fingerprint binding, accepted status, and host outcome evidence. The Manuscript arranges units through its ordered `contentUnits` relationship. Paragraphs and runs also use native ordered to-many relationships. Each relationship has an inverse, including the optional Manuscript placement on a Content Unit. Supported numeric ranges are expressed in the model; the persistence adapter validates identifier uniqueness across the Work. Work, Manuscript, Content Unit, and paragraphs retain independent identifiers. Paragraph alignment is authored presentation. Run emphasis is one exclusive enum value: None, Emphasis, Strong Emphasis, or Very Strong Emphasis. Bold, Italic, Underline, and Strikethrough are four independent Boolean attributes. ContentUnit also stores its display `title` and `formattingWarningDismissed`. The public Foundation model groups those booleans in immutable `TextPresentation`, separately from `TextRun.emphasis`.
 
 The supported subset is a flat Manuscript with one or more text Content Units, each containing one or more paragraphs. Unplaced units, nested structure, and deletion are not yet exposed. This pre-alpha model now includes receipts in the single current `WorkV1` schema; it does not migrate earlier SQLite schemas. The reader rejects incompatible schemas, unsupported structure, duplicate identities, invalid relationships or style values, and unfamiliar package entries rather than dropping content on save. This is a limited reader, not the general extension-preserving model.
 
@@ -88,6 +88,17 @@ saving avoid using an in-memory file wrapper for the entire resource collection.
 Failed preparation preserves the original package and pending edits for retry.
 The current editor has no resource-import command.
 
-Enabling Work history adds a declared `History` directory. The first history
-operation preserves resources but blocks their import and removal until those
-edits have their own durable command.
+Enabling Work history adds a declared `History` directory. Resource edits then
+use the asynchronous history session described below.
+
+### Durable resource membership
+
+History-enabled resource commands are exposed through `WorkHistorySession`.
+Current resource membership is encoded in the Work row and committed with the
+Manuscript and host receipt in one SQLite transaction. `Package.json` inventories
+all retained immutable files, including resources removed from current membership.
+Checkpoint restoration and Undo/Redo retain the same resource identities and
+bytes. See [Work history](work-history-first-operation.md) for acceptance,
+reference handoff, failure preservation and the pre-alpha compatibility boundary.
+Omit History stages only current resources; ordinary saves conservatively retain
+historical bytes until a separate safe cleanup operation is implemented.

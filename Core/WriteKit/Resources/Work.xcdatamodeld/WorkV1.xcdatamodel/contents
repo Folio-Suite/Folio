@@ -1,52 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- SPDX-FileCopyrightText: 2026 the Folio Project -->
-<!-- SPDX-License-Identifier: MIT -->
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24902" systemVersion="25G83" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="FolioWriteWorkV1">
-    <entity name="ContentUnit" representedClassName="NSManagedObject" syncable="YES">
-        <attribute name="title" attributeType="String" defaultValueString="Untitled" />
-        <attribute name="formattingWarningDismissed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" />
-        <attribute name="identifier" attributeType="String" />
-        <relationship name="manuscript" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Manuscript" inverseName="contentUnits" inverseEntity="Manuscript" />
-        <relationship name="paragraphs" toMany="YES" minCount="1" deletionRule="Cascade" ordered="YES" destinationEntity="Paragraph" inverseName="unit" inverseEntity="Paragraph" />
-        <relationship name="work" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Work" inverseName="units" inverseEntity="Work" />
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="25249" systemVersion="26A434" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="FolioWriteWorkV1">
+    <entity name="ContentUnit" representedClassName="ContentUnitRecord" syncable="YES" codeGenerationType="category">
+        <attribute name="formattingWarningDismissed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="identifier" attributeType="String"/>
+        <attribute name="title" attributeType="String" defaultValueString="Untitled"/>
+        <relationship name="manuscript" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Manuscript" inverseName="contentUnits" inverseEntity="Manuscript"/>
+        <relationship name="paragraphs" toMany="YES" minCount="1" deletionRule="Cascade" ordered="YES" destinationEntity="Paragraph" inverseName="unit" inverseEntity="Paragraph"/>
+        <relationship name="work" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Work" inverseName="units" inverseEntity="Work"/>
     </entity>
-    <entity name="Manuscript" representedClassName="NSManagedObject" syncable="YES">
-        <attribute name="identifier" attributeType="String" />
-        <relationship name="contentUnits" toMany="YES" ordered="YES" minCount="1" deletionRule="Nullify" destinationEntity="ContentUnit" inverseName="manuscript" inverseEntity="ContentUnit" />
-        <relationship name="work" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Work" inverseName="manuscript" inverseEntity="Work" />
-    </entity>
-    <entity name="Paragraph" representedClassName="NSManagedObject" syncable="YES">
-        <attribute name="alignment" attributeType="Integer 16" minValueString="0" maxValueString="4" defaultValueString="0" usesScalarValueType="YES" />
-        <attribute name="identifier" attributeType="String" />
-        <relationship name="runs" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Run" inverseName="paragraph" inverseEntity="Run" />
-        <relationship name="unit" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ContentUnit" inverseName="paragraphs" inverseEntity="ContentUnit" />
-    </entity>
-    <entity name="Run" representedClassName="NSManagedObject" syncable="YES">
-        <attribute name="emphasis" attributeType="Integer 16" defaultValueString="0" minValueString="0" maxValueString="3" usesScalarValueType="YES" />
-        <attribute name="strikethrough" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" />
-        <attribute name="underline" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" />
-        <attribute name="italic" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" />
-        <attribute name="bold" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" />
-        <attribute name="text" attributeType="String" />
-        <relationship name="paragraph" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Paragraph" inverseName="runs" inverseEntity="Paragraph" />
-    </entity>
-    <entity name="HistoryReceipt" representedClassName="NSManagedObject" syncable="YES">
-        <attribute name="commandID" attributeType="String" />
-        <attribute name="fingerprint" attributeType="String" />
-        <attribute name="accepted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" />
-        <attribute name="evidence" attributeType="Binary" allowsExternalBinaryDataStorage="NO" />
-        <relationship name="work" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Work" inverseName="historyReceipts" inverseEntity="Work" />
+    <entity name="HistoryReceipt" representedClassName="WorkHistoryReceiptRecord" syncable="YES" codeGenerationType="category">
+        <attribute name="accepted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="commandID" attributeType="String"/>
+        <attribute name="evidence" attributeType="Binary"/>
+        <attribute name="fingerprint" attributeType="String"/>
+        <relationship name="work" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Work" inverseName="historyReceipts" inverseEntity="Work"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
-                <constraint value="commandID" />
+                <constraint value="commandID"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="Work" representedClassName="NSManagedObject" syncable="YES">
-        <attribute name="formatVersion" attributeType="Integer 16" minValueString="1" maxValueString="1" defaultValueString="1" usesScalarValueType="YES" />
-        <attribute name="identifier" attributeType="String" />
-        <relationship name="manuscript" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Manuscript" inverseName="work" inverseEntity="Manuscript" />
-        <relationship name="units" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="ContentUnit" inverseName="work" inverseEntity="ContentUnit" />
-        <relationship name="historyReceipts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HistoryReceipt" inverseName="work" inverseEntity="HistoryReceipt" />
+    <entity name="Manuscript" representedClassName="ManuscriptRecord" syncable="YES" codeGenerationType="category">
+        <attribute name="identifier" attributeType="String"/>
+        <relationship name="contentUnits" toMany="YES" minCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="ContentUnit" inverseName="manuscript" inverseEntity="ContentUnit"/>
+        <relationship name="work" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Work" inverseName="manuscript" inverseEntity="Work"/>
+    </entity>
+    <entity name="Paragraph" representedClassName="ParagraphRecord" syncable="YES" codeGenerationType="category">
+        <attribute name="alignment" attributeType="Integer 16" minValueString="0" maxValueString="4" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="identifier" attributeType="String"/>
+        <relationship name="runs" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Run" inverseName="paragraph" inverseEntity="Run"/>
+        <relationship name="unit" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ContentUnit" inverseName="paragraphs" inverseEntity="ContentUnit"/>
+    </entity>
+    <entity name="Run" representedClassName="RunRecord" syncable="YES" codeGenerationType="category">
+        <attribute name="bold" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="emphasis" attributeType="Integer 16" minValueString="0" maxValueString="3" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="italic" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="strikethrough" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="text" attributeType="String"/>
+        <attribute name="underline" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="paragraph" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Paragraph" inverseName="runs" inverseEntity="Paragraph"/>
+    </entity>
+    <entity name="Work" representedClassName="WorkRecord" syncable="YES" codeGenerationType="category">
+        <attribute name="formatVersion" attributeType="Integer 16" minValueString="1" maxValueString="1" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="identifier" attributeType="String"/>
+        <attribute name="resourceMembership" optional="YES" attributeType="Binary"/>
+        <relationship name="historyReceipts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HistoryReceipt" inverseName="work" inverseEntity="HistoryReceipt"/>
+        <relationship name="manuscript" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Manuscript" inverseName="work" inverseEntity="Manuscript"/>
+        <relationship name="units" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="ContentUnit" inverseName="work" inverseEntity="ContentUnit"/>
     </entity>
 </model>

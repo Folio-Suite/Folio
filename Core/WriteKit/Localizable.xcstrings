@@ -2127,12 +2127,12 @@
     },
     "work-history.resources-unsupported": {
       "extractionState": "manual",
-      "comment": "First implementation supports manuscript history but not resource changes.",
+      "comment": "Direct synchronous resource edits must use the asynchronous history session.",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Resource changes are not yet supported while durable history is enabled."
+            "value": "Use the Work’s history session to import or remove resources."
           }
         }
       }
