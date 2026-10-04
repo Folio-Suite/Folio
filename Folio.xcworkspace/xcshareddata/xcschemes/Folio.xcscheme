@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-SPDX-FileCopyrightText: 2026 the Folio Project
-SPDX-License-Identifier: MIT
--->
 <Scheme
    LastUpgradeVersion = "2700"
    version = "1.7">
@@ -150,8 +146,19 @@ SPDX-License-Identifier: MIT
                ReferencedContainer = "container:Core/Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry buildForTesting="YES" buildForRunning="NO" buildForProfiling="NO" buildForArchiving="NO" buildForAnalyzing="NO">
-            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="B13000000000000000000006" BuildableName="TypographyKitTests.xctest" BlueprintName="TypographyKitTests" ReferencedContainer="container:TypographyKit/TypographyKit.xcodeproj"/>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B13000000000000000000006"
+               BuildableName = "TypographyKitTests.xctest"
+               BlueprintName = "TypographyKitTests"
+               ReferencedContainer = "container:TypographyKit/TypographyKit.xcodeproj">
+            </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>

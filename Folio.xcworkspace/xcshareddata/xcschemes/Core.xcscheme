@@ -161,7 +161,20 @@
                ReferencedContainer = "container:Composer/Composer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry buildForTesting="YES" buildForRunning="NO" buildForProfiling="NO" buildForArchiving="NO" buildForAnalyzing="NO"><BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="B13000000000000000000006" BuildableName="TypographyKitTests.xctest" BlueprintName="TypographyKitTests" ReferencedContainer="container:TypographyKit/TypographyKit.xcodeproj"/></BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B13000000000000000000006"
+               BuildableName = "TypographyKitTests.xctest"
+               BlueprintName = "TypographyKitTests"
+               ReferencedContainer = "container:TypographyKit/TypographyKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -215,7 +228,17 @@
                ReferencedContainer = "container:Core/Core.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference skipped="NO" parallelizable="YES"><BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="B13000000000000000000006" BuildableName="TypographyKitTests.xctest" BlueprintName="TypographyKitTests" ReferencedContainer="container:TypographyKit/TypographyKit.xcodeproj"/></TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B13000000000000000000006"
+               BuildableName = "TypographyKitTests.xctest"
+               BlueprintName = "TypographyKitTests"
+               ReferencedContainer = "container:TypographyKit/TypographyKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
