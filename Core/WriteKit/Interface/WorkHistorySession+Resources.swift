@@ -9,6 +9,11 @@ extension WorkHistorySession {
   /// Import an immutable private file snapshot as one durable, undoable Work change.
   /// Settle provisional Manuscript edits first. A failure preserves accepted membership;
   /// an unresolved outcome fences later operations until reconciliation succeeds.
+  /// - Parameter sourceURL: Accessible regular file, not a symbolic link.
+  /// - Returns: New identity for the accepted immutable resource.
+  /// - Throws: Busy/unsettled state, invalid resource input, file-system errors,
+  ///   semantic rejection, or unresolved history delivery.
+  /// Failed imports may retain conservative private bytes without adding membership.
   @discardableResult public func importResource(from sourceURL: URL) async throws -> FolioIdentifier {
     _ = try await ready()
     guard canSave, let work else { throw WorkHistoryError.busy }
@@ -24,6 +29,9 @@ extension WorkHistorySession {
 
   /// Remove membership without deleting bytes needed by Undo, checkpoints or displaced history.
   /// Settle provisional Manuscript edits first. Missing identifiers create no transaction.
+  /// - Parameter identifier: Identity in the accepted current membership.
+  /// - Throws: A missing-resource error for an absent identity, busy/unsettled
+  ///   state, semantic rejection, or history delivery/storage errors.
   public func removeResource(withIdentifier identifier: FolioIdentifier) async throws {
     _ = try await ready()
     guard canSave else { throw WorkHistoryError.busy }

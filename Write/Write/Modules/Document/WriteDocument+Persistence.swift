@@ -18,6 +18,8 @@ extension WriteDocument {
         }
     }
 
+    // NSDocument can request an in-memory representation through this hook. Our
+    // disk-save override below uses staged package URLs to avoid copying all resources.
     override func fileWrapper(ofType typeName: String) throws -> FileWrapper {
         try work.fileWrapper()
     }
@@ -37,6 +39,8 @@ extension WriteDocument {
         }
     }
 
+    // AppKit (or a caller supplying an in-memory package) invokes this decoding hook.
+    // The URL overload below is the disk-backed path for opening packages by URL.
     override func read(from fileWrapper: FileWrapper, ofType typeName: String) throws {
         // NSDocument concurrent reading remains disabled. This synchronous Cocoa
         // override runs on the main thread; no FileWrapper crosses a task boundary.

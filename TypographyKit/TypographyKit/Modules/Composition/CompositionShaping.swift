@@ -41,6 +41,9 @@ extension CompositionEngine {
             )
         }
         let advance = naturalAdvance + shifts[shifts.count - 1]
+        // A glyph can represent several characters (for example, a ligature).
+        // Ask Core Text for insertion offsets rather than summing glyph advances;
+        // protrusion is a visual shift and deliberately does not change these.
         let caretOffsets = (0..<shifts.count).map {
             CTLineGetOffsetForStringIndex(line, $0, nil) + shifts[$0]
         }
@@ -80,6 +83,10 @@ extension CompositionEngine {
             NSAttributedString.Key(kCTLanguageAttributeName as String): request.language,
         ]
         if request.adjustments.tracking != 0 {
+            // Core Text tracking adds points after character clusters and can
+            // disable nonessential ligatures. It is not interchangeable with
+            // moving already-shaped glyphs or setting a kerning attribute.
+            // https://developer.apple.com/documentation/coretext/kcttrackingattributename
             attributes[NSAttributedString.Key(kCTTrackingAttributeName as String)] =
                 request.adjustments.tracking
         }
@@ -117,6 +124,10 @@ extension CompositionEngine {
     }
 
     private func shapeRun(_ run: CTRun, shifts: [CGFloat], protrusion: CGFloat) throws -> GlyphRunOutput {
+        // Core Text can manufacture a run's attributes when it substitutes a
+        // font. Read that actual font for metrics, provenance, and drawing;
+        // reusing the requested font would misinterpret the run's glyph IDs.
+        // https://developer.apple.com/documentation/coretext/ctrungetattributes(_:)
         let attributes = CTRunGetAttributes(run)
         guard let pointer = CFDictionaryGetValue(
             attributes, Unmanaged.passUnretained(kCTFontAttributeName).toOpaque()
@@ -131,6 +142,9 @@ extension CompositionEngine {
         var indices = Array(repeating: CFIndex(), count: count)
         var advances = Array(repeating: CGSize.zero, count: count)
         let range = CFRange(location: 0, length: count)
+        // Copy run data into Swift-owned arrays while the CTLine is alive. The
+        // result retains the actual CTFont through DrawingRun, but needs no live
+        // CTLine/CTRun or borrowed buffers for later drawing.
         CTRunGetGlyphs(run, range, &glyphs)
         CTRunGetPositions(run, range, &positions)
         CTRunGetStringIndices(run, range, &indices)
@@ -148,6 +162,9 @@ extension CompositionEngine {
                 fontPostScriptName: name
             ))
             var glyph = glyphs[index]
+            // Font design bounds are relative to a glyph origin. Translating
+            // each box by the final position includes manual space/protrusion
+            // shifts; these bounds do not measure rasterized destination pixels.
             let box = CTFontGetBoundingRectsForGlyphs(actualFont, .horizontal, &glyph, nil, 1)
             ink = ink.union(box.offsetBy(dx: positions[index].x, dy: positions[index].y))
         }

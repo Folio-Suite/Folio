@@ -17,6 +17,32 @@ A ``PublicationPreviewInput`` identifies caller-owned source text and supplies e
 
 ``CompositionPreviewView`` is a reusable AppKit canvas, loaded by ComposerKit's `Preview.storyboard`. Call ``CompositionPreviewWindow/makeWindowController(input:)`` on the main actor to create its window with caller-owned input. The canvas visibly and accessibly distinguishes complete, unsupported and infeasible results. Composer's initial window displays a controlled specimen through this public interface; it does not open or save an Arrangement.
 
+## Create a preview window
+
+```swift
+import AppKit
+import ComposerKit
+
+@MainActor
+func makePreview() -> NSWindowController {
+    let text = "A short line."
+    let input = PublicationPreviewInput(
+        sourceIdentifier: "source-one", text: text,
+        selectedBreaks: [text.utf16.count], lineWidth: 430
+    )
+    return CompositionPreviewWindow.makeWindowController(input: input)
+}
+```
+
+Retain the returned controller in the host, then call `showWindow(nil)` to present it.
+The window factory does not attach an `NSDocument` or provide persistence. Each selected
+break is a cumulative UTF-16 end offset, including the final end of the text, rather
+than a Swift `String.Index` or a count of user-perceived characters.
+
+For composition without a window, call ``ComposerPreview/compose(_:)`` and inspect
+the returned status and diagnostics. An infeasible result can still contain useful
+geometry; success must not be inferred merely from a nonempty collection of lines.
+
 ## Public interface and hosting
 
 Use `import ComposerKit`. The owning application uses the same public interface as other hosts. AppKit presentation is main-actor isolated; the composition adapter is synchronous. TypographyKit retains neutral text shaping and geometry without acquiring Folio objects or storage. Apps and Kits ship as one coordinated Suite version.

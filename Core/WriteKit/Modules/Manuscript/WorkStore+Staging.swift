@@ -66,6 +66,9 @@ extension WorkStore {
       at: url, options: [NSSQLitePragmasOption: ["journal_mode": "DELETE"]])
     var removed = false
     defer { if !removed { try? coordinator.remove(store) } }
+    // Managed objects are queue-confined even though Work callers use the main
+    // actor. Return value measurements from performAndWait, then detach the
+    // store so the staged SQLite artifact is closed before publication.
     let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
     context.persistentStoreCoordinator = coordinator
     let changed = try context.performAndWait {

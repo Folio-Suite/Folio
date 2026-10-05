@@ -8,6 +8,9 @@ import FolioKit
 @MainActor final class EditorTextView: NSTextView {
   weak var editor: EditorViewController?
 
+  // AppKit asks for the accessibility tree separately from the visual subtree.
+  // Include unignored warning controls added as text-view subviews, without
+  // duplicating children already exposed by the native text surface.
   override func accessibilityChildren() -> [Any]? {
     var children = super.accessibilityChildren() ?? []
     for view in subviews {
@@ -19,11 +22,15 @@ import FolioKit
     return children
   }
 
+  // AppKit resizing can change TextKit line wrapping. Reposition overlays only
+  // after the superclass has installed the new text-view geometry.
   override func setFrameSize(_ newSize: NSSize) {
     super.setFrameSize(newSize)
     editor?.layoutFormattingMarkers()
   }
 
+  // Native menu actions reach the first-responder text view. Forward through
+  // its delegate-provided manager so the host's native history router stays in charge.
   @IBAction func undo(_ sender: Any?) { undoManager?.undo() }
   @IBAction func redo(_ sender: Any?) { undoManager?.redo() }
   @IBAction func showHistory(_ sender: Any?) { editor?.historyRequested?() }
@@ -39,6 +46,8 @@ import FolioKit
   @IBAction func toggleStrikethrough(_ sender: Any?) { editor?.toggleStrikethrough(sender) }
   @IBAction func clearFormatting(_ sender: Any?) { editor?.clearFormatting(sender) }
 
+  // Offer the private semantic representation first, then plain text. External
+  // rich-text types are deliberately excluded from this supported import boundary.
   override var readablePasteboardTypes: [NSPasteboard.PasteboardType] {
     [EditorAttribute.pasteboardType, .string]
   }
@@ -53,6 +62,8 @@ import FolioKit
       return super.writeSelection(to: pasteboard, type: type)
     }
     guard let storage = textStorage, selectedRange.length > 0 else { return false }
+    // Serialize formatting, not paragraph identities. Pasted content must not
+    // reuse source identities when capture reconstructs the destination Manuscript.
     var runs: [[String: Any]] = []
     storage.enumerateAttributes(in: selectedRange, options: []) { attributes, range, _ in
       let style = attributes[.paragraphStyle] as? NSParagraphStyle
@@ -115,6 +126,9 @@ import FolioKit
     return true
   }
 
+  // AppKit's text-input system enters here for committed insertion. Normalize
+  // separators and attach the destination paragraph identity before delegating
+  // to NSTextView, which retains native editing, selection, and Undo behavior.
   override func insertText(_ insertString: Any, replacementRange: NSRange) {
     let inserted: NSMutableAttributedString
     if let attributed = insertString as? NSAttributedString {

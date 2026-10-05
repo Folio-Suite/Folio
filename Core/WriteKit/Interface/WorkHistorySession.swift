@@ -8,8 +8,13 @@ import UndoKit
 
 /// A host validation or lifecycle failure. Existing content and history remain available for recovery.
 public enum WorkHistoryError: Error, LocalizedError {
+  /// Lifecycle and validation failures: `busy` requires settlement or recovery;
+  /// `rejected` refuses semantic application; `resourceHistoryRequired` routes
+  /// direct resource edits through a session; `invalidPackage` rejects history
+  /// evidence or structure; `closed` refuses a previously closed session.
   case busy, rejected, resourceHistoryRequired, invalidPackage, closed
 
+  /// Localized explanation suitable for host error presentation, resolved from WriteKit's bundle.
   public var errorDescription: String? {
     switch self {
     case .busy:
@@ -43,8 +48,11 @@ public enum WorkHistoryError: Error, LocalizedError {
 
 /// A bounded presentation row; obtaining rows does not reconstruct historical Manuscripts.
 public struct WorkCheckpoint: Identifiable, Sendable {
+  /// History checkpoint identity used for restoration; distinct from a Content Unit identity.
   public let id: UUID
+  /// Host-supplied checkpoint name, or an empty string when no name was stored.
   public let name: String
+  /// Time the history engine recorded the checkpoint, not the later document-save time.
   public let recordedAt: Date
 }
 
@@ -57,7 +65,12 @@ struct WorkHistoryRegistration: Codable {
 
 /// Work's adapter for durable Manuscript and resource edits. Settle provisional editing before submission.
 /// Resource bytes are retained separately from current membership for Undo and checkpoint restoration.
-/// Calls and callbacks are main-actor isolated. A failed submission may require `reconcile()` before editing resumes.
+/// Calls and callbacks are main-actor isolated. A failed submission may require ``reconcile()`` before editing resumes.
+///
+/// Obtain a session through ``Work/enableHistory()`` or ``Work/history``. Keep
+/// the Work alive: it retains the session, but the session references it weakly.
+/// Serialize host submissions to preserve intended edit order. Before saving,
+/// settle native input, await outstanding commands, and check ``canSave``.
 @MainActor public final class WorkHistorySession {
   static let family = "app.foliosuite.work.content.replace"
   weak var work: Work?
@@ -83,15 +96,24 @@ struct WorkHistoryRegistration: Codable {
   private var projectedEngineVersion: Int64?
 
   /// Called after coherent availability changes. Refresh views without creating another edit.
+  /// The session retains this main-actor closure; capture a retaining host weakly.
+  /// Notifications can occur during an operation and do not by themselves prove acceptance.
   public var didChange: (() -> Void)?
   /// The last host-accepted state, distinct from provisional native input.
   public var committedManuscript: Manuscript { committed }
   /// Token to retry finalization after a successfully published omission.
   /// Cancel it only while publication has not succeeded.
   public var pendingOmissionPublication: UUID? { omissionPublication }
+  /// Whether the projected session snapshot currently offers Undo.
+  /// This is presentation state, not a reservation; admission may change before a command runs.
   public var canUndo: Bool { availability.canUndo }
+  /// Whether the projected session snapshot currently offers Redo.
+  /// An omission publication fence suppresses both Undo and Redo.
   public var canRedo: Bool { availability.canRedo }
-  /// The exact scope, generation, and version used by native presentation.
+  /// The projected scope, generation, version, and eligibility used by native presentation.
+  /// Includes session-level omission fences in addition to engine availability.
+  /// Before opening, commands are unavailable; the version advances when the
+  /// projection or underlying engine version changes.
   public var availability: HistorySnapshot {
     let source = engine?.snapshot ?? HistorySnapshot(
       canUndo: false, canRedo: false, isSuspended: false, hasPending: opening != nil)
@@ -112,8 +134,15 @@ struct WorkHistoryRegistration: Codable {
     projectedEngineVersion = source.version
     return projection
   }
+  /// Whether asynchronous opening or a history command is pending.
+  /// Provisional Work input alone is detected by ``canSave``, not this property.
   public var isPending: Bool { opening != nil || engine?.snapshot.hasPending == true }
+  /// Whether unresolved engine evidence or an omission fence suspends history use.
+  /// A suspended session requires reconciliation or completion of the publication boundary.
   public var isSuspended: Bool { omissionPending || engine?.snapshot.isSuspended == true }
+  /// Whether the opened session is live, has no pending or suspended operation,
+  /// and the Work's Manuscript and resources exactly match accepted state.
+  /// Hosts must await opening and settle provisional input before ordinary saving.
   public var canSave: Bool {
     !closed && engine != nil && !isPending && !isSuspended &&
       work?.manuscript == committed && work?.resources == committedResources

@@ -108,6 +108,9 @@ private struct WorkHistoryEvidence: Codable {
 
   // MARK: Host callbacks
 
+  // UndoKit invokes these registered callbacks after transaction admission.
+  // All three routes share the host's validation and atomic receipt boundary;
+  // UndoKit owns ordering, while this adapter owns Work meaning and compensation.
   func apply(_ commands: [(UUID, WorkHistoryChange)], context: HistoryOperationContext) async
     -> HistoryTypedOutcome<WorkHistoryChange> {
     execute(commands, token: context.token)
@@ -123,6 +126,8 @@ private struct WorkHistoryEvidence: Codable {
     execute(effects, token: context.token)
   }
 
+  // Recovery queries the durable receipt instead of repeating a possibly
+  // accepted edit. Absence or unreadable evidence is unresolved, never no-effect.
   func outcome(for token: HistoryToken) async -> HistoryTypedOutcome<WorkHistoryChange> {
     guard let session else { return .unresolved }
     do {
@@ -183,6 +188,8 @@ private struct WorkHistoryEvidence: Codable {
         receipt: WorkStore.HistoryReceipt(
           commandID: token.command, fingerprint: Self.receiptFingerprint(token),
           accepted: true, evidence: try PropertyListEncoder().encode(evidence)))
+      // Main-actor isolation does not prevent later input across async awaits.
+      // Advance accepted state without erasing a newer provisional editor snapshot.
       let hasLaterProvisionalInput = work.manuscript != session.committed && work.manuscript != state.manuscript
       session.committed = state.manuscript
       session.committedResources = state.resources

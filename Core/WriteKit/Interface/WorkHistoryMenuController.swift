@@ -13,6 +13,18 @@ import AppKit
   private let restoreFinished: @MainActor () -> Void
   private let reportError: @MainActor (Error) -> Void
 
+  /// Create a retained native menu target for one history session.
+  /// All supplied closures run on the main actor and are retained by this controller.
+  /// - Parameters:
+  ///   - history: Open session whose checkpoint metadata populates the menu.
+  ///   - save: Native document save, awaited after creating a checkpoint.
+  ///   - restored: Refresh presentation after successful checkpoint restoration.
+  ///   - reportError: Present creation, save, admission, or restoration errors.
+  ///   - willRestore: Settle/admit native restoration synchronously; throwing prevents it from being queued.
+  ///   - restoreFinished: Release host restoration admission after an admitted attempt, including failure.
+  ///
+  /// Capture retaining hosts weakly. A checkpoint may exist in live history even if
+  /// the subsequent native save fails; the host must not announce it as saved.
   public init(
     history: WorkHistorySession, save: @escaping @MainActor () async throws -> Void,
     restored: @escaping @MainActor () -> Void, reportError: @escaping @MainActor (Error) -> Void,
@@ -28,7 +40,13 @@ import AppKit
     self.reportError = reportError
   }
 
-  /// Creates a bounded menu of saved checkpoint metadata. Opening it does not reconstruct historical content.
+  /// Create a snapshot menu of checkpoint metadata without reconstructing historical content.
+  /// - Returns: A new menu listing at most the session's default checkpoint query limit.
+  /// - Throws: Errors reading checkpoint metadata.
+  ///
+  /// Item enablement is captured from ``WorkHistorySession/canSave`` at creation;
+  /// rebuild the menu when session state changes. Retain this controller while
+  /// using its menu because it is the native action target.
   public func menu() throws -> NSMenu {
     let menu = NSMenu(
       title: NSLocalizedString(
@@ -52,6 +70,8 @@ import AppKit
       item.isEnabled = history.canSave
       menu.addItem(item)
     }
+    // AppKit otherwise validates items automatically. This snapshot menu owns
+    // its explicit canSave projection; actual async commands still validate admission.
     menu.autoenablesItems = false
     return menu
   }
@@ -85,6 +105,8 @@ import AppKit
   @objc private func restoreCheckpoint(_ sender: NSMenuItem) {
     guard let id = sender.representedObject as? UUID else { return }
     do { try willRestore() } catch { reportError(error); return }
+    // The menu action admits restoration before scheduling async work. Once
+    // admitted, release the host's fence on every exit, including history failure.
     Task {
       defer { restoreFinished() }
       do {

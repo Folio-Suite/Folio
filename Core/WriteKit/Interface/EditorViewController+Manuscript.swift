@@ -6,6 +6,8 @@ import FolioKit
 
 extension EditorViewController {
   func displayWork() {
+    // Programmatic display must not be mistaken for native input by delegate
+    // callbacks; loading brackets text storage, typing attributes, and selection.
     loading = true
     let text = NSMutableAttributedString(string: "")
     let paragraphs = unitText.paragraphs
@@ -46,6 +48,8 @@ extension EditorViewController {
 
   /// Refresh authored text after a finalized history operation without creating an
   /// editor change or moving the user's current selection to another Content Unit.
+  /// The UTF-16 selection range is clamped to the refreshed text. An unloaded
+  /// editor or a removed Content Unit is left untouched.
   public func refreshFromWork() {
     guard isViewLoaded, work.text(withIdentifier: contentUnitIdentifier) != nil else { return }
     let selection = textView.selectedRange
@@ -59,13 +63,26 @@ extension EditorViewController {
         length: min(selection.length, end - min(selection.location, end))))
   }
 
+  /// Enable or fence native text and semantic actions during host history transitions.
+  /// - Parameter blocked: `true` to make the text surface read-only and reject semantic actions.
+  /// The semantic-action flag is retained before view loading. Load the view
+  /// before calling when native text editability must also change. This does
+  /// not settle pending input.
   public func setSemanticEditingBlocked(_ blocked: Bool) {
     semanticEditingBlocked = blocked
     if isViewLoaded { textView.isEditable = !blocked }
   }
 
+  /// NSTextView delegate hook returning the host's shared manager for native editing.
+  /// - Parameter view: The text view requesting an undo manager.
+  /// - Returns: The manager supplied to the editor factory.
+  /// Hosts should let AppKit request it rather than installing an independent text history.
   public func undoManager(for view: NSTextView) -> UndoManager? { editingUndoManager }
 
+  /// NSText delegate hook that captures native text into the Work and refreshes formatting.
+  /// - Parameter notification: The native text-change notification.
+  /// Programmatic loading is ignored. The `textDidChange` closure reports provisional
+  /// content; durable submission and document change counts remain host responsibilities.
   public func textDidChange(_ notification: Notification) {
     guard !loading else { return }
     captureText()
@@ -116,6 +133,9 @@ extension EditorViewController {
         : (storage.length > 0
           ? trailingParagraphIdentifier?.rawValue : original.paragraphs.first?.identifier.rawValue)
       var identity = rawIdentity.flatMap { try? FolioIdentifier(rawValue: $0) } ?? .make()
+      // Native paragraph splits can inherit the original paragraph attribute.
+      // Reuse the first occurrence and mint identities for duplicates, preserving
+      // the Manuscript's uniqueness invariant after typing or paste.
       if identifiers.contains(identity) { identity = .make() }
       identifiers.insert(identity)
       var runs: [TextRun] = []
@@ -198,6 +218,8 @@ extension EditorViewController {
   func updateFormattingWarning() {
     guard let layout = textView.layoutManager, let storage = textView.textStorage else { return }
     let whole = NSRange(location: 0, length: (textView.string as NSString).length)
+    // Layout-manager temporary attributes affect display only. Keeping warnings
+    // out of text storage prevents copy/paste and native saving from authoring them.
     layout.removeTemporaryAttribute(.backgroundColor, forCharacterRange: whole)
     var ranges: [NSRange] = []
     if !unitText.formattingWarningDismissed {
@@ -222,6 +244,8 @@ extension EditorViewController {
     guard isViewLoaded, !loading, !layingOutFormattingMarkers,
       let layout = textView.layoutManager, let container = textView.textContainer
     else { return }
+    // ensureLayout can cause geometry callbacks. Fence reentry while measuring
+    // glyph lines and moving marker subviews using text-container coordinates.
     layingOutFormattingMarkers = true
     defer { layingOutFormattingMarkers = false }
     layout.ensureLayout(for: container)
