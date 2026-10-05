@@ -5,9 +5,16 @@ import AppKit
 import FolioKit
 
 /// Storyboard Manuscript sidebar with retained editors for one Work's Content Units.
+///
+/// The controller retains its Work and per-unit editors, all sharing the host's
+/// undo manager. Calls and callbacks run on the main actor. Callback closures
+/// are retained; capture a retaining host weakly to avoid cycles.
 @MainActor
 public final class ManuscriptViewController: NSViewController,
   NSTableViewDataSource, NSTableViewDelegate {
+  /// Work presented by this controller. Reassignment removes all retained editors
+  /// and clears selection before selecting the replacement Work's first unit.
+  /// The host must settle native input and resolve its undo/history boundary first.
   public var work: Work! {
     didSet {
       activeEditor?.view.removeFromSuperview()
@@ -18,12 +25,22 @@ public final class ManuscriptViewController: NSViewController,
       if isViewLoaded { selectUnit(withIdentifier: work.text.identifier) }
     }
   }
+  /// Currently attached unit editor; absent until initial view setup selects a unit.
   public private(set) var activeEditor: EditorViewController!
+  /// Transient sidebar selection, independent of the authored Manuscript order.
   public private(set) var selectedUnitIdentifier: FolioIdentifier?
+  /// Monotonically increasing count of changes to the selected identity.
+  /// Hosts can compare revisions to avoid replacing newer user navigation after asynchronous work.
   public private(set) var navigationRevision = 0
+  /// Called synchronously after native content or a structural action changes
+  /// provisional Work state. Durable hosts count changes only after history accepts them.
   public var workDidChange: (() -> Void)?
+  /// Forwards the active editors' undoable transient typing-state notifications.
   public var transientNativeEdit: (() -> Void)?
+  /// Called at native edit grouping and navigation boundaries to request host
+  /// settlement. The callback itself does not wait for a durable transaction.
   public var nativeEditingDidSettle: (() -> Void)?
+  /// Called when the sidebar or an editor requests the host's history presentation.
   public var historyRequested: (() -> Void)?
 
   @IBOutlet private var unitTable: NSTableView!
@@ -39,6 +56,12 @@ public final class ManuscriptViewController: NSViewController,
   private var updatingSelection = false
   private var semanticEditingBlocked = false
 
+  /// Create the bundled sidebar/editor host with one shared undo boundary.
+  /// - Parameters:
+  ///   - work: The Work strongly retained by this controller.
+  ///   - undoManager: Host-owned manager used by every retained unit editor.
+  /// - Returns: A configured controller whose view is loaded on demand.
+  /// A missing storyboard scene triggers a precondition failure.
   public static func make(work: Work, undoManager: UndoManager) -> ManuscriptViewController {
     guard
       let controller = NSStoryboard(name: "Editor", bundle: writeKitBundle)
@@ -51,6 +74,8 @@ public final class ManuscriptViewController: NSViewController,
     return controller
   }
 
+  /// AppKit lifecycle hook that connects the loaded sidebar and selects the first unit.
+  /// Hosts should use ``make(work:undoManager:)`` and let AppKit invoke this hook.
   public override func viewDidLoad() {
     super.viewDidLoad()
     addButton.setAccessibilityLabel(
@@ -87,6 +112,9 @@ public final class ManuscriptViewController: NSViewController,
     selectUnit(withIdentifier: work.text.identifier)
   }
 
+  /// Load the bundled document window, attaching this controller and the active toolbar.
+  /// - Returns: A new window controller for the host to retain and register with its document.
+  /// Loads the sidebar view; a missing window scene triggers a precondition failure.
   public func makeWindowController() -> NSWindowController {
     _ = view
     guard
@@ -101,8 +129,16 @@ public final class ManuscriptViewController: NSViewController,
     return window
   }
 
+  /// NSTableView data-source hook returning the current flat Manuscript unit count.
+  /// - Parameter tableView: The sidebar requesting its row count.
   public func numberOfRows(in tableView: NSTableView) -> Int { work.manuscript.units.count }
 
+  /// NSTableView data-source hook returning the authored title for a sidebar row.
+  /// - Parameters:
+  ///   - tableView: The sidebar requesting a displayed value.
+  ///   - tableColumn: The requesting column; this single-title presentation ignores it.
+  ///   - row: A valid index in the current Manuscript.
+  /// - Returns: The Content Unit title at that row.
   public func tableView(
     _ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?,
     row: Int
@@ -110,17 +146,29 @@ public final class ManuscriptViewController: NSViewController,
     work.manuscript.units[row].title
   }
 
+  /// NSTableView delegate hook that attaches the selected unit's retained editor.
+  /// - Parameter notification: The sidebar's selection-change notification.
+  /// Programmatic selection synchronization is ignored to prevent recursive navigation.
   public func tableViewSelectionDidChange(_ notification: Notification) {
     guard !updatingSelection, unitTable.selectedRow >= 0 else { return }
     selectUnit(withIdentifier: work.manuscript.units[unitTable.selectedRow].identifier)
   }
 
+  /// Select and attach an existing unit, retaining editors for later navigation and Undo.
+  /// - Parameters:
+  ///   - identifier: Unit to select; an absent identity leaves presentation unchanged.
+  ///   - focus: Whether to make the selected text view first responder when a window exists.
+  ///
+  /// Breaks the previous editor's typing coalescing and requests host settlement before
+  /// switching. Selection is transient and creates no authored history transaction.
   public func selectUnit(withIdentifier identifier: FolioIdentifier, focus: Bool = true) {
     guard let unit = work.text(withIdentifier: identifier) else { return }
     _ = view
     activeEditor?.textView?.breakUndoCoalescing()
     nativeEditingDidSettle?()
     if selectedUnitIdentifier != identifier { navigationRevision += 1 }
+    // Detach the view but keep its child controller and text storage alive:
+    // native Undo actions may still target an editor for a nonvisible unit.
     activeEditor?.view.removeFromSuperview()
     let editor: EditorViewController
     if let existing = editors[identifier] {
@@ -148,6 +196,8 @@ public final class ManuscriptViewController: NSViewController,
     editor.view.autoresizingMask = [.width, .height]
     editorHost.addSubview(editor.view)
     if let documentWindowController { editor.connectToolbar(documentWindowController) }
+    // reloadData/selectRowIndexes can notify the delegate. Fence those callbacks
+    // while projecting the selected identity into the table and title field.
     updatingSelection = true
     unitTable.reloadData()
     let index = work.manuscript.units.firstIndex(where: { $0.identifier == unit.identifier })!
@@ -173,6 +223,9 @@ public final class ManuscriptViewController: NSViewController,
     }
   }
 
+  /// Fence text, title, add, and reorder controls during host history transitions.
+  /// - Parameter blocked: Whether semantic changes should be refused.
+  /// Propagates to retained editors; navigation and history presentation remain available.
   public func setSemanticEditingBlocked(_ blocked: Bool) {
     semanticEditingBlocked = blocked
     guard isViewLoaded else { return }
@@ -185,13 +238,19 @@ public final class ManuscriptViewController: NSViewController,
     for editor in editors.values { editor.setSemanticEditingBlocked(blocked) }
   }
 
+  /// Whether the active editor contains provisional input-method composition.
+  /// Returns `false` without a loaded active text view; hosts must defer durable settlement
+  /// until marked input is resolved.
   public var hasMarkedText: Bool { activeEditor?.textView?.hasMarkedText() ?? false }
 
+  /// Break the active editor's typing coalescing and invoke the settlement callback.
+  /// Does not commit marked text, await durable acceptance, or force the title field to end editing.
   public func settleNativeEditing() {
     activeEditor?.textView?.breakUndoCoalescing()
     nativeEditingDidSettle?()
   }
 
+  /// Forward a native History action to ``historyRequested``; no history mutation occurs.
   @IBAction public func showHistory(_ sender: Any?) { historyRequested?() }
 
   private func applyManuscript(_ manuscript: Manuscript, selection: FolioIdentifier?, name: String) {
@@ -200,6 +259,8 @@ public final class ManuscriptViewController: NSViewController,
     let previousSelection = selectedUnitIdentifier
     activeEditor?.textView?.breakUndoCoalescing()
     nativeEditingDidSettle?()
+    // UndoManager invokes the inverse on the same main-actor UI boundary.
+    // Reentering this method records the reciprocal operation for native Redo.
     documentUndoManager.registerUndo(withTarget: self) { target in
       MainActor.assumeIsolated {
         target.applyManuscript(before, selection: previousSelection, name: name)
@@ -212,6 +273,8 @@ public final class ManuscriptViewController: NSViewController,
     nativeEditingDidSettle?()
   }
 
+  /// Append an empty Content Unit as an undoable provisional edit and select its title field.
+  /// Semantic blocking prevents the authored change; the host accepts and saves it.
   @IBAction public func addContentUnit(_ sender: Any?) {
     var units = work.manuscript.units
     let unit = TextUnit.makeEmpty()
@@ -229,6 +292,9 @@ public final class ManuscriptViewController: NSViewController,
     unitTitle.selectText(nil)
   }
 
+  /// Apply the title field to the selected unit as an undoable provisional edit.
+  /// Trims surrounding whitespace and substitutes the localized Untitled title for
+  /// an empty value. Missing selection, unchanged titles, or semantic blocking create no edit.
   @IBAction public func renameContentUnit(_ sender: Any?) {
     guard let selectedUnitIdentifier, let unit = work.text(withIdentifier: selectedUnitIdentifier)
     else { return }
@@ -258,7 +324,11 @@ public final class ManuscriptViewController: NSViewController,
         comment: "Undo action name for editing a Content Unit title; AppKit adds Undo or Redo."))
   }
 
+  /// Move the selected unit one position earlier as an undoable provisional edit.
+  /// Does nothing at the beginning of the Manuscript or while semantic editing is blocked.
   @IBAction public func moveContentUnitUp(_ sender: Any?) { move(by: -1) }
+  /// Move the selected unit one position later as an undoable provisional edit.
+  /// Does nothing at the end of the Manuscript or while semantic editing is blocked.
   @IBAction public func moveContentUnitDown(_ sender: Any?) { move(by: 1) }
 }
 

@@ -23,6 +23,9 @@ extension EditorViewController {
     textDidChange?()
   }
 
+  /// Dismiss this unit's formatting warning without changing its words or formatting.
+  /// Registers native Undo for the stored dismissal state and requests settlement.
+  /// Semantic editing must be unblocked; the sender is an optional native action source.
   @IBAction public func dismissFormattingWarning(_ sender: Any?) {
     formattingConflictPopover?.close()
     setFormattingWarningDismissed(true)
@@ -34,6 +37,11 @@ extension EditorViewController {
     nativeEditingDidSettle?()
   }
 
+  /// Convert conflicting explicit Bold/Italic throughout this unit into semantic emphasis.
+  /// Preserves words, underline, and strikethrough, clears converted presentation
+  /// flags, and dismisses the warning as one native Undo group. Also converts
+  /// conflicting insertion attributes when the selection is empty.
+  /// Does nothing while semantic editing is blocked; requests host settlement afterward.
   @IBAction public func convertPresentationToEmphasis(_ sender: Any?) {
     guard !semanticEditingBlocked else { return }
     formattingConflictPopover?.close()
@@ -58,6 +66,9 @@ extension EditorViewController {
       "formatting.convert-to-emphasis.undo", tableName: nil, bundle: writeKitBundle,
       value: "Convert Presentation to Emphasis",
       comment: "Undo action name for converting visual Bold or Italic into semantic emphasis.")
+    // Conversion changes authored attributes, insertion attributes, and warning
+    // dismissal together. Keep the host from settling these as separate commands
+    // until the explicit native Undo group has closed.
     coordinatingFormattingGroup = true
     editingUndoManager.beginUndoGrouping()
     editAttributes(
@@ -87,13 +98,24 @@ extension EditorViewController {
     updateFormattingControls()
   }
 
+  /// NSTextView delegate hook refreshing mixed/on/off controls after selection changes.
+  /// - Parameter notification: Native selection-change notification.
+  /// This presentation refresh does not create an authored edit.
   public func textViewDidChangeSelection(_ notification: Notification) {
     updateFormattingControls()
   }
+  /// NSTextView delegate hook refreshing controls after insertion attributes change.
+  /// - Parameter notification: Native typing-attribute notification.
+  /// Typing appearance alone does not rewrite existing authored runs.
   public func textViewDidChangeTypingAttributes(_ notification: Notification) {
     updateFormattingControls()
   }
 
+  /// Toggle semantic Emphasis for selected text, or for future typing at an insertion point.
+  /// An entirely emphasized selection is cleared; mixed or unformatted selection
+  /// is set to Emphasis. Explicit presentation is preserved. Selected text changes
+  /// register native Undo; insertion-only changes configure future typing.
+  /// Does nothing while semantic editing is blocked.
   @IBAction public func toggleEmphasis(_ sender: Any?) {
     toggle(
       EditorAttribute.emphasis, value: TextEmphasis.emphasis.rawValue,
@@ -104,6 +126,10 @@ extension EditorViewController {
           "Undo action name for applying semantic emphasis, distinct from visual Italic. AppKit adds Undo or Redo."
       ))
   }
+  /// Toggle semantic Strong Emphasis for selected text or future typing.
+  /// Clears an entirely matching selection, otherwise sets this exclusive semantic
+  /// category while preserving explicit presentation. Selected text changes are
+  /// undoable; insertion-only changes configure typing. Semantic blocking prevents the action.
   @IBAction public func toggleStrongEmphasis(_ sender: Any?) {
     toggle(
       EditorAttribute.emphasis, value: TextEmphasis.strongEmphasis.rawValue,
@@ -114,6 +140,10 @@ extension EditorViewController {
           "Undo action name for applying strong semantic emphasis, distinct from visual Bold. AppKit adds Undo or Redo."
       ))
   }
+  /// Toggle semantic Very Strong Emphasis for selected text or future typing.
+  /// Clears an entirely matching selection, otherwise sets this exclusive category
+  /// while preserving explicit presentation. Selected text changes are undoable;
+  /// insertion-only changes configure typing. Semantic blocking prevents the action.
   @IBAction public func toggleVeryStrongEmphasis(_ sender: Any?) {
     toggle(
       EditorAttribute.emphasis, value: TextEmphasis.veryStrongEmphasis.rawValue,
@@ -122,6 +152,10 @@ extension EditorViewController {
         value: "Very Strong Emphasis",
         comment: "Undo action name for the strongest semantic emphasis level."))
   }
+  /// Toggle explicit Bold for selected text or future typing, preserving semantic emphasis.
+  /// An entirely bold selection is cleared; otherwise Bold is applied throughout it.
+  /// Selected text changes register native Undo; insertion-only changes configure
+  /// typing. Does nothing while semantic editing is blocked.
   @IBAction public func toggleBold(_ sender: Any?) {
     toggle(
       EditorAttribute.bold, value: 1,
@@ -131,6 +165,10 @@ extension EditorViewController {
         comment:
           "Undo action name for visual bold formatting, distinct from semantic Strong Emphasis."))
   }
+  /// Toggle explicit Italic for selected text or future typing, preserving semantic emphasis.
+  /// An entirely italic selection is cleared; otherwise Italic is applied throughout it.
+  /// Selected text changes register native Undo; insertion-only changes configure
+  /// typing. Does nothing while semantic editing is blocked.
   @IBAction public func toggleItalic(_ sender: Any?) {
     toggle(
       EditorAttribute.italic, value: 1,
@@ -139,6 +177,10 @@ extension EditorViewController {
         value: "Italic",
         comment: "Undo action name for visual italic formatting, distinct from semantic Emphasis."))
   }
+  /// Toggle explicit Underline for selected text or future typing.
+  /// An entirely underlined selection is cleared; otherwise Underline is applied
+  /// throughout it. Selected text changes are undoable; insertion-only changes
+  /// configure typing. Does nothing while semantic editing is blocked.
   @IBAction public func toggleUnderline(_ sender: Any?) {
     toggle(
       EditorAttribute.underline, value: 1,
@@ -147,6 +189,11 @@ extension EditorViewController {
         value: "Underline",
         comment: "Undo action name for visual underline formatting."))
   }
+  /// Toggle explicit Strikethrough for selected text or future typing.
+  /// Preserves authored words and creates no Proposed Revision. An entirely matching
+  /// selection is cleared; otherwise Strikethrough is applied throughout it. Selected
+  /// text changes are undoable; insertion-only changes configure typing.
+  /// Does nothing while semantic editing is blocked.
   @IBAction public func toggleStrikethrough(_ sender: Any?) {
     toggle(
       EditorAttribute.strikethrough, value: 1,
@@ -223,6 +270,10 @@ extension EditorViewController {
     }
   }
 
+  /// Remove semantic emphasis and explicit character presentation from selected text
+  /// or future typing, preserving paragraph alignment and words.
+  /// Selected text changes register native Undo; insertion-only changes configure
+  /// typing. Does nothing while semantic editing is blocked.
   @IBAction public func clearFormatting(_ sender: Any?) {
     guard !semanticEditingBlocked else { return }
     let clear: (inout [NSAttributedString.Key: Any]) -> Void = { attributes in
@@ -265,6 +316,8 @@ extension EditorViewController {
       transform(&changed)
       after.setAttributes(changed, range: subrange)
     }
+    // Split native typing from a semantic formatting action so the host can
+    // accept the preceding text before this separately undoable attribute change.
     textView.breakUndoCoalescing()
     nativeEditingDidSettle?()
     applyFormatting(after, range: range, actionName: name)
@@ -281,6 +334,9 @@ extension EditorViewController {
         target.applyFormatting(previous, range: range, actionName: actionName)
       }
     }
+    // Batch storage notifications while applying attributes, then use the text
+    // view's completion hook to reach textDidChange and capture authored values.
+    // The explicit inverse above owns Undo for this direct storage mutation.
     storage.beginEditing()
     text.enumerateAttributes(
       in: NSRange(location: 0, length: text.length), options: []

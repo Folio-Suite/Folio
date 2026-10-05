@@ -6,7 +6,15 @@ import FolioKit
 import UndoKit
 import WriteKit
 
+/// The application-owned bridge between AppKit’s document lifecycle and a WriteKit Work.
+///
+/// `Info.plist` registers this class as `NSDocumentClass`. AppKit’s shared document
+/// controller instantiates it for New/Open, then calls the document overrides below.
+/// WriteKit owns the content and editor; this host coordinates windows, native save
+/// completion, editing barriers, and document change counts.
 @MainActor final class WriteDocument: NSDocument {
+    // This initial Work supplies content for a new document. Opening an existing
+    // package replaces it in adopt(_:), before the document’s editor is presented.
     private(set) var work = Work()
     private var nativeHistory: NativeHistoryRouter?
     private var historyMenu: WorkHistoryMenuController?
@@ -38,8 +46,12 @@ import WriteKit
         hasUndoManager = false
     }
 
+    // AppKit uses in-place autosaving for named documents. It still calls our save
+    // override, which waits for authoritative history before publishing package bytes.
     override static var autosavesInPlace: Bool { true }
 
+    // Native change counts describe accepted edits. Pending asynchronous submissions
+    // must also keep the document dirty so AppKit cannot treat them as already saved.
     override var isDocumentEdited: Bool {
         super.isDocumentEdited || submissionsPending > 0 ||
             (work.history.map { work.manuscript != $0.committedManuscript } ?? false)
@@ -50,6 +62,9 @@ import WriteKit
             (work.history.map { work.manuscript != $0.committedManuscript } ?? false)
     }
 
+    // Called by NSDocumentController’s open/create flow. The app’s Main storyboard
+    // contains the menus; the editor window is instantiated separately by WriteKit.
+    // addWindowController makes AppKit aware of the document/window relationship.
     override func makeWindowControllers() {
         let history: WorkHistorySession
         do { history = try work.enableHistory() } catch { presentError(error); return }
@@ -73,6 +88,8 @@ import WriteKit
         controller.window?.center()
         addWindowController(controller)
         editor.setSemanticEditingBlocked(router.isEditingBlocked)
+        // Showing an editor is not proof that interrupted history has reconciled.
+        // The router keeps semantic editing blocked until this asynchronous step settles.
         Task { @MainActor [weak self] in
             do {
                 try await history.reconcile()
@@ -95,6 +112,8 @@ import WriteKit
 // MARK: - Native history coordination
 
 extension WriteDocument {
+    // The native UndoManager synchronously invokes router callbacks, while durable
+    // history may suspend. The router’s invocation/barrier state spans that gap.
     private func configure(router: NativeHistoryRouter, history: WorkHistorySession) {
         history.didChange = { [weak self] in self?.publishHistoryAvailability() }
         router.settleEditing = { [weak self] in self?.settleNativeEditing() ?? false }
@@ -132,6 +151,9 @@ extension WriteDocument {
         nativeHistory.update(snapshot: historySnapshot(history))
     }
 
+    // NSTextView can have uncommitted input-method composition (marked text).
+    // Ask each editor to settle first; saving an intermediate composition would
+    // turn a provisional user gesture into an authoritative history change.
     private func settleNativeEditing() -> Bool {
         for controller in windowControllers {
             guard let manuscript = controller.contentViewController as? ManuscriptViewController else { continue }
@@ -160,6 +182,8 @@ extension WriteDocument {
         submittedManuscript = manuscript
         nativeHistory.didQueueProvisionalEdit()
         submissionsPending += 1
+        // Each task waits for the preceding submission even though actors can be
+        // reentered at await points. This preserves the editor’s submission order.
         let previous = submissionTail
         submissionTail = Task { @MainActor [weak self] in
             if let previous { await previous.value }
@@ -179,6 +203,8 @@ extension WriteDocument {
         }
     }
 
+    // NSDocument does not observe our Work value automatically. Explicitly update
+    // its change count only when the authoritative committed snapshot has changed.
     private func accountCommittedChange(_ kind: NSDocument.ChangeType) {
         guard let history = work.history else { return }
         let committed = history.committedManuscript
@@ -238,6 +264,8 @@ extension WriteDocument {
         }
     }
 
+    // @IBAction exposes an Objective-C action selector to Cocoa. The toolbar/editor
+    // callback reaches this host, which owns the menu and restoration coordination.
     @IBAction func showHistory(_ sender: Any?) {
         guard let history = work.history, let window = windowControllers.first?.window,
               let contentView = window.contentView else { return }
@@ -398,6 +426,9 @@ extension WriteDocument {
         }
     }
 
+    // AppKit enters here for explicit saves and autosaves. Flush the asynchronous
+    // host history before delegating the actual safe-save machinery to NSDocument.
+    // Its completion handler, not the return from our write hook, reports publication.
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType,
                        completionHandler: @escaping (Error?) -> Void) {
         guard !documentSaveInProgress else {
@@ -419,6 +450,9 @@ extension WriteDocument {
         }
     }
 
+    // Editing notifications restart this delay; they do not write files directly.
+    // After native editing becomes idle, scheduleAutosaving asks AppKit to schedule
+    // its normal document save path rather than introducing a second writer.
     private func scheduleAutosavingAfterNativeIdle() {
         autosaveGeneration += 1
         let generation = autosaveGeneration
@@ -435,6 +469,9 @@ extension WriteDocument {
         while let autosaveIdleTask { await autosaveIdleTask.value }
     }
 
+    // AppKit’s close entry point is synchronous, but the durable history session has
+    // asynchronous shutdown. Keep this document alive until it finishes, and call
+    // super.close() only on success; a failure leaves the document available to retry.
     override func close() {
         guard let history = work.history else { super.close(); return }
         guard !closeInProgress else { return }
@@ -460,6 +497,9 @@ extension WriteDocument {
 
     private func finishClose() { super.close() }
 
+    // Reading supplies a replacement Work through this single host boundary. Once
+    // a live history session exists, replacement is refused rather than mixing its
+    // native undo registrations with a different Work.
     func adopt(_ opened: Work) throws {
         guard work.history == nil else { throw WorkHistoryError.busy }
         nativeHistory?.undoManager.removeAllActions()

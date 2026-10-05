@@ -46,6 +46,10 @@ extension WorkHistorySession {
   }
 
   /// Reconcile any delivered command from durable host receipts before enabling Undo/Redo.
+  /// Opens the engine on demand and refreshes availability without replaying an
+  /// already accepted authored edit. Reconciliation may recover accepted state.
+  /// - Throws: Opening or recovery errors, or ``WorkHistoryError/busy`` while
+  ///   an omission fence or unresolved evidence still prevents progress.
   public func reconcile() async throws {
     guard !omissionPending else { throw WorkHistoryError.busy }
     let engine: any HistoryTransactions = try await transactions()
@@ -57,6 +61,8 @@ extension WorkHistorySession {
   func ready() async throws -> HistoryEngine {
     guard !closed else { throw WorkHistoryError.closed }
     if let engine { return engine }
+    // Main-actor tasks can interleave while awaiting disk opening. Reuse the
+    // same task so concurrent callers cannot register two engines for one store.
     if let opening { return try await opening.value }
     let typed = try WorkHistoryAdapter.registration(for: self)
     let adapter = MainActorHistoryRegisteredHost(typed)
@@ -83,7 +89,14 @@ extension WorkHistorySession {
     try await ready()
   }
 
-  /// Submit a complete settled manuscript edit. Known no-ops create no transaction.
+  /// Submit a complete settled Manuscript edit. Known no-ops create no transaction.
+  /// - Parameter manuscript: Proposed snapshot with the accepted Manuscript identity.
+  /// - Throws: Semantic rejection, lifecycle or storage errors, or unresolved delivery.
+  ///
+  /// Current accepted resource membership is preserved. Await submissions in
+  /// intended host order; concurrent independent proposals cannot infer each
+  /// other's prior state. On unresolved failure, fence new edits and reconcile
+  /// before resuming; a thrown error is not proof that no durable effect occurred.
   public func submit(manuscript: Manuscript) async throws {
     try await submit(manuscript: manuscript, origin: nil)
   }
@@ -109,11 +122,20 @@ extension WorkHistorySession {
     try finish(result)
   }
 
+  /// Request one durable Undo operation in the current history generation.
+  /// Settle and submit native input first; this method does not settle editor state.
+  /// - Throws: Unavailable or rejected admission, unresolved delivery, opening errors,
+  ///   or ``WorkHistoryError/busy`` during omission publication.
+  /// Refresh editor presentation from accepted Work state after successful completion.
   public func undo() async throws {
     guard !omissionPending else { throw WorkHistoryError.busy }
     let engine: any HistoryTransactions = try await transactions()
     try finish(await engine.undo(expectedGeneration: engine.snapshot.generation))
   }
+  /// Request one durable Redo operation in the current history generation.
+  /// Settle and submit native input first; refresh editor presentation after completion.
+  /// - Throws: Unavailable or rejected admission, unresolved delivery, opening errors,
+  ///   or ``WorkHistoryError/busy`` during omission publication.
   public func redo() async throws {
     guard !omissionPending else { throw WorkHistoryError.busy }
     let engine: any HistoryTransactions = try await transactions()
@@ -122,6 +144,11 @@ extension WorkHistorySession {
 
   /// Select whether new ordinary edits are retained. Re-enabling saves a
   /// coherent Work baseline and cannot reconstruct edits made while Off.
+  /// Off preserves Undo in this open session; the first accepted Off edit cuts
+  /// continuity to older Undo. Checkpoints remain independently recoverable.
+  /// - Parameter mode: Recording policy for future ordinary edits.
+  /// - Throws: ``WorkHistoryError/busy`` unless current input is fully accepted,
+  ///   or opening, encoding, or history-storage errors.
   public func setRecording(_ mode: HistoryRecordingMode) async throws {
     let engine = try await ready()
     guard canSave else { throw WorkHistoryError.busy }
@@ -139,6 +166,8 @@ extension WorkHistorySession {
   /// Fence edits while the host publishes an omission of this coherent Work.
   /// Call after settling native input and before staging or safe replacement.
   /// The returned token identifies the save attempt and its later completion.
+  /// - Returns: Token for cancellation or post-publication completion.
+  /// - Throws: ``WorkHistoryError/busy`` unless ``canSave`` is true.
   public func beginOmissionPublication() throws -> UUID {
     guard canSave else { throw WorkHistoryError.busy }
     let token = UUID()
@@ -151,6 +180,9 @@ extension WorkHistorySession {
 
   /// Release a publication fence after staging or safe replacement failed.
   /// Live Undo and retained history then become available again.
+  /// - Parameter token: Token returned by ``beginOmissionPublication()`` for the failed attempt.
+  /// - Throws: ``WorkHistoryError/busy`` for a different token or once finalization has begun.
+  /// Never cancel after the history-free artifact has been successfully published.
   public func cancelOmissionPublication(_ token: UUID) throws {
     guard omissionPhase == .publishing, omissionPublication == token else {
       throw WorkHistoryError.busy
@@ -166,6 +198,9 @@ extension WorkHistorySession {
   /// A post-publication failure is reported as such; the published package stays
   /// history-free. Retry this call if generation retirement or host-receipt
   /// cleanup fails; new edits and saves remain blocked until both succeed.
+  /// - Parameter token: The successfully published attempt's omission token.
+  /// - Throws: A mismatched or unavailable publication state, history-reset
+  ///   errors, or receipt-cleanup errors. The token remains available for retry.
   public func completeOmissionAfterSave(_ token: UUID) throws {
     guard let engine else { throw WorkHistoryError.busy }
     guard omissionPublication == token, omissionManuscript == committed else {
@@ -190,6 +225,9 @@ extension WorkHistorySession {
   }
 
   /// Retry host-receipt cleanup after an explicit unresolved reset failed late.
+  /// - Throws: ``WorkHistoryError/busy`` outside that reset-cleanup phase, or
+  ///   persistence errors. On success new edits and saves are unfenced.
+  /// For a published omission, retry ``completeOmissionAfterSave(_:)`` instead.
   public func retryResetReceiptCleanup() throws {
     guard omissionPhase == .stripReceipts, omissionPublication == nil else {
       throw WorkHistoryError.busy
@@ -202,7 +240,13 @@ extension WorkHistorySession {
   /// Acknowledge irrecoverable history continuity after the host has verified its
   /// coherent current Manuscript. The failed history store is copied to an absent
   /// quarantine URL before a new generation is installed. A post-reset receipt
-  /// cleanup failure blocks saves; retry `retryResetReceiptCleanup()` to finish it.
+  /// cleanup failure blocks saves; retry ``retryResetReceiptCleanup()`` to finish it.
+  /// - Parameters:
+  ///   - manuscript: Host-verified coherent snapshot matching the private host store.
+  ///   - destination: Absent local URL for quarantining failed history evidence.
+  /// - Returns: Identity of the newly adopted history generation.
+  /// - Throws: Busy or incompatible state, invalid resource evidence, quarantine,
+  ///   reset, or cleanup errors. This explicitly retires old Undo continuity.
   @discardableResult public func resetUnresolvedHistory(
     adopting manuscript: Manuscript, quarantineAt destination: URL
   ) throws -> UUID {
@@ -241,7 +285,12 @@ extension WorkHistorySession {
     }
   }
 
-  /// Capture a recoverable Manuscript and its current resource membership. The document host must save successfully before announcing a saved checkpoint.
+  /// Capture a recoverable Manuscript and its current resource membership.
+  /// The document host must save successfully before announcing a saved checkpoint.
+  /// - Parameter name: User-facing label retained with the checkpoint.
+  /// - Returns: Checkpoint identity for later restoration.
+  /// - Throws: Busy/unsettled state, or opening, encoding, or history-storage errors.
+  /// Capturing a checkpoint does not mark the host document saved.
   public func createCheckpoint(name: String) async throws -> UUID {
     let retention: any HistoryRetentionManaging = try await ready()
     guard canSave else { throw WorkHistoryError.busy }
@@ -256,6 +305,12 @@ extension WorkHistorySession {
   }
 
   /// Restore through a new undoable edit; the displaced continuation remains in history.
+  /// - Parameter checkpointID: Identity returned by ``createCheckpoint(name:)`` or ``checkpoints(limit:)``.
+  /// - Throws: ``WorkHistoryError/invalidPackage`` for an absent checkpoint,
+  ///   decoding, resource validation, admission, or transaction errors.
+  ///
+  /// Settle native input first. Restoring the current accepted state is a no-op.
+  /// Refresh native editors after acceptance; the operation does not save the document.
   public func restore(checkpointID: UUID) async throws {
     let history: any HistoryReading = try await ready()
     guard let typedRegistration,
@@ -267,7 +322,12 @@ extension WorkHistorySession {
       origin: checkpointID)
   }
 
-  /// Fetch at most one bounded page of checkpoint metadata for a compact or window-based host presentation.
+  /// Fetch at most one bounded page of checkpoint metadata for a host presentation.
+  /// - Parameter limit: Maximum row count in `1...100`, the session's current read-page limit.
+  /// - Returns: The earliest checkpoints in ascending history sequence, or an
+  ///   empty array before the engine opens. This interface has no paging cursor.
+  /// - Throws: Query-limit or storage errors from an opened history engine.
+  /// Does not reconstruct historical content or open the engine on demand.
   public func checkpoints(limit: Int = 100) throws -> [WorkCheckpoint] {
     guard let engine else { return [] }
     let history: any HistoryReading = engine
@@ -277,6 +337,9 @@ extension WorkHistorySession {
   }
 
   /// Finish delivered work and release ownership. No further operations are accepted by this session.
+  /// Suspended recovery evidence is retained; an ordinary close removes private
+  /// working storage on a best-effort basis. The Work's saved package is untouched.
+  /// - Throws: Opening or engine-close errors. On failure the session is not marked closed.
   public func close() async throws {
     if let opening { engine = try await opening.value }
     let preserveRecovery = isSuspended

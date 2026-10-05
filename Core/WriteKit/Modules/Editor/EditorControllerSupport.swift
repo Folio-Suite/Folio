@@ -12,6 +12,8 @@ import FolioKit
   @IBOutlet var helpButton: NSButton!
   @IBOutlet var alignmentButton: NSPopUpButton!
 
+  // AppKit invokes this once the storyboard window and toolbar outlets exist;
+  // loading symbols earlier would access unconnected controls.
   override func windowDidLoad() {
     super.windowDidLoad()
     installSemanticImages()
@@ -28,6 +30,8 @@ import FolioKit
     }
   }
 
+  // Toolbar actions target this window controller in the storyboard. Resolve
+  // the active editor at action time, since sidebar navigation swaps its content.
   var formattingEditor: EditorViewController? {
     if let manuscript = contentViewController as? ManuscriptViewController {
       return manuscript.activeEditor

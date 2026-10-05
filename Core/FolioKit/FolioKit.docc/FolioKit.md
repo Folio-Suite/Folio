@@ -17,6 +17,36 @@ The text model includes identities, Manuscript reading order, text Content Units
 
 ``PackageStaging`` runs a synchronous throwing operation in a unique temporary directory and removes that directory after success or failure. Callers must return results that do not depend on the temporary files remaining.
 
+## Create an authored snapshot
+
+Use stable identities when replacing values after an edit. A new paragraph gets a
+new identity; editing its runs should retain its existing identity.
+
+```swift
+import FolioKit
+
+let paragraph = TextParagraph(
+    identifier: .make(),
+    runs: [TextRun(string: "A first paragraph.", emphasis: .none)]
+)
+let unit = try TextUnit(
+    identifier: .make(), title: "Introduction", paragraphs: [paragraph]
+)
+let manuscript = try Manuscript(identifier: .make(), units: [unit])
+```
+
+These initializers enforce only their documented value-level invariants. For example,
+``TextParagraph`` permits empty runs, while ``TextUnit`` requires at least one paragraph.
+A complete Work has additional persistence invariants enforced by WriteKit. Creating a
+FolioKit snapshot does not save it or register an undo operation.
+
+## Stage temporary output
+
+``PackageStaging/withTemporaryDirectory(_:)`` scopes the lifetime of temporary files
+to a synchronous closure. Return independent bytes or move completed output to a
+caller-owned destination before the closure ends. Returning the temporary URL alone
+does not keep its contents alive. Cleanup is best effort on success and failure.
+
 ## Public interface and hosting
 
 Swift callers use `import FolioKit`. The model and staging implementations have no transitional Objective-C adapters. Apps and Kits ship as a coordinated Suite version; mixed versions are unsupported, and independent binary compatibility is not promised.

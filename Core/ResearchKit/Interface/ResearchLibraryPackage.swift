@@ -15,6 +15,10 @@ public enum ResearchLibraryPackage {
     private static let modelVersion = "FolioResearchLibraryShellV1"
 
     /// Creates a package containing a closed, empty `Library.sqlite` store.
+    ///
+    /// - Returns: An in-memory package wrapper that does not depend on temporary files.
+    /// - Throws: Core Data or filesystem errors while creating and closing the store.
+    /// - Note: The current model contains no Source entities; this creates a shell.
     public static func empty() throws -> FileWrapper {
         try PackageStaging.withTemporaryDirectory { directory in
             let storeURL = directory.appendingPathComponent(storeName)
@@ -25,6 +29,8 @@ public enum ResearchLibraryPackage {
                 at: storeURL,
                 options: [NSSQLitePragmasOption: ["journal_mode": "DELETE"]]
             )
+            // Detaching closes Core Data’s store before its bytes become package content.
+            // A live WAL-backed store cannot be captured by copying only the main SQLite file.
             try coordinator.remove(store)
             return FileWrapper(directoryWithFileWrappers: [
                 storeName: FileWrapper(regularFileWithContents: try Data(contentsOf: storeURL))
@@ -34,6 +40,12 @@ public enum ResearchLibraryPackage {
 
     /// Validates the catalog store while leaving the package and its other
     /// members untouched. Additional Research package members are supported.
+    ///
+    /// - Parameter package: A directory wrapper containing the closed catalog store.
+    /// - Throws: A Cocoa read error for malformed structure or incompatible metadata,
+    ///   or an underlying filesystem/Core Data error while inspecting the copied store.
+    /// - Important: This checks package structure and store metadata, not semantic
+    ///   Source records or the integrity of arbitrary additional members.
     public static func validate(_ package: FileWrapper) throws {
         guard package.isDirectory,
               let members = package.fileWrappers,

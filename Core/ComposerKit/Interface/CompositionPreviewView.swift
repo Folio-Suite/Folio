@@ -8,14 +8,20 @@ import TypographyKit
 @MainActor
 public final class CompositionPreviewView: NSView {
     @IBOutlet private weak var statusLabel: NSTextField?
+    /// Most recent composition, or `nil` before the first input is supplied.
     public private(set) var result: CompositionResult?
 
+    /// Composes input synchronously, refreshes accessible status, and schedules drawing.
+    ///
+    /// AppKit performs the eventual redraw; returning from this method does not mean
+    /// pixels have already been displayed. Unsupported results remain visible as diagnostics.
     public func show(_ input: PublicationPreviewInput) {
         result = ComposerPreview.compose(input)
         updateStatus()
         needsDisplay = true
     }
 
+    /// Configures accessibility when AppKit attaches or detaches this view from a window.
     public override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
         setAccessibilityElement(true)
@@ -60,6 +66,11 @@ public final class CompositionPreviewView: NSView {
         toolTip = status
     }
 
+    /// Draws the current result in AppKit’s active graphics context.
+    ///
+    /// AppKit calls this after invalidation; hosts should use ``show(_:)`` rather than
+    /// invoke drawing directly. TypographyKit also changes the context’s text matrix,
+    /// which Core Graphics does not include in its saved graphics state.
     public override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         NSColor.textBackgroundColor.setFill()
@@ -67,6 +78,8 @@ public final class CompositionPreviewView: NSView {
         guard let result, let context = NSGraphicsContext.current?.cgContext else { return }
         context.saveGState()
         context.setFillColor(NSColor.textColor.cgColor)
+        // This NSView uses the default unflipped (Y-up) coordinates. The result’s
+        // origin is a baseline near the top; subsequent lines proceed down the page.
         result.draw(in: context, at: CGPoint(x: 24, y: bounds.height - 90))
         context.restoreGState()
     }

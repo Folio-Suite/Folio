@@ -134,6 +134,10 @@ extension CompositionEngine {
     }
 
     func resolveFont() throws -> CTFont {
+        // CTFontCreateWithName returns a best match even when the named font is
+        // absent. An object existing is therefore not proof of exact resolution;
+        // verify its PostScript name before accepting the request's font policy.
+        // https://developer.apple.com/documentation/coretext/ctfontcreatewithname(_:_:_:)
         let font = CTFontCreateWithName(request.fontPostScriptName as CFString, request.fontSize, nil)
         let resolved = CTFontCopyPostScriptName(font) as String
         guard resolved.caseInsensitiveCompare(request.fontPostScriptName) == .orderedSame else {
@@ -151,6 +155,9 @@ extension CompositionEngine {
             NSAttributedString.Key(kCTLanguageAttributeName as String): request.language,
         ]
         let line = CTLineCreateWithAttributedString(NSAttributedString(string: source, attributes: attributes))
+        // Grapheme boundaries alone do not protect a shaped ligature from being
+        // split. Core Text's glyph-to-string indices supply the additional starts
+        // for this original-source shaping pass, before line adjustments/material.
         var starts = Set<Int>([0, sourceCount])
         for run in nativeRuns(in: line) {
             let count = CTRunGetGlyphCount(run)
@@ -181,6 +188,9 @@ extension CompositionEngine {
 }
 
 func nativeRuns(in line: CTLine) -> [CTRun] {
+    // Get APIs borrow the CFArray and its elements; do not consume a +1 retain
+    // with takeRetainedValue(). Swift references keep returned runs alive, and
+    // callers copy their glyph data before releasing transient layout objects.
     let array = CTLineGetGlyphRuns(line)
     return (0..<CFArrayGetCount(array)).compactMap { index in
         guard let pointer = CFArrayGetValueAtIndex(array, index) else { return nil }

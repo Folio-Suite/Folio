@@ -19,24 +19,47 @@ The editor supports semantic emphasis categories separately from explicit bold, 
 
 ### Embed the Manuscript editor
 
-Create and use the editor on the main actor. Supply one `UndoManager` to all editors in a Work through ``ManuscriptViewController/make(work:undoManager:)``. The editor loads `Editor.storyboard` from WriteKit's bundle; its window factory supplies the reusable window and controls.
+Create and use the editor on the main actor. The controller retains the Work
+and its per-unit editors. The host retains the resulting window controller
+and owns the document's undo and save boundaries. Callback closures are retained;
+capture a retaining host weakly to avoid reference cycles.
+
+```swift
+import AppKit
+import FolioKit
+import WriteKit
+
+@MainActor
+func makeUnsavedWindow() -> NSWindowController {
+    let work = Work()
+    let undoManager = UndoManager()
+    let editor = ManuscriptViewController.make(work: work, undoManager: undoManager)
+    return editor.makeWindowController()
+}
+```
+
+The host must retain the returned controller, add it to its `NSDocument`, and
+supply change handling. This example creates a local unsaved editor; durable
+hosting also requires the routing and settlement contract below.
+
+Supply one `UndoManager` to all editors in a Work through ``ManuscriptViewController/make(work:undoManager:)``. The editor loads `Editor.storyboard` from WriteKit's bundle; its window factory supplies the reusable window and controls.
 
 For durable hosting, use `NativeHistoryRouter.undoManager` and implement the settlement and accepted-outcome callbacks described below. `workDidChange` reports provisional input; it must not immediately advance the document's authoritative change count. Keep the provisional manager separate from NSDocument's automatic counting. The Write application's `WriteDocument` is the complete native host example.
 
 For native saving, prepare a separate empty package with ``Work/stageSave(from:toEmptyPackageAt:omittingHistory:)`` and let the document host complete safe replacement. The original must be a closed package; preparation never writes into it. Reopen with ``Work/init(contentsOf:)``. ``Work/fileWrapper()`` provides complete in-memory serialization. Durable hosts must finish opening, settle input and finalize pending history before either save path.
 
 To save without retained history, call
-`WorkHistorySession.beginOmissionPublication()` after settling edits, then pass
+``WorkHistorySession/beginOmissionPublication()`` after settling edits, then pass
 `omittingHistory: true` while staging. The publication token fences new edits and
 Undo until the save outcome is known. The
 staged package keeps the current Work and resources, omits `History/` and removes
 obsolete host history receipts from `Work.sqlite`. Keep live Undo until the host
 confirms successful safe replacement, then call
-`WorkHistorySession.completeOmissionAfterSave(_:)` with the token. On failed
-staging or publication, call `cancelOmissionPublication(_:)` to restore live
+``WorkHistorySession/completeOmissionAfterSave(_:)`` with the token. On failed
+staging or publication, call ``WorkHistorySession/cancelOmissionPublication(_:)`` to restore live
 Undo; the original remains intact. If post-publication reset or receipt cleanup
 fails, the session stays fenced; retry completion with
-`pendingOmissionPublication`. Write's `WriteDocument.saveOmittingHistory` and
+``WorkHistorySession/pendingOmissionPublication``. Write's `WriteDocument.saveOmittingHistory` and
 `retryPublishedHistoryOmission` show the native save boundary.
 
 The editor and host menus use ``FormattingImages`` for the semantic Emphasis symbols. The images live in WriteKit's asset catalog, so a host should request them through this API when configuring its own menu items.
@@ -58,8 +81,9 @@ Swift callers import `WriteKit` and `FolioKit`. The Work's ``Work/manuscript`` a
 The public declarations live in `Interface/`:
 
 - `Work.swift` — Work identity, Manuscript access, persistence, resources, and save reports.
-- `WorkHistorySession.swift` and `WorkHistorySession+Operations.swift` — durable
-  history errors, checkpoints, and Work history session operations.
+- `WorkHistorySession.swift`, `WorkHistorySession+Operations.swift`, and
+  `WorkHistorySession+Resources.swift` — durable history errors, checkpoints,
+  Work operations, and resource commands.
 - `WorkHistoryMenuController.swift` — the native checkpoint menu.
 - `ManuscriptViewController.swift` — the Manuscript sidebar and editor host.
 - `EditorViewController.swift` and its `+Manuscript` and `+Formatting` extensions —
@@ -72,15 +96,6 @@ and `Modules/WorkAdapter/`; resources are collected in `Resources/`.
 ## Limitations
 
 The Manuscript supports a flat list of text Content Units. Adding, renaming, and reordering are undoable; selection is transient. Nested and unplaced units are unsupported. The host must resolve pending edits and manage undo history before replacing a Work. The current in-process package adapter does not provide shared Work Session recovery or archival folio export. The interface is evolving and has no independent compatibility guarantee.
-
-## Topics
-
-### Authoring
-
-- ``Work``
-- ``EditorViewController``
-- ``ManuscriptViewController``
-- ``FormattingImages``
 
 ## Incremental native saving
 
@@ -144,12 +159,18 @@ relationships, and recovery. The implementation files live in `Modules/WorkAdapt
 no Folio value types enter UndoKit.
 
 ```swift
-let history = try work.enableHistory()
-try await history.reconcile()
-try await history.submit(manuscript: editedManuscript)
-// Settle all native editing and await submissions before native Save.
-try await history.undo()
-try await history.redo()
+import FolioKit
+import WriteKit
+
+@MainActor
+func acceptAndTraverse(work: Work, editedManuscript: Manuscript) async throws {
+    let history = try work.enableHistory()
+    try await history.reconcile()
+    try await history.submit(manuscript: editedManuscript)
+    // Settle all native editing and await submissions before native Save.
+    if history.canUndo { try await history.undo() }
+    if history.canRedo { try await history.redo() }
+}
 ```
 
 `submit` filters known no-ops. The host must serialize its intended edit order;
@@ -160,14 +181,14 @@ Saving refuses pending, suspended, or unsettled work. After reopening, await
 ``WorkHistorySession/reconcile()`` before enabling native history commands.
 Attachment does not replay edits or mark the document changed.
 
-`WorkHistorySession.setRecording(_:)` selects On or Off for new ordinary edits.
+``WorkHistorySession/setRecording(_:)`` selects On or Off for new ordinary edits.
 Off keeps Undo in this open session; the first accepted Off edit creates a gap
 to older Undo. Turning On records the accepted current Work state as a new
 baseline. For a failed outcome that cannot be reconciled, the host can establish
 its coherent current Manuscript and call
-`WorkHistorySession.resetUnresolvedHistory(adopting:quarantineAt:)`. The method
+``WorkHistorySession/resetUnresolvedHistory(adopting:quarantineAt:)``. The method
 quarantines failed evidence before installing a new generation. Native hosts use
-`WorkHistorySession.availability` for exact scope, generation and version, then
+``WorkHistorySession/availability`` for exact scope, generation and version, then
 explicitly attach the router after a reset.
 Recording preference belongs to the host. An omitted saved Work has no History
 store to carry that preference, so the host persists its app or per-Work policy
@@ -189,4 +210,33 @@ remain in host-owned storage. This is not a minimal-text-delta implementation.
 A history-bearing package declares `durable-history-v1` as a required capability
 and includes the history database and registration in `History/`. This is the
 first implementation format; it carries no migration or backward-compatibility
-promise. Package-definition issue #89 remains deferred.
+promise.
+
+## Topics
+
+### Work snapshots and native packages
+
+- ``Work``
+- ``workDocumentType``
+- ``WorkSaveReport``
+- ``Work/stageSave(from:toEmptyPackageAt:omittingHistory:)``
+
+### Native editing and presentation
+
+- ``ManuscriptViewController``
+- ``EditorViewController``
+- ``FormattingImages``
+
+### Durable history and recovery
+
+- ``WorkHistorySession``
+- ``WorkHistoryError``
+- ``WorkCheckpoint``
+- ``WorkHistoryMenuController``
+
+### Opaque resource membership
+
+- ``WorkResource``
+- ``Work/resources``
+- ``WorkHistorySession/importResource(from:)``
+- ``WorkHistorySession/removeResource(withIdentifier:)``

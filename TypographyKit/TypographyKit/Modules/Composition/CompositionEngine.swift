@@ -50,6 +50,9 @@ struct CompositionEngine {
     init(_ request: CompositionRequest) {
         self.request = request
         source = request.occurrences.map(\.text).joined()
+        // NSString and Core Text ranges count UTF-16 code units, whereas Swift
+        // String iteration counts grapheme clusters. Keep this index space for
+        // source bookkeeping so a combining sequence is not mistaken for one unit.
         sourceCount = (source as NSString).length
         selected = Set(request.breaks)
         sourceUnits = request.occurrences.enumerated().flatMap { index, occurrence in
@@ -84,6 +87,8 @@ struct CompositionEngine {
     }
 
     func expandedFont(from font: CTFont) -> CTFont {
+        // Put expansion in the font matrix before shaping. Scaling only drawing
+        // would leave Core Text's reported advances and bounds at the old width.
         var transform = CGAffineTransform(scaleX: request.adjustments.horizontalExpansion, y: 1)
         return CTFontCreateCopyWithAttributes(font, request.fontSize, &transform, nil)
     }
