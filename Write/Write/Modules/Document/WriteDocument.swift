@@ -16,6 +16,8 @@ import WriteKit
     // This initial Work supplies content for a new document. Opening an existing
     // package replaces it in adopt(_:), before the document’s editor is presented.
     private(set) var work = Work()
+    
+    // UndoKit shenanigans
     private var nativeHistory: NativeHistoryRouter?
     private var historyMenu: WorkHistoryMenuController?
     private var submittedManuscript: Manuscript?
