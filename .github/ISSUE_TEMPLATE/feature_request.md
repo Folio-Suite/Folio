@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Propose a user-facing improvement to Folio
 title: ''
 labels: ''
 assignees: ''
@@ -12,14 +12,17 @@ SPDX-FileCopyrightText: 2026 the Folio Project
 SPDX-License-Identifier: MIT
 -->
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Before submitting**
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+- Search existing issues for the same idea.
+- Do not include private documents, account details, or other personal information.
+- For substantial behavior or architecture changes, explain the user need and proposed scope before implementation.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**What problem or need would this address?**
+Describe the situation and who it affects.
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**What would you like to happen?**
+Describe the behavior you are proposing.
+
+**Alternatives and context**
+Describe alternatives you considered or any other useful context.
