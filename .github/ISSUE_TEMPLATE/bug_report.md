@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Report a reproducible problem with Folio
 title: ''
 labels: ''
 assignees: ''
@@ -12,32 +12,26 @@ SPDX-FileCopyrightText: 2026 the Folio Project
 SPDX-License-Identifier: MIT
 -->
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Before submitting**
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+- Search existing issues for the same problem.
+- Do not include private documents, account details, or other personal information.
+- Report suspected security vulnerabilities privately as described in [the Security Policy](https://github.com/Folio-Suite/Folio/blob/main/SECURITY.md), not in a public issue.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**What happened?**
+Describe the problem and what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Steps to reproduce**
+- Step 1:
+- Step 2:
+- Step 3:
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+**Environment**
+- Folio app, Kit, or component:
+- Version or commit:
+- Mac model, if relevant:
+- macOS version:
+- Xcode version, if relevant:
 
 **Additional context**
-Add any other context about the problem here.
+Add any other context. If you attach a screenshot or log, remove private document and account data first.

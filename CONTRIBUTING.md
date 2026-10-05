@@ -25,6 +25,23 @@ Sign). That leaves a linker-signed framework without a Team ID, which library
 validation rejects even when its path is correct. Retain automatic team signing;
 `scripts/check-ci-signing.rb` checks this before CI executes tests.
 
+
+## Community participation
+
+Use GitHub Issues for bug reports and feature proposals, and discuss substantial
+behavior or architecture changes before beginning implementation. The issue
+forms ask for the context maintainers need; use fictional examples and remove
+private or sensitive data from screenshots and logs. Report suspected security
+vulnerabilities privately using the process in [SECURITY.md](SECURITY.md), not
+through a public issue.
+
+Follow the [Code of Conduct](CODE_OF_CONDUCT.md) in all project spaces. For pull
+requests, explain the user need, summarize the change, link related issues, and
+list the checks you ran. Follow the relevant contracts and validation guidance
+in this document and the [development documentation](docs/README.md). Review
+[AI-assisted development](docs/ai-skills.md) when using AI tools; contributors
+remain responsible for reviewing, validating, and licensing submitted work.
+
 ## AI-assisted development
 
 Our [AI skill usage and attribution](docs/ai-skills.md) describes the globally installed engineering, discovery, and accessibility skills, the project-local Cocoa adaptations, and their upstream authors. Global skills are contributor-managed tooling; cloning Folio supplies only its local skills and project conventions. The same architecture, review, and validation requirements apply to AI-assisted changes.
