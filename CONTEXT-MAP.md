@@ -5,7 +5,7 @@ SPDX-License-Identifier: MIT
 
 # Domain context map
 
-Read the entry for each context touched by the task. For integration work, read both the framework and consumer entries. Shared architecture decisions live in [docs/adr/](docs/adr/); read those relevant to the change, including [ADR 0015](docs/adr/0015-swift-suite-and-independent-frameworks.md) for framework independence and Suite integration.
+Read the entry for each context touched by the task. For integration work, read both the framework and consumer entries. Shared architecture decisions live in [docs/adr/](docs/adr/); read those relevant to the change, including [ADR 0015](docs/adr/0015-swift-suite-and-independent-frameworks.md) and its extraction refinement, [ADR 0019](docs/adr/0019-undokit-package-boundary.md).
 
 ## Folio Suite
 
@@ -29,16 +29,16 @@ Use the existing framework documentation until vocabulary is agreed for a local 
 
 ## UndoKit
 
-Covers generic durable-history capabilities and storage safeguards in `UndoKit/`.
+Covers generic durable-history capabilities and storage safeguards in the [UndoKit Git submodule](UndoKit/README.md), backed by the independently versioned [Folio-Suite/UndoKit repository](https://github.com/Folio-Suite/UndoKit).
 
 - [UndoKit/CONTEXT.md](UndoKit/CONTEXT.md): history vocabulary and host/framework ownership.
-- [UndoKit/docs/durable-acceptance-contract.md](UndoKit/docs/durable-acceptance-contract.md): accepted transaction and recovery boundary.
-- [UndoKit/docs/history-retention-contract.md](UndoKit/docs/history-retention-contract.md): accepted restoration, Undo depth, checkpoint, hold and pruning behavior.
-- [UndoKit/docs/typed-interface-contract.md](UndoKit/docs/typed-interface-contract.md): accepted host adapters, codecs, asynchronous submission, bounded queries and interface proof.
-- [UndoKit/docs/native-routing-contract.md](UndoKit/docs/native-routing-contract.md): accepted native bridge behavior, host integration obligations and AppKit proof requirements.
-- [UndoKit/docs/store-lifecycle-contract.md](UndoKit/docs/store-lifecycle-contract.md): accepted storage registration, lifecycle, capacity and failure-preservation contract.
-- [UndoKit/docs/acceptance-measurement-plan.md](UndoKit/docs/acceptance-measurement-plan.md): accepted workloads, candidate limits, runner safeguards and four-proof evidence matrix.
-- [UndoKit/README.md](UndoKit/README.md): implementation status and integration guidance.
-- For imported design or research, start with [the design index](UndoKit/docs/imported-design/README.md) and [provenance](UndoKit/UPSTREAM.md) to distinguish preserved records from current decisions.
+- [Durable acceptance contract](UndoKit/docs/durable-acceptance-contract.md): accepted transaction and recovery boundary.
+- [History retention contract](UndoKit/docs/history-retention-contract.md): accepted restoration, Undo depth, checkpoint, hold and pruning behavior.
+- [Typed interface contract](UndoKit/docs/typed-interface-contract.md): accepted host adapters, codecs, asynchronous submission, bounded queries and interface proof.
+- [Native routing contract](UndoKit/docs/native-routing-contract.md): accepted native bridge behavior, host integration obligations and AppKit proof requirements.
+- [Store lifecycle contract](UndoKit/docs/store-lifecycle-contract.md): accepted storage registration, lifecycle, capacity and failure-preservation contract.
+- [Acceptance measurement plan](UndoKit/docs/acceptance-measurement-plan.md): accepted workloads, candidate limits, runner safeguards and four-proof evidence matrix.
+- [UndoKit README](UndoKit/README.md): framework and package usage guidance.
+- For imported design or research, start with [the design index](UndoKit/docs/imported-design/README.md) and [provenance](UndoKit/UPSTREAM.md). The provenance record links historical source and research by immutable revision.
 
-Hosts own semantic meaning, validation, compensation, accepted outcomes, recovery evidence, and policy. Read the Folio Suite context when changing Folio's use of UndoKit. Add context-specific ADRs under `UndoKit/docs/adr/` when needed.
+UndoKit owns generic history structure and storage safeguards. Hosts own semantic meaning, validation, compensation, accepted outcomes, recovery evidence, and policy. Read the Folio Suite context when changing Folio's use of UndoKit. Context-specific decisions belong in the submodule's `docs/adr/` directory.

@@ -8,7 +8,7 @@ SPDX-License-Identifier: MIT
 
 Adapted from [Matt Pocock's skill setup templates](https://github.com/mattpocock/skills), with Folio-specific conventions. See the retained [MIT notice](MATT-POCOCK-LICENSE) and [skill usage and attribution](../ai-skills.md).
 
-Issues and specs for the Folio Suite, TypographyKit, and UndoKit live together in `Folio-Suite/Folio` GitHub Issues. Use the `gh` CLI for all operations.
+Folio Suite and host-integration issues live in `Folio-Suite/Folio` GitHub Issues. Generic UndoKit framework issues belong in the standalone [Folio-Suite/UndoKit](https://github.com/Folio-Suite/UndoKit) repository's issue tracker. Route a report to the context that owns the behavior: Folio owns its adapter, document meaning, validation, compensation, accepted outcomes, and policy; UndoKit owns generic history behavior and storage safeguards. Cross-repository work should link the related issues. Use `gh` from the relevant checkout for tracker operations.
 
 ## Conventions
 

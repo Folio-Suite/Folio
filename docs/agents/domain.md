@@ -20,7 +20,7 @@ For work spanning a framework and its consumer, read both contexts. Keep framewo
 
 ## File structure
 
-This monorepo uses three contexts: the Folio Suite, TypographyKit, and UndoKit. `CONTEXT-MAP.md` is the routing index. The Suite glossary remains at root `CONTEXT.md`; framework glossaries belong alongside their frameworks. Shared and Suite architecture decisions remain in `docs/adr/`; context-specific ADRs belong in the owning framework's `docs/adr/` when needed.
+This repository covers the Folio Suite and TypographyKit contexts. UndoKit is maintained in its own repository and checked out as the `UndoKit/` Git submodule. `CONTEXT-MAP.md` is the routing index. The Suite glossary remains at root `CONTEXT.md`; TypographyKit guidance belongs alongside its framework. Shared and Suite architecture decisions remain in `docs/adr/`; context-specific ADRs belong in their owning repository.
 
 If a glossary or ADR directory does not exist, proceed silently using the existing documentation named in the map. The `domain-modeling` skill creates domain documents when vocabulary or decisions are resolved.
 

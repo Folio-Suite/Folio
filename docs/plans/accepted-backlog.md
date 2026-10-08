@@ -7,6 +7,8 @@ SPDX-License-Identifier: MIT
 
 The maintainer accepted specification #29 and its migration sequence on 2026-09-27, then authorized publication and retirement of the original UndoKit repository after preservation. This handoff performs no product implementation. [ADR 0015](../adr/0015-swift-suite-and-independent-frameworks.md) records the adopted direction.
 
+The source and distribution plan was subsequently refined by [ADR 0019](../adr/0019-undokit-package-boundary.md): the old repository remains retired, while the new Folio-Suite repository is tracked as a submodule. Its Swift Package product remains available to other consumers. Objective-C interfaces and XCFramework distribution remain deferred.
+
 There are 36 successor tickets: ten migration/acceptance slices, eleven retained UndoKit decisions/proofs, and fifteen follow-on slices or design questions. Implementation/preparation tickets carry `ready-for-agent`; design and proof tickets carry `needs-triage` and require the stated human review. Native GitHub parent and blocking relationships are authoritative. A ready label never bypasses open blockers. Completed U0/T0 scaffolds and probe #22 are referenced, not duplicated.
 
 ## Ticket graph
@@ -118,7 +120,7 @@ Typography stories include both foundation support and later behavior: T1/C1 def
 - M2/M3 may share an integration branch if a temporary adapter cannot preserve green intermediate states; the combined result must pass before integration.
 - Keep the agreed public Kit and native workflow test seams, independent expectations, old-writer fixtures and human typography/native-interaction review. Record missing Sonoma, Intel or installed-product evidence explicitly.
 - UndoKit is Swift, Folio first and KitchenMemory second, with host-owned semantics and generic framework safeguards. Its unresolved decisions remain real gates for durable history; the architectural choice is complete.
-- Helper apps require no project now. External framework distribution is deferred until after a working Folio Suite 1.0. Ordinary coordinated Suite packaging/signing/runtime verification remains in scope.
+- Helper apps require no project now. This handoff deferred external distribution until after a working Folio Suite 1.0; [ADR 0019](../adr/0019-undokit-package-boundary.md) later made the Swift framework and package available from a separate repository. Objective-C interfaces and XCFramework distribution remain deferred. Ordinary coordinated Suite packaging/signing/runtime verification remains in scope.
 - Planning parents #29 and #2 close as completed specification/architecture handoffs. Their remaining child tickets track future delivery; parent closure does not assert product completion.
 
 ## UndoKit preservation
@@ -159,4 +161,4 @@ holds and safe consolidation. This resolves the design gate; U6 now defines the
 measurement plan and #50 owns branching/retention proof. The ticket graph above
 records the original dependencies; GitHub carries live completion state.
 
-See the [inventory](../../UndoKit/docs/imported-design/README.md) for original-to-successor issue mappings, preserved accepted research, full tracker snapshot and Git recovery instructions. The local original checkout is retained. The maintainer confirmed deletion of the original remote on 2026-09-27. Historical URLs remain recorded for provenance; use the local design inventory and Folio successor tickets for current work.
+The 2026-09-29 preservation inventory records original-to-successor issue mappings, preserved accepted research, the tracker snapshot, and Git recovery instructions. The original remote was confirmed deleted on 2026-09-27; original URLs remain as historical provenance. Current generic framework work belongs in the [UndoKit repository](https://github.com/Folio-Suite/UndoKit); Folio successor issues remain the tracker for host integration and Suite behavior.

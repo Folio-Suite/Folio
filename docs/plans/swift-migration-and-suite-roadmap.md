@@ -29,7 +29,7 @@ The accepted Swift migration remains finite: it does not include a complete cata
 
 Create a project for helper apps only if a concrete need arises. A possible Folio utility, persistent Project management, and `.foliobundle` remain deferred. Write, Research and Composer remain the professional workspaces.
 
-External framework distribution, release artifacts and their compatibility policy will be revisited after a working Folio Suite 1.0. Swift module independence and preservation of KitchenMemory's requirements suffice for UndoKit's current architectural boundary. These deferrals do not relax ordinary Suite signing, packaging, installed-framework or runtime verification.
+The 2026-09-27 plan deferred external framework distribution and release artifacts until after a working Folio Suite 1.0. [ADR 0019](../adr/0019-undokit-package-boundary.md) supersedes that deferral for Swift framework and Swift Package use from the separate UndoKit repository. Objective-C interfaces and XCFramework distribution remain deferred. These boundaries do not relax ordinary Suite signing, packaging, installed-framework or runtime verification.
 
 ## Framework responsibility allocation
 
@@ -40,17 +40,21 @@ External framework distribution, release artifacts and their compatibility polic
 | ResearchKit | Source Libraries, record behavior and research presentation | Preserve the shell during migration; add catalog, reconciliation, capture, and presentation modules with their workflows |
 | ComposerKit | Arrangements/ Editions, Publication Plans, production definitions, page/Stream orchestration, domain diagnostics | Publication inputs, TypographyKit adaptation, orchestration, eventual Rendition adapters |
 | TypographyKit | Neutral text shaping, measurement, break realization and eventual optimization, source mappings, typographic geometry | Mapping, font resolution/shaping, discretionaries, paragraph search, geometry/drawing; math and specialized language support later |
-| UndoKit | Durable history structure, ordering, branches/checkpoints as selected capabilities, native Undo integration, and history-storage safeguards | Core Data history storage, acceptance/recovery coordination, history operations, and platform-specific native adapters; no Folio model dependency |
+| UndoKit | Generic durable history structure, ordering, branches/checkpoints as selected capabilities, native Undo integration, and history-storage safeguards | Independently versioned native Xcode framework project at the `UndoKit/` submodule; the same source repository also provides a Swift Package product, with no Folio model dependency |
 
-The first four rows correspond to separate targets in `Core/Core.xcodeproj`, each with its own source and unit-test directory. UndoKit and TypographyKit remain standalone projects. Internal modules are not required by this target split. Extract another library when actual reuse, a dependency seam, or measured build/testing benefit justifies it. Keep public interfaces small and test through them.
+The first four rows correspond to separate targets in `Core/Core.xcodeproj`, each with its own source and unit-test directory. TypographyKit remains a standalone Folio framework; UndoKit's independent repository is pinned as a submodule while its Xcode project remains part of the native workspace, as recorded by [ADR 0019](../adr/0019-undokit-package-boundary.md). Internal modules are not required by this target split. Keep public interfaces small and test through them.
 
 TypographyKit depends on Foundation, Core Text, and Core Graphics, without FolioKit or domain-Kit dependencies. ComposerKit adapts Folio meaning to its inputs. Document ownership stays with the document-domain Kit even when another Kit supplies an editor. Cross-domain presentation integration must preserve this separation without circular framework dependencies; choose the concrete adapter where the first real workflow needs it.
 
 ## UndoKit incorporation and design track
 
+This section records the accepted 2026-09-27 incorporation plan. Its source
+ownership and release deferral were superseded by [ADR 0019](../adr/0019-undokit-package-boundary.md),
+which governs UndoKit's current submodule and independent-project boundary.
+
 UndoKit is developed in Folio as a Swift framework serving Folio first and KitchenMemory second. Keep its generic capability/storage boundary independent of FolioKit, domain Kits and TypographyKit. Host applications own semantics, validation, no-op filtering, compensation, authoritative accepted outcomes, recovery evidence and recording/retention policy. Folio maps one Document to one host-defined History Scope; other consumers retain their own scopes and bounded policies.
 
-The [preservation record](../../UndoKit/UPSTREAM.md) and [design inventory](../../UndoKit/docs/imported-design/README.md) retain source, complete Git history, research, issue bodies/comments/events and original native relationships. Open recovery, branching, payload, native-routing, store and acceptance work continues in the [Folio backlog](accepted-backlog.md). The original Objective-C/XCFramework requirements are preserved as historical research and explicitly deferred for external distribution; they do not block current Swift work.
+The [preservation record](../../UndoKit/UPSTREAM.md) and [design inventory](../../UndoKit/docs/imported-design/README.md) retain source, complete Git history, research, issue bodies/comments/events and original native relationships. Open recovery, branching, payload, native-routing, store and acceptance work continues in the [Folio backlog](accepted-backlog.md). The original Objective-C/XCFramework requirements are preserved as historical research; the current independent-project and package availability decision is recorded in ADR 0019.
 
 The imported framework remains a scaffold. Standalone builds and isolated imports establish build independence, not a working history engine. Preserve current native Undo during migration. Production recovery implementation gates durable history, shared-host recovery, archival history reconstruction and non-cascading Source sync.
 
