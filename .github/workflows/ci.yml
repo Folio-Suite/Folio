@@ -39,6 +39,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          submodules: recursive
       - id: decide
         env:
           GH_TOKEN: ${{ github.token }}
@@ -55,6 +56,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          submodules: recursive
       - name: Check tooling, localization, and coordinated Suite products
         run: |
           export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
@@ -96,6 +98,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          submodules: recursive
       - name: Record toolchain and source
         run: |
           mkdir -p build
@@ -165,6 +168,7 @@ jobs:
         if: needs.decision.outputs.mode == 'full'
         with:
           persist-credentials: false
+          submodules: recursive
       - name: Record successful candidate tree
         if: needs.decision.outputs.mode == 'full'
         run: ruby scripts/ci-evidence.rb record validation.json

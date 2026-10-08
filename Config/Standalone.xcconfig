@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 // Pass with xcodebuild -xcconfig through scripts/build-standalone.sh.
-#include "Suite.xcconfig"
+// Native projects inherit their own identity; do not override independent dependencies.
 
 FOLIO_DISTRIBUTION = standalone
 CONFIGURATION_BUILD_DIR = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)-standalone
