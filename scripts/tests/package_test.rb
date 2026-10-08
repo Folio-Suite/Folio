@@ -26,7 +26,7 @@ class PackagePayloadTest < Minitest::Test
       candidate = File.join(directory, 'candidate')
       FileUtils.mkdir_p(candidate)
       File.write(File.join(candidate, 'release.json'), JSON.generate({
-        'schema' => 1, 'numbering' => 'Shared configuration', 'dirty' => false,
+        'schema' => 2, 'numbering' => 'Shared configuration', 'dirty' => false,
         'revision' => 'a' * 40, 'version' => '0.1.0', 'build' => '7',
         'undokit' => { 'revision' => 'b' * 40, 'version' => '0.2.0', 'build' => '3', 'tag' => '0.2.0' } }))
       bundles = %w[Write.app Research.app Composer.app FolioKit.framework WriteKit.framework ResearchKit.framework ComposerKit.framework UndoKit.framework TypographyKit.framework]

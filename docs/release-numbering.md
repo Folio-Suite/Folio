@@ -75,11 +75,18 @@ the build. `--configuration Debug --action build-for-testing` prepares native te
 products. Output must be outside source or Git-ignored. Failed builds retain their
 diagnostic output without a completed candidate record.
 
-Suite candidate verification checks all three apps, the five Suite-owned
-frameworks, three embedded services, and nested Folio framework copies against
-the shared configuration or a supplied candidate. UndoKit keeps its independent
-framework identity; when its gitlink changes, verify the selected tag and
-framework version separately. Missing Suite bundles, unexpected identifiers,
-and mismatched Suite versions fail validation. Test runners are excluded. See
-[Development CI](development-ci.md) for development checks and [Suite installer](installer.md)
-for packaging and clean-install proof.
+Candidate verification checks all three apps, six frameworks, three embedded
+services, and nested framework copies. Folio-owned products use the Suite
+identity; UndoKit uses its independently recorded version and build. Missing
+bundles, unexpected identifiers, and mismatched versions fail validation.
+
+New candidates use schema 2 and include the committed UndoKit revision and its
+matching release tag when present. Recording a candidate requires an initialized,
+clean submodule at the committed gitlink, even when local Git settings hide
+submodule changes. Verification of a saved candidate uses its recorded identities
+rather than the current checkout. Historical schema-1 candidates remain readable
+without modification; their recorded Suite identity applies to UndoKit as it did
+before extraction.
+
+Test runners are excluded. See [Development CI](development-ci.md) for development
+checks and [Suite installer](installer.md) for packaging and clean-install proof.

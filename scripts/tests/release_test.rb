@@ -92,6 +92,7 @@ class ReleaseTest < Minitest::Test
     before = File.read(File.join(@repo, 'Config/Version.xcconfig'))
     succeeds('prepare', '--products', products, '--output', @candidate)
     candidate = JSON.parse(File.read(File.join(@candidate, 'release.json')))
+    assert_equal 2, candidate['schema']
     assert_equal '1', candidate['build']
     assert_equal false, candidate['dirty']
     assert_equal git('rev-parse', 'HEAD'), candidate['revision']
@@ -147,6 +148,31 @@ class ReleaseTest < Minitest::Test
     git('-c', 'user.name=Test', '-c', 'user.email=test@example.invalid', '-c', 'commit.gpgsign=false',
         'commit', '-qm', 'Suite version')
     succeeds('verify', '--products', make_products(suite_version: '0.2.0', suite_build: '7'))
+  end
+
+  def test_historical_schema_one_without_undokit_metadata_remains_readable
+    products = make_products
+    FileUtils.mkdir_p(@candidate)
+    path = File.join(@candidate, 'release.json')
+    historical = { 'schema' => 1, 'revision' => git('rev-parse', 'HEAD'), 'dirty' => false,
+                   'version' => '0.1.0', 'build' => '1', 'numbering' => 'Shared configuration' }
+    File.write(path, JSON.pretty_generate(historical) + "\n")
+    before = File.binread(path)
+    succeeds('verify', '--products', products, '--candidate', @candidate)
+    assert_equal before, File.binread(path)
+  end
+
+  def test_schema_two_requires_recorded_undokit_metadata
+    products = make_products
+    succeeds('prepare', '--products', products, '--output', @candidate)
+    path = File.join(@candidate, 'release.json')
+    candidate = JSON.parse(File.read(path))
+    candidate['schema'] = 2
+    candidate.delete('undokit')
+    File.write(path, JSON.generate(candidate))
+    output, status = cli('verify', '--products', products, '--candidate', @candidate)
+    refute status.success?, output
+    assert_includes output, 'Invalid candidate UndoKit identity'
   end
 
   def test_candidate_verifier_requires_valid_recorded_undokit_identity
