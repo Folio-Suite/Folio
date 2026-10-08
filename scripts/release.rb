@@ -60,7 +60,31 @@ class SuiteRelease
     version = config[/^MARKETING_VERSION = (\d+\.\d+\.\d+)$/, 1]
     build = config[/^CURRENT_PROJECT_VERSION = (\d+)$/, 1]
     raise 'Invalid shared version configuration' unless version && build
-    { 'version' => version, 'build' => build_number(build).to_s }
+    { 'version' => version, 'build' => build_number(build).to_s, 'undokit' => undokit_identity(root) }
+  end
+
+  def undokit_identity(root)
+    entry = capture('git', '-C', root, 'ls-tree', 'HEAD', '--', 'UndoKit')
+    revision = entry[/\A160000 commit ([0-9a-f]{40,64})\tUndoKit\z/, 1]
+    raise 'UndoKit must be a pinned Git submodule' unless revision
+    directory = File.join(root, 'UndoKit')
+    metadata = File.join(directory, '.git')
+    raise 'UndoKit submodule is not initialized' unless File.file?(metadata) || File.directory?(metadata)
+    top = capture('git', '-C', directory, 'rev-parse', '--show-toplevel')
+    raise 'UndoKit submodule is not initialized' unless File.realpath(top) == File.realpath(directory)
+    actual = capture('git', '-C', directory, 'rev-parse', 'HEAD')
+    raise 'UndoKit revision does not match the committed submodule pin' unless actual == revision
+    status = capture('git', '-C', directory, 'status', '--porcelain', '--untracked-files=all', '--ignore-submodules=none')
+    raise 'UndoKit source is dirty; commit source changes before recording a candidate' unless status.empty?
+    config = File.read(File.join(directory, 'Project.xcconfig'))
+    version = config[/^MARKETING_VERSION = (\d+\.\d+\.\d+)$/, 1]
+    build = config[/^CURRENT_PROJECT_VERSION = (\d+)$/, 1]
+    raise 'Invalid UndoKit version configuration' unless version && build
+    identity = { 'revision' => revision, 'version' => version, 'build' => build_number(build).to_s }
+    tags = capture('git', '-C', directory, 'tag', '--points-at', 'HEAD').lines.map(&:strip)
+    tag = tags.find { |item| item == version || item == "v#{version}" }
+    identity['tag'] = tag if tag
+    identity
   end
 
   def build_number(value)
@@ -99,12 +123,25 @@ class SuiteRelease
 
   def candidate_identity(directory)
     candidate = read_json(File.join(directory, 'release.json'))
-    unless candidate['schema'] == 1 && [true, false].include?(candidate['dirty']) &&
+    unless [1, 2].include?(candidate['schema']) && [true, false].include?(candidate['dirty']) &&
            (!candidate['dirty'] || candidate['source_patch'].is_a?(String)) &&
            /\A[0-9a-f]{40,64}\z/.match?(candidate['revision'].to_s) &&
            /\A\d+\.\d+\.\d+\z/.match?(candidate['version'].to_s) &&
            (['Shared configuration', 'Folio scheme'].include?(candidate['numbering']) || candidate['ledger_id'].is_a?(String))
       raise 'Invalid candidate identity'
+    end
+    if candidate['schema'] == 2 || candidate.key?('undokit')
+      undokit = candidate['undokit']
+      unless undokit.is_a?(Hash) && undokit['revision'].is_a?(String) &&
+             /\A(?:[0-9a-f]{40}|[0-9a-f]{64})\z/.match?(undokit['revision']) &&
+             undokit['version'].is_a?(String) && /\A\d+\.\d+\.\d+\z/.match?(undokit['version']) &&
+             undokit['build'].is_a?(String) && /\A[1-9]\d{0,3}\z/.match?(undokit['build']) &&
+             (!undokit.key?('tag') || [undokit['version'], "v#{undokit['version']}"].include?(undokit['tag']))
+        raise 'Invalid candidate UndoKit identity'
+      end
+    else
+      # Historical Suite candidates predate independently versioned UndoKit.
+      candidate['undokit'] = { 'version' => candidate['version'], 'build' => candidate['build'] }
     end
     build_number(candidate.fetch('build'))
     candidate
@@ -126,11 +163,12 @@ class SuiteRelease
       next unless shipping_names.include?(File.basename(bundle)) || plist.fetch('CFBundleIdentifier', '').start_with?('dev.foliosuite.')
       name = File.basename(bundle).sub(/\.(app|framework|xpc)$/, '')
       raise "Unexpected bundle identifier in #{bundle}" unless plist['CFBundleIdentifier'] == "dev.foliosuite.#{name}"
-      unless plist['CFBundleShortVersionString'] == identity['version'] && plist['CFBundleVersion'] == identity['build']
-        raise "#{bundle}: expected #{identity['version']} (#{identity['build']}), found #{plist['CFBundleShortVersionString']} (#{plist['CFBundleVersion']})"
+      expected_identity = name == 'UndoKit' ? identity.fetch('undokit') : identity
+      unless plist['CFBundleShortVersionString'] == expected_identity['version'] && plist['CFBundleVersion'] == expected_identity['build']
+        raise "#{bundle}: expected #{expected_identity['version']} (#{expected_identity['build']}), found #{plist['CFBundleShortVersionString']} (#{plist['CFBundleVersion']})"
       end
     end
-    puts "Suite identity verified: #{identity['version']} (#{identity['build']}) across shipping bundles and embedded copies"
+    puts "Suite identity verified: #{identity['version']} (#{identity['build']}), UndoKit #{identity.fetch('undokit').fetch('version')} (#{identity.fetch('undokit').fetch('build')}) across shipping bundles and embedded copies"
   end
 
   def build
@@ -154,7 +192,7 @@ class SuiteRelease
     @options.delete('candidate')
     verify
     write_json(File.join(directory, 'release.json'), after.merge(
-      'schema' => 1, 'numbering' => 'Shared configuration', 'prepared_at' => Time.now.utc.iso8601))
+      'schema' => 2, 'numbering' => 'Shared configuration', 'prepared_at' => Time.now.utc.iso8601))
     write_json(File.join(directory, "build-#{configuration}.json"),
                { 'identity' => after, 'configuration' => configuration,
                  'xcode' => capture('xcodebuild', '-version'), 'command' => command,
@@ -170,7 +208,7 @@ class SuiteRelease
     raise 'Source changed during candidate preparation' unless source_identity == identity
     FileUtils.mkdir_p(output)
     write_json(File.join(output, 'release.json'), identity.merge(
-      'schema' => 1, 'numbering' => 'Shared configuration', 'prepared_at' => Time.now.utc.iso8601))
+      'schema' => 2, 'numbering' => 'Shared configuration', 'prepared_at' => Time.now.utc.iso8601))
     puts "Recorded #{identity['version']} (#{identity['build']}) at #{output}; build number unchanged"
   end
 end

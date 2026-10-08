@@ -26,8 +26,9 @@ class PackagePayloadTest < Minitest::Test
       candidate = File.join(directory, 'candidate')
       FileUtils.mkdir_p(candidate)
       File.write(File.join(candidate, 'release.json'), JSON.generate({
-        'schema' => 1, 'numbering' => 'Shared configuration', 'dirty' => false,
-        'revision' => 'a' * 40, 'version' => '0.1.0', 'build' => '7' }))
+        'schema' => 2, 'numbering' => 'Shared configuration', 'dirty' => false,
+        'revision' => 'a' * 40, 'version' => '0.1.0', 'build' => '7',
+        'undokit' => { 'revision' => 'b' * 40, 'version' => '0.2.0', 'build' => '3', 'tag' => '0.2.0' } }))
       bundles = %w[Write.app Research.app Composer.app FolioKit.framework WriteKit.framework ResearchKit.framework ComposerKit.framework UndoKit.framework TypographyKit.framework]
       bundles += %w[Write Research Composer].map { |app| "#{app}.app/Contents/XPCServices/#{app}XPCService.xpc" }
       bundles.each do |bundle|
@@ -35,7 +36,8 @@ class PackagePayloadTest < Minitest::Test
         path = File.join(products, bundle, bundle.end_with?('.framework') ? 'Resources/Info.plist' : 'Contents/Info.plist')
         FileUtils.mkdir_p(File.dirname(path))
         File.write(path, JSON.generate({ 'CFBundleIdentifier' => "dev.foliosuite.#{name}",
-          'CFBundleShortVersionString' => '0.1.0', 'CFBundleVersion' => '7', 'CFBundleExecutable' => name,
+          'CFBundleShortVersionString' => (name == 'UndoKit' ? '0.2.0' : '0.1.0'),
+          'CFBundleVersion' => (name == 'UndoKit' ? '3' : '7'), 'CFBundleExecutable' => name,
           'CFBundlePackageType' => bundle.end_with?('.framework') ? 'FMWK' : 'APPL' }))
         system('/usr/bin/plutil', '-convert', 'xml1', path, exception: true)
         executable = File.join(products, bundle, bundle.end_with?('.framework') ? name : "Contents/MacOS/#{name}")
@@ -50,7 +52,8 @@ class PackagePayloadTest < Minitest::Test
         WriteKit.framework/Resources/Work.momd/WorkV1.mom
         WriteKit.framework/Resources/Base.lproj/Editor.storyboardc/EditorWindow.nib
         WriteKit.framework/Resources/Base.lproj/Editor.storyboardc/Editor.nib
-        WriteKit.framework/Resources/Assets.car]
+        WriteKit.framework/Resources/Assets.car
+        UndoKit.framework/Resources/History.momd/HistoryV1.mom]
       resources.each do |resource|
         path = File.join(products, resource)
         FileUtils.mkdir_p(File.dirname(path)); File.write(path, 'fixture resource')
@@ -113,7 +116,13 @@ class PackagePayloadTest < Minitest::Test
       assert_includes File.read(File.join(expanded, 'PackageInfo')), 'version="0.1.0.7"'
       manifest = JSON.parse(File.read(File.join(output, 'package.json')))
       assert_equal '7', manifest['identity']['build']
+      assert_equal '0.2.0', manifest['identity']['undokit']['version']
+      assert_equal 'b' * 40, manifest['identity']['undokit']['revision']
       assert_equal 64, manifest['package_sha256'].size
+      history_model = File.join(products, 'UndoKit.framework/Resources/History.momd/HistoryV1.mom')
+      File.unlink(history_model)
+      assert_package_rejected(candidate, products, output + '-no-history-model', 'Missing required resource')
+      File.write(history_model, 'fixture resource')
       missing_resource = File.join(products, 'WriteKit.framework/Resources/Work.momd/WorkV1.mom')
       File.unlink(missing_resource)
       message, status = Open3.capture2e('ruby', File.expand_path('../package.rb', __dir__),

@@ -5,9 +5,9 @@ SPDX-License-Identifier: MIT
 
 # Working on Folio
 
-Folio is a monorepo. Clone it with `git clone <repository-url>` and open the workspace at the repository root. The four domain frameworks are separate targets in `Core/Core.xcodeproj`; their sources and unit tests live under `Core/`. Write, Research, and Composer projects retain their applications, services, and app/UI tests. UndoKit and TypographyKit remain standalone frameworks.
+Folio is a monorepo with UndoKit tracked as a Git submodule. Clone with `git clone --recurse-submodules <repository-url>`, or initialize it after cloning with `git submodule update --init --recursive`. The four domain frameworks are separate targets in `Core/Core.xcodeproj`; their sources and unit tests live under `Core/`. Write, Research, and Composer projects retain their applications, services, and app/UI tests. FolioKit, WriteKit, ResearchKit, ComposerKit, and TypographyKit are the five Suite-owned frameworks. UndoKit is the sixth framework, maintained in the independent [UndoKit repository](https://github.com/Folio-Suite/UndoKit) and checked out at `UndoKit/`.
 
-Open `Folio.xcworkspace`. Use the shared **Write**, **Research**, or **Composer** scheme to run an application, **Core** to build or test the four domain frameworks, and **Folio** to build or test the entire Suite. Each app links FolioKit, WriteKit, ResearchKit, and ComposerKit. Framework sources compile into their owning targets. Default Suite builds resolve the six Kits from `/Library/Frameworks` and feed the coordinated installer. Use the standalone build command below for an app with its own framework copies. Open the enclosing workspace when developing the applications.
+Open `Folio.xcworkspace`. Use the shared **Write**, **Research**, or **Composer** scheme to run an application, **Core** to build or test the four domain frameworks, and **Folio** to build or test the entire Suite. The workspace retains the native UndoKit Xcode project alongside TypographyKit and the Suite projects. Each app uses all six frameworks. The Suite build resolves shared framework products from `/Library/Frameworks`; standalone app builds carry their own framework copies. UndoKit's project has an independent version identity and its resources stay with the framework. See [ADR 0019](docs/adr/0019-undokit-package-boundary.md) and [Suite version and build identity](docs/release-numbering.md) for version boundaries.
 
 Folio requires **macOS 14 Sonoma or newer** and builds with Xcode 27. `SDKROOT = macosx` selects the installed macOS SDK; using SDK 27 does not raise the deployment minimum. The Suite configuration, component `Project.xcconfig` fallbacks, and targets use `$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)`, which resolves to 14.0 with Xcode 27. Recheck this value and compatibility when upgrading Xcode; it follows Apple’s recommendation rather than pinning an OS version. Signing uses the existing project team settings. Contributors may select their own team locally; keep personal signing changes out of shared commits.
 
@@ -59,7 +59,7 @@ for these controls.
 
 Build the shared **Folio** scheme in Xcode, or run `xcodebuild -workspace Folio.xcworkspace -scheme Folio -configuration Debug -destination 'platform=macOS' build` from the parent checkout. `scripts/check-build.sh` performs a clean unsigned Suite build and checks application and framework products. It does not validate signing, installed framework resolution, runtime loading, or distribution packaging. Composer includes a bounded, read-only composition preview. Each app embeds its own XPC service skeleton; the build check verifies all three products exist.
 
-To build a sandboxed app with its own dependencies, run `scripts/build-standalone.sh Write --derived-data /tmp/folio-write-standalone` (or `Research`, `Composer`, or `Folio` for all three). Add `--configuration Release` when needed. Use a **different DerivedData path** from Suite builds; Xcode can remove old Suite products when switching build layouts within one DerivedData directory. The wrapper passes `Config/Standalone.xcconfig`, sets `FOLIO_DISTRIBUTION=standalone`, and writes to `Debug-standalone` or `Release-standalone` within that dedicated path. Each app embeds all six Kit frameworks, package runtime frameworks, and its XPC service. The Kits retain their compiled storyboards, models, and assets. The wrapper removes absolute developer and Suite framework search paths from final app copies, re-signs changed code, and verifies the embedded runtime and resource closure. It leaves shared framework build products alone when using the required separate path. Xcode's configured signing identity is used by default; set `FOLIO_SIGNING_IDENTITY` or pass `--identity SIGNER` to select the identity for both Xcode and normalization. `--unsigned` skips signing checks for CI and verifies the configured App Sandbox settings without claiming runtime entitlements. Standalone builds are separate from the Suite installer.
+To build a sandboxed app with its own dependencies, run `scripts/build-standalone.sh Write --derived-data /tmp/folio-write-standalone` (or `Research`, `Composer`, or `Folio` for all three). Add `--configuration Release` when needed. Use a **different DerivedData path** from Suite builds; Xcode can remove old Suite products when switching build layouts within one DerivedData directory. The wrapper passes `Config/Standalone.xcconfig`, sets `FOLIO_DISTRIBUTION=standalone`, and writes to `Debug-standalone` or `Release-standalone` within that dedicated path. Each app embeds all six Kit frameworks and its XPC service. The Kits retain their compiled storyboards, models, and assets. The wrapper removes absolute developer and Suite framework search paths from final app copies, re-signs changed code, and verifies the embedded frameworks and resource closure. It leaves shared framework build products alone when using the required separate path. Xcode's configured signing identity is used by default; set `FOLIO_SIGNING_IDENTITY` or pass `--identity SIGNER` to select the identity for both Xcode and normalization. `--unsigned` skips signing checks for CI and verifies the configured App Sandbox settings without claiming runtime entitlements. Standalone builds are separate from the Suite installer.
 
 Use the shared **Core** scheme to build or test the four domain framework targets. Use the shared **Write**, **Research**, and **Composer** schemes for their application and UI tests; start native UI runners through Xcode, or prepare signed test products with build-for-testing before using the CLI test runner. The **Folio** scheme checks coordinated Suite integration. Passing current tests does not prove cross-application Work Session or archival behavior.
 
@@ -71,9 +71,11 @@ and the boundary between CI evidence and release validation.
 
 ## Release identity
 
-All apps, Kits, and bundled services inherit the version and build from the shared
-Suite configuration, currently **0.1.0 (1)**. Builds and archives leave that
-configuration unchanged. Use the Ruby workflow in
+Suite apps, its five owned frameworks, and bundled services inherit the version
+and build from the shared Suite configuration, currently **0.1.0 (1)**. UndoKit
+has its own independently versioned Xcode project and does not inherit the Suite
+version.
+Builds and archives leave the Suite configuration unchanged. Use the Ruby workflow in
 [Suite version and build numbering](docs/release-numbering.md) to record and verify
 the resulting shipping bundles. See [Suite installer](docs/installer.md) for the
 PKG staging command and clean-install proof procedure.
@@ -118,8 +120,8 @@ Collect bundled resources at the owning app or framework's root or in its
 top-level `Resources/` directory. Future internal libraries remain components
 of that enclosing product, with resource ownership retained by the product.
 
-All six Kits publish Swift modules. Callers, including each owning application,
-use `import KitName` and public Swift declarations. Keep implementation types
+The six frameworks publish Swift modules.
+Callers, including each owning application, use `import KitName` and public Swift declarations. Keep implementation types
 internal or private, and keep production callers free of `@testable import`.
 Update DocC together with public declarations. Framework source files compile
 into their owning target; callers do not add repository source or header paths.
@@ -132,11 +134,26 @@ The Kits publish Swift modules without authored module maps, umbrella headers,
 or generated Objective-C headers. Framework identity and version remain in each
 bundle's Info.plist.
 
-UndoKit and TypographyKit have independent projects and shared schemes, target
-macOS 14, and build without Folio domain frameworks. `scripts/check-kit-interfaces.rb`
-compiles external Swift consumers from built products, rejects exported headers
-and private symbols, and imports both independent frameworks in isolation. Apps and Kits
-ship as one coordinated Suite version; mixed versions are unsupported.
+TypographyKit and UndoKit are separate frameworks in the native workspace.
+UndoKit's Xcode project defaults to version **0.1.0**, independently of Folio's
+Suite version. Folio is its primary host, and the standalone Swift Package
+product remains available to other consumers. UndoKit owns generic history
+behavior and storage safeguards, while hosts own semantics, validation,
+compensation, accepted outcomes, recovery evidence, and policy. iOS support is
+not yet qualified; KitchenMemory's existing issue #236 tracks that work.
+
+The submodule records an exact commit in Folio's Git tree. A recursive clone or
+`git submodule update --init --recursive` checks out that recorded commit; it
+does not advance automatically to new tags. Select an UndoKit tag permitted by
+the current development, beta, or release stage in
+[Suite version and build identity](docs/release-numbering.md), check out that
+tag in `UndoKit/`, then commit the updated gitlink in Folio. Do not commit a
+developer-specific path or a floating revision.
+
+`scripts/check-kit-interfaces.rb` checks all six framework products. UndoKit
+also retains its own project and package consumer checks. Folio's five owned
+frameworks and apps share the Suite version; UndoKit's project and tags use the
+independent version policy.
 
 ### Packages and lint
 
@@ -159,7 +176,7 @@ contributors to trust this package plugin when first opening the workspace.
 
 ## Kit documentation
 
-FolioKit, WriteKit, ResearchKit, ComposerKit, TypographyKit, UndoKit, and future Kits use DocC at a standard suitable for a public API. Each catalog states the Kit's ownership and boundary, current supported behavior, public import and hosting rules, and material limitations where applicable. Keep claims aligned with public Swift declarations and implemented behavior. Describe planned capabilities as plans, not current APIs. Add examples only for implemented public APIs and verify that they match current callers; scaffold catalogs must not invent examples for unavailable behavior. Document caller-facing contracts beside declarations, and validate generated documentation when interfaces change. See [ADR 0008](docs/adr/0008-public-api-quality-kit-documentation.md) for scope and expectations.
+FolioKit, WriteKit, ResearchKit, ComposerKit, TypographyKit, UndoKit, and future Kits use DocC at a standard suitable for a public API. UndoKit's package owns its catalog; the five Folio-owned frameworks keep theirs with their source. Each catalog states the product's ownership and boundary, current supported behavior, public import and hosting rules, and material limitations where applicable. Keep claims aligned with public Swift declarations and implemented behavior. Describe planned capabilities as plans, not current APIs. Add examples only for implemented public APIs and verify that they match current callers; scaffold catalogs must not invent examples for unavailable behavior. Document caller-facing contracts beside declarations, and validate generated documentation when interfaces change. See [ADR 0008](docs/adr/0008-public-api-quality-kit-documentation.md) for scope and expectations.
 
 ## Licensing
 

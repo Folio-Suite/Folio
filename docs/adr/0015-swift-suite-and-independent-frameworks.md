@@ -5,6 +5,12 @@ SPDX-License-Identifier: MIT
 
 # Adopt idiomatic Swift while retaining the Cocoa Suite
 
+**Ownership decision refined:** [ADR 0019](0019-undokit-package-boundary.md)
+tracks UndoKit source through a submodule while retaining its independent
+repository, native Xcode project, and versioning. The historical acceptance
+below records the decision and scope at that time; ADR 0019 governs the current
+source, workspace, and release boundary.
+
 Accepted by the maintainer on 2026-09-27 in the review of [the migration specification](https://github.com/Folio-Suite/Folio/issues/29). Reimplement the existing Suite in idiomatic Swift while retaining AppKit/storyboards, Core Data, Core Text, the three professional applications, and their public domain Kits. The Objective-C learning objective is fulfilled; stronger data modeling and consistency with the maintainer's other projects now justify migration while the implementation is still small. Target macOS 14 Sonoma and Intel/Apple Silicon with the agreed native and runtime acceptance evidence.
 
 TypographyKit owns reusable text composition above Core Text; ComposerKit owns publication meaning and coordination. Preserve the working editor, supported Documents, native Undo, public test seams, and historical typography evidence. The first usable composition operation accepts explicit decisions and returns immutable geometry, source mappings and diagnostics; full paragraph optimization, languages, mathematical layout and production outputs follow separately.

@@ -15,5 +15,6 @@ module SuiteProducts
     WriteKit.framework/Resources/Base.lproj/Editor.storyboardc/EditorWindow.nib
     WriteKit.framework/Resources/Base.lproj/Editor.storyboardc/Editor.nib
     WriteKit.framework/Resources/Assets.car
+    UndoKit.framework/Resources/History.momd/HistoryV1.mom
   ].freeze
 end
