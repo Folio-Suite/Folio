@@ -16,28 +16,28 @@ import WriteKit
     // This initial Work supplies content for a new document. Opening an existing
     // package replaces it in adopt(_:), before the document’s editor is presented.
     private(set) var work = Work()
-    
+
     // Folio owns rich-text routing; UndoKit owns durable history transactions.
-    private var nativeHistory: WorkNativeHistoryRouter?
+    var nativeHistory: WorkNativeHistoryRouter?
     private var historyMenu: WorkHistoryMenuController?
-    private var submittedManuscript: Manuscript?
-    private var countedManuscript: Manuscript?
-    private var countedResources: [WorkResource]?
-    private var submissionTail: Task<Void, Never>?
-    private var submissionsPending = 0
-    private var submissionError: Error?
+    var submittedManuscript: Manuscript?
+    var countedManuscript: Manuscript?
+    var countedResources: [WorkResource]?
+    var submissionTail: Task<Void, Never>?
+    var submissionsPending = 0
+    var submissionError: Error?
     private var initialHistoryOpening = false
     private var initialHistoryInvocation: UUID?
     private var restorationInvocation: UUID?
     private var refreshingFromHistory = false
-    private var closeInProgress = false
-    private var autosaveIdleTask: Task<Void, Never>?
-    private var autosaveGeneration = 0
+    var closeInProgress = false
+    var autosaveIdleTask: Task<Void, Never>?
+    var autosaveGeneration = 0
     var omittingHistoryForCurrentSave = false
-    private var documentSaveInProgress = false
+    var documentSaveInProgress = false
     var historyErrorHandler: ((Error) -> Void)?
 
-    private func reportHistoryError(_ error: Error) {
+    func reportHistoryError(_ error: Error) {
         if let historyErrorHandler { historyErrorHandler(error) } else { presentError(error) }
     }
 
@@ -144,7 +144,7 @@ extension WriteDocument {
         }
     }
 
-    private func historySnapshot(_ history: WorkHistorySession) -> HistorySnapshot {
+    func historySnapshot(_ history: WorkHistorySession) -> HistorySnapshot {
         history.availability
     }
 
@@ -359,146 +359,7 @@ extension WriteDocument {
 
 }
 
-// MARK: - Document persistence and lifecycle
-
 extension WriteDocument {
-    /// Save a host-selected package without retained history. A successful
-    /// replacement retires the live generation; a failed save leaves it intact.
-    func saveOmittingHistory(to url: URL, ofType typeName: String,
-                             completionHandler: @escaping (Error?) -> Void) {
-        guard !documentSaveInProgress, let history = work.history else {
-            completionHandler(WorkHistoryError.busy)
-            return
-        }
-        Task { @MainActor in
-            do {
-                try await flushHistory()
-                guard !documentSaveInProgress, nativeHistory?.canAttach ?? true else {
-                    throw WorkHistoryError.busy
-                }
-                let publication = try history.beginOmissionPublication()
-                let invocation = nativeHistory?.beginExternalOperation()
-                if nativeHistory != nil && invocation == nil {
-                    try history.cancelOmissionPublication(publication)
-                    throw WorkHistoryError.busy
-                }
-                documentSaveInProgress = true
-                omittingHistoryForCurrentSave = true
-                super.save(to: url, ofType: typeName, for: .saveOperation) { [self] error in
-                    omittingHistoryForCurrentSave = false
-                    documentSaveInProgress = false
-                    if let error {
-                        do { try history.cancelOmissionPublication(publication) } catch {
-                            reportHistoryError(error)
-                        }
-                        if let invocation {
-                            nativeHistory?.finishInvocation(invocation, snapshot: historySnapshot(history))
-                        }
-                        completionHandler(error)
-                        return
-                    }
-                    if let invocation {
-                        nativeHistory?.finishInvocation(invocation, snapshot: historySnapshot(history))
-                    }
-                    do {
-                        try history.completeOmissionAfterSave(publication)
-                        try nativeHistory?.attach(snapshot: historySnapshot(history))
-                        completionHandler(nil)
-                    } catch {
-                        if nativeHistory?.requiresReattachment == true {
-                            try? nativeHistory?.attach(snapshot: historySnapshot(history))
-                        }
-                        completionHandler(WriteHistoryOmissionError.published(needsRecovery: error))
-                    }
-                }
-            } catch { completionHandler(error) }
-        }
-    }
-
-    /// Retry live reset or receipt cleanup after the package was already saved
-    /// without history. A second call can also finish native reattachment.
-    func retryPublishedHistoryOmission() throws {
-        guard !documentSaveInProgress, let history = work.history else { throw WorkHistoryError.busy }
-        if let publication = history.pendingOmissionPublication {
-            try history.completeOmissionAfterSave(publication)
-        }
-        if let nativeHistory {
-            guard nativeHistory.canAttach else { throw WorkHistoryError.busy }
-            try nativeHistory.attach(snapshot: historySnapshot(history))
-        }
-    }
-
-    // AppKit enters here for explicit saves and autosaves. Flush the asynchronous
-    // host history before delegating the actual safe-save machinery to NSDocument.
-    // Its completion handler, not the return from our write hook, reports publication.
-    override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType,
-                       completionHandler: @escaping (Error?) -> Void) {
-        guard !documentSaveInProgress else {
-            completionHandler(WorkHistoryError.busy)
-            return
-        }
-        Task { @MainActor in
-            do {
-                let automaticSave = saveOperation == .autosaveElsewhereOperation ||
-                    saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveAsOperation
-                try await flushHistory(waitForNativeIdle: automaticSave)
-                guard !documentSaveInProgress else { throw WorkHistoryError.busy }
-                documentSaveInProgress = true
-                super.save(to: url, ofType: typeName, for: saveOperation) { [self] error in
-                    documentSaveInProgress = false
-                    completionHandler(error)
-                }
-            } catch { completionHandler(error) }
-        }
-    }
-
-    // Editing notifications restart this delay; they do not write files directly.
-    // After native editing becomes idle, scheduleAutosaving asks AppKit to schedule
-    // its normal document save path rather than introducing a second writer.
-    private func scheduleAutosavingAfterNativeIdle() {
-        autosaveGeneration += 1
-        let generation = autosaveGeneration
-        autosaveIdleTask?.cancel()
-        autosaveIdleTask = Task { @MainActor [weak self] in
-            try? await Task.sleep(for: .seconds(1))
-            guard let self, !Task.isCancelled, self.autosaveGeneration == generation else { return }
-            self.autosaveIdleTask = nil
-            self.scheduleAutosaving()
-        }
-    }
-
-    private func awaitNativeIdle() async {
-        while let autosaveIdleTask { await autosaveIdleTask.value }
-    }
-
-    // AppKit’s close entry point is synchronous, but the durable history session has
-    // asynchronous shutdown. Keep this document alive until it finishes, and call
-    // super.close() only on success; a failure leaves the document available to retry.
-    override func close() {
-        guard let history = work.history else { super.close(); return }
-        guard !closeInProgress else { return }
-        closeInProgress = true
-        autosaveIdleTask?.cancel()
-        autosaveIdleTask = nil
-        let closeInvocation = nativeHistory?.beginExternalOperation()
-        let pending = submissionTail
-        Task { @MainActor [self] in
-            do {
-                if let pending { await pending.value }
-                try await history.close()
-                finishClose()
-            } catch {
-                closeInProgress = false
-                if let closeInvocation {
-                    nativeHistory?.finishInvocation(closeInvocation, snapshot: historySnapshot(history))
-                }
-                reportHistoryError(error)
-            }
-        }
-    }
-
-    private func finishClose() { super.close() }
-
     // Reading supplies a replacement Work through this single host boundary. Once
     // a live history session exists, replacement is refused rather than mixing its
     // native undo registrations with a different Work.
@@ -515,26 +376,6 @@ extension WriteDocument {
         work = opened
         for controller in windowControllers {
             (controller.contentViewController as? ManuscriptViewController)?.work = opened
-        }
-    }
-}
-
-private enum WriteHistoryOmissionError: LocalizedError {
-    case published(needsRecovery: Error)
-
-    var errorDescription: String? {
-        switch self {
-        case .published:
-            return NSLocalizedString(
-                "write.history.omission-published", tableName: nil, bundle: .main,
-                value: "The Work was saved without history. Resolve the open history session before another save.",
-                comment: "History omission published, but live generation reset or receipt cleanup failed.")
-        }
-    }
-
-    var underlyingError: Error {
-        switch self {
-        case .published(let cause): cause
         }
     }
 }

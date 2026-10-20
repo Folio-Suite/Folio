@@ -183,12 +183,7 @@ private struct WorkHistoryEvidence: Codable {
           resources: session.resourceReferences(for: change)))
         state = change.after
       }
-      // Immutable bytes are already secured before the authoritative membership/receipt save.
-      do {
-        _ = try work.resourceStore.write(to: session.hostDirectory, extending: true)
-      } catch {
-        // No semantic transaction has started. Persist authoritative no-effect
-        // if the host store remains writable; otherwise reconciliation stays unresolved.
+      guard stageResources(work, session: session) else {
         return try reject(token, session: session, work: work)
       }
       let evidence = WorkHistoryEvidence(
@@ -200,18 +195,33 @@ private struct WorkHistoryEvidence: Codable {
         receipt: WorkStore.HistoryReceipt(
           commandID: token.command, fingerprint: Self.receiptFingerprint(token),
           accepted: true, evidence: try PropertyListEncoder().encode(evidence)))
-      // Main-actor isolation does not prevent later input across async awaits.
-      // Advance accepted state without erasing a newer provisional editor snapshot.
-      let hasLaterProvisionalInput = work.manuscript != session.committed && work.manuscript != state.manuscript
-      session.committed = state.manuscript
-      session.committedResources = state.resources
-      work.resourceStore.adoptValidated(state.resources)
-      if !hasLaterProvisionalInput { work.manuscript = state.manuscript }
+      adoptAcceptedState(state, session: session, work: work)
       return .accepted(effects)
     } catch {
       // A save error cannot establish no effect; reconciliation reads the atomic receipt.
       return .unresolved
     }
+  }
+
+  private func adoptAcceptedState(
+    _ state: WorkHistoryState, session: WorkHistorySession, work: Work
+  ) {
+    // Main-actor isolation does not prevent later input across async awaits.
+    // Advance accepted state without erasing a newer provisional editor snapshot.
+    let hasLaterProvisionalInput = work.manuscript != session.committed && work.manuscript != state.manuscript
+    session.committed = state.manuscript
+    session.committedResources = state.resources
+    work.resourceStore.adoptValidated(state.resources)
+    if !hasLaterProvisionalInput { work.manuscript = state.manuscript }
+  }
+
+  // Resource failure precedes semantic acceptance. A rejection still requires
+  // the durable no-effect receipt; an unwritable host store remains unresolved.
+  private func stageResources(_ work: Work, session: WorkHistorySession) -> Bool {
+    do {
+      _ = try work.resourceStore.write(to: session.hostDirectory, extending: true)
+      return true
+    } catch { return false }
   }
 
   private func reject(_ token: HistoryToken, session: WorkHistorySession, work: Work) throws

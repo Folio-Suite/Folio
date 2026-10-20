@@ -287,7 +287,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 2700;
+				LastUpgradeCheck = 2710;
 				ORGANIZATIONNAME = "the Folio Project";
 				TargetAttributes = {
 					A1064850304DFCF6001A21A6 = {
@@ -676,6 +676,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;

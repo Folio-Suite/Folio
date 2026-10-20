@@ -146,7 +146,7 @@ enum WorkNativeHistoryRoutingState: Equatable, Sendable {
     /// Supply the identity captured when the invocation began. A duplicate completion,
     /// stale identity, or stale version cannot finish another invocation or lift its barrier.
     func finishInvocation(_ invocation: UUID, snapshot: HistorySnapshot,
-                                 undoName: String = "", redoName: String = "") {
+                          undoName: String = "", redoName: String = "") {
         guard pendingInvocationID == invocation, accepts(snapshot) else { return }
         pendingInvocationID = nil
         update(snapshot: snapshot, undoName: undoName, redoName: redoName)

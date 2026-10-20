@@ -20,7 +20,6 @@
 		A1641C04306ACB1F004824F1 /* WriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BFB306ACB1F004824F1 /* WriteKit.framework */; };
 		A1641C1F306ACB22004824F1 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641C16306ACB22004824F1 /* ResearchKit.framework */; };
 		A1641C3A306ACB26004824F1 /* ComposerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641C31306ACB26004824F1 /* ComposerKit.framework */; };
-		A1641C95306AD035004824F1 /* Project.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A1641C94306AD035004824F1 /* Project.xcconfig */; };
 		A1641DF3306AD71B004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
 		A1641DF8306AD741004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
 		A1641DFD306AD75F004824F1 /* FolioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1641BE0306ACAE0004824F1 /* FolioKit.framework */; };
@@ -479,7 +478,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2700;
-				LastUpgradeCheck = 2700;
+				LastUpgradeCheck = 2710;
 				ORGANIZATIONNAME = "the Folio Project";
 				TargetAttributes = {
 					A1641BDF306ACAE0004824F1 = {
@@ -574,7 +573,6 @@
 		A1641C2F306ACB26004824F1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
-				A1641C95306AD035004824F1 /* Project.xcconfig in Resources */,
 			);
 		};
 		A1641C37306ACB26004824F1 /* Resources */ = {
@@ -734,6 +732,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -759,6 +758,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -802,6 +802,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = FT9KDL728H;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -820,6 +821,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -829,7 +831,7 @@
 		A1641BF1306ACAE0004824F1 /* Debug configuration for PBXNativeTarget "FolioKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -865,7 +867,7 @@
 		A1641BF2306ACAE0004824F1 /* Release configuration for PBXNativeTarget "FolioKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -943,7 +945,7 @@
 		A1641C0C306ACB1F004824F1 /* Debug configuration for PBXNativeTarget "WriteKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -977,7 +979,7 @@
 		A1641C0D306ACB1F004824F1 /* Release configuration for PBXNativeTarget "WriteKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -1049,7 +1051,7 @@
 		A1641C27306ACB22004824F1 /* Debug configuration for PBXNativeTarget "ResearchKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -1083,7 +1085,7 @@
 		A1641C28306ACB22004824F1 /* Release configuration for PBXNativeTarget "ResearchKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -1155,7 +1157,7 @@
 		A1641C42306ACB26004824F1 /* Debug configuration for PBXNativeTarget "ComposerKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -1189,7 +1191,7 @@
 		A1641C43306ACB26004824F1 /* Release configuration for PBXNativeTarget "ComposerKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;

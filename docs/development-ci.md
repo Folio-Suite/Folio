@@ -48,6 +48,19 @@ fast and reused runs never renew evidence. Increment `POLICY` in the selector
 when changing the validation contract or toolchain. Whole-tree matching also
 invalidates reuse when source, workflow, tests, or repository configuration changes.
 
+## Development signing preparation
+
+Framework targets compile without a code-signing identity, as Xcode recommends.
+Shared schemes prepare completed framework signatures in a build post-action,
+using `scripts/prepare-development-frameworks.sh` and their signed app or test
+bundle's certificate. This runs for native Xcode builds and CI's
+`build-for-testing` step, before test execution. The existing signing check then
+requires matching Team IDs, Hardened Runtime, and library validation.
+
+Unsigned repository builds skip preparation. Standalone builds also skip it:
+the app signs embedded framework copies before sealing the containing bundle,
+and the standalone wrapper signs them again after normalizing their load paths. The released UndoKit submodule retains its upstream project settings.
+
 ## Schemes and parallel work
 
 After selection, a full run launches five independent macOS jobs:

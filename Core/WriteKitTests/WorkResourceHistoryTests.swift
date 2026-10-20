@@ -100,7 +100,10 @@ import XCTest
         HistoryMember(payload: try WorkHistoryAdapter.encodeChange(
           WorkHistoryChange(before: empty, after: missing))),
       ], restorationOrigin: nil))
-    guard case .rejected = result else { return XCTFail("Whole group must be rejected") }
+    guard case .rejected = result else {
+      XCTFail("Whole group must be rejected")
+      return
+    }
     XCTAssertEqual(history.committedState, before)
     XCTAssertEqual(work.resources.map(\.identifier), [identifier])
     let stored = try WorkStore.readStore(at: history.hostStore)
@@ -127,22 +130,33 @@ import XCTest
       members: [HistoryMember(payload: try WorkHistoryAdapter.encodeChange(change))],
       restorationOrigin: nil)
     let result = await adapter.deliver(delivery)
-    guard case .accepted = result else { return XCTFail("Expected acceptance") }
+    guard case .accepted = result else {
+      XCTFail("Expected acceptance")
+      return
+    }
     // Model a stale in-memory projection after the host transaction succeeded.
     history.committedResources = before.resources
     work.resourceStore.adoptValidated(before.resources)
     let recovered = await adapter.outcome(for: token)
-    guard case .accepted(let effects) = recovered else { return XCTFail("Receipt must prove acceptance") }
+    guard case .accepted(let effects) = recovered else {
+      XCTFail("Receipt must prove acceptance")
+      return
+    }
     XCTAssertEqual(effects.count, 1)
     XCTAssertEqual(effects[0].resources.map(\.objectKey), before.resources.map { $0.identifier.rawValue })
     XCTAssertTrue(work.resources.isEmpty)
     XCTAssertTrue(history.committedResources.isEmpty)
     let repeated = await adapter.deliver(delivery)
-    guard case .accepted = repeated else { return XCTFail("Exact retry must return the receipt") }
+    guard case .accepted = repeated else {
+      XCTFail("Exact retry must return the receipt")
+      return
+    }
     XCTAssertTrue(work.resources.isEmpty)
     try await history.close()
   }
+}
 
+@MainActor extension WorkResourceHistoryTests {
   func testFailedStagingPreservesOriginalAndOmissionCopiesOnlyCurrentBytes() async throws {
     let directory = try directory()
     let work = Work()

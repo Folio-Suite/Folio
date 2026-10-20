@@ -18,12 +18,18 @@ localization keys stable. Resource schema numbers (for example, storyboard `3.0`
 are file-format identifiers, not OS requirements. Keep the versions emitted by
 Apple's tools; Core Data's `minimumToolsVersion=Automatic` uses the current tools.
 
-The shared Kits must be team-signed even during development: the hardened apps
-load them directly from the build products directory. Do not accept a recommended
-settings change that sets a Kit's `CODE_SIGN_IDENTITY` to an empty value (Do Not
-Sign). That leaves a linker-signed framework without a Team ID, which library
-validation rejects even when its path is correct. Retain automatic team signing;
-`scripts/check-ci-signing.rb` checks this before CI executes tests.
+Framework targets follow Xcode's recommendation to leave `CODE_SIGN_IDENTITY`
+empty. Before running or testing the Suite, the shared schemes run
+`scripts/prepare-development-frameworks.sh` after compilation. It signs the
+completed shared frameworks with the certificate of the scheme's signed host or
+test bundle. This keeps team signatures available for the hardened apps without
+signing partially built products or disabling library validation.
+
+Retain the preparation action when changing schemes. Unsigned build checks skip
+it; framework-only builds prepare signatures when their host is built, and
+standalone builds sign their final embedded copies through the standalone
+wrapper. `scripts/check-ci-signing.rb` verifies the prepared products' common
+Team ID, Hardened Runtime, and library validation before CI executes tests.
 
 
 ## Community participation

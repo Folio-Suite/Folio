@@ -294,13 +294,7 @@ extension WorkStore {
     var completed = false
     defer {
       if !completed {
-        for suffix in ["", "-wal", "-shm", "-journal"] {
-          try? FileManager.default.removeItem(atPath: storeURL.path + suffix)
-        }
-        try? FileManager.default.removeItem(
-          at: destinationPackageURL.appendingPathComponent("Package.json"))
-        try? FileManager.default.removeItem(
-          at: destinationPackageURL.appendingPathComponent("Resources"))
+        removeIncompleteSave(at: destinationPackageURL, store: storeURL)
       }
     }
     let changed: Changes
@@ -355,4 +349,13 @@ extension WorkStore {
       original.snapshot.manuscript.identifier == manuscript.identifier
     else { throw writeError() }
   }
+  private static func removeIncompleteSave(at package: URL, store: URL) {
+    for suffix in ["", "-wal", "-shm", "-journal"] {
+      try? FileManager.default.removeItem(atPath: store.path + suffix)
+    }
+    for name in ["Package.json", "Resources"] {
+      try? FileManager.default.removeItem(at: package.appendingPathComponent(name))
+    }
+  }
+
 }
