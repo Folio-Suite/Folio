@@ -135,7 +135,7 @@ or generated Objective-C headers. Framework identity and version remain in each
 bundle's Info.plist.
 
 TypographyKit and UndoKit are separate frameworks in the native workspace.
-UndoKit's Xcode project defaults to version **0.1.0**, independently of Folio's
+UndoKit's Xcode project defaults to version **0.2.2 (4)**, independently of Folio's
 Suite version. Folio is its primary host, and the standalone Swift Package
 product remains available to other consumers. UndoKit owns generic history
 behavior and storage safeguards, while hosts own semantics, validation,

@@ -17,8 +17,8 @@ import WriteKit
     // package replaces it in adopt(_:), before the document’s editor is presented.
     private(set) var work = Work()
     
-    // UndoKit shenanigans
-    private var nativeHistory: NativeHistoryRouter?
+    // Folio owns rich-text routing; UndoKit owns durable history transactions.
+    private var nativeHistory: WorkNativeHistoryRouter?
     private var historyMenu: WorkHistoryMenuController?
     private var submittedManuscript: Manuscript?
     private var countedManuscript: Manuscript?
@@ -70,7 +70,7 @@ import WriteKit
     override func makeWindowControllers() {
         let history: WorkHistorySession
         do { history = try work.enableHistory() } catch { presentError(error); return }
-        let router = nativeHistory ?? NativeHistoryRouter()
+        let router = nativeHistory ?? WorkNativeHistoryRouter()
         nativeHistory = router
         if submittedManuscript == nil { submittedManuscript = history.committedManuscript }
         if countedManuscript == nil { countedManuscript = history.committedManuscript }
@@ -116,7 +116,7 @@ import WriteKit
 extension WriteDocument {
     // The native UndoManager synchronously invokes router callbacks, while durable
     // history may suspend. The router’s invocation/barrier state spans that gap.
-    private func configure(router: NativeHistoryRouter, history: WorkHistorySession) {
+    private func configure(router: WorkNativeHistoryRouter, history: WorkHistorySession) {
         history.didChange = { [weak self] in self?.publishHistoryAvailability() }
         router.settleEditing = { [weak self] in self?.settleNativeEditing() ?? false }
         router.undoRequested = { [weak self] in self?.performHistoryUndo(redo: false) }
@@ -135,7 +135,7 @@ extension WriteDocument {
         publishHistoryAvailability()
     }
 
-    private func finishInitialHistoryOpen(_ history: WorkHistorySession, router: NativeHistoryRouter) {
+    private func finishInitialHistoryOpen(_ history: WorkHistorySession, router: WorkNativeHistoryRouter) {
         guard initialHistoryOpening else { return }
         initialHistoryOpening = false
         if let invocation = initialHistoryInvocation {

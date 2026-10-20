@@ -84,8 +84,7 @@ struct WorkHistoryRegistration: Codable {
   }
   var engine: HistoryEngine?
   var opening: Task<HistoryEngine, Error>?
-  var host: MainActorHistoryRegisteredHost<WorkHistoryAdapter>?
-  var typedRegistration: HistoryOperationRegistration<WorkHistoryAdapter>?
+  var host: WorkHistoryHost?
   var closed = false
   enum OmissionFinalizationPhase { case none, publishing, retireGeneration, stripReceipts }
   var omissionPhase: OmissionFinalizationPhase = .none

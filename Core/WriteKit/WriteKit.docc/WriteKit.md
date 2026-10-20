@@ -44,7 +44,7 @@ hosting also requires the routing and settlement contract below.
 
 Supply one `UndoManager` to all editors in a Work through ``ManuscriptViewController/make(work:undoManager:)``. The editor loads `Editor.storyboard` from WriteKit's bundle; its window factory supplies the reusable window and controls.
 
-For durable hosting, use `NativeHistoryRouter.undoManager` and implement the settlement and accepted-outcome callbacks described below. `workDidChange` reports provisional input; it must not immediately advance the document's authoritative change count. Keep the provisional manager separate from NSDocument's automatic counting. The Write application's `WriteDocument` is the complete native host example.
+For durable hosting, use the Write application’s `WorkNativeHistoryRouter.undoManager` and implement the settlement and accepted-outcome callbacks described below. `workDidChange` reports provisional input; it must not immediately advance the document's authoritative change count. Keep the provisional manager separate from NSDocument's automatic counting. The Write application's `WriteDocument` is the complete native host example.
 
 For native saving, prepare a separate empty package with ``Work/stageSave(from:toEmptyPackageAt:omittingHistory:)`` and let the document host complete safe replacement. The original must be a closed package; preparation never writes into it. Reopen with ``Work/init(contentsOf:)``. ``Work/fileWrapper()`` provides complete in-memory serialization. Durable hosts must finish opening, settle input and finalize pending history before either save path.
 

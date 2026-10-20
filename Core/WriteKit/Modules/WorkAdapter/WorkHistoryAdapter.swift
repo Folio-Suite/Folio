@@ -26,6 +26,12 @@ private struct WorkHistoryCanonicalChange: Codable {
     encoder.outputFormat = .binary
     return try encoder.encode(encoded)
   }
+
+  func change() throws -> WorkHistoryChange {
+    WorkHistoryChange(
+      before: try WorkHistoryStatePayload.decode(before),
+      after: try WorkHistoryStatePayload.decode(after))
+  }
 }
 
 /// Domain evidence in the host receipt, independent of UndoKit's codec envelope.
@@ -48,14 +54,14 @@ private struct WorkHistoryStoredEffect: Codable {
   let undo: WorkHistoryStoredChange
   let redo: WorkHistoryStoredChange
 
-  init(_ effect: HistoryTypedEffect<WorkHistoryChange>) {
-    member = effect.memberID
-    undo = WorkHistoryStoredChange(effect.undo)
-    redo = WorkHistoryStoredChange(effect.redo)
+  init(member: UUID, undo: WorkHistoryChange, redo: WorkHistoryChange) {
+    self.member = member
+    self.undo = WorkHistoryStoredChange(undo)
+    self.redo = WorkHistoryStoredChange(redo)
   }
 
-  func effect() throws -> HistoryTypedEffect<WorkHistoryChange> {
-    HistoryTypedEffect(memberID: member, undo: try undo.change(), redo: try redo.change())
+  func changes() throws -> (undo: WorkHistoryChange, redo: WorkHistoryChange) {
+    (try undo.change(), try redo.change())
   }
 }
 
@@ -65,41 +71,36 @@ private struct WorkHistoryEvidence: Codable {
   let effects: [WorkHistoryStoredEffect]
 }
 
-// MARK: - Typed operation handler
+// MARK: - Raw framework host adapter
 
 /// The framework retains this handler, while its Work Session remains weakly owned.
 /// The private host-store copy retains unresolved evidence until close.
-@MainActor final class WorkHistoryAdapter: MainActorHistoryOperationHandler {
-  typealias Command = WorkHistoryChange
-  typealias Effect = WorkHistoryChange
-  typealias State = WorkHistoryState
-
+@MainActor final class WorkHistoryAdapter {
   weak var session: WorkHistorySession?
 
   init(session: WorkHistorySession) { self.session = session }
 
-  // MARK: Registration and fingerprint input
+  private static let changeCodec = "app.foliosuite.work.content.change.plist.binary"
+  private static let stateCodec = "app.foliosuite.work.content.state.plist.binary"
 
-  static func registration(for session: WorkHistorySession) throws
-    -> HistoryOperationRegistration<WorkHistoryAdapter> {
-    let changeCodec = HistoryCodec<WorkHistoryChange>(
-      identifier: "app.foliosuite.work.content.change.plist.binary",
-      encode: { try WorkHistoryCanonicalChange.encode($0) },
-      decode: { data in
-        guard data.count <= 16 * 1_024 * 1_024 else { throw WorkStore.malformed() }
-        let stored = try PropertyListDecoder().decode(WorkHistoryCanonicalChange.self, from: data)
-        return WorkHistoryChange(
-          before: try WorkHistoryStatePayload.decode(stored.before),
-          after: try WorkHistoryStatePayload.decode(stored.after))
-      })
-    let stateCodec = HistoryCodec<WorkHistoryState>(
-      identifier: "app.foliosuite.work.content.state.plist.binary",
-      encode: { try WorkHistoryStatePayload.encode($0) },
-      decode: { try WorkHistoryStatePayload.decode($0) })
-    return try HistoryOperationRegistration(
-      operation: WorkHistorySession.family,
-      commandCodec: changeCodec, effectCodec: changeCodec,
-      stateCodec: stateCodec, handler: WorkHistoryAdapter(session: session))
+  static func encodeChange(_ change: WorkHistoryChange) throws -> HistoryPayload {
+    HistoryPayload(family: WorkHistorySession.family, version: 1,
+      data: try WorkHistoryEncoding.encode(
+        WorkHistoryCanonicalChange.encode(change), codec: changeCodec))
+  }
+
+  static func encodeState(_ state: WorkHistoryState) throws -> HistoryPayload {
+    HistoryPayload(family: WorkHistorySession.family, version: 1,
+      data: try WorkHistoryEncoding.encode(
+        WorkHistoryStatePayload.encode(state), codec: stateCodec))
+  }
+
+  static func decodeState(_ payload: HistoryPayload) throws -> WorkHistoryState {
+    guard payload.family == WorkHistorySession.family, payload.version == 1 else {
+      throw HistoryFailure(.compatibility, stage: .delivery, disposition: .usable)
+    }
+    let bytes = try WorkHistoryEncoding.decodeBytes(from: payload.data, codec: stateCodec)
+    return try WorkHistoryStatePayload.decode(bytes)
   }
 
   static func canonicalIntentData(for change: WorkHistoryChange) throws -> Data {
@@ -108,27 +109,36 @@ private struct WorkHistoryEvidence: Codable {
 
   // MARK: Host callbacks
 
-  // UndoKit invokes these registered callbacks after transaction admission.
-  // All three routes share the host's validation and atomic receipt boundary;
-  // UndoKit owns ordering, while this adapter owns Work meaning and compensation.
-  func apply(_ commands: [(UUID, WorkHistoryChange)], context: HistoryOperationContext) async
-    -> HistoryTypedOutcome<WorkHistoryChange> {
-    execute(commands, token: context.token)
-  }
-
-  func undo(_ effects: [(UUID, WorkHistoryChange)], context: HistoryOperationContext) async
-    -> HistoryTypedOutcome<WorkHistoryChange> {
-    execute(effects, token: context.token)
-  }
-
-  func redo(_ effects: [(UUID, WorkHistoryChange)], context: HistoryOperationContext) async
-    -> HistoryTypedOutcome<WorkHistoryChange> {
-    execute(effects, token: context.token)
+  func deliver(_ delivery: HistoryDelivery) async -> HistoryHostOutcome {
+    do {
+      let changes = try delivery.members.map { member -> (UUID, WorkHistoryChange) in
+        guard member.payload.family == WorkHistorySession.family, member.payload.version == 1 else {
+          throw HistoryFailure(.compatibility, stage: .delivery, disposition: .usable)
+        }
+        let bytes = try WorkHistoryEncoding.decodeBytes(from: member.payload.data, codec: Self.changeCodec)
+        guard bytes.count <= 16 * 1_024 * 1_024 else { throw WorkStore.malformed() }
+        let canonical = try PropertyListDecoder().decode(WorkHistoryCanonicalChange.self, from: bytes)
+        return (member.id, try canonical.change())
+      }
+      let outcome = execute(changes, token: delivery.token)
+      switch outcome {
+      case .rejected: return .rejected
+      case .unresolved: return .unresolved
+      case .failure(let failure): return .failure(failure)
+      case .accepted(let effects):
+        guard effects.map(\.memberID) == delivery.members.map(\.id) else { return .unresolved }
+        return .accepted(effects)
+      }
+    } catch let failure as HistoryFailure {
+      return .failure(failure)
+    } catch {
+      return .failure(HistoryFailure(.compatibility, stage: .delivery, disposition: .usable))
+    }
   }
 
   // Recovery queries the durable receipt instead of repeating a possibly
   // accepted edit. Absence or unreadable evidence is unresolved, never no-effect.
-  func outcome(for token: HistoryToken) async -> HistoryTypedOutcome<WorkHistoryChange> {
+  func outcome(for token: HistoryToken) async -> HistoryHostOutcome {
     guard let session else { return .unresolved }
     do {
       guard let receipt = try WorkStore.historyReceipt(
@@ -140,7 +150,7 @@ private struct WorkHistoryEvidence: Codable {
   // MARK: Atomic host evidence
 
   private func execute(_ members: [(UUID, WorkHistoryChange)], token: HistoryToken)
-    -> HistoryTypedOutcome<WorkHistoryChange> {
+    -> HistoryHostOutcome {
     guard let session, let work = session.work, !session.closed, !session.omissionPending else {
       return .unresolved
     }
@@ -155,7 +165,8 @@ private struct WorkHistoryEvidence: Codable {
         return .unresolved
       }
       var state = session.committedState
-      var effects: [HistoryTypedEffect<WorkHistoryChange>] = []
+      var effects: [HistoryEffect] = []
+      var storedEffects: [WorkHistoryStoredEffect] = []
       for (memberID, change) in members {
         guard state == change.before, change.before != change.after,
           change.after.manuscript.identifier == session.committed.identifier else {
@@ -165,10 +176,11 @@ private struct WorkHistoryEvidence: Codable {
           try work.resourceStore.validate(change.before.resources)
           try work.resourceStore.validate(change.after.resources)
         } catch { return try reject(token, session: session, work: work) }
-        effects.append(HistoryTypedEffect(
-          memberID: memberID,
-          undo: WorkHistoryChange(before: change.after, after: change.before),
-          redo: change, resources: session.resourceReferences(for: change)))
+        let undo = WorkHistoryChange(before: change.after, after: change.before)
+        storedEffects.append(WorkHistoryStoredEffect(member: memberID, undo: undo, redo: change))
+        effects.append(HistoryEffect(
+          memberID: memberID, undo: try Self.payload(for: undo), redo: try Self.payload(for: change),
+          resources: session.resourceReferences(for: change)))
         state = change.after
       }
       // Immutable bytes are already secured before the authoritative membership/receipt save.
@@ -181,7 +193,7 @@ private struct WorkHistoryEvidence: Codable {
       }
       let evidence = WorkHistoryEvidence(
         generation: token.generation, sequence: token.sequence,
-        effects: effects.map(WorkHistoryStoredEffect.init))
+        effects: storedEffects)
       try WorkStore.commitHistory(
         at: session.hostStore, workIdentifier: work.identifier,
         manuscript: state.manuscript, resources: state.resources,
@@ -203,7 +215,7 @@ private struct WorkHistoryEvidence: Codable {
   }
 
   private func reject(_ token: HistoryToken, session: WorkHistorySession, work: Work) throws
-    -> HistoryTypedOutcome<WorkHistoryChange> {
+    -> HistoryHostOutcome {
     try WorkStore.commitHistory(
       at: session.hostStore, workIdentifier: work.identifier, manuscript: session.committed,
       resources: session.committedResources,
@@ -214,7 +226,7 @@ private struct WorkHistoryEvidence: Codable {
   }
 
   private func outcome(_ receipt: WorkStore.HistoryReceipt, token: HistoryToken,
-                       session: WorkHistorySession) throws -> HistoryTypedOutcome<WorkHistoryChange> {
+                       session: WorkHistorySession) throws -> HistoryHostOutcome {
     guard receipt.fingerprint == Self.receiptFingerprint(token) else { return .unresolved }
     guard receipt.accepted else { return .rejected }
     let evidence = try PropertyListDecoder().decode(WorkHistoryEvidence.self, from: receipt.evidence)
@@ -222,9 +234,10 @@ private struct WorkHistoryEvidence: Codable {
       return .unresolved
     }
     let effects = try evidence.effects.map {
-      let effect = try $0.effect()
-      return HistoryTypedEffect(memberID: effect.memberID, undo: effect.undo, redo: effect.redo,
-                                resources: session.resourceReferences(for: effect.redo))
+      let changes = try $0.changes()
+      return HistoryEffect(memberID: $0.member,
+        undo: try Self.payload(for: changes.undo), redo: try Self.payload(for: changes.redo),
+        resources: session.resourceReferences(for: changes.redo))
     }
     let stored = try WorkStore.readStore(at: session.hostStore)
     guard let work = session.work, stored.identifier == work.identifier else { return .unresolved }
@@ -237,7 +250,26 @@ private struct WorkHistoryEvidence: Codable {
     return .accepted(effects)
   }
 
+  private static func payload(for change: WorkHistoryChange) throws -> HistoryPayload {
+    try encodeChange(change)
+  }
+
   private static func receiptFingerprint(_ token: HistoryToken) -> String {
     token.generation.uuidString + ":" + String(token.sequence)
+  }
+}
+
+/// Nonisolated protocol bridge; all document and domain work stays on MainActor.
+final class WorkHistoryHost: HistoryHost {
+  private let adapter: WorkHistoryAdapter
+
+  init(adapter: WorkHistoryAdapter) { self.adapter = adapter }
+
+  func deliver(_ delivery: HistoryDelivery) async -> HistoryHostOutcome {
+    await adapter.deliver(delivery)
+  }
+
+  func outcome(for token: HistoryToken) async -> HistoryHostOutcome {
+    await adapter.outcome(for: token)
   }
 }

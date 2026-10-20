@@ -93,10 +93,13 @@ import XCTest
                              generation: try XCTUnwrap(history.availability.generation),
                              sequence: 100, command: UUID())
     let adapter = WorkHistoryAdapter(session: history)
-    let result = await adapter.apply([
-      (UUID(), WorkHistoryChange(before: before, after: empty)),
-      (UUID(), WorkHistoryChange(before: empty, after: missing)),
-    ], context: HistoryOperationContext(token: token))
+    let result = await adapter.deliver(HistoryDelivery(
+      token: token, kind: .command, members: [
+        HistoryMember(payload: try WorkHistoryAdapter.encodeChange(
+          WorkHistoryChange(before: before, after: empty))),
+        HistoryMember(payload: try WorkHistoryAdapter.encodeChange(
+          WorkHistoryChange(before: empty, after: missing))),
+      ], restorationOrigin: nil))
     guard case .rejected = result else { return XCTFail("Whole group must be rejected") }
     XCTAssertEqual(history.committedState, before)
     XCTAssertEqual(work.resources.map(\.identifier), [identifier])
@@ -119,7 +122,11 @@ import XCTest
                              sequence: 100, command: UUID())
     let adapter = WorkHistoryAdapter(session: history)
     let change = WorkHistoryChange(before: before, after: empty)
-    let result = await adapter.apply([(UUID(), change)], context: HistoryOperationContext(token: token))
+    let delivery = HistoryDelivery(
+      token: token, kind: .command,
+      members: [HistoryMember(payload: try WorkHistoryAdapter.encodeChange(change))],
+      restorationOrigin: nil)
+    let result = await adapter.deliver(delivery)
     guard case .accepted = result else { return XCTFail("Expected acceptance") }
     // Model a stale in-memory projection after the host transaction succeeded.
     history.committedResources = before.resources
@@ -130,7 +137,7 @@ import XCTest
     XCTAssertEqual(effects[0].resources.map(\.objectKey), before.resources.map { $0.identifier.rawValue })
     XCTAssertTrue(work.resources.isEmpty)
     XCTAssertTrue(history.committedResources.isEmpty)
-    let repeated = await adapter.apply([(UUID(), change)], context: HistoryOperationContext(token: token))
+    let repeated = await adapter.deliver(delivery)
     guard case .accepted = repeated else { return XCTFail("Exact retry must return the receipt") }
     XCTAssertTrue(work.resources.isEmpty)
     try await history.close()

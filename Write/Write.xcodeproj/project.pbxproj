@@ -368,8 +368,6 @@
 		D80000000000000000000001 /* Embed standalone Kits */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = ();
 			inputPaths = (
 				"$(SRCROOT)/../scripts/embed-standalone-frameworks.sh",
 				"$(BUILT_PRODUCTS_DIR)/FolioKit.framework",
@@ -388,9 +386,10 @@
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/UndoKit.framework",
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/TypographyKit.framework",
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "\"${SRCROOT}/../scripts/embed-standalone-frameworks.sh\"";
+			shellScript = (
+				"\"${SRCROOT}/../scripts/embed-standalone-frameworks.sh\"",
+			);
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -762,7 +761,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../../../../Frameworks",
-					);
+				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteXPCService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -788,7 +787,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../../../../Frameworks",
-					);
+				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = dev.foliosuite.WriteXPCService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
