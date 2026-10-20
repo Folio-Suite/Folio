@@ -1,0 +1,84 @@
+<!-- SPDX-FileCopyrightText: 2026 the Folio Project
+SPDX-License-Identifier: MIT -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="980" viewBox="0 0 1440 980">
+<defs>
+ <linearGradient id="canvas" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111522"/><stop offset="1" stop-color="#252238"/></linearGradient>
+ <linearGradient id="metal" x1="0" y1="1" x2=".8" y2="0"><stop stop-color="#b97740"/><stop offset=".53" stop-color="#e4b276"/><stop offset="1" stop-color="#f4d8ac"/></linearGradient>
+ <linearGradient id="page" x1="0" y1="1" x2=".85" y2="0"><stop stop-color="#d19356"/><stop offset=".6" stop-color="#e8b87f"/><stop offset="1" stop-color="#f4d7ac"/></linearGradient>
+ <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff" stop-opacity=".34"/><stop offset=".4" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#9b572a" stop-opacity=".1"/></linearGradient>
+ <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff3dc"/><stop offset="1" stop-color="#c98a4d"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur stdDeviation="18"/></filter>
+ <style>.d{font-family:Helvetica,Arial,sans-serif;fill:#c1bdca}.e{font-family:Helvetica,Arial,sans-serif;fill:#b6b0c1;font-size:12px;font-weight:600;letter-spacing:2.5px}.n{font-family:Helvetica,Arial,sans-serif;fill:#f5f1f5;font-size:23px;font-weight:600}.w{font-family:Georgia,serif;fill:#f6f0e7;font-size:66px;letter-spacing:-2.5px}</style>
+</defs>
+<rect width="1440" height="980" rx="34" fill="url(#canvas)"/>
+<text x="80" y="82" class="e">FOLIO SUITE · IDENTITY EXPLORATIONS · 05</text>
+<text x="80" y="143" font-family="Helvetica,Arial,sans-serif" font-size="38" font-weight="600" letter-spacing="-.7" fill="#f7f3f4">The bundle becomes the mark.</text>
+<text x="80" y="179" class="d" font-size="14">A closed stack, one vertical band, one legible slot. Now in app-icon and wordmark contexts.</text>
+<rect x="80" y="220" width="590" height="650" rx="24" fill="#ffffff" fill-opacity=".055" stroke="#ffffff" stroke-opacity=".11"/>
+<rect x="700" y="220" width="660" height="310" rx="24" fill="#f2ebdf"/>
+<rect x="700" y="550" width="660" height="320" rx="24" fill="#ffffff" fill-opacity=".055" stroke="#ffffff" stroke-opacity=".11"/>
+<!-- large icon / app tile -->
+<g transform="translate(242 264)">
+ <rect width="264" height="264" rx="58" fill="#171c2c"/><rect width="264" height="264" rx="58" fill="#d89f66" opacity=".075"/>
+ <ellipse cx="132" cy="205" rx="74" ry="16" fill="#080a12" opacity=".45" filter="url(#shadow)"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" transform="translate(-12 11)" fill="#a66a39" stroke="url(#edge)" stroke-width="2.5"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" transform="translate(7 5)" fill="#d19a61" stroke="url(#edge)" stroke-width="2.5"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" fill="url(#page)" stroke="url(#edge)" stroke-width="3"/>
+ <path d="M80 79 H184 V187 H80Z" fill="url(#shine)"/>
+ <path d="M111 67 H153 V196 H111Z" fill="#9b6035"/><path d="M116 68 H148 V195 H116Z" fill="url(#shine)"/>
+ <path d="M80 190 H184 M72 183 H192" fill="none" stroke="#fff0d7" stroke-opacity=".65" stroke-width="2"/>
+ <path d="M80 71 V191 M184 71 V191" fill="none" stroke="#fff0d7" stroke-opacity=".22" stroke-width="1.5"/>
+ <path d="M107 119 Q107 115 112 115 H152 Q157 115 157 120 V148 H107Z" fill="#f2d3a8" stroke="#fff2dd" stroke-width="2.5"/>
+ <path d="M118 132 H146" stroke="#8c542f" stroke-width="5" stroke-linecap="round"/>
+</g>
+<text x="148" y="565" class="e">PRIMARY SYMBOL</text>
+<text x="148" y="642" class="w">Folio</text>
+<text x="151" y="683" class="e">THE FOLIO SUITE</text>
+<path d="M148 743 H600" stroke="#d9d0cf" stroke-opacity=".22"/>
+<text x="148" y="784" class="d" font-size="14">Bundle first. The band gathers; the slot identifies.</text>
+<text x="148" y="810" class="d" font-size="14">Wordmark type remains a separate choice.</text>
+<!-- flat light-ground wordmark lockup -->
+<g transform="translate(746 259) scale(.72)">
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" transform="translate(-12 11)" fill="#7a4b2e"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" transform="translate(7 5)" fill="#ab7448"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" fill="#d5a46d"/>
+ <path d="M111 67 H153 V196 H111Z" fill="#81502f"/>
+ <path d="M107 119 Q107 115 112 115 H152 Q157 115 157 120 V148 H107Z" fill="#f2e9da"/>
+ <path d="M118 132 H146" stroke="#81502f" stroke-width="5" stroke-linecap="round"/>
+</g>
+<path d="M914 385 H951" stroke="#8a7b6a" stroke-opacity=".5" stroke-width="1.5"/>
+<text x="980" y="361" font-family="Georgia,serif" font-size="70" letter-spacing="-3" fill="#2b2930">Folio</text>
+<text x="985" y="399" font-family="Helvetica,Arial,sans-serif" font-size="12" font-weight="600" letter-spacing="2.5" fill="#81786f">THE FOLIO SUITE</text>
+<text x="744" y="493" font-family="Helvetica,Arial,sans-serif" font-size="12" font-weight="600" letter-spacing="2.4" fill="#81786f">FLAT MONOCHROME · LIGHT GROUND</text>
+<!-- small-size range -->
+<text x="744" y="598" class="e">SILHOUETTE AT SMALL SIZES</text>
+<g transform="translate(756 635) scale(.48485)">
+ <rect width="264" height="264" rx="58" fill="#171c2c"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" transform="translate(-12 11)" fill="#a66a39" stroke="#f2d3a8" stroke-width="5"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" transform="translate(7 5)" fill="#d19a61" stroke="#f2d3a8" stroke-width="5"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" fill="#e8b87f" stroke="#f2d3a8" stroke-width="6"/>
+ <path d="M111 67 H153 V196 H111Z" fill="#9b6035"/>
+ <path d="M107 119 Q107 115 112 115 H152 Q157 115 157 120 V148 H107Z" fill="#f2d3a8"/>
+ <path d="M118 132 H146" stroke="#8c542f" stroke-width="8" stroke-linecap="round"/>
+</g>
+<g transform="translate(965 664) scale(.30303)">
+ <rect width="264" height="264" rx="58" fill="#171c2c"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" transform="translate(-12 11)" fill="#a66a39" stroke="#f2d3a8" stroke-width="7"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" transform="translate(7 5)" fill="#d19a61" stroke="#f2d3a8" stroke-width="7"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" fill="#e8b87f" stroke="#f2d3a8" stroke-width="8"/>
+ <path d="M111 67 H153 V196 H111Z" fill="#9b6035"/>
+ <path d="M107 119 Q107 115 112 115 H152 Q157 115 157 120 V148 H107Z" fill="#f2d3a8"/>
+ <path d="M118 132 H146" stroke="#8c542f" stroke-width="10" stroke-linecap="round"/>
+</g>
+<g transform="translate(1110 700) scale(.18182)">
+ <rect width="264" height="264" rx="58" fill="#171c2c"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" transform="translate(-12 11)" fill="#a66a39" stroke="#f2d3a8" stroke-width="10"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" transform="translate(7 5)" fill="#d19a61" stroke="#f2d3a8" stroke-width="10"/>
+ <path d="M72 73 Q72 65 80 65 H184 Q192 65 192 73 V190 Q192 198 184 198 H80 Q72 198 72 190Z" fill="#e8b87f" stroke="#f2d3a8" stroke-width="12"/>
+ <path d="M111 67 H153 V196 H111Z" fill="#9b6035"/>
+ <path d="M107 119 Q107 115 112 115 H152 Q157 115 157 120 V148 H107Z" fill="#f2d3a8"/>
+ <path d="M118 132 H146" stroke="#8c542f" stroke-width="13" stroke-linecap="round"/>
+</g>
+<text x="748" y="821" class="e">128 PX</text><text x="1006" y="821" class="e">80 PX</text><text x="1155" y="821" class="e">48 PX</text>
+<text x="80" y="927" class="e">ROUND 05 · THE SLOT CLASP · WORDMARK AND APP-ICON TREATMENTS ARE STILL EXPLORATORY</text>
+</svg>

@@ -117,7 +117,7 @@ The current pre-alpha model replaces the experimental code-defined format withou
 ## Public Kit interfaces
 
 Follow [ADR 0017](docs/adr/0017-discoverable-swift-interfaces-and-resources.md):
-keep each public API in a clearly named file or known set of interface files,
+collect public declarations in `Interface/`, grouped by capability as useful,
 with DocC beside the declarations and an entry-point guide in the module's
 README or DocC overview. Keep `AppDelegate.swift` at each app's source root.
 Group implementation areas under top-level `Modules/`, alongside `Interface/`
@@ -125,6 +125,14 @@ and `Resources/`; module folders do not automatically become separate targets.
 Collect bundled resources at the owning app or framework's root or in its
 top-level `Resources/` directory. Future internal libraries remain components
 of that enclosing product, with resource ownership retained by the product.
+
+Prefer protocols and classes where they naturally express contracts or identity;
+use structs and enums naturally for values and alternatives. Swift-required or
+naturally colocated declaration code may remain in `Interface/`; do not add
+forwarding types or protocols solely to satisfy the layout. Source organization
+serves comprehension independently of later interface narrowing or behavioral
+refactoring. Keep access control intentional; folder placement does not require
+making an app-internal declaration public.
 
 The six frameworks publish Swift modules.
 Callers, including each owning application, use `import KitName` and public Swift declarations. Keep implementation types
