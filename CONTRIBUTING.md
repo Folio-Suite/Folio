@@ -18,12 +18,18 @@ localization keys stable. Resource schema numbers (for example, storyboard `3.0`
 are file-format identifiers, not OS requirements. Keep the versions emitted by
 Apple's tools; Core Data's `minimumToolsVersion=Automatic` uses the current tools.
 
-The shared Kits must be team-signed even during development: the hardened apps
-load them directly from the build products directory. Do not accept a recommended
-settings change that sets a Kit's `CODE_SIGN_IDENTITY` to an empty value (Do Not
-Sign). That leaves a linker-signed framework without a Team ID, which library
-validation rejects even when its path is correct. Retain automatic team signing;
-`scripts/check-ci-signing.rb` checks this before CI executes tests.
+Framework targets follow Xcode's recommendation to leave `CODE_SIGN_IDENTITY`
+empty. Before running or testing the Suite, the shared schemes run
+`scripts/prepare-development-frameworks.sh` after compilation. It signs the
+completed shared frameworks with the certificate of the scheme's signed host or
+test bundle. This keeps team signatures available for the hardened apps without
+signing partially built products or disabling library validation.
+
+Retain the preparation action when changing schemes. Unsigned build checks skip
+it; framework-only builds prepare signatures when their host is built, and
+standalone builds sign their final embedded copies through the standalone
+wrapper. `scripts/check-ci-signing.rb` verifies the prepared products' common
+Team ID, Hardened Runtime, and library validation before CI executes tests.
 
 
 ## Community participation
@@ -111,7 +117,7 @@ The current pre-alpha model replaces the experimental code-defined format withou
 ## Public Kit interfaces
 
 Follow [ADR 0017](docs/adr/0017-discoverable-swift-interfaces-and-resources.md):
-keep each public API in a clearly named file or known set of interface files,
+collect public declarations in `Interface/`, grouped by capability as useful,
 with DocC beside the declarations and an entry-point guide in the module's
 README or DocC overview. Keep `AppDelegate.swift` at each app's source root.
 Group implementation areas under top-level `Modules/`, alongside `Interface/`
@@ -119,6 +125,14 @@ and `Resources/`; module folders do not automatically become separate targets.
 Collect bundled resources at the owning app or framework's root or in its
 top-level `Resources/` directory. Future internal libraries remain components
 of that enclosing product, with resource ownership retained by the product.
+
+Prefer protocols and classes where they naturally express contracts or identity;
+use structs and enums naturally for values and alternatives. Swift-required or
+naturally colocated declaration code may remain in `Interface/`; do not add
+forwarding types or protocols solely to satisfy the layout. Source organization
+serves comprehension independently of later interface narrowing or behavioral
+refactoring. Keep access control intentional; folder placement does not require
+making an app-internal declaration public.
 
 The six frameworks publish Swift modules.
 Callers, including each owning application, use `import KitName` and public Swift declarations. Keep implementation types
@@ -135,7 +149,7 @@ or generated Objective-C headers. Framework identity and version remain in each
 bundle's Info.plist.
 
 TypographyKit and UndoKit are separate frameworks in the native workspace.
-UndoKit's Xcode project defaults to version **0.1.0**, independently of Folio's
+UndoKit's Xcode project defaults to version **0.2.2 (4)**, independently of Folio's
 Suite version. Folio is its primary host, and the standalone Swift Package
 product remains available to other consumers. UndoKit owns generic history
 behavior and storage safeguards, while hosts own semantics, validation,

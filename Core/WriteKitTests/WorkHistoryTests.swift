@@ -158,7 +158,9 @@ import XCTest
     XCTAssertThrowsError(try work.removeResource(withIdentifier: .make()))
     try await history.close()
   }
+}
 
+@MainActor extension WorkHistoryTests {
   func testOmittedSaveStagesCurrentWorkAndOnlySuccessfulPublicationClearsLiveHistory() async throws {
     let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
     try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: false)

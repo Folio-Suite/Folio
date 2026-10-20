@@ -5,11 +5,15 @@ import Foundation
 import UndoKit
 
 // This consumer is compiled with only UndoKit.framework on its framework path.
-// A recipe-style host can choose a shorter ordinary Undo window without importing Folio.
+// It proves API shape; it does not provide a durable domain host or runtime proof.
+@MainActor private final class RecipeLease: HistoryHostLease {
+    func open(_ mode: HistoryOpenMode) async throws { _ = mode }
+    func close() async throws {}
+}
+
 @MainActor private final class RecipeHandler: MainActorHistoryOperationHandler {
     typealias Command = String
     typealias Effect = String
-    typealias State = String
 
     func apply(_ commands: [(UUID, String)], context: HistoryOperationContext) async -> HistoryTypedOutcome<String> {
         _ = (commands, context.token, context.restorationOrigin)
@@ -34,8 +38,8 @@ import UndoKit
     }
 }
 
-private func textCodec(_ identity: String) -> HistoryCodec<String> {
-    HistoryCodec(identifier: identity,
+private func textCodec() -> HistoryCodec<String> {
+    HistoryCodec(identifier: "example.recipe.title.utf8",
         encode: { Data($0.utf8) },
         decode: { data in
             guard let value = String(data: data, encoding: .utf8) else {
@@ -46,53 +50,49 @@ private func textCodec(_ identity: String) -> HistoryCodec<String> {
 }
 
 @MainActor private func exercisePublicInterface(at storeURL: URL) async throws {
-    let handler = RecipeHandler()
-    let registration = try HistoryOperationRegistration(
+    let operation = try HistoryOperation(
         operation: "example.recipe.title",
-        commandVersion: 1, effectVersion: 1, stateVersion: 1,
-        commandCodec: textCodec("example.recipe.title.command.utf8"),
-        effectCodec: textCodec("example.recipe.title.effect.utf8"),
-        stateCodec: textCodec("example.recipe.title.state.utf8"),
-        handler: handler)
-    let host = MainActorHistoryRegisteredHost(registration)
-    let limits = HistoryLimits(maxUndoGroups: 100)
-    let scope = UUID()
-    let engine = try await HistoryEngine.open(at: storeURL, scope: scope,
-        workingIdentity: UUID(), mode: .create, host: host, limits: limits)
-    let transactions: any HistoryTransactions = engine
-    let history: any HistoryReading = engine
-    let retention: any HistoryRetentionManaging = engine
-    transactions.snapshotDidChange = { snapshot in
-        _ = (snapshot.canUndo, snapshot.canRedo, snapshot.hasPending, snapshot.isSuspended)
-    }
+        commandCodec: textCodec(),
+        effectCodec: textCodec(),
+        handler: RecipeHandler(),
+        fingerprint: { commands in Data(commands.joined(separator: "\n").utf8) },
+        metadata: { _ in
+            HistoryOperationMetadata(presentation: HistoryPayload(
+                family: "example.recipe.title.label", data: Data("Rename".utf8)))
+        })
 
-    let payload = try handler.encodeState("A prior title", using: registration)
-    let typedCommand = HistoryTypedCommand(
-        fingerprint: Data("canonical intent".utf8), value: "New title",
-        presentation: HistoryPayload(family: "example.recipe.title.label", data: Data("Rename".utf8)),
-        expectedGeneration: transactions.snapshot.generation)
-    switch await handler.submit(typedCommand, using: registration, to: transactions) {
-    case .accepted(let receipt): _ = (receipt.token, receipt.groupID)
-    case .rejected: break
-    case .failure(let failure): _ = (failure.cause, failure.stage, failure.disposition)
-    }
-    _ = await transactions.undo(expectedGeneration: transactions.snapshot.generation)
-    _ = await transactions.redo(expectedGeneration: transactions.snapshot.generation)
-    _ = await transactions.reconcile()
-    let restoredState = try handler.decodeState(payload, using: registration)
-    _ = restoredState
-    try exerciseRetainedHistory(history, retention: retention, state: payload)
-    try await engine.close()
+    let limits = HistoryLimits(maxUndoGroups: 100)
+    let configuration = HistorySessionConfiguration(
+        historyURL: storeURL,
+        scope: UUID(),
+        workingIdentity: UUID(),
+        mode: .create,
+        limits: limits)
+    let sessions = HistorySessions()
+    let lease = RecipeLease()
+    let session = await sessions.open(
+        configuration: configuration, lease: lease, operations: [operation.erased])
+    let commands = try session.commands(for: operation)
+    let history = session.advanced
+
+    let typedCommand = "New title"
+    _ = await commands.submit(typedCommand)
+    _ = await session.undo()
+    _ = await session.redo()
+    _ = await session.reconcile()
+
+    let state = HistoryPayload(family: "example.recipe.title.state", data: Data("A prior title".utf8))
+    try exerciseRetainedHistory(history, state: state)
+    await session.close()
 }
 
 @MainActor private func exerciseRetainedHistory(
-    _ history: any HistoryReading,
-    retention: any HistoryRetentionManaging,
+    _ history: HistorySessionAdvanced,
     state: HistoryPayload
 ) throws {
     let checkpointID = UUID()
-    let checkpoint = try retention.createCheckpoint(
-        id: checkpointID, name: "Before review", state: state)
+    let checkpoint = try history.createCheckpoint(
+        id: checkpointID, name: "Before review", state: state, resources: [])
     _ = try history.checkpoint(id: checkpoint.id)
     _ = try history.checkpoints(limit: 20)
     _ = try history.historyPage(limit: 20)
@@ -111,10 +111,10 @@ private func textCodec(_ identity: String) -> HistoryCodec<String> {
     }
     history.releaseRecoveryPlan(plan)
 
-    let hold = try retention.holdState(checkpoint.id)
-    _ = try retention.retentionHolds()
-    try retention.releaseHold(hold.id)
-    _ = try retention.consolidateHistory(
+    let hold = try history.holdState(checkpoint.id, id: UUID())
+    _ = try history.retentionHolds()
+    try history.releaseHold(hold.id)
+    _ = try history.consolidateHistory(
         through: checkpoint.id, policy: HistoryRetentionPolicy(targetDetailedGroups: 100))
 }
 

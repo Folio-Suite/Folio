@@ -64,17 +64,16 @@ extension WorkHistorySession {
     // Main-actor tasks can interleave while awaiting disk opening. Reuse the
     // same task so concurrent callers cannot register two engines for one store.
     if let opening { return try await opening.value }
-    let typed = try WorkHistoryAdapter.registration(for: self)
-    let adapter = MainActorHistoryRegisteredHost(typed)
-    typedRegistration = typed
-    host = adapter
+    let adapter = WorkHistoryAdapter(session: self)
+    let host = WorkHistoryHost(adapter: adapter)
+    self.host = host
     let url = historyStore
     let registration = registration
     let mode = openMode
     let task = Task { @MainActor in
       try await HistoryEngine.open(
         at: url, scope: registration.scope,
-        workingIdentity: registration.workingIdentity, mode: mode, host: adapter,
+        workingIdentity: registration.workingIdentity, mode: mode, host: host,
         limits: HistoryLimits())
     }
     opening = task
@@ -111,14 +110,12 @@ extension WorkHistorySession {
     let engine: any HistoryTransactions = try await transactions()
     guard state.manuscript.identifier == committed.identifier else { throw WorkHistoryError.rejected }
     guard state != committedState else { return }
-    guard let typedRegistration else { throw WorkHistoryError.busy }
     let change = WorkHistoryChange(before: committedState, after: state)
     let fingerprint = Data(SHA256.hash(data: try WorkHistoryAdapter.canonicalIntentData(for: change)))
-    let result = await typedRegistration.handler.submit(
-      HistoryTypedCommand(
-        fingerprint: fingerprint, value: change, restorationOrigin: origin,
-        expectedGeneration: engine.snapshot.generation),
-      using: typedRegistration, to: engine)
+    let command = HistoryCommand(
+      fingerprint: fingerprint, payload: try WorkHistoryAdapter.encodeChange(change),
+      restorationOrigin: origin, expectedGeneration: engine.snapshot.generation)
+    let result = await engine.submit(command)
     try finish(result)
   }
 
@@ -153,9 +150,8 @@ extension WorkHistorySession {
     let engine = try await ready()
     guard canSave else { throw WorkHistoryError.busy }
     if mode == .on {
-      guard let typedRegistration else { throw WorkHistoryError.busy }
       _ = try engine.setRecording(.on,
-        baseline: typedRegistration.handler.encodeState(committedState, using: typedRegistration),
+        baseline: try WorkHistoryAdapter.encodeState(committedState),
         resources: resourceReferences(committedResources))
     } else {
       try engine.setRecording(.off)
@@ -211,8 +207,7 @@ extension WorkHistorySession {
       didChange?()
     }
     if omissionPhase == .retireGeneration {
-      guard let typedRegistration else { throw WorkHistoryError.busy }
-      let baseline = try typedRegistration.handler.encodeState(committedState, using: typedRegistration)
+      let baseline = try WorkHistoryAdapter.encodeState(committedState)
       _ = try engine.clearHistory(adopting: baseline, resources: resourceReferences(committedResources))
       omissionPhase = .stripReceipts
       didChange?()
@@ -255,13 +250,12 @@ extension WorkHistorySession {
       try WorkStore.readStore(at: hostStore).manuscript == manuscript else {
       throw WorkHistoryError.busy
     }
-    guard let typedRegistration else { throw WorkHistoryError.busy }
     guard let resources = try WorkStore.readStore(at: hostStore).resourceMembership else {
       throw WorkHistoryError.invalidPackage
     }
     try work.resourceStore.validate(resources)
-    let baseline = try typedRegistration.handler.encodeState(
-      WorkHistoryState(manuscript: manuscript, resources: resources), using: typedRegistration)
+    let baseline = try WorkHistoryAdapter.encodeState(
+      WorkHistoryState(manuscript: manuscript, resources: resources))
     let generation = try engine.resetUnresolvedHistory(
       adopting: baseline, resources: resourceReferences(resources), quarantineAt: destination)
     committed = manuscript
@@ -294,11 +288,10 @@ extension WorkHistorySession {
   public func createCheckpoint(name: String) async throws -> UUID {
     let retention: any HistoryRetentionManaging = try await ready()
     guard canSave else { throw WorkHistoryError.busy }
-    guard let typedRegistration else { throw WorkHistoryError.busy }
     let id = UUID()
     _ = try retention.createCheckpoint(
       id: id, name: name,
-      state: typedRegistration.handler.encodeState(committedState, using: typedRegistration),
+      state: try WorkHistoryAdapter.encodeState(committedState),
       resources: resourceReferences(committedResources))
     didChange?()
     return id
@@ -313,12 +306,11 @@ extension WorkHistorySession {
   /// Refresh native editors after acceptance; the operation does not save the document.
   public func restore(checkpointID: UUID) async throws {
     let history: any HistoryReading = try await ready()
-    guard let typedRegistration,
-      let checkpoint = try history.checkpoint(id: checkpointID) else {
+    guard let checkpoint = try history.checkpoint(id: checkpointID) else {
       throw WorkHistoryError.invalidPackage
     }
     try await submit(
-      state: typedRegistration.handler.decodeState(checkpoint.state, using: typedRegistration),
+      state: try WorkHistoryAdapter.decodeState(checkpoint.state),
       origin: checkpointID)
   }
 

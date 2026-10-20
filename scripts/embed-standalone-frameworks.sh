@@ -21,4 +21,11 @@ for kit in FolioKit WriteKit ResearchKit ComposerKit UndoKit TypographyKit; do
     fi
     rm -rf "$destination"
     /usr/bin/ditto "$source" "$destination"
+    # Match Xcode's Code Sign On Copy behavior. Framework targets compile
+    # unsigned; the containing app must see signed copies before its own seal.
+    # The standalone wrapper signs again after normalizing final load paths.
+    if [[ "${CODE_SIGNING_ALLOWED:-YES}" != NO ]]; then
+        /usr/bin/codesign --force --sign "${EXPANDED_CODE_SIGN_IDENTITY:?Missing app signing identity}" \
+            --timestamp=none "$destination"
+    fi
 done

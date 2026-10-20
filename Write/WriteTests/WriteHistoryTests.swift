@@ -241,7 +241,9 @@ import XCTest
         }
         XCTAssertTrue(restored)
     }
+}
 
+@MainActor extension WriteHistoryTests {
     func testNativeSaveOmittingHistoryRetiresLiveGenerationAndAllowsNextEdit() async throws {
         let url = FileManager.default.temporaryDirectory
             .appendingPathComponent(UUID().uuidString).appendingPathExtension("flwrbundle")

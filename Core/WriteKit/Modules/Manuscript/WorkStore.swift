@@ -123,7 +123,7 @@ enum WorkStore {
     return value
   }
 
-  static func ordered<Record: NSManagedObject>(_ values: NSOrderedSet?, as: Record.Type)
+  static func ordered<Record: NSManagedObject>(_ values: NSOrderedSet?, as recordType: Record.Type)
     throws -> [Record] {
     guard let values, let objects = values.array as? [Record]
     else { throw malformed() }
@@ -146,63 +146,6 @@ enum WorkStore {
         value:
           "The store contains invalid or unsupported Manuscript structure; no content has been changed.",
         comment: "Recovery explanation for invalid data. Manuscript is a Folio domain term."))
-  }
-
-  /// Ask the store whether required scalar values are in the supported domain
-  /// sets before Core Data projects them through generated scalar accessors.
-  static func validateRequiredScalars(
-    _ context: NSManagedObjectContext, onlyEntity: String? = nil,
-    matching: NSPredicate? = nil
-  ) throws {
-    guard let entities = context.persistentStoreCoordinator?.managedObjectModel.entities else {
-      throw malformed()
-    }
-    var matchedEntity = onlyEntity == nil
-    for entity in entities {
-      guard let name = entity.name else { throw malformed() }
-      if let onlyEntity, name != onlyEntity { continue }
-      matchedEntity = true
-      let attributes = entity.attributesByName.values.filter {
-        !$0.isOptional
-          && ($0.attributeType == .booleanAttributeType
-            || $0.attributeType == .integer16AttributeType)
-      }
-      guard !attributes.isEmpty else { continue }
-      var invalid: [NSPredicate] = []
-      for attribute in attributes {
-        let allowed: [NSNumber]
-        switch attribute.attributeType {
-        case .booleanAttributeType:
-          allowed = [0, 1]
-        case .integer16AttributeType:
-          switch (name, attribute.name) {
-          case ("Work", "formatVersion"):
-            allowed = [1]
-          case ("Paragraph", "alignment"):
-            allowed = [
-              ParagraphAlignment.natural, .left, .center, .right, .justified,
-            ].map { NSNumber(value: $0.rawValue) }
-          case ("Run", "emphasis"):
-            allowed = [
-              TextEmphasis.none, .emphasis, .strongEmphasis, .veryStrongEmphasis,
-            ].map { NSNumber(value: $0.rawValue) }
-          default:
-            throw malformed()
-          }
-        default:
-          continue
-        }
-        invalid.append(NSPredicate(format: "%K == nil", attribute.name))
-        invalid.append(NSPredicate(format: "NOT (%K IN %@)", attribute.name, allowed))
-      }
-      let invalidValue = NSCompoundPredicate(orPredicateWithSubpredicates: invalid)
-      let request = NSFetchRequest<NSFetchRequestResult>(entityName: name)
-      request.predicate = matching.map {
-        NSCompoundPredicate(andPredicateWithSubpredicates: [$0, invalidValue])
-      } ?? invalidValue
-      guard try context.count(for: request) == 0 else { throw malformed() }
-    }
-    guard matchedEntity else { throw malformed() }
   }
 
   static func readPackage(_ package: FileWrapper) throws -> Snapshot {

@@ -1,186 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-SPDX-FileCopyrightText: 2026 the Folio Project
-SPDX-License-Identifier: MIT
--->
-<Scheme
-   LastUpgradeVersion = "2700"
-   version = "1.3">
-   <BuildAction
-      parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
+<Scheme LastUpgradeVersion="2710" version="1.3">
+   <BuildAction parallelizeBuildables="YES" buildImplicitDependencies="YES">
       <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A1641BDF306ACAE0004824F1"
-               BuildableName = "FolioKit.framework"
-               BlueprintName = "FolioKit"
-               ReferencedContainer = "container:Core/Core.xcodeproj">
+         <BuildActionEntry buildForTesting="YES" buildForRunning="YES" buildForProfiling="YES" buildForArchiving="YES" buildForAnalyzing="YES">
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="A1641BDF306ACAE0004824F1" BuildableName="FolioKit.framework" BlueprintName="FolioKit" ReferencedContainer="container:Core/Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A15AE24D3057244C001B9E7B"
-               BuildableName = "Composer.app"
-               BlueprintName = "Composer"
-               ReferencedContainer = "container:Composer/Composer.xcodeproj">
+         <BuildActionEntry buildForTesting="YES" buildForRunning="YES" buildForProfiling="YES" buildForArchiving="YES" buildForAnalyzing="YES">
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="A15AE24D3057244C001B9E7B" BuildableName="Composer.app" BlueprintName="Composer" ReferencedContainer="container:Composer/Composer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A1641BFA306ACB1F004824F1"
-               BuildableName = "WriteKit.framework"
-               BlueprintName = "WriteKit"
-               ReferencedContainer = "container:Core/Core.xcodeproj">
+         <BuildActionEntry buildForTesting="YES" buildForRunning="YES" buildForProfiling="YES" buildForArchiving="YES" buildForAnalyzing="YES">
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="A1641BFA306ACB1F004824F1" BuildableName="WriteKit.framework" BlueprintName="WriteKit" ReferencedContainer="container:Core/Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A1641C15306ACB22004824F1"
-               BuildableName = "ResearchKit.framework"
-               BlueprintName = "ResearchKit"
-               ReferencedContainer = "container:Core/Core.xcodeproj">
+         <BuildActionEntry buildForTesting="YES" buildForRunning="YES" buildForProfiling="YES" buildForArchiving="YES" buildForAnalyzing="YES">
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="A1641C15306ACB22004824F1" BuildableName="ResearchKit.framework" BlueprintName="ResearchKit" ReferencedContainer="container:Core/Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A1641C30306ACB26004824F1"
-               BuildableName = "ComposerKit.framework"
-               BlueprintName = "ComposerKit"
-               ReferencedContainer = "container:Core/Core.xcodeproj">
+         <BuildActionEntry buildForTesting="YES" buildForRunning="YES" buildForProfiling="YES" buildForArchiving="YES" buildForAnalyzing="YES">
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="A1641C30306ACB26004824F1" BuildableName="ComposerKit.framework" BlueprintName="ComposerKit" ReferencedContainer="container:Core/Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A1819381306767B600D3F601"
-               BuildableName = "UndoKit.framework"
-               BlueprintName = "UndoKit"
-               ReferencedContainer = "container:UndoKit/UndoKit.xcodeproj">
+         <BuildActionEntry buildForTesting="YES" buildForRunning="YES" buildForProfiling="YES" buildForArchiving="YES" buildForAnalyzing="YES">
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="A1819381306767B600D3F601" BuildableName="UndoKit.framework" BlueprintName="UndoKit" ReferencedContainer="container:UndoKit/UndoKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A120CDD3306A0BBA0097A0D5"
-               BuildableName = "TypographyKit.framework"
-               BlueprintName = "TypographyKit"
-               ReferencedContainer = "container:TypographyKit/TypographyKit.xcodeproj">
+         <BuildActionEntry buildForTesting="YES" buildForRunning="YES" buildForProfiling="YES" buildForArchiving="YES" buildForAnalyzing="YES">
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="A120CDD3306A0BBA0097A0D5" BuildableName="TypographyKit.framework" BlueprintName="TypographyKit" ReferencedContainer="container:TypographyKit/TypographyKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
+      <PostActions>
+         <ExecutionAction ActionType="Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent title="Prepare shared development framework signatures" scriptText="&quot;${PROJECT_DIR}/../scripts/prepare-development-frameworks.sh&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="A15AE24D3057244C001B9E7B" BuildableName="Composer.app" BlueprintName="Composer" ReferencedContainer="container:Composer/Composer.xcodeproj">
+            </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
    </BuildAction>
-   <TestAction
-      buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+   <TestAction buildConfiguration="Debug" selectedDebuggerIdentifier="Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier="Xcode.DebuggerFoundation.Launcher.LLDB" shouldUseLaunchSchemeArgsEnv="YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A15AE2683057244C001B9E7B"
-               BuildableName = "ComposerTests.xctest"
-               BlueprintName = "ComposerTests"
-               ReferencedContainer = "container:Composer/Composer.xcodeproj">
+         <TestableReference skipped="NO">
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="A15AE2683057244C001B9E7B" BuildableName="ComposerTests.xctest" BlueprintName="ComposerTests" ReferencedContainer="container:Composer/Composer.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A15AE2723057244D001B9E7B"
-               BuildableName = "ComposerUITests.xctest"
-               BlueprintName = "ComposerUITests"
-               ReferencedContainer = "container:Composer/Composer.xcodeproj">
+         <TestableReference skipped="NO">
+            <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="A15AE2723057244D001B9E7B" BuildableName="ComposerUITests.xctest" BlueprintName="ComposerUITests" ReferencedContainer="container:Composer/Composer.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
    </TestAction>
-   <LaunchAction
-      buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      launchStyle = "0"
-      useCustomWorkingDirectory = "NO"
-      ignoresPersistentStateOnLaunch = "NO"
-      debugDocumentVersioning = "YES"
-      debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A15AE24D3057244C001B9E7B"
-            BuildableName = "Composer.app"
-            BlueprintName = "Composer"
-            ReferencedContainer = "container:Composer/Composer.xcodeproj">
+   <LaunchAction buildConfiguration="Debug" selectedDebuggerIdentifier="Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier="Xcode.DebuggerFoundation.Launcher.LLDB" launchStyle="0" useCustomWorkingDirectory="NO" ignoresPersistentStateOnLaunch="NO" debugDocumentVersioning="YES" debugServiceExtension="internal" allowLocationSimulation="YES">
+      <BuildableProductRunnable runnableDebuggingMode="0">
+         <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="A15AE24D3057244C001B9E7B" BuildableName="Composer.app" BlueprintName="Composer" ReferencedContainer="container:Composer/Composer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
-   <ProfileAction
-      buildConfiguration = "Release"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      savedToolIdentifier = ""
-      useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A15AE24D3057244C001B9E7B"
-            BuildableName = "Composer.app"
-            BlueprintName = "Composer"
-            ReferencedContainer = "container:Composer/Composer.xcodeproj">
+   <ProfileAction buildConfiguration="Release" shouldUseLaunchSchemeArgsEnv="YES" savedToolIdentifier="" useCustomWorkingDirectory="NO" debugDocumentVersioning="YES">
+      <BuildableProductRunnable runnableDebuggingMode="0">
+         <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="A15AE24D3057244C001B9E7B" BuildableName="Composer.app" BlueprintName="Composer" ReferencedContainer="container:Composer/Composer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
-   <AnalyzeAction
-      buildConfiguration = "Debug">
+   <AnalyzeAction buildConfiguration="Debug">
    </AnalyzeAction>
-   <ArchiveAction
-      buildConfiguration = "Release"
-      revealArchiveInOrganizer = "YES">
+   <ArchiveAction buildConfiguration="Release" revealArchiveInOrganizer="YES">
    </ArchiveAction>
 </Scheme>

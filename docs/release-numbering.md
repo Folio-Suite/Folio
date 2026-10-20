@@ -9,7 +9,7 @@ SPDX-License-Identifier: MIT
 the five Folio-owned frameworks, and all three bundled XPC services. The native
 About panels use this standard bundle metadata. Mixed Suite versions remain
 unsupported. UndoKit is the sixth framework with its own identity; its Xcode
-project defaults to **0.1.0** and does not inherit the Suite version.
+project defaults to **0.2.2 (4)** and does not inherit the Suite version.
 
 Builds, tests, and archives do not allocate numbers or modify tracked source.
 The former scheme pre-action and counter script have been removed. Change the
